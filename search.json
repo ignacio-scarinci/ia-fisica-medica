@@ -1,0 +1,184 @@
+[
+  {
+    "objectID": "unidad2/presentacion.html#agenda",
+    "href": "unidad2/presentacion.html#agenda",
+    "title": "Unidad 2 — Modelos",
+    "section": "Agenda",
+    "text": "Agenda\n\nTema 1\nTema 2",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2 — Modelos",
+      "Unidad 2 — Modelos"
+    ]
+  },
+  {
+    "objectID": "unidad2/presentacion.html#slide-de-ejemplo",
+    "href": "unidad2/presentacion.html#slide-de-ejemplo",
+    "title": "Unidad 2 — Modelos",
+    "section": "Slide de ejemplo",
+    "text": "Slide de ejemplo\nReemplazá este contenido con las slides reales.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2 — Modelos",
+      "Unidad 2 — Modelos"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#agenda",
+    "href": "unidad1/presentacion.html#agenda",
+    "title": "Unidad 1 — Introducción a la IA en Física Médica",
+    "section": "Agenda",
+    "text": "Agenda\n\n¿Qué es la IA y el ML?\nAplicaciones en física médica\nFlujo de trabajo de un proyecto",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1 — Introducción",
+      "Unidad 1 — Introducción a la IA en Física Médica"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#por-qué-ia-en-física-médica",
+    "href": "unidad1/presentacion.html#por-qué-ia-en-física-médica",
+    "title": "Unidad 1 — Introducción a la IA en Física Médica",
+    "section": "¿Por qué IA en Física Médica?",
+    "text": "¿Por qué IA en Física Médica?\n\nSegmentación automática de órganos\nOptimización de planes de radioterapia\nDetección asistida por computadora",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1 — Introducción",
+      "Unidad 1 — Introducción a la IA en Física Médica"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#ecuación-de-ejemplo",
+    "href": "unidad1/presentacion.html#ecuación-de-ejemplo",
+    "title": "Unidad 1 — Introducción a la IA en Física Médica",
+    "section": "Ecuación de ejemplo",
+    "text": "Ecuación de ejemplo\n\\[\n\\hat{y} = f_\\theta(x) = \\sigma(Wx + b)\n\\]",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1 — Introducción",
+      "Unidad 1 — Introducción a la IA en Física Médica"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#próxima-clase",
+    "href": "unidad1/presentacion.html#próxima-clase",
+    "title": "Unidad 1 — Introducción a la IA en Física Médica",
+    "section": "Próxima clase",
+    "text": "Próxima clase\nNos vemos con el notebook de práctica 🚀",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1 — Introducción",
+      "Unidad 1 — Introducción a la IA en Física Médica"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "IA en Física Médica",
+    "section": "",
+    "text": "Este es el sitio del curso de posgrado Inteligencia Artificial aplicada a la Física Médica.\nAcá vas a encontrar las notas de clase y las presentaciones de cada unidad. Los notebooks de trabajos prácticos y tareas no se publican en este sitio: están disponibles directamente en el repositorio de GitHub, dentro de la carpeta notebooks/ de cada unidad.\n👉 Ver el repositorio completo\n\n\n\n\n\nUnidad\nNotas\nPresentación\nNotebooks\n\n\n\n\n1 — Introducción\nVer\nVer\nCarpeta\n\n\n2 — Modelos\nVer\nVer\nCarpeta\n\n\n\n\n\n\ngit clone https://github.com/ignacio-scarinci/ia-fisica-medica.git\ncd ia-fisica-medica\npip install -r requirements.txt\njupyter lab"
+  },
+  {
+    "objectID": "index.html#bienvenidosas",
+    "href": "index.html#bienvenidosas",
+    "title": "IA en Física Médica",
+    "section": "",
+    "text": "Este es el sitio del curso de posgrado Inteligencia Artificial aplicada a la Física Médica.\nAcá vas a encontrar las notas de clase y las presentaciones de cada unidad. Los notebooks de trabajos prácticos y tareas no se publican en este sitio: están disponibles directamente en el repositorio de GitHub, dentro de la carpeta notebooks/ de cada unidad.\n👉 Ver el repositorio completo\n\n\n\n\n\nUnidad\nNotas\nPresentación\nNotebooks\n\n\n\n\n1 — Introducción\nVer\nVer\nCarpeta\n\n\n2 — Modelos\nVer\nVer\nCarpeta\n\n\n\n\n\n\ngit clone https://github.com/ignacio-scarinci/ia-fisica-medica.git\ncd ia-fisica-medica\npip install -r requirements.txt\njupyter lab"
+  },
+  {
+    "objectID": "unidad1/notas.html",
+    "href": "unidad1/notas.html",
+    "title": "Unidad 1 — Introducción a la IA en Física Médica",
+    "section": "",
+    "text": "Introducir los conceptos fundamentales de machine learning y deep learning.\nContextualizar sus aplicaciones en imágenes médicas, dosimetría y radioterapia.\nPresentar el flujo de trabajo típico de un proyecto de IA en física médica.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1 — Introducción",
+      "Unidad 1 — Introducción a la IA en Física Médica"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#objetivos-de-la-unidad",
+    "href": "unidad1/notas.html#objetivos-de-la-unidad",
+    "title": "Unidad 1 — Introducción a la IA en Física Médica",
+    "section": "",
+    "text": "Introducir los conceptos fundamentales de machine learning y deep learning.\nContextualizar sus aplicaciones en imágenes médicas, dosimetría y radioterapia.\nPresentar el flujo de trabajo típico de un proyecto de IA en física médica.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1 — Introducción",
+      "Unidad 1 — Introducción a la IA en Física Médica"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#por-qué-ia-en-física-médica",
+    "href": "unidad1/notas.html#por-qué-ia-en-física-médica",
+    "title": "Unidad 1 — Introducción a la IA en Física Médica",
+    "section": "2 1. ¿Por qué IA en Física Médica?",
+    "text": "2 1. ¿Por qué IA en Física Médica?\nContenido de la clase acá. Podés usar matemática con LaTeX de forma nativa:\n\\[\n\\hat{y} = f_\\theta(x) = \\sigma(Wx + b)\n\\]",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1 — Introducción",
+      "Unidad 1 — Introducción a la IA en Física Médica"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#material-complementario",
+    "href": "unidad1/notas.html#material-complementario",
+    "title": "Unidad 1 — Introducción a la IA en Física Médica",
+    "section": "3 2. Material complementario",
+    "text": "3 2. Material complementario\n\n📊 Presentación de la clase: ver slides\n💻 Notebook de práctica: tarea1.ipynb",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1 — Introducción",
+      "Unidad 1 — Introducción a la IA en Física Médica"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#bibliografía",
+    "href": "unidad1/notas.html#bibliografía",
+    "title": "Unidad 1 — Introducción a la IA en Física Médica",
+    "section": "4 3. Bibliografía",
+    "text": "4 3. Bibliografía\n\nReferencia 1\nReferencia 2",
+    "crumbs": [
+      "Inicio",
+      "Unidad 1 — Introducción",
+      "Unidad 1 — Introducción a la IA en Física Médica"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html",
+    "href": "unidad2/notas.html",
+    "title": "Unidad 2 — Modelos",
+    "section": "",
+    "text": "Contenido pendiente. Reemplazá este texto con las notas reales de la clase.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2 — Modelos",
+      "Unidad 2 — Modelos"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#objetivos-de-la-unidad",
+    "href": "unidad2/notas.html#objetivos-de-la-unidad",
+    "title": "Unidad 2 — Modelos",
+    "section": "",
+    "text": "Contenido pendiente. Reemplazá este texto con las notas reales de la clase.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2 — Modelos",
+      "Unidad 2 — Modelos"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#material-complementario",
+    "href": "unidad2/notas.html#material-complementario",
+    "title": "Unidad 2 — Modelos",
+    "section": "2 Material complementario",
+    "text": "2 Material complementario\n\n📊 Presentación de la clase: ver slides\n💻 Notebook de práctica: tarea2.ipynb",
+    "crumbs": [
+      "Inicio",
+      "Unidad 2 — Modelos",
+      "Unidad 2 — Modelos"
+    ]
+  }
+]
