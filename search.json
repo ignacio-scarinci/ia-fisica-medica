@@ -4,24 +4,14 @@
     "href": "unidad2/presentacion.html#agenda",
     "title": "Unidad 2 — Modelos",
     "section": "Agenda",
-    "text": "Agenda\n\nTema 1\nTema 2",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2 — Modelos",
-      "Unidad 2 — Modelos"
-    ]
+    "text": "Agenda\n\nTema 1\nTema 2"
   },
   {
     "objectID": "unidad2/presentacion.html#slide-de-ejemplo",
     "href": "unidad2/presentacion.html#slide-de-ejemplo",
     "title": "Unidad 2 — Modelos",
     "section": "Slide de ejemplo",
-    "text": "Slide de ejemplo\nReemplazá este contenido con las slides reales.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2 — Modelos",
-      "Unidad 2 — Modelos"
-    ]
+    "text": "Slide de ejemplo\nReemplazá este contenido con las slides reales."
   },
   {
     "objectID": "unidad1/presentacion.html#agenda",
@@ -31,7 +21,7 @@
     "text": "Agenda\n\n¿Qué es la IA y el ML?\nAplicaciones en física médica\nFlujo de trabajo de un proyecto",
     "crumbs": [
       "Inicio",
-      "Unidad 1 — Introducción",
+      "Unidad 1 — Fundamentos de IA",
       "Unidad 1 — Introducción a la IA en Física Médica"
     ]
   },
@@ -43,7 +33,7 @@
     "text": "¿Por qué IA en Física Médica?\n\nSegmentación automática de órganos\nOptimización de planes de radioterapia\nDetección asistida por computadora",
     "crumbs": [
       "Inicio",
-      "Unidad 1 — Introducción",
+      "Unidad 1 — Fundamentos de IA",
       "Unidad 1 — Introducción a la IA en Física Médica"
     ]
   },
@@ -55,7 +45,7 @@
     "text": "Ecuación de ejemplo\n\\[\n\\hat{y} = f_\\theta(x) = \\sigma(Wx + b)\n\\]",
     "crumbs": [
       "Inicio",
-      "Unidad 1 — Introducción",
+      "Unidad 1 — Fundamentos de IA",
       "Unidad 1 — Introducción a la IA en Física Médica"
     ]
   },
@@ -67,8 +57,152 @@
     "text": "Próxima clase\nNos vemos con el notebook de práctica 🚀",
     "crumbs": [
       "Inicio",
-      "Unidad 1 — Introducción",
+      "Unidad 1 — Fundamentos de IA",
       "Unidad 1 — Introducción a la IA en Física Médica"
+    ]
+  },
+  {
+    "objectID": "unidad0/presentacion.html#agenda",
+    "href": "unidad0/presentacion.html#agenda",
+    "title": "Presentación de la materia",
+    "section": "Agenda",
+    "text": "Agenda\n\nPresentación de la materia\nAplicaciones en física médica\nFlujo de trabajo de un proyecto",
+    "crumbs": [
+      "Inicio",
+      "Unidad 0 \n Introducción",
+      "Presentación de la materia"
+    ]
+  },
+  {
+    "objectID": "unidad0/presentacion.html#unidad-1-fundamentos-de-ia",
+    "href": "unidad0/presentacion.html#unidad-1-fundamentos-de-ia",
+    "title": "Presentación de la materia",
+    "section": "Unidad 1: Fundamentos de IA",
+    "text": "Unidad 1: Fundamentos de IA\n\nRevisión de modelos clásicos\nIntroducción al Deep Learning,breve historia\nRedes Neuronales simples: El algoritmo de perceptron\nEl ciclo de entrenamiento:\n\nFunciones de perdida\nOptimizadores\nLerning rate\n…",
+    "crumbs": [
+      "Inicio",
+      "Unidad 0 \n Introducción",
+      "Presentación de la materia"
+    ]
+  },
+  {
+    "objectID": "unidad0/presentacion.html#unidad-1-fundamentos-de-ia-cont.",
+    "href": "unidad0/presentacion.html#unidad-1-fundamentos-de-ia-cont.",
+    "title": "Presentación de la materia",
+    "section": "Unidad 1: Fundamentos de IA (cont.)",
+    "text": "Unidad 1: Fundamentos de IA (cont.)\n\nArquitecturas: CNN, U-Net, VIT\nFuncionamiento de los LLMs\nTransfer learning:\n\nFine-Tuning\nFew-Shot\n\nPyTorch, MONAI, SimpleITK\nDICOM, NIFTI\nBases de datos públicas de imágenes médicas anotadas.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 0 \n Introducción",
+      "Presentación de la materia"
+    ]
+  },
+  {
+    "objectID": "unidad0/presentacion.html#unidad-2-segmetación",
+    "href": "unidad0/presentacion.html#unidad-2-segmetación",
+    "title": "Presentación de la materia",
+    "section": "Unidad 2: Segmetación",
+    "text": "Unidad 2: Segmetación\n\nSegmentación semántica en imágenes médicas\nMétricas: DICE, distacia Hausdorff, IoU, etc.\nRelevancia clínica de la segmentación automática de órganos en riesgo (OARs).\nParadigmas de segmentación:\n\nmodelos totalmente automáticos: nnU-Net\nmodelos guiados por experto: Med-SAM\n\nArquitectura, variantes y entrenamiento.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 0 \n Introducción",
+      "Presentación de la materia"
+    ]
+  },
+  {
+    "objectID": "unidad0/presentacion.html#unidad-3-detección-clasificación-y-diagnóstico-asistido",
+    "href": "unidad0/presentacion.html#unidad-3-detección-clasificación-y-diagnóstico-asistido",
+    "title": "Presentación de la materia",
+    "section": "Unidad 3: Detección, clasificación y diagnóstico asistido",
+    "text": "Unidad 3: Detección, clasificación y diagnóstico asistido\n\nDetección de regiones de interés en imágenes médicas\nClasificación de hallazgos\nExplicabilidad de modelos en contexto clínico: Grad-CAM y mapas de saliencia.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 0 \n Introducción",
+      "Presentación de la materia"
+    ]
+  },
+  {
+    "objectID": "unidad0/presentacion.html#unidad-4-radioterapia-asistida-por-inteligencia-artificial",
+    "href": "unidad0/presentacion.html#unidad-4-radioterapia-asistida-por-inteligencia-artificial",
+    "title": "Presentación de la materia",
+    "section": "Unidad 4: Radioterapia asistida por inteligencia artificial",
+    "text": "Unidad 4: Radioterapia asistida por inteligencia artificial\n\nFlujo clínico de radioterapia: simulación, planificación y verificación dosimétrica.\nPredicción de planes de dosis y estimación de distribuciones 3D con redes profundas.\nKnowledge-Based Planning (KBP) asistido por IA.\nControl de calidad específico del paciente (patient-specific QA) en IMRT, VMAT y SBRT\nDetección de errores de posicionamiento a partir de imágenes CBCT.\nRadioterapia adaptativa guiada por IA (ART online).",
+    "crumbs": [
+      "Inicio",
+      "Unidad 0 \n Introducción",
+      "Presentación de la materia"
+    ]
+  },
+  {
+    "objectID": "unidad0/presentacion.html#unidad-5-síntesis-fusión-y-coregistro-de-imágenes-médicas",
+    "href": "unidad0/presentacion.html#unidad-5-síntesis-fusión-y-coregistro-de-imágenes-médicas",
+    "title": "Presentación de la materia",
+    "section": "Unidad 5: Síntesis, fusión y coregistro de imágenes médicas",
+    "text": "Unidad 5: Síntesis, fusión y coregistro de imágenes médicas\n\nRegistro rígido y deformable: métricas de similitud y algoritmos de optimización.\nRegistro basado en Deep Learning.\nFusión multimodal de imágenes: PET-CT, PET-MRI y CT-MRI.\nAplicaciones del coregistro.\nGeneración de CT sintético (sCT) a partir de MRI para dosimetría y radioterapia.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 0 \n Introducción",
+      "Presentación de la materia"
+    ]
+  },
+  {
+    "objectID": "unidad0/presentacion.html#unidad-6-agentes-de-inteligencia-artificial-en-el-ámbito-clínico",
+    "href": "unidad0/presentacion.html#unidad-6-agentes-de-inteligencia-artificial-en-el-ámbito-clínico",
+    "title": "Presentación de la materia",
+    "section": "Unidad 6: Agentes de inteligencia artificial en el ámbito clínico",
+    "text": "Unidad 6: Agentes de inteligencia artificial en el ámbito clínico\n\nIntroducción a los grandes modelos de lenguaje (LLMs) y su potencial en medicina: capacidades, limitaciones y casos de uso.\nConcepto de agente de IA: qué es, cómo razona y cómo interactúa con herramientas externas. Aplicaciones emergentes en el ámbito clínico: consulta de literatura médica, soporte en la toma de decisiones y automatización de flujos de trabajo.\nConsideraciones éticas y de seguridad: sesgos, alucinaciones, responsabilidad y supervisión humana.\nPerspectivas futuras: modelos fundacionales médicos y la evolución hacia sistemas autónomos en entornos clínicos.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 0 \n Introducción",
+      "Presentación de la materia"
+    ]
+  },
+  {
+    "objectID": "unidad0/presentacion.html#material-de-clase",
+    "href": "unidad0/presentacion.html#material-de-clase",
+    "title": "Presentación de la materia",
+    "section": "Material de clase",
+    "text": "Material de clase\nRepositorio del curso: https://github.com/ignacio-scarinci/ia-fisica-medica\nPagina web del curso: https://ignacio-scarinci.github.io/ia-fisica-medica\nClonar repositorio y actualizar el contenido de la carpeta notebooks/ de cada unidad para acceder a los notebooks de práctica y tareas:\ngit clone https://github.com/ignacio-scarinci/ia-fisica-medica.git\ncd ia-fisica-medica\ngit pull",
+    "crumbs": [
+      "Inicio",
+      "Unidad 0 \n Introducción",
+      "Presentación de la materia"
+    ]
+  },
+  {
+    "objectID": "unidad0/presentacion.html#aprobación",
+    "href": "unidad0/presentacion.html#aprobación",
+    "title": "Presentación de la materia",
+    "section": "Aprobación",
+    "text": "Aprobación\n\nTrabajos practicos\nProyecto final",
+    "crumbs": [
+      "Inicio",
+      "Unidad 0 \n Introducción",
+      "Presentación de la materia"
+    ]
+  },
+  {
+    "objectID": "unidad0/presentacion.html#próxima-clase",
+    "href": "unidad0/presentacion.html#próxima-clase",
+    "title": "Presentación de la materia",
+    "section": "Próxima clase",
+    "text": "Próxima clase\nNos vemos con el notebook de práctica 🚀",
+    "crumbs": [
+      "Inicio",
+      "Unidad 0 \n Introducción",
+      "Presentación de la materia"
+    ]
+  },
+  {
+    "objectID": "unidad0/calendario.html",
+    "href": "unidad0/calendario.html",
+    "title": "Calendario",
+    "section": "",
+    "text": "Fecha\nTema\nActividad\n\n\n\n\n10/08\nPresentación de la materia\n\n\n\n\nUnidad 1: Fundamentos de IA\n\n\n\n13/08\nIntroducción a la IA\nNotebook 0\n\n\n17/08\nFeriado\n-\n\n\n24/08\nEntrenamiento de modelos\nNotebook 1\n\n\n27/08\nCont.\nNotebook 1\n\n\n31/08\nArquitecturas en DL\nNotebook 1\n\n\n03/09\nCont.\nNotebook 1\n\n\n07/09\nRevisión de notebooks\nNotebook 1\n\n\n\nUnidad 2: Segmentación\n\n\n\n10/09\nSegmentación de imagenes medicas\nNotebook 2\n\n\n14/09\nMétricas de segmentación\nNotebook 2\n\n\n17/09\nParadigmas de segmentación\nNotebook 2\n\n\n21/09\nVariantes de segmentación\nNotebook 2\n\n\n24/09\nRevisión de notebooks\nNotebook 2\n\n\n\nUnidad 3: Detección, clasificación y diagnóstico asistido\n\n\n\n28/09\nModelos de detección\nNotebook 3\n\n\n01/10\nClasificación de hallazgos\nNotebook 3\n\n\n05/10\nExplicabilidad de modelos\nNotebook 3\n\n\n08/10\nRevisión de notebooks\nNotebook 3\n\n\n12/10\nFeriado\n-\n\n\n\nUnidad 4: Radioterapia asistida por inteligencia artificial\n\n\n\n15/10\nIA en Radioterapia\nRevision proyectos\n\n\n19/10\nCont.\nRevision proyectos\n\n\n\nUnidad 5: Síntesis, fusión y coregistro de imágenes médicas\n\n\n\n22/10\nCo-registro de imágenes\nNotebook 4\n\n\n26/10\nAplicaciones en imágenes médicas\nNotebook 4\n\n\n29/10\nRevisión de notebooks\nNotebook 4\n\n\n\nUnidad 6: Agentes de inteligencia artificial en el ámbito clínico\n\n\n\n02/11\nLLMs y medicina\nRevsion proyectos\n\n\n05/11\nAgentes de IA\nRevsion proyectos\n\n\n09/11\nCont.\nRevsion proyectos\n\n\n12/11\nEtica y seguridad en IA\nRevsion proyectos\n\n\n\nPresentación de proyectos finales\n\n\n\n16/11\nPresentación de proyectos\nPresentaciones\n\n\n19/11\nPresentación de proyectos\nPresentaciones\n\n\n\nPracticos\n13/08 Notebook 0: PyTorch y MONAI: ver notebook\n24/08 al 07/09 Notebook 1: Entrenamiento de modelos: ver notebook\n10/09 al 24/09 **Notebook 2: Segmentación de imágenes médicas: ver notebook\n28/09 al 08/10 **Notebook 3: Detección y clasificación de hallazgos: ver notebook\n22/10 al 29/10 **Notebook 4: Co-registro de imágenes médicas: ver notebook",
+    "crumbs": [
+      "Inicio",
+      "Unidad 0 \n Introducción",
+      "Calendario"
     ]
   },
   {
@@ -86,63 +220,99 @@
     "text": "Este es el sitio del curso de posgrado Inteligencia Artificial aplicada a la Física Médica.\nAcá vas a encontrar las notas de clase y las presentaciones de cada unidad. Los notebooks de trabajos prácticos y tareas no se publican en este sitio: están disponibles directamente en el repositorio de GitHub, dentro de la carpeta notebooks/ de cada unidad.\n👉 Ver el repositorio completo\n\n\n\n\n\nUnidad\nNotas\nPresentación\nNotebooks\n\n\n\n\n1 — Introducción\nVer\nVer\nCarpeta\n\n\n2 — Modelos\nVer\nVer\nCarpeta\n\n\n\n\n\n\ngit clone https://github.com/ignacio-scarinci/ia-fisica-medica.git\ncd ia-fisica-medica\npip install -r requirements.txt\njupyter lab"
   },
   {
+    "objectID": "unidad0/notas.html",
+    "href": "unidad0/notas.html",
+    "title": "Presentación de la materia",
+    "section": "",
+    "text": "Presentación de la materia y de los objetivos del curso. Se presentarán los contenidos de cada unidad. Se explicarán las herramientas que se utilizarán a lo largo del curso.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 0 \n Introducción",
+      "Presentación de la materia"
+    ]
+  },
+  {
+    "objectID": "unidad0/notas.html#objetivos-de-la-unidad",
+    "href": "unidad0/notas.html#objetivos-de-la-unidad",
+    "title": "Presentación de la materia",
+    "section": "",
+    "text": "Presentación de la materia y de los objetivos del curso. Se presentarán los contenidos de cada unidad. Se explicarán las herramientas que se utilizarán a lo largo del curso.",
+    "crumbs": [
+      "Inicio",
+      "Unidad 0 \n Introducción",
+      "Presentación de la materia"
+    ]
+  },
+  {
+    "objectID": "unidad0/notas.html#material-complementario",
+    "href": "unidad0/notas.html#material-complementario",
+    "title": "Presentación de la materia",
+    "section": "2 Material complementario",
+    "text": "2 Material complementario\n\n📄 Programa del curso: ver PDF\n📊 Presentación de la clase: ver slides",
+    "crumbs": [
+      "Inicio",
+      "Unidad 0 \n Introducción",
+      "Presentación de la materia"
+    ]
+  },
+  {
     "objectID": "unidad1/notas.html",
     "href": "unidad1/notas.html",
-    "title": "Unidad 1 — Introducción a la IA en Física Médica",
+    "title": "Unidad 1 — Fundamentos de IA",
     "section": "",
     "text": "Introducir los conceptos fundamentales de machine learning y deep learning.\nContextualizar sus aplicaciones en imágenes médicas, dosimetría y radioterapia.\nPresentar el flujo de trabajo típico de un proyecto de IA en física médica.",
     "crumbs": [
       "Inicio",
-      "Unidad 1 — Introducción",
-      "Unidad 1 — Introducción a la IA en Física Médica"
+      "Unidad 1 — Fundamentos de IA",
+      "Unidad 1 — Fundamentos de IA"
     ]
   },
   {
     "objectID": "unidad1/notas.html#objetivos-de-la-unidad",
     "href": "unidad1/notas.html#objetivos-de-la-unidad",
-    "title": "Unidad 1 — Introducción a la IA en Física Médica",
+    "title": "Unidad 1 — Fundamentos de IA",
     "section": "",
     "text": "Introducir los conceptos fundamentales de machine learning y deep learning.\nContextualizar sus aplicaciones en imágenes médicas, dosimetría y radioterapia.\nPresentar el flujo de trabajo típico de un proyecto de IA en física médica.",
     "crumbs": [
       "Inicio",
-      "Unidad 1 — Introducción",
-      "Unidad 1 — Introducción a la IA en Física Médica"
+      "Unidad 1 — Fundamentos de IA",
+      "Unidad 1 — Fundamentos de IA"
     ]
   },
   {
-    "objectID": "unidad1/notas.html#por-qué-ia-en-física-médica",
-    "href": "unidad1/notas.html#por-qué-ia-en-física-médica",
-    "title": "Unidad 1 — Introducción a la IA en Física Médica",
-    "section": "2 1. ¿Por qué IA en Física Médica?",
-    "text": "2 1. ¿Por qué IA en Física Médica?\nContenido de la clase acá. Podés usar matemática con LaTeX de forma nativa:\n\\[\n\\hat{y} = f_\\theta(x) = \\sigma(Wx + b)\n\\]",
+    "objectID": "unidad1/notas.html#xxx",
+    "href": "unidad1/notas.html#xxx",
+    "title": "Unidad 1 — Fundamentos de IA",
+    "section": "2 1. XXX",
+    "text": "2 1. XXX",
     "crumbs": [
       "Inicio",
-      "Unidad 1 — Introducción",
-      "Unidad 1 — Introducción a la IA en Física Médica"
+      "Unidad 1 — Fundamentos de IA",
+      "Unidad 1 — Fundamentos de IA"
     ]
   },
   {
     "objectID": "unidad1/notas.html#material-complementario",
     "href": "unidad1/notas.html#material-complementario",
-    "title": "Unidad 1 — Introducción a la IA en Física Médica",
+    "title": "Unidad 1 — Fundamentos de IA",
     "section": "3 2. Material complementario",
-    "text": "3 2. Material complementario\n\n📊 Presentación de la clase: ver slides\n💻 Notebook de práctica: tarea1.ipynb",
+    "text": "3 2. Material complementario",
     "crumbs": [
       "Inicio",
-      "Unidad 1 — Introducción",
-      "Unidad 1 — Introducción a la IA en Física Médica"
+      "Unidad 1 — Fundamentos de IA",
+      "Unidad 1 — Fundamentos de IA"
     ]
   },
   {
     "objectID": "unidad1/notas.html#bibliografía",
     "href": "unidad1/notas.html#bibliografía",
-    "title": "Unidad 1 — Introducción a la IA en Física Médica",
+    "title": "Unidad 1 — Fundamentos de IA",
     "section": "4 3. Bibliografía",
     "text": "4 3. Bibliografía\n\nReferencia 1\nReferencia 2",
     "crumbs": [
       "Inicio",
-      "Unidad 1 — Introducción",
-      "Unidad 1 — Introducción a la IA en Física Médica"
+      "Unidad 1 — Fundamentos de IA",
+      "Unidad 1 — Fundamentos de IA"
     ]
   },
   {
@@ -150,35 +320,20 @@
     "href": "unidad2/notas.html",
     "title": "Unidad 2 — Modelos",
     "section": "",
-    "text": "Contenido pendiente. Reemplazá este texto con las notas reales de la clase.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2 — Modelos",
-      "Unidad 2 — Modelos"
-    ]
+    "text": "Contenido pendiente. Reemplazá este texto con las notas reales de la clase."
   },
   {
     "objectID": "unidad2/notas.html#objetivos-de-la-unidad",
     "href": "unidad2/notas.html#objetivos-de-la-unidad",
     "title": "Unidad 2 — Modelos",
     "section": "",
-    "text": "Contenido pendiente. Reemplazá este texto con las notas reales de la clase.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2 — Modelos",
-      "Unidad 2 — Modelos"
-    ]
+    "text": "Contenido pendiente. Reemplazá este texto con las notas reales de la clase."
   },
   {
     "objectID": "unidad2/notas.html#material-complementario",
     "href": "unidad2/notas.html#material-complementario",
     "title": "Unidad 2 — Modelos",
     "section": "2 Material complementario",
-    "text": "2 Material complementario\n\n📊 Presentación de la clase: ver slides\n💻 Notebook de práctica: tarea2.ipynb",
-    "crumbs": [
-      "Inicio",
-      "Unidad 2 — Modelos",
-      "Unidad 2 — Modelos"
-    ]
+    "text": "2 Material complementario\n\n📊 Presentación de la clase: ver slides\n💻 Notebook de práctica: tarea2.ipynb"
   }
 ]
