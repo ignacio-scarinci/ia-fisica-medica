@@ -120,6 +120,30 @@
     ]
   },
   {
+    "objectID": "unidad0/presentacion.html#links-de-interés",
+    "href": "unidad0/presentacion.html#links-de-interés",
+    "title": "Presentación de la materia",
+    "section": "Links de interés",
+    "text": "Links de interés\nHugging Face: https://huggingface.co/ Kaggle: https://www.kaggle.com/ The Cancer Image Archive (TCIA): https://www.cancerimagingarchive.net/",
+    "crumbs": [
+      "Inicio",
+      "0.  Introducción",
+      "Presentación de la materia"
+    ]
+  },
+  {
+    "objectID": "unidad0/presentacion.html#softwareframeworkslibrerias",
+    "href": "unidad0/presentacion.html#softwareframeworkslibrerias",
+    "title": "Presentación de la materia",
+    "section": "Software/Frameworks/Librerias",
+    "text": "Software/Frameworks/Librerias\n\nPython 3.12/13\nPyTorch\nMONAI - Medical Open Network for AI (https://project-monai.github.io/)\nSimpleITK\nGitHub Copilot",
+    "crumbs": [
+      "Inicio",
+      "0.  Introducción",
+      "Presentación de la materia"
+    ]
+  },
+  {
     "objectID": "unidad0/calendario.html",
     "href": "unidad0/calendario.html",
     "title": "Calendario",
@@ -136,14 +160,14 @@
     "href": "index.html",
     "title": "IA en Física Médica",
     "section": "",
-    "text": "Este es el sitio del curso de posgrado Inteligencia Artificial en Física Médica.\nAcá vas a encontrar las notas de clase y las presentaciones de cada unidad. Los notebooks de trabajos prácticos y tareas no se publican en este sitio: están disponibles directamente en el repositorio de GitHub, dentro de la carpeta notebooks/ de cada unidad.\n👉 Ver el repositorio completo\n\n\n\n\n\nUnidad\nNotas\nPresentación\nNotebooks\n\n\n\n\n0 — Introducción\nVer\nVer\nCarpeta\n\n\n\n\n\n\nPara trabajar con los notebooks, dos opciones:\n\nAbrirlos directamente en GitHub y usar la opción de Open in Colab (requiere cuenta de Google).\nClonar el repositorio y abrir los notebooks localmente con Jupyter Lab. Para esto, primero asegurate de tener instalado Python 3 y pip. Luego, ejecuta los siguientes comandos en tu terminal:\n\ngit clone https://github.com/ignacio-scarinci/ia-fisica-medica.git\ncd ia-fisica-medica\npip install -r requirements.txt\njupyter lab\n\nDescargar los notebooks."
+    "text": "Este es el sitio del curso de posgrado Inteligencia Artificial en Física Médica.\nAcá vas a encontrar las notas de clase y las presentaciones de cada unidad. Los notebooks de trabajos prácticos y tareas no se publican en este sitio: están disponibles directamente en el repositorio de GitHub, dentro de la carpeta notebooks/ de cada unidad.\n👉 Ver el repositorio completo\n\n\n\n\n\nUnidad\nNotas\nPresentación\nNotebooks\n\n\n\n\n0 — Introducción\nVer\nVer\nCarpeta\n\n\n\n\n\n\nPara trabajar con los notebooks, dos opciones:\n\nAbrirlos directamente en GitHub y usar la opción de Open in Colab (requiere cuenta de Google).\nClonar el repositorio y abrir los notebooks localmente con Jupyter Lab. Para esto, primero asegurate de tener instalado Python 3 y pip. Luego, ejecuta los siguientes comandos en tu terminal:\n\ngit clone https://github.com/ignacio-scarinci/ia-fisica-medica.git\ncd ia-fisica-medica\npip install -r requirements.txt\njupyter lab\n\nDescargar los notebooks desde GitHub."
   },
   {
     "objectID": "index.html#bienvenidosas",
     "href": "index.html#bienvenidosas",
     "title": "IA en Física Médica",
     "section": "",
-    "text": "Este es el sitio del curso de posgrado Inteligencia Artificial en Física Médica.\nAcá vas a encontrar las notas de clase y las presentaciones de cada unidad. Los notebooks de trabajos prácticos y tareas no se publican en este sitio: están disponibles directamente en el repositorio de GitHub, dentro de la carpeta notebooks/ de cada unidad.\n👉 Ver el repositorio completo\n\n\n\n\n\nUnidad\nNotas\nPresentación\nNotebooks\n\n\n\n\n0 — Introducción\nVer\nVer\nCarpeta\n\n\n\n\n\n\nPara trabajar con los notebooks, dos opciones:\n\nAbrirlos directamente en GitHub y usar la opción de Open in Colab (requiere cuenta de Google).\nClonar el repositorio y abrir los notebooks localmente con Jupyter Lab. Para esto, primero asegurate de tener instalado Python 3 y pip. Luego, ejecuta los siguientes comandos en tu terminal:\n\ngit clone https://github.com/ignacio-scarinci/ia-fisica-medica.git\ncd ia-fisica-medica\npip install -r requirements.txt\njupyter lab\n\nDescargar los notebooks."
+    "text": "Este es el sitio del curso de posgrado Inteligencia Artificial en Física Médica.\nAcá vas a encontrar las notas de clase y las presentaciones de cada unidad. Los notebooks de trabajos prácticos y tareas no se publican en este sitio: están disponibles directamente en el repositorio de GitHub, dentro de la carpeta notebooks/ de cada unidad.\n👉 Ver el repositorio completo\n\n\n\n\n\nUnidad\nNotas\nPresentación\nNotebooks\n\n\n\n\n0 — Introducción\nVer\nVer\nCarpeta\n\n\n\n\n\n\nPara trabajar con los notebooks, dos opciones:\n\nAbrirlos directamente en GitHub y usar la opción de Open in Colab (requiere cuenta de Google).\nClonar el repositorio y abrir los notebooks localmente con Jupyter Lab. Para esto, primero asegurate de tener instalado Python 3 y pip. Luego, ejecuta los siguientes comandos en tu terminal:\n\ngit clone https://github.com/ignacio-scarinci/ia-fisica-medica.git\ncd ia-fisica-medica\npip install -r requirements.txt\njupyter lab\n\nDescargar los notebooks desde GitHub."
   },
   {
     "objectID": "unidad0/notas.html",
@@ -175,6 +199,30 @@
     "title": "Notas",
     "section": "2 Material complementario",
     "text": "2 Material complementario\n\n📄 Programa del curso: ver PDF\n📊 Presentación de la clase: ver slides",
+    "crumbs": [
+      "Inicio",
+      "0.  Introducción",
+      "Notas"
+    ]
+  },
+  {
+    "objectID": "unidad0/notas.html#links-de-interés",
+    "href": "unidad0/notas.html#links-de-interés",
+    "title": "Notas",
+    "section": "3 Links de interés",
+    "text": "3 Links de interés\nHugging Face: https://huggingface.co/ Kaggle: https://www.kaggle.com/ The Cancer Image Archive (TCIA): https://www.cancerimagingarchive.net/",
+    "crumbs": [
+      "Inicio",
+      "0.  Introducción",
+      "Notas"
+    ]
+  },
+  {
+    "objectID": "unidad0/notas.html#softwareframeworkslibrerias",
+    "href": "unidad0/notas.html#softwareframeworkslibrerias",
+    "title": "Notas",
+    "section": "4 Software/Frameworks/Librerias",
+    "text": "4 Software/Frameworks/Librerias\n\nPython 3.12/13\nPyTorch\nMONAI - Medical Open Network for AI (https://project-monai.github.io/)\nSimpleITK\nGitHub Copilot",
     "crumbs": [
       "Inicio",
       "0.  Introducción",
