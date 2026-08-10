@@ -100,7 +100,7 @@
     "href": "unidad0/presentacion.html#material-de-clase",
     "title": "Presentación de la materia",
     "section": "Material de clase",
-    "text": "Material de clase\nRepositorio del curso: https://github.com/ignacio-scarinci/ia-fisica-medica\nPagina web del curso: https://ignacio-scarinci.github.io/ia-fisica-medica",
+    "text": "Material de clase\n\nRepositorio del curso: https://github.com/ignacio-scarinci/ia-fisica-medica\nPagina web del curso: https://ignacio-scarinci.github.io/ia-fisica-medica",
     "crumbs": [
       "Inicio",
       "0.  Introducción",
@@ -124,7 +124,7 @@
     "href": "unidad0/presentacion.html#links-de-interés",
     "title": "Presentación de la materia",
     "section": "Links de interés",
-    "text": "Links de interés\nHugging Face: https://huggingface.co/ Kaggle: https://www.kaggle.com/ The Cancer Image Archive (TCIA): https://www.cancerimagingarchive.net/",
+    "text": "Links de interés\n\nHugging Face: https://huggingface.co/\nKaggle: https://www.kaggle.com/\nThe Cancer Image Archive (TCIA): https://www.cancerimagingarchive.net/",
     "crumbs": [
       "Inicio",
       "0.  Introducción",
@@ -136,7 +136,7 @@
     "href": "unidad0/presentacion.html#softwareframeworkslibrerias",
     "title": "Presentación de la materia",
     "section": "Software/Frameworks/Librerias",
-    "text": "Software/Frameworks/Librerias\n\nPython 3.12/13\nPyTorch\nMONAI - Medical Open Network for AI (https://project-monai.github.io/)\nSimpleITK\nGitHub Copilot",
+    "text": "Software/Frameworks/Librerias\n\nPython 3.12/13\nPyTorch\nMONAI - Medical Open Network for AI https://project-monai.github.io/\nSimpleITK\nGitHub Copilot",
     "crumbs": [
       "Inicio",
       "0.  Introducción",
