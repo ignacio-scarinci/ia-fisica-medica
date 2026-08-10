@@ -210,7 +210,7 @@
     "href": "unidad0/notas.html#links-de-interés",
     "title": "Notas",
     "section": "3 Links de interés",
-    "text": "3 Links de interés\nHugging Face: https://huggingface.co/ Kaggle: https://www.kaggle.com/ The Cancer Image Archive (TCIA): https://www.cancerimagingarchive.net/",
+    "text": "3 Links de interés\n\nHugging Face: https://huggingface.co/\nKaggle: https://www.kaggle.com/\nThe Cancer Image Archive (TCIA): https://www.cancerimagingarchive.net/",
     "crumbs": [
       "Inicio",
       "0.  Introducción",
@@ -222,7 +222,7 @@
     "href": "unidad0/notas.html#softwareframeworkslibrerias",
     "title": "Notas",
     "section": "4 Software/Frameworks/Librerias",
-    "text": "4 Software/Frameworks/Librerias\n\nPython 3.12/13\nPyTorch\nMONAI - Medical Open Network for AI (https://project-monai.github.io/)\nSimpleITK\nGitHub Copilot",
+    "text": "4 Software/Frameworks/Librerias\n\nPython 3.12/13\nPyTorch\nMONAI - Medical Open Network for AI https://project-monai.github.io/\nSimpleITK\nGitHub Copilot",
     "crumbs": [
       "Inicio",
       "0.  Introducción",
