@@ -18,58 +18,50 @@
     "href": "unidad1/presentacion.html#agenda",
     "title": "Unidad 1 — Introducción a la IA en Física Médica",
     "section": "Agenda",
-    "text": "Agenda\n\n¿Qué es la IA y el ML?\nAplicaciones en física médica\nFlujo de trabajo de un proyecto",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1 — Introducción a la IA en Física Médica"
-    ]
+    "text": "Agenda\n\n¿Qué es la IA y el ML?\nAplicaciones en física médica\nFlujo de trabajo de un proyecto"
   },
   {
     "objectID": "unidad1/presentacion.html#por-qué-ia-en-física-médica",
     "href": "unidad1/presentacion.html#por-qué-ia-en-física-médica",
     "title": "Unidad 1 — Introducción a la IA en Física Médica",
     "section": "¿Por qué IA en Física Médica?",
-    "text": "¿Por qué IA en Física Médica?\n\nSegmentación automática de órganos\nOptimización de planes de radioterapia\nDetección asistida por computadora",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1 — Introducción a la IA en Física Médica"
-    ]
+    "text": "¿Por qué IA en Física Médica?\n\nSegmentación automática de órganos\nOptimización de planes de radioterapia\nDetección asistida por computadora"
   },
   {
     "objectID": "unidad1/presentacion.html#ecuación-de-ejemplo",
     "href": "unidad1/presentacion.html#ecuación-de-ejemplo",
     "title": "Unidad 1 — Introducción a la IA en Física Médica",
     "section": "Ecuación de ejemplo",
-    "text": "Ecuación de ejemplo\n\\[\n\\hat{y} = f_\\theta(x) = \\sigma(Wx + b)\n\\]",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1 — Introducción a la IA en Física Médica"
-    ]
+    "text": "Ecuación de ejemplo\n\\[\n\\hat{y} = f_\\theta(x) = \\sigma(Wx + b)\n\\]"
   },
   {
     "objectID": "unidad1/presentacion.html#próxima-clase",
     "href": "unidad1/presentacion.html#próxima-clase",
     "title": "Unidad 1 — Introducción a la IA en Física Médica",
     "section": "Próxima clase",
-    "text": "Próxima clase\nNos vemos con el notebook de práctica 🚀",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1 — Introducción a la IA en Física Médica"
-    ]
+    "text": "Próxima clase\nNos vemos con el notebook de práctica 🚀"
   },
   {
     "objectID": "unidad0/presentacion.html#agenda",
     "href": "unidad0/presentacion.html#agenda",
     "title": "Presentación de la materia",
     "section": "Agenda",
-    "text": "Agenda\n\nPresentación de la materia\nAplicaciones en física médica\nFlujo de trabajo de un proyecto",
+    "text": "Agenda",
     "crumbs": [
       "Inicio",
-      "Unidad 0 \n Introducción",
+      "0.  Introducción",
+      "Presentación de la materia"
+    ]
+  },
+  {
+    "objectID": "unidad0/presentacion.html#cursado",
+    "href": "unidad0/presentacion.html#cursado",
+    "title": "Presentación de la materia",
+    "section": "Cursado",
+    "text": "Cursado\n\nModalidad: virtual\nClases: lunes y jueves de 19:00-21:00",
+    "crumbs": [
+      "Inicio",
+      "0.  Introducción",
       "Presentación de la materia"
     ]
   },
@@ -81,7 +73,7 @@
     "text": "Unidad 1: Fundamentos de IA\n\nRevisión de modelos clásicos\nIntroducción al Deep Learning,breve historia\nRedes Neuronales simples: El algoritmo de perceptron\nEl ciclo de entrenamiento:\n\nFunciones de perdida\nOptimizadores\nLerning rate\n…",
     "crumbs": [
       "Inicio",
-      "Unidad 0 \n Introducción",
+      "0.  Introducción",
       "Presentación de la materia"
     ]
   },
@@ -93,7 +85,7 @@
     "text": "Unidad 1: Fundamentos de IA (cont.)\n\nArquitecturas: CNN, U-Net, VIT\nFuncionamiento de los LLMs\nTransfer learning:\n\nFine-Tuning\nFew-Shot\n\nPyTorch, MONAI, SimpleITK\nDICOM, NIFTI\nBases de datos públicas de imágenes médicas anotadas.",
     "crumbs": [
       "Inicio",
-      "Unidad 0 \n Introducción",
+      "0.  Introducción",
       "Presentación de la materia"
     ]
   },
@@ -105,7 +97,7 @@
     "text": "Unidad 2: Segmetación\n\nSegmentación semántica en imágenes médicas\nMétricas: DICE, distacia Hausdorff, IoU, etc.\nRelevancia clínica de la segmentación automática de órganos en riesgo (OARs).\nParadigmas de segmentación:\n\nmodelos totalmente automáticos: nnU-Net\nmodelos guiados por experto: Med-SAM\n\nArquitectura, variantes y entrenamiento.",
     "crumbs": [
       "Inicio",
-      "Unidad 0 \n Introducción",
+      "0.  Introducción",
       "Presentación de la materia"
     ]
   },
@@ -117,7 +109,7 @@
     "text": "Unidad 3: Detección, clasificación y diagnóstico asistido\n\nDetección de regiones de interés en imágenes médicas\nClasificación de hallazgos\nExplicabilidad de modelos en contexto clínico: Grad-CAM y mapas de saliencia.",
     "crumbs": [
       "Inicio",
-      "Unidad 0 \n Introducción",
+      "0.  Introducción",
       "Presentación de la materia"
     ]
   },
@@ -129,7 +121,7 @@
     "text": "Unidad 4: Radioterapia asistida por inteligencia artificial\n\nFlujo clínico de radioterapia: simulación, planificación y verificación dosimétrica.\nPredicción de planes de dosis y estimación de distribuciones 3D con redes profundas.\nKnowledge-Based Planning (KBP) asistido por IA.\nControl de calidad específico del paciente (patient-specific QA) en IMRT, VMAT y SBRT\nDetección de errores de posicionamiento a partir de imágenes CBCT.\nRadioterapia adaptativa guiada por IA (ART online).",
     "crumbs": [
       "Inicio",
-      "Unidad 0 \n Introducción",
+      "0.  Introducción",
       "Presentación de la materia"
     ]
   },
@@ -141,7 +133,7 @@
     "text": "Unidad 5: Síntesis, fusión y coregistro de imágenes médicas\n\nRegistro rígido y deformable: métricas de similitud y algoritmos de optimización.\nRegistro basado en Deep Learning.\nFusión multimodal de imágenes: PET-CT, PET-MRI y CT-MRI.\nAplicaciones del coregistro.\nGeneración de CT sintético (sCT) a partir de MRI para dosimetría y radioterapia.",
     "crumbs": [
       "Inicio",
-      "Unidad 0 \n Introducción",
+      "0.  Introducción",
       "Presentación de la materia"
     ]
   },
@@ -153,7 +145,7 @@
     "text": "Unidad 6: Agentes de inteligencia artificial en el ámbito clínico\n\nIntroducción a los grandes modelos de lenguaje (LLMs) y su potencial en medicina: capacidades, limitaciones y casos de uso.\nConcepto de agente de IA: qué es, cómo razona y cómo interactúa con herramientas externas. Aplicaciones emergentes en el ámbito clínico: consulta de literatura médica, soporte en la toma de decisiones y automatización de flujos de trabajo.\nConsideraciones éticas y de seguridad: sesgos, alucinaciones, responsabilidad y supervisión humana.\nPerspectivas futuras: modelos fundacionales médicos y la evolución hacia sistemas autónomos en entornos clínicos.",
     "crumbs": [
       "Inicio",
-      "Unidad 0 \n Introducción",
+      "0.  Introducción",
       "Presentación de la materia"
     ]
   },
@@ -162,10 +154,10 @@
     "href": "unidad0/presentacion.html#material-de-clase",
     "title": "Presentación de la materia",
     "section": "Material de clase",
-    "text": "Material de clase\nRepositorio del curso: https://github.com/ignacio-scarinci/ia-fisica-medica\nPagina web del curso: https://ignacio-scarinci.github.io/ia-fisica-medica\nClonar repositorio y actualizar el contenido de la carpeta notebooks/ de cada unidad para acceder a los notebooks de práctica y tareas:\ngit clone https://github.com/ignacio-scarinci/ia-fisica-medica.git\ncd ia-fisica-medica\ngit pull",
+    "text": "Material de clase\nRepositorio del curso: https://github.com/ignacio-scarinci/ia-fisica-medica\nPagina web del curso: https://ignacio-scarinci.github.io/ia-fisica-medica",
     "crumbs": [
       "Inicio",
-      "Unidad 0 \n Introducción",
+      "0.  Introducción",
       "Presentación de la materia"
     ]
   },
@@ -177,19 +169,7 @@
     "text": "Aprobación\n\nTrabajos practicos\nProyecto final",
     "crumbs": [
       "Inicio",
-      "Unidad 0 \n Introducción",
-      "Presentación de la materia"
-    ]
-  },
-  {
-    "objectID": "unidad0/presentacion.html#próxima-clase",
-    "href": "unidad0/presentacion.html#próxima-clase",
-    "title": "Presentación de la materia",
-    "section": "Próxima clase",
-    "text": "Próxima clase\nNos vemos con el notebook de práctica 🚀",
-    "crumbs": [
-      "Inicio",
-      "Unidad 0 \n Introducción",
+      "0.  Introducción",
       "Presentación de la materia"
     ]
   },
@@ -201,7 +181,7 @@
     "text": "Fecha\nTema\nActividad\n\n\n\n\n10/08\nPresentación de la materia\n\n\n\n\nUnidad 1: Fundamentos de IA\n\n\n\n13/08\nIntroducción a la IA\nNotebook 0\n\n\n17/08\nFeriado\n-\n\n\n24/08\nEntrenamiento de modelos\nNotebook 1\n\n\n27/08\nCont.\nNotebook 1\n\n\n31/08\nArquitecturas en DL\nNotebook 1\n\n\n03/09\nCont.\nNotebook 1\n\n\n07/09\nRevisión de notebooks\nNotebook 1\n\n\n\nUnidad 2: Segmentación\n\n\n\n10/09\nSegmentación de imagenes medicas\nNotebook 2\n\n\n14/09\nMétricas de segmentación\nNotebook 2\n\n\n17/09\nParadigmas de segmentación\nNotebook 2\n\n\n21/09\nVariantes de segmentación\nNotebook 2\n\n\n24/09\nRevisión de notebooks\nNotebook 2\n\n\n\nUnidad 3: Detección, clasificación y diagnóstico asistido\n\n\n\n28/09\nModelos de detección\nNotebook 3\n\n\n01/10\nClasificación de hallazgos\nNotebook 3\n\n\n05/10\nExplicabilidad de modelos\nNotebook 3\n\n\n08/10\nRevisión de notebooks\nNotebook 3\n\n\n12/10\nFeriado\n-\n\n\n\nUnidad 4: Radioterapia asistida por inteligencia artificial\n\n\n\n15/10\nIA en Radioterapia\nRevision proyectos\n\n\n19/10\nCont.\nRevision proyectos\n\n\n\nUnidad 5: Síntesis, fusión y coregistro de imágenes médicas\n\n\n\n22/10\nCo-registro de imágenes\nNotebook 4\n\n\n26/10\nAplicaciones en imágenes médicas\nNotebook 4\n\n\n29/10\nRevisión de notebooks\nNotebook 4\n\n\n\nUnidad 6: Agentes de inteligencia artificial en el ámbito clínico\n\n\n\n02/11\nLLMs y medicina\nRevsion proyectos\n\n\n05/11\nAgentes de IA\nRevsion proyectos\n\n\n09/11\nCont.\nRevsion proyectos\n\n\n12/11\nEtica y seguridad en IA\nRevsion proyectos\n\n\n\nPresentación de proyectos finales\n\n\n\n16/11\nPresentación de proyectos\nPresentaciones\n\n\n19/11\nPresentación de proyectos\nPresentaciones\n\n\n\nPracticos\n13/08 Notebook 0: PyTorch y MONAI: ver notebook\n24/08 al 07/09 Notebook 1: Entrenamiento de modelos: ver notebook\n10/09 al 24/09 **Notebook 2: Segmentación de imágenes médicas: ver notebook\n28/09 al 08/10 **Notebook 3: Detección y clasificación de hallazgos: ver notebook\n22/10 al 29/10 **Notebook 4: Co-registro de imágenes médicas: ver notebook",
     "crumbs": [
       "Inicio",
-      "Unidad 0 \n Introducción",
+      "0.  Introducción",
       "Calendario"
     ]
   },
@@ -222,37 +202,37 @@
   {
     "objectID": "unidad0/notas.html",
     "href": "unidad0/notas.html",
-    "title": "Presentación de la materia",
+    "title": "Notas",
     "section": "",
     "text": "Presentación de la materia y de los objetivos del curso. Se presentarán los contenidos de cada unidad. Se explicarán las herramientas que se utilizarán a lo largo del curso.",
     "crumbs": [
       "Inicio",
-      "Unidad 0 \n Introducción",
-      "Presentación de la materia"
+      "0.  Introducción",
+      "Notas"
     ]
   },
   {
     "objectID": "unidad0/notas.html#objetivos-de-la-unidad",
     "href": "unidad0/notas.html#objetivos-de-la-unidad",
-    "title": "Presentación de la materia",
+    "title": "Notas",
     "section": "",
     "text": "Presentación de la materia y de los objetivos del curso. Se presentarán los contenidos de cada unidad. Se explicarán las herramientas que se utilizarán a lo largo del curso.",
     "crumbs": [
       "Inicio",
-      "Unidad 0 \n Introducción",
-      "Presentación de la materia"
+      "0.  Introducción",
+      "Notas"
     ]
   },
   {
     "objectID": "unidad0/notas.html#material-complementario",
     "href": "unidad0/notas.html#material-complementario",
-    "title": "Presentación de la materia",
+    "title": "Notas",
     "section": "2 Material complementario",
     "text": "2 Material complementario\n\n📄 Programa del curso: ver PDF\n📊 Presentación de la clase: ver slides",
     "crumbs": [
       "Inicio",
-      "Unidad 0 \n Introducción",
-      "Presentación de la materia"
+      "0.  Introducción",
+      "Notas"
     ]
   },
   {
@@ -260,432 +240,252 @@
     "href": "unidad1/notas.html",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "",
-    "text": "Esta primera unidad tiene como objetivo tender un puente entre los métodos estadísticos y computacionales “clásicos”, ampliamente usados en Física Médica (dosimetría, radiodiagnóstico, radioterapia, medicina nuclear), y el paradigma del Deep Learning. La pregunta que guía la unidad es: ¿por qué y cuándo conviene reemplazar (o complementar) un modelo clásico por uno basado en redes neuronales?\nObjetivos de aprendizaje:\n\nRepasar los modelos clásicos de aprendizaje automático (regresión, árboles, SVM, reducción de dimensionalidad) y sus supuestos.\nComprender el contexto histórico y conceptual que dio origen al Deep Learning.\nFormalizar matemáticamente el Perceptrón como primera unidad neuronal, entender su algoritmo de aprendizaje y sus limitaciones.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "Esta primera unidad tiene como objetivo tender un puente entre los métodos estadísticos y computacionales “clásicos”, ampliamente usados en Física Médica (dosimetría, radiodiagnóstico, radioterapia, medicina nuclear), y el paradigma del Deep Learning. La pregunta que guía la unidad es: ¿por qué y cuándo conviene reemplazar (o complementar) un modelo clásico por uno basado en redes neuronales?\nObjetivos de aprendizaje:\n\nRepasar los modelos clásicos de aprendizaje automático (regresión, árboles, SVM, reducción de dimensionalidad) y sus supuestos.\nComprender el contexto histórico y conceptual que dio origen al Deep Learning.\nFormalizar matemáticamente el Perceptrón como primera unidad neuronal, entender su algoritmo de aprendizaje y sus limitaciones."
   },
   {
     "objectID": "unidad1/notas.html#por-qué-empezar-por-lo-clásico",
     "href": "unidad1/notas.html#por-qué-empezar-por-lo-clásico",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "2.1 ¿Por qué empezar por lo clásico?",
-    "text": "2.1 ¿Por qué empezar por lo clásico?\nAntes de introducir redes profundas, es indispensable entender los métodos que dominaron —y siguen dominando en muchos contextos clínicos— el análisis de datos médicos: interpretabilidad, pocos datos, variables tabulares y necesidad de trazabilidad regulatoria (FDA/ANMAT) hacen que modelos clásicos sigan siendo el baseline obligado.\n\nRegla de oro: todo pipeline de Deep Learning en Física Médica debe compararse contra un baseline clásico bien ajustado. Si el modelo profundo no supera claramente a la regresión logística o al random forest, probablemente no se justifica su complejidad adicional.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "2.1 ¿Por qué empezar por lo clásico?\nAntes de introducir redes profundas, es indispensable entender los métodos que dominaron —y siguen dominando en muchos contextos clínicos— el análisis de datos médicos: interpretabilidad, pocos datos, variables tabulares y necesidad de trazabilidad regulatoria (FDA/ANMAT) hacen que modelos clásicos sigan siendo el baseline obligado.\n\nRegla de oro: todo pipeline de Deep Learning en Física Médica debe compararse contra un baseline clásico bien ajustado. Si el modelo profundo no supera claramente a la regresión logística o al random forest, probablemente no se justifica su complejidad adicional."
   },
   {
     "objectID": "unidad1/notas.html#formalización-del-problema-de-aprendizaje-supervisado",
     "href": "unidad1/notas.html#formalización-del-problema-de-aprendizaje-supervisado",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "2.2 Formalización del problema de aprendizaje supervisado",
-    "text": "2.2 Formalización del problema de aprendizaje supervisado\nDado un conjunto de datos \\(\\mathcal{D} = \\{(\\mathbf{x}_i, y_i)\\}_{i=1}^{N}\\), con \\(\\mathbf{x}_i \\in \\mathbb{R}^d\\) (features, p. ej. radiómicas, edad, dosis) e \\(y_i\\) la variable objetivo (continua o categórica), el objetivo es encontrar una función \\(f_\\theta: \\mathbb{R}^d \\to \\mathcal{Y}\\) que minimice una función de pérdida esperada:\n\\[\n\\theta^* = \\arg\\min_{\\theta} \\; \\mathbb{E}_{(\\mathbf{x},y)\\sim \\mathcal{D}} \\left[ \\mathcal{L}(f_\\theta(\\mathbf{x}), y) \\right]\n\\]\nEn la práctica se minimiza el riesgo empírico:\n\\[\n\\hat{\\theta} = \\arg\\min_{\\theta} \\; \\frac{1}{N}\\sum_{i=1}^{N} \\mathcal{L}(f_\\theta(\\mathbf{x}_i), y_i) + \\lambda \\, \\Omega(\\theta)\n\\]\ndonde \\(\\Omega(\\theta)\\) es un término de regularización y \\(\\lambda\\) controla el compromiso sesgo-varianza.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "2.2 Formalización del problema de aprendizaje supervisado\nDado un conjunto de datos \\(\\mathcal{D} = \\{(\\mathbf{x}_i, y_i)\\}_{i=1}^{N}\\), con \\(\\mathbf{x}_i \\in \\mathbb{R}^d\\) (features, p. ej. radiómicas, edad, dosis) e \\(y_i\\) la variable objetivo (continua o categórica), el objetivo es encontrar una función \\(f_\\theta: \\mathbb{R}^d \\to \\mathcal{Y}\\) que minimice una función de pérdida esperada:\n\\[\n\\theta^* = \\arg\\min_{\\theta} \\; \\mathbb{E}_{(\\mathbf{x},y)\\sim \\mathcal{D}} \\left[ \\mathcal{L}(f_\\theta(\\mathbf{x}), y) \\right]\n\\]\nEn la práctica se minimiza el riesgo empírico:\n\\[\n\\hat{\\theta} = \\arg\\min_{\\theta} \\; \\frac{1}{N}\\sum_{i=1}^{N} \\mathcal{L}(f_\\theta(\\mathbf{x}_i), y_i) + \\lambda \\, \\Omega(\\theta)\n\\]\ndonde \\(\\Omega(\\theta)\\) es un término de regularización y \\(\\lambda\\) controla el compromiso sesgo-varianza."
   },
   {
     "objectID": "unidad1/notas.html#regresión-lineal-y-logística",
     "href": "unidad1/notas.html#regresión-lineal-y-logística",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "2.3 Regresión lineal y logística",
-    "text": "2.3 Regresión lineal y logística\nRegresión lineal (para variables continuas, p. ej. predicción de dosis absorbida a partir de parámetros del haz):\n\\[\n\\hat{y} = \\mathbf{w}^\\top \\mathbf{x} + b, \\qquad \\mathcal{L}_{\\text{MSE}} = \\frac{1}{N}\\sum_i (y_i - \\hat{y}_i)^2\n\\]\nRegresión logística (clasificación binaria, p. ej. benigno/maligno):\n\\[\n\\hat{p} = \\sigma(\\mathbf{w}^\\top \\mathbf{x} + b) = \\frac{1}{1+e^{-(\\mathbf{w}^\\top \\mathbf{x} + b)}}\n\\]\n\\[\n\\mathcal{L}_{\\text{BCE}} = -\\frac{1}{N}\\sum_i \\left[ y_i \\log \\hat{p}_i + (1-y_i)\\log(1-\\hat{p}_i) \\right]\n\\]\n\n\n\n\n\n\nNoteNexo con la Unidad\n\n\n\nLa función sigmoide \\(\\sigma(\\cdot)\\) de la regresión logística es, matemáticamente, idéntica a la función de activación que usaremos más adelante en las primeras redes neuronales. La regresión logística es, de hecho, un perceptrón con activación sigmoide y una sola capa.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "2.3 Regresión lineal y logística\nRegresión lineal (para variables continuas, p. ej. predicción de dosis absorbida a partir de parámetros del haz):\n\\[\n\\hat{y} = \\mathbf{w}^\\top \\mathbf{x} + b, \\qquad \\mathcal{L}_{\\text{MSE}} = \\frac{1}{N}\\sum_i (y_i - \\hat{y}_i)^2\n\\]\nRegresión logística (clasificación binaria, p. ej. benigno/maligno):\n\\[\n\\hat{p} = \\sigma(\\mathbf{w}^\\top \\mathbf{x} + b) = \\frac{1}{1+e^{-(\\mathbf{w}^\\top \\mathbf{x} + b)}}\n\\]\n\\[\n\\mathcal{L}_{\\text{BCE}} = -\\frac{1}{N}\\sum_i \\left[ y_i \\log \\hat{p}_i + (1-y_i)\\log(1-\\hat{p}_i) \\right]\n\\]\n\n\n\n\n\n\nNoteNexo con la Unidad\n\n\n\nLa función sigmoide \\(\\sigma(\\cdot)\\) de la regresión logística es, matemáticamente, idéntica a la función de activación que usaremos más adelante en las primeras redes neuronales. La regresión logística es, de hecho, un perceptrón con activación sigmoide y una sola capa."
   },
   {
     "objectID": "unidad1/notas.html#otros-modelos-clásicos-relevantes-en-física-médica",
     "href": "unidad1/notas.html#otros-modelos-clásicos-relevantes-en-física-médica",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "2.4 Otros modelos clásicos relevantes en Física Médica",
-    "text": "2.4 Otros modelos clásicos relevantes en Física Médica\n\n\n\n\n\n\n\n\n\nModelo\nUso típico en Física Médica\nVentaja\nLimitación\n\n\n\n\nÁrboles de decisión / Random Forest\nPredicción de toxicidad, segmentación de features radiómicas\nInterpretable, maneja no linealidad\nSobreajuste, fronteras “en escalera”\n\n\nSVM\nClasificación de tejidos, control de calidad\nRobusto en alta dimensión con pocos datos\nEscala mal, elección de kernel\n\n\nPCA / ICA\nReducción de dimensionalidad de imágenes, denoising\nRápido, interpretable\nSolo captura relaciones lineales\n\n\nk-NN\nClasificación de espectros, dosimetría comparativa\nSimple, no paramétrico\nCostoso en inferencia, sensible a escala",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "2.4 Otros modelos clásicos relevantes en Física Médica\n\n\n\n\n\n\n\n\n\nModelo\nUso típico en Física Médica\nVentaja\nLimitación\n\n\n\n\nÁrboles de decisión / Random Forest\nPredicción de toxicidad, segmentación de features radiómicas\nInterpretable, maneja no linealidad\nSobreajuste, fronteras “en escalera”\n\n\nSVM\nClasificación de tejidos, control de calidad\nRobusto en alta dimensión con pocos datos\nEscala mal, elección de kernel\n\n\nPCA / ICA\nReducción de dimensionalidad de imágenes, denoising\nRápido, interpretable\nSolo captura relaciones lineales\n\n\nk-NN\nClasificación de espectros, dosimetría comparativa\nSimple, no paramétrico\nCostoso en inferencia, sensible a escala"
   },
   {
     "objectID": "unidad1/notas.html#ejemplo-práctico-comparación-de-fronteras-de-decisión",
     "href": "unidad1/notas.html#ejemplo-práctico-comparación-de-fronteras-de-decisión",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "2.5 Ejemplo práctico: comparación de fronteras de decisión",
-    "text": "2.5 Ejemplo práctico: comparación de fronteras de decisión\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import make_moons\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.svm import SVC\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.neighbors import KNeighborsClassifier\n\nnp.random.seed(42)\nX, y = make_moons(n_samples=300, noise=0.25, random_state=42)\n\nmodelos = {\n    \"Regresión Logística\": LogisticRegression(),\n    \"SVM (kernel RBF)\": SVC(kernel=\"rbf\", gamma=2),\n    \"Árbol de decisión\": DecisionTreeClassifier(max_depth=4),\n    \"k-NN (k=5)\": KNeighborsClassifier(n_neighbors=5),\n}\n\nxx, yy = np.meshgrid(np.linspace(X[:,0].min()-0.5, X[:,0].max()+0.5, 300),\n                      np.linspace(X[:,1].min()-0.5, X[:,1].max()+0.5, 300))\n\nfig, axes = plt.subplots(1, 4, figsize=(18, 4.2))\n\nfor ax, (nombre, modelo) in zip(axes, modelos.items()):\n    modelo.fit(X, y)\n    Z = modelo.predict(np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape)\n    ax.contourf(xx, yy, Z, alpha=0.3, cmap=\"coolwarm\")\n    ax.scatter(X[:,0], X[:,1], c=y, cmap=\"coolwarm\", edgecolor=\"k\", s=20)\n    ax.set_title(nombre, fontsize=11)\n    ax.set_xticks([]); ax.set_yticks([])\n\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 1: Fronteras de decisión de modelos clásicos sobre un dataset sintético (ej. dos features radiómicas)\n\n\n\n\n\nObserven cómo cada modelo impone un sesgo inductivo distinto sobre la forma de la frontera de decisión: lineal (regresión logística), suave y global (SVM-RBF), o local y fragmentada (árbol, k-NN). El Deep Learning, como veremos, aprende esta forma directamente de los datos con muchas menos suposiciones explícitas.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "2.5 Ejemplo práctico: comparación de fronteras de decisión\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import make_moons\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.svm import SVC\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.neighbors import KNeighborsClassifier\n\nnp.random.seed(42)\nX, y = make_moons(n_samples=300, noise=0.25, random_state=42)\n\nmodelos = {\n    \"Regresión Logística\": LogisticRegression(),\n    \"SVM (kernel RBF)\": SVC(kernel=\"rbf\", gamma=2),\n    \"Árbol de decisión\": DecisionTreeClassifier(max_depth=4),\n    \"k-NN (k=5)\": KNeighborsClassifier(n_neighbors=5),\n}\n\nxx, yy = np.meshgrid(np.linspace(X[:,0].min()-0.5, X[:,0].max()+0.5, 300),\n                      np.linspace(X[:,1].min()-0.5, X[:,1].max()+0.5, 300))\n\nfig, axes = plt.subplots(1, 4, figsize=(18, 4.2))\n\nfor ax, (nombre, modelo) in zip(axes, modelos.items()):\n    modelo.fit(X, y)\n    Z = modelo.predict(np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape)\n    ax.contourf(xx, yy, Z, alpha=0.3, cmap=\"coolwarm\")\n    ax.scatter(X[:,0], X[:,1], c=y, cmap=\"coolwarm\", edgecolor=\"k\", s=20)\n    ax.set_title(nombre, fontsize=11)\n    ax.set_xticks([]); ax.set_yticks([])\n\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 1: Fronteras de decisión de modelos clásicos sobre un dataset sintético (ej. dos features radiómicas)\n\n\n\n\n\nObserven cómo cada modelo impone un sesgo inductivo distinto sobre la forma de la frontera de decisión: lineal (regresión logística), suave y global (SVM-RBF), o local y fragmentada (árbol, k-NN). El Deep Learning, como veremos, aprende esta forma directamente de los datos con muchas menos suposiciones explícitas."
   },
   {
     "objectID": "unidad1/notas.html#qué-es-el-deep-learning",
     "href": "unidad1/notas.html#qué-es-el-deep-learning",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "3.1 ¿Qué es el Deep Learning?",
-    "text": "3.1 ¿Qué es el Deep Learning?\nEl Deep Learning (aprendizaje profundo) es una subfamilia del aprendizaje automático basada en redes neuronales artificiales con múltiples capas, capaces de aprender representaciones jerárquicas de los datos directamente desde datos crudos (píxeles, señales), sin necesidad de ingeniería manual de features.\n\\[\nf_\\theta(\\mathbf{x}) = f^{(L)} \\circ f^{(L-1)} \\circ \\cdots \\circ f^{(1)}(\\mathbf{x})\n\\]\ndonde cada \\(f^{(l)}\\) es una transformación (capa) con parámetros propios \\(\\theta^{(l)}\\).",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "3.1 ¿Qué es el Deep Learning?\nEl Deep Learning (aprendizaje profundo) es una subfamilia del aprendizaje automático basada en redes neuronales artificiales con múltiples capas, capaces de aprender representaciones jerárquicas de los datos directamente desde datos crudos (píxeles, señales), sin necesidad de ingeniería manual de features.\n\\[\nf_\\theta(\\mathbf{x}) = f^{(L)} \\circ f^{(L-1)} \\circ \\cdots \\circ f^{(1)}(\\mathbf{x})\n\\]\ndonde cada \\(f^{(l)}\\) es una transformación (capa) con parámetros propios \\(\\theta^{(l)}\\)."
   },
   {
     "objectID": "unidad1/notas.html#línea-de-tiempo-histórica",
     "href": "unidad1/notas.html#línea-de-tiempo-histórica",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "3.2 Línea de tiempo histórica",
-    "text": "3.2 Línea de tiempo histórica\n\n\nCode\ntimeline\n    title Historia del Deep Learning\n    1943 : McCulloch & Pitts, neurona artificial\n    1958 : Rosenblatt, el Perceptrón\n    1969 : Minsky & Papert, \"Perceptrons\" (crítica al XOR)\n    1986 : Rumelhart, Hinton, Williams, Backpropagation\n    1989 : LeCun, LeNet (CNN para dígitos manuscritos)\n    1997 : Hochreiter & Schmidhuber, LSTM\n    2006 : Hinton, Deep Belief Networks, renace el interés\n    2012 : Krizhevsky, AlexNet gana ImageNet, boom del Deep Learning\n    2015 : He et al., ResNet, redes muy profundas\n    2017 : Vaswani et al., Transformers\n    2020s : Modelos fundacionales, IA generativa, adopción clínica\n\n\n\n\n\n\ntimeline\n    title Historia del Deep Learning\n    1943 : McCulloch & Pitts, neurona artificial\n    1958 : Rosenblatt, el Perceptrón\n    1969 : Minsky & Papert, \"Perceptrons\" (crítica al XOR)\n    1986 : Rumelhart, Hinton, Williams, Backpropagation\n    1989 : LeCun, LeNet (CNN para dígitos manuscritos)\n    1997 : Hochreiter & Schmidhuber, LSTM\n    2006 : Hinton, Deep Belief Networks, renace el interés\n    2012 : Krizhevsky, AlexNet gana ImageNet, boom del Deep Learning\n    2015 : He et al., ResNet, redes muy profundas\n    2017 : Vaswani et al., Transformers\n    2020s : Modelos fundacionales, IA generativa, adopción clínica\n\n\n\n\nFigure 2: Hitos históricos del Deep Learning",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "3.2 Línea de tiempo histórica\n\n\nCode\ntimeline\n    title Historia del Deep Learning\n    1943 : McCulloch & Pitts, neurona artificial\n    1958 : Rosenblatt, el Perceptrón\n    1969 : Minsky & Papert, \"Perceptrons\" (crítica al XOR)\n    1986 : Rumelhart, Hinton, Williams, Backpropagation\n    1989 : LeCun, LeNet (CNN para dígitos manuscritos)\n    1997 : Hochreiter & Schmidhuber, LSTM\n    2006 : Hinton, Deep Belief Networks, renace el interés\n    2012 : Krizhevsky, AlexNet gana ImageNet, boom del Deep Learning\n    2015 : He et al., ResNet, redes muy profundas\n    2017 : Vaswani et al., Transformers\n    2020s : Modelos fundacionales, IA generativa, adopción clínica\n\n\n\n\n\n\ntimeline\n    title Historia del Deep Learning\n    1943 : McCulloch & Pitts, neurona artificial\n    1958 : Rosenblatt, el Perceptrón\n    1969 : Minsky & Papert, \"Perceptrons\" (crítica al XOR)\n    1986 : Rumelhart, Hinton, Williams, Backpropagation\n    1989 : LeCun, LeNet (CNN para dígitos manuscritos)\n    1997 : Hochreiter & Schmidhuber, LSTM\n    2006 : Hinton, Deep Belief Networks, renace el interés\n    2012 : Krizhevsky, AlexNet gana ImageNet, boom del Deep Learning\n    2015 : He et al., ResNet, redes muy profundas\n    2017 : Vaswani et al., Transformers\n    2020s : Modelos fundacionales, IA generativa, adopción clínica\n\n\n\n\nFigure 2: Hitos históricos del Deep Learning"
   },
   {
     "objectID": "unidad1/notas.html#los-dos-inviernos-de-la-ia-neuronal",
     "href": "unidad1/notas.html#los-dos-inviernos-de-la-ia-neuronal",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "3.3 Los “dos inviernos” de la IA neuronal",
-    "text": "3.3 Los “dos inviernos” de la IA neuronal\n\nPrimer invierno (post-1969): Minsky y Papert demuestran que el perceptrón simple no puede resolver problemas no linealmente separables (el caso paradigmático: la función XOR). Esto reduce drásticamente el financiamiento a la investigación en redes neuronales durante casi dos décadas.\nSegundo invierno (fines de los 90s-2000s): a pesar del backpropagation (1986), la falta de datos masivos y poder de cómputo, sumado al auge de SVMs y métodos de ensemble, relega nuevamente a las redes neuronales.\nEl resurgimiento (2006-2012): disponibilidad de GPUs, grandes bases de datos etiquetadas (ImageNet) y mejoras algorítmicas (ReLU, dropout, mejor inicialización) permiten entrenar redes verdaderamente profundas. AlexNet (2012) es el punto de inflexión que marca el inicio de la era moderna del Deep Learning.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "3.3 Los “dos inviernos” de la IA neuronal\n\nPrimer invierno (post-1969): Minsky y Papert demuestran que el perceptrón simple no puede resolver problemas no linealmente separables (el caso paradigmático: la función XOR). Esto reduce drásticamente el financiamiento a la investigación en redes neuronales durante casi dos décadas.\nSegundo invierno (fines de los 90s-2000s): a pesar del backpropagation (1986), la falta de datos masivos y poder de cómputo, sumado al auge de SVMs y métodos de ensemble, relega nuevamente a las redes neuronales.\nEl resurgimiento (2006-2012): disponibilidad de GPUs, grandes bases de datos etiquetadas (ImageNet) y mejoras algorítmicas (ReLU, dropout, mejor inicialización) permiten entrenar redes verdaderamente profundas. AlexNet (2012) es el punto de inflexión que marca el inicio de la era moderna del Deep Learning."
   },
   {
     "objectID": "unidad1/notas.html#por-qué-profundo-y-por-qué-ahora-es-relevante-en-física-médica",
     "href": "unidad1/notas.html#por-qué-profundo-y-por-qué-ahora-es-relevante-en-física-médica",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "3.4 ¿Por qué “profundo” y por qué ahora es relevante en Física Médica?",
-    "text": "3.4 ¿Por qué “profundo” y por qué ahora es relevante en Física Médica?\n\nDatos: imágenes médicas (CT, RM, PET, mamografía) son datos de alta dimensionalidad donde el Deep Learning —en particular las CNNs— sobresale.\nCómputo: GPUs/TPUs permiten entrenar modelos con millones de parámetros en tiempos razonables.\nRepresentaciones jerárquicas: en imágenes médicas, las capas iniciales aprenden bordes y texturas; capas intermedias, estructuras anatómicas; capas profundas, patrones patológicos complejos (analogía con la vía visual biológica).\n\n\n\n\n\n\n\nTipAplicaciones actuales en Física Médica\n\n\n\n\nSegmentación automática de órganos en riesgo (radioterapia)\nReducción de dosis en CT mediante denoising con redes profundas\nReconstrucción de imágenes PET/RM aceleradas\nDetección asistida de nódulos, lesiones y contornos tumorales\nControl de calidad automatizado y predicción de outcomes clínicos",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "3.4 ¿Por qué “profundo” y por qué ahora es relevante en Física Médica?\n\nDatos: imágenes médicas (CT, RM, PET, mamografía) son datos de alta dimensionalidad donde el Deep Learning —en particular las CNNs— sobresale.\nCómputo: GPUs/TPUs permiten entrenar modelos con millones de parámetros en tiempos razonables.\nRepresentaciones jerárquicas: en imágenes médicas, las capas iniciales aprenden bordes y texturas; capas intermedias, estructuras anatómicas; capas profundas, patrones patológicos complejos (analogía con la vía visual biológica).\n\n\n\n\n\n\n\nTipAplicaciones actuales en Física Médica\n\n\n\n\nSegmentación automática de órganos en riesgo (radioterapia)\nReducción de dosis en CT mediante denoising con redes profundas\nReconstrucción de imágenes PET/RM aceleradas\nDetección asistida de nódulos, lesiones y contornos tumorales\nControl de calidad automatizado y predicción de outcomes clínicos"
   },
   {
     "objectID": "unidad1/notas.html#la-neurona-biológica-como-inspiración",
     "href": "unidad1/notas.html#la-neurona-biológica-como-inspiración",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "4.1 La neurona biológica como inspiración",
-    "text": "4.1 La neurona biológica como inspiración\nMcCulloch y Pitts (1943) propusieron un modelo matemático simplificado de la neurona: recibe señales de entrada, las pondera y produce una salida binaria si supera un umbral. Rosenblatt (1958) convirtió esta idea en un algoritmo de aprendizaje: el Perceptrón.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "4.1 La neurona biológica como inspiración\nMcCulloch y Pitts (1943) propusieron un modelo matemático simplificado de la neurona: recibe señales de entrada, las pondera y produce una salida binaria si supera un umbral. Rosenblatt (1958) convirtió esta idea en un algoritmo de aprendizaje: el Perceptrón."
   },
   {
     "objectID": "unidad1/notas.html#definición-formal",
     "href": "unidad1/notas.html#definición-formal",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "4.2 Definición formal",
-    "text": "4.2 Definición formal\nDado un vector de entrada \\(\\mathbf{x} = (x_1, x_2, \\dots, x_d) \\in \\mathbb{R}^d\\), el perceptrón calcula:\n\\[\nz = \\sum_{j=1}^{d} w_j x_j + b = \\mathbf{w}^\\top \\mathbf{x} + b\n\\]\n\\[\n\\hat{y} = \\phi(z) =\n\\begin{cases}\n1 & \\text{si } z \\geq 0 \\\\\n0 \\text{ (o } -1) & \\text{si } z &lt; 0\n\\end{cases}\n\\]\ndonde \\(\\phi\\) es la función de activación escalón (Heaviside), \\(\\mathbf{w}\\) es el vector de pesos sinápticos y \\(b\\) el sesgo (bias).\nGeométricamente, el perceptrón define un hiperplano separador en \\(\\mathbb{R}^d\\): \\(\\mathbf{w}^\\top \\mathbf{x} + b = 0\\).",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "4.2 Definición formal\nDado un vector de entrada \\(\\mathbf{x} = (x_1, x_2, \\dots, x_d) \\in \\mathbb{R}^d\\), el perceptrón calcula:\n\\[\nz = \\sum_{j=1}^{d} w_j x_j + b = \\mathbf{w}^\\top \\mathbf{x} + b\n\\]\n\\[\n\\hat{y} = \\phi(z) =\n\\begin{cases}\n1 & \\text{si } z \\geq 0 \\\\\n0 \\text{ (o } -1) & \\text{si } z &lt; 0\n\\end{cases}\n\\]\ndonde \\(\\phi\\) es la función de activación escalón (Heaviside), \\(\\mathbf{w}\\) es el vector de pesos sinápticos y \\(b\\) el sesgo (bias).\nGeométricamente, el perceptrón define un hiperplano separador en \\(\\mathbb{R}^d\\): \\(\\mathbf{w}^\\top \\mathbf{x} + b = 0\\)."
   },
   {
     "objectID": "unidad1/notas.html#el-algoritmo-de-aprendizaje-del-perceptrón",
     "href": "unidad1/notas.html#el-algoritmo-de-aprendizaje-del-perceptrón",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "4.3 El algoritmo de aprendizaje del Perceptrón",
-    "text": "4.3 El algoritmo de aprendizaje del Perceptrón\nDado un conjunto de entrenamiento \\(\\{(\\mathbf{x}_i, y_i)\\}_{i=1}^N\\) con \\(y_i \\in \\{-1, +1\\}\\), el algoritmo actualiza los pesos solo cuando comete un error:\nAlgoritmo (Rosenblatt, 1958):\n\nInicializar \\(\\mathbf{w} \\leftarrow \\mathbf{0}\\), \\(b \\leftarrow 0\\)\nRepetir hasta convergencia (o número máximo de épocas): Para cada \\((\\mathbf{x}_i, y_i)\\):\n\nCalcular \\(\\hat{y}_i = \\text{sign}(\\mathbf{w}^\\top \\mathbf{x}_i + b)\\)\nSi \\(\\hat{y}_i \\neq y_i\\): \\[\n\\mathbf{w} \\leftarrow \\mathbf{w} + \\eta \\, y_i \\, \\mathbf{x}_i\n\\] \\[\nb \\leftarrow b + \\eta \\, y_i\n\\]\n\n\ndonde \\(\\eta &gt; 0\\) es la tasa de aprendizaje (learning rate).\n\n\n\n\n\n\nImportantTeorema de convergencia del Perceptrón\n\n\n\nSi los datos son linealmente separables, el algoritmo del perceptrón converge en un número finito de pasos a una solución que clasifica correctamente todo el conjunto de entrenamiento (Novikoff, 1962). Si los datos no son linealmente separables, el algoritmo nunca converge y oscila indefinidamente.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "4.3 El algoritmo de aprendizaje del Perceptrón\nDado un conjunto de entrenamiento \\(\\{(\\mathbf{x}_i, y_i)\\}_{i=1}^N\\) con \\(y_i \\in \\{-1, +1\\}\\), el algoritmo actualiza los pesos solo cuando comete un error:\nAlgoritmo (Rosenblatt, 1958):\n\nInicializar \\(\\mathbf{w} \\leftarrow \\mathbf{0}\\), \\(b \\leftarrow 0\\)\nRepetir hasta convergencia (o número máximo de épocas): Para cada \\((\\mathbf{x}_i, y_i)\\):\n\nCalcular \\(\\hat{y}_i = \\text{sign}(\\mathbf{w}^\\top \\mathbf{x}_i + b)\\)\nSi \\(\\hat{y}_i \\neq y_i\\): \\[\n\\mathbf{w} \\leftarrow \\mathbf{w} + \\eta \\, y_i \\, \\mathbf{x}_i\n\\] \\[\nb \\leftarrow b + \\eta \\, y_i\n\\]\n\n\ndonde \\(\\eta &gt; 0\\) es la tasa de aprendizaje (learning rate).\n\n\n\n\n\n\nImportantTeorema de convergencia del Perceptrón\n\n\n\nSi los datos son linealmente separables, el algoritmo del perceptrón converge en un número finito de pasos a una solución que clasifica correctamente todo el conjunto de entrenamiento (Novikoff, 1962). Si los datos no son linealmente separables, el algoritmo nunca converge y oscila indefinidamente."
   },
   {
     "objectID": "unidad1/notas.html#implementación-desde-cero",
     "href": "unidad1/notas.html#implementación-desde-cero",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "4.4 Implementación desde cero",
-    "text": "4.4 Implementación desde cero\n\n\nCode\nimport numpy as np\n\nclass Perceptron:\n    def __init__(self, lr=0.1, n_epochs=50):\n        self.lr = lr\n        self.n_epochs = n_epochs\n\n    def fit(self, X, y):\n        n_samples, n_features = X.shape\n        self.w = np.zeros(n_features)\n        self.b = 0.0\n        self.errores_por_epoca = []\n\n        for epoca in range(self.n_epochs):\n            errores = 0\n            for xi, yi in zip(X, y):\n                y_pred = np.sign(np.dot(self.w, xi) + self.b)\n                y_pred = 1 if y_pred &gt;= 0 else -1\n                if y_pred != yi:\n                    self.w += self.lr * yi * xi\n                    self.b += self.lr * yi\n                    errores += 1\n            self.errores_por_epoca.append(errores)\n            if errores == 0:\n                break\n        return self\n\n    def predict(self, X):\n        z = X @ self.w + self.b\n        return np.where(z &gt;= 0, 1, -1)",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "4.4 Implementación desde cero\n\n\nCode\nimport numpy as np\n\nclass Perceptron:\n    def __init__(self, lr=0.1, n_epochs=50):\n        self.lr = lr\n        self.n_epochs = n_epochs\n\n    def fit(self, X, y):\n        n_samples, n_features = X.shape\n        self.w = np.zeros(n_features)\n        self.b = 0.0\n        self.errores_por_epoca = []\n\n        for epoca in range(self.n_epochs):\n            errores = 0\n            for xi, yi in zip(X, y):\n                y_pred = np.sign(np.dot(self.w, xi) + self.b)\n                y_pred = 1 if y_pred &gt;= 0 else -1\n                if y_pred != yi:\n                    self.w += self.lr * yi * xi\n                    self.b += self.lr * yi\n                    errores += 1\n            self.errores_por_epoca.append(errores)\n            if errores == 0:\n                break\n        return self\n\n    def predict(self, X):\n        z = X @ self.w + self.b\n        return np.where(z &gt;= 0, 1, -1)"
   },
   {
     "objectID": "unidad1/notas.html#ejemplo-separación-de-dos-clases-sintéticas-linealmente-separables",
     "href": "unidad1/notas.html#ejemplo-separación-de-dos-clases-sintéticas-linealmente-separables",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "4.5 Ejemplo: separación de dos clases sintéticas (linealmente separables)",
-    "text": "4.5 Ejemplo: separación de dos clases sintéticas (linealmente separables)\n\n\nCode\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import make_blobs\n\nX, y = make_blobs(n_samples=100, centers=2, cluster_std=1.0, random_state=7)\ny = np.where(y == 0, -1, 1)\n\nmodelo = Perceptron(lr=0.1, n_epochs=30).fit(X, y)\n\nfig, axes = plt.subplots(1, 2, figsize=(11, 4.2))\n\n# Frontera de decisión\nxx, yy = np.meshgrid(np.linspace(X[:,0].min()-1, X[:,0].max()+1, 200),\n                      np.linspace(X[:,1].min()-1, X[:,1].max()+1, 200))\nZ = modelo.predict(np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape)\naxes[0].contourf(xx, yy, Z, alpha=0.3, cmap=\"coolwarm\")\naxes[0].scatter(X[:,0], X[:,1], c=y, cmap=\"coolwarm\", edgecolor=\"k\")\naxes[0].set_title(\"Frontera de decisión aprendida\")\n\n# Curva de convergencia\naxes[1].plot(modelo.errores_por_epoca, marker=\"o\", color=\"darkred\")\naxes[1].set_xlabel(\"Época\")\naxes[1].set_ylabel(\"N° de errores de clasificación\")\naxes[1].set_title(\"Convergencia del algoritmo\")\naxes[1].grid(alpha=0.3)\n\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 3: Convergencia del Perceptrón sobre datos linealmente separables",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "4.5 Ejemplo: separación de dos clases sintéticas (linealmente separables)\n\n\nCode\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import make_blobs\n\nX, y = make_blobs(n_samples=100, centers=2, cluster_std=1.0, random_state=7)\ny = np.where(y == 0, -1, 1)\n\nmodelo = Perceptron(lr=0.1, n_epochs=30).fit(X, y)\n\nfig, axes = plt.subplots(1, 2, figsize=(11, 4.2))\n\n# Frontera de decisión\nxx, yy = np.meshgrid(np.linspace(X[:,0].min()-1, X[:,0].max()+1, 200),\n                      np.linspace(X[:,1].min()-1, X[:,1].max()+1, 200))\nZ = modelo.predict(np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape)\naxes[0].contourf(xx, yy, Z, alpha=0.3, cmap=\"coolwarm\")\naxes[0].scatter(X[:,0], X[:,1], c=y, cmap=\"coolwarm\", edgecolor=\"k\")\naxes[0].set_title(\"Frontera de decisión aprendida\")\n\n# Curva de convergencia\naxes[1].plot(modelo.errores_por_epoca, marker=\"o\", color=\"darkred\")\naxes[1].set_xlabel(\"Época\")\naxes[1].set_ylabel(\"N° de errores de clasificación\")\naxes[1].set_title(\"Convergencia del algoritmo\")\naxes[1].grid(alpha=0.3)\n\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 3: Convergencia del Perceptrón sobre datos linealmente separables"
   },
   {
     "objectID": "unidad1/notas.html#el-límite-fundamental-el-problema-xor",
     "href": "unidad1/notas.html#el-límite-fundamental-el-problema-xor",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "4.6 El límite fundamental: el problema XOR",
-    "text": "4.6 El límite fundamental: el problema XOR\n\n\nCode\nX_xor = np.array([[0,0],[0,1],[1,0],[1,1]])\ny_xor = np.array([-1, 1, 1, -1])  # XOR\n\nmodelo_xor = Perceptron(lr=0.1, n_epochs=100).fit(X_xor, y_xor)\n\nplt.figure(figsize=(4.5,4.5))\nplt.scatter(X_xor[:,0], X_xor[:,1], c=y_xor, cmap=\"coolwarm\", s=150, edgecolor=\"k\")\nfor i, (x1, x2) in enumerate(X_xor):\n    plt.annotate(f\"({x1},{x2})\", (x1, x2), textcoords=\"offset points\", xytext=(10,10))\nplt.title(f\"XOR — errores finales: {modelo_xor.errores_por_epoca[-1]} (no converge a 0)\")\nplt.xlim(-0.5, 1.5); plt.ylim(-0.5, 1.5)\nplt.grid(alpha=0.3)\nplt.show()\n\n\n\n\n\n\n\n\nFigure 4: El perceptrón simple no puede separar el problema XOR (no linealmente separable)\n\n\n\n\n\nEste resultado —señalado críticamente por Minsky y Papert en 1969— es precisamente lo que causó el primer “invierno de la IA”: ningún hiperplano puede separar las clases del XOR. La solución, que veremos en la próxima unidad, requiere apilar múltiples capas de perceptrones (el Perceptrón Multicapa, MLP) con funciones de activación no lineales, entrenadas mediante backpropagation.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "4.6 El límite fundamental: el problema XOR\n\n\nCode\nX_xor = np.array([[0,0],[0,1],[1,0],[1,1]])\ny_xor = np.array([-1, 1, 1, -1])  # XOR\n\nmodelo_xor = Perceptron(lr=0.1, n_epochs=100).fit(X_xor, y_xor)\n\nplt.figure(figsize=(4.5,4.5))\nplt.scatter(X_xor[:,0], X_xor[:,1], c=y_xor, cmap=\"coolwarm\", s=150, edgecolor=\"k\")\nfor i, (x1, x2) in enumerate(X_xor):\n    plt.annotate(f\"({x1},{x2})\", (x1, x2), textcoords=\"offset points\", xytext=(10,10))\nplt.title(f\"XOR — errores finales: {modelo_xor.errores_por_epoca[-1]} (no converge a 0)\")\nplt.xlim(-0.5, 1.5); plt.ylim(-0.5, 1.5)\nplt.grid(alpha=0.3)\nplt.show()\n\n\n\n\n\n\n\n\nFigure 4: El perceptrón simple no puede separar el problema XOR (no linealmente separable)\n\n\n\n\n\nEste resultado —señalado críticamente por Minsky y Papert en 1969— es precisamente lo que causó el primer “invierno de la IA”: ningún hiperplano puede separar las clases del XOR. La solución, que veremos en la próxima unidad, requiere apilar múltiples capas de perceptrones (el Perceptrón Multicapa, MLP) con funciones de activación no lineales, entrenadas mediante backpropagation."
   },
   {
     "objectID": "unidad1/notas.html#perceptrón-vs.-regresión-logística-el-puente-conceptual",
     "href": "unidad1/notas.html#perceptrón-vs.-regresión-logística-el-puente-conceptual",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "4.7 Perceptrón vs. Regresión Logística: el puente conceptual",
-    "text": "4.7 Perceptrón vs. Regresión Logística: el puente conceptual\n\n\n\n\n\n\n\n\nAspecto\nPerceptrón\nRegresión Logística\n\n\n\n\nActivación\nEscalón (Heaviside)\nSigmoide\n\n\nSalida\nBinaria dura \\(\\{-1,+1\\}\\)\nProbabilidad continua \\([0,1]\\)\n\n\nFunción de pérdida\nImplícita (regla de error)\nEntropía cruzada (log-loss)\n\n\nOptimización\nRegla de actualización simple\nDescenso por gradiente\n\n\nFrontera de decisión\nLineal\nLineal\n\n\nInterpretación probabilística\nNo\nSí\n\n\n\nEste puente es clave: reemplazar la función escalón por una sigmoide y usar descenso por gradiente en lugar de la regla del perceptrón nos lleva directamente a la neurona artificial moderna, el bloque de construcción de todas las redes profundas que estudiaremos en las próximas unidades.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "4.7 Perceptrón vs. Regresión Logística: el puente conceptual\n\n\n\n\n\n\n\n\nAspecto\nPerceptrón\nRegresión Logística\n\n\n\n\nActivación\nEscalón (Heaviside)\nSigmoide\n\n\nSalida\nBinaria dura \\(\\{-1,+1\\}\\)\nProbabilidad continua \\([0,1]\\)\n\n\nFunción de pérdida\nImplícita (regla de error)\nEntropía cruzada (log-loss)\n\n\nOptimización\nRegla de actualización simple\nDescenso por gradiente\n\n\nFrontera de decisión\nLineal\nLineal\n\n\nInterpretación probabilística\nNo\nSí\n\n\n\nEste puente es clave: reemplazar la función escalón por una sigmoide y usar descenso por gradiente en lugar de la regla del perceptrón nos lleva directamente a la neurona artificial moderna, el bloque de construcción de todas las redes profundas que estudiaremos en las próximas unidades."
   },
   {
     "objectID": "unidad1/notas.html#de-la-regla-del-perceptrón-al-descenso-por-gradiente",
     "href": "unidad1/notas.html#de-la-regla-del-perceptrón-al-descenso-por-gradiente",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "5.1 De la regla del Perceptrón al descenso por gradiente",
-    "text": "5.1 De la regla del Perceptrón al descenso por gradiente\nLa regla de actualización de Rosenblatt (\\(\\mathbf{w} \\leftarrow \\mathbf{w} + \\eta \\, y_i \\, \\mathbf{x}_i\\)) es en realidad un caso particular de un procedimiento mucho más general: el descenso por gradiente sobre una función de pérdida. Toda red neuronal moderna —desde un perceptrón hasta un Transformer con miles de millones de parámetros— se entrena siguiendo el mismo ciclo conceptual:\n\n\nCode\nflowchart TD\n    A[1. Forward pass&lt;br&gt;calcular ŷ = f_θ x] --&gt; B[2. Calcular la pérdida&lt;br&gt;L ŷ, y]\n    B --&gt; C[3. Backward pass&lt;br&gt;calcular ∂L/∂θ]\n    C --&gt; D[4. Actualizar parámetros&lt;br&gt;optimizador + learning rate]\n    D --&gt; E{¿Convergió o&lt;br&gt;fin de épocas?}\n    E --&gt;|No| A\n    E --&gt;|Sí| F[Modelo entrenado]\n\n\n\n\n\nflowchart TD\n    A[1. Forward pass&lt;br&gt;calcular ŷ = f_θ x] --&gt; B[2. Calcular la pérdida&lt;br&gt;L ŷ, y]\n    B --&gt; C[3. Backward pass&lt;br&gt;calcular ∂L/∂θ]\n    C --&gt; D[4. Actualizar parámetros&lt;br&gt;optimizador + learning rate]\n    D --&gt; E{¿Convergió o&lt;br&gt;fin de épocas?}\n    E --&gt;|No| A\n    E --&gt;|Sí| F[Modelo entrenado]\n\n\n\n\n\n\nEste ciclo —repetido miles o millones de veces— es lo que llamamos entrenamiento. A continuación formalizamos cada uno de sus componentes.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "5.1 De la regla del Perceptrón al descenso por gradiente\nLa regla de actualización de Rosenblatt (\\(\\mathbf{w} \\leftarrow \\mathbf{w} + \\eta \\, y_i \\, \\mathbf{x}_i\\)) es en realidad un caso particular de un procedimiento mucho más general: el descenso por gradiente sobre una función de pérdida. Toda red neuronal moderna —desde un perceptrón hasta un Transformer con miles de millones de parámetros— se entrena siguiendo el mismo ciclo conceptual:\n\n\nCode\nflowchart TD\n    A[1. Forward pass&lt;br&gt;calcular ŷ = f_θ x] --&gt; B[2. Calcular la pérdida&lt;br&gt;L ŷ, y]\n    B --&gt; C[3. Backward pass&lt;br&gt;calcular ∂L/∂θ]\n    C --&gt; D[4. Actualizar parámetros&lt;br&gt;optimizador + learning rate]\n    D --&gt; E{¿Convergió o&lt;br&gt;fin de épocas?}\n    E --&gt;|No| A\n    E --&gt;|Sí| F[Modelo entrenado]\n\n\n\n\n\nflowchart TD\n    A[1. Forward pass&lt;br&gt;calcular ŷ = f_θ x] --&gt; B[2. Calcular la pérdida&lt;br&gt;L ŷ, y]\n    B --&gt; C[3. Backward pass&lt;br&gt;calcular ∂L/∂θ]\n    C --&gt; D[4. Actualizar parámetros&lt;br&gt;optimizador + learning rate]\n    D --&gt; E{¿Convergió o&lt;br&gt;fin de épocas?}\n    E --&gt;|No| A\n    E --&gt;|Sí| F[Modelo entrenado]\n\n\n\n\n\n\nEste ciclo —repetido miles o millones de veces— es lo que llamamos entrenamiento. A continuación formalizamos cada uno de sus componentes."
   },
   {
     "objectID": "unidad1/notas.html#funciones-de-pérdida-loss-functions",
     "href": "unidad1/notas.html#funciones-de-pérdida-loss-functions",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "5.2 Funciones de pérdida (Loss functions)",
-    "text": "5.2 Funciones de pérdida (Loss functions)\nLa función de pérdida \\(\\mathcal{L}(\\hat{y}, y)\\) cuantifica qué tan lejos está la predicción del modelo del valor real. Es la “brújula” que guía el aprendizaje: sin una pérdida bien elegida, el gradiente no tiene información útil que transmitir.\n\n5.2.1 Regresión (variables continuas)\nError cuadrático medio (MSE) — sensible a outliers, penaliza fuerte errores grandes. Útil, por ejemplo, para predecir dosis absorbida o parámetros dosimétricos continuos:\n\\[\n\\mathcal{L}_{\\text{MSE}} = \\frac{1}{N}\\sum_{i=1}^{N} (y_i - \\hat{y}_i)^2\n\\]\nError absoluto medio (MAE) — más robusto a outliers:\n\\[\n\\mathcal{L}_{\\text{MAE}} = \\frac{1}{N}\\sum_{i=1}^{N} |y_i - \\hat{y}_i|\n\\]\nHuber Loss — combina lo mejor de ambas (cuadrática cerca de cero, lineal lejos):\n\\[\n\\mathcal{L}_{\\delta}(y, \\hat{y}) =\n\\begin{cases}\n\\frac{1}{2}(y-\\hat{y})^2 & \\text{si } |y-\\hat{y}| \\leq \\delta \\\\\n\\delta \\left(|y-\\hat{y}| - \\frac{1}{2}\\delta\\right) & \\text{en otro caso}\n\\end{cases}\n\\]\n\n\n5.2.2 Clasificación\nEntropía cruzada binaria (BCE) — para dos clases (p. ej. benigno/maligno):\n\\[\n\\mathcal{L}_{\\text{BCE}} = -\\frac{1}{N}\\sum_{i=1}^{N} \\left[ y_i \\log \\hat{p}_i + (1-y_i)\\log(1-\\hat{p}_i) \\right]\n\\]\nEntropía cruzada categórica — para \\(K\\) clases (p. ej. clasificación de tipos de tejido), usando la salida de una capa softmax:\n\\[\n\\mathcal{L}_{\\text{CE}} = -\\frac{1}{N}\\sum_{i=1}^{N}\\sum_{k=1}^{K} y_{i,k} \\log \\hat{p}_{i,k}, \\qquad\n\\hat{p}_{i,k} = \\frac{e^{z_{i,k}}}{\\sum_{j=1}^K e^{z_{i,j}}}\n\\]\nDice Loss / IoU Loss — muy usadas en segmentación de imágenes médicas (contorneo de órganos, tumores), donde interesa la superposición espacial más que el error píxel a píxel:\n\\[\n\\mathcal{L}_{\\text{Dice}} = 1 - \\frac{2\\sum_i y_i \\hat{y}_i}{\\sum_i y_i + \\sum_i \\hat{y}_i}\n\\]\n\n\n\n\n\n\nTipCriterio práctico de elección\n\n\n\nLa elección de la función de pérdida no es un detalle técnico menor: codifica qué tipo de error le importa penalizar al clínico. En segmentación de órganos en riesgo, un Dice Loss es preferible a un MSE píxel a píxel porque refleja mejor el objetivo real (superposición de volúmenes).",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "5.2 Funciones de pérdida (Loss functions)\nLa función de pérdida \\(\\mathcal{L}(\\hat{y}, y)\\) cuantifica qué tan lejos está la predicción del modelo del valor real. Es la “brújula” que guía el aprendizaje: sin una pérdida bien elegida, el gradiente no tiene información útil que transmitir.\n\n5.2.1 Regresión (variables continuas)\nError cuadrático medio (MSE) — sensible a outliers, penaliza fuerte errores grandes. Útil, por ejemplo, para predecir dosis absorbida o parámetros dosimétricos continuos:\n\\[\n\\mathcal{L}_{\\text{MSE}} = \\frac{1}{N}\\sum_{i=1}^{N} (y_i - \\hat{y}_i)^2\n\\]\nError absoluto medio (MAE) — más robusto a outliers:\n\\[\n\\mathcal{L}_{\\text{MAE}} = \\frac{1}{N}\\sum_{i=1}^{N} |y_i - \\hat{y}_i|\n\\]\nHuber Loss — combina lo mejor de ambas (cuadrática cerca de cero, lineal lejos):\n\\[\n\\mathcal{L}_{\\delta}(y, \\hat{y}) =\n\\begin{cases}\n\\frac{1}{2}(y-\\hat{y})^2 & \\text{si } |y-\\hat{y}| \\leq \\delta \\\\\n\\delta \\left(|y-\\hat{y}| - \\frac{1}{2}\\delta\\right) & \\text{en otro caso}\n\\end{cases}\n\\]\n\n\n5.2.2 Clasificación\nEntropía cruzada binaria (BCE) — para dos clases (p. ej. benigno/maligno):\n\\[\n\\mathcal{L}_{\\text{BCE}} = -\\frac{1}{N}\\sum_{i=1}^{N} \\left[ y_i \\log \\hat{p}_i + (1-y_i)\\log(1-\\hat{p}_i) \\right]\n\\]\nEntropía cruzada categórica — para \\(K\\) clases (p. ej. clasificación de tipos de tejido), usando la salida de una capa softmax:\n\\[\n\\mathcal{L}_{\\text{CE}} = -\\frac{1}{N}\\sum_{i=1}^{N}\\sum_{k=1}^{K} y_{i,k} \\log \\hat{p}_{i,k}, \\qquad\n\\hat{p}_{i,k} = \\frac{e^{z_{i,k}}}{\\sum_{j=1}^K e^{z_{i,j}}}\n\\]\nDice Loss / IoU Loss — muy usadas en segmentación de imágenes médicas (contorneo de órganos, tumores), donde interesa la superposición espacial más que el error píxel a píxel:\n\\[\n\\mathcal{L}_{\\text{Dice}} = 1 - \\frac{2\\sum_i y_i \\hat{y}_i}{\\sum_i y_i + \\sum_i \\hat{y}_i}\n\\]\n\n\n\n\n\n\nTipCriterio práctico de elección\n\n\n\nLa elección de la función de pérdida no es un detalle técnico menor: codifica qué tipo de error le importa penalizar al clínico. En segmentación de órganos en riesgo, un Dice Loss es preferible a un MSE píxel a píxel porque refleja mejor el objetivo real (superposición de volúmenes)."
   },
   {
     "objectID": "unidad1/notas.html#visualización-de-la-superficie-de-pérdida-y-el-gradiente",
     "href": "unidad1/notas.html#visualización-de-la-superficie-de-pérdida-y-el-gradiente",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "5.3 Visualización de la superficie de pérdida y el gradiente",
-    "text": "5.3 Visualización de la superficie de pérdida y el gradiente\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# Superficie de pérdida sintética (paraboloide con curvatura distinta en cada eje -&gt; ilustra mal condicionamiento)\nw1 = np.linspace(-6, 6, 200)\nw2 = np.linspace(-6, 6, 200)\nW1, W2 = np.meshgrid(w1, w2)\nL = 0.5*W1**2 + 4*W2**2   # curvatura distinta en cada dirección\n\ndef gradiente(w):\n    return np.array([w[0], 8*w[1]])\n\ndef descenso_gradiente(w0, lr, n_iter):\n    w = np.array(w0, dtype=float)\n    trayectoria = [w.copy()]\n    for _ in range(n_iter):\n        w = w - lr * gradiente(w)\n        trayectoria.append(w.copy())\n    return np.array(trayectoria)\n\nfig, axes = plt.subplots(1, 2, figsize=(11, 4.5))\n\nfor ax, lr, titulo in zip(axes, [0.05, 0.24], [\"Learning rate pequeño (η=0.05)\", \"Learning rate grande (η=0.24)\"]):\n    ax.contour(W1, W2, L, levels=25, cmap=\"viridis\", alpha=0.6)\n    traj = descenso_gradiente([5.5, 5.5], lr, 25)\n    ax.plot(traj[:,0], traj[:,1], \"o-\", color=\"crimson\", markersize=3, linewidth=1)\n    ax.scatter([0],[0], color=\"black\", marker=\"*\", s=120, label=\"Mínimo\")\n    ax.set_title(titulo, fontsize=10)\n    ax.set_xlabel(\"$w_1$\"); ax.set_ylabel(\"$w_2$\")\n    ax.legend()\n\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 5: Superficie de pérdida (MSE) en función de dos pesos y trayectoria del descenso por gradiente\n\n\n\n\n\nEste ejemplo ilustra dos fenómenos centrales que retomaremos: (i) cuando la superficie de pérdida está mal condicionada (curvaturas muy distintas entre direcciones), el descenso por gradiente simple zigzaguea; (ii) un learning rate demasiado alto puede provocar oscilaciones o divergencia.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "5.3 Visualización de la superficie de pérdida y el gradiente\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# Superficie de pérdida sintética (paraboloide con curvatura distinta en cada eje -&gt; ilustra mal condicionamiento)\nw1 = np.linspace(-6, 6, 200)\nw2 = np.linspace(-6, 6, 200)\nW1, W2 = np.meshgrid(w1, w2)\nL = 0.5*W1**2 + 4*W2**2   # curvatura distinta en cada dirección\n\ndef gradiente(w):\n    return np.array([w[0], 8*w[1]])\n\ndef descenso_gradiente(w0, lr, n_iter):\n    w = np.array(w0, dtype=float)\n    trayectoria = [w.copy()]\n    for _ in range(n_iter):\n        w = w - lr * gradiente(w)\n        trayectoria.append(w.copy())\n    return np.array(trayectoria)\n\nfig, axes = plt.subplots(1, 2, figsize=(11, 4.5))\n\nfor ax, lr, titulo in zip(axes, [0.05, 0.24], [\"Learning rate pequeño (η=0.05)\", \"Learning rate grande (η=0.24)\"]):\n    ax.contour(W1, W2, L, levels=25, cmap=\"viridis\", alpha=0.6)\n    traj = descenso_gradiente([5.5, 5.5], lr, 25)\n    ax.plot(traj[:,0], traj[:,1], \"o-\", color=\"crimson\", markersize=3, linewidth=1)\n    ax.scatter([0],[0], color=\"black\", marker=\"*\", s=120, label=\"Mínimo\")\n    ax.set_title(titulo, fontsize=10)\n    ax.set_xlabel(\"$w_1$\"); ax.set_ylabel(\"$w_2$\")\n    ax.legend()\n\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 5: Superficie de pérdida (MSE) en función de dos pesos y trayectoria del descenso por gradiente\n\n\n\n\n\nEste ejemplo ilustra dos fenómenos centrales que retomaremos: (i) cuando la superficie de pérdida está mal condicionada (curvaturas muy distintas entre direcciones), el descenso por gradiente simple zigzaguea; (ii) un learning rate demasiado alto puede provocar oscilaciones o divergencia."
   },
   {
     "objectID": "unidad1/notas.html#el-gradiente-y-el-algoritmo-de-descenso-por-gradiente",
     "href": "unidad1/notas.html#el-gradiente-y-el-algoritmo-de-descenso-por-gradiente",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "5.4 El gradiente y el algoritmo de descenso por gradiente",
-    "text": "5.4 El gradiente y el algoritmo de descenso por gradiente\nDado un conjunto de parámetros \\(\\theta\\) (pesos y sesgos de la red), el descenso por gradiente actualiza:\n\\[\n\\theta_{t+1} = \\theta_t - \\eta \\, \\nabla_\\theta \\mathcal{L}(\\theta_t)\n\\]\ndonde \\(\\nabla_\\theta \\mathcal{L}\\) se calcula mediante backpropagation (regla de la cadena), tema que profundizaremos en la Unidad 2 cuando introduzcamos el Perceptrón Multicapa.\n\n5.4.1 Variantes según la cantidad de datos usados por actualización\n\n\n\n\n\n\n\n\n\nVariante\nDatos por paso\nVentaja\nDesventaja\n\n\n\n\nBatch Gradient Descent\nTodo el dataset\nGradiente exacto, convergencia estable\nMuy costoso, no escala a datasets grandes (ej. miles de volúmenes CT)\n\n\nStochastic GD (SGD)\n1 muestra\nRápido, permite escapar de mínimos locales\nRuidoso, oscila\n\n\nMini-batch GD\nUn subconjunto (\\(32, 64, 128, \\dots\\))\nCompromiso ideal; aprovecha GPU\nRequiere ajustar tamaño de batch\n\n\n\nEn la práctica, prácticamente todo el entrenamiento moderno usa mini-batch GD, por ser el mejor compromiso entre estabilidad estadística del gradiente y eficiencia computacional en GPU.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "5.4 El gradiente y el algoritmo de descenso por gradiente\nDado un conjunto de parámetros \\(\\theta\\) (pesos y sesgos de la red), el descenso por gradiente actualiza:\n\\[\n\\theta_{t+1} = \\theta_t - \\eta \\, \\nabla_\\theta \\mathcal{L}(\\theta_t)\n\\]\ndonde \\(\\nabla_\\theta \\mathcal{L}\\) se calcula mediante backpropagation (regla de la cadena), tema que profundizaremos en la Unidad 2 cuando introduzcamos el Perceptrón Multicapa.\n\n5.4.1 Variantes según la cantidad de datos usados por actualización\n\n\n\n\n\n\n\n\n\nVariante\nDatos por paso\nVentaja\nDesventaja\n\n\n\n\nBatch Gradient Descent\nTodo el dataset\nGradiente exacto, convergencia estable\nMuy costoso, no escala a datasets grandes (ej. miles de volúmenes CT)\n\n\nStochastic GD (SGD)\n1 muestra\nRápido, permite escapar de mínimos locales\nRuidoso, oscila\n\n\nMini-batch GD\nUn subconjunto (\\(32, 64, 128, \\dots\\))\nCompromiso ideal; aprovecha GPU\nRequiere ajustar tamaño de batch\n\n\n\nEn la práctica, prácticamente todo el entrenamiento moderno usa mini-batch GD, por ser el mejor compromiso entre estabilidad estadística del gradiente y eficiencia computacional en GPU."
   },
   {
     "objectID": "unidad1/notas.html#optimizadores",
     "href": "unidad1/notas.html#optimizadores",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "5.5 Optimizadores",
-    "text": "5.5 Optimizadores\nLos optimizadores modernos mejoran el descenso por gradiente básico incorporando información adicional (momento, escalado adaptativo) para acelerar y estabilizar la convergencia, especialmente en superficies de pérdida no convexas y mal condicionadas (típicas en redes profundas).\n\n5.5.1 SGD con Momento\nAcumula una “inercia” de gradientes pasados para amortiguar el zigzagueo:\n\\[\nv_{t} = \\beta \\, v_{t-1} + (1-\\beta)\\nabla_\\theta \\mathcal{L}(\\theta_t)\n\\] \\[\n\\theta_{t+1} = \\theta_t - \\eta \\, v_t\n\\]\ndonde \\(\\beta \\in [0,1)\\) (típicamente \\(0.9\\)) es el coeficiente de momento.\n\n\n5.5.2 RMSProp\nAdapta la tasa de aprendizaje por parámetro, dividiendo por una media móvil de la magnitud de gradientes recientes:\n\\[\ns_t = \\beta s_{t-1} + (1-\\beta)(\\nabla_\\theta \\mathcal{L}(\\theta_t))^2\n\\] \\[\n\\theta_{t+1} = \\theta_t - \\frac{\\eta}{\\sqrt{s_t + \\epsilon}}\\nabla_\\theta \\mathcal{L}(\\theta_t)\n\\]\n\n\n5.5.3 Adam (Adaptive Moment Estimation)\nCombina momento (primer momento) y escalado adaptativo (segundo momento). Es, hoy en día, el optimizador por defecto en la gran mayoría de los pipelines de Deep Learning aplicados a imágenes médicas:\n\\[\nm_t = \\beta_1 m_{t-1} + (1-\\beta_1)\\nabla_\\theta \\mathcal{L}(\\theta_t), \\qquad\nv_t = \\beta_2 v_{t-1} + (1-\\beta_2)(\\nabla_\\theta \\mathcal{L}(\\theta_t))^2\n\\] \\[\n\\hat{m}_t = \\frac{m_t}{1-\\beta_1^t}, \\qquad \\hat{v}_t = \\frac{v_t}{1-\\beta_2^t}\n\\] \\[\n\\theta_{t+1} = \\theta_t - \\frac{\\eta}{\\sqrt{\\hat{v}_t}+\\epsilon}\\, \\hat{m}_t\n\\]\ncon valores típicos \\(\\beta_1=0.9\\), \\(\\beta_2=0.999\\), \\(\\epsilon=10^{-8}\\).\n\n\n5.5.4 Comparación visual de optimizadores\n\n\nCode\ndef sgd_momento(w0, lr, beta, n_iter):\n    w = np.array(w0, dtype=float)\n    v = np.zeros_like(w)\n    traj = [w.copy()]\n    for _ in range(n_iter):\n        g = gradiente(w)\n        v = beta*v + (1-beta)*g\n        w = w - lr*v\n        traj.append(w.copy())\n    return np.array(traj)\n\ndef rmsprop(w0, lr, beta, n_iter, eps=1e-8):\n    w = np.array(w0, dtype=float)\n    s = np.zeros_like(w)\n    traj = [w.copy()]\n    for _ in range(n_iter):\n        g = gradiente(w)\n        s = beta*s + (1-beta)*g**2\n        w = w - lr*g/(np.sqrt(s)+eps)\n        traj.append(w.copy())\n    return np.array(traj)\n\ndef adam(w0, lr, b1, b2, n_iter, eps=1e-8):\n    w = np.array(w0, dtype=float)\n    m = np.zeros_like(w); v = np.zeros_like(w)\n    traj = [w.copy()]\n    for t in range(1, n_iter+1):\n        g = gradiente(w)\n        m = b1*m + (1-b1)*g\n        v = b2*v + (1-b2)*g**2\n        m_hat = m/(1-b1**t); v_hat = v/(1-b2**t)\n        w = w - lr*m_hat/(np.sqrt(v_hat)+eps)\n        traj.append(w.copy())\n    return np.array(traj)\n\nw0 = [5.5, 5.5]\ntraj_sgd    = descenso_gradiente(w0, 0.05, 30)\ntraj_mom    = sgd_momento(w0, 0.05, 0.9, 30)\ntraj_rms    = rmsprop(w0, 0.5, 0.9, 30)\ntraj_adam   = adam(w0, 0.5, 0.9, 0.999, 30)\n\nplt.figure(figsize=(6,5.5))\nplt.contour(W1, W2, L, levels=25, cmap=\"Greys\", alpha=0.5)\nfor traj, color, nombre in zip(\n        [traj_sgd, traj_mom, traj_rms, traj_adam],\n        [\"tab:blue\",\"tab:orange\",\"tab:green\",\"tab:red\"],\n        [\"SGD\", \"SGD+Momento\", \"RMSProp\", \"Adam\"]):\n    plt.plot(traj[:,0], traj[:,1], \"o-\", color=color, markersize=2.5, linewidth=1.2, label=nombre)\nplt.scatter([0],[0], color=\"black\", marker=\"*\", s=150, zorder=5, label=\"Mínimo\")\nplt.xlabel(\"$w_1$\"); plt.ylabel(\"$w_2$\")\nplt.legend()\nplt.title(\"Comparación de trayectorias de optimizadores\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 6: Trayectorias de distintos optimizadores sobre la misma superficie de pérdida mal condicionada\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nNoten cómo SGD puro avanza lento y con zigzagueo marcado en la dirección de mayor curvatura, mientras que Adam converge de forma mucho más directa gracias al escalado adaptativo por parámetro. Esta diferencia se vuelve crítica en redes con millones de parámetros y pérdidas altamente no convexas, como las usadas en segmentación de imágenes médicas 3D.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "5.5 Optimizadores\nLos optimizadores modernos mejoran el descenso por gradiente básico incorporando información adicional (momento, escalado adaptativo) para acelerar y estabilizar la convergencia, especialmente en superficies de pérdida no convexas y mal condicionadas (típicas en redes profundas).\n\n5.5.1 SGD con Momento\nAcumula una “inercia” de gradientes pasados para amortiguar el zigzagueo:\n\\[\nv_{t} = \\beta \\, v_{t-1} + (1-\\beta)\\nabla_\\theta \\mathcal{L}(\\theta_t)\n\\] \\[\n\\theta_{t+1} = \\theta_t - \\eta \\, v_t\n\\]\ndonde \\(\\beta \\in [0,1)\\) (típicamente \\(0.9\\)) es el coeficiente de momento.\n\n\n5.5.2 RMSProp\nAdapta la tasa de aprendizaje por parámetro, dividiendo por una media móvil de la magnitud de gradientes recientes:\n\\[\ns_t = \\beta s_{t-1} + (1-\\beta)(\\nabla_\\theta \\mathcal{L}(\\theta_t))^2\n\\] \\[\n\\theta_{t+1} = \\theta_t - \\frac{\\eta}{\\sqrt{s_t + \\epsilon}}\\nabla_\\theta \\mathcal{L}(\\theta_t)\n\\]\n\n\n5.5.3 Adam (Adaptive Moment Estimation)\nCombina momento (primer momento) y escalado adaptativo (segundo momento). Es, hoy en día, el optimizador por defecto en la gran mayoría de los pipelines de Deep Learning aplicados a imágenes médicas:\n\\[\nm_t = \\beta_1 m_{t-1} + (1-\\beta_1)\\nabla_\\theta \\mathcal{L}(\\theta_t), \\qquad\nv_t = \\beta_2 v_{t-1} + (1-\\beta_2)(\\nabla_\\theta \\mathcal{L}(\\theta_t))^2\n\\] \\[\n\\hat{m}_t = \\frac{m_t}{1-\\beta_1^t}, \\qquad \\hat{v}_t = \\frac{v_t}{1-\\beta_2^t}\n\\] \\[\n\\theta_{t+1} = \\theta_t - \\frac{\\eta}{\\sqrt{\\hat{v}_t}+\\epsilon}\\, \\hat{m}_t\n\\]\ncon valores típicos \\(\\beta_1=0.9\\), \\(\\beta_2=0.999\\), \\(\\epsilon=10^{-8}\\).\n\n\n5.5.4 Comparación visual de optimizadores\n\n\nCode\ndef sgd_momento(w0, lr, beta, n_iter):\n    w = np.array(w0, dtype=float)\n    v = np.zeros_like(w)\n    traj = [w.copy()]\n    for _ in range(n_iter):\n        g = gradiente(w)\n        v = beta*v + (1-beta)*g\n        w = w - lr*v\n        traj.append(w.copy())\n    return np.array(traj)\n\ndef rmsprop(w0, lr, beta, n_iter, eps=1e-8):\n    w = np.array(w0, dtype=float)\n    s = np.zeros_like(w)\n    traj = [w.copy()]\n    for _ in range(n_iter):\n        g = gradiente(w)\n        s = beta*s + (1-beta)*g**2\n        w = w - lr*g/(np.sqrt(s)+eps)\n        traj.append(w.copy())\n    return np.array(traj)\n\ndef adam(w0, lr, b1, b2, n_iter, eps=1e-8):\n    w = np.array(w0, dtype=float)\n    m = np.zeros_like(w); v = np.zeros_like(w)\n    traj = [w.copy()]\n    for t in range(1, n_iter+1):\n        g = gradiente(w)\n        m = b1*m + (1-b1)*g\n        v = b2*v + (1-b2)*g**2\n        m_hat = m/(1-b1**t); v_hat = v/(1-b2**t)\n        w = w - lr*m_hat/(np.sqrt(v_hat)+eps)\n        traj.append(w.copy())\n    return np.array(traj)\n\nw0 = [5.5, 5.5]\ntraj_sgd    = descenso_gradiente(w0, 0.05, 30)\ntraj_mom    = sgd_momento(w0, 0.05, 0.9, 30)\ntraj_rms    = rmsprop(w0, 0.5, 0.9, 30)\ntraj_adam   = adam(w0, 0.5, 0.9, 0.999, 30)\n\nplt.figure(figsize=(6,5.5))\nplt.contour(W1, W2, L, levels=25, cmap=\"Greys\", alpha=0.5)\nfor traj, color, nombre in zip(\n        [traj_sgd, traj_mom, traj_rms, traj_adam],\n        [\"tab:blue\",\"tab:orange\",\"tab:green\",\"tab:red\"],\n        [\"SGD\", \"SGD+Momento\", \"RMSProp\", \"Adam\"]):\n    plt.plot(traj[:,0], traj[:,1], \"o-\", color=color, markersize=2.5, linewidth=1.2, label=nombre)\nplt.scatter([0],[0], color=\"black\", marker=\"*\", s=150, zorder=5, label=\"Mínimo\")\nplt.xlabel(\"$w_1$\"); plt.ylabel(\"$w_2$\")\nplt.legend()\nplt.title(\"Comparación de trayectorias de optimizadores\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 6: Trayectorias de distintos optimizadores sobre la misma superficie de pérdida mal condicionada\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nNoten cómo SGD puro avanza lento y con zigzagueo marcado en la dirección de mayor curvatura, mientras que Adam converge de forma mucho más directa gracias al escalado adaptativo por parámetro. Esta diferencia se vuelve crítica en redes con millones de parámetros y pérdidas altamente no convexas, como las usadas en segmentación de imágenes médicas 3D."
   },
   {
     "objectID": "unidad1/notas.html#learning-rate-tasa-de-aprendizaje",
     "href": "unidad1/notas.html#learning-rate-tasa-de-aprendizaje",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "5.6 Learning Rate (tasa de aprendizaje)",
-    "text": "5.6 Learning Rate (tasa de aprendizaje)\nEl learning rate \\(\\eta\\) es, posiblemente, el hiperparámetro más importante —y más delicado— de todo el entrenamiento.\n\n\nCode\ndef gd_1d(w0, lr, n_iter, f_grad):\n    w = w0\n    traj = [w]\n    for _ in range(n_iter):\n        w = w - lr*f_grad(w)\n        traj.append(w)\n    return traj\n\nf_grad_1d = lambda w: 2*w  # gradiente de L(w) = w^2\n\nfig, ax = plt.subplots(figsize=(7,4.5))\nw_vals = np.linspace(-6, 6, 200)\nax.plot(w_vals, w_vals**2, color=\"lightgray\", linewidth=2, label=\"$\\\\mathcal{L}(w)=w^2$\")\n\nconfigs = [(0.02, \"η muy bajo (0.02): convergencia lenta\", \"tab:blue\"),\n           (0.5,  \"η adecuado (0.5): convergencia eficiente\", \"tab:green\"),\n           (1.05, \"η muy alto (1.05): diverge\", \"tab:red\")]\n\nfor lr, label, color in configs:\n    traj = gd_1d(5.5, lr, 12, f_grad_1d)\n    traj = np.clip(traj, -8, 8)\n    ax.plot(traj, [w**2 if abs(w)&lt;8 else 60 for w in traj], \"o-\", color=color, label=label, markersize=4)\n\nax.set_xlabel(\"$w$\"); ax.set_ylabel(\"$\\\\mathcal{L}(w)$\")\nax.set_ylim(-2, 40)\nax.legend(fontsize=8)\nax.set_title(\"Efecto del learning rate en la convergencia (caso 1D)\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 7: Efecto del learning rate sobre la convergencia: muy bajo, adecuado y muy alto (divergencia)\n\n\n\n\n\nConsecuencias de una mala elección:\n\n\\(\\eta\\) demasiado pequeño → convergencia extremadamente lenta; entrenamientos que en Física Médica pueden implicar horas/días de GPU se vuelven inviables.\n\\(\\eta\\) demasiado grande → el modelo “salta” sobre el mínimo, oscila o diverge (la pérdida crece en vez de disminuir).\n\\(\\eta\\) adecuado → convergencia eficiente hacia una buena solución.\n\n\n5.6.1 Estrategias de Learning Rate Scheduling\nEn la práctica no se usa un \\(\\eta\\) fijo durante todo el entrenamiento, sino que se lo adapta dinámicamente:\n\n\n\n\n\n\n\n\nEstrategia\nDescripción\nUso típico\n\n\n\n\nStep decay\nReduce \\(\\eta\\) por un factor cada \\(k\\) épocas\nEntrenamientos largos y estables\n\n\nExponential decay\n\\(\\eta_t = \\eta_0 e^{-kt}\\)\nDecaimiento suave y continuo\n\n\nCosine annealing\n\\(\\eta\\) sigue una curva coseno hasta un mínimo\nMuy usado en visión por computadora médica\n\n\nWarm-up\n\\(\\eta\\) crece gradualmente al inicio antes de decaer\nEstabiliza el inicio del entrenamiento en redes muy profundas\n\n\nReduceLROnPlateau\nReduce \\(\\eta\\) cuando la métrica de validación deja de mejorar\nEstrategia adaptativa muy usada en la práctica clínica",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "5.6 Learning Rate (tasa de aprendizaje)\nEl learning rate \\(\\eta\\) es, posiblemente, el hiperparámetro más importante —y más delicado— de todo el entrenamiento.\n\n\nCode\ndef gd_1d(w0, lr, n_iter, f_grad):\n    w = w0\n    traj = [w]\n    for _ in range(n_iter):\n        w = w - lr*f_grad(w)\n        traj.append(w)\n    return traj\n\nf_grad_1d = lambda w: 2*w  # gradiente de L(w) = w^2\n\nfig, ax = plt.subplots(figsize=(7,4.5))\nw_vals = np.linspace(-6, 6, 200)\nax.plot(w_vals, w_vals**2, color=\"lightgray\", linewidth=2, label=\"$\\\\mathcal{L}(w)=w^2$\")\n\nconfigs = [(0.02, \"η muy bajo (0.02): convergencia lenta\", \"tab:blue\"),\n           (0.5,  \"η adecuado (0.5): convergencia eficiente\", \"tab:green\"),\n           (1.05, \"η muy alto (1.05): diverge\", \"tab:red\")]\n\nfor lr, label, color in configs:\n    traj = gd_1d(5.5, lr, 12, f_grad_1d)\n    traj = np.clip(traj, -8, 8)\n    ax.plot(traj, [w**2 if abs(w)&lt;8 else 60 for w in traj], \"o-\", color=color, label=label, markersize=4)\n\nax.set_xlabel(\"$w$\"); ax.set_ylabel(\"$\\\\mathcal{L}(w)$\")\nax.set_ylim(-2, 40)\nax.legend(fontsize=8)\nax.set_title(\"Efecto del learning rate en la convergencia (caso 1D)\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 7: Efecto del learning rate sobre la convergencia: muy bajo, adecuado y muy alto (divergencia)\n\n\n\n\n\nConsecuencias de una mala elección:\n\n\\(\\eta\\) demasiado pequeño → convergencia extremadamente lenta; entrenamientos que en Física Médica pueden implicar horas/días de GPU se vuelven inviables.\n\\(\\eta\\) demasiado grande → el modelo “salta” sobre el mínimo, oscila o diverge (la pérdida crece en vez de disminuir).\n\\(\\eta\\) adecuado → convergencia eficiente hacia una buena solución.\n\n\n5.6.1 Estrategias de Learning Rate Scheduling\nEn la práctica no se usa un \\(\\eta\\) fijo durante todo el entrenamiento, sino que se lo adapta dinámicamente:\n\n\n\n\n\n\n\n\nEstrategia\nDescripción\nUso típico\n\n\n\n\nStep decay\nReduce \\(\\eta\\) por un factor cada \\(k\\) épocas\nEntrenamientos largos y estables\n\n\nExponential decay\n\\(\\eta_t = \\eta_0 e^{-kt}\\)\nDecaimiento suave y continuo\n\n\nCosine annealing\n\\(\\eta\\) sigue una curva coseno hasta un mínimo\nMuy usado en visión por computadora médica\n\n\nWarm-up\n\\(\\eta\\) crece gradualmente al inicio antes de decaer\nEstabiliza el inicio del entrenamiento en redes muy profundas\n\n\nReduceLROnPlateau\nReduce \\(\\eta\\) cuando la métrica de validación deja de mejorar\nEstrategia adaptativa muy usada en la práctica clínica"
   },
   {
     "objectID": "unidad1/notas.html#otros-elementos-del-ciclo-de-entrenamiento",
     "href": "unidad1/notas.html#otros-elementos-del-ciclo-de-entrenamiento",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "5.7 Otros elementos del ciclo de entrenamiento",
-    "text": "5.7 Otros elementos del ciclo de entrenamiento\nMás allá de pérdida, optimizador y learning rate, todo ciclo de entrenamiento involucra:\n\nÉpocas (epochs) y batches: una época = una pasada completa por todo el dataset de entrenamiento, dividido en mini-batches.\nConjuntos de entrenamiento / validación / test: el conjunto de validación permite monitorear el sobreajuste durante el entrenamiento (no se usa para actualizar pesos); el de test se reserva para la evaluación final.\nOverfitting y regularización: técnicas como weight decay (\\(L_2\\)), dropout o early stopping (detener el entrenamiento cuando la pérdida de validación deja de mejorar).\nInicialización de pesos: una mala inicialización (todos ceros, o valores muy grandes) puede impedir el aprendizaje o causar gradientes que explotan/desaparecen (vanishing/exploding gradients), problema que se agrava en redes profundas.\nCriterio de parada: número fijo de épocas, early stopping sobre validación, o convergencia del gradiente por debajo de un umbral.\n\n\n\nCode\nepocas = np.arange(1, 51)\nloss_train = 2.5*np.exp(-0.08*epocas) + 0.05*np.random.rand(50)\nloss_val = 2.5*np.exp(-0.07*epocas) + 0.002*(epocas-25)**2/50 + 0.05*np.random.rand(50)\n\nplt.figure(figsize=(7,4.5))\nplt.plot(epocas, loss_train, label=\"Pérdida de entrenamiento\", color=\"tab:blue\")\nplt.plot(epocas, loss_val, label=\"Pérdida de validación\", color=\"tab:red\")\npunto_optimo = np.argmin(loss_val)+1\nplt.axvline(punto_optimo, linestyle=\"--\", color=\"gray\", label=f\"Early stopping (época {punto_optimo})\")\nplt.xlabel(\"Época\"); plt.ylabel(\"Pérdida\")\nplt.legend()\nplt.title(\"Overfitting y criterio de early stopping\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 8: Curvas típicas de entrenamiento: pérdida de entrenamiento vs. validación, ilustrando overfitting y el punto óptimo de early stopping\n\n\n\n\n\n\n\n\n\n\n\nWarningRelevancia clínica\n\n\n\nEn Física Médica, donde los datasets suelen ser pequeños en comparación con la visión por computadora general (pocos cientos o miles de pacientes por la dificultad de anotación experta), el control del overfitting mediante validación cruzada, regularización y early stopping es especialmente crítico para garantizar que el modelo generalice a nuevos pacientes y no memorice el conjunto de entrenamiento.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "5.7 Otros elementos del ciclo de entrenamiento\nMás allá de pérdida, optimizador y learning rate, todo ciclo de entrenamiento involucra:\n\nÉpocas (epochs) y batches: una época = una pasada completa por todo el dataset de entrenamiento, dividido en mini-batches.\nConjuntos de entrenamiento / validación / test: el conjunto de validación permite monitorear el sobreajuste durante el entrenamiento (no se usa para actualizar pesos); el de test se reserva para la evaluación final.\nOverfitting y regularización: técnicas como weight decay (\\(L_2\\)), dropout o early stopping (detener el entrenamiento cuando la pérdida de validación deja de mejorar).\nInicialización de pesos: una mala inicialización (todos ceros, o valores muy grandes) puede impedir el aprendizaje o causar gradientes que explotan/desaparecen (vanishing/exploding gradients), problema que se agrava en redes profundas.\nCriterio de parada: número fijo de épocas, early stopping sobre validación, o convergencia del gradiente por debajo de un umbral.\n\n\n\nCode\nepocas = np.arange(1, 51)\nloss_train = 2.5*np.exp(-0.08*epocas) + 0.05*np.random.rand(50)\nloss_val = 2.5*np.exp(-0.07*epocas) + 0.002*(epocas-25)**2/50 + 0.05*np.random.rand(50)\n\nplt.figure(figsize=(7,4.5))\nplt.plot(epocas, loss_train, label=\"Pérdida de entrenamiento\", color=\"tab:blue\")\nplt.plot(epocas, loss_val, label=\"Pérdida de validación\", color=\"tab:red\")\npunto_optimo = np.argmin(loss_val)+1\nplt.axvline(punto_optimo, linestyle=\"--\", color=\"gray\", label=f\"Early stopping (época {punto_optimo})\")\nplt.xlabel(\"Época\"); plt.ylabel(\"Pérdida\")\nplt.legend()\nplt.title(\"Overfitting y criterio de early stopping\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 8: Curvas típicas de entrenamiento: pérdida de entrenamiento vs. validación, ilustrando overfitting y el punto óptimo de early stopping\n\n\n\n\n\n\n\n\n\n\n\nWarningRelevancia clínica\n\n\n\nEn Física Médica, donde los datasets suelen ser pequeños en comparación con la visión por computadora general (pocos cientos o miles de pacientes por la dificultad de anotación experta), el control del overfitting mediante validación cruzada, regularización y early stopping es especialmente crítico para garantizar que el modelo generalice a nuevos pacientes y no memorice el conjunto de entrenamiento."
   },
   {
     "objectID": "unidad1/notas.html#del-perceptrón-multicapa-a-las-arquitecturas-especializadas",
     "href": "unidad1/notas.html#del-perceptrón-multicapa-a-las-arquitecturas-especializadas",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "6.1 Del Perceptrón Multicapa a las arquitecturas especializadas",
-    "text": "6.1 Del Perceptrón Multicapa a las arquitecturas especializadas\nEl Perceptrón Multicapa (MLP) que resuelve el problema del XOR (ver Unidad 2) es, en principio, un aproximador universal: puede aproximar cualquier función continua con suficientes neuronas. Sin embargo, aplicado directamente a imágenes médicas de alta resolución (ej. una CT de \\(512\\times512\\times300\\) vóxeles), un MLP totalmente conectado requeriría un número de parámetros inmanejable y no explotaría la estructura espacial de los datos. Esto motiva arquitecturas especializadas, con sesgos inductivos adaptados al tipo de dato.\n\n\nCode\nflowchart LR\n    A[MLP&lt;br&gt;totalmente conectado] --&gt;|explota estructura espacial local| B[CNN]\n    B --&gt;|encoder-decoder + skip connections| C[U-Net]\n    A --&gt;|explota relaciones globales&lt;br&gt;vía atención| D[Transformer]\n    D --&gt;|aplicado a parches de imagen| E[Vision Transformer ViT]\n\n\n\n\n\nflowchart LR\n    A[MLP&lt;br&gt;totalmente conectado] --&gt;|explota estructura espacial local| B[CNN]\n    B --&gt;|encoder-decoder + skip connections| C[U-Net]\n    A --&gt;|explota relaciones globales&lt;br&gt;vía atención| D[Transformer]\n    D --&gt;|aplicado a parches de imagen| E[Vision Transformer ViT]",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "6.1 Del Perceptrón Multicapa a las arquitecturas especializadas\nEl Perceptrón Multicapa (MLP) que resuelve el problema del XOR (ver Unidad 2) es, en principio, un aproximador universal: puede aproximar cualquier función continua con suficientes neuronas. Sin embargo, aplicado directamente a imágenes médicas de alta resolución (ej. una CT de \\(512\\times512\\times300\\) vóxeles), un MLP totalmente conectado requeriría un número de parámetros inmanejable y no explotaría la estructura espacial de los datos. Esto motiva arquitecturas especializadas, con sesgos inductivos adaptados al tipo de dato.\n\n\nCode\nflowchart LR\n    A[MLP&lt;br&gt;totalmente conectado] --&gt;|explota estructura espacial local| B[CNN]\n    B --&gt;|encoder-decoder + skip connections| C[U-Net]\n    A --&gt;|explota relaciones globales&lt;br&gt;vía atención| D[Transformer]\n    D --&gt;|aplicado a parches de imagen| E[Vision Transformer ViT]\n\n\n\n\n\nflowchart LR\n    A[MLP&lt;br&gt;totalmente conectado] --&gt;|explota estructura espacial local| B[CNN]\n    B --&gt;|encoder-decoder + skip connections| C[U-Net]\n    A --&gt;|explota relaciones globales&lt;br&gt;vía atención| D[Transformer]\n    D --&gt;|aplicado a parches de imagen| E[Vision Transformer ViT]"
   },
   {
     "objectID": "unidad1/notas.html#redes-neuronales-convolucionales-cnn",
     "href": "unidad1/notas.html#redes-neuronales-convolucionales-cnn",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "6.2 Redes Neuronales Convolucionales (CNN)",
-    "text": "6.2 Redes Neuronales Convolucionales (CNN)\n\n6.2.1 La operación de convolución\nEn lugar de conectar cada neurona con todos los píxeles de entrada (como en un MLP), una capa convolucional aplica un filtro (kernel) pequeño y compartido que se desliza sobre la imagen:\n\\[\n(I * K)(i,j) = \\sum_{m}\\sum_{n} I(i+m, j+n)\\, K(m,n)\n\\]\nEsto introduce dos sesgos inductivos clave, ambos muy adecuados para imágenes médicas:\n\nLocalidad: un píxel depende principalmente de su vecindario cercano (relevante en anatomía: un tumor se define por su entorno local).\nInvariancia a traslación: el mismo filtro detecta un borde o una textura sin importar en qué parte de la imagen aparezca; los pesos se comparten en toda la imagen, reduciendo drásticamente el número de parámetros respecto de un MLP.\n\n\n\n6.2.2 Bloques típicos de una CNN\n\n\n\n\n\n\n\nCapa\nFunción\n\n\n\n\nConvolución\nExtrae features locales (bordes, texturas, luego estructuras complejas)\n\n\nActivación (ReLU)\nIntroduce no linealidad: \\(\\text{ReLU}(z) = \\max(0,z)\\)\n\n\nPooling (Max/Average)\nReduce resolución espacial, agrega invariancia local\n\n\nNormalización (BatchNorm)\nEstabiliza y acelera el entrenamiento\n\n\nCapa totalmente conectada / Softmax\nCombina features globales para la predicción final\n\n\n\n\n\nCode\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nfig, axes = plt.subplots(1, 4, figsize=(14,3.2))\netapas = [\"Entrada\\n(imagen CT)\", \"Capas iniciales\\nbordes y texturas\",\n          \"Capas intermedias\\ncontornos de órganos\", \"Capas profundas\\npatrones patológicos\"]\nnp.random.seed(1)\nfor ax, etapa in zip(axes, etapas):\n    ax.imshow(np.random.rand(20,20), cmap=\"gray\")\n    ax.set_title(etapa, fontsize=9)\n    ax.axis(\"off\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 9: Representaciones jerárquicas aprendidas por una CNN: de bordes simples a estructuras anatómicas complejas\n\n\n\n\n\n\n\n\n\n\n\nTipAplicaciones de CNN en Física Médica\n\n\n\nClasificación de nódulos pulmonares (CT), detección de microcalcificaciones (mamografía), clasificación de retinopatía diabética (fondo de ojo), estimación de edad ósea (radiografía), y como backbone (columna vertebral) de arquitecturas de segmentación como la U-Net.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "6.2 Redes Neuronales Convolucionales (CNN)\n\n6.2.1 La operación de convolución\nEn lugar de conectar cada neurona con todos los píxeles de entrada (como en un MLP), una capa convolucional aplica un filtro (kernel) pequeño y compartido que se desliza sobre la imagen:\n\\[\n(I * K)(i,j) = \\sum_{m}\\sum_{n} I(i+m, j+n)\\, K(m,n)\n\\]\nEsto introduce dos sesgos inductivos clave, ambos muy adecuados para imágenes médicas:\n\nLocalidad: un píxel depende principalmente de su vecindario cercano (relevante en anatomía: un tumor se define por su entorno local).\nInvariancia a traslación: el mismo filtro detecta un borde o una textura sin importar en qué parte de la imagen aparezca; los pesos se comparten en toda la imagen, reduciendo drásticamente el número de parámetros respecto de un MLP.\n\n\n\n6.2.2 Bloques típicos de una CNN\n\n\n\n\n\n\n\nCapa\nFunción\n\n\n\n\nConvolución\nExtrae features locales (bordes, texturas, luego estructuras complejas)\n\n\nActivación (ReLU)\nIntroduce no linealidad: \\(\\text{ReLU}(z) = \\max(0,z)\\)\n\n\nPooling (Max/Average)\nReduce resolución espacial, agrega invariancia local\n\n\nNormalización (BatchNorm)\nEstabiliza y acelera el entrenamiento\n\n\nCapa totalmente conectada / Softmax\nCombina features globales para la predicción final\n\n\n\n\n\nCode\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nfig, axes = plt.subplots(1, 4, figsize=(14,3.2))\netapas = [\"Entrada\\n(imagen CT)\", \"Capas iniciales\\nbordes y texturas\",\n          \"Capas intermedias\\ncontornos de órganos\", \"Capas profundas\\npatrones patológicos\"]\nnp.random.seed(1)\nfor ax, etapa in zip(axes, etapas):\n    ax.imshow(np.random.rand(20,20), cmap=\"gray\")\n    ax.set_title(etapa, fontsize=9)\n    ax.axis(\"off\")\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 9: Representaciones jerárquicas aprendidas por una CNN: de bordes simples a estructuras anatómicas complejas\n\n\n\n\n\n\n\n\n\n\n\nTipAplicaciones de CNN en Física Médica\n\n\n\nClasificación de nódulos pulmonares (CT), detección de microcalcificaciones (mamografía), clasificación de retinopatía diabética (fondo de ojo), estimación de edad ósea (radiografía), y como backbone (columna vertebral) de arquitecturas de segmentación como la U-Net."
   },
   {
     "objectID": "unidad1/notas.html#u-net-arquitectura-de-referencia-para-segmentación-médica",
     "href": "unidad1/notas.html#u-net-arquitectura-de-referencia-para-segmentación-médica",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "6.3 U-Net: arquitectura de referencia para segmentación médica",
-    "text": "6.3 U-Net: arquitectura de referencia para segmentación médica\nPropuesta por Ronneberger, Fischer & Brox (2015) específicamente para segmentación biomédica, la U-Net es hoy el estándar de facto en segmentación de órganos, tumores y estructuras anatómicas en Física Médica (contorneo automático en radioterapia, segmentación de PET/CT, etc.).\n\n6.3.1 Arquitectura: encoder-decoder con conexiones de salto\n\n\nCode\nflowchart TB\n    subgraph Encoder [Encoder - contracción]\n    direction TB\n    E1[Conv+Conv 512x512] --&gt; E2[Conv+Conv 256x256]\n    E2 --&gt; E3[Conv+Conv 128x128]\n    E3 --&gt; E4[Conv+Conv 64x64]\n    end\n    E4 --&gt; BN[Bottleneck&lt;br&gt;32x32]\n    subgraph Decoder [Decoder - expansión]\n    direction TB\n    D1[Up-conv 64x64] --&gt; D2[Up-conv 128x128]\n    D2 --&gt; D3[Up-conv 256x256]\n    D3 --&gt; D4[Up-conv 512x512&lt;br&gt;+ Softmax/Sigmoide]\n    end\n    BN --&gt; D1\n    E4 -. skip connection .-&gt; D1\n    E3 -. skip connection .-&gt; D2\n    E2 -. skip connection .-&gt; D3\n    E1 -. skip connection .-&gt; D4\n    D4 --&gt; OUT[Máscara de segmentación]\n\n\n\n\n\nflowchart TB\n    subgraph Encoder [Encoder - contracción]\n    direction TB\n    E1[Conv+Conv 512x512] --&gt; E2[Conv+Conv 256x256]\n    E2 --&gt; E3[Conv+Conv 128x128]\n    E3 --&gt; E4[Conv+Conv 64x64]\n    end\n    E4 --&gt; BN[Bottleneck&lt;br&gt;32x32]\n    subgraph Decoder [Decoder - expansión]\n    direction TB\n    D1[Up-conv 64x64] --&gt; D2[Up-conv 128x128]\n    D2 --&gt; D3[Up-conv 256x256]\n    D3 --&gt; D4[Up-conv 512x512&lt;br&gt;+ Softmax/Sigmoide]\n    end\n    BN --&gt; D1\n    E4 -. skip connection .-&gt; D1\n    E3 -. skip connection .-&gt; D2\n    E2 -. skip connection .-&gt; D3\n    E1 -. skip connection .-&gt; D4\n    D4 --&gt; OUT[Máscara de segmentación]\n\n\n\n\n\n\n\nCamino de contracción (encoder): convoluciones + pooling sucesivos que reducen la resolución espacial mientras aumentan la profundidad semántica (capturan qué hay en la imagen).\nCamino de expansión (decoder): convoluciones transpuestas (up-convolutions) que recuperan la resolución espacial original (recuperan dónde está cada estructura).\nConexiones de salto (skip connections): concatenan mapas de features del encoder directamente con las capas correspondientes del decoder, preservando detalle espacial fino que de otro modo se perdería al comprimir la imagen — crítico para delinear bordes precisos de un órgano o tumor.\n\nLa función de pérdida típica combina entropía cruzada con Dice Loss (introducida en la sección anterior), reflejando el objetivo real: maximizar la superposición volumétrica entre la predicción y el contorno de referencia (ground truth del oncólogo radioterapeuta).",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "6.3 U-Net: arquitectura de referencia para segmentación médica\nPropuesta por Ronneberger, Fischer & Brox (2015) específicamente para segmentación biomédica, la U-Net es hoy el estándar de facto en segmentación de órganos, tumores y estructuras anatómicas en Física Médica (contorneo automático en radioterapia, segmentación de PET/CT, etc.).\n\n6.3.1 Arquitectura: encoder-decoder con conexiones de salto\n\n\nCode\nflowchart TB\n    subgraph Encoder [Encoder - contracción]\n    direction TB\n    E1[Conv+Conv 512x512] --&gt; E2[Conv+Conv 256x256]\n    E2 --&gt; E3[Conv+Conv 128x128]\n    E3 --&gt; E4[Conv+Conv 64x64]\n    end\n    E4 --&gt; BN[Bottleneck&lt;br&gt;32x32]\n    subgraph Decoder [Decoder - expansión]\n    direction TB\n    D1[Up-conv 64x64] --&gt; D2[Up-conv 128x128]\n    D2 --&gt; D3[Up-conv 256x256]\n    D3 --&gt; D4[Up-conv 512x512&lt;br&gt;+ Softmax/Sigmoide]\n    end\n    BN --&gt; D1\n    E4 -. skip connection .-&gt; D1\n    E3 -. skip connection .-&gt; D2\n    E2 -. skip connection .-&gt; D3\n    E1 -. skip connection .-&gt; D4\n    D4 --&gt; OUT[Máscara de segmentación]\n\n\n\n\n\nflowchart TB\n    subgraph Encoder [Encoder - contracción]\n    direction TB\n    E1[Conv+Conv 512x512] --&gt; E2[Conv+Conv 256x256]\n    E2 --&gt; E3[Conv+Conv 128x128]\n    E3 --&gt; E4[Conv+Conv 64x64]\n    end\n    E4 --&gt; BN[Bottleneck&lt;br&gt;32x32]\n    subgraph Decoder [Decoder - expansión]\n    direction TB\n    D1[Up-conv 64x64] --&gt; D2[Up-conv 128x128]\n    D2 --&gt; D3[Up-conv 256x256]\n    D3 --&gt; D4[Up-conv 512x512&lt;br&gt;+ Softmax/Sigmoide]\n    end\n    BN --&gt; D1\n    E4 -. skip connection .-&gt; D1\n    E3 -. skip connection .-&gt; D2\n    E2 -. skip connection .-&gt; D3\n    E1 -. skip connection .-&gt; D4\n    D4 --&gt; OUT[Máscara de segmentación]\n\n\n\n\n\n\n\nCamino de contracción (encoder): convoluciones + pooling sucesivos que reducen la resolución espacial mientras aumentan la profundidad semántica (capturan qué hay en la imagen).\nCamino de expansión (decoder): convoluciones transpuestas (up-convolutions) que recuperan la resolución espacial original (recuperan dónde está cada estructura).\nConexiones de salto (skip connections): concatenan mapas de features del encoder directamente con las capas correspondientes del decoder, preservando detalle espacial fino que de otro modo se perdería al comprimir la imagen — crítico para delinear bordes precisos de un órgano o tumor.\n\nLa función de pérdida típica combina entropía cruzada con Dice Loss (introducida en la sección anterior), reflejando el objetivo real: maximizar la superposición volumétrica entre la predicción y el contorno de referencia (ground truth del oncólogo radioterapeuta)."
   },
   {
     "objectID": "unidad1/notas.html#vision-transformer-vit",
     "href": "unidad1/notas.html#vision-transformer-vit",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "6.4 Vision Transformer (ViT)",
-    "text": "6.4 Vision Transformer (ViT)\n\n6.4.1 De la atención en NLP a las imágenes\nEl Transformer (Vaswani et al., 2017) fue diseñado originalmente para procesamiento de lenguaje natural, basado en el mecanismo de auto-atención (self-attention), que permite a cada elemento de una secuencia “atender” directamente a cualquier otro elemento, sin importar la distancia entre ellos — a diferencia de la CNN, que solo ve un vecindario local por capa.\nDosovitskiy et al. (2020) mostraron que esta misma idea puede aplicarse a imágenes:\n\nLa imagen se divide en parches no superpuestos (ej. \\(16\\times16\\) píxeles).\nCada parche se aplana y se proyecta linealmente a un vector (embedding), análogo a un token en una oración.\nSe agregan embeddings de posición (la atención por sí sola no distingue el orden espacial).\nLa secuencia de embeddings de parches se procesa con capas estándar de Transformer (auto-atención + MLP).\n\n\\[\n\\text{Atención}(Q,K,V) = \\text{softmax}\\left(\\frac{QK^\\top}{\\sqrt{d_k}}\\right)V\n\\]\ndonde \\(Q\\) (queries), \\(K\\) (keys) y \\(V\\) (values) son proyecciones lineales de los embeddings de entrada, y \\(d_k\\) es la dimensión de las keys (factor de escala que estabiliza el gradiente).\n\n\nCode\nflowchart LR\n    A[Imagen] --&gt; B[División en parches&lt;br&gt;16x16]\n    B --&gt; C[Embedding lineal&lt;br&gt;+ posición]\n    C --&gt; D[Bloques Transformer&lt;br&gt;auto-atención + MLP]\n    D --&gt; E[Token de clasificación&lt;br&gt;o mapa de features]\n\n\n\n\n\nflowchart LR\n    A[Imagen] --&gt; B[División en parches&lt;br&gt;16x16]\n    B --&gt; C[Embedding lineal&lt;br&gt;+ posición]\n    C --&gt; D[Bloques Transformer&lt;br&gt;auto-atención + MLP]\n    D --&gt; E[Token de clasificación&lt;br&gt;o mapa de features]\n\n\n\n\n\n\n\n\n6.4.2 CNN vs. ViT: sesgo inductivo y datos necesarios\n\n\n\n\n\n\n\n\nAspecto\nCNN\nViT\n\n\n\n\nSesgo inductivo\nFuerte (localidad, invariancia a traslación)\nDébil (aprende relaciones desde cero)\n\n\nRelaciones capturadas\nLocales, jerárquicas\nGlobales desde la primera capa\n\n\nDatos necesarios\nFunciona bien con datasets moderados\nRequiere datasets grandes (o pre-entrenamiento) para igualar/superar a CNN\n\n\nUso típico en Física Médica\nBackbone estándar, datasets pequeños/medianos\nGanando terreno con transfer learning desde modelos pre-entrenados en grandes bases de imágenes\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\nEl menor sesgo inductivo del ViT es un arma de doble filo: le da mayor capacidad expresiva (puede modelar relaciones globales, útil para correlacionar hallazgos distantes en una imagen), pero también lo hace más dependiente de grandes volúmenes de datos — una limitación importante en Física Médica, donde el tamaño de los datasets suele ser reducido. Esto conecta directamente con la necesidad de transfer learning, tema que abordamos a continuación.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "6.4 Vision Transformer (ViT)\n\n6.4.1 De la atención en NLP a las imágenes\nEl Transformer (Vaswani et al., 2017) fue diseñado originalmente para procesamiento de lenguaje natural, basado en el mecanismo de auto-atención (self-attention), que permite a cada elemento de una secuencia “atender” directamente a cualquier otro elemento, sin importar la distancia entre ellos — a diferencia de la CNN, que solo ve un vecindario local por capa.\nDosovitskiy et al. (2020) mostraron que esta misma idea puede aplicarse a imágenes:\n\nLa imagen se divide en parches no superpuestos (ej. \\(16\\times16\\) píxeles).\nCada parche se aplana y se proyecta linealmente a un vector (embedding), análogo a un token en una oración.\nSe agregan embeddings de posición (la atención por sí sola no distingue el orden espacial).\nLa secuencia de embeddings de parches se procesa con capas estándar de Transformer (auto-atención + MLP).\n\n\\[\n\\text{Atención}(Q,K,V) = \\text{softmax}\\left(\\frac{QK^\\top}{\\sqrt{d_k}}\\right)V\n\\]\ndonde \\(Q\\) (queries), \\(K\\) (keys) y \\(V\\) (values) son proyecciones lineales de los embeddings de entrada, y \\(d_k\\) es la dimensión de las keys (factor de escala que estabiliza el gradiente).\n\n\nCode\nflowchart LR\n    A[Imagen] --&gt; B[División en parches&lt;br&gt;16x16]\n    B --&gt; C[Embedding lineal&lt;br&gt;+ posición]\n    C --&gt; D[Bloques Transformer&lt;br&gt;auto-atención + MLP]\n    D --&gt; E[Token de clasificación&lt;br&gt;o mapa de features]\n\n\n\n\n\nflowchart LR\n    A[Imagen] --&gt; B[División en parches&lt;br&gt;16x16]\n    B --&gt; C[Embedding lineal&lt;br&gt;+ posición]\n    C --&gt; D[Bloques Transformer&lt;br&gt;auto-atención + MLP]\n    D --&gt; E[Token de clasificación&lt;br&gt;o mapa de features]\n\n\n\n\n\n\n\n\n6.4.2 CNN vs. ViT: sesgo inductivo y datos necesarios\n\n\n\n\n\n\n\n\nAspecto\nCNN\nViT\n\n\n\n\nSesgo inductivo\nFuerte (localidad, invariancia a traslación)\nDébil (aprende relaciones desde cero)\n\n\nRelaciones capturadas\nLocales, jerárquicas\nGlobales desde la primera capa\n\n\nDatos necesarios\nFunciona bien con datasets moderados\nRequiere datasets grandes (o pre-entrenamiento) para igualar/superar a CNN\n\n\nUso típico en Física Médica\nBackbone estándar, datasets pequeños/medianos\nGanando terreno con transfer learning desde modelos pre-entrenados en grandes bases de imágenes\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\nEl menor sesgo inductivo del ViT es un arma de doble filo: le da mayor capacidad expresiva (puede modelar relaciones globales, útil para correlacionar hallazgos distantes en una imagen), pero también lo hace más dependiente de grandes volúmenes de datos — una limitación importante en Física Médica, donde el tamaño de los datasets suele ser reducido. Esto conecta directamente con la necesidad de transfer learning, tema que abordamos a continuación."
   },
   {
     "objectID": "unidad1/notas.html#qué-es-un-large-language-model",
     "href": "unidad1/notas.html#qué-es-un-large-language-model",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "7.1 ¿Qué es un Large Language Model?",
-    "text": "7.1 ¿Qué es un Large Language Model?\nUn LLM (Large Language Model) es un modelo de lenguaje —típicamente un Transformer decoder-only con miles de millones de parámetros— entrenado sobre enormes corpus de texto para predecir, de forma autorregresiva, la siguiente palabra (o token) de una secuencia:\n\\[\nP(x_1, x_2, \\dots, x_T) = \\prod_{t=1}^{T} P(x_t \\mid x_1, \\dots, x_{t-1})\n\\]\nEl entrenamiento consiste en maximizar la verosimilitud de esta factorización sobre texto masivo (pre-entrenamiento auto-supervisado, sin necesidad de etiquetas manuales): la propia estructura del texto provee la señal de supervisión.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "7.1 ¿Qué es un Large Language Model?\nUn LLM (Large Language Model) es un modelo de lenguaje —típicamente un Transformer decoder-only con miles de millones de parámetros— entrenado sobre enormes corpus de texto para predecir, de forma autorregresiva, la siguiente palabra (o token) de una secuencia:\n\\[\nP(x_1, x_2, \\dots, x_T) = \\prod_{t=1}^{T} P(x_t \\mid x_1, \\dots, x_{t-1})\n\\]\nEl entrenamiento consiste en maximizar la verosimilitud de esta factorización sobre texto masivo (pre-entrenamiento auto-supervisado, sin necesidad de etiquetas manuales): la propia estructura del texto provee la señal de supervisión."
   },
   {
     "objectID": "unidad1/notas.html#componentes-clave",
     "href": "unidad1/notas.html#componentes-clave",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "7.2 Componentes clave",
-    "text": "7.2 Componentes clave\n\n\nCode\nflowchart TB\n    A[Texto crudo] --&gt; B[Tokenización&lt;br&gt;subpalabras BPE]\n    B --&gt; C[Embeddings + posición]\n    C --&gt; D[Bloques Transformer&lt;br&gt;auto-atención causal]\n    D --&gt; E[Capa de salida&lt;br&gt;softmax sobre vocabulario]\n    E --&gt; F[Siguiente token predicho]\n\n\n\n\n\nflowchart TB\n    A[Texto crudo] --&gt; B[Tokenización&lt;br&gt;subpalabras BPE]\n    B --&gt; C[Embeddings + posición]\n    C --&gt; D[Bloques Transformer&lt;br&gt;auto-atención causal]\n    D --&gt; E[Capa de salida&lt;br&gt;softmax sobre vocabulario]\n    E --&gt; F[Siguiente token predicho]\n\n\n\n\n\n\n\nTokenización: el texto se descompone en subpalabras (ej. Byte-Pair Encoding), no palabras completas ni caracteres individuales — un compromiso entre tamaño de vocabulario y capacidad de representar cualquier texto.\nAuto-atención causal (masked self-attention): a diferencia del encoder de un ViT, en un LLM cada token solo puede atender a los tokens anteriores en la secuencia (para respetar la naturaleza autorregresiva de la generación de texto).\nEscala: la capacidad de un LLM está determinada por el número de parámetros, el volumen de datos de entrenamiento y el cómputo empleado — relación descripta empíricamente por las leyes de escala (scaling laws, Kaplan et al., 2020), que muestran que la pérdida decrece de forma predecible (aproximadamente como ley de potencia) al aumentar estos tres factores.\nAlineación posterior (RLHF / instruction tuning): tras el pre-entrenamiento, los modelos se ajustan con datos de instrucciones y retroalimentación humana para que sus respuestas sean útiles, seguras y sigan instrucciones — este paso es el que transforma un modelo “que completa texto” en un asistente conversacional.\n\n\n\n\n\n\n\nNote¿Por qué importa esto en Física Médica?\n\n\n\nAunque los LLMs no son el foco central de un curso de imágenes médicas, son cada vez más relevantes: generación automática de informes radiológicos a partir de hallazgos estructurados, extracción de información de historias clínicas no estructuradas, LLMs multimodales que combinan imagen + texto (ej. respuesta a preguntas sobre una radiografía), y como interfaz de lenguaje natural para herramientas de apoyo diagnóstico. Además, el mecanismo de auto-atención que sustenta a los LLMs es el mismo que vimos en el ViT — un hilo conductor arquitectónico entre visión y lenguaje.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "7.2 Componentes clave\n\n\nCode\nflowchart TB\n    A[Texto crudo] --&gt; B[Tokenización&lt;br&gt;subpalabras BPE]\n    B --&gt; C[Embeddings + posición]\n    C --&gt; D[Bloques Transformer&lt;br&gt;auto-atención causal]\n    D --&gt; E[Capa de salida&lt;br&gt;softmax sobre vocabulario]\n    E --&gt; F[Siguiente token predicho]\n\n\n\n\n\nflowchart TB\n    A[Texto crudo] --&gt; B[Tokenización&lt;br&gt;subpalabras BPE]\n    B --&gt; C[Embeddings + posición]\n    C --&gt; D[Bloques Transformer&lt;br&gt;auto-atención causal]\n    D --&gt; E[Capa de salida&lt;br&gt;softmax sobre vocabulario]\n    E --&gt; F[Siguiente token predicho]\n\n\n\n\n\n\n\nTokenización: el texto se descompone en subpalabras (ej. Byte-Pair Encoding), no palabras completas ni caracteres individuales — un compromiso entre tamaño de vocabulario y capacidad de representar cualquier texto.\nAuto-atención causal (masked self-attention): a diferencia del encoder de un ViT, en un LLM cada token solo puede atender a los tokens anteriores en la secuencia (para respetar la naturaleza autorregresiva de la generación de texto).\nEscala: la capacidad de un LLM está determinada por el número de parámetros, el volumen de datos de entrenamiento y el cómputo empleado — relación descripta empíricamente por las leyes de escala (scaling laws, Kaplan et al., 2020), que muestran que la pérdida decrece de forma predecible (aproximadamente como ley de potencia) al aumentar estos tres factores.\nAlineación posterior (RLHF / instruction tuning): tras el pre-entrenamiento, los modelos se ajustan con datos de instrucciones y retroalimentación humana para que sus respuestas sean útiles, seguras y sigan instrucciones — este paso es el que transforma un modelo “que completa texto” en un asistente conversacional.\n\n\n\n\n\n\n\nNote¿Por qué importa esto en Física Médica?\n\n\n\nAunque los LLMs no son el foco central de un curso de imágenes médicas, son cada vez más relevantes: generación automática de informes radiológicos a partir de hallazgos estructurados, extracción de información de historias clínicas no estructuradas, LLMs multimodales que combinan imagen + texto (ej. respuesta a preguntas sobre una radiografía), y como interfaz de lenguaje natural para herramientas de apoyo diagnóstico. Además, el mecanismo de auto-atención que sustenta a los LLMs es el mismo que vimos en el ViT — un hilo conductor arquitectónico entre visión y lenguaje."
   },
   {
     "objectID": "unidad1/notas.html#motivación-el-problema-del-dato-escaso-en-física-médica",
     "href": "unidad1/notas.html#motivación-el-problema-del-dato-escaso-en-física-médica",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "8.1 Motivación: el problema del dato escaso en Física Médica",
-    "text": "8.1 Motivación: el problema del dato escaso en Física Médica\nEntrenar una CNN, U-Net o ViT desde cero requiere, típicamente, cientos de miles a millones de imágenes etiquetadas — algo excepcional en el ámbito clínico, donde el etiquetado requiere expertise médica especializada (radiólogos, físicos médicos) y los datasets suelen tener, en el mejor de los casos, algunos miles de casos. El transfer learning (aprendizaje por transferencia) resuelve esta brecha: en lugar de aprender representaciones desde cero, se parte de un modelo pre-entrenado en un dataset masivo (ej. ImageNet, o un modelo fundacional de imágenes médicas) y se lo adapta a la tarea específica.\n\\[\n\\underbrace{\\theta_{\\text{pre-entrenado}}}_{\\text{tarea fuente, datos masivos}} \\; \\longrightarrow \\; \\underbrace{\\theta_{\\text{adaptado}}}_{\\text{tarea objetivo, pocos datos}}\n\\]\nLa intuición: las capas iniciales de una CNN entrenada en ImageNet ya aprendieron a detectar bordes, texturas y formas básicas — features de bajo nivel razonablemente universales, útiles también para imágenes médicas, aunque el dominio de origen (fotografías naturales) difiera del de destino (imágenes médicas).\n\n\nCode\nflowchart LR\n    A[Modelo pre-entrenado&lt;br&gt;ej. en ImageNet&lt;br&gt;millones de imágenes] --&gt; B{Estrategia de adaptación}\n    B --&gt; C[Fine-Tuning&lt;br&gt;reentrenar con pocos datos propios]\n    B --&gt; D[Few-Shot Learning&lt;br&gt;adaptar con muy pocos ejemplos]\n\n\n\n\n\nflowchart LR\n    A[Modelo pre-entrenado&lt;br&gt;ej. en ImageNet&lt;br&gt;millones de imágenes] --&gt; B{Estrategia de adaptación}\n    B --&gt; C[Fine-Tuning&lt;br&gt;reentrenar con pocos datos propios]\n    B --&gt; D[Few-Shot Learning&lt;br&gt;adaptar con muy pocos ejemplos]",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "8.1 Motivación: el problema del dato escaso en Física Médica\nEntrenar una CNN, U-Net o ViT desde cero requiere, típicamente, cientos de miles a millones de imágenes etiquetadas — algo excepcional en el ámbito clínico, donde el etiquetado requiere expertise médica especializada (radiólogos, físicos médicos) y los datasets suelen tener, en el mejor de los casos, algunos miles de casos. El transfer learning (aprendizaje por transferencia) resuelve esta brecha: en lugar de aprender representaciones desde cero, se parte de un modelo pre-entrenado en un dataset masivo (ej. ImageNet, o un modelo fundacional de imágenes médicas) y se lo adapta a la tarea específica.\n\\[\n\\underbrace{\\theta_{\\text{pre-entrenado}}}_{\\text{tarea fuente, datos masivos}} \\; \\longrightarrow \\; \\underbrace{\\theta_{\\text{adaptado}}}_{\\text{tarea objetivo, pocos datos}}\n\\]\nLa intuición: las capas iniciales de una CNN entrenada en ImageNet ya aprendieron a detectar bordes, texturas y formas básicas — features de bajo nivel razonablemente universales, útiles también para imágenes médicas, aunque el dominio de origen (fotografías naturales) difiera del de destino (imágenes médicas).\n\n\nCode\nflowchart LR\n    A[Modelo pre-entrenado&lt;br&gt;ej. en ImageNet&lt;br&gt;millones de imágenes] --&gt; B{Estrategia de adaptación}\n    B --&gt; C[Fine-Tuning&lt;br&gt;reentrenar con pocos datos propios]\n    B --&gt; D[Few-Shot Learning&lt;br&gt;adaptar con muy pocos ejemplos]\n\n\n\n\n\nflowchart LR\n    A[Modelo pre-entrenado&lt;br&gt;ej. en ImageNet&lt;br&gt;millones de imágenes] --&gt; B{Estrategia de adaptación}\n    B --&gt; C[Fine-Tuning&lt;br&gt;reentrenar con pocos datos propios]\n    B --&gt; D[Few-Shot Learning&lt;br&gt;adaptar con muy pocos ejemplos]"
   },
   {
     "objectID": "unidad1/notas.html#fine-tuning",
     "href": "unidad1/notas.html#fine-tuning",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "8.2 Fine-Tuning",
-    "text": "8.2 Fine-Tuning\nEl fine-tuning consiste en tomar los pesos de un modelo pre-entrenado y continuar el entrenamiento (ajustarlos) sobre el dataset específico de la tarea objetivo, generalmente con un learning rate mucho menor al usado en el pre-entrenamiento (para no destruir las representaciones ya aprendidas).\n\n8.2.1 Estrategias de fine-tuning\n\n\n\n\n\n\n\n\nEstrategia\nDescripción\nCuándo usarla\n\n\n\n\nFeature extraction (congelado)\nSe congelan todos los pesos del backbone pre-entrenado; solo se entrena una nueva capa final (head)\nDataset objetivo muy pequeño, similar al dominio de origen\n\n\nFine-tuning parcial\nSe descongelan las últimas capas del backbone y se entrenan junto con la nueva head\nDataset mediano, moderada diferencia de dominio\n\n\nFine-tuning completo\nSe descongela toda la red y se reentrena completa con LR bajo\nDataset suficientemente grande, o gran diferencia de dominio (ej. fotografías → imágenes médicas)\n\n\n\n\n\nCode\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\n\nfig, axes = plt.subplots(1, 3, figsize=(12,3))\ncapas = [\"Conv 1\", \"Conv 2\", \"Conv 3\", \"Conv 4\", \"Head\\n(nueva)\"]\nestrategias = {\n    \"Feature extraction\": [0,0,0,0,1],\n    \"Fine-tuning parcial\": [0,0,1,1,1],\n    \"Fine-tuning completo\": [1,1,1,1,1],\n}\n\nfor ax, (nombre, estado) in zip(axes, estrategias.items()):\n    colores = [\"tab:red\" if e else \"tab:blue\" for e in estado]\n    ax.barh(range(len(capas)), [1]*len(capas), color=colores, edgecolor=\"black\")\n    ax.set_yticks(range(len(capas))); ax.set_yticklabels(capas)\n    ax.set_xticks([])\n    ax.set_title(nombre, fontsize=10)\n    ax.invert_yaxis()\n\ncongelado = mpatches.Patch(color=\"tab:blue\", label=\"Congelado\")\nentrenable = mpatches.Patch(color=\"tab:red\", label=\"Entrenable\")\nfig.legend(handles=[congelado, entrenable], loc=\"lower center\", ncol=2, bbox_to_anchor=(0.5, -0.05))\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 10: Estrategias de fine-tuning: qué capas se congelan (azul) y cuáles se reentrenan (rojo)\n\n\n\n\n\n\n\n\n\n\n\nTipRegla práctica\n\n\n\nCuanto menor sea el dataset objetivo y mayor su similitud con el dominio de pre-entrenamiento, más conviene congelar capas (evita sobreajuste sobre pocos datos). Cuanto mayor el dataset y mayor la diferencia de dominio, más conviene descongelar y reentrenar con LR bajo.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "8.2 Fine-Tuning\nEl fine-tuning consiste en tomar los pesos de un modelo pre-entrenado y continuar el entrenamiento (ajustarlos) sobre el dataset específico de la tarea objetivo, generalmente con un learning rate mucho menor al usado en el pre-entrenamiento (para no destruir las representaciones ya aprendidas).\n\n8.2.1 Estrategias de fine-tuning\n\n\n\n\n\n\n\n\nEstrategia\nDescripción\nCuándo usarla\n\n\n\n\nFeature extraction (congelado)\nSe congelan todos los pesos del backbone pre-entrenado; solo se entrena una nueva capa final (head)\nDataset objetivo muy pequeño, similar al dominio de origen\n\n\nFine-tuning parcial\nSe descongelan las últimas capas del backbone y se entrenan junto con la nueva head\nDataset mediano, moderada diferencia de dominio\n\n\nFine-tuning completo\nSe descongela toda la red y se reentrena completa con LR bajo\nDataset suficientemente grande, o gran diferencia de dominio (ej. fotografías → imágenes médicas)\n\n\n\n\n\nCode\nimport matplotlib.pyplot as plt\nimport matplotlib.patches as mpatches\n\nfig, axes = plt.subplots(1, 3, figsize=(12,3))\ncapas = [\"Conv 1\", \"Conv 2\", \"Conv 3\", \"Conv 4\", \"Head\\n(nueva)\"]\nestrategias = {\n    \"Feature extraction\": [0,0,0,0,1],\n    \"Fine-tuning parcial\": [0,0,1,1,1],\n    \"Fine-tuning completo\": [1,1,1,1,1],\n}\n\nfor ax, (nombre, estado) in zip(axes, estrategias.items()):\n    colores = [\"tab:red\" if e else \"tab:blue\" for e in estado]\n    ax.barh(range(len(capas)), [1]*len(capas), color=colores, edgecolor=\"black\")\n    ax.set_yticks(range(len(capas))); ax.set_yticklabels(capas)\n    ax.set_xticks([])\n    ax.set_title(nombre, fontsize=10)\n    ax.invert_yaxis()\n\ncongelado = mpatches.Patch(color=\"tab:blue\", label=\"Congelado\")\nentrenable = mpatches.Patch(color=\"tab:red\", label=\"Entrenable\")\nfig.legend(handles=[congelado, entrenable], loc=\"lower center\", ncol=2, bbox_to_anchor=(0.5, -0.05))\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 10: Estrategias de fine-tuning: qué capas se congelan (azul) y cuáles se reentrenan (rojo)\n\n\n\n\n\n\n\n\n\n\n\nTipRegla práctica\n\n\n\nCuanto menor sea el dataset objetivo y mayor su similitud con el dominio de pre-entrenamiento, más conviene congelar capas (evita sobreajuste sobre pocos datos). Cuanto mayor el dataset y mayor la diferencia de dominio, más conviene descongelar y reentrenar con LR bajo."
   },
   {
     "objectID": "unidad1/notas.html#few-shot-learning",
     "href": "unidad1/notas.html#few-shot-learning",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "8.3 Few-Shot Learning",
-    "text": "8.3 Few-Shot Learning\nEl few-shot learning aborda un escenario aún más extremo: adaptar un modelo a una nueva tarea o clase con muy pocos ejemplos (típicamente entre 1 y algunas decenas), sin actualización sustancial de pesos vía gradiente descendente tradicional. Es especialmente relevante en Física Médica ante patologías raras, donde puede haber solo un puñado de casos documentados.\n\n8.3.1 Enfoques principales\n\nIn-context learning (LLMs y modelos fundacionales): se le muestran al modelo, dentro del propio prompt, unos pocos ejemplos de entrada-salida, sin modificar ningún peso. El modelo “infiere” el patrón a partir del contexto:\n\nZero-shot: ningún ejemplo, solo la instrucción de la tarea.\nOne-shot: un único ejemplo de referencia.\nFew-shot: un puñado de ejemplos (ej. 2 a 10).\n\nMetric/similarity learning (redes siamesas, prototypical networks): se aprende un espacio de embeddings donde ejemplos de la misma clase quedan cerca entre sí; la clasificación de un nuevo caso se hace por similitud (ej. distancia) al prototipo de cada clase, construido a partir de los pocos ejemplos disponibles.\nMeta-learning (“aprender a aprender”): el modelo se entrena explícitamente sobre muchas tareas distintas de pocos ejemplos, de modo que aprenda una estrategia de adaptación rápida y generalizable a tareas nuevas nunca vistas.\n\n\n\nCode\nflowchart TB\n    subgraph FS [Few-Shot Learning]\n    direction LR\n    A[Pocos ejemplos&lt;br&gt;de la nueva clase/tarea] --&gt; B{Enfoque}\n    B --&gt; C[In-context learning&lt;br&gt;vía prompt, sin actualizar pesos]\n    B --&gt; D[Metric learning&lt;br&gt;comparación por similitud de embeddings]\n    B --&gt; E[Meta-learning&lt;br&gt;optimizado para adaptación rápida]\n    end\n\n\n\n\n\nflowchart TB\n    subgraph FS [Few-Shot Learning]\n    direction LR\n    A[Pocos ejemplos&lt;br&gt;de la nueva clase/tarea] --&gt; B{Enfoque}\n    B --&gt; C[In-context learning&lt;br&gt;vía prompt, sin actualizar pesos]\n    B --&gt; D[Metric learning&lt;br&gt;comparación por similitud de embeddings]\n    B --&gt; E[Meta-learning&lt;br&gt;optimizado para adaptación rápida]\n    end",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "8.3 Few-Shot Learning\nEl few-shot learning aborda un escenario aún más extremo: adaptar un modelo a una nueva tarea o clase con muy pocos ejemplos (típicamente entre 1 y algunas decenas), sin actualización sustancial de pesos vía gradiente descendente tradicional. Es especialmente relevante en Física Médica ante patologías raras, donde puede haber solo un puñado de casos documentados.\n\n8.3.1 Enfoques principales\n\nIn-context learning (LLMs y modelos fundacionales): se le muestran al modelo, dentro del propio prompt, unos pocos ejemplos de entrada-salida, sin modificar ningún peso. El modelo “infiere” el patrón a partir del contexto:\n\nZero-shot: ningún ejemplo, solo la instrucción de la tarea.\nOne-shot: un único ejemplo de referencia.\nFew-shot: un puñado de ejemplos (ej. 2 a 10).\n\nMetric/similarity learning (redes siamesas, prototypical networks): se aprende un espacio de embeddings donde ejemplos de la misma clase quedan cerca entre sí; la clasificación de un nuevo caso se hace por similitud (ej. distancia) al prototipo de cada clase, construido a partir de los pocos ejemplos disponibles.\nMeta-learning (“aprender a aprender”): el modelo se entrena explícitamente sobre muchas tareas distintas de pocos ejemplos, de modo que aprenda una estrategia de adaptación rápida y generalizable a tareas nuevas nunca vistas.\n\n\n\nCode\nflowchart TB\n    subgraph FS [Few-Shot Learning]\n    direction LR\n    A[Pocos ejemplos&lt;br&gt;de la nueva clase/tarea] --&gt; B{Enfoque}\n    B --&gt; C[In-context learning&lt;br&gt;vía prompt, sin actualizar pesos]\n    B --&gt; D[Metric learning&lt;br&gt;comparación por similitud de embeddings]\n    B --&gt; E[Meta-learning&lt;br&gt;optimizado para adaptación rápida]\n    end\n\n\n\n\n\nflowchart TB\n    subgraph FS [Few-Shot Learning]\n    direction LR\n    A[Pocos ejemplos&lt;br&gt;de la nueva clase/tarea] --&gt; B{Enfoque}\n    B --&gt; C[In-context learning&lt;br&gt;vía prompt, sin actualizar pesos]\n    B --&gt; D[Metric learning&lt;br&gt;comparación por similitud de embeddings]\n    B --&gt; E[Meta-learning&lt;br&gt;optimizado para adaptación rápida]\n    end"
   },
   {
     "objectID": "unidad1/notas.html#fine-tuning-vs.-few-shot-comparación",
     "href": "unidad1/notas.html#fine-tuning-vs.-few-shot-comparación",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "8.4 Fine-Tuning vs. Few-Shot: comparación",
-    "text": "8.4 Fine-Tuning vs. Few-Shot: comparación\n\n\n\n\n\n\n\n\nAspecto\nFine-Tuning\nFew-Shot\n\n\n\n\nCantidad de datos objetivo\nDecenas a miles de ejemplos\n1 a decenas de ejemplos\n\n\nActualización de pesos\nSí (gradiente descendente)\nGeneralmente no (in-context) o mínima (metric learning)\n\n\nCosto computacional\nModerado-alto (reentrenamiento)\nBajo (inferencia) a moderado (meta-entrenamiento previo)\n\n\nRiesgo de overfitting\nPresente si el dataset es muy chico\nMitigado por diseño (no memoriza pesos específicos)\n\n\nEjemplo en Física Médica\nAdaptar una U-Net pre-entrenada en ImageNet a segmentación de próstata en RM con 200 pacientes\nClasificar un tipo de lesión rara con 5 casos documentados usando un modelo fundacional de imágenes médicas\n\n\n\n\n\n\n\n\n\nImportantSíntesis conceptual\n\n\n\nTanto el fine-tuning como el few-shot learning son respuestas al mismo problema estructural de la Física Médica: los datos etiquetados por expertos son escasos y costosos de obtener. La elección entre ambos —y entre sus variantes— depende fundamentalmente de cuántos datos objetivo se dispone y de qué tan distinto es el dominio de la tarea respecto del dataset de pre-entrenamiento.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "8.4 Fine-Tuning vs. Few-Shot: comparación\n\n\n\n\n\n\n\n\nAspecto\nFine-Tuning\nFew-Shot\n\n\n\n\nCantidad de datos objetivo\nDecenas a miles de ejemplos\n1 a decenas de ejemplos\n\n\nActualización de pesos\nSí (gradiente descendente)\nGeneralmente no (in-context) o mínima (metric learning)\n\n\nCosto computacional\nModerado-alto (reentrenamiento)\nBajo (inferencia) a moderado (meta-entrenamiento previo)\n\n\nRiesgo de overfitting\nPresente si el dataset es muy chico\nMitigado por diseño (no memoriza pesos específicos)\n\n\nEjemplo en Física Médica\nAdaptar una U-Net pre-entrenada en ImageNet a segmentación de próstata en RM con 200 pacientes\nClasificar un tipo de lesión rara con 5 casos documentados usando un modelo fundacional de imágenes médicas\n\n\n\n\n\n\n\n\n\nImportantSíntesis conceptual\n\n\n\nTanto el fine-tuning como el few-shot learning son respuestas al mismo problema estructural de la Física Médica: los datos etiquetados por expertos son escasos y costosos de obtener. La elección entre ambos —y entre sus variantes— depende fundamentalmente de cuántos datos objetivo se dispone y de qué tan distinto es el dominio de la tarea respecto del dataset de pre-entrenamiento."
   },
   {
     "objectID": "unidad1/notas.html#actividades-sugeridas",
     "href": "unidad1/notas.html#actividades-sugeridas",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "9.1 Actividades sugeridas",
-    "text": "9.1 Actividades sugeridas\n\nPráctica 1: Implementar el perceptrón y evaluarlo sobre un dataset radiómico real (ej. Wisconsin Breast Cancer) comparando con regresión logística.\nPráctica 2: Sobre el mismo dataset, reemplazar la regla del perceptrón por descenso por gradiente explícito con distintas funciones de pérdida (MSE vs. BCE) y comparar curvas de convergencia.\nPráctica 3: Entrenar el mismo modelo simple con SGD, SGD+Momento y Adam, variando el learning rate, y graficar las curvas de pérdida de entrenamiento/validación para identificar overfitting y el punto de early stopping.\nPráctica 4: Implementar una CNN simple (con Keras/PyTorch) para clasificación de imágenes médicas (ej. subset de MedMNIST) y comparar contra un MLP totalmente conectado sobre las mismas imágenes.\nPráctica 5: Tomar un backbone pre-entrenado en ImageNet (ej. ResNet18), aplicar las tres estrategias de fine-tuning (feature extraction, parcial, completo) sobre un dataset médico pequeño, y comparar curvas de validación y tiempo de entrenamiento.\nLectura obligatoria: Rosenblatt, F. (1958). The perceptron: a probabilistic model for information storage and organization in the brain. Psychological Review.\nLectura obligatoria: Ronneberger, O., Fischer, P. & Brox, T. (2015). U-Net: Convolutional Networks for Biomedical Image Segmentation.\nLectura complementaria: Minsky, M. & Papert, S. (1969). Perceptrons. MIT Press (capítulo sobre limitaciones lineales).\nLectura complementaria: Kingma, D. P. & Ba, J. (2015). Adam: A Method for Stochastic Optimization. ICLR.\nLectura complementaria: Dosovitskiy, A. et al. (2020). An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale.\nDiscusión en clase: ¿En qué escenarios clínicos actuales seguiría siendo preferible un modelo clásico interpretable sobre una red profunda? ¿Cómo afecta el tamaño reducido de los datasets médicos a la elección entre CNN y ViT, y entre fine-tuning y few-shot?",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "9.1 Actividades sugeridas\n\nPráctica 1: Implementar el perceptrón y evaluarlo sobre un dataset radiómico real (ej. Wisconsin Breast Cancer) comparando con regresión logística.\nPráctica 2: Sobre el mismo dataset, reemplazar la regla del perceptrón por descenso por gradiente explícito con distintas funciones de pérdida (MSE vs. BCE) y comparar curvas de convergencia.\nPráctica 3: Entrenar el mismo modelo simple con SGD, SGD+Momento y Adam, variando el learning rate, y graficar las curvas de pérdida de entrenamiento/validación para identificar overfitting y el punto de early stopping.\nPráctica 4: Implementar una CNN simple (con Keras/PyTorch) para clasificación de imágenes médicas (ej. subset de MedMNIST) y comparar contra un MLP totalmente conectado sobre las mismas imágenes.\nPráctica 5: Tomar un backbone pre-entrenado en ImageNet (ej. ResNet18), aplicar las tres estrategias de fine-tuning (feature extraction, parcial, completo) sobre un dataset médico pequeño, y comparar curvas de validación y tiempo de entrenamiento.\nLectura obligatoria: Rosenblatt, F. (1958). The perceptron: a probabilistic model for information storage and organization in the brain. Psychological Review.\nLectura obligatoria: Ronneberger, O., Fischer, P. & Brox, T. (2015). U-Net: Convolutional Networks for Biomedical Image Segmentation.\nLectura complementaria: Minsky, M. & Papert, S. (1969). Perceptrons. MIT Press (capítulo sobre limitaciones lineales).\nLectura complementaria: Kingma, D. P. & Ba, J. (2015). Adam: A Method for Stochastic Optimization. ICLR.\nLectura complementaria: Dosovitskiy, A. et al. (2020). An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale.\nDiscusión en clase: ¿En qué escenarios clínicos actuales seguiría siendo preferible un modelo clásico interpretable sobre una red profunda? ¿Cómo afecta el tamaño reducido de los datasets médicos a la elección entre CNN y ViT, y entre fine-tuning y few-shot?"
   },
   {
     "objectID": "unidad1/notas.html#bibliografía-de-la-unidad",
     "href": "unidad1/notas.html#bibliografía-de-la-unidad",
     "title": "Unidad 1: Fundamentos de IA aplicada a Física Médica",
     "section": "9.2 Bibliografía de la unidad",
-    "text": "9.2 Bibliografía de la unidad\n\nGoodfellow, I., Bengio, Y., & Courville, A. (2016). Deep Learning. MIT Press. (Cap. 1, 4, 6, 8 y 9)\nBishop, C. M. (2006). Pattern Recognition and Machine Learning. Springer.\nRosenblatt, F. (1958). The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain. Psychological Review, 65(6), 386–408.\nMinsky, M., & Papert, S. (1969). Perceptrons: An Introduction to Computational Geometry. MIT Press.\nKingma, D. P., & Ba, J. (2015). Adam: A Method for Stochastic Optimization. ICLR.\nRuder, S. (2016). An overview of gradient descent optimization algorithms. arXiv:1609.04747.\nRonneberger, O., Fischer, P., & Brox, T. (2015). U-Net: Convolutional Networks for Biomedical Image Segmentation. MICCAI.\nVaswani, A. et al. (2017). Attention Is All You Need. NeurIPS.\nDosovitskiy, A. et al. (2020). An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale. arXiv:2010.11929.\nKaplan, J. et al. (2020). Scaling Laws for Neural Language Models. arXiv:2001.08361.\nBrown, T. et al. (2020). Language Models are Few-Shot Learners (GPT-3). NeurIPS.\nYang, Q., Zhang, Y., Dai, W., & Pan, S. J. (2020). Transfer Learning. Cambridge University Press.\nEl Naqa, I., Li, R., & Murphy, M. J. (Eds.). (2015). Machine Learning in Radiation Oncology. Springer.",
-    "crumbs": [
-      "Inicio",
-      "Unidad 1 — Fundamentos de IA",
-      "Unidad 1: Fundamentos de IA aplicada a Física Médica"
-    ]
+    "text": "9.2 Bibliografía de la unidad\n\nGoodfellow, I., Bengio, Y., & Courville, A. (2016). Deep Learning. MIT Press. (Cap. 1, 4, 6, 8 y 9)\nBishop, C. M. (2006). Pattern Recognition and Machine Learning. Springer.\nRosenblatt, F. (1958). The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain. Psychological Review, 65(6), 386–408.\nMinsky, M., & Papert, S. (1969). Perceptrons: An Introduction to Computational Geometry. MIT Press.\nKingma, D. P., & Ba, J. (2015). Adam: A Method for Stochastic Optimization. ICLR.\nRuder, S. (2016). An overview of gradient descent optimization algorithms. arXiv:1609.04747.\nRonneberger, O., Fischer, P., & Brox, T. (2015). U-Net: Convolutional Networks for Biomedical Image Segmentation. MICCAI.\nVaswani, A. et al. (2017). Attention Is All You Need. NeurIPS.\nDosovitskiy, A. et al. (2020). An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale. arXiv:2010.11929.\nKaplan, J. et al. (2020). Scaling Laws for Neural Language Models. arXiv:2001.08361.\nBrown, T. et al. (2020). Language Models are Few-Shot Learners (GPT-3). NeurIPS.\nYang, Q., Zhang, Y., Dai, W., & Pan, S. J. (2020). Transfer Learning. Cambridge University Press.\nEl Naqa, I., Li, R., & Murphy, M. J. (Eds.). (2015). Machine Learning in Radiation Oncology. Springer."
   },
   {
     "objectID": "unidad2/notas.html",
