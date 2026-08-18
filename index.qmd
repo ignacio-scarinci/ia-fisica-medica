@@ -16,7 +16,7 @@ Los **notebooks de trabajos prácticos y tareas** no se publican en este sitio: 
 | Unidad | Notas | Presentación | Notebooks |
 |---|---|---|---|
 | 0 — Introducción | [Ver](unidad0/notas.qmd) | [Ver](unidad0/presentacion.qmd) | [Carpeta](https://github.com/ignacio-scarinci/ia-fisica-medica/tree/main/unidad0/notebooks) |
-
+| 1 - Fundamentos de IA | [Ver](unidad1/notas.qmd) | [Ver](unidad1/presentacion.qmd) | [Carpeta](https://github.com/ignacio-scarinci/ia-fisica-medica/tree/main/unidad1/notebooks) |
 
 
 ### Cómo trabajar con los notebooks
