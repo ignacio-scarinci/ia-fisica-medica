@@ -33,14 +33,25 @@ website:
       - text: "---"
       - section: "0.  Introducción"
         contents:
-          - unidad0/notas.qmd
-          - unidad0/calendario.qmd
-          - unidad0/presentacion.qmd
-      # - text: "---"
-      # - section: "1. Fundamentos de IA"
-      #   contents:
-      #     - unidad1/notas.qmd
-      #     - unidad1/presentacion.qmd
+          - text: "Notas de clase"
+            href: unidad0/notas.qmd
+          - text: "Calendario"
+            href: unidad0/calendario.qmd
+          - text: "Presentación"
+            href: unidad0/presentacion.qmd
+      - text: "---"
+      - section: "1. Fundamentos de IA"
+        contents:
+          - text: "Notas de clase"
+            href: unidad1/notas.qmd
+          - text: "Notas sobre imágenes médicas"
+            href: unidad1/notas2.qmd
+          - text: "Presentación"
+            href: unidad1/presentacion.qmd
+          - text: "Notebook 0"
+            href: unidad1/notebooks/Notebook0.ipynb
+          - text: "Notebook 1"
+            href: unidad1/notebooks/Notebook1.ipynb
 
 format:
   html:
