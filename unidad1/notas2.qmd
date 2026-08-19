@@ -12,9 +12,6 @@ format:
     code-fold: false
     theme: cosmo
     highlight-style: github
-  pdf:
-    toc: true
-    number-sections: true
 execute:
   eval: false
   echo: true

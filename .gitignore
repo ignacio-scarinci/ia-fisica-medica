@@ -1,6 +1,7 @@
 # Quarto
 /.quarto/
 /_site/
+/site_libs/
 
 # Jupyter
 .ipynb_checkpoints/
