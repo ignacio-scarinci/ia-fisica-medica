@@ -1,0 +1,2143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Ignacio Scarinci">
+<meta name="dcterms.date" content="2026-08-19">
+
+<title>Imágenes Médicas y Frameworks para IA en Física Médica – IA en Física Médica</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../unidad1/presentacion.html" rel="next">
+<link href="../unidad1/notas.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bb62276ab45c84d9efd712f51ff97b5a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-ee21207802476c5fda570befa1d2866f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">IA en Física Médica</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../unidad0/notas.html" aria-current="page"> 
+<span class="menu-text">Unidad 0</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ignacio-scarinci/ia-fisica-medica"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidad1/notas.html">1. Fundamentos de IA</a></li><li class="breadcrumb-item"><a href="../unidad1/notas2.html">Notas sobre imágenes médicas</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">0. Introducción</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidad0/notas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notas de clase</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidad0/calendario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Calendario</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidad0/presentacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Presentación</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">1. Fundamentos de IA</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidad1/notas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notas de clase</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidad1/notas2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Notas sobre imágenes médicas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidad1/presentacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Presentación</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidad1/notebooks/Notebook0.ipynb" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook 0</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidad1/notebooks/Notebook1.ipynb" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notebook 1</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introducción" id="toc-introducción" class="nav-link active" data-scroll-target="#introducción"><span class="header-section-number">1</span> Introducción</a></li>
+  <li><a href="#imágenes-médicas" id="toc-imágenes-médicas" class="nav-link" data-scroll-target="#imágenes-médicas"><span class="header-section-number">2</span> Imágenes Médicas</a>
+  <ul class="collapse">
+  <li><a href="#qué-hace-especial-a-una-imagen-médica" id="toc-qué-hace-especial-a-una-imagen-médica" class="nav-link" data-scroll-target="#qué-hace-especial-a-una-imagen-médica"><span class="header-section-number">2.1</span> ¿Qué hace especial a una imagen médica?</a></li>
+  <li><a href="#modalidades-principales" id="toc-modalidades-principales" class="nav-link" data-scroll-target="#modalidades-principales"><span class="header-section-number">2.2</span> Modalidades principales</a></li>
+  <li><a href="#representación-matricial-de-una-imagen-3d" id="toc-representación-matricial-de-una-imagen-3d" class="nav-link" data-scroll-target="#representación-matricial-de-una-imagen-3d"><span class="header-section-number">2.3</span> Representación matricial de una imagen 3D</a></li>
+  <li><a href="#ejemplo-conceptual-de-foto-a-volumen" id="toc-ejemplo-conceptual-de-foto-a-volumen" class="nav-link" data-scroll-target="#ejemplo-conceptual-de-foto-a-volumen"><span class="header-section-number">2.4</span> Ejemplo conceptual: de foto a volumen</a></li>
+  </ul></li>
+  <li><a href="#imágenes-dicom" id="toc-imágenes-dicom" class="nav-link" data-scroll-target="#imágenes-dicom"><span class="header-section-number">3</span> Imágenes DICOM</a>
+  <ul class="collapse">
+  <li><a href="#qué-es-dicom" id="toc-qué-es-dicom" class="nav-link" data-scroll-target="#qué-es-dicom"><span class="header-section-number">3.1</span> ¿Qué es DICOM?</a></li>
+  <li><a href="#estructura-de-un-archivo-dicom-tags" id="toc-estructura-de-un-archivo-dicom-tags" class="nav-link" data-scroll-target="#estructura-de-un-archivo-dicom-tags"><span class="header-section-number">3.2</span> Estructura de un archivo DICOM: tags</a></li>
+  <li><a href="#un-archivo-por-corte-vs.-un-archivo-multi-frame" id="toc-un-archivo-por-corte-vs.-un-archivo-multi-frame" class="nav-link" data-scroll-target="#un-archivo-por-corte-vs.-un-archivo-multi-frame"><span class="header-section-number">3.3</span> Un archivo por corte vs.&nbsp;un archivo multi-frame</a>
+  <ul class="collapse">
+  <li><a href="#tags-relevantes-para-identificarleer-un-multi-frame" id="toc-tags-relevantes-para-identificarleer-un-multi-frame" class="nav-link" data-scroll-target="#tags-relevantes-para-identificarleer-un-multi-frame"><span class="header-section-number">3.3.1</span> Tags relevantes para identificar/leer un multi-frame</a></li>
+  </ul></li>
+  <li><a href="#consideraciones-críticas-anonimización-y-privacidad" id="toc-consideraciones-críticas-anonimización-y-privacidad" class="nav-link" data-scroll-target="#consideraciones-críticas-anonimización-y-privacidad"><span class="header-section-number">3.4</span> Consideraciones críticas: anonimización y privacidad</a></li>
+  <li><a href="#ejemplo-de-lectura-con-pydicom" id="toc-ejemplo-de-lectura-con-pydicom" class="nav-link" data-scroll-target="#ejemplo-de-lectura-con-pydicom"><span class="header-section-number">3.5</span> Ejemplo de lectura con <code>pydicom</code></a></li>
+  <li><a href="#lectura-de-una-serie-completa-volumen-3d-con-simpleitk" id="toc-lectura-de-una-serie-completa-volumen-3d-con-simpleitk" class="nav-link" data-scroll-target="#lectura-de-una-serie-completa-volumen-3d-con-simpleitk"><span class="header-section-number">3.6</span> Lectura de una serie completa (volumen 3D) con SimpleITK</a></li>
+  </ul></li>
+  <li><a href="#imágenes-nifti" id="toc-imágenes-nifti" class="nav-link" data-scroll-target="#imágenes-nifti"><span class="header-section-number">4</span> Imágenes NIfTI</a>
+  <ul class="collapse">
+  <li><a href="#qué-es-nifti-y-por-qué-existe" id="toc-qué-es-nifti-y-por-qué-existe" class="nav-link" data-scroll-target="#qué-es-nifti-y-por-qué-existe"><span class="header-section-number">4.1</span> ¿Qué es NIfTI y por qué existe?</a></li>
+  <li><a href="#dicom-vs.-nifti-comparación-directa" id="toc-dicom-vs.-nifti-comparación-directa" class="nav-link" data-scroll-target="#dicom-vs.-nifti-comparación-directa"><span class="header-section-number">4.2</span> DICOM vs.&nbsp;NIfTI: comparación directa</a></li>
+  <li><a href="#estructura-del-header-nifti" id="toc-estructura-del-header-nifti" class="nav-link" data-scroll-target="#estructura-del-header-nifti"><span class="header-section-number">4.3</span> Estructura del header NIfTI</a>
+  <ul class="collapse">
+  <li><a href="#las-matrices-qform-y-sform" id="toc-las-matrices-qform-y-sform" class="nav-link" data-scroll-target="#las-matrices-qform-y-sform"><span class="header-section-number">4.3.1</span> Las matrices qform y sform</a></li>
+  </ul></li>
+  <li><a href="#conversión-dicom-nifti" id="toc-conversión-dicom-nifti" class="nav-link" data-scroll-target="#conversión-dicom-nifti"><span class="header-section-number">4.4</span> Conversión DICOM → NIfTI</a></li>
+  <li><a href="#lectura-de-nifti-con-nibabel" id="toc-lectura-de-nifti-con-nibabel" class="nav-link" data-scroll-target="#lectura-de-nifti-con-nibabel"><span class="header-section-number">4.5</span> Lectura de NIfTI con NiBabel</a></li>
+  </ul></li>
+  <li><a href="#simpleitk" id="toc-simpleitk" class="nav-link" data-scroll-target="#simpleitk"><span class="header-section-number">5</span> SimpleITK</a>
+  <ul class="collapse">
+  <li><a href="#qué-es-simpleitk" id="toc-qué-es-simpleitk" class="nav-link" data-scroll-target="#qué-es-simpleitk"><span class="header-section-number">5.1</span> ¿Qué es SimpleITK?</a></li>
+  <li><a href="#la-clase-image-más-que-un-array" id="toc-la-clase-image-más-que-un-array" class="nav-link" data-scroll-target="#la-clase-image-más-que-un-array"><span class="header-section-number">5.2</span> La clase <code>Image</code>: más que un array</a></li>
+  <li><a href="#ejemplo-filtrado-y-realce" id="toc-ejemplo-filtrado-y-realce" class="nav-link" data-scroll-target="#ejemplo-filtrado-y-realce"><span class="header-section-number">5.3</span> Ejemplo: filtrado y realce</a></li>
+  <li><a href="#ejemplo-registro-de-imágenes-image-registration" id="toc-ejemplo-registro-de-imágenes-image-registration" class="nav-link" data-scroll-target="#ejemplo-registro-de-imágenes-image-registration"><span class="header-section-number">5.4</span> Ejemplo: registro de imágenes (<em>image registration</em>)</a></li>
+  <li><a href="#rol-de-simpleitk-en-el-pipeline-de-ia" id="toc-rol-de-simpleitk-en-el-pipeline-de-ia" class="nav-link" data-scroll-target="#rol-de-simpleitk-en-el-pipeline-de-ia"><span class="header-section-number">5.5</span> Rol de SimpleITK en el pipeline de IA</a></li>
+  </ul></li>
+  <li><a href="#pytorch" id="toc-pytorch" class="nav-link" data-scroll-target="#pytorch"><span class="header-section-number">6</span> PyTorch</a>
+  <ul class="collapse">
+  <li><a href="#qué-es-pytorch-y-por-qué-lo-usamos" id="toc-qué-es-pytorch-y-por-qué-lo-usamos" class="nav-link" data-scroll-target="#qué-es-pytorch-y-por-qué-lo-usamos"><span class="header-section-number">6.1</span> ¿Qué es PyTorch y por qué lo usamos?</a></li>
+  <li><a href="#tensores-la-estructura-de-datos-fundamental" id="toc-tensores-la-estructura-de-datos-fundamental" class="nav-link" data-scroll-target="#tensores-la-estructura-de-datos-fundamental"><span class="header-section-number">6.2</span> Tensores: la estructura de datos fundamental</a></li>
+  <li><a href="#convención-de-dimensiones-en-pytorch-para-imágenes-médicas" id="toc-convención-de-dimensiones-en-pytorch-para-imágenes-médicas" class="nav-link" data-scroll-target="#convención-de-dimensiones-en-pytorch-para-imágenes-médicas"><span class="header-section-number">6.3</span> Convención de dimensiones en PyTorch para imágenes médicas</a></li>
+  <li><a href="#autograd-el-motor-de-entrenamiento" id="toc-autograd-el-motor-de-entrenamiento" class="nav-link" data-scroll-target="#autograd-el-motor-de-entrenamiento"><span class="header-section-number">6.4</span> Autograd: el motor de entrenamiento</a></li>
+  <li><a href="#ejemplo-mínimo-una-red-convolucional-3d-simple" id="toc-ejemplo-mínimo-una-red-convolucional-3d-simple" class="nav-link" data-scroll-target="#ejemplo-mínimo-una-red-convolucional-3d-simple"><span class="header-section-number">6.5</span> Ejemplo mínimo: una red convolucional 3D simple</a></li>
+  <li><a href="#bucle-de-entrenamiento-típico" id="toc-bucle-de-entrenamiento-típico" class="nav-link" data-scroll-target="#bucle-de-entrenamiento-típico"><span class="header-section-number">6.6</span> Bucle de entrenamiento típico</a></li>
+  </ul></li>
+  <li><a href="#monai" id="toc-monai" class="nav-link" data-scroll-target="#monai"><span class="header-section-number">7</span> MONAI</a>
+  <ul class="collapse">
+  <li><a href="#qué-es-monai" id="toc-qué-es-monai" class="nav-link" data-scroll-target="#qué-es-monai"><span class="header-section-number">7.1</span> ¿Qué es MONAI?</a></li>
+  <li><a href="#transforms-de-monai" id="toc-transforms-de-monai" class="nav-link" data-scroll-target="#transforms-de-monai"><span class="header-section-number">7.2</span> Transforms de MONAI</a></li>
+  <li><a href="#dataset-y-dataloader-con-monai" id="toc-dataset-y-dataloader-con-monai" class="nav-link" data-scroll-target="#dataset-y-dataloader-con-monai"><span class="header-section-number">7.3</span> Dataset y DataLoader con MONAI</a></li>
+  <li><a href="#arquitecturas-listas-para-usar-ejemplo-con-u-net-3d" id="toc-arquitecturas-listas-para-usar-ejemplo-con-u-net-3d" class="nav-link" data-scroll-target="#arquitecturas-listas-para-usar-ejemplo-con-u-net-3d"><span class="header-section-number">7.4</span> Arquitecturas listas para usar: ejemplo con U-Net 3D</a></li>
+  <li><a href="#pérdida-y-métrica-específicas-de-segmentación-dice" id="toc-pérdida-y-métrica-específicas-de-segmentación-dice" class="nav-link" data-scroll-target="#pérdida-y-métrica-específicas-de-segmentación-dice"><span class="header-section-number">7.5</span> Pérdida y métrica específicas de segmentación: Dice</a></li>
+  <li><a href="#tabla-resumen-qué-resuelve-cada-herramienta" id="toc-tabla-resumen-qué-resuelve-cada-herramienta" class="nav-link" data-scroll-target="#tabla-resumen-qué-resuelve-cada-herramienta"><span class="header-section-number">7.6</span> Tabla resumen: ¿qué resuelve cada herramienta?</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidad1/notas.html">1. Fundamentos de IA</a></li><li class="breadcrumb-item"><a href="../unidad1/notas2.html">Notas sobre imágenes médicas</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Imágenes Médicas y Frameworks para IA en Física Médica</h1>
+<p class="subtitle lead">Notas de clase — Curso de Posgrado en Inteligencia Artificial en Física Médica</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Ignacio Scarinci </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 19, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introducción" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introducción</h1>
+<p>La Física Médica moderna descansa sobre un flujo de trabajo que va desde la <strong>adquisición de la imagen</strong> (en un tomógrafo, resonador, equipo de rayos X, PET, SPECT, ecógrafo, etc.) hasta el <strong>análisis cuantitativo asistido por Inteligencia Artificial</strong> (segmentación de órganos y tumores, radiómica, dosimetría, detección de patologías, generación de contornos para radioterapia, entre otros).</p>
+<p>Para que un modelo de IA pueda “ver” una imagen médica, primero debemos entender:</p>
+<ol type="1">
+<li><strong>Qué es</strong> una imagen médica desde el punto de vista físico y digital (dimensiones, resolución, tipo de dato, metadatos).</li>
+<li><strong>Cómo se almacena y transmite</strong> (formatos como DICOM y NIfTI).</li>
+<li><strong>Qué herramientas</strong> nos permiten leer, procesar y transformar estas imágenes en estructuras numéricas manipulables (SimpleITK).</li>
+<li><strong>Qué framework de aprendizaje profundo</strong> usaremos para construir y entrenar modelos (PyTorch).</li>
+<li><strong>Qué biblioteca especializada</strong> en imágenes médicas nos ahorra reinventar la rueda en transformaciones, arquitecturas y métricas específicas del dominio (MONAI).</li>
+</ol>
+<p>Este recorrido —<strong>Imagen → Formato → Herramienta de I/O → Framework de Deep Learning → Biblioteca de dominio</strong>— es exactamente la estructura de estas notas y del curso.</p>
+<div class="cell" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    A[Equipo de adquisición&lt;br/&gt;CT / MRI / PET / RX] --&gt; B[Formato DICOM]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    B --&gt; C{Preprocesamiento}</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    C --&gt;|Conversión| D[Formato NIfTI]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    C --&gt; E[SimpleITK&lt;br/&gt;Lectura / Registro / Filtrado]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    E --&gt; F[Tensores&lt;br/&gt;PyTorch]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    F --&gt; G[MONAI&lt;br/&gt;Transforms, Redes, Métricas]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    G --&gt; H[Modelo entrenado]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    H --&gt; I[Inferencia clínica /&lt;br/&gt;Investigación]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-pipeline-general" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pipeline-general-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pipeline-general-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Pipeline general de un proyecto de IA en imágenes médicas
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Objetivo de la clase
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Al finalizar esta sesión, el estudiante debe ser capaz de:</p>
+<ul>
+<li>Explicar las diferencias entre una imagen “natural” (foto, JPEG) y una imagen médica volumétrica.</li>
+<li>Leer, inspeccionar y modificar metadatos de un archivo DICOM.</li>
+<li>Convertir series DICOM a NIfTI y entender por qué se hace.</li>
+<li>Usar SimpleITK para cargar, filtrar y registrar imágenes.</li>
+<li>Construir un pipeline mínimo de entrenamiento con PyTorch y MONAI.</li>
+</ul>
+</div>
+</div>
+<hr>
+</section>
+<section id="imágenes-médicas" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Imágenes Médicas</h1>
+<section id="qué-hace-especial-a-una-imagen-médica" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="qué-hace-especial-a-una-imagen-médica"><span class="header-section-number">2.1</span> ¿Qué hace especial a una imagen médica?</h2>
+<p>Cuando hablamos de “imagen” en el contexto de visión por computadora clásica, casi siempre pensamos en una fotografía: una matriz bidimensional de píxeles con valores de color, pensada para ser interpretada por el ojo humano y sin ninguna referencia a una escala física del mundo real. Una imagen médica es conceptualmente distinta: es el resultado de <strong>medir una magnitud física</strong> (atenuación de rayos X, relajación de espines nucleares, actividad de un radiotrazador, tiempo de vuelo de un pulso de ultrasonido) y <strong>muestrear esa medición en un espacio 2D, 3D o 4D que corresponde a un volumen real del cuerpo del paciente</strong>, expresado en milímetros. Por eso, no alcanza con saber “qué se ve” en la imagen: hay que saber <em>dónde</em> está ese voxel en el paciente, <em>qué</em> representa numéricamente su valor y <em>con qué precisión/resolución</em> fue medido. Estas diferencias no son solo teóricas: determinan directamente cómo se diseñan las arquitecturas de red (convoluciones 3D en vez de 2D), cómo se normalizan los datos (por rango físico, no por 0-255) y cómo se evalúan los resultados (en milímetros o Unidades Hounsfield, no en píxeles).</p>
+<p>La siguiente tabla resume las diferencias más importantes entre ambos tipos de imagen:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Característica</th>
+<th>Imagen natural (JPEG/PNG)</th>
+<th>Imagen médica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Dimensionalidad</td>
+<td>2D (alto × ancho)</td>
+<td>2D, <strong>3D</strong> (volumen) o 4D (volumen + tiempo, ej. RM funcional o CT 4D en radioterapia)</td>
+</tr>
+<tr class="even">
+<td>Canales</td>
+<td>3 (RGB) u 1 (gris)</td>
+<td>Generalmente 1 canal (intensidad), a veces multi-modal (T1, T2, FLAIR apilados)</td>
+</tr>
+<tr class="odd">
+<td>Profundidad de bits</td>
+<td>8 bits (0-255)</td>
+<td>12-16 bits (CT: -1000 a +3000 UH; RM: rango variable)</td>
+</tr>
+<tr class="even">
+<td>Espaciado físico</td>
+<td>No definido (píxeles)</td>
+<td><strong>Espaciado real en mm</strong> (spacing), origen y orientación en el espacio del paciente</td>
+</tr>
+<tr class="odd">
+<td>Significado del valor</td>
+<td>Color percibido</td>
+<td>Magnitud física: densidad (CT, en Unidades Hounsfield), señal de relajación (RM), actividad (PET, en SUV)</td>
+</tr>
+<tr class="even">
+<td>Metadatos</td>
+<td>EXIF (cámara, fecha)</td>
+<td>Datos clínicos, del paciente, del protocolo, del equipo (DICOM tags)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="modalidades-principales" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="modalidades-principales"><span class="header-section-number">2.2</span> Modalidades principales</h2>
+<ul>
+<li><strong>CT (Tomografía Computarizada):</strong> Basada en atenuación de rayos X. Se mide en <strong>Unidades Hounsfield (UH)</strong>, donde el agua = 0 UH y el aire = -1000 UH.</li>
+<li><strong>MRI (Resonancia Magnética):</strong> Contraste basado en propiedades de relajación de protones (T1, T2, T2*, difusión). No tiene una escala física universal (valores relativos por equipo/protocolo).</li>
+<li><strong>PET/SPECT (Medicina Nuclear):</strong> Imagen funcional/metabólica, valores relacionados con la captación de un radiotrazador (SUV — <em>Standardized Uptake Value</em>).</li>
+<li><strong>US (Ultrasonido):</strong> Imagen en tiempo real, muy dependiente del operador, alto ruido tipo <em>speckle</em>.</li>
+<li><strong>RX / Mamografía:</strong> Proyección 2D de atenuación.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./imagenes/img_med.webp" class="img-fluid figure-img"></p>
+<figcaption>Imagenes médicas de distintas modalidades a)CT, b)MRI, c)PET, d)SPECT</figcaption>
+</figure>
+</div>
+</section>
+<section id="representación-matricial-de-una-imagen-3d" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="representación-matricial-de-una-imagen-3d"><span class="header-section-number">2.3</span> Representación matricial de una imagen 3D</h2>
+<p>Una imagen médica volumétrica se representa como un arreglo <span class="math inline">\(I(i,j,k)\)</span> donde cada índice discreto (voxel) se relaciona con una coordenada física del paciente <span class="math inline">\((x,y,z)\)</span> mediante una transformación afín:</p>
+<p><span class="math display">\[
+\begin{bmatrix} x \\ y \\ z \\ 1 \end{bmatrix}
+=
+\underbrace{\begin{bmatrix}
+s_x R_{11} &amp; s_y R_{12} &amp; s_z R_{13} &amp; o_x \\
+s_x R_{21} &amp; s_y R_{22} &amp; s_z R_{23} &amp; o_y \\
+s_x R_{31} &amp; s_y R_{32} &amp; s_z R_{33} &amp; o_z \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}}_{\text{matriz affine}}
+\begin{bmatrix} i \\ j \\ k \\ 1 \end{bmatrix}
+\]</span></p>
+<p>donde:</p>
+<ul>
+<li><span class="math inline">\(s_x, s_y, s_z\)</span>: <strong>spacing</strong> (tamaño físico del voxel en mm en cada dirección),</li>
+<li><span class="math inline">\(R\)</span>: matriz de <strong>orientación</strong> (cosenos directores de los ejes del volumen respecto al paciente),</li>
+<li><span class="math inline">\(o\)</span>: <strong>origen</strong> (coordenada física del voxel <span class="math inline">\((0,0,0)\)</span>).</li>
+</ul>
+<p>Este trío <strong>(spacing, origin, direction)</strong> es la base de todo el manejo geométrico en SimpleITK, ITK, y del header de NIfTI. Si dos imágenes no comparten este sistema de referencia, no se pueden comparar voxel a voxel sin antes <strong>registrarlas</strong> (co-registro / <em>image registration</em>).</p>
+<div class="cell" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    subgraph Espacio_Indice["Espacio índice (i, j, k)"]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        V["Voxel (i, j, k)&lt;br/&gt;ej: (120, 88, 45)"]</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    subgraph Transformacion["Transformación afín"]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        T["Spacing, Origin, Direction"]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    subgraph Espacio_Fisico["Espacio físico del paciente (mm)"]</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        P["Punto (x, y, z)&lt;br/&gt;ej: (34.2, -12.5, 101.8) mm"]</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    V --&gt; T --&gt; P</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-voxel-mundo" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-voxel-mundo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-voxel-mundo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Del espacio índice (voxel) al espacio físico (mundo del paciente)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><img src="../imagenes/image_prop.svg" style="background-color: white; padding: 8px;" alt="Diagrama técnico sobre propiedades espaciales de una imagen médica."></p>
+</section>
+<section id="ejemplo-conceptual-de-foto-a-volumen" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="ejemplo-conceptual-de-foto-a-volumen"><span class="header-section-number">2.4</span> Ejemplo conceptual: de foto a volumen</h2>
+<div id="a921d23b" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Imagen natural: (alto, ancho, canales), 8 bits, sin significado físico de escala</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>foto <span class="op">=</span> np.random.randint(<span class="dv">0</span>, <span class="dv">256</span>, size<span class="op">=</span>(<span class="dv">480</span>, <span class="dv">640</span>, <span class="dv">3</span>), dtype<span class="op">=</span>np.uint8)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Foto:"</span>, foto.shape, foto.dtype)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Imagen médica CT: (slices, alto, ancho), 16 bits con signo, en Unidades Hounsfield</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>ct_volumen <span class="op">=</span> np.random.randint(<span class="op">-</span><span class="dv">1000</span>, <span class="dv">3000</span>, size<span class="op">=</span>(<span class="dv">120</span>, <span class="dv">512</span>, <span class="dv">512</span>)).astype(np.int16)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"CT:"</span>, ct_volumen.shape, ct_volumen.dtype)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Aire aprox (UH):"</span>, <span class="op">-</span><span class="dv">1000</span>, <span class="st">" | Agua (UH):"</span>, <span class="dv">0</span>, <span class="st">" | Hueso (UH): &gt;400"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="imágenes-dicom" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Imágenes DICOM</h1>
+<section id="qué-es-dicom" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="qué-es-dicom"><span class="header-section-number">3.1</span> ¿Qué es DICOM?</h2>
+<p><strong>DICOM</strong> (<em>Digital Imaging and Communications in Medicine</em>) es el estándar internacional que define <strong>tanto el formato de archivo como el protocolo de red</strong> para el intercambio de imágenes médicas y datos asociados. No es solo un “formato de imagen”: es un ecosistema completo que incluye:</p>
+<ul>
+<li><strong>Formato de archivo (.dcm):</strong> imagen + metadatos en un único archivo.</li>
+<li><strong>Protocolo de comunicación:</strong> cómo un PACS, un tomógrafo y una estación de trabajo se hablan entre sí (C-STORE, C-FIND, C-MOVE, etc.).</li>
+<li><strong>Modelo de información jerárquico:</strong> Paciente → Estudio → Serie → Instancia (imagen).</li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>flowchart TD</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    Paciente["Paciente&lt;br/&gt;(PatientID, PatientName)"] --&gt; Estudio1["Estudio 1&lt;br/&gt;(StudyInstanceUID)&lt;br/&gt;ej: RM de cráneo, 2024-05-10"]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    Paciente --&gt; Estudio2["Estudio 2&lt;br/&gt;(StudyInstanceUID)&lt;br/&gt;ej: CT de tórax, 2024-08-02"]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    Estudio1 --&gt; SerieT1["Serie: T1&lt;br/&gt;(SeriesInstanceUID)"]</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    Estudio1 --&gt; SerieT2["Serie: T2 FLAIR&lt;br/&gt;(SeriesInstanceUID)"]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    SerieT1 --&gt; Img1["Imagen 001&lt;br/&gt;(SOPInstanceUID)"]</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    SerieT1 --&gt; Img2["Imagen 002"]</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    SerieT1 --&gt; ImgN["... Imagen N"]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-jerarquia-dicom" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-jerarquia-dicom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-jerarquia-dicom-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Jerarquía de información DICOM
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una <strong>serie DICOM</strong> casi siempre corresponde a <strong>múltiples archivos</strong>: un archivo <code>.dcm</code> por cada corte (slice) axial. Un volumen 3D de CT de tórax puede tener 300-600 archivos <code>.dcm</code>, uno por cada posición en Z.</p>
+</div>
+</div>
+</section>
+<section id="estructura-de-un-archivo-dicom-tags" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="estructura-de-un-archivo-dicom-tags"><span class="header-section-number">3.2</span> Estructura de un archivo DICOM: tags</h2>
+<p>Cada archivo <code>.dcm</code> almacena información como pares <strong>(Grupo, Elemento) → Valor</strong>, conocidos como <strong>tags</strong>. Ejemplos comunes:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tag</th>
+<th>Nombre</th>
+<th>Descripción</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(0010,0010)</td>
+<td>PatientName</td>
+<td>Nombre del paciente</td>
+<td><code>DOE^JOHN</code></td>
+</tr>
+<tr class="even">
+<td>(0010,0020)</td>
+<td>PatientID</td>
+<td>Identificador del paciente</td>
+<td><code>12345</code></td>
+</tr>
+<tr class="odd">
+<td>(0008,0060)</td>
+<td>Modality</td>
+<td>Modalidad de adquisición</td>
+<td><code>CT</code>, <code>MR</code>, <code>PT</code></td>
+</tr>
+<tr class="even">
+<td>(0020,000D)</td>
+<td>StudyInstanceUID</td>
+<td>ID único del estudio</td>
+<td><code>1.2.840.113...</code></td>
+</tr>
+<tr class="odd">
+<td>(0020,000E)</td>
+<td>SeriesInstanceUID</td>
+<td>ID único de la serie</td>
+<td><code>1.2.840.113...</code></td>
+</tr>
+<tr class="even">
+<td>(0028,0010)</td>
+<td>Rows</td>
+<td>Número de filas</td>
+<td><code>512</code></td>
+</tr>
+<tr class="odd">
+<td>(0028,0011)</td>
+<td>Columns</td>
+<td>Número de columnas</td>
+<td><code>512</code></td>
+</tr>
+<tr class="even">
+<td>(0028,0030)</td>
+<td>PixelSpacing</td>
+<td>Tamaño físico del píxel (mm)</td>
+<td><code>0.68\0.68</code></td>
+</tr>
+<tr class="odd">
+<td>(0018,0050)</td>
+<td>SliceThickness</td>
+<td>Grosor de corte (mm)</td>
+<td><code>1.25</code></td>
+</tr>
+<tr class="even">
+<td>(0020,0032)</td>
+<td>ImagePositionPatient</td>
+<td>Posición 3D del corte</td>
+<td><code>-150.0\-150.0\-90.5</code></td>
+</tr>
+<tr class="odd">
+<td>(0020,0037)</td>
+<td>ImageOrientationPatient</td>
+<td>Cosenos directores</td>
+<td><code>1\0\0\0\1\0</code></td>
+</tr>
+<tr class="even">
+<td>(0028,1052)</td>
+<td>RescaleIntercept</td>
+<td>Para convertir a UH (CT)</td>
+<td><code>-1024</code></td>
+</tr>
+<tr class="odd">
+<td>(0028,1053)</td>
+<td>RescaleSlope</td>
+<td>Para convertir a UH (CT)</td>
+<td><code>1</code></td>
+</tr>
+<tr class="even">
+<td>(7FE0,0010)</td>
+<td>PixelData</td>
+<td><strong>Los datos crudos de la imagen</strong></td>
+<td><em>binario</em></td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Conversión a Unidades Hounsfield
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El valor crudo almacenado en <code>PixelData</code> <strong>no</strong> es directamente la Unidad Hounsfield. Se debe aplicar: <span class="math display">\[
+\text{UH} = \text{PixelValue} \times \text{RescaleSlope} + \text{RescaleIntercept}
+\]</span> SimpleITK e ITK aplican esto automáticamente al leer la imagen si los metadatos están presentes; si se usa <code>pydicom</code> “a mano”, hay que hacerlo manualmente.</p>
+</div>
+</div>
+</section>
+<section id="un-archivo-por-corte-vs.-un-archivo-multi-frame" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="un-archivo-por-corte-vs.-un-archivo-multi-frame"><span class="header-section-number">3.3</span> Un archivo por corte vs.&nbsp;un archivo multi-frame</h2>
+<p>Hasta ahora asumimos implícitamente que un volumen DICOM se compone de <strong>muchos archivos</strong>, uno por cada corte (<em>single-frame</em>). Esta es la convención más común en <strong>CT</strong> y <strong>MR</strong>, herencia de cómo funcionaban los equipos y los sistemas PACS clásicos: cada corte axial se adquiere, reconstruye y almacena como una instancia (SOPInstanceUID) independiente, todas compartiendo el mismo <code>SeriesInstanceUID</code>.</p>
+<p>Sin embargo, el estándar DICOM también define objetos <strong>multi-frame</strong>, donde <strong>todos los cortes (o todos los frames temporales) de un volumen se almacenan dentro de un único archivo <code>.dcm</code></strong>, en un solo <code>PixelData</code> que contiene la pila completa de imágenes. Esto es particularmente común en:</p>
+<ul>
+<li><strong>PET (Tomografía por Emisión de Positrones):</strong> el IOD <em>Positron Emission Tomography Image</em> o, más modernamente, <em>Enhanced PET Image Storage</em>, suele almacenar el volumen 3D completo (o incluso series dinámicas 4D) en un solo archivo multi-frame.</li>
+<li><strong>SPECT (Tomografía por Emisión de Fotón Único):</strong> el IOD <em>Nuclear Medicine Image Storage</em> frecuentemente agrupa todos los cortes de la reconstrucción tomográfica en un único archivo, con un tag <code>NumberOfFrames</code> (0028,0008) que indica cuántos cortes contiene.</li>
+<li>Otras modalidades: <strong>Enhanced CT/MR Storage</strong> (versiones “enhanced” más recientes de CT y MR también pueden ser multi-frame), angiografía rotacional, cine cardíaco, RX de sustracción digital (DSA).</li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>flowchart TB</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    subgraph SF["Single-frame — ej. CT convencional"]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        direction LR</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        S1["corte_001.dcm"] ~~~ S2["corte_002.dcm"] ~~~ S3["..."] ~~~ SN["corte_N.dcm"]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    subgraph MF["Multi-frame — ej. SPECT/PET"]</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        direction LR</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        M1["estudio.dcm&lt;br/&gt;PixelData contiene&lt;br/&gt;los N frames apilados&lt;br/&gt;+ tag NumberOfFrames = N"]</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    end</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-single-vs-multiframe" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-single-vs-multiframe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-single-vs-multiframe-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Single-frame (CT/MR clásico) vs.&nbsp;Multi-frame (SPECT/PET típico)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="tags-relevantes-para-identificarleer-un-multi-frame" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="tags-relevantes-para-identificarleer-un-multi-frame"><span class="header-section-number">3.3.1</span> Tags relevantes para identificar/leer un multi-frame</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tag</th>
+<th>Nombre</th>
+<th>Rol</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(0028,0008)</td>
+<td>NumberOfFrames</td>
+<td>Cantidad de cortes/frames contenidos en el <code>PixelData</code></td>
+</tr>
+<tr class="even">
+<td>(0028,0009)</td>
+<td>FrameIncrementPointer</td>
+<td>Indica qué tag describe cómo varían los frames (ej. posición o tiempo)</td>
+</tr>
+<tr class="odd">
+<td>(0054,0080)</td>
+<td>SliceVector</td>
+<td>Orden/índice de los cortes dentro del volumen (Medicina Nuclear)</td>
+</tr>
+<tr class="even">
+<td>(0018,1063)</td>
+<td>FrameTime</td>
+<td>Duración de cada frame, en estudios dinámicos (ms)</td>
+</tr>
+<tr class="odd">
+<td>(0020,9111) / (5200,9230)</td>
+<td>Frame Functional Groups (Enhanced)</td>
+<td>Metadatos por-frame en objetos “Enhanced” (posición, orientación individuales)</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Implicancia práctica para la lectura de datos
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Un pipeline de preprocesamiento que asuma “una serie = una carpeta con muchos archivos .dcm” (como el <code>ImageSeriesReader</code> que usamos para CT) <strong>fallará silenciosamente o directamente arrojará error si el archivo de esa serie es multi-frame</strong>, porque en ese caso ¡la serie completa es un único archivo! Por eso, para SPECT/PET conviene:</p>
+<ol type="1">
+<li>Verificar primero si <code>NumberOfFrames</code> está presente y es mayor a 1.</li>
+<li>Si es multi-frame, leer el volumen completo con <code>sitk.ReadImage()</code> directamente sobre ese único archivo (no con <code>ImageSeriesReader</code>).</li>
+<li>Si es single-frame, usar <code>ImageSeriesReader</code> como en CT/MR.</li>
+</ol>
+</div>
+</div>
+<div id="fb3cb99b" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pydicom</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> SimpleITK <span class="im">as</span> sitk</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> pydicom.dcmread(<span class="st">"estudio_spect.dcm"</span>, stop_before_pixels<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">hasattr</span>(ds, <span class="st">"NumberOfFrames"</span>) <span class="kw">and</span> <span class="bu">int</span>(ds.NumberOfFrames) <span class="op">&gt;</span> <span class="dv">1</span>:</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Archivo multi-frame con </span><span class="sc">{</span>ds<span class="sc">.</span>NumberOfFrames<span class="sc">}</span><span class="ss"> cortes/frames"</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Un solo archivo contiene todo el volumen 3D (o 4D)</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    volumen <span class="op">=</span> sitk.ReadImage(<span class="st">"estudio_spect.dcm"</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Archivo single-frame: se espera una serie de múltiples archivos"</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    reader <span class="op">=</span> sitk.ImageSeriesReader()</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    archivos <span class="op">=</span> reader.GetGDCMSeriesFileNames(<span class="st">"carpeta_serie/"</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    reader.SetFileNames(archivos)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    volumen <span class="op">=</span> reader.Execute()</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tamaño del volumen:"</span>, volumen.GetSize())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="consideraciones-críticas-anonimización-y-privacidad" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="consideraciones-críticas-anonimización-y-privacidad"><span class="header-section-number">3.4</span> Consideraciones críticas: anonimización y privacidad</h2>
+<p>Los archivos DICOM contienen <strong>información de identificación del paciente (PHI/PII)</strong>: nombre, fecha de nacimiento, número de historia clínica, e incluso puede haber texto quemado en la imagen (<em>burned-in annotation</em>). Antes de usar datos DICOM para investigación o entrenamiento de modelos:</p>
+<ol type="1">
+<li><strong>Anonimizar/de-identificar</strong> los tags (nombre, ID, fechas, instituciones).</li>
+<li>Verificar que no haya <em>burned-in PHI</em> en los píxeles.</li>
+<li>Cumplir normativa local (HIPAA, GDPR, Habeas Data en Argentina — Ley 25.326).</li>
+</ol>
+</section>
+<section id="ejemplo-de-lectura-con-pydicom" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="ejemplo-de-lectura-con-pydicom"><span class="header-section-number">3.5</span> Ejemplo de lectura con <code>pydicom</code></h2>
+<div id="05853a7a" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pydicom</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> pydicom.dcmread(<span class="st">"ejemplo.dcm"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Modalidad:"</span>, ds.Modality)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dimensiones:"</span>, ds.Rows, <span class="st">"x"</span>, ds.Columns)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"PixelSpacing:"</span>, ds.PixelSpacing)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"SliceThickness:"</span>, ds.SliceThickness)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Acceso a los píxeles crudos</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>pixel_array <span class="op">=</span> ds.pixel_array</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Shape:"</span>, pixel_array.shape, <span class="st">"dtype:"</span>, pixel_array.dtype)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Conversión manual a Unidades Hounsfield (si es CT)</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ds.Modality <span class="op">==</span> <span class="st">"CT"</span>:</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    slope <span class="op">=</span> <span class="bu">float</span>(ds.RescaleSlope)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    intercept <span class="op">=</span> <span class="bu">float</span>(ds.RescaleIntercept)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    hu_image <span class="op">=</span> pixel_array <span class="op">*</span> slope <span class="op">+</span> intercept</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Rango UH:"</span>, hu_image.<span class="bu">min</span>(), <span class="st">"-"</span>, hu_image.<span class="bu">max</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="lectura-de-una-serie-completa-volumen-3d-con-simpleitk" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="lectura-de-una-serie-completa-volumen-3d-con-simpleitk"><span class="header-section-number">3.6</span> Lectura de una serie completa (volumen 3D) con SimpleITK</h2>
+<div id="76b3f8af" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> SimpleITK <span class="im">as</span> sitk</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>reader <span class="op">=</span> sitk.ImageSeriesReader()</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>series_ids <span class="op">=</span> reader.GetGDCMSeriesIDs(<span class="st">"carpeta_dicom/"</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Series encontradas:"</span>, series_ids)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>dicom_files <span class="op">=</span> reader.GetGDCMSeriesFileNames(<span class="st">"carpeta_dicom/"</span>, series_ids[<span class="dv">0</span>])</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>reader.SetFileNames(dicom_files)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>volumen <span class="op">=</span> reader.Execute()</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tamaño:"</span>, volumen.GetSize())        <span class="co"># (X, Y, Z)</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Spacing:"</span>, volumen.GetSpacing())    <span class="co"># mm</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Origen:"</span>, volumen.GetOrigin())</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dirección:"</span>, volumen.GetDirection())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+</section>
+<section id="imágenes-nifti" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Imágenes NIfTI</h1>
+<section id="qué-es-nifti-y-por-qué-existe" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="qué-es-nifti-y-por-qué-existe"><span class="header-section-number">4.1</span> ¿Qué es NIfTI y por qué existe?</h2>
+<p><strong>NIfTI</strong> (<em>Neuroimaging Informatics Technology Initiative</em>) es un formato creado originalmente para <strong>neuroimagen</strong> (fMRI, RM estructural) como respuesta a las limitaciones del antiguo formato <em>Analyze 7.5</em>. A diferencia de DICOM:</p>
+<ul>
+<li><strong>Un solo archivo (o par) representa el volumen 3D completo</strong>, no un archivo por corte.</li>
+<li>Extensiones: <strong><code>.nii</code></strong> (un solo archivo, header + datos) o <strong><code>.nii.gz</code></strong> (comprimido, el más usado) o el par <strong><code>.hdr</code> + <code>.img</code></strong> (formato antiguo Analyze-compatible).</li>
+<li>Header <strong>mucho más simple</strong> que DICOM (no tiene datos clínicos del paciente, protocolo, institución, etc.).</li>
+<li>Es el formato preferido para <strong>investigación, benchmarks públicos y frameworks de deep learning</strong> (BraTS, Medical Segmentation Decathlon, etc. distribuyen datos en NIfTI).</li>
+</ul>
+</section>
+<section id="dicom-vs.-nifti-comparación-directa" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="dicom-vs.-nifti-comparación-directa"><span class="header-section-number">4.2</span> DICOM vs.&nbsp;NIfTI: comparación directa</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Aspecto</th>
+<th>DICOM</th>
+<th>NIfTI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Uso principal</td>
+<td>Clínico, comunicación entre equipos (PACS)</td>
+<td>Investigación, procesamiento, deep learning</td>
+</tr>
+<tr class="even">
+<td>Estructura</td>
+<td>1 archivo por corte (muchos archivos por volumen)</td>
+<td>1 archivo por volumen completo</td>
+</tr>
+<tr class="odd">
+<td>Metadatos</td>
+<td>Extensos (paciente, protocolo, institución)</td>
+<td>Mínimos (spacing, orientación, tipo de dato)</td>
+</tr>
+<tr class="even">
+<td>Contiene PHI</td>
+<td>Sí (por defecto)</td>
+<td>No, generalmente ya anonimizado</td>
+</tr>
+<tr class="odd">
+<td>Orientación espacial</td>
+<td>ImagePositionPatient / ImageOrientationPatient</td>
+<td>Matriz <strong>qform</strong>/<strong>sform</strong> (affine 4x4)</td>
+</tr>
+<tr class="even">
+<td>Estándar de comunicación en red</td>
+<td>Sí (protocolo DICOM)</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>Compresión nativa</td>
+<td>Variable (a veces sin comprimir)</td>
+<td><code>.nii.gz</code> (gzip) muy común</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="estructura-del-header-nifti" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="estructura-del-header-nifti"><span class="header-section-number">4.3</span> Estructura del header NIfTI</h2>
+<p>El header NIfTI-1 tiene 348 bytes con campos clave:</p>
+<ul>
+<li><code>dim[8]</code>: dimensiones (ej: <code>[3, 256, 256, 150, 1, 1, 1, 1]</code> → volumen 3D de 256×256×150).</li>
+<li><code>pixdim[8]</code>: tamaño físico de cada dimensión (spacing).</li>
+<li><code>sform</code>/<code>qform</code>: matrices afines que llevan de índice de voxel a coordenadas del mundo (equivalente al trío spacing/origin/direction de DICOM, pero condensado en una matriz 4×4).</li>
+<li><code>datatype</code>: tipo de dato (int16, float32, etc.).</li>
+<li>Códigos de orientación: <strong>RAS</strong>, <strong>LAS</strong>, etc. (convención de ejes: Right/Left, Anterior/Posterior, Superior/Inferior).</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Recordatorio: ¿qué es una transformación afín?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Una <strong>transformación afín</strong> es una función que combina una transformación <strong>lineal</strong> (rotación, escala, cizalladura/<em>shear</em>) con una <strong>traslación</strong>. En 3D se representa cómodamente con una matriz de 4×4 usando <strong>coordenadas homogéneas</strong> (se le agrega un “1” extra al vector de posición para poder incluir la traslación dentro de una única multiplicación de matrices):</p>
+<p><span class="math display">\[
+\begin{bmatrix} x \\ y \\ z \\ 1 \end{bmatrix}
+=
+\begin{bmatrix}
+a_{11} &amp; a_{12} &amp; a_{13} &amp; t_x \\
+a_{21} &amp; a_{22} &amp; a_{23} &amp; t_y \\
+a_{31} &amp; a_{32} &amp; a_{33} &amp; t_z \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{bmatrix}
+\begin{bmatrix} i \\ j \\ k \\ 1 \end{bmatrix}
+\]</span></p>
+<p>La submatriz <span class="math inline">\(3\times3\)</span> (<span class="math inline">\(a_{11}\)</span> … <span class="math inline">\(a_{33}\)</span>) codifica rotación, escala y shear; el vector <span class="math inline">\((t_x, t_y, t_z)\)</span> codifica la traslación (el origen). Lo importante de una transformación afín es que <strong>preserva líneas rectas y el paralelismo</strong> (una grilla de voxels sigue siendo una grilla regular después de transformarse), pero <strong>no necesariamente preserva ángulos ni distancias</strong> si hay escala o shear. Es exactamente el tipo de matriz que ya usamos más arriba en <a href="#fig-voxel-mundo" class="quarto-xref">Figure&nbsp;2</a> para llevar el índice de un voxel <span class="math inline">\((i,j,k)\)</span> a su coordenada física <span class="math inline">\((x,y,z)\)</span> en mm — y es también, matemáticamente, lo que hay detrás de las matrices qform/sform de NIfTI y del trío spacing/origin/direction de SimpleITK: <strong>distintas formas de guardar/parametrizar la misma matriz afín 4×4.</strong></p>
+<p>Un caso particular importante es la <strong>transformación rígida</strong> (<em>rigid</em>): cuando la submatriz <span class="math inline">\(3\times3\)</span> es solo una rotación pura (sin escala ni shear), la transformación preserva además ángulos y distancias — es la que corresponde, por ejemplo, a mover o rotar un objeto sólido sin deformarlo. El qform de NIfTI está restringido a este caso particular.</p>
+</div>
+</div>
+<section id="las-matrices-qform-y-sform" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="las-matrices-qform-y-sform"><span class="header-section-number">4.3.1</span> Las matrices qform y sform</h3>
+<p>NIfTI-1 define <strong>dos matrices afines independientes</strong> para llevar del espacio de índices de voxel <span class="math inline">\((i,j,k)\)</span> al espacio físico del mundo <span class="math inline">\((x,y,z)\)</span>: <strong>qform</strong> y <strong>sform</strong>. Esto suele confundir a quien viene de trabajar solo con DICOM, donde existe un único mecanismo (ImagePositionPatient/ImageOrientationPatient) para definir la geometría. Que existan dos matrices en NIfTI no es redundancia porque cada una sirve a un propósito distinto:</p>
+<ul>
+<li><strong>qform (<code>qform_code</code>, cuaternión + <code>pixdim</code>):</strong> Codifica la orientación mediante un <strong>cuaternión</strong> (una representación matemática compacta y numéricamente estable de una rotación 3D, sin escala ni cizalladura). Se usa típicamente para representar la <strong>orientación “nativa” del escáner</strong> en el momento de la adquisición — es decir, cómo el equipo generó el volumen. Solo admite transformaciones rígidas (rotación + traslación), consistente con “así es como el escáner orientó los cortes”.</li>
+<li><strong>sform (<code>sform_code</code>, matriz 4×4 general):</strong> Es una matriz afín completa de 4×4, que además de rotación y traslación puede incluir <strong>escala anisotrópica y cizalladura (shear)</strong>. Se usa para representar transformaciones posteriores a la adquisición, como el resultado de un <strong>registro (co-registro)</strong> a un espacio estándar — por ejemplo, llevar un cerebro individual al espacio del atlas <strong>MNI152</strong> o <strong>Talairach</strong>.</li>
+</ul>
+<p>Cada matriz tiene un código de estado asociado (<code>qform_code</code>, <code>sform_code</code>) que indica si es válida y qué tipo de espacio de referencia representa (0 = desconocido, 1 = espacio del scanner, 2 = espacio alineado a otro archivo, 3 = espacio Talairach, 4 = espacio MNI152). <strong>Cuando ambas están presentes y difieren, la convención más aceptada (y la que usan NiBabel, ITK y FSL) es dar prioridad al sform</strong> por ser la transformación más general y, generalmente, la más “actualizada” (post-procesamiento).</p>
+<div id="e8a90523" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nibabel <span class="im">as</span> nib</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> nib.load(<span class="st">"volumen_paciente.nii.gz"</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"qform code:"</span>, img.header[<span class="st">'qform_code'</span>], <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>, img.get_qform())</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"sform code:"</span>, img.header[<span class="st">'sform_code'</span>], <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>, img.get_sform())</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># La matriz que NiBabel usa por defecto para img.affine</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># sigue la lógica de prioridad sform &gt; qform &gt; "fallback" (pixdim + esquina)</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"affine efectivo:</span><span class="ch">\n</span><span class="st">"</span>, img.affine)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Cuidado con las convenciones de orientación
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>NIfTI suele usar convención <strong>RAS+</strong> (eje X apunta a la derecha, Y hacia adelante, Z hacia arriba), mientras que DICOM usa convención <strong>LPS</strong> (Left, Posterior, Superior). Herramientas como ITK/SimpleITK manejan esta diferencia internamente, pero si se mezclan bibliotecas (ej. NiBabel + SimpleITK) sin cuidado, es una <strong>fuente clásica de bugs</strong> donde la imagen aparece “espejada” o rotada.</p>
+<p><img src="./imagenes/posicion_n_d.jpg" class="img-fluid" alt="Convención de ejes: DICOM LPS vs.&nbsp;NIfTI RAS">)</p>
+<ul>
+<li><strong>LPS</strong>: Left, Posterior, Superior (DICOM)</li>
+<li><strong>RAS</strong>: Right, Anterior, Superior (NIfTI)</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Relación con el trío spacing/origin/direction de SimpleITK
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Conceptualmente, la matriz <strong>qform/sform de NIfTI</strong> cumple exactamente el mismo rol que el trío <strong>(spacing, origin, direction)</strong> que vimos en la sección de Imágenes Médicas y que usa SimpleITK/ITK: ambos son formas de describir la transformación afín voxel→mundo. SimpleITK, al leer un NIfTI, descompone automáticamente la matriz afín (sform o qform, según prioridad) en spacing + origin + direction; y al escribir, hace el camino inverso.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="conversión-dicom-nifti" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="conversión-dicom-nifti"><span class="header-section-number">4.4</span> Conversión DICOM → NIfTI</h2>
+<p>Es una de las tareas más comunes en un pipeline de investigación. Herramientas típicas: <code>dcm2niix</code>, SimpleITK, <code>dicom2nifti</code>.</p>
+<div id="1f038223" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> SimpleITK <span class="im">as</span> sitk</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer serie DICOM (como en la sección anterior)</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>reader <span class="op">=</span> sitk.ImageSeriesReader()</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>series_ids <span class="op">=</span> reader.GetGDCMSeriesIDs(<span class="st">"carpeta_dicom/"</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>dicom_files <span class="op">=</span> reader.GetGDCMSeriesFileNames(<span class="st">"carpeta_dicom/"</span>, series_ids[<span class="dv">0</span>])</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>reader.SetFileNames(dicom_files)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>volumen <span class="op">=</span> reader.Execute()</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Guardar como NIfTI comprimido</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>sitk.WriteImage(volumen, <span class="st">"volumen_paciente.nii.gz"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<pre class="{bash}"><code># Alternativa muy usada en la práctica clínica/investigación: dcm2niix
+dcm2niix -z y -f "paciente_%p_%s" -o salida/ carpeta_dicom/</code></pre>
+</section>
+<section id="lectura-de-nifti-con-nibabel" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="lectura-de-nifti-con-nibabel"><span class="header-section-number">4.5</span> Lectura de NIfTI con NiBabel</h2>
+<div id="2d3ac504" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nibabel <span class="im">as</span> nib</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> nib.load(<span class="st">"volumen_paciente.nii.gz"</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>datos <span class="op">=</span> img.get_fdata()         <span class="co"># array numpy (X, Y, Z)</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>affine <span class="op">=</span> img.affine             <span class="co"># matriz 4x4</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>header <span class="op">=</span> img.header</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Shape:"</span>, datos.shape)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Affine:</span><span class="ch">\n</span><span class="st">"</span>, affine)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Voxel size (mm):"</span>, header.get_zooms())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    A["Tomógrafo / Resonador"] --&gt;|"genera"| B["Serie DICOM&lt;br/&gt;(N archivos .dcm)"]</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    B --&gt;|"envío"| C["PACS&lt;br/&gt;(archivo clínico)"]</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    B --&gt;|"exportación +&lt;br/&gt;anonimización"| D["dcm2niix /&lt;br/&gt;SimpleITK"]</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    D --&gt; E["Volumen NIfTI&lt;br/&gt;(1 archivo .nii.gz)"]</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    E --&gt; F["Pipeline de&lt;br/&gt;investigación / IA"]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-dicom-nifti" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dicom-nifti-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dicom-nifti-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Flujo típico: adquisición en DICOM, investigación en NIfTI
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="simpleitk" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> SimpleITK</h1>
+<section id="qué-es-simpleitk" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="qué-es-simpleitk"><span class="header-section-number">5.1</span> ¿Qué es SimpleITK?</h2>
+<p><strong>SimpleITK</strong> es una interfaz simplificada (con bindings en Python, R, C++, Java, etc.) sobre <strong>ITK</strong> (<em>Insight Segmentation and Registration Toolkit</em>), la biblioteca de referencia en procesamiento de imágenes médicas desde hace más de 20 años. SimpleITK expone de forma sencilla capacidades que en ITK “puro” requerirían mucho código de plantillas C++:</p>
+<ul>
+<li><strong>Lectura/escritura</strong> de decenas de formatos (DICOM, NIfTI, NRRD, MetaImage, nrrd, nii, etc.) con una API unificada.</li>
+<li><strong>Filtrado</strong> (suavizado, realce de bordes, morfología matemática).</li>
+<li><strong>Segmentación clásica</strong> (umbralización, <em>region growing</em>, <em>level sets</em>, watershed).</li>
+<li><strong>Registro de imágenes</strong> (<em>image registration</em>): alinear dos volúmenes (ej. CT de planificación vs.&nbsp;CT de seguimiento; o RM T1 vs.&nbsp;T2 del mismo paciente).</li>
+<li>Manejo nativo del sistema de coordenadas físicas (spacing, origin, direction) — <strong>algo que un array de NumPy puro no sabe hacer</strong>.</li>
+</ul>
+</section>
+<section id="la-clase-image-más-que-un-array" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="la-clase-image-más-que-un-array"><span class="header-section-number">5.2</span> La clase <code>Image</code>: más que un array</h2>
+<p>Un objeto <code>sitk.Image</code> <strong>no es solo una matriz de números</strong>: lleva consigo su información geométrica. Esta es la diferencia clave frente a trabajar directamente con <code>numpy.ndarray</code>.</p>
+<div id="f39cacdb" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> SimpleITK <span class="im">as</span> sitk</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>imagen <span class="op">=</span> sitk.ReadImage(<span class="st">"volumen_paciente.nii.gz"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tamaño (voxels):"</span>, imagen.GetSize())          <span class="co"># (X, Y, Z)</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Spacing (mm):"</span>, imagen.GetSpacing())</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Origen (mm):"</span>, imagen.GetOrigin())</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dirección:"</span>, imagen.GetDirection())</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Tipo de píxel:"</span>, imagen.GetPixelIDTypeAsString())</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Conversión a NumPy para procesamiento con otras librerías (ojo: cambia el orden de ejes)</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>array <span class="op">=</span> sitk.GetArrayFromImage(imagen)   <span class="co"># devuelve (Z, Y, X)</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Shape NumPy:"</span>, array.shape)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Y de vuelta a sitk.Image (hay que reasignar la información geométrica)</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>nueva_imagen <span class="op">=</span> sitk.GetImageFromArray(array)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>nueva_imagen.CopyInformation(imagen)  <span class="co"># ¡crítico! copiar spacing/origin/direction</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Trampa clásica: orden de ejes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>sitk.Image.GetSize()</code> devuelve <code>(X, Y, Z)</code>, pero al convertir con <code>sitk.GetArrayFromImage()</code> el array de NumPy resultante tiene forma <code>(Z, Y, X)</code> (convención C-order, más eficiente para iterar por cortes). Es una fuente muy común de errores al mezclar SimpleITK con PyTorch/MONAI.</p>
+</div>
+</div>
+</section>
+<section id="ejemplo-filtrado-y-realce" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="ejemplo-filtrado-y-realce"><span class="header-section-number">5.3</span> Ejemplo: filtrado y realce</h2>
+<div id="51ebb872" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> SimpleITK <span class="im">as</span> sitk</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>imagen <span class="op">=</span> sitk.ReadImage(<span class="st">"volumen_paciente.nii.gz"</span>, sitk.sitkFloat32)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Suavizado Gaussiano (reducción de ruido)</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>suavizada <span class="op">=</span> sitk.SmoothingRecursiveGaussian(imagen, sigma<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Realce de bordes / gradiente</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>bordes <span class="op">=</span> sitk.SobelEdgeDetection(imagen)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Umbralización simple (ej. segmentar hueso en CT, UH &gt; 300)</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>mascara_hueso <span class="op">=</span> sitk.BinaryThreshold(</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    imagen, lowerThreshold<span class="op">=</span><span class="dv">300</span>, upperThreshold<span class="op">=</span><span class="dv">3000</span>,</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    insideValue<span class="op">=</span><span class="dv">1</span>, outsideValue<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>sitk.WriteImage(mascara_hueso, <span class="st">"mascara_hueso.nii.gz"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="ejemplo-registro-de-imágenes-image-registration" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="ejemplo-registro-de-imágenes-image-registration"><span class="header-section-number">5.4</span> Ejemplo: registro de imágenes (<em>image registration</em>)</h2>
+<p>Uno de los usos más importantes en física médica: alinear dos volúmenes (por ejemplo, un CT de planificación de radioterapia con un CT de control).</p>
+<div id="81867cac" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> SimpleITK <span class="im">as</span> sitk</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>imagen_fija <span class="op">=</span> sitk.ReadImage(<span class="st">"ct_planificacion.nii.gz"</span>, sitk.sitkFloat32)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>imagen_movil <span class="op">=</span> sitk.ReadImage(<span class="st">"ct_seguimiento.nii.gz"</span>, sitk.sitkFloat32)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Método de registro: transformación rígida + métrica de información mutua</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>metodo_registro <span class="op">=</span> sitk.ImageRegistrationMethod()</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>metodo_registro.SetMetricAsMattesMutualInformation(numberOfHistogramBins<span class="op">=</span><span class="dv">50</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>metodo_registro.SetOptimizerAsRegularStepGradientDescent(</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    learningRate<span class="op">=</span><span class="fl">1.0</span>, minStep<span class="op">=</span><span class="fl">1e-4</span>, numberOfIterations<span class="op">=</span><span class="dv">200</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>metodo_registro.SetInitialTransform(</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    sitk.CenteredTransformInitializer(</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>        imagen_fija, imagen_movil, sitk.Euler3DTransform()</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>metodo_registro.SetInterpolator(sitk.sitkLinear)</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>transformacion_final <span class="op">=</span> metodo_registro.Execute(imagen_fija, imagen_movil)</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicar la transformación para llevar la imagen móvil al espacio de la fija</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>imagen_registrada <span class="op">=</span> sitk.Resample(</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    imagen_movil, imagen_fija, transformacion_final,</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    sitk.sitkLinear, <span class="fl">0.0</span>, imagen_movil.GetPixelID()</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>sitk.WriteImage(imagen_registrada, <span class="st">"ct_seguimiento_registrado.nii.gz"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    F["Imagen fija&lt;br/&gt;(referencia)"] --&gt; M["Métrica de similitud&lt;br/&gt;(información mutua)"]</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    Mv["Imagen móvil"] --&gt; T["Transformación&lt;br/&gt;(rígida / afín / deformable)"]</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    T --&gt; M</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    M --&gt; Opt["Optimizador&lt;br/&gt;(gradiente descendente)"]</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    Opt --&gt;|"actualiza parámetros"| T</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    Opt --&gt;|"convergencia"| R["Imagen móvil&lt;br/&gt;registrada al espacio fijo"]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-registro" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-registro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-registro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Concepto de registro de imágenes
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="rol-de-simpleitk-en-el-pipeline-de-ia" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="rol-de-simpleitk-en-el-pipeline-de-ia"><span class="header-section-number">5.5</span> Rol de SimpleITK en el pipeline de IA</h2>
+<p>SimpleITK normalmente se usa en la etapa de <strong>preprocesamiento</strong> antes de entrar a PyTorch/MONAI: lectura de archivos, resampleo a un spacing isotrópico común, normalización de intensidades, recorte de la región de interés, y conversión final a arrays/tensores.</p>
+<hr>
+</section>
+</section>
+<section id="pytorch" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> PyTorch</h1>
+<section id="qué-es-pytorch-y-por-qué-lo-usamos" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="qué-es-pytorch-y-por-qué-lo-usamos"><span class="header-section-number">6.1</span> ¿Qué es PyTorch y por qué lo usamos?</h2>
+<p><strong>PyTorch</strong> es el framework de <em>deep learning</em> de código abierto (desarrollado originalmente por Meta AI) más utilizado actualmente en investigación, incluyendo el dominio biomédico. Sus ventajas clave para este curso:</p>
+<ul>
+<li><strong>Tensores</strong> con API muy similar a NumPy, pero con soporte nativo para <strong>GPU</strong> (aceleración masiva necesaria para volúmenes 3D).</li>
+<li><strong>Autograd</strong>: diferenciación automática para calcular gradientes y entrenar redes mediante retropropagación.</li>
+<li><strong><code>torch.nn</code></strong>: módulo con capas (convolucionales, normalización, activación) para construir arquitecturas.</li>
+<li>Ecosistema maduro y es la base sobre la cual está construido <strong>MONAI</strong>.</li>
+</ul>
+</section>
+<section id="tensores-la-estructura-de-datos-fundamental" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="tensores-la-estructura-de-datos-fundamental"><span class="header-section-number">6.2</span> Tensores: la estructura de datos fundamental</h2>
+<div id="4ed474f4" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Un volumen CT como tensor: (Canal, Profundidad, Alto, Ancho)</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>volumen <span class="op">=</span> torch.randn(<span class="dv">1</span>, <span class="dv">128</span>, <span class="dv">128</span>, <span class="dv">128</span>)  <span class="co"># 1 canal, 128^3 voxels</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Shape:"</span>, volumen.shape)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Dispositivo:"</span>, volumen.device)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Mover a GPU si está disponible</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>device <span class="op">=</span> torch.device(<span class="st">"cuda"</span> <span class="cf">if</span> torch.cuda.is_available() <span class="cf">else</span> <span class="st">"cpu"</span>)</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>volumen <span class="op">=</span> volumen.to(device)</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Ahora en:"</span>, volumen.device)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Un batch de N pacientes: (N, C, D, H, W)</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>batch <span class="op">=</span> torch.randn(<span class="dv">4</span>, <span class="dv">1</span>, <span class="dv">96</span>, <span class="dv">96</span>, <span class="dv">96</span>).to(device)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="convención-de-dimensiones-en-pytorch-para-imágenes-médicas" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="convención-de-dimensiones-en-pytorch-para-imágenes-médicas"><span class="header-section-number">6.3</span> Convención de dimensiones en PyTorch para imágenes médicas</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Dimensión</th>
+<th>2D (ej. radiografía)</th>
+<th>3D (ej. CT/RM completo)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Formato estándar</td>
+<td><code>(N, C, H, W)</code></td>
+<td><code>(N, C, D, H, W)</code></td>
+</tr>
+<tr class="even">
+<td>N</td>
+<td>Tamaño del batch</td>
+<td>Tamaño del batch</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>Canales (1 para gris, 3 para RGB, o múltiples modalidades apiladas)</td>
+<td>Igual</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>—</td>
+<td>Profundidad (número de cortes)</td>
+</tr>
+<tr class="odd">
+<td>H, W</td>
+<td>Alto, Ancho</td>
+<td>Alto, Ancho</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="autograd-el-motor-de-entrenamiento" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="autograd-el-motor-de-entrenamiento"><span class="header-section-number">6.4</span> Autograd: el motor de entrenamiento</h2>
+<div id="ba8c8481" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.tensor([<span class="fl">2.0</span>], requires_grad<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x <span class="op">**</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">*</span> x</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>y.backward()  <span class="co"># calcula dy/dx automáticamente</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Gradiente dy/dx:"</span>, x.grad)  <span class="co"># dy/dx = 2x + 3 = 7.0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="ejemplo-mínimo-una-red-convolucional-3d-simple" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="ejemplo-mínimo-una-red-convolucional-3d-simple"><span class="header-section-number">6.5</span> Ejemplo mínimo: una red convolucional 3D simple</h2>
+<div id="ad054915" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> CNN3DSimple(nn.Module):</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Red convolucional 3D simple para clasificación binaria</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co">    (ej. presencia/ausencia de nódulo pulmonar en un parche de CT)."""</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, in_channels<span class="op">=</span><span class="dv">1</span>, num_classes<span class="op">=</span><span class="dv">2</span>):</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.features <span class="op">=</span> nn.Sequential(</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>            nn.Conv3d(in_channels, <span class="dv">16</span>, kernel_size<span class="op">=</span><span class="dv">3</span>, padding<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>            nn.BatchNorm3d(<span class="dv">16</span>),</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(inplace<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>            nn.MaxPool3d(<span class="dv">2</span>),</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>            nn.Conv3d(<span class="dv">16</span>, <span class="dv">32</span>, kernel_size<span class="op">=</span><span class="dv">3</span>, padding<span class="op">=</span><span class="dv">1</span>),</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>            nn.BatchNorm3d(<span class="dv">32</span>),</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(inplace<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>            nn.MaxPool3d(<span class="dv">2</span>),</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.clasificador <span class="op">=</span> nn.Sequential(</span>
+<span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>            nn.AdaptiveAvgPool3d(<span class="dv">1</span>),</span>
+<span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>            nn.Flatten(),</span>
+<span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">32</span>, num_classes),</span>
+<span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.features(x)</span>
+<span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> <span class="va">self</span>.clasificador(x)</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x</span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>modelo <span class="op">=</span> CNN3DSimple()</span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>entrada_ejemplo <span class="op">=</span> torch.randn(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">64</span>, <span class="dv">64</span>, <span class="dv">64</span>)  <span class="co"># batch=2</span></span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>salida <span class="op">=</span> modelo(entrada_ejemplo)</span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Salida:"</span>, salida.shape)  <span class="co"># (2, 2) -&gt; logits por clase</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="bucle-de-entrenamiento-típico" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="bucle-de-entrenamiento-típico"><span class="header-section-number">6.6</span> Bucle de entrenamiento típico</h2>
+<div id="26f3aea5" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.optim <span class="im">as</span> optim</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>modelo <span class="op">=</span> CNN3DSimple().to(device)</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>criterio <span class="op">=</span> nn.CrossEntropyLoss()</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>optimizador <span class="op">=</span> optim.Adam(modelo.parameters(), lr<span class="op">=</span><span class="fl">1e-4</span>)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>modelo.train()</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoca <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> volumenes, etiquetas <span class="kw">in</span> dataloader:  <span class="co"># dataloader definido con Dataset propio</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        volumenes <span class="op">=</span> volumenes.to(device)</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>        etiquetas <span class="op">=</span> etiquetas.to(device)</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>        optimizador.zero_grad()</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>        salidas <span class="op">=</span> modelo(volumenes)</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>        perdida <span class="op">=</span> criterio(salidas, etiquetas)</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>        perdida.backward()</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>        optimizador.step()</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Época </span><span class="sc">{</span>epoca<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">: pérdida = </span><span class="sc">{</span>perdida<span class="sc">.</span>item()<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>flowchart LR</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    A["Batch de datos&lt;br/&gt;(volúmenes + etiquetas)"] --&gt; B["Forward pass&lt;br/&gt;modelo(x)"]</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    B --&gt; C["Cálculo de pérdida&lt;br/&gt;criterio(salida, etiqueta)"]</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    C --&gt; D["Backward pass&lt;br/&gt;perdida.backward()"]</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    D --&gt; E["Actualización de pesos&lt;br/&gt;optimizador.step()"]</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    E --&gt;|"siguiente batch"| A</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-ciclo-entrenamiento" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ciclo-entrenamiento-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ciclo-entrenamiento-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Ciclo de entrenamiento en PyTorch
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="monai" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> MONAI</h1>
+<section id="qué-es-monai" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="qué-es-monai"><span class="header-section-number">7.1</span> ¿Qué es MONAI?</h2>
+<p><strong>MONAI</strong> (<em>Medical Open Network for AI</em>) es un framework de código abierto <strong>construido sobre PyTorch</strong>, desarrollado por un consorcio que incluye NVIDIA, King’s College London y otras instituciones, <strong>específicamente diseñado para imágenes médicas</strong>. Su objetivo es evitar que cada laboratorio reimplemente desde cero:</p>
+<ul>
+<li>Lectores de DICOM/NIfTI integrados con el <code>Dataset</code> de PyTorch.</li>
+<li>Transformaciones (<em>transforms</em>) conscientes del dominio médico (que respetan spacing, orientación, intensidades en UH, etc.).</li>
+<li>Arquitecturas de referencia ya implementadas (U-Net, UNETR, SegResNet, DenseNet, etc.).</li>
+<li>Métricas y funciones de pérdida específicas (Dice, Hausdorff, IoU 3D).</li>
+<li>Utilidades de inferencia por <em>sliding window</em> (necesaria porque los volúmenes 3D completos no siempre caben en memoria de GPU).</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Relación entre las piezas del curso
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>MONAI no reemplaza a SimpleITK ni a PyTorch: los integra.</strong> MONAI usa por debajo lectores basados en ITK/NiBabel para I/O, y todos sus modelos son módulos <code>torch.nn.Module</code> estándar. Es la “capa de dominio médico” sobre el framework general.</p>
+</div>
+</div>
+<div class="cell" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>flowchart TB</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    subgraph L1["Capa de bajo nivel"]</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>        S["SimpleITK / ITK / NiBabel&lt;br/&gt;(I/O, geometría física)"]</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    subgraph L2["Framework general de Deep Learning"]</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        P["PyTorch&lt;br/&gt;(tensores, autograd, nn.Module)"]</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    subgraph L3["Capa de dominio médico"]</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>        M["MONAI&lt;br/&gt;(transforms, redes, métricas, inferencia)"]</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    end</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    S --&gt; M</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>    P --&gt; M</span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>    M --&gt; A["Aplicación final:&lt;br/&gt;segmentación, clasificación,&lt;br/&gt;detección, radiómica"]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-monai-stack" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-monai-stack-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-monai-stack-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: MONAI como capa de dominio sobre PyTorch
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="transforms-de-monai" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="transforms-de-monai"><span class="header-section-number">7.2</span> Transforms de MONAI</h2>
+<p>Las <em>transforms</em> son el corazón del preprocesamiento en MONAI y siguen dos estilos:</p>
+<ul>
+<li><strong>Diccionario (<code>d</code>)</strong>: operan sobre un diccionario <code>{"image": ..., "label": ...}</code>, aplicando la misma transformación geométrica sincronizada a la imagen y su máscara. <strong>Es el estilo recomendado en segmentación.</strong></li>
+<li><strong>Array</strong>: operan directamente sobre un tensor/array.</li>
+</ul>
+<div id="b0d97e84" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> monai.transforms <span class="im">import</span> (</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    Compose, LoadImaged, EnsureChannelFirstd, Spacingd, Orientationd,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    ScaleIntensityRanged, CropForegroundd, RandCropByPosNegLabeld,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    RandFlipd, RandRotate90d, ToTensord,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>transformaciones_entrenamiento <span class="op">=</span> Compose([</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    LoadImaged(keys<span class="op">=</span>[<span class="st">"image"</span>, <span class="st">"label"</span>]),                  <span class="co"># lee NIfTI/DICOM</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    EnsureChannelFirstd(keys<span class="op">=</span>[<span class="st">"image"</span>, <span class="st">"label"</span>]),          <span class="co"># asegura formato (C, D, H, W)</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    Orientationd(keys<span class="op">=</span>[<span class="st">"image"</span>, <span class="st">"label"</span>], axcodes<span class="op">=</span><span class="st">"RAS"</span>),  <span class="co"># estandariza orientación</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    Spacingd(</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>        keys<span class="op">=</span>[<span class="st">"image"</span>, <span class="st">"label"</span>],</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>        pixdim<span class="op">=</span>(<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>),                             <span class="co"># resampleo a 1mm isotrópico</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>        mode<span class="op">=</span>(<span class="st">"bilinear"</span>, <span class="st">"nearest"</span>),</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    ScaleIntensityRanged(                                   <span class="co"># normalización de UH (CT)</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>        keys<span class="op">=</span>[<span class="st">"image"</span>], a_min<span class="op">=-</span><span class="dv">175</span>, a_max<span class="op">=</span><span class="dv">250</span>,</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>        b_min<span class="op">=</span><span class="fl">0.0</span>, b_max<span class="op">=</span><span class="fl">1.0</span>, clip<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>    CropForegroundd(keys<span class="op">=</span>[<span class="st">"image"</span>, <span class="st">"label"</span>], source_key<span class="op">=</span><span class="st">"image"</span>),</span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>    RandCropByPosNegLabeld(                                  <span class="co"># muestreo balanceado de parches</span></span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>        keys<span class="op">=</span>[<span class="st">"image"</span>, <span class="st">"label"</span>], label_key<span class="op">=</span><span class="st">"label"</span>,</span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>        spatial_size<span class="op">=</span>(<span class="dv">96</span>, <span class="dv">96</span>, <span class="dv">96</span>), pos<span class="op">=</span><span class="dv">1</span>, neg<span class="op">=</span><span class="dv">1</span>, num_samples<span class="op">=</span><span class="dv">4</span>,</span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a>    RandFlipd(keys<span class="op">=</span>[<span class="st">"image"</span>, <span class="st">"label"</span>], prob<span class="op">=</span><span class="fl">0.5</span>, spatial_axis<span class="op">=</span><span class="dv">0</span>),</span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>    RandRotate90d(keys<span class="op">=</span>[<span class="st">"image"</span>, <span class="st">"label"</span>], prob<span class="op">=</span><span class="fl">0.5</span>),</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a>    ToTensord(keys<span class="op">=</span>[<span class="st">"image"</span>, <span class="st">"label"</span>]),</span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="dataset-y-dataloader-con-monai" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="dataset-y-dataloader-con-monai"><span class="header-section-number">7.3</span> Dataset y DataLoader con MONAI</h2>
+<div id="0fe06ed3" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> monai.data <span class="im">import</span> Dataset, DataLoader, CacheDataset</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>archivos_entrenamiento <span class="op">=</span> [</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"image"</span>: <span class="st">"paciente001_ct.nii.gz"</span>, <span class="st">"label"</span>: <span class="st">"paciente001_mask.nii.gz"</span>},</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    {<span class="st">"image"</span>: <span class="st">"paciente002_ct.nii.gz"</span>, <span class="st">"label"</span>: <span class="st">"paciente002_mask.nii.gz"</span>},</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># CacheDataset acelera épocas posteriores cacheando transformaciones deterministas</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>dataset_entrenamiento <span class="op">=</span> CacheDataset(</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>archivos_entrenamiento,</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    transform<span class="op">=</span>transformaciones_entrenamiento,</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    cache_rate<span class="op">=</span><span class="fl">1.0</span>,</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    num_workers<span class="op">=</span><span class="dv">4</span>,</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>dataloader_entrenamiento <span class="op">=</span> DataLoader(</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>    dataset_entrenamiento, batch_size<span class="op">=</span><span class="dv">2</span>, shuffle<span class="op">=</span><span class="va">True</span>, num_workers<span class="op">=</span><span class="dv">4</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="arquitecturas-listas-para-usar-ejemplo-con-u-net-3d" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="arquitecturas-listas-para-usar-ejemplo-con-u-net-3d"><span class="header-section-number">7.4</span> Arquitecturas listas para usar: ejemplo con U-Net 3D</h2>
+<div id="a441c69a" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> monai.networks.nets <span class="im">import</span> UNet</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> monai.networks.layers <span class="im">import</span> Norm</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>modelo <span class="op">=</span> UNet(</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>    spatial_dims<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    in_channels<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    out_channels<span class="op">=</span><span class="dv">2</span>,                 <span class="co"># ej: fondo + órgano de interés</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    channels<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">32</span>, <span class="dv">64</span>, <span class="dv">128</span>, <span class="dv">256</span>),</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    strides<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>),</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    num_res_units<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    norm<span class="op">=</span>Norm.BATCH,</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>).to(device)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="pérdida-y-métrica-específicas-de-segmentación-dice" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="pérdida-y-métrica-específicas-de-segmentación-dice"><span class="header-section-number">7.5</span> Pérdida y métrica específicas de segmentación: Dice</h2>
+<p><span class="math display">\[
+\text{DiceLoss} = 1 - \frac{2 |A \cap B|}{|A| + |B|}
+\]</span></p>
+<p>donde <span class="math inline">\(A\)</span> es la máscara predicha y <span class="math inline">\(B\)</span> la máscara de referencia (<em>ground truth</em>).</p>
+<div id="08147a87" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> monai.losses <span class="im">import</span> DiceLoss</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> monai.metrics <span class="im">import</span> DiceMetric</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> monai.inferers <span class="im">import</span> sliding_window_inference</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>criterio <span class="op">=</span> DiceLoss(to_onehot_y<span class="op">=</span><span class="va">True</span>, softmax<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>metrica_dice <span class="op">=</span> DiceMetric(include_background<span class="op">=</span><span class="va">False</span>, reduction<span class="op">=</span><span class="st">"mean"</span>)</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>optimizador <span class="op">=</span> torch.optim.Adam(modelo.parameters(), lr<span class="op">=</span><span class="fl">1e-4</span>)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoca <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">50</span>):</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    modelo.train()</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> batch <span class="kw">in</span> dataloader_entrenamiento:</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>        imagenes <span class="op">=</span> batch[<span class="st">"image"</span>].to(device)</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a>        etiquetas <span class="op">=</span> batch[<span class="st">"label"</span>].to(device)</span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>        optimizador.zero_grad()</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>        salidas <span class="op">=</span> modelo(imagenes)</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>        perdida <span class="op">=</span> criterio(salidas, etiquetas)</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>        perdida.backward()</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>        optimizador.step()</span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Inferencia por ventana deslizante para volúmenes completos en validación</span></span>
+<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>    modelo.<span class="bu">eval</span>()</span>
+<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> torch.no_grad():</span>
+<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> batch_val <span class="kw">in</span> dataloader_validacion:</span>
+<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>            imagenes_val <span class="op">=</span> batch_val[<span class="st">"image"</span>].to(device)</span>
+<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a>            etiquetas_val <span class="op">=</span> batch_val[<span class="st">"label"</span>].to(device)</span>
+<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a>            salidas_val <span class="op">=</span> sliding_window_inference(</span>
+<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a>                imagenes_val, roi_size<span class="op">=</span>(<span class="dv">96</span>, <span class="dv">96</span>, <span class="dv">96</span>),</span>
+<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>                sw_batch_size<span class="op">=</span><span class="dv">4</span>, predictor<span class="op">=</span>modelo</span>
+<span id="cb27-31"><a href="#cb27-31" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a>            metrica_dice(y_pred<span class="op">=</span>salidas_val, y<span class="op">=</span>etiquetas_val)</span>
+<span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a>        dice_promedio <span class="op">=</span> metrica_dice.aggregate().item()</span>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a>        metrica_dice.reset()</span>
+<span id="cb27-36"><a href="#cb27-36" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Época </span><span class="sc">{</span>epoca<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">: Dice de validación = </span><span class="sc">{</span>dice_promedio<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>flowchart TB</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    A["Archivos NIfTI&lt;br/&gt;(image, label)"] --&gt; B["Transforms MONAI&lt;br/&gt;(Load, Spacing, Crop, Augment)"]</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    B --&gt; C["Dataset / DataLoader"]</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    C --&gt; D["Modelo: UNet 3D&lt;br/&gt;(monai.networks.nets)"]</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    D --&gt; E["DiceLoss +&lt;br/&gt;Backpropagation"]</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    E --&gt; F{"¿Convergió?"}</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    F --&gt;|No| C</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    F --&gt;|Sí| G["Sliding Window Inference&lt;br/&gt;sobre volumen completo"]</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    G --&gt; H["Métrica Dice /&lt;br/&gt;Evaluación clínica"]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-pipeline-monai" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pipeline-monai-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div>
+
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pipeline-monai-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Pipeline completo de segmentación con MONAI
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="tabla-resumen-qué-resuelve-cada-herramienta" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="tabla-resumen-qué-resuelve-cada-herramienta"><span class="header-section-number">7.6</span> Tabla resumen: ¿qué resuelve cada herramienta?</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Herramienta</th>
+<th>Rol principal</th>
+<th>Analogía</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>DICOM</strong></td>
+<td>Formato/protocolo de datos clínicos</td>
+<td>El “idioma” en que habla el hospital</td>
+</tr>
+<tr class="even">
+<td><strong>NIfTI</strong></td>
+<td>Formato de datos para investigación</td>
+<td>El “idioma” en que habla la ciencia de datos</td>
+</tr>
+<tr class="odd">
+<td><strong>SimpleITK</strong></td>
+<td>I/O + procesamiento geométrico clásico</td>
+<td>El “traductor y editor” de imágenes</td>
+</tr>
+<tr class="even">
+<td><strong>PyTorch</strong></td>
+<td>Motor de cómputo y aprendizaje profundo</td>
+<td>El “motor del auto”</td>
+</tr>
+<tr class="odd">
+<td><strong>MONAI</strong></td>
+<td>Capa de dominio médico sobre PyTorch</td>
+<td>El “kit específico para off-road” sobre ese motor</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Lecturas recomendadas
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>NEMA. <em>DICOM Standard</em>, Parte 3: Information Object Definitions.</li>
+<li>Cardoso, M.J. et al.&nbsp;“MONAI: An open-source framework for deep learning in healthcare imaging” (2022).</li>
+<li>Documentación oficial: <code>simpleitk.org</code>, <code>pytorch.org</code>, <code>monai.io</code>.</li>
+</ul>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../unidad1/notas.html" class="pagination-link" aria-label="Notas de clase">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Notas de clase</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../unidad1/presentacion.html" class="pagination-link" aria-label="Presentación">
+        <span class="nav-page-text">Presentación</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

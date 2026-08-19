@@ -1,147 +1,929 @@
 [
   {
-    "objectID": "unidad0/presentacion.html#cursado",
-    "href": "unidad0/presentacion.html#cursado",
-    "title": "Presentación de la materia",
-    "section": "Cursado",
-    "text": "Cursado\n\nModalidad: virtual\nClases: lunes y jueves de 19:00-21:00",
+    "objectID": "unidad1/presentacion.html#qué-vamos-a-ver-hoy",
+    "href": "unidad1/presentacion.html#qué-vamos-a-ver-hoy",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "¿Qué vamos a ver hoy?",
+    "text": "¿Qué vamos a ver hoy?\n\nRepasar los modelos clásicos de aprendizaje automático y por qué siguen siendo el baseline obligado en Física Médica.\nComprender el contexto histórico y conceptual que dio origen al Deep Learning — con un repaso año a año de la última década.\nFormalizar matemáticamente el Perceptrón, entender su algoritmo de aprendizaje y sus limitaciones (el problema XOR).\nConectar cada bloque con el siguiente: regresión logística → perceptrón → perceptrón multicapa.",
     "crumbs": [
       "Inicio",
-      "0.  Introducción",
-      "Presentación de la materia"
+      "1. Fundamentos de IA",
+      "Presentación"
     ]
   },
   {
-    "objectID": "unidad0/presentacion.html#unidad-1-fundamentos-de-ia",
-    "href": "unidad0/presentacion.html#unidad-1-fundamentos-de-ia",
-    "title": "Presentación de la materia",
-    "section": "Unidad 1: Fundamentos de IA",
-    "text": "Unidad 1: Fundamentos de IA\n\nRevisión de modelos clásicos\nIntroducción al Deep Learning,breve historia\nRedes Neuronales simples: El algoritmo de perceptron\nEl ciclo de entrenamiento:\n\nFunciones de perdida\nOptimizadores\nLerning rate\n…",
+    "objectID": "unidad1/presentacion.html#agenda",
+    "href": "unidad1/presentacion.html#agenda",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Agenda",
+    "text": "Agenda\n\nRevisión de modelos clásicos\nIntroducción al Deep Learning: breve historia\nLa última década de IA, año a año (2013–2026)\nRedes neuronales simples: el algoritmo del Perceptrón\nDe AND y OR a XOR: qué puede (y no puede) aprender un perceptrón\nSíntesis y puente hacia la próxima clase",
     "crumbs": [
       "Inicio",
-      "0.  Introducción",
-      "Presentación de la materia"
+      "1. Fundamentos de IA",
+      "Presentación"
     ]
   },
   {
-    "objectID": "unidad0/presentacion.html#unidad-1-fundamentos-de-ia-cont.",
-    "href": "unidad0/presentacion.html#unidad-1-fundamentos-de-ia-cont.",
-    "title": "Presentación de la materia",
-    "section": "Unidad 1: Fundamentos de IA (cont.)",
-    "text": "Unidad 1: Fundamentos de IA (cont.)\n\nArquitecturas: CNN, U-Net, VIT\nFuncionamiento de los LLMs\nTransfer learning:\n\nFine-Tuning\nFew-Shot\n\nPyTorch, MONAI, SimpleITK\nDICOM, NIFTI\nBases de datos públicas de imágenes médicas anotadas.",
+    "objectID": "unidad1/presentacion.html#por-qué-empezar-por-lo-clásico",
+    "href": "unidad1/presentacion.html#por-qué-empezar-por-lo-clásico",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "¿Por qué empezar por lo clásico?",
+    "text": "¿Por qué empezar por lo clásico?\n\nEn Física Médica, la interpretabilidad, los datasets acotados y la trazabilidad regulatoria (FDA/ANMAT) hacen que los modelos clásicos sigan siendo protagonistas.\nAntes de introducir redes profundas, es indispensable entender los métodos que dominan hoy el análisis de datos médicos.\nSerán nuestro punto de comparación obligado para todo lo que veremos en Deep Learning.",
     "crumbs": [
       "Inicio",
-      "0.  Introducción",
-      "Presentación de la materia"
+      "1. Fundamentos de IA",
+      "Presentación"
     ]
   },
   {
-    "objectID": "unidad0/presentacion.html#unidad-2-segmetación",
-    "href": "unidad0/presentacion.html#unidad-2-segmetación",
-    "title": "Presentación de la materia",
-    "section": "Unidad 2: Segmetación",
-    "text": "Unidad 2: Segmetación\n\nSegmentación semántica en imágenes médicas\nMétricas: DICE, distacia Hausdorff, IoU, etc.\nRelevancia clínica de la segmentación automática de órganos en riesgo (OARs).\nParadigmas de segmentación:\n\nmodelos totalmente automáticos: nnU-Net\nmodelos guiados por experto: Med-SAM\n\nArquitectura, variantes y entrenamiento.",
+    "objectID": "unidad1/presentacion.html#la-regla-de-oro",
+    "href": "unidad1/presentacion.html#la-regla-de-oro",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "La regla de oro",
+    "text": "La regla de oro\n\nTodo pipeline de Deep Learning en Física Médica debe compararse contra un baseline clásico bien ajustado. Si el modelo profundo no supera con claridad a la regresión logística o cualquier otro modelo clásico (árbol de decisión, SVM, k-NN), probablemente su complejidad adicional no se justifica.",
     "crumbs": [
       "Inicio",
-      "0.  Introducción",
-      "Presentación de la materia"
+      "1. Fundamentos de IA",
+      "Presentación"
     ]
   },
   {
-    "objectID": "unidad0/presentacion.html#unidad-3-detección-clasificación-y-diagnóstico-asistido",
-    "href": "unidad0/presentacion.html#unidad-3-detección-clasificación-y-diagnóstico-asistido",
-    "title": "Presentación de la materia",
-    "section": "Unidad 3: Detección, clasificación y diagnóstico asistido",
-    "text": "Unidad 3: Detección, clasificación y diagnóstico asistido\n\nDetección de regiones de interés en imágenes médicas\nClasificación de hallazgos\nExplicabilidad de modelos en contexto clínico: Grad-CAM y mapas de saliencia.",
+    "objectID": "unidad1/presentacion.html#paradigmas-del-aprendizaje-automático",
+    "href": "unidad1/presentacion.html#paradigmas-del-aprendizaje-automático",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Paradigmas del aprendizaje automático",
+    "text": "Paradigmas del aprendizaje automático\nPodemos organizar una gran parte de los métodos de aprendizaje automático según la información disponible durante el entrenamiento.\n\n\n\n\n\n\n\n\nParadigma\nInformación disponible\nObjetivo\n\n\n\n\nSupervisado\n\\((\\mathbf{x},y)\\)\nAprender a predecir \\(y\\)\n\n\nNo supervisado\n\\(\\mathbf{x}\\)\nDescubrir estructura en los datos\n\n\nPor refuerzo\nEstados, acciones y recompensas\nAprender una estrategia de decisión\n\n\n\n\nAprendizaje auto-supervisado (self-supervised learning) En este caso, las etiquetas utilizadas para entrenar el modelo se construyen automáticamente a partir de los propios datos.",
     "crumbs": [
       "Inicio",
-      "0.  Introducción",
-      "Presentación de la materia"
+      "1. Fundamentos de IA",
+      "Presentación"
     ]
   },
   {
-    "objectID": "unidad0/presentacion.html#unidad-4-radioterapia-asistida-por-inteligencia-artificial",
-    "href": "unidad0/presentacion.html#unidad-4-radioterapia-asistida-por-inteligencia-artificial",
-    "title": "Presentación de la materia",
-    "section": "Unidad 4: Radioterapia asistida por inteligencia artificial",
-    "text": "Unidad 4: Radioterapia asistida por inteligencia artificial\n\nFlujo clínico de radioterapia: simulación, planificación y verificación dosimétrica.\nPredicción de planes de dosis y estimación de distribuciones 3D con redes profundas.\nKnowledge-Based Planning (KBP) asistido por IA.\nControl de calidad específico del paciente (patient-specific QA) en IMRT, VMAT y SBRT\nDetección de errores de posicionamiento a partir de imágenes CBCT.\nRadioterapia adaptativa guiada por IA (ART online).",
+    "objectID": "unidad1/presentacion.html#riesgo-esperado-y-riesgo-empírico",
+    "href": "unidad1/presentacion.html#riesgo-esperado-y-riesgo-empírico",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Riesgo esperado y riesgo empírico",
+    "text": "Riesgo esperado y riesgo empírico\nEl riesgo esperado o riesgo real de un modelo es:\n\\[\nR(f)\n=\n\\mathbb{E}_{(\\mathbf{x},y)\\sim P}\n\\left[\n\\mathcal{L}(f(\\mathbf{x}),y)\n\\right],\n\\]\ndonde \\(P(\\mathbf{x},y)\\) representa la distribución de probabilidad que genera los datos.\nEl problema es que no conocemos \\(P\\).\nSolo disponemos de una muestra finita:\n\\[\n\\mathcal{D}\n=\n{(\\mathbf{x}_ i,y_i)}_{i=1}^{N}\n\\]\nPor lo tanto, podemos calcular el riesgo empírico:\n\\[\n\\hat R(f)\n=\n\\frac{1}{N}\n\\sum_{i=1}^{N}\n\\mathcal{L}\n\\left(\nf(\\mathbf{x}_i),y_i\n\\right).\n\\]\nEl riesgo empírico es nuestro estimador del riesgo esperado.",
     "crumbs": [
       "Inicio",
-      "0.  Introducción",
-      "Presentación de la materia"
+      "1. Fundamentos de IA",
+      "Presentación"
     ]
   },
   {
-    "objectID": "unidad0/presentacion.html#unidad-5-síntesis-fusión-y-coregistro-de-imágenes-médicas",
-    "href": "unidad0/presentacion.html#unidad-5-síntesis-fusión-y-coregistro-de-imágenes-médicas",
-    "title": "Presentación de la materia",
-    "section": "Unidad 5: Síntesis, fusión y coregistro de imágenes médicas",
-    "text": "Unidad 5: Síntesis, fusión y coregistro de imágenes médicas\n\nRegistro rígido y deformable: métricas de similitud y algoritmos de optimización.\nRegistro basado en Deep Learning.\nFusión multimodal de imágenes: PET-CT, PET-MRI y CT-MRI.\nAplicaciones del coregistro.\nGeneración de CT sintético (sCT) a partir de MRI para dosimetría y radioterapia.",
+    "objectID": "unidad1/presentacion.html#analogía",
+    "href": "unidad1/presentacion.html#analogía",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Analogía",
+    "text": "Analogía\nSupongamos que queremos conocer la altura promedio de todos los adultos de Argentina.\nNo podemos medir a toda la población. Podemos seleccionar una muestra de 1.000 personas y calcular su altura promedio.\nEl promedio de esas 1.000 personas es una estimación del promedio poblacional.\nLa calidad de esa estimación dependerá, entre otras cosas, de cómo fue seleccionada la muestra.\nLo mismo ocurre con un modelo de aprendizaje automático:\n\n\n\n\n\n\n\nImportante\n\n\nEntrenamos y evaluamos sobre una muestra, pero queremos que el modelo funcione sobre una población más amplia.",
     "crumbs": [
       "Inicio",
-      "0.  Introducción",
-      "Presentación de la materia"
+      "1. Fundamentos de IA",
+      "Presentación"
     ]
   },
   {
-    "objectID": "unidad0/presentacion.html#unidad-6-agentes-de-inteligencia-artificial-en-el-ámbito-clínico",
-    "href": "unidad0/presentacion.html#unidad-6-agentes-de-inteligencia-artificial-en-el-ámbito-clínico",
-    "title": "Presentación de la materia",
-    "section": "Unidad 6: Agentes de inteligencia artificial en el ámbito clínico",
-    "text": "Unidad 6: Agentes de inteligencia artificial en el ámbito clínico\n\nIntroducción a los grandes modelos de lenguaje (LLMs) y su potencial en medicina: capacidades, limitaciones y casos de uso.\nConcepto de agente de IA: qué es, cómo razona y cómo interactúa con herramientas externas. Aplicaciones emergentes en el ámbito clínico: consulta de literatura médica, soporte en la toma de decisiones y automatización de flujos de trabajo.\nConsideraciones éticas y de seguridad: sesgos, alucinaciones, responsabilidad y supervisión humana.\nPerspectivas futuras: modelos fundacionales médicos y la evolución hacia sistemas autónomos en entornos clínicos.",
+    "objectID": "unidad1/presentacion.html#generalización-y-sobreajuste",
+    "href": "unidad1/presentacion.html#generalización-y-sobreajuste",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Generalización y sobreajuste",
+    "text": "Generalización y sobreajuste\nUn modelo puede obtener un error extremadamente bajo sobre los datos de entrenamiento sin necesariamente generalizar bien a nuevos datos.\nEsto es el sobreajuste (overfitting).\n\n\n\n\n\n\n\nIdea central\n\n\n\nEl objetivo del aprendizaje automático no es memorizar los datos disponibles.\nEl objetivo es aprender regularidades que permitan realizar buenas predicciones sobre datos que todavía no hemos visto.\n\n\n\n\n\n\nEn aplicaciones médicas, esta separación debe realizarse cuidadosamente para evitar data leakage.",
     "crumbs": [
       "Inicio",
-      "0.  Introducción",
-      "Presentación de la materia"
+      "1. Fundamentos de IA",
+      "Presentación"
     ]
   },
   {
-    "objectID": "unidad0/presentacion.html#material-de-clase",
-    "href": "unidad0/presentacion.html#material-de-clase",
-    "title": "Presentación de la materia",
-    "section": "Material de clase",
-    "text": "Material de clase\n\nRepositorio del curso: https://github.com/ignacio-scarinci/ia-fisica-medica\nPagina web del curso: https://ignacio-scarinci.github.io/ia-fisica-medica",
+    "objectID": "unidad1/presentacion.html#generalización-en-física-médica",
+    "href": "unidad1/presentacion.html#generalización-en-física-médica",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Generalización en Física Médica",
+    "text": "Generalización en Física Médica\nUn modelo puede funcionar correctamente sobre nuevos pacientes del mismo centro y, sin embargo, degradar su desempeño cuando cambia:\n\nel hospital;\nel fabricante del equipo;\nel modelo del tomógrafo;\nel protocolo de adquisición;\netc.\n\nEste problema se conoce genéricamente como dataset shift o domain shift.\n\nGeneralizar no significa solamente funcionar sobre una imagen que el modelo nunca vio. También significa funcionar cuando cambian las condiciones bajo las cuales se generan los datos.",
     "crumbs": [
       "Inicio",
-      "0.  Introducción",
-      "Presentación de la materia"
+      "1. Fundamentos de IA",
+      "Presentación"
     ]
   },
   {
-    "objectID": "unidad0/presentacion.html#aprobación",
-    "href": "unidad0/presentacion.html#aprobación",
-    "title": "Presentación de la materia",
-    "section": "Aprobación",
-    "text": "Aprobación\n\nTrabajos practicos\nProyecto final",
+    "objectID": "unidad1/presentacion.html#aprendizaje-supervisado-formalización",
+    "href": "unidad1/presentacion.html#aprendizaje-supervisado-formalización",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Aprendizaje supervisado: formalización",
+    "text": "Aprendizaje supervisado: formalización\nLos valores óptimos de los parámetros del modelo \\(\\theta^*\\) se obtienen minimizando la función de pérdida sobre el conjunto de entrenamiento:\n\\[\n\\theta^* = \\arg\\min_{\\theta} \\; R(\\theta)\n\\] \\[\n\\theta^* = \\arg\\min_{\\theta} \\; \\mathbb{E}_{(\\mathbf{x},y)\\sim \\mathcal{D}} \\left[ \\mathcal{L}(f_\\theta(\\mathbf{x}), y) \\right]\n\\]\nLa estimación de los parámetros que obtenemos a partir de los datos disponibles:\n\\[\n\\hat{\\theta} = \\arg\\min_{\\theta} \\; \\hat{R}(\\theta)\n\\]\n\\[\n\\hat{\\theta} = \\arg\\min_{\\theta} \\; \\frac{1}{N}\\sum_{i=1}^{N} \\mathcal{L}(f_\\theta(\\mathbf{x}_i), y_i) + \\lambda \\, \\Omega(\\theta)\n\\]\nEn la práctica minimizamos el riesgo empírico, no el riesgo real (que no conocemos).",
     "crumbs": [
       "Inicio",
-      "0.  Introducción",
-      "Presentación de la materia"
+      "1. Fundamentos de IA",
+      "Presentación"
     ]
   },
   {
-    "objectID": "unidad0/presentacion.html#links-de-interés",
-    "href": "unidad0/presentacion.html#links-de-interés",
-    "title": "Presentación de la materia",
-    "section": "Links de interés",
-    "text": "Links de interés\n\nHugging Face: https://huggingface.co/\nKaggle: https://www.kaggle.com/\nThe Cancer Image Archive (TCIA): https://www.cancerimagingarchive.net/",
+    "objectID": "unidad1/presentacion.html#regresión-lineal",
+    "href": "unidad1/presentacion.html#regresión-lineal",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Regresión lineal",
+    "text": "Regresión lineal\nSe utiliza cuando la variable objetivo \\(y\\) es continua.\nEl modelo predice directamente: \\[\n\\hat{y} = \\mathbf{w}^\\top \\mathbf{x} + b\n\\]\nLos parámetros \\(\\mathbf{w}\\) y \\(b\\) pueden ajustarse minimizando el error cuadrático medio (Mean Squared Error, MSE):\n\\[\n\\mathcal{L}_{\\text{MSE}} = \\frac{1}{N}\\sum_i (y_i - \\hat{y}_i)^2\n\\]\nEl modelo busca una combinación de las características que produzca predicciones lo más cercanas posible a los valores observados.",
     "crumbs": [
       "Inicio",
-      "0.  Introducción",
-      "Presentación de la materia"
+      "1. Fundamentos de IA",
+      "Presentación"
     ]
   },
   {
-    "objectID": "unidad0/presentacion.html#softwareframeworkslibrerias",
-    "href": "unidad0/presentacion.html#softwareframeworkslibrerias",
-    "title": "Presentación de la materia",
-    "section": "Software/Frameworks/Librerias",
-    "text": "Software/Frameworks/Librerias\n\nPython 3.12/13\nPyTorch\nMONAI - Medical Open Network for AI https://project-monai.github.io/\nSimpleITK\nGitHub Copilot",
+    "objectID": "unidad1/presentacion.html#regresión-logística",
+    "href": "unidad1/presentacion.html#regresión-logística",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Regresión logística",
+    "text": "Regresión logística\nSe utiliza para clasificación. En el caso binario queremos distinguir, por ejemplo, entre una lesión benigna y una maligna.\n\\[\n\\hat{p} = \\sigma(\\mathbf{w}^\\top \\mathbf{x} + b) = \\frac{1}{1+e^{-(\\mathbf{w}^\\top \\mathbf{x} + b)}}\n\\]\nPara entrenar el modelo utilizamos habitualmente la entropía cruzada binaria (Binary Cross-Entropy, BCE):\n\\[\n\\mathcal{L}_{\\text{BCE}} = -\\frac{1}{N}\\sum_i \\left[ y_i \\log(\\hat{p}_i) + (1-y_i) \\log(1-\\hat{p}_i) \\right]\n\\]\nLa clasificación final puede obtenerse aplicando un umbral:\n\\[\n\\hat y=\n\\begin{cases}\n1 & \\text{si } \\hat p\\geq 0.5,\\\\\n0 & \\text{si } \\hat p&lt;0.5.\n\\end{cases}\n\\]",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#nexo-con-la-unidad",
+    "href": "unidad1/presentacion.html#nexo-con-la-unidad",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Nexo con la unidad",
+    "text": "Nexo con la unidad\n\n\n\n\n\n\nImportant\n\n\nLa función sigmoide de la regresión logística es, matemáticamente, idéntica a la función de activación que usaremos en las primeras redes neuronales. La regresión logística es, de hecho, un perceptrón con activación sigmoide y una sola capa.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#otros-modelos-relevantes-en-física-médica",
+    "href": "unidad1/presentacion.html#otros-modelos-relevantes-en-física-médica",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Otros modelos relevantes en Física Médica",
+    "text": "Otros modelos relevantes en Física Médica\n\n\n\n\n\n\n\n\n\nModelo\nUso típico\nVentaja\nLimitación\n\n\n\n\nÁrboles / Random Forest\nToxicidad, features radiómicas\nInterpretable, no lineal\nSobreajuste, fronteras en escalera\n\n\nSVM\nClasificación de tejidos, QA\nRobusto en alta dimensión\nEscala mal, elección de kernel\n\n\nPCA / ICA\nReducción dimensional, denoising\nRápido, interpretable\nSolo relaciones lineales\n\n\nk-NN\nEspectros, dosimetría comparativa\nSimple, no paramétrico\nCostoso en inferencia",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#fronteras-de-decisión-el-sesgo-inductivo",
+    "href": "unidad1/presentacion.html#fronteras-de-decisión-el-sesgo-inductivo",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Fronteras de decisión: el sesgo inductivo",
+    "text": "Fronteras de decisión: el sesgo inductivo\n\nCada modelo clásico impone una forma distinta sobre la frontera de decisión: lineal (regresión logística), suave y global (SVM-RBF), o local y fragmentada (árbol, k-NN).\n\n\n\nA esto se lo llama el sesgo inductivo del modelo: sus supuestos implícitos sobre cómo deberían verse los datos.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#qué-es-el-deep-learning",
+    "href": "unidad1/presentacion.html#qué-es-el-deep-learning",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "¿Qué es el Deep Learning?",
+    "text": "¿Qué es el Deep Learning?",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#la-diferencia-central",
+    "href": "unidad1/presentacion.html#la-diferencia-central",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "La diferencia central",
+    "text": "La diferencia central",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#un-modelo-profundo-como-composición-de-funciones",
+    "href": "unidad1/presentacion.html#un-modelo-profundo-como-composición-de-funciones",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Un modelo profundo como composición de funciones",
+    "text": "Un modelo profundo como composición de funciones\n\\[\nf_\\theta(\\mathbf{x}) = f^{(L)} \\circ f^{(L-1)} \\circ \\cdots \\circ f^{(1)}(\\mathbf{x})\n\\]\nCada \\(f^{(L)}\\) es una transformación (capa) con parámetros propios \\(\\theta^{(L)}\\).",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#la-historia-no-fue-lineal",
+    "href": "unidad1/presentacion.html#la-historia-no-fue-lineal",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "La historia no fue lineal",
+    "text": "La historia no fue lineal",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#primer-invierno-post-1969",
+    "href": "unidad1/presentacion.html#primer-invierno-post-1969",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Primer invierno (post-1969)",
+    "text": "Primer invierno (post-1969)\n\n\n\n\n\n\nWarning\n\n\nMinsky y Papert demuestran que el perceptrón simple no puede resolver problemas no linealmente separables (el caso paradigmático: XOR, que veremos en detalle). El financiamiento a redes neuronales cae drásticamente durante casi dos décadas.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#segundo-invierno-90s2000s",
+    "href": "unidad1/presentacion.html#segundo-invierno-90s2000s",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Segundo invierno (90s–2000s)",
+    "text": "Segundo invierno (90s–2000s)\n\n\n\n\n\n\nWarning\n\n\nA pesar del backpropagation (1986), la falta de datos masivos y poder de cómputo, sumada al auge de las SVMs y los métodos de ensemble, relega nuevamente a las redes neuronales.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#el-resurgimiento-20062012",
+    "href": "unidad1/presentacion.html#el-resurgimiento-20062012",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "El resurgimiento (2006–2012)",
+    "text": "El resurgimiento (2006–2012)\n\n\n\n\n\n\nNote\n\n\nLa disponibilidad de GPUs, de grandes bases de datos etiquetadas (ImageNet) y de mejoras algorítmicas (ReLU, dropout, mejor inicialización) permite entrenar redes verdaderamente profundas. AlexNet (2012) marca el inicio de la era moderna del Deep Learning.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#imagenet-un-benchmark-que-cambió-todo",
+    "href": "unidad1/presentacion.html#imagenet-un-benchmark-que-cambió-todo",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "ImageNet: un benchmark que cambió todo",
+    "text": "ImageNet: un benchmark que cambió todo\n\nILSVRC (ImageNet Large Scale Visual Recognition Challenge): competencia anual desde 2010, sobre ~1.000 clases de imágenes.\nSe convirtió en el benchmark de referencia mundial para medir el progreso en clasificación de imágenes.\nSu evolución entre 2010 y 2017 resume, en una sola trayectoria, la revolución de las CNNs.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#de-28-a-225-de-error-en-7-años",
+    "href": "unidad1/presentacion.html#de-28-a-225-de-error-en-7-años",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "De 28% a 2,25% de error en 7 años",
+    "text": "De 28% a 2,25% de error en 7 años\n\n\n\n\n\nAño\nModelo / hito\nTop-5 accuracy\n\n\n\n\n2010\nSVM + HoG/LBP\n71,8%\n\n\n2011\nSVM + Fisher Vectors\n74,2%\n\n\n2012\nAlexNet (CNN profunda)\n84,7% — salto de ~10 pts\n\n\n2014\nGoogLeNet / VGGNet\n93–94%\n\n\n2015\nResNet — supera al humano\n96,4%\n\n\n2017\nSENet — fin de la competencia\n97,75%",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#el-salto-de-2012",
+    "href": "unidad1/presentacion.html#el-salto-de-2012",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "El salto de 2012",
+    "text": "El salto de 2012\nAlexNet (5 capas convolucionales + 3 totalmente conectadas, entrenada en paralelo sobre 2 GPUs, con ReLU en vez de sigmoide/tanh) redujo el error top-5 en casi 10 puntos respecto del año anterior — el mayor salto individual de toda la competencia.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#los-últimos-10-años-de-avances-en-ia",
+    "href": "unidad1/presentacion.html#los-últimos-10-años-de-avances-en-ia",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Los últimos 10 años de avances en IA",
+    "text": "Los últimos 10 años de avances en IA",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#por-qué-profundo-y-por-qué-ahora-en-física-médica",
+    "href": "unidad1/presentacion.html#por-qué-profundo-y-por-qué-ahora-en-física-médica",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "¿Por qué “profundo” y por qué ahora en Física Médica?",
+    "text": "¿Por qué “profundo” y por qué ahora en Física Médica?\n\nDatos: las imágenes médicas (CT, RM, PET, mamografía) son datos de alta dimensionalidad donde las CNNs sobresalen.\nCómputo: GPUs/TPUs permiten entrenar modelos con millones de parámetros en tiempos razonables.\nRepresentaciones jerárquicas: capas iniciales aprenden bordes y texturas; capas intermedias, estructuras anatómicas; capas profundas, patrones patológicos complejos.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#aplicaciones-actuales-en-física-médica",
+    "href": "unidad1/presentacion.html#aplicaciones-actuales-en-física-médica",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Aplicaciones actuales en Física Médica",
+    "text": "Aplicaciones actuales en Física Médica\n\n\n\n\n\n\nTip\n\n\n\nSegmentación automática de órganos en riesgo (OARs) y tumores\nReducción de dosis en CT mediante denoising\nReconstrucción acelerada de PET/RM\nDetección asistida de nódulos y lesiones\n\nControl de calidad automatizado y predicción de outcomes clínicos",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#la-neurona-biológica-como-inspiración",
+    "href": "unidad1/presentacion.html#la-neurona-biológica-como-inspiración",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "La neurona biológica como inspiración",
+    "text": "La neurona biológica como inspiración\n\nMcCulloch y Pitts (1943) propusieron un modelo matemático simplificado de la neurona: recibe señales, las pondera y produce una salida binaria si supera un umbral.\nCon ese modelo mostraron que una red de neuronas simples podía implementar cualquier función lógica booleana.\nRosenblatt (1958) convirtió esta idea en un algoritmo de aprendizaje: el Perceptrón.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#definición-formal",
+    "href": "unidad1/presentacion.html#definición-formal",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Definición formal",
+    "text": "Definición formal\nDado un vector de entrada \\(\\mathbf{x} = (x_1, x_2, \\dots, x_d) \\in \\mathbb{R}^d\\), el perceptrón calcula:\n\\[\nz = \\sum_{j=1}^{d} w_j x_j + b = \\mathbf{w}^\\top \\mathbf{x} + b\n\\]\n\\[\n\\hat{y} = \\phi(z) =\n\\begin{cases}\n1 & \\text{si } z \\geq 0 \\\\\n0 \\text{ (o } -1) & \\text{si } z &lt; 0\n\\end{cases}\n\\]\n\\(\\phi\\): función de activación escalón (Heaviside) · \\(\\mathbf{w}\\): pesos sinápticos · \\(b\\): sesgo (bias)",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#interpretación-geométrica",
+    "href": "unidad1/presentacion.html#interpretación-geométrica",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Interpretación geométrica",
+    "text": "Interpretación geométrica\nEl perceptrón define un hiperplano separador en \\(\\mathbb{R}^d\\): \\(\\mathbf{w}^\\top \\mathbf{x} + b = 0\\).\n\nTodo lo que quede de un lado se clasifica como \\(+1\\)\nTodo lo que quede del otro, como \\(-1\\) (o \\(0\\)).",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#algoritmo-de-aprendizaje-rosenblatt-1958",
+    "href": "unidad1/presentacion.html#algoritmo-de-aprendizaje-rosenblatt-1958",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Algoritmo de aprendizaje (Rosenblatt, 1958)",
+    "text": "Algoritmo de aprendizaje (Rosenblatt, 1958)\n\nInicializar — \\(\\mathbf{w} \\leftarrow \\mathbf{0}\\), \\(b \\leftarrow 0\\)\nPredecir — \\(\\hat{y}_i = \\text{sign}(\\mathbf{w}^\\top \\mathbf{x}_i + b)\\)\nComparar — ¿\\(\\hat{y}_i \\neq y_i\\)?\nActualizar — \\(\\mathbf{w} \\leftarrow \\mathbf{w} + \\eta \\, y_i \\, \\mathbf{x}_i\\) , \\(b \\leftarrow b + \\eta \\, y_i\\)\n\nEl algoritmo actualiza los pesos solo cuando comete un error. \\(\\eta &gt; 0\\) es la tasa de aprendizaje (learning rate).",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#teorema-de-convergencia-novikoff-1962",
+    "href": "unidad1/presentacion.html#teorema-de-convergencia-novikoff-1962",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Teorema de convergencia (Novikoff, 1962)",
+    "text": "Teorema de convergencia (Novikoff, 1962)\n\n\n\n\n\n\nWarning\n\n\nSi los datos son linealmente separables, el algoritmo converge en un número finito de pasos a una solución que clasifica correctamente todo el conjunto de entrenamiento. Si los datos no son linealmente separables, el algoritmo nunca converge y oscila indefinidamente.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#implementación-en-python",
+    "href": "unidad1/presentacion.html#implementación-en-python",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Implementación en Python",
+    "text": "Implementación en Python\n\nclass Perceptron:\n    def __init__(self, lr=0.1, n_epochs=50):\n        self.lr = lr\n        self.n_epochs = n_epochs\n\n    def fit(self, X, y):\n        n_samples, n_features = X.shape\n        self.w = np.zeros(n_features)\n        self.b = 0.0\n        self.errores_por_epoca = []\n\n        for epoca in range(self.n_epochs):\n            errores = 0\n            for xi, yi in zip(X, y):\n                y_pred = np.sign(np.dot(self.w, xi) + self.b)\n                y_pred = 1 if y_pred &gt;= 0 else -1\n                if y_pred != yi:\n                    self.w += self.lr * yi * xi\n                    self.b += self.lr * yi\n                    errores += 1\n            self.errores_por_epoca.append(errores)\n            if errores == 0:\n                break\n        return self\n\n    def predict(self, X):\n        z = X @ self.w + self.b\n        return np.where(z &gt;= 0, 1, -1)",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#ejemplo-de-entrenamiento",
+    "href": "unidad1/presentacion.html#ejemplo-de-entrenamiento",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Ejemplo de entrenamiento",
+    "text": "Ejemplo de entrenamiento\n\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import make_blobs\n\nX, y = make_blobs(n_samples=100, centers=2, cluster_std=1.0, random_state=7)\ny = np.where(y == 0, -1, 1)\n\nmodelo = Perceptron(lr=0.1, n_epochs=30).fit(X, y)",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#qué-tipo-de-problema-resuelve-un-perceptrón",
+    "href": "unidad1/presentacion.html#qué-tipo-de-problema-resuelve-un-perceptrón",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "¿Qué tipo de problema resuelve un perceptrón?",
+    "text": "¿Qué tipo de problema resuelve un perceptrón?\n\nLa forma más simple de probar un clasificador binario con dos entradas: pedirle que aprenda una función lógica booleana.\nAND, OR, NAND, NOR y, finalmente, XOR — todas toman dos entradas \\(x_1, x_2 \\in \\{0,1\\}\\) y devuelven una salida binaria.\nAl vivir en el plano (dos dimensiones), son ideales para visualizar qué significa “ser linealmente separable”.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#and-or-nand-nor-linealmente-separables",
+    "href": "unidad1/presentacion.html#and-or-nand-nor-linealmente-separables",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "AND, OR, NAND, NOR: linealmente separables",
+    "text": "AND, OR, NAND, NOR: linealmente separables\n\n\n\n\\(x_1\\)\n\\(x_2\\)\nAND\nOR\nNAND\nNOR\n\n\n\n\n0\n0\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n1\n0\n\n\n1\n0\n0\n1\n1\n0\n\n\n1\n1\n1\n1\n0\n0",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#and-or-nand-nor-linealmente-separables-1",
+    "href": "unidad1/presentacion.html#and-or-nand-nor-linealmente-separables-1",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "AND, OR, NAND, NOR: linealmente separables",
+    "text": "AND, OR, NAND, NOR: linealmente separables\n\nX_bool = np.array([[0,0],[0,1],[1,0],[1,1]])\ncompuertas = {\n    \"AND\":  np.array([-1,-1,-1, 1]),\n    \"OR\":   np.array([-1, 1, 1, 1]),\n    \"NAND\": np.array([ 1, 1, 1,-1]),\n    \"NOR\":  np.array([ 1,-1,-1,-1]),\n}\n\nfig, axes = plt.subplots(1, 4, figsize=(16, 4))\nxx_b, yy_b = np.meshgrid(np.linspace(-0.5, 1.5, 200), np.linspace(-0.5, 1.5, 200))\n\nfor ax, (nombre, y_gate) in zip(axes, compuertas.items()):\n    modelo_gate = Perceptron(lr=0.5, n_epochs=50).fit(X_bool, y_gate)\n    Z = modelo_gate.predict(np.c_[xx_b.ravel(), yy_b.ravel()]).reshape(xx_b.shape)\n    ax.contourf(xx_b, yy_b, Z, alpha=0.3, cmap=\"coolwarm\")\n    ax.scatter(X_bool[:,0], X_bool[:,1], c=y_gate, cmap=\"coolwarm\", s=150, edgecolor=\"k\")\n    convergio = \"sí\" if modelo_gate.errores_por_epoca[-1] == 0 else \"no\"\n    ax.set_title(f\"{nombre} (converge: {convergio})\", fontsize=11)\n    ax.set_xticks([0,1]); ax.set_yticks([0,1])\n\nplt.tight_layout()\nplt.show()",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#and-or-nand-nor-linealmente-separables-2",
+    "href": "unidad1/presentacion.html#and-or-nand-nor-linealmente-separables-2",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "AND, OR, NAND, NOR: linealmente separables",
+    "text": "AND, OR, NAND, NOR: linealmente separables\n\nEntrenamos el mismo algoritmo del Perceptrón sobre AND, OR, NAND y NOR: en los cuatro casos existe una recta que separa limpiamente ambas clases, y el algoritmo converge en pocas épocas — tal como predice el teorema de Novikoff.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#la-excepción-la-tabla-de-verdad-de-xor",
+    "href": "unidad1/presentacion.html#la-excepción-la-tabla-de-verdad-de-xor",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "La excepción: la tabla de verdad de XOR",
+    "text": "La excepción: la tabla de verdad de XOR\n\n\n\n\n\n\\(x_1\\)\n\\(x_2\\)\nXOR\n\n\n\n\n0\n0\n0\n\n\n0\n1\n1\n\n\n1\n0\n1\n\n\n1\n1\n0",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#por-qué-xor-es-distinto",
+    "href": "unidad1/presentacion.html#por-qué-xor-es-distinto",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "¿Por qué XOR es distinto?",
+    "text": "¿Por qué XOR es distinto?\n\nEn XOR, las dos clases están entrelazadas geométricamente: \\((0,0)\\) y \\((1,1)\\) pertenecen a una clase, mientras que \\((0,1)\\) y \\((1,0)\\) —sus “vecinos” más cercanos en el plano— pertenecen a la otra.\nNo existe ninguna recta capaz de dejar a \\((0,0)\\) y \\((1,1)\\) de un lado y a \\((0,1)\\) y \\((1,0)\\) del otro: cualquier línea que separe correctamente dos de los cuatro puntos deja mal clasificado a algún tercero.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#el-límite-fundamental",
+    "href": "unidad1/presentacion.html#el-límite-fundamental",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "El límite fundamental",
+    "text": "El límite fundamental\n\n\n\n\n\n\nEl perceptrón simple nunca converge en XOR\n\n\nA diferencia de AND/OR/NAND/NOR, el número de errores nunca llega a cero: el algoritmo sigue “empujando” la recta sin encontrar jamás una posición que satisfaga a los cuatro puntos simultáneamente. Este resultado, señalado por Minsky y Papert en 1969, causó el primer “invierno de la IA”.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#la-solución-combinar-perceptrones",
+    "href": "unidad1/presentacion.html#la-solución-combinar-perceptrones",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "La solución: combinar perceptrones",
+    "text": "La solución: combinar perceptrones\n\\[\n\\text{XOR}(x_1, x_2) = \\text{OR}(x_1, x_2) \\;\\land\\; \\text{NAND}(x_1, x_2)\n\\]\n\\[\nh_1 = \\text{OR}(x_1, x_2), \\qquad h_2 = \\text{NAND}(x_1, x_2), \\qquad \\hat{y} = \\text{AND}(h_1, h_2)\n\\]\n\n\n\n\\(x_1\\)\n\\(x_2\\)\nOR\nNAND\nOR \\(\\land\\) NAND\n\n\n\n\n0\n0\n0\n1\n0\n\n\n0\n1\n1\n1\n1\n\n\n1\n0\n1\n1\n1\n\n\n1\n1\n1\n0\n0",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#el-perceptrón-multicapa-en-su-forma-más-chica",
+    "href": "unidad1/presentacion.html#el-perceptrón-multicapa-en-su-forma-más-chica",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "El Perceptrón Multicapa, en su forma más chica",
+    "text": "El Perceptrón Multicapa, en su forma más chica\nEsta arquitectura de tres perceptrones —dos en una “capa oculta” y uno de salida— es, ni más ni menos, el Perceptrón Multicapa (MLP) en su forma más pequeña posible.\nLa solución existía conceptualmente desde los años 60, pero faltaba un ingrediente clave: un algoritmo que aprendiera automáticamente los pesos de cada perceptrón. Ese ingrediente es el backpropagation (1986), que retomaremos en la próxima clase.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#perceptrón-vs.-regresión-logística",
+    "href": "unidad1/presentacion.html#perceptrón-vs.-regresión-logística",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Perceptrón vs. Regresión Logística",
+    "text": "Perceptrón vs. Regresión Logística\n\n\n\n\n\n\n\n\nAspecto\nPerceptrón\nRegresión Logística\n\n\n\n\nActivación\nEscalón (Heaviside)\nSigmoide\n\n\nSalida\nBinaria dura \\(\\{-1,+1\\}\\)\nProbabilidad continua \\([0,1]\\)\n\n\nFunción de pérdida\nImplícita (regla de error)\nEntropía cruzada (log-loss)\n\n\nOptimización\nRegla de actualización simple\nDescenso por gradiente\n\n\nFrontera de decisión\nLineal\nLineal\n\n\nInterpretación probabilística\nNo\nSí",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#lo-que-viene-en-la-próxima-clase",
+    "href": "unidad1/presentacion.html#lo-que-viene-en-la-próxima-clase",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "Lo que viene en la próxima clase",
+    "text": "Lo que viene en la próxima clase\n\nEl ciclo de entrenamiento: funciones de pérdida, optimizadores (SGD, Adam) y learning rate.\nBackpropagation: cómo se entrenan automáticamente los pesos de un Perceptrón Multicapa.\nArquitecturas especializadas: CNN, U-Net, ViT — y su aplicación directa a imágenes médicas.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/presentacion.html#preguntas",
+    "href": "unidad1/presentacion.html#preguntas",
+    "title": "De los modelos clásicos al algoritmo del Perceptrón",
+    "section": "¿Preguntas?",
+    "text": "¿Preguntas?\nGracias por su atención",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html",
+    "href": "unidad1/notas.html",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "",
+    "text": "Esta primera unidad tiene como objetivo tender un puente entre los métodos estadísticos y computacionales clásicos, ampliamente utilizados en Física Médica —dosimetría, radiodiagnóstico, radioterapia y medicina nuclear— y el paradigma del Deep Learning.\nLa pregunta que guía la unidad es:\n\n¿Por qué y cuándo conviene reemplazar —o complementar— un modelo clásico por uno basado en redes neuronales?\n\nLa respuesta no es que los modelos de Deep Learning sean necesariamente “mejores”. Un modelo más complejo puede ser innecesario si un modelo clásico resuelve adecuadamente el problema. La ventaja de las redes neuronales aparece especialmente cuando necesitamos aprender relaciones complejas a partir de datos de alta dimensionalidad y cuando diseñar manualmente una representación adecuada resulta difícil.\nPor eso, antes de estudiar redes profundas, necesitamos entender qué pueden hacer los modelos clásicos, cuáles son sus supuestos y dónde aparecen sus limitaciones.\n\n\n\nAl finalizar esta unidad se espera que el estudiante pueda:\n\nDistinguir los principales paradigmas del aprendizaje automático: supervisado, no supervisado y por refuerzo.\nComprender la diferencia entre riesgo esperado y riesgo empírico.\nExplicar los conceptos de generalización, sobreajuste y dataset shift.\nReconocer los principales modelos clásicos de aprendizaje automático y sus supuestos.\nComprender matemáticamente la regresión lineal y logística.\nInterpretar geométricamente un clasificador lineal.\nFormalizar matemáticamente el Perceptrón.\nImplementar el algoritmo de aprendizaje del Perceptrón.\nComprender por qué una única neurona no puede resolver problemas no linealmente separables como XOR.\nEntender cómo la composición de múltiples neuronas conduce naturalmente al concepto de red neuronal.\nComprender por qué el Deep Learning permite aprender representaciones complejas de los datos.\nReconocer algunos de los principales hitos históricos que condujeron desde las primeras redes neuronales hasta los modelos actuales.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#presentación-de-la-unidad",
+    "href": "unidad1/notas.html#presentación-de-la-unidad",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "",
+    "text": "Esta primera unidad tiene como objetivo tender un puente entre los métodos estadísticos y computacionales clásicos, ampliamente utilizados en Física Médica —dosimetría, radiodiagnóstico, radioterapia y medicina nuclear— y el paradigma del Deep Learning.\nLa pregunta que guía la unidad es:\n\n¿Por qué y cuándo conviene reemplazar —o complementar— un modelo clásico por uno basado en redes neuronales?\n\nLa respuesta no es que los modelos de Deep Learning sean necesariamente “mejores”. Un modelo más complejo puede ser innecesario si un modelo clásico resuelve adecuadamente el problema. La ventaja de las redes neuronales aparece especialmente cuando necesitamos aprender relaciones complejas a partir de datos de alta dimensionalidad y cuando diseñar manualmente una representación adecuada resulta difícil.\nPor eso, antes de estudiar redes profundas, necesitamos entender qué pueden hacer los modelos clásicos, cuáles son sus supuestos y dónde aparecen sus limitaciones.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#objetivos-de-aprendizaje",
+    "href": "unidad1/notas.html#objetivos-de-aprendizaje",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "",
+    "text": "Al finalizar esta unidad se espera que el estudiante pueda:\n\nDistinguir los principales paradigmas del aprendizaje automático: supervisado, no supervisado y por refuerzo.\nComprender la diferencia entre riesgo esperado y riesgo empírico.\nExplicar los conceptos de generalización, sobreajuste y dataset shift.\nReconocer los principales modelos clásicos de aprendizaje automático y sus supuestos.\nComprender matemáticamente la regresión lineal y logística.\nInterpretar geométricamente un clasificador lineal.\nFormalizar matemáticamente el Perceptrón.\nImplementar el algoritmo de aprendizaje del Perceptrón.\nComprender por qué una única neurona no puede resolver problemas no linealmente separables como XOR.\nEntender cómo la composición de múltiples neuronas conduce naturalmente al concepto de red neuronal.\nComprender por qué el Deep Learning permite aprender representaciones complejas de los datos.\nReconocer algunos de los principales hitos históricos que condujeron desde las primeras redes neuronales hasta los modelos actuales.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#aplicaciones",
+    "href": "unidad1/notas.html#aplicaciones",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "5.1 Aplicaciones",
+    "text": "5.1 Aplicaciones\nEn Física Médica, el aprendizaje no supervisado puede utilizarse para:\n\nexploración de datos;\nsegmentación;\nreducción de dimensionalidad;\ndetección de anomalías;\nidentificación de subgrupos de pacientes;\nanálisis exploratorio de imágenes;\naprendizaje de representaciones.\n\nEncontrar una estructura matemática en los datos no implica necesariamente encontrar una estructura con significado clínico.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#generalización-y-sobreajuste",
+    "href": "unidad1/notas.html#generalización-y-sobreajuste",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "8.1 Generalización y sobreajuste",
+    "text": "8.1 Generalización y sobreajuste\nUn modelo puede obtener un error extremadamente bajo sobre los datos de entrenamiento sin necesariamente generalizar bien a nuevos datos.\nEsto es el sobreajuste (overfitting).\nConceptualmente:\n\\[\n\\text{bajo error de entrenamiento}\n\\not\\Rightarrow\n\\text{bajo error en datos nuevos}.\n\\]\nUn modelo puede aprender patrones genuinos de la población, pero también puede aprender características particulares de la muestra de entrenamiento que no se repiten posteriormente.\n\n\n\n\n\n\nImportantIdea central\n\n\n\nEl objetivo del aprendizaje automático no es memorizar los datos disponibles.\nEl objetivo es aprender regularidades que permitan realizar buenas predicciones sobre datos que todavía no hemos visto.\n\n\nEsto explica por qué necesitamos separar los datos utilizados para ajustar el modelo de aquellos utilizados para evaluar su capacidad de generalización.\nUna división habitual es:\n\ntraining set: utilizado para ajustar los parámetros;\nvalidation set: utilizado para seleccionar modelos e hiperparámetros;\ntest set: reservado para una evaluación final.\n\nEn aplicaciones médicas, esta separación debe realizarse cuidadosamente para evitar data leakage.\nPor ejemplo, si tenemos múltiples imágenes del mismo paciente, no deberíamos distribuir aleatoriamente esas imágenes entre entrenamiento y test. De lo contrario, el modelo podría encontrarse durante el test con información muy relacionada con algo que ya vio durante el entrenamiento.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#generalización-en-física-médica",
+    "href": "unidad1/notas.html#generalización-en-física-médica",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "8.2 Generalización en Física Médica",
+    "text": "8.2 Generalización en Física Médica\nEn Física Médica, la generalización tiene una dificultad adicional.\nUn modelo puede funcionar correctamente sobre nuevos pacientes del mismo centro y, sin embargo, degradar su desempeño cuando cambia:\n\nel hospital;\nel fabricante del equipo;\nel modelo del tomógrafo;\nel protocolo de adquisición;\nla población de pacientes;\nel tratamiento;\nla reconstrucción de imágenes;\no las características demográficas.\n\nEste problema se conoce genéricamente como dataset shift o domain shift.\nPor lo tanto:\n\nGeneralizar no significa solamente funcionar sobre una imagen que el modelo nunca vio. También significa funcionar cuando cambian las condiciones bajo las cuales se generan los datos.\n\nEsta cuestión será especialmente importante al estudiar Deep Learning aplicado a imágenes médicas.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#regresión-lineal",
+    "href": "unidad1/notas.html#regresión-lineal",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "9.1 Regresión lineal",
+    "text": "9.1 Regresión lineal\nSe utiliza cuando la variable objetivo \\(y\\) es continua.\nEl modelo predice directamente:\n\\[\n\\hat y\n=\n\\mathbf{w}^{\\top}\\mathbf{x}+b.\n\\]\nPor ejemplo, podríamos utilizar características relacionadas con un haz de radiación para predecir una magnitud dosimétrica continua.\nLos parámetros \\(\\mathbf{w}\\) y \\(b\\) pueden ajustarse minimizando el error cuadrático medio (Mean Squared Error, MSE):\n\\[\n\\mathcal{L}_{\\mathrm{MSE}}\n=\n\\frac{1}{N}\n\\sum_{i=1}^{N}\n(y_i-\\hat y_i)^2.\n\\]\nEl modelo busca una combinación de las características que produzca predicciones lo más cercanas posible a los valores observados.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#regresión-logística",
+    "href": "unidad1/notas.html#regresión-logística",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "9.2 Regresión logística",
+    "text": "9.2 Regresión logística\nSe utiliza para clasificación. En el caso binario queremos distinguir, por ejemplo, entre una lesión benigna y una maligna.\nPartimos de la misma combinación lineal:\n\\[\nz=\\mathbf{w}^{\\top}\\mathbf{x}+b\n\\]\npero aplicamos la función sigmoide:\n\\[\n\\hat p\n=\n\\sigma(z)\n=\n\\frac{1}{1+e^{-z}}.\n\\]\nLa sigmoide transforma cualquier número real en un valor entre 0 y 1.\nPodemos interpretar:\n\\[\n\\hat p=P(y=1|\\mathbf{x})\n\\]\ncomo la probabilidad estimada de pertenecer a la clase positiva.\nPara entrenar el modelo utilizamos habitualmente la entropía cruzada binaria (Binary Cross-Entropy, BCE):\n\\[\n\\mathcal{L}_{\\mathrm{BCE}}\n=\n-\\frac{1}{N}\n\\sum_{i=1}^{N}\n\\left[\ny_i\\log(\\hat p_i)\n+\n(1-y_i)\\log(1-\\hat p_i)\n\\right].\n\\]\nLa clasificación final puede obtenerse aplicando un umbral:\n\\[\n\\hat y=\n\\begin{cases}\n1 & \\text{si } \\hat p\\geq 0.5,\\\\\n0 & \\text{si } \\hat p&lt;0.5.\n\\end{cases}\n\\]\nEl valor 0.5 es una elección habitual, pero no necesariamente óptima en aplicaciones clínicas. El umbral puede modificarse dependiendo del costo relativo de falsos positivos y falsos negativos.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#el-puente-hacia-las-redes-neuronales",
+    "href": "unidad1/notas.html#el-puente-hacia-las-redes-neuronales",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "9.3 El puente hacia las redes neuronales",
+    "text": "9.3 El puente hacia las redes neuronales\nLa regresión logística contiene una idea que volveremos a encontrar en las redes neuronales.\nPrimero calculamos:\n\\[\nz=\\mathbf{w}^{\\top}\\mathbf{x}+b,\n\\]\ny luego aplicamos una función de activación:\n\\[\n\\hat p=\\sigma(z).\n\\]\nPodemos pensar esta operación como una unidad neuronal simple.\nLas redes neuronales parten de esta idea y la extienden utilizando muchas unidades organizadas en capas. Al combinar sucesivamente estas operaciones, la red puede representar relaciones cada vez más complejas entre las variables de entrada y la salida.\nEste punto será central cuando estudiemos el Perceptrón.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#ejemplo-práctico-comparación-de-fronteras-de-decisión",
+    "href": "unidad1/notas.html#ejemplo-práctico-comparación-de-fronteras-de-decisión",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "10.1 Ejemplo práctico: comparación de fronteras de decisión",
+    "text": "10.1 Ejemplo práctico: comparación de fronteras de decisión\n\n\nCode\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import make_moons\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.svm import SVC\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.neighbors import KNeighborsClassifier\n\nnp.random.seed(42)\nX, y = make_moons(n_samples=300, noise=0.25, random_state=42)\n\nmodelos = {\n    \"Regresión Logística\": LogisticRegression(),\n    \"SVM (kernel RBF)\": SVC(kernel=\"rbf\", gamma=2),\n    \"Árbol de decisión\": DecisionTreeClassifier(max_depth=4),\n    \"k-NN (k=5)\": KNeighborsClassifier(n_neighbors=5),\n}\n\nxx, yy = np.meshgrid(np.linspace(X[:,0].min()-0.5, X[:,0].max()+0.5, 300),\n                      np.linspace(X[:,1].min()-0.5, X[:,1].max()+0.5, 300))\n\nfig, axes = plt.subplots(1, 4, figsize=(18, 4.2))\n\nfor ax, (nombre, modelo) in zip(axes, modelos.items()):\n    modelo.fit(X, y)\n    Z = modelo.predict(np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape)\n    ax.contourf(xx, yy, Z, alpha=0.3, cmap=\"coolwarm\")\n    ax.scatter(X[:,0], X[:,1], c=y, cmap=\"coolwarm\", edgecolor=\"k\", s=20)\n    ax.set_title(nombre, fontsize=11)\n    ax.set_xticks([]); ax.set_yticks([])\n\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 1: Fronteras de decisión de modelos clásicos sobre un dataset sintético (ej. dos features radiómicas)\n\n\n\n\n\nSe puede observar cómo cada modelo impone un sesgo inductivo distinto sobre la forma de la frontera de decisión: lineal (regresión logística), suave y global (SVM-RBF), o local y fragmentada (árbol, k-NN).",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#qué-es-el-deep-learning",
+    "href": "unidad1/notas.html#qué-es-el-deep-learning",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "11.1 ¿Qué es el Deep Learning?",
+    "text": "11.1 ¿Qué es el Deep Learning?\nEl Deep Learning (aprendizaje profundo) es una subfamilia del aprendizaje automático basada en redes neuronales artificiales con múltiples capas, capaces de aprender representaciones jerárquicas de los datos directamente desde datos crudos (píxeles, señales), sin necesidad de ingeniería manual de features.\n\n\n\n\n\n\nFigure 2: La inteligencia artificial, el aprendizaje automático y el deep learning\n\n\n\nMatemáticamente, un modelo profundo se puede expresar como una composición de funciones paramétricas:\n\\[\nf_\\theta(\\mathbf{x}) = f^{(L)} \\circ f^{(L-1)} \\circ \\cdots \\circ f^{(1)}(\\mathbf{x})\n\\]\ndonde cada \\(f^{(l)}\\) es una transformación (capa) con parámetros propios \\(\\theta^{(l)}\\).\nLa diferencia central respecto de los modelos clásicos es que las representaciones intermedias se aprenden automáticamente a partir de los datos, en lugar de ser diseñadas a mano por un experto (lo que en machine learning clásico se llama feature engineering).\n\n\n\n\n\n\nFigure 3: Machine Learning vs. Deep Learning",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#línea-de-tiempo-histórica",
+    "href": "unidad1/notas.html#línea-de-tiempo-histórica",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "11.2 Línea de tiempo histórica",
+    "text": "11.2 Línea de tiempo histórica\n\n\n\n\n\n\nFigure 4: Hitos históricos de la IA\n\n\n\nLa historia del Deep Learning no fue una línea recta: tuvo dos períodos de estancamiento —los llamados “inviernos de la IA”— separados por avances puntuales, y un resurgimiento sostenido a partir de 2012 que se extiende hasta hoy. Repasamos primero esos inviernos y luego, con más detalle, la década que va de AlexNet (2012) a la actualidad.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#los-dos-inviernos-de-la-ia-neuronal",
+    "href": "unidad1/notas.html#los-dos-inviernos-de-la-ia-neuronal",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "11.3 Los “dos inviernos” de la IA neuronal",
+    "text": "11.3 Los “dos inviernos” de la IA neuronal\n\nPrimer invierno (post-1969): Minsky y Papert demuestran que el perceptrón simple no puede resolver problemas no linealmente separables (el caso paradigmático: la función XOR, que analizaremos en detalle más adelante). Esto reduce drásticamente el financiamiento a la investigación en redes neuronales durante casi dos décadas.\nSegundo invierno (fines de los 90s-2000s): a pesar del backpropagation (1986), la falta de datos masivos y de poder de cómputo, sumada al auge de las SVMs y los métodos de ensemble, relega nuevamente a las redes neuronales.\nEl resurgimiento (2006-2012): la disponibilidad de GPUs, de grandes bases de datos etiquetadas (ImageNet) y de mejoras algorítmicas (ReLU, dropout, mejor inicialización) permite entrenar redes verdaderamente profundas. AlexNet (2012) es el punto de inflexión que marca el inicio de la era moderna del Deep Learning.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#imagenet-y-el-auge-de-las-cnns",
+    "href": "unidad1/notas.html#imagenet-y-el-auge-de-las-cnns",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "11.4 ImageNet y el auge de las CNNs",
+    "text": "11.4 ImageNet y el auge de las CNNs\nEl ImageNet Large Scale Visual Recognition Challenge (ILSVRC) fue una competencia anual iniciada en 2010 para evaluar y comparar algoritmos de reconocimiento visual a gran escala, sobre un subconjunto de ImageNet de aproximadamente 1.000 clases. Se convirtió en el benchmark de referencia para medir el progreso en clasificación de imágenes, y su evolución durante la década de 2010 resume, en una sola tabla, la revolución de las CNNs:\n\n2010: el modelo ganador, basado en SVM y características tradicionales (HoG, LBP), obtuvo 71,8% de top-5 accuracy (28,2% de error).\n2011: otro modelo basado en SVM con Fisher Vectors alcanzó 74,2% de accuracy (25,0% de error).\n2012: AlexNet, una CNN profunda, produjo un salto abrupto: 84,7% de accuracy (≈15,3% de error) — casi 10 puntos de mejora respecto del año anterior.\n2013: las CNNs se consolidan como la estrategia dominante; los modelos siguientes superan el 90% de accuracy.\n2014: arquitecturas como GoogLeNet y VGGNet llevan el desempeño a 93-94% de accuracy.\n2015: ResNet alcanza 96,4% de accuracy (≈3,6% de error), superando por primera vez el desempeño humano estimado en esta tarea.\n2016: CUImage, un ensemble de seis redes, roza el 3% de error.\n2017: SENet alcanza el mejor resultado de la competencia: 97,75% de accuracy (2,25% de error). Los organizadores consideran el benchmark esencialmente resuelto y anuncian el final de la competencia.\n\nEn síntesis: entre 2010 y 2017 el error top-5 cayó de 28,2% a 2,25%. El salto más importante ocurrió en 2012 con AlexNet, y marca el comienzo de la expansión acelerada del deep learning en visión por computadora — el mismo AlexNet que abre la línea de tiempo que sigue a continuación.\n\n\n\nMetrica top-5 accuracy",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#los-últimos-años-modelos-fundacionales-y-la-ia-generativa",
+    "href": "unidad1/notas.html#los-últimos-años-modelos-fundacionales-y-la-ia-generativa",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "11.5 Los últimos años: modelos fundacionales y la IA generativa",
+    "text": "11.5 Los últimos años: modelos fundacionales y la IA generativa\nDesde AlexNet en 2012, el ritmo de avances no hizo más que acelerarse. A continuación repasamos, año a año, los hitos que llevaron del “renacimiento” del deep learning en visión por computadora a los modelos fundacionales y agénticos actuales, con aplicaciones clínicas cada vez más concretas en diagnóstico asistido, segmentación automática y predicción de resultados.\n\n\n\n\n\n\nFigure 5: Hitos recientes de la IA\n\n\n\n\n11.5.1 2013 — AlexNet y los Autoencoders Variacionales\n2013 es considerado el año de “mayoría de edad” del deep learning, consolidando el impacto de AlexNet un año antes. En paralelo surgen los VAEs (Autoencoders Variacionales), modelos generativos que aprenden una representación comprimida (espacio latente) de los datos para luego generar nuevas muestras, abriendo camino a aplicaciones en arte, diseño y videojuegos.\n\n\n11.5.2 2014 — Redes Generativas Adversarias (GANs)\nIan Goodfellow presenta las GANs: dos redes —generadora y discriminadora— entrenadas en un esquema competitivo, donde una intenta crear datos sintéticos convincentes y la otra intenta detectarlos. Se convirtieron rápidamente en una herramienta central para generar imágenes, video, música y arte, e impulsaron el aprendizaje no supervisado —hasta entonces un área poco desarrollada— al demostrar que era posible producir datos de alta calidad sin depender de etiquetas.\n\n\n11.5.3 2015 — ResNets y avances en NLP\nKaiming He introduce las ResNets, redes con conexiones residuales que “saltean” capas para resolver el desvanecimiento del gradiente, permitiendo entrenar redes mucho más profundas de lo que se creía posible (visto en la tabla de ImageNet más arriba). En paralelo, las RNNs y LSTMs —existentes desde los años 90— empiezan a rendir gracias a más datos, más cómputo y mejores mecanismos de gating, mejorando traducción automática, generación de texto y análisis de sentimiento: las bases de los LLMs actuales.\n\n\n11.5.4 2016 — AlphaGo\nAlphaGo, de DeepMind, derrota al campeón mundial de Go Lee Sedol, casi dos décadas después de la caída de Kasparov ante Deep Blue en ajedrez. Combinando aprendizaje por refuerzo profundo con búsqueda Monte Carlo Tree Search, el sistema evaluó millones de posiciones para tomar decisiones que superaron la intuición humana en un juego considerado, hasta entonces, demasiado complejo para las máquinas.\n\n\n11.5.5 2017 — Arquitectura Transformer\nEl año más determinante de la década. Vaswani y colegas publican “Attention Is All You Need”, introduciendo la arquitectura Transformer, basada en auto-atención: en vez de procesar palabras en orden fijo, examina toda la secuencia en simultáneo, asignando puntajes de relevancia entre palabras. El diseño encoder-decoder resuelve el problema de las dependencias de largo alcance que limitaba a las RNNs, y se convierte en el componente base de todo el desarrollo posterior en NLP y, más adelante, en visión (Unidad siguiente).\n\n\n11.5.6 2018 — GPT-1, BERT y Graph Neural Networks\nOpenAI lanza GPT-1, demostrando la efectividad de pre-entrenar de forma no supervisada y luego hacer fine-tuning en tareas específicas. Meses después, Google presenta BERT, que representa el contexto de cada palabra en ambas direcciones simultáneamente (no solo hacia adelante, como GPT-1), superando el estado del arte en múltiples benchmarks de NLP. Ese mismo año, las Graph Neural Networks (GNNs) ganan tracción aplicando message-passing sobre datos en forma de grafo, con avances en redes sociales, sistemas de recomendación y descubrimiento de fármacos.\n\n\n11.5.7 2019 — GPT-2 y modelos generativos mejorados\nGPT-2 alcanza desempeño de estado del arte en múltiples tareas de NLP y genera texto notablemente coherente, anticipando lo que vendría en los años siguientes. En generación de imágenes, BigGAN (DeepMind) y StyleGAN (NVIDIA) elevan drásticamente la calidad y el control sobre las imágenes sintéticas.\n\n\n11.5.8 2020 — GPT-3 y aprendizaje auto-supervisado\nGPT-3 representa un salto de escala mayúsculo: de 117 millones de parámetros (GPT-1) a 1.500 millones (GPT-2) y 175.000 millones en GPT-3. Esto le permite generar texto coherente en una enorme variedad de tareas —completado, preguntas y respuestas, escritura creativa— sin fine-tuning específico, poniendo de relieve el valor del aprendizaje auto-supervisado: entrenar sobre grandes volúmenes de datos no etiquetados logra una comprensión amplia del lenguaje de forma mucho más económica que el entrenamiento supervisado tradicional.\n\n\n11.5.9 2021 — AlphaFold 2, DALL·E y GitHub Copilot\nAlphaFold 2 (DeepMind) resuelve el problema del plegado de proteínas extendiendo la arquitectura Transformer, prediciendo la estructura 3D de una proteína a partir de su secuencia de aminoácidos — con enorme potencial para el descubrimiento de fármacos y la biología estructural. DALL·E (OpenAI) combina modelos de lenguaje estilo GPT con generación de imágenes a partir de texto, mientras que GitHub Copilot (con el modelo Codex) lleva la asistencia de IA a la programación cotidiana.\n\n\n11.5.10 2022 — ChatGPT y Stable Diffusion\nChatGPT (OpenAI, noviembre) lleva los LLMs al público masivo: conversación fluida, explicaciones, código, distintos estilos de escritura, todo desde una interfaz simple. Su adopción cruza rápidamente del ámbito técnico a prácticamente todas las profesiones. En paralelo, Stable Diffusion (Stability AI) genera imágenes fotorrealistas desde texto operando en un espacio latente de menor dimensión. Juntos, disparan una ola masiva de inversión en IA generativa multimodal.\n\n\n11.5.11 2023 — LLMs y bots por todas partes\nCadencia vertiginosa de lanzamientos: LLaMA (Meta, febrero) supera a GPT-3 con muchos menos parámetros; GPT-4 (OpenAI, marzo) llega multimodal y con capacidades muy superiores; Alpaca (Stanford) y Bard/PaLM-2 (Google) completan un panorama de competencia intensa entre laboratorios, mientras la adopción empresarial se acelera (Duolingo Max, Slack GPT, Shopify, Bing con GPT-4).\n\n\n11.5.12 2024 — La era del razonamiento y la multimodalidad nativa\nOpenAI lanza o1 (septiembre), el primer modelo de “razonamiento”: entrenado con RL a gran escala para pensar paso a paso antes de responder, con saltos notables en matemática y programación. GPT-4o aporta multimodalidad nativa (texto, imagen y audio en un solo modelo), y OpenAI muestra Sora, capaz de generar video fotorrealista desde texto. Google presenta Gemini y Meta libera Llama 3. En el plano regulatorio, la Unión Europea promulga la AI Act, primer marco normativo integral del mundo para IA.\n\n\n11.5.13 2025 — Razonamiento abierto y el ascenso de los agentes\nDeepSeek-R1 (enero) iguala el desempeño de o1 con una fracción del costo de entrenamiento, consolidando a China como competidor de primer nivel en modelos abiertos. OpenAI responde con o3, y los laboratorios grandes (Google, Anthropic, Meta, Alibaba) lanzan sus propias familias de modelos de razonamiento. El foco se desplaza de “modelos que responden” a agentes que actúan: Claude 4/4.5 y herramientas como Claude Code o Cursor permiten delegar tareas de programación completas. Google presenta Gemini 3, primer modelo en superar 1500 Elo en LMArena.\n\n\n11.5.14 2026 — El ascenso de China\nChina se posiciona como líder global en investigación y desarrollo de IA, con avances importantes en modelos de lenguaje, visión por computadora y sistemas de razonamiento. La inversión estatal y el ecosistema empresarial local aceleran la innovación, consolidando al país como un actor central en la evolución de la inteligencia artificial. Kimi K3, un modelo de pesos abiertos desarrollado por Moonshot AI con cerca de 3 billones de parámetros (arquitectura mixture-of-experts), se posiciona al mismo nivel que GPT-5 o Gemini 3 en varios benchmarks — un nuevo capítulo en la democratización de la inteligencia artificial.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#por-qué-profundo-y-por-qué-ahora-es-relevante-en-física-médica",
+    "href": "unidad1/notas.html#por-qué-profundo-y-por-qué-ahora-es-relevante-en-física-médica",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "11.6 ¿Por qué “profundo” y por qué ahora es relevante en Física Médica?",
+    "text": "11.6 ¿Por qué “profundo” y por qué ahora es relevante en Física Médica?\n\nDatos: las imágenes médicas (CT, RM, PET, mamografía) son datos de alta dimensionalidad donde el Deep Learning —en particular las CNNs— sobresale.\nCómputo: las GPUs/TPUs permiten entrenar modelos con millones de parámetros en tiempos razonables.\nRepresentaciones jerárquicas: en imágenes médicas, las capas iniciales aprenden bordes y texturas; las capas intermedias, estructuras anatómicas; las capas profundas, patrones patológicos complejos (una analogía directa con la vía visual biológica).\n\n\n\n\n\n\n\nTipAplicaciones actuales en Física Médica\n\n\n\n\nSegmentación automática de órganos en riesgo (OARs) y tumores\nReducción de dosis en CT mediante denoising con redes profundas\nReconstrucción de imágenes PET/RM aceleradas\nDetección asistida de nódulos, lesiones y contornos tumorales\nControl de calidad automatizado y predicción de outcomes clínicos",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#la-neurona-biológica-como-inspiración",
+    "href": "unidad1/notas.html#la-neurona-biológica-como-inspiración",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "12.1 La neurona biológica como inspiración",
+    "text": "12.1 La neurona biológica como inspiración\nMcCulloch y Pitts (1943) propusieron un modelo matemático simplificado de la neurona: recibe señales de entrada, las pondera y produce una salida binaria si supera un umbral. Con ese modelo mostraron que una red de neuronas simples podía implementar cualquier función lógica booleana. Rosenblatt (1958) retomó esa idea y la convirtió en un algoritmo de aprendizaje capaz de ajustar los pesos automáticamente a partir de ejemplos: el Perceptrón.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#definición-formal",
+    "href": "unidad1/notas.html#definición-formal",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "12.2 Definición formal",
+    "text": "12.2 Definición formal\nDado un vector de entrada \\(\\mathbf{x} = (x_1, x_2, \\dots, x_d) \\in \\mathbb{R}^d\\), el perceptrón calcula:\n\\[\nz = \\sum_{j=1}^{d} w_j x_j + b = \\mathbf{w}^\\top \\mathbf{x} + b\n\\]\n\\[\n\\hat{y} = \\phi(z) =\n\\begin{cases}\n1 & \\text{si } z \\geq 0 \\\\\n0 \\text{ (ó } -1) & \\text{si } z &lt; 0\n\\end{cases}\n\\]\ndonde \\(\\phi\\) es la función de activación escalón (Heaviside), \\(\\mathbf{w}\\) es el vector de pesos sinápticos y \\(b\\) el sesgo (bias).\nGeométricamente, el perceptrón define un hiperplano separador en \\(\\mathbb{R}^d\\): \\(\\mathbf{w}^\\top \\mathbf{x} + b = 0\\). Todo lo que quede de un lado del hiperplano se clasifica como \\(+1\\); todo lo que quede del otro lado, como \\(-1\\) (o \\(0\\)). Esta lectura geométrica es la clave para entender, en la próxima sección, qué puede y qué no puede aprender un único perceptrón.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#el-algoritmo-de-aprendizaje-del-perceptrón",
+    "href": "unidad1/notas.html#el-algoritmo-de-aprendizaje-del-perceptrón",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "12.3 El algoritmo de aprendizaje del Perceptrón",
+    "text": "12.3 El algoritmo de aprendizaje del Perceptrón\nDado un conjunto de entrenamiento \\(\\{(\\mathbf{x}_i, y_i)\\}_{i=1}^N\\) con \\(y_i \\in \\{-1, +1\\}\\), el algoritmo actualiza los pesos solo cuando comete un error:\nAlgoritmo (Rosenblatt, 1958):\n\nInicializar \\(\\mathbf{w} \\leftarrow \\mathbf{0}\\), \\(b \\leftarrow 0\\)\nRepetir hasta convergencia (o número máximo de épocas): Para cada \\((\\mathbf{x}_i, y_i)\\):\n\nCalcular \\(\\hat{y}_i = \\text{sign}(\\mathbf{w}^\\top \\mathbf{x}_i + b)\\)\nSi \\(\\hat{y}_i \\neq y_i\\): \\[\n\\mathbf{w} \\leftarrow \\mathbf{w} + \\eta \\, y_i \\, \\mathbf{x}_i, \\qquad b \\leftarrow b + \\eta \\, y_i\n\\]\n\n\ndonde \\(\\eta &gt; 0\\) es la tasa de aprendizaje (learning rate).\n\n\n\n\n\n\nImportantTeorema de convergencia del Perceptrón\n\n\n\nSi los datos son linealmente separables, el algoritmo del perceptrón converge en un número finito de pasos a una solución que clasifica correctamente todo el conjunto de entrenamiento (Novikoff, 1962). Si los datos no son linealmente separables, el algoritmo nunca converge y oscila indefinidamente. La siguiente sección muestra ambos casos en la práctica.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#implementación-desde-cero",
+    "href": "unidad1/notas.html#implementación-desde-cero",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "12.4 Implementación desde cero",
+    "text": "12.4 Implementación desde cero\n\n\nCode\nimport numpy as np\n\nclass Perceptron:\n    def __init__(self, lr=0.1, n_epochs=50):\n        self.lr = lr\n        self.n_epochs = n_epochs\n\n    def fit(self, X, y):\n        n_samples, n_features = X.shape\n        self.w = np.zeros(n_features)\n        self.b = 0.0\n        self.errores_por_epoca = []\n\n        for epoca in range(self.n_epochs):\n            errores = 0\n            for xi, yi in zip(X, y):\n                y_pred = np.sign(np.dot(self.w, xi) + self.b)\n                y_pred = 1 if y_pred &gt;= 0 else -1\n                if y_pred != yi:\n                    self.w += self.lr * yi * xi\n                    self.b += self.lr * yi\n                    errores += 1\n            self.errores_por_epoca.append(errores)\n            if errores == 0:\n                break\n        return self\n\n    def predict(self, X):\n        z = X @ self.w + self.b\n        return np.where(z &gt;= 0, 1, -1)",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#ejemplo-separación-de-dos-clases-sintéticas-linealmente-separables",
+    "href": "unidad1/notas.html#ejemplo-separación-de-dos-clases-sintéticas-linealmente-separables",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "12.5 Ejemplo: separación de dos clases sintéticas (linealmente separables)",
+    "text": "12.5 Ejemplo: separación de dos clases sintéticas (linealmente separables)\n\n\nCode\nimport matplotlib.pyplot as plt\nfrom sklearn.datasets import make_blobs\n\nX, y = make_blobs(n_samples=100, centers=2, cluster_std=1.0, random_state=7)\ny = np.where(y == 0, -1, 1)\n\nmodelo = Perceptron(lr=0.1, n_epochs=30).fit(X, y)\n\nfig, axes = plt.subplots(1, 2, figsize=(11, 4.2))\n\n# Frontera de decisión\nxx, yy = np.meshgrid(np.linspace(X[:,0].min()-1, X[:,0].max()+1, 200),\n                      np.linspace(X[:,1].min()-1, X[:,1].max()+1, 200))\nZ = modelo.predict(np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape)\naxes[0].contourf(xx, yy, Z, alpha=0.3, cmap=\"coolwarm\")\naxes[0].scatter(X[:,0], X[:,1], c=y, cmap=\"coolwarm\", edgecolor=\"k\")\naxes[0].set_title(\"Frontera de decisión aprendida\")\n\n# Curva de convergencia\naxes[1].plot(modelo.errores_por_epoca, marker=\"o\", color=\"darkred\")\naxes[1].set_xlabel(\"Época\")\naxes[1].set_ylabel(\"N° de errores de clasificación\")\naxes[1].set_title(\"Convergencia del algoritmo\")\naxes[1].grid(alpha=0.3)\n\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 6: Convergencia del Perceptrón sobre datos linealmente separables",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#de-funciones-lógicas-simples-a-xor-qué-separa-un-perceptrón-y-qué-no",
+    "href": "unidad1/notas.html#de-funciones-lógicas-simples-a-xor-qué-separa-un-perceptrón-y-qué-no",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "12.6 De funciones lógicas simples a XOR: qué separa un perceptrón y qué no",
+    "text": "12.6 De funciones lógicas simples a XOR: qué separa un perceptrón y qué no\nAntes de llegar al límite del perceptrón conviene ver, en detalle, en qué tipo de problemas sí funciona — y por qué. La forma más simple de probar un clasificador binario con dos entradas es pedirle que aprenda una función lógica booleana: AND, OR, NAND, NOR y, finalmente, XOR. Todas ellas toman dos entradas \\(x_1, x_2 \\in \\{0,1\\}\\) y devuelven una salida binaria, y todas caben en un plano de dos dimensiones — lo que las vuelve ideales para visualizar qué significa “ser linealmente separable”.\n\n12.6.1 AND, OR, NAND, NOR: linealmente separables\nLas siguientes tablas de verdad definen las funciones AND, OR, NAND y NOR:\n\n\n\n\\(x_1\\)\n\\(x_2\\)\nAND\nOR\nNAND\nNOR\n\n\n\n\n0\n0\n0\n0\n1\n1\n\n\n0\n1\n0\n1\n1\n0\n\n\n1\n0\n0\n1\n1\n0\n\n\n1\n1\n1\n1\n0\n0\n\n\n\nPara cada una de estas funciones existe un hiperplano (en este caso, una recta en \\(\\mathbb{R}^2\\)) que separa perfectamente los puntos de salida \\(1\\) de los de salida \\(0\\). Basta con encontrar \\(w_1, w_2, b\\) adecuados. Algunos ejemplos que un perceptrón puede encontrar (no son los únicos posibles):\n\nAND: \\(w_1 = w_2 = 1\\), \\(b = -1.5\\) → solo \\((1,1)\\) supera el umbral de \\(z \\geq 0\\).\nOR: \\(w_1 = w_2 = 1\\), \\(b = -0.5\\) → cualquier entrada con al menos un \\(1\\) supera el umbral.\nNAND (NOT AND): \\(w_1 = w_2 = -1\\), \\(b = 1.5\\) → el negado exacto de AND.\nNOR (NOT OR): \\(w_1 = w_2 = -1\\), \\(b = 0.5\\) → el negado exacto de OR.\n\nEl siguiente código entrena un perceptrón real —el mismo implementado más arriba— sobre cada una de estas funciones, y confirma que converge sin errores en las cuatro:\n\n\nCode\nX_bool = np.array([[0,0],[0,1],[1,0],[1,1]])\ncompuertas = {\n    \"AND\":  np.array([-1,-1,-1, 1]),\n    \"OR\":   np.array([-1, 1, 1, 1]),\n    \"NAND\": np.array([ 1, 1, 1,-1]),\n    \"NOR\":  np.array([ 1,-1,-1,-1]),\n}\n\nfig, axes = plt.subplots(1, 4, figsize=(16, 4))\nxx_b, yy_b = np.meshgrid(np.linspace(-0.5, 1.5, 200), np.linspace(-0.5, 1.5, 200))\n\nfor ax, (nombre, y_gate) in zip(axes, compuertas.items()):\n    modelo_gate = Perceptron(lr=0.5, n_epochs=50).fit(X_bool, y_gate)\n    Z = modelo_gate.predict(np.c_[xx_b.ravel(), yy_b.ravel()]).reshape(xx_b.shape)\n    ax.contourf(xx_b, yy_b, Z, alpha=0.3, cmap=\"coolwarm\")\n    ax.scatter(X_bool[:,0], X_bool[:,1], c=y_gate, cmap=\"coolwarm\", s=150, edgecolor=\"k\")\n    convergio = \"sí\" if modelo_gate.errores_por_epoca[-1] == 0 else \"no\"\n    ax.set_title(f\"{nombre} (converge: {convergio})\", fontsize=11)\n    ax.set_xticks([0,1]); ax.set_yticks([0,1])\n\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 7: El perceptrón simple aprende AND, OR, NAND y NOR: todas son linealmente separables\n\n\n\n\n\nEn los cuatro casos aparece una recta que separa limpiamente ambas clases, y el algoritmo converge en pocas épocas — tal como predice el teorema de Novikoff.\n\n\n12.6.2 El límite fundamental: el problema XOR\nLa función XOR (OR exclusivo) es la excepción:\n\n\n\n\\(x_1\\)\n\\(x_2\\)\nXOR\n\n\n\n\n0\n0\n0\n\n\n0\n1\n1\n\n\n1\n0\n1\n\n\n1\n1\n0\n\n\n\nA diferencia de AND/OR/NAND/NOR, aquí las dos clases están entrelazadas geométricamente: los puntos \\((0,0)\\) y \\((1,1)\\) pertenecen a una clase, mientras que \\((0,1)\\) y \\((1,0)\\) —sus “vecinos” más cercanos en el plano— pertenecen a la otra. No existe ninguna recta capaz de dejar a \\((0,0)\\) y \\((1,1)\\) de un lado y a \\((0,1)\\) y \\((1,0)\\) del otro: cualquier línea que separe correctamente dos de los cuatro puntos, deja mal clasificado a algún tercero.\n\n\nCode\nX_xor = np.array([[0,0],[0,1],[1,0],[1,1]])\ny_xor = np.array([-1, 1, 1, -1])  # XOR\n\nmodelo_xor = Perceptron(lr=0.1, n_epochs=100).fit(X_xor, y_xor)\n\nplt.figure(figsize=(4.5,4.5))\nplt.scatter(X_xor[:,0], X_xor[:,1], c=y_xor, cmap=\"coolwarm\", s=150, edgecolor=\"k\")\nfor i, (x1, x2) in enumerate(X_xor):\n    plt.annotate(f\"({x1},{x2})\", (x1, x2), textcoords=\"offset points\", xytext=(10,10))\nplt.title(f\"XOR — errores finales: {modelo_xor.errores_por_epoca[-1]} (no converge a 0)\")\nplt.xlim(-0.5, 1.5); plt.ylim(-0.5, 1.5)\nplt.grid(alpha=0.3)\nplt.show()\n\n\n\n\n\n\n\n\nFigure 8: El perceptrón simple no puede separar el problema XOR (no linealmente separable)\n\n\n\n\n\nA diferencia de las compuertas anteriores, aquí el número de errores nunca llega a cero: el algoritmo sigue “empujando” la recta de un lado a otro sin encontrar jamás una posición que satisfaga a los cuatro puntos simultáneamente. Este resultado —señalado críticamente por Minsky y Papert en 1969— es precisamente lo que causó el primer “invierno de la IA”.\n\n\n12.6.3 La solución: combinar perceptrones\nLa salida de XOR se puede reescribir en términos de las compuertas que sí sabemos resolver:\n\\[\n\\text{XOR}(x_1, x_2) = \\text{OR}(x_1, x_2) \\;\\land\\; \\text{NAND}(x_1, x_2)\n\\]\nEs decir: XOR es verdadero cuando al menos una entrada es 1 (OR) y, al mismo tiempo, no son ambas 1 (NAND). Verifiquen en la tabla de verdad que esta combinación reproduce exactamente la columna de XOR.\n\n\n\n\\(x_1\\)\n\\(x_2\\)\nOR\nNAND\nOR \\(\\land\\) NAND\n\n\n\n\n0\n0\n0\n1\n0\n\n\n0\n1\n1\n1\n1\n\n\n1\n0\n1\n1\n1\n\n\n1\n1\n1\n0\n0\n\n\n\nEsto sugiere la solución estructural: si un perceptrón calcula OR, otro calcula NAND, y un tercer perceptrón combina esas dos salidas con un AND, el sistema completo resuelve XOR — aunque ninguna de sus piezas individuales pueda hacerlo por sí sola.\n\\[\nh_1 = \\text{OR}(x_1, x_2), \\qquad h_2 = \\text{NAND}(x_1, x_2), \\qquad \\hat{y} = \\text{AND}(h_1, h_2)\n\\]\nEsta arquitectura de tres perceptrones —dos en una “capa oculta” y uno de salida— es, ni más ni menos, el Perceptrón Multicapa (MLP) en su forma más pequeña posible. La solución existía conceptualmente desde los años 60, pero faltaba un ingrediente clave: un algoritmo que aprendiera automáticamente los pesos de cada perceptrón en lugar de tener que diseñarlos a mano combinando compuertas conocidas. Ese ingrediente —el algoritmo de backpropagation (1986)— es el que retomaremos en la luego para entrenar redes multicapa de punta a punta.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#perceptrón-vs.-regresión-logística-el-puente-conceptual",
+    "href": "unidad1/notas.html#perceptrón-vs.-regresión-logística-el-puente-conceptual",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "12.7 Perceptrón vs. Regresión Logística: el puente conceptual",
+    "text": "12.7 Perceptrón vs. Regresión Logística: el puente conceptual\n\n\n\n\n\n\n\n\nAspecto\nPerceptrón\nRegresión Logística\n\n\n\n\nActivación\nEscalón (Heaviside)\nSigmoide\n\n\nSalida\nBinaria dura \\(\\{-1,+1\\}\\)\nProbabilidad continua \\([0,1]\\)\n\n\nFunción de pérdida\nImplícita (regla de error)\nEntropía cruzada (log-loss)\n\n\nOptimización\nRegla de actualización simple\nDescenso por gradiente\n\n\nFrontera de decisión\nLineal\nLineal\n\n\nInterpretación probabilística\nNo\nSí\n\n\n\nEste puente es clave: reemplazar la función escalón por una sigmoide y usar descenso por gradiente en lugar de la regla del perceptrón nos lleva directamente a la neurona artificial moderna, el bloque de construcción de todas las redes profundas que estudiaremos en las próximas unidades. Y, como acabamos de ver con XOR, apilar varias de esas neuronas en capas es lo que le da a una red la capacidad de aprender fronteras no lineales.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#footnotes",
+    "href": "unidad1/notas.html#footnotes",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nLas features radiómicas son medidas cuantitativas extraídas de imágenes médicas (CT, MRI, PET) que describen la textura, forma y estadística de regiones de interés. Son ampliamente usadas en oncología para caracterizar tumores y predecir respuesta a tratamientos.↩︎",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad0/notas.html",
+    "href": "unidad0/notas.html",
+    "title": "Notas",
+    "section": "",
+    "text": "Presentación de la materia y de los objetivos del curso. Se presentarán los contenidos de cada unidad. Se explicarán las herramientas que se utilizarán a lo largo del curso.",
     "crumbs": [
       "Inicio",
       "0.  Introducción",
-      "Presentación de la materia"
+      "Notas de clase"
     ]
+  },
+  {
+    "objectID": "unidad0/notas.html#objetivos-de-la-unidad",
+    "href": "unidad0/notas.html#objetivos-de-la-unidad",
+    "title": "Notas",
+    "section": "",
+    "text": "Presentación de la materia y de los objetivos del curso. Se presentarán los contenidos de cada unidad. Se explicarán las herramientas que se utilizarán a lo largo del curso.",
+    "crumbs": [
+      "Inicio",
+      "0.  Introducción",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad0/notas.html#material-complementario",
+    "href": "unidad0/notas.html#material-complementario",
+    "title": "Notas",
+    "section": "2 Material complementario",
+    "text": "2 Material complementario\n\n📄 Programa del curso: ver PDF\n📊 Presentación de la clase: ver slides",
+    "crumbs": [
+      "Inicio",
+      "0.  Introducción",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad0/notas.html#links-de-interés",
+    "href": "unidad0/notas.html#links-de-interés",
+    "title": "Notas",
+    "section": "3 Links de interés",
+    "text": "3 Links de interés\n\nHugging Face: https://huggingface.co/\nKaggle: https://www.kaggle.com/\nThe Cancer Image Archive (TCIA): https://www.cancerimagingarchive.net/",
+    "crumbs": [
+      "Inicio",
+      "0.  Introducción",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad0/notas.html#softwareframeworkslibrerias",
+    "href": "unidad0/notas.html#softwareframeworkslibrerias",
+    "title": "Notas",
+    "section": "4 Software/Frameworks/Librerias",
+    "text": "4 Software/Frameworks/Librerias\n\nPython 3.12/13\nPyTorch\nMONAI - Medical Open Network for AI https://project-monai.github.io/\nSimpleITK\nGitHub Copilot",
+    "crumbs": [
+      "Inicio",
+      "0.  Introducción",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "IA en Física Médica",
+    "section": "",
+    "text": "Este es el sitio del curso de posgrado Inteligencia Artificial en Física Médica.\nAcá vas a encontrar las notas de clase y las presentaciones de cada unidad. Los notebooks de trabajos prácticos y tareas no se publican en este sitio: están disponibles directamente en el repositorio de GitHub, dentro de la carpeta notebooks/ de cada unidad.\n👉 Ver el repositorio completo\n\n\n\n\n\nUnidad\nNotas\nPresentación\nNotebooks\n\n\n\n\n0 — Introducción\nVer\nVer\nCarpeta\n\n\n1 - Fundamentos de IA\nVer\nVer\nCarpeta\n\n\n\n\n\n\nPara trabajar con los notebooks, dos opciones:\n\nAbrirlos directamente en GitHub y usar la opción de Open in Colab (requiere cuenta de Google).\nClonar el repositorio y abrir los notebooks localmente con Jupyter Lab. Para esto, primero asegurate de tener instalado Python 3 y pip. Luego, ejecuta los siguientes comandos en tu terminal:\n\ngit clone https://github.com/ignacio-scarinci/ia-fisica-medica.git\ncd ia-fisica-medica\npip install -r requirements.txt\njupyter lab\n\nDescargar los notebooks desde GitHub."
+  },
+  {
+    "objectID": "index.html#bienvenidosas",
+    "href": "index.html#bienvenidosas",
+    "title": "IA en Física Médica",
+    "section": "",
+    "text": "Este es el sitio del curso de posgrado Inteligencia Artificial en Física Médica.\nAcá vas a encontrar las notas de clase y las presentaciones de cada unidad. Los notebooks de trabajos prácticos y tareas no se publican en este sitio: están disponibles directamente en el repositorio de GitHub, dentro de la carpeta notebooks/ de cada unidad.\n👉 Ver el repositorio completo\n\n\n\n\n\nUnidad\nNotas\nPresentación\nNotebooks\n\n\n\n\n0 — Introducción\nVer\nVer\nCarpeta\n\n\n1 - Fundamentos de IA\nVer\nVer\nCarpeta\n\n\n\n\n\n\nPara trabajar con los notebooks, dos opciones:\n\nAbrirlos directamente en GitHub y usar la opción de Open in Colab (requiere cuenta de Google).\nClonar el repositorio y abrir los notebooks localmente con Jupyter Lab. Para esto, primero asegurate de tener instalado Python 3 y pip. Luego, ejecuta los siguientes comandos en tu terminal:\n\ngit clone https://github.com/ignacio-scarinci/ia-fisica-medica.git\ncd ia-fisica-medica\npip install -r requirements.txt\njupyter lab\n\nDescargar los notebooks desde GitHub."
   },
   {
     "objectID": "unidad0/calendario.html",
@@ -156,77 +938,543 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "IA en Física Médica",
-    "section": "",
-    "text": "Este es el sitio del curso de posgrado Inteligencia Artificial en Física Médica.\nAcá vas a encontrar las notas de clase y las presentaciones de cada unidad. Los notebooks de trabajos prácticos y tareas no se publican en este sitio: están disponibles directamente en el repositorio de GitHub, dentro de la carpeta notebooks/ de cada unidad.\n👉 Ver el repositorio completo\n\n\n\n\n\nUnidad\nNotas\nPresentación\nNotebooks\n\n\n\n\n0 — Introducción\nVer\nVer\nCarpeta\n\n\n\n\n\n\nPara trabajar con los notebooks, dos opciones:\n\nAbrirlos directamente en GitHub y usar la opción de Open in Colab (requiere cuenta de Google).\nClonar el repositorio y abrir los notebooks localmente con Jupyter Lab. Para esto, primero asegurate de tener instalado Python 3 y pip. Luego, ejecuta los siguientes comandos en tu terminal:\n\ngit clone https://github.com/ignacio-scarinci/ia-fisica-medica.git\ncd ia-fisica-medica\npip install -r requirements.txt\njupyter lab\n\nDescargar los notebooks desde GitHub."
-  },
-  {
-    "objectID": "index.html#bienvenidosas",
-    "href": "index.html#bienvenidosas",
-    "title": "IA en Física Médica",
-    "section": "",
-    "text": "Este es el sitio del curso de posgrado Inteligencia Artificial en Física Médica.\nAcá vas a encontrar las notas de clase y las presentaciones de cada unidad. Los notebooks de trabajos prácticos y tareas no se publican en este sitio: están disponibles directamente en el repositorio de GitHub, dentro de la carpeta notebooks/ de cada unidad.\n👉 Ver el repositorio completo\n\n\n\n\n\nUnidad\nNotas\nPresentación\nNotebooks\n\n\n\n\n0 — Introducción\nVer\nVer\nCarpeta\n\n\n\n\n\n\nPara trabajar con los notebooks, dos opciones:\n\nAbrirlos directamente en GitHub y usar la opción de Open in Colab (requiere cuenta de Google).\nClonar el repositorio y abrir los notebooks localmente con Jupyter Lab. Para esto, primero asegurate de tener instalado Python 3 y pip. Luego, ejecuta los siguientes comandos en tu terminal:\n\ngit clone https://github.com/ignacio-scarinci/ia-fisica-medica.git\ncd ia-fisica-medica\npip install -r requirements.txt\njupyter lab\n\nDescargar los notebooks desde GitHub."
-  },
-  {
-    "objectID": "unidad0/notas.html",
-    "href": "unidad0/notas.html",
-    "title": "Notas",
-    "section": "",
-    "text": "Presentación de la materia y de los objetivos del curso. Se presentarán los contenidos de cada unidad. Se explicarán las herramientas que se utilizarán a lo largo del curso.",
+    "objectID": "unidad0/presentacion.html#cursado",
+    "href": "unidad0/presentacion.html#cursado",
+    "title": "Presentación de la materia",
+    "section": "Cursado",
+    "text": "Cursado\n\nModalidad: virtual\nClases: lunes y jueves de 19:00-21:00",
     "crumbs": [
       "Inicio",
       "0.  Introducción",
-      "Notas"
+      "Presentación"
     ]
   },
   {
-    "objectID": "unidad0/notas.html#objetivos-de-la-unidad",
-    "href": "unidad0/notas.html#objetivos-de-la-unidad",
-    "title": "Notas",
+    "objectID": "unidad0/presentacion.html#unidad-1-fundamentos-de-ia",
+    "href": "unidad0/presentacion.html#unidad-1-fundamentos-de-ia",
+    "title": "Presentación de la materia",
+    "section": "Unidad 1: Fundamentos de IA",
+    "text": "Unidad 1: Fundamentos de IA\n\nRevisión de modelos clásicos\nIntroducción al Deep Learning,breve historia\nRedes Neuronales simples: El algoritmo de perceptron\nEl ciclo de entrenamiento:\n\nFunciones de perdida\nOptimizadores\nLerning rate\n…",
+    "crumbs": [
+      "Inicio",
+      "0.  Introducción",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad0/presentacion.html#unidad-1-fundamentos-de-ia-cont.",
+    "href": "unidad0/presentacion.html#unidad-1-fundamentos-de-ia-cont.",
+    "title": "Presentación de la materia",
+    "section": "Unidad 1: Fundamentos de IA (cont.)",
+    "text": "Unidad 1: Fundamentos de IA (cont.)\n\nArquitecturas: CNN, U-Net, VIT\nFuncionamiento de los LLMs\nTransfer learning:\n\nFine-Tuning\nFew-Shot\n\nPyTorch, MONAI, SimpleITK\nDICOM, NIFTI\nBases de datos públicas de imágenes médicas anotadas.",
+    "crumbs": [
+      "Inicio",
+      "0.  Introducción",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad0/presentacion.html#unidad-2-segmetación",
+    "href": "unidad0/presentacion.html#unidad-2-segmetación",
+    "title": "Presentación de la materia",
+    "section": "Unidad 2: Segmetación",
+    "text": "Unidad 2: Segmetación\n\nSegmentación semántica en imágenes médicas\nMétricas: DICE, distacia Hausdorff, IoU, etc.\nRelevancia clínica de la segmentación automática de órganos en riesgo (OARs).\nParadigmas de segmentación:\n\nmodelos totalmente automáticos: nnU-Net\nmodelos guiados por experto: Med-SAM\n\nArquitectura, variantes y entrenamiento.",
+    "crumbs": [
+      "Inicio",
+      "0.  Introducción",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad0/presentacion.html#unidad-3-detección-clasificación-y-diagnóstico-asistido",
+    "href": "unidad0/presentacion.html#unidad-3-detección-clasificación-y-diagnóstico-asistido",
+    "title": "Presentación de la materia",
+    "section": "Unidad 3: Detección, clasificación y diagnóstico asistido",
+    "text": "Unidad 3: Detección, clasificación y diagnóstico asistido\n\nDetección de regiones de interés en imágenes médicas\nClasificación de hallazgos\nExplicabilidad de modelos en contexto clínico: Grad-CAM y mapas de saliencia.",
+    "crumbs": [
+      "Inicio",
+      "0.  Introducción",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad0/presentacion.html#unidad-4-radioterapia-asistida-por-inteligencia-artificial",
+    "href": "unidad0/presentacion.html#unidad-4-radioterapia-asistida-por-inteligencia-artificial",
+    "title": "Presentación de la materia",
+    "section": "Unidad 4: Radioterapia asistida por inteligencia artificial",
+    "text": "Unidad 4: Radioterapia asistida por inteligencia artificial\n\nFlujo clínico de radioterapia: simulación, planificación y verificación dosimétrica.\nPredicción de planes de dosis y estimación de distribuciones 3D con redes profundas.\nKnowledge-Based Planning (KBP) asistido por IA.\nControl de calidad específico del paciente (patient-specific QA) en IMRT, VMAT y SBRT\nDetección de errores de posicionamiento a partir de imágenes CBCT.\nRadioterapia adaptativa guiada por IA (ART online).",
+    "crumbs": [
+      "Inicio",
+      "0.  Introducción",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad0/presentacion.html#unidad-5-síntesis-fusión-y-coregistro-de-imágenes-médicas",
+    "href": "unidad0/presentacion.html#unidad-5-síntesis-fusión-y-coregistro-de-imágenes-médicas",
+    "title": "Presentación de la materia",
+    "section": "Unidad 5: Síntesis, fusión y coregistro de imágenes médicas",
+    "text": "Unidad 5: Síntesis, fusión y coregistro de imágenes médicas\n\nRegistro rígido y deformable: métricas de similitud y algoritmos de optimización.\nRegistro basado en Deep Learning.\nFusión multimodal de imágenes: PET-CT, PET-MRI y CT-MRI.\nAplicaciones del coregistro.\nGeneración de CT sintético (sCT) a partir de MRI para dosimetría y radioterapia.",
+    "crumbs": [
+      "Inicio",
+      "0.  Introducción",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad0/presentacion.html#unidad-6-agentes-de-inteligencia-artificial-en-el-ámbito-clínico",
+    "href": "unidad0/presentacion.html#unidad-6-agentes-de-inteligencia-artificial-en-el-ámbito-clínico",
+    "title": "Presentación de la materia",
+    "section": "Unidad 6: Agentes de inteligencia artificial en el ámbito clínico",
+    "text": "Unidad 6: Agentes de inteligencia artificial en el ámbito clínico\n\nIntroducción a los grandes modelos de lenguaje (LLMs) y su potencial en medicina: capacidades, limitaciones y casos de uso.\nConcepto de agente de IA: qué es, cómo razona y cómo interactúa con herramientas externas. Aplicaciones emergentes en el ámbito clínico: consulta de literatura médica, soporte en la toma de decisiones y automatización de flujos de trabajo.\nConsideraciones éticas y de seguridad: sesgos, alucinaciones, responsabilidad y supervisión humana.\nPerspectivas futuras: modelos fundacionales médicos y la evolución hacia sistemas autónomos en entornos clínicos.",
+    "crumbs": [
+      "Inicio",
+      "0.  Introducción",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad0/presentacion.html#material-de-clase",
+    "href": "unidad0/presentacion.html#material-de-clase",
+    "title": "Presentación de la materia",
+    "section": "Material de clase",
+    "text": "Material de clase\n\nRepositorio del curso: https://github.com/ignacio-scarinci/ia-fisica-medica\nPagina web del curso: https://ignacio-scarinci.github.io/ia-fisica-medica",
+    "crumbs": [
+      "Inicio",
+      "0.  Introducción",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad0/presentacion.html#aprobación",
+    "href": "unidad0/presentacion.html#aprobación",
+    "title": "Presentación de la materia",
+    "section": "Aprobación",
+    "text": "Aprobación\n\nTrabajos practicos\nProyecto final",
+    "crumbs": [
+      "Inicio",
+      "0.  Introducción",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad0/presentacion.html#links-de-interés",
+    "href": "unidad0/presentacion.html#links-de-interés",
+    "title": "Presentación de la materia",
+    "section": "Links de interés",
+    "text": "Links de interés\n\nHugging Face: https://huggingface.co/\nKaggle: https://www.kaggle.com/\nThe Cancer Image Archive (TCIA): https://www.cancerimagingarchive.net/",
+    "crumbs": [
+      "Inicio",
+      "0.  Introducción",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad0/presentacion.html#softwareframeworkslibrerias",
+    "href": "unidad0/presentacion.html#softwareframeworkslibrerias",
+    "title": "Presentación de la materia",
+    "section": "Software/Frameworks/Librerias",
+    "text": "Software/Frameworks/Librerias\n\nPython 3.12/13\nPyTorch\nMONAI - Medical Open Network for AI https://project-monai.github.io/\nSimpleITK\nGitHub Copilot",
+    "crumbs": [
+      "Inicio",
+      "0.  Introducción",
+      "Presentación"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html",
+    "href": "unidad1/notas2.html",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
     "section": "",
-    "text": "Presentación de la materia y de los objetivos del curso. Se presentarán los contenidos de cada unidad. Se explicarán las herramientas que se utilizarán a lo largo del curso.",
+    "text": "La Física Médica moderna descansa sobre un flujo de trabajo que va desde la adquisición de la imagen (en un tomógrafo, resonador, equipo de rayos X, PET, SPECT, ecógrafo, etc.) hasta el análisis cuantitativo asistido por Inteligencia Artificial (segmentación de órganos y tumores, radiómica, dosimetría, detección de patologías, generación de contornos para radioterapia, entre otros).\nPara que un modelo de IA pueda “ver” una imagen médica, primero debemos entender:\n\nQué es una imagen médica desde el punto de vista físico y digital (dimensiones, resolución, tipo de dato, metadatos).\nCómo se almacena y transmite (formatos como DICOM y NIfTI).\nQué herramientas nos permiten leer, procesar y transformar estas imágenes en estructuras numéricas manipulables (SimpleITK).\nQué framework de aprendizaje profundo usaremos para construir y entrenar modelos (PyTorch).\nQué biblioteca especializada en imágenes médicas nos ahorra reinventar la rueda en transformaciones, arquitecturas y métricas específicas del dominio (MONAI).\n\nEste recorrido —Imagen → Formato → Herramienta de I/O → Framework de Deep Learning → Biblioteca de dominio— es exactamente la estructura de estas notas y del curso.\n\nflowchart LR\n    A[Equipo de adquisición&lt;br/&gt;CT / MRI / PET / RX] --&gt; B[Formato DICOM]\n    B --&gt; C{Preprocesamiento}\n    C --&gt;|Conversión| D[Formato NIfTI]\n    C --&gt; E[SimpleITK&lt;br/&gt;Lectura / Registro / Filtrado]\n    E --&gt; F[Tensores&lt;br/&gt;PyTorch]\n    F --&gt; G[MONAI&lt;br/&gt;Transforms, Redes, Métricas]\n    G --&gt; H[Modelo entrenado]\n    H --&gt; I[Inferencia clínica /&lt;br/&gt;Investigación]\n\n\n\n\n\n\n\n\n\nFigure 1: Pipeline general de un proyecto de IA en imágenes médicas\n\n\n\n\n\n\n\n\n\n\n\nNoteObjetivo de la clase\n\n\n\nAl finalizar esta sesión, el estudiante debe ser capaz de:\n\nExplicar las diferencias entre una imagen “natural” (foto, JPEG) y una imagen médica volumétrica.\nLeer, inspeccionar y modificar metadatos de un archivo DICOM.\nConvertir series DICOM a NIfTI y entender por qué se hace.\nUsar SimpleITK para cargar, filtrar y registrar imágenes.\nConstruir un pipeline mínimo de entrenamiento con PyTorch y MONAI.",
     "crumbs": [
       "Inicio",
-      "0.  Introducción",
-      "Notas"
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
     ]
   },
   {
-    "objectID": "unidad0/notas.html#material-complementario",
-    "href": "unidad0/notas.html#material-complementario",
-    "title": "Notas",
-    "section": "2 Material complementario",
-    "text": "2 Material complementario\n\n📄 Programa del curso: ver PDF\n📊 Presentación de la clase: ver slides",
+    "objectID": "unidad1/notas2.html#qué-hace-especial-a-una-imagen-médica",
+    "href": "unidad1/notas2.html#qué-hace-especial-a-una-imagen-médica",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "2.1 ¿Qué hace especial a una imagen médica?",
+    "text": "2.1 ¿Qué hace especial a una imagen médica?\nCuando hablamos de “imagen” en el contexto de visión por computadora clásica, casi siempre pensamos en una fotografía: una matriz bidimensional de píxeles con valores de color, pensada para ser interpretada por el ojo humano y sin ninguna referencia a una escala física del mundo real. Una imagen médica es conceptualmente distinta: es el resultado de medir una magnitud física (atenuación de rayos X, relajación de espines nucleares, actividad de un radiotrazador, tiempo de vuelo de un pulso de ultrasonido) y muestrear esa medición en un espacio 2D, 3D o 4D que corresponde a un volumen real del cuerpo del paciente, expresado en milímetros. Por eso, no alcanza con saber “qué se ve” en la imagen: hay que saber dónde está ese voxel en el paciente, qué representa numéricamente su valor y con qué precisión/resolución fue medido. Estas diferencias no son solo teóricas: determinan directamente cómo se diseñan las arquitecturas de red (convoluciones 3D en vez de 2D), cómo se normalizan los datos (por rango físico, no por 0-255) y cómo se evalúan los resultados (en milímetros o Unidades Hounsfield, no en píxeles).\nLa siguiente tabla resume las diferencias más importantes entre ambos tipos de imagen:\n\n\n\n\n\n\n\n\nCaracterística\nImagen natural (JPEG/PNG)\nImagen médica\n\n\n\n\nDimensionalidad\n2D (alto × ancho)\n2D, 3D (volumen) o 4D (volumen + tiempo, ej. RM funcional o CT 4D en radioterapia)\n\n\nCanales\n3 (RGB) u 1 (gris)\nGeneralmente 1 canal (intensidad), a veces multi-modal (T1, T2, FLAIR apilados)\n\n\nProfundidad de bits\n8 bits (0-255)\n12-16 bits (CT: -1000 a +3000 UH; RM: rango variable)\n\n\nEspaciado físico\nNo definido (píxeles)\nEspaciado real en mm (spacing), origen y orientación en el espacio del paciente\n\n\nSignificado del valor\nColor percibido\nMagnitud física: densidad (CT, en Unidades Hounsfield), señal de relajación (RM), actividad (PET, en SUV)\n\n\nMetadatos\nEXIF (cámara, fecha)\nDatos clínicos, del paciente, del protocolo, del equipo (DICOM tags)",
     "crumbs": [
       "Inicio",
-      "0.  Introducción",
-      "Notas"
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
     ]
   },
   {
-    "objectID": "unidad0/notas.html#links-de-interés",
-    "href": "unidad0/notas.html#links-de-interés",
-    "title": "Notas",
-    "section": "3 Links de interés",
-    "text": "3 Links de interés\n\nHugging Face: https://huggingface.co/\nKaggle: https://www.kaggle.com/\nThe Cancer Image Archive (TCIA): https://www.cancerimagingarchive.net/",
+    "objectID": "unidad1/notas2.html#modalidades-principales",
+    "href": "unidad1/notas2.html#modalidades-principales",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "2.2 Modalidades principales",
+    "text": "2.2 Modalidades principales\n\nCT (Tomografía Computarizada): Basada en atenuación de rayos X. Se mide en Unidades Hounsfield (UH), donde el agua = 0 UH y el aire = -1000 UH.\nMRI (Resonancia Magnética): Contraste basado en propiedades de relajación de protones (T1, T2, T2*, difusión). No tiene una escala física universal (valores relativos por equipo/protocolo).\nPET/SPECT (Medicina Nuclear): Imagen funcional/metabólica, valores relacionados con la captación de un radiotrazador (SUV — Standardized Uptake Value).\nUS (Ultrasonido): Imagen en tiempo real, muy dependiente del operador, alto ruido tipo speckle.\nRX / Mamografía: Proyección 2D de atenuación.\n\n\n\n\nImagenes médicas de distintas modalidades a)CT, b)MRI, c)PET, d)SPECT",
     "crumbs": [
       "Inicio",
-      "0.  Introducción",
-      "Notas"
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
     ]
   },
   {
-    "objectID": "unidad0/notas.html#softwareframeworkslibrerias",
-    "href": "unidad0/notas.html#softwareframeworkslibrerias",
-    "title": "Notas",
-    "section": "4 Software/Frameworks/Librerias",
-    "text": "4 Software/Frameworks/Librerias\n\nPython 3.12/13\nPyTorch\nMONAI - Medical Open Network for AI https://project-monai.github.io/\nSimpleITK\nGitHub Copilot",
+    "objectID": "unidad1/notas2.html#representación-matricial-de-una-imagen-3d",
+    "href": "unidad1/notas2.html#representación-matricial-de-una-imagen-3d",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "2.3 Representación matricial de una imagen 3D",
+    "text": "2.3 Representación matricial de una imagen 3D\nUna imagen médica volumétrica se representa como un arreglo \\(I(i,j,k)\\) donde cada índice discreto (voxel) se relaciona con una coordenada física del paciente \\((x,y,z)\\) mediante una transformación afín:\n\\[\n\\begin{bmatrix} x \\\\ y \\\\ z \\\\ 1 \\end{bmatrix}\n=\n\\underbrace{\\begin{bmatrix}\ns_x R_{11} & s_y R_{12} & s_z R_{13} & o_x \\\\\ns_x R_{21} & s_y R_{22} & s_z R_{23} & o_y \\\\\ns_x R_{31} & s_y R_{32} & s_z R_{33} & o_z \\\\\n0 & 0 & 0 & 1\n\\end{bmatrix}}_{\\text{matriz affine}}\n\\begin{bmatrix} i \\\\ j \\\\ k \\\\ 1 \\end{bmatrix}\n\\]\ndonde:\n\n\\(s_x, s_y, s_z\\): spacing (tamaño físico del voxel en mm en cada dirección),\n\\(R\\): matriz de orientación (cosenos directores de los ejes del volumen respecto al paciente),\n\\(o\\): origen (coordenada física del voxel \\((0,0,0)\\)).\n\nEste trío (spacing, origin, direction) es la base de todo el manejo geométrico en SimpleITK, ITK, y del header de NIfTI. Si dos imágenes no comparten este sistema de referencia, no se pueden comparar voxel a voxel sin antes registrarlas (co-registro / image registration).\n\nflowchart LR\n    subgraph Espacio_Indice[\"Espacio índice (i, j, k)\"]\n        V[\"Voxel (i, j, k)&lt;br/&gt;ej: (120, 88, 45)\"]\n    end\n    subgraph Transformacion[\"Transformación afín\"]\n        T[\"Spacing, Origin, Direction\"]\n    end\n    subgraph Espacio_Fisico[\"Espacio físico del paciente (mm)\"]\n        P[\"Punto (x, y, z)&lt;br/&gt;ej: (34.2, -12.5, 101.8) mm\"]\n    end\n    V --&gt; T --&gt; P\n\n\n\n\n\n\n\n\n\nFigure 2: Del espacio índice (voxel) al espacio físico (mundo del paciente)",
     "crumbs": [
       "Inicio",
-      "0.  Introducción",
-      "Notas"
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#ejemplo-conceptual-de-foto-a-volumen",
+    "href": "unidad1/notas2.html#ejemplo-conceptual-de-foto-a-volumen",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "2.4 Ejemplo conceptual: de foto a volumen",
+    "text": "2.4 Ejemplo conceptual: de foto a volumen\n\nimport numpy as np\n\n# Imagen natural: (alto, ancho, canales), 8 bits, sin significado físico de escala\nfoto = np.random.randint(0, 256, size=(480, 640, 3), dtype=np.uint8)\nprint(\"Foto:\", foto.shape, foto.dtype)\n\n# Imagen médica CT: (slices, alto, ancho), 16 bits con signo, en Unidades Hounsfield\nct_volumen = np.random.randint(-1000, 3000, size=(120, 512, 512)).astype(np.int16)\nprint(\"CT:\", ct_volumen.shape, ct_volumen.dtype)\nprint(\"Aire aprox (UH):\", -1000, \" | Agua (UH):\", 0, \" | Hueso (UH): &gt;400\")",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#qué-es-dicom",
+    "href": "unidad1/notas2.html#qué-es-dicom",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "3.1 ¿Qué es DICOM?",
+    "text": "3.1 ¿Qué es DICOM?\nDICOM (Digital Imaging and Communications in Medicine) es el estándar internacional que define tanto el formato de archivo como el protocolo de red para el intercambio de imágenes médicas y datos asociados. No es solo un “formato de imagen”: es un ecosistema completo que incluye:\n\nFormato de archivo (.dcm): imagen + metadatos en un único archivo.\nProtocolo de comunicación: cómo un PACS, un tomógrafo y una estación de trabajo se hablan entre sí (C-STORE, C-FIND, C-MOVE, etc.).\nModelo de información jerárquico: Paciente → Estudio → Serie → Instancia (imagen).\n\n\nflowchart TD\n    Paciente[\"Paciente&lt;br/&gt;(PatientID, PatientName)\"] --&gt; Estudio1[\"Estudio 1&lt;br/&gt;(StudyInstanceUID)&lt;br/&gt;ej: RM de cráneo, 2024-05-10\"]\n    Paciente --&gt; Estudio2[\"Estudio 2&lt;br/&gt;(StudyInstanceUID)&lt;br/&gt;ej: CT de tórax, 2024-08-02\"]\n    Estudio1 --&gt; SerieT1[\"Serie: T1&lt;br/&gt;(SeriesInstanceUID)\"]\n    Estudio1 --&gt; SerieT2[\"Serie: T2 FLAIR&lt;br/&gt;(SeriesInstanceUID)\"]\n    SerieT1 --&gt; Img1[\"Imagen 001&lt;br/&gt;(SOPInstanceUID)\"]\n    SerieT1 --&gt; Img2[\"Imagen 002\"]\n    SerieT1 --&gt; ImgN[\"... Imagen N\"]\n\n\n\n\n\n\n\n\n\nFigure 3: Jerarquía de información DICOM\n\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\nUna serie DICOM casi siempre corresponde a múltiples archivos: un archivo .dcm por cada corte (slice) axial. Un volumen 3D de CT de tórax puede tener 300-600 archivos .dcm, uno por cada posición en Z.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#estructura-de-un-archivo-dicom-tags",
+    "href": "unidad1/notas2.html#estructura-de-un-archivo-dicom-tags",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "3.2 Estructura de un archivo DICOM: tags",
+    "text": "3.2 Estructura de un archivo DICOM: tags\nCada archivo .dcm almacena información como pares (Grupo, Elemento) → Valor, conocidos como tags. Ejemplos comunes:\n\n\n\n\n\n\n\n\n\nTag\nNombre\nDescripción\nEjemplo\n\n\n\n\n(0010,0010)\nPatientName\nNombre del paciente\nDOE^JOHN\n\n\n(0010,0020)\nPatientID\nIdentificador del paciente\n12345\n\n\n(0008,0060)\nModality\nModalidad de adquisición\nCT, MR, PT\n\n\n(0020,000D)\nStudyInstanceUID\nID único del estudio\n1.2.840.113...\n\n\n(0020,000E)\nSeriesInstanceUID\nID único de la serie\n1.2.840.113...\n\n\n(0028,0010)\nRows\nNúmero de filas\n512\n\n\n(0028,0011)\nColumns\nNúmero de columnas\n512\n\n\n(0028,0030)\nPixelSpacing\nTamaño físico del píxel (mm)\n0.68\\0.68\n\n\n(0018,0050)\nSliceThickness\nGrosor de corte (mm)\n1.25\n\n\n(0020,0032)\nImagePositionPatient\nPosición 3D del corte\n-150.0\\-150.0\\-90.5\n\n\n(0020,0037)\nImageOrientationPatient\nCosenos directores\n1\\0\\0\\0\\1\\0\n\n\n(0028,1052)\nRescaleIntercept\nPara convertir a UH (CT)\n-1024\n\n\n(0028,1053)\nRescaleSlope\nPara convertir a UH (CT)\n1\n\n\n(7FE0,0010)\nPixelData\nLos datos crudos de la imagen\nbinario\n\n\n\n\n\n\n\n\n\nTipConversión a Unidades Hounsfield\n\n\n\nEl valor crudo almacenado en PixelData no es directamente la Unidad Hounsfield. Se debe aplicar: \\[\n\\text{UH} = \\text{PixelValue} \\times \\text{RescaleSlope} + \\text{RescaleIntercept}\n\\] SimpleITK e ITK aplican esto automáticamente al leer la imagen si los metadatos están presentes; si se usa pydicom “a mano”, hay que hacerlo manualmente.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#un-archivo-por-corte-vs.-un-archivo-multi-frame",
+    "href": "unidad1/notas2.html#un-archivo-por-corte-vs.-un-archivo-multi-frame",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "3.3 Un archivo por corte vs. un archivo multi-frame",
+    "text": "3.3 Un archivo por corte vs. un archivo multi-frame\nHasta ahora asumimos implícitamente que un volumen DICOM se compone de muchos archivos, uno por cada corte (single-frame). Esta es la convención más común en CT y MR, herencia de cómo funcionaban los equipos y los sistemas PACS clásicos: cada corte axial se adquiere, reconstruye y almacena como una instancia (SOPInstanceUID) independiente, todas compartiendo el mismo SeriesInstanceUID.\nSin embargo, el estándar DICOM también define objetos multi-frame, donde todos los cortes (o todos los frames temporales) de un volumen se almacenan dentro de un único archivo .dcm, en un solo PixelData que contiene la pila completa de imágenes. Esto es particularmente común en:\n\nPET (Tomografía por Emisión de Positrones): el IOD Positron Emission Tomography Image o, más modernamente, Enhanced PET Image Storage, suele almacenar el volumen 3D completo (o incluso series dinámicas 4D) en un solo archivo multi-frame.\nSPECT (Tomografía por Emisión de Fotón Único): el IOD Nuclear Medicine Image Storage frecuentemente agrupa todos los cortes de la reconstrucción tomográfica en un único archivo, con un tag NumberOfFrames (0028,0008) que indica cuántos cortes contiene.\nOtras modalidades: Enhanced CT/MR Storage (versiones “enhanced” más recientes de CT y MR también pueden ser multi-frame), angiografía rotacional, cine cardíaco, RX de sustracción digital (DSA).\n\n\nflowchart TB\n    subgraph SF[\"Single-frame — ej. CT convencional\"]\n        direction LR\n        S1[\"corte_001.dcm\"] ~~~ S2[\"corte_002.dcm\"] ~~~ S3[\"...\"] ~~~ SN[\"corte_N.dcm\"]\n    end\n    subgraph MF[\"Multi-frame — ej. SPECT/PET\"]\n        direction LR\n        M1[\"estudio.dcm&lt;br/&gt;PixelData contiene&lt;br/&gt;los N frames apilados&lt;br/&gt;+ tag NumberOfFrames = N\"]\n    end\n\n\n\n\n\n\n\n\n\nFigure 4: Single-frame (CT/MR clásico) vs. Multi-frame (SPECT/PET típico)\n\n\n\n\n\n\n3.3.1 Tags relevantes para identificar/leer un multi-frame\n\n\n\n\n\n\n\n\nTag\nNombre\nRol\n\n\n\n\n(0028,0008)\nNumberOfFrames\nCantidad de cortes/frames contenidos en el PixelData\n\n\n(0028,0009)\nFrameIncrementPointer\nIndica qué tag describe cómo varían los frames (ej. posición o tiempo)\n\n\n(0054,0080)\nSliceVector\nOrden/índice de los cortes dentro del volumen (Medicina Nuclear)\n\n\n(0018,1063)\nFrameTime\nDuración de cada frame, en estudios dinámicos (ms)\n\n\n(0020,9111) / (5200,9230)\nFrame Functional Groups (Enhanced)\nMetadatos por-frame en objetos “Enhanced” (posición, orientación individuales)\n\n\n\n\n\n\n\n\n\nImportantImplicancia práctica para la lectura de datos\n\n\n\nUn pipeline de preprocesamiento que asuma “una serie = una carpeta con muchos archivos .dcm” (como el ImageSeriesReader que usamos para CT) fallará silenciosamente o directamente arrojará error si el archivo de esa serie es multi-frame, porque en ese caso ¡la serie completa es un único archivo! Por eso, para SPECT/PET conviene:\n\nVerificar primero si NumberOfFrames está presente y es mayor a 1.\nSi es multi-frame, leer el volumen completo con sitk.ReadImage() directamente sobre ese único archivo (no con ImageSeriesReader).\nSi es single-frame, usar ImageSeriesReader como en CT/MR.\n\n\n\n\nimport pydicom\nimport SimpleITK as sitk\n\nds = pydicom.dcmread(\"estudio_spect.dcm\", stop_before_pixels=True)\n\nif hasattr(ds, \"NumberOfFrames\") and int(ds.NumberOfFrames) &gt; 1:\n    print(f\"Archivo multi-frame con {ds.NumberOfFrames} cortes/frames\")\n    # Un solo archivo contiene todo el volumen 3D (o 4D)\n    volumen = sitk.ReadImage(\"estudio_spect.dcm\")\nelse:\n    print(\"Archivo single-frame: se espera una serie de múltiples archivos\")\n    reader = sitk.ImageSeriesReader()\n    archivos = reader.GetGDCMSeriesFileNames(\"carpeta_serie/\")\n    reader.SetFileNames(archivos)\n    volumen = reader.Execute()\n\nprint(\"Tamaño del volumen:\", volumen.GetSize())",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#consideraciones-críticas-anonimización-y-privacidad",
+    "href": "unidad1/notas2.html#consideraciones-críticas-anonimización-y-privacidad",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "3.4 Consideraciones críticas: anonimización y privacidad",
+    "text": "3.4 Consideraciones críticas: anonimización y privacidad\nLos archivos DICOM contienen información de identificación del paciente (PHI/PII): nombre, fecha de nacimiento, número de historia clínica, e incluso puede haber texto quemado en la imagen (burned-in annotation). Antes de usar datos DICOM para investigación o entrenamiento de modelos:\n\nAnonimizar/de-identificar los tags (nombre, ID, fechas, instituciones).\nVerificar que no haya burned-in PHI en los píxeles.\nCumplir normativa local (HIPAA, GDPR, Habeas Data en Argentina — Ley 25.326).",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#ejemplo-de-lectura-con-pydicom",
+    "href": "unidad1/notas2.html#ejemplo-de-lectura-con-pydicom",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "3.5 Ejemplo de lectura con pydicom",
+    "text": "3.5 Ejemplo de lectura con pydicom\n\nimport pydicom\n\nds = pydicom.dcmread(\"ejemplo.dcm\")\n\nprint(\"Modalidad:\", ds.Modality)\nprint(\"Dimensiones:\", ds.Rows, \"x\", ds.Columns)\nprint(\"PixelSpacing:\", ds.PixelSpacing)\nprint(\"SliceThickness:\", ds.SliceThickness)\n\n# Acceso a los píxeles crudos\npixel_array = ds.pixel_array\nprint(\"Shape:\", pixel_array.shape, \"dtype:\", pixel_array.dtype)\n\n# Conversión manual a Unidades Hounsfield (si es CT)\nif ds.Modality == \"CT\":\n    slope = float(ds.RescaleSlope)\n    intercept = float(ds.RescaleIntercept)\n    hu_image = pixel_array * slope + intercept\n    print(\"Rango UH:\", hu_image.min(), \"-\", hu_image.max())",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#lectura-de-una-serie-completa-volumen-3d-con-simpleitk",
+    "href": "unidad1/notas2.html#lectura-de-una-serie-completa-volumen-3d-con-simpleitk",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "3.6 Lectura de una serie completa (volumen 3D) con SimpleITK",
+    "text": "3.6 Lectura de una serie completa (volumen 3D) con SimpleITK\n\nimport SimpleITK as sitk\n\nreader = sitk.ImageSeriesReader()\nseries_ids = reader.GetGDCMSeriesIDs(\"carpeta_dicom/\")\nprint(\"Series encontradas:\", series_ids)\n\ndicom_files = reader.GetGDCMSeriesFileNames(\"carpeta_dicom/\", series_ids[0])\nreader.SetFileNames(dicom_files)\nvolumen = reader.Execute()\n\nprint(\"Tamaño:\", volumen.GetSize())        # (X, Y, Z)\nprint(\"Spacing:\", volumen.GetSpacing())    # mm\nprint(\"Origen:\", volumen.GetOrigin())\nprint(\"Dirección:\", volumen.GetDirection())",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#qué-es-nifti-y-por-qué-existe",
+    "href": "unidad1/notas2.html#qué-es-nifti-y-por-qué-existe",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "4.1 ¿Qué es NIfTI y por qué existe?",
+    "text": "4.1 ¿Qué es NIfTI y por qué existe?\nNIfTI (Neuroimaging Informatics Technology Initiative) es un formato creado originalmente para neuroimagen (fMRI, RM estructural) como respuesta a las limitaciones del antiguo formato Analyze 7.5. A diferencia de DICOM:\n\nUn solo archivo (o par) representa el volumen 3D completo, no un archivo por corte.\nExtensiones: .nii (un solo archivo, header + datos) o .nii.gz (comprimido, el más usado) o el par .hdr + .img (formato antiguo Analyze-compatible).\nHeader mucho más simple que DICOM (no tiene datos clínicos del paciente, protocolo, institución, etc.).\nEs el formato preferido para investigación, benchmarks públicos y frameworks de deep learning (BraTS, Medical Segmentation Decathlon, etc. distribuyen datos en NIfTI).",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#dicom-vs.-nifti-comparación-directa",
+    "href": "unidad1/notas2.html#dicom-vs.-nifti-comparación-directa",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "4.2 DICOM vs. NIfTI: comparación directa",
+    "text": "4.2 DICOM vs. NIfTI: comparación directa\n\n\n\n\n\n\n\n\nAspecto\nDICOM\nNIfTI\n\n\n\n\nUso principal\nClínico, comunicación entre equipos (PACS)\nInvestigación, procesamiento, deep learning\n\n\nEstructura\n1 archivo por corte (muchos archivos por volumen)\n1 archivo por volumen completo\n\n\nMetadatos\nExtensos (paciente, protocolo, institución)\nMínimos (spacing, orientación, tipo de dato)\n\n\nContiene PHI\nSí (por defecto)\nNo, generalmente ya anonimizado\n\n\nOrientación espacial\nImagePositionPatient / ImageOrientationPatient\nMatriz qform/sform (affine 4x4)\n\n\nEstándar de comunicación en red\nSí (protocolo DICOM)\nNo\n\n\nCompresión nativa\nVariable (a veces sin comprimir)\n.nii.gz (gzip) muy común",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#estructura-del-header-nifti",
+    "href": "unidad1/notas2.html#estructura-del-header-nifti",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "4.3 Estructura del header NIfTI",
+    "text": "4.3 Estructura del header NIfTI\nEl header NIfTI-1 tiene 348 bytes con campos clave:\n\ndim[8]: dimensiones (ej: [3, 256, 256, 150, 1, 1, 1, 1] → volumen 3D de 256×256×150).\npixdim[8]: tamaño físico de cada dimensión (spacing).\nsform/qform: matrices afines que llevan de índice de voxel a coordenadas del mundo (equivalente al trío spacing/origin/direction de DICOM, pero condensado en una matriz 4×4).\ndatatype: tipo de dato (int16, float32, etc.).\nCódigos de orientación: RAS, LAS, etc. (convención de ejes: Right/Left, Anterior/Posterior, Superior/Inferior).\n\n\n\n\n\n\n\nNoteRecordatorio: ¿qué es una transformación afín?\n\n\n\nUna transformación afín es una función que combina una transformación lineal (rotación, escala, cizalladura/shear) con una traslación. En 3D se representa cómodamente con una matriz de 4×4 usando coordenadas homogéneas (se le agrega un “1” extra al vector de posición para poder incluir la traslación dentro de una única multiplicación de matrices):\n\\[\n\\begin{bmatrix} x \\\\ y \\\\ z \\\\ 1 \\end{bmatrix}\n=\n\\begin{bmatrix}\na_{11} & a_{12} & a_{13} & t_x \\\\\na_{21} & a_{22} & a_{23} & t_y \\\\\na_{31} & a_{32} & a_{33} & t_z \\\\\n0 & 0 & 0 & 1\n\\end{bmatrix}\n\\begin{bmatrix} i \\\\ j \\\\ k \\\\ 1 \\end{bmatrix}\n\\]\nLa submatriz \\(3\\times3\\) (\\(a_{11}\\) … \\(a_{33}\\)) codifica rotación, escala y shear; el vector \\((t_x, t_y, t_z)\\) codifica la traslación (el origen). Lo importante de una transformación afín es que preserva líneas rectas y el paralelismo (una grilla de voxels sigue siendo una grilla regular después de transformarse), pero no necesariamente preserva ángulos ni distancias si hay escala o shear. Es exactamente el tipo de matriz que ya usamos más arriba en Figure 2 para llevar el índice de un voxel \\((i,j,k)\\) a su coordenada física \\((x,y,z)\\) en mm — y es también, matemáticamente, lo que hay detrás de las matrices qform/sform de NIfTI y del trío spacing/origin/direction de SimpleITK: distintas formas de guardar/parametrizar la misma matriz afín 4×4.\nUn caso particular importante es la transformación rígida (rigid): cuando la submatriz \\(3\\times3\\) es solo una rotación pura (sin escala ni shear), la transformación preserva además ángulos y distancias — es la que corresponde, por ejemplo, a mover o rotar un objeto sólido sin deformarlo. El qform de NIfTI está restringido a este caso particular.\n\n\n\n4.3.1 Las matrices qform y sform\nNIfTI-1 define dos matrices afines independientes para llevar del espacio de índices de voxel \\((i,j,k)\\) al espacio físico del mundo \\((x,y,z)\\): qform y sform. Esto suele confundir a quien viene de trabajar solo con DICOM, donde existe un único mecanismo (ImagePositionPatient/ImageOrientationPatient) para definir la geometría. Que existan dos matrices en NIfTI no es redundancia porque cada una sirve a un propósito distinto:\n\nqform (qform_code, cuaternión + pixdim): Codifica la orientación mediante un cuaternión (una representación matemática compacta y numéricamente estable de una rotación 3D, sin escala ni cizalladura). Se usa típicamente para representar la orientación “nativa” del escáner en el momento de la adquisición — es decir, cómo el equipo generó el volumen. Solo admite transformaciones rígidas (rotación + traslación), consistente con “así es como el escáner orientó los cortes”.\nsform (sform_code, matriz 4×4 general): Es una matriz afín completa de 4×4, que además de rotación y traslación puede incluir escala anisotrópica y cizalladura (shear). Se usa para representar transformaciones posteriores a la adquisición, como el resultado de un registro (co-registro) a un espacio estándar — por ejemplo, llevar un cerebro individual al espacio del atlas MNI152 o Talairach.\n\nCada matriz tiene un código de estado asociado (qform_code, sform_code) que indica si es válida y qué tipo de espacio de referencia representa (0 = desconocido, 1 = espacio del scanner, 2 = espacio alineado a otro archivo, 3 = espacio Talairach, 4 = espacio MNI152). Cuando ambas están presentes y difieren, la convención más aceptada (y la que usan NiBabel, ITK y FSL) es dar prioridad al sform por ser la transformación más general y, generalmente, la más “actualizada” (post-procesamiento).\n\nimport nibabel as nib\n\nimg = nib.load(\"volumen_paciente.nii.gz\")\n\nprint(\"qform code:\", img.header['qform_code'], \"\\n\", img.get_qform())\nprint(\"sform code:\", img.header['sform_code'], \"\\n\", img.get_sform())\n\n# La matriz que NiBabel usa por defecto para img.affine\n# sigue la lógica de prioridad sform &gt; qform &gt; \"fallback\" (pixdim + esquina)\nprint(\"affine efectivo:\\n\", img.affine)\n\n\n\n\n\n\n\nWarningCuidado con las convenciones de orientación\n\n\n\nNIfTI suele usar convención RAS+ (eje X apunta a la derecha, Y hacia adelante, Z hacia arriba), mientras que DICOM usa convención LPS (Left, Posterior, Superior). Herramientas como ITK/SimpleITK manejan esta diferencia internamente, pero si se mezclan bibliotecas (ej. NiBabel + SimpleITK) sin cuidado, es una fuente clásica de bugs donde la imagen aparece “espejada” o rotada.\n)\n\nLPS: Left, Posterior, Superior (DICOM)\nRAS: Right, Anterior, Superior (NIfTI)\n\n\n\n\n\n\n\n\n\nTipRelación con el trío spacing/origin/direction de SimpleITK\n\n\n\nConceptualmente, la matriz qform/sform de NIfTI cumple exactamente el mismo rol que el trío (spacing, origin, direction) que vimos en la sección de Imágenes Médicas y que usa SimpleITK/ITK: ambos son formas de describir la transformación afín voxel→mundo. SimpleITK, al leer un NIfTI, descompone automáticamente la matriz afín (sform o qform, según prioridad) en spacing + origin + direction; y al escribir, hace el camino inverso.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#conversión-dicom-nifti",
+    "href": "unidad1/notas2.html#conversión-dicom-nifti",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "4.4 Conversión DICOM → NIfTI",
+    "text": "4.4 Conversión DICOM → NIfTI\nEs una de las tareas más comunes en un pipeline de investigación. Herramientas típicas: dcm2niix, SimpleITK, dicom2nifti.\n\nimport SimpleITK as sitk\n\n# Leer serie DICOM (como en la sección anterior)\nreader = sitk.ImageSeriesReader()\nseries_ids = reader.GetGDCMSeriesIDs(\"carpeta_dicom/\")\ndicom_files = reader.GetGDCMSeriesFileNames(\"carpeta_dicom/\", series_ids[0])\nreader.SetFileNames(dicom_files)\nvolumen = reader.Execute()\n\n# Guardar como NIfTI comprimido\nsitk.WriteImage(volumen, \"volumen_paciente.nii.gz\")\n\n# Alternativa muy usada en la práctica clínica/investigación: dcm2niix\ndcm2niix -z y -f \"paciente_%p_%s\" -o salida/ carpeta_dicom/",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#lectura-de-nifti-con-nibabel",
+    "href": "unidad1/notas2.html#lectura-de-nifti-con-nibabel",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "4.5 Lectura de NIfTI con NiBabel",
+    "text": "4.5 Lectura de NIfTI con NiBabel\n\nimport nibabel as nib\nimport numpy as np\n\nimg = nib.load(\"volumen_paciente.nii.gz\")\n\ndatos = img.get_fdata()         # array numpy (X, Y, Z)\naffine = img.affine             # matriz 4x4\nheader = img.header\n\nprint(\"Shape:\", datos.shape)\nprint(\"Affine:\\n\", affine)\nprint(\"Voxel size (mm):\", header.get_zooms())\n\n\nflowchart LR\n    A[\"Tomógrafo / Resonador\"] --&gt;|\"genera\"| B[\"Serie DICOM&lt;br/&gt;(N archivos .dcm)\"]\n    B --&gt;|\"envío\"| C[\"PACS&lt;br/&gt;(archivo clínico)\"]\n    B --&gt;|\"exportación +&lt;br/&gt;anonimización\"| D[\"dcm2niix /&lt;br/&gt;SimpleITK\"]\n    D --&gt; E[\"Volumen NIfTI&lt;br/&gt;(1 archivo .nii.gz)\"]\n    E --&gt; F[\"Pipeline de&lt;br/&gt;investigación / IA\"]\n\n\n\n\n\n\n\n\n\nFigure 5: Flujo típico: adquisición en DICOM, investigación en NIfTI",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#qué-es-simpleitk",
+    "href": "unidad1/notas2.html#qué-es-simpleitk",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "5.1 ¿Qué es SimpleITK?",
+    "text": "5.1 ¿Qué es SimpleITK?\nSimpleITK es una interfaz simplificada (con bindings en Python, R, C++, Java, etc.) sobre ITK (Insight Segmentation and Registration Toolkit), la biblioteca de referencia en procesamiento de imágenes médicas desde hace más de 20 años. SimpleITK expone de forma sencilla capacidades que en ITK “puro” requerirían mucho código de plantillas C++:\n\nLectura/escritura de decenas de formatos (DICOM, NIfTI, NRRD, MetaImage, nrrd, nii, etc.) con una API unificada.\nFiltrado (suavizado, realce de bordes, morfología matemática).\nSegmentación clásica (umbralización, region growing, level sets, watershed).\nRegistro de imágenes (image registration): alinear dos volúmenes (ej. CT de planificación vs. CT de seguimiento; o RM T1 vs. T2 del mismo paciente).\nManejo nativo del sistema de coordenadas físicas (spacing, origin, direction) — algo que un array de NumPy puro no sabe hacer.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#la-clase-image-más-que-un-array",
+    "href": "unidad1/notas2.html#la-clase-image-más-que-un-array",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "5.2 La clase Image: más que un array",
+    "text": "5.2 La clase Image: más que un array\nUn objeto sitk.Image no es solo una matriz de números: lleva consigo su información geométrica. Esta es la diferencia clave frente a trabajar directamente con numpy.ndarray.\n\nimport SimpleITK as sitk\n\nimagen = sitk.ReadImage(\"volumen_paciente.nii.gz\")\n\nprint(\"Tamaño (voxels):\", imagen.GetSize())          # (X, Y, Z)\nprint(\"Spacing (mm):\", imagen.GetSpacing())\nprint(\"Origen (mm):\", imagen.GetOrigin())\nprint(\"Dirección:\", imagen.GetDirection())\nprint(\"Tipo de píxel:\", imagen.GetPixelIDTypeAsString())\n\n# Conversión a NumPy para procesamiento con otras librerías (ojo: cambia el orden de ejes)\narray = sitk.GetArrayFromImage(imagen)   # devuelve (Z, Y, X)\nprint(\"Shape NumPy:\", array.shape)\n\n# Y de vuelta a sitk.Image (hay que reasignar la información geométrica)\nnueva_imagen = sitk.GetImageFromArray(array)\nnueva_imagen.CopyInformation(imagen)  # ¡crítico! copiar spacing/origin/direction\n\n\n\n\n\n\n\nImportantTrampa clásica: orden de ejes\n\n\n\nsitk.Image.GetSize() devuelve (X, Y, Z), pero al convertir con sitk.GetArrayFromImage() el array de NumPy resultante tiene forma (Z, Y, X) (convención C-order, más eficiente para iterar por cortes). Es una fuente muy común de errores al mezclar SimpleITK con PyTorch/MONAI.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#ejemplo-filtrado-y-realce",
+    "href": "unidad1/notas2.html#ejemplo-filtrado-y-realce",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "5.3 Ejemplo: filtrado y realce",
+    "text": "5.3 Ejemplo: filtrado y realce\n\nimport SimpleITK as sitk\n\nimagen = sitk.ReadImage(\"volumen_paciente.nii.gz\", sitk.sitkFloat32)\n\n# Suavizado Gaussiano (reducción de ruido)\nsuavizada = sitk.SmoothingRecursiveGaussian(imagen, sigma=1.5)\n\n# Realce de bordes / gradiente\nbordes = sitk.SobelEdgeDetection(imagen)\n\n# Umbralización simple (ej. segmentar hueso en CT, UH &gt; 300)\nmascara_hueso = sitk.BinaryThreshold(\n    imagen, lowerThreshold=300, upperThreshold=3000,\n    insideValue=1, outsideValue=0\n)\n\nsitk.WriteImage(mascara_hueso, \"mascara_hueso.nii.gz\")",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#ejemplo-registro-de-imágenes-image-registration",
+    "href": "unidad1/notas2.html#ejemplo-registro-de-imágenes-image-registration",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "5.4 Ejemplo: registro de imágenes (image registration)",
+    "text": "5.4 Ejemplo: registro de imágenes (image registration)\nUno de los usos más importantes en física médica: alinear dos volúmenes (por ejemplo, un CT de planificación de radioterapia con un CT de control).\n\nimport SimpleITK as sitk\n\nimagen_fija = sitk.ReadImage(\"ct_planificacion.nii.gz\", sitk.sitkFloat32)\nimagen_movil = sitk.ReadImage(\"ct_seguimiento.nii.gz\", sitk.sitkFloat32)\n\n# Método de registro: transformación rígida + métrica de información mutua\nmetodo_registro = sitk.ImageRegistrationMethod()\nmetodo_registro.SetMetricAsMattesMutualInformation(numberOfHistogramBins=50)\nmetodo_registro.SetOptimizerAsRegularStepGradientDescent(\n    learningRate=1.0, minStep=1e-4, numberOfIterations=200\n)\nmetodo_registro.SetInitialTransform(\n    sitk.CenteredTransformInitializer(\n        imagen_fija, imagen_movil, sitk.Euler3DTransform()\n    )\n)\nmetodo_registro.SetInterpolator(sitk.sitkLinear)\n\ntransformacion_final = metodo_registro.Execute(imagen_fija, imagen_movil)\n\n# Aplicar la transformación para llevar la imagen móvil al espacio de la fija\nimagen_registrada = sitk.Resample(\n    imagen_movil, imagen_fija, transformacion_final,\n    sitk.sitkLinear, 0.0, imagen_movil.GetPixelID()\n)\n\nsitk.WriteImage(imagen_registrada, \"ct_seguimiento_registrado.nii.gz\")\n\n\nflowchart LR\n    F[\"Imagen fija&lt;br/&gt;(referencia)\"] --&gt; M[\"Métrica de similitud&lt;br/&gt;(información mutua)\"]\n    Mv[\"Imagen móvil\"] --&gt; T[\"Transformación&lt;br/&gt;(rígida / afín / deformable)\"]\n    T --&gt; M\n    M --&gt; Opt[\"Optimizador&lt;br/&gt;(gradiente descendente)\"]\n    Opt --&gt;|\"actualiza parámetros\"| T\n    Opt --&gt;|\"convergencia\"| R[\"Imagen móvil&lt;br/&gt;registrada al espacio fijo\"]\n\n\n\n\n\n\n\n\n\nFigure 6: Concepto de registro de imágenes",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#rol-de-simpleitk-en-el-pipeline-de-ia",
+    "href": "unidad1/notas2.html#rol-de-simpleitk-en-el-pipeline-de-ia",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "5.5 Rol de SimpleITK en el pipeline de IA",
+    "text": "5.5 Rol de SimpleITK en el pipeline de IA\nSimpleITK normalmente se usa en la etapa de preprocesamiento antes de entrar a PyTorch/MONAI: lectura de archivos, resampleo a un spacing isotrópico común, normalización de intensidades, recorte de la región de interés, y conversión final a arrays/tensores.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#qué-es-pytorch-y-por-qué-lo-usamos",
+    "href": "unidad1/notas2.html#qué-es-pytorch-y-por-qué-lo-usamos",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "6.1 ¿Qué es PyTorch y por qué lo usamos?",
+    "text": "6.1 ¿Qué es PyTorch y por qué lo usamos?\nPyTorch es el framework de deep learning de código abierto (desarrollado originalmente por Meta AI) más utilizado actualmente en investigación, incluyendo el dominio biomédico. Sus ventajas clave para este curso:\n\nTensores con API muy similar a NumPy, pero con soporte nativo para GPU (aceleración masiva necesaria para volúmenes 3D).\nAutograd: diferenciación automática para calcular gradientes y entrenar redes mediante retropropagación.\ntorch.nn: módulo con capas (convolucionales, normalización, activación) para construir arquitecturas.\nEcosistema maduro y es la base sobre la cual está construido MONAI.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#tensores-la-estructura-de-datos-fundamental",
+    "href": "unidad1/notas2.html#tensores-la-estructura-de-datos-fundamental",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "6.2 Tensores: la estructura de datos fundamental",
+    "text": "6.2 Tensores: la estructura de datos fundamental\n\nimport torch\n\n# Un volumen CT como tensor: (Canal, Profundidad, Alto, Ancho)\nvolumen = torch.randn(1, 128, 128, 128)  # 1 canal, 128^3 voxels\nprint(\"Shape:\", volumen.shape)\nprint(\"Dispositivo:\", volumen.device)\n\n# Mover a GPU si está disponible\ndevice = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\nvolumen = volumen.to(device)\nprint(\"Ahora en:\", volumen.device)\n\n# Un batch de N pacientes: (N, C, D, H, W)\nbatch = torch.randn(4, 1, 96, 96, 96).to(device)",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#convención-de-dimensiones-en-pytorch-para-imágenes-médicas",
+    "href": "unidad1/notas2.html#convención-de-dimensiones-en-pytorch-para-imágenes-médicas",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "6.3 Convención de dimensiones en PyTorch para imágenes médicas",
+    "text": "6.3 Convención de dimensiones en PyTorch para imágenes médicas\n\n\n\n\n\n\n\n\nDimensión\n2D (ej. radiografía)\n3D (ej. CT/RM completo)\n\n\n\n\nFormato estándar\n(N, C, H, W)\n(N, C, D, H, W)\n\n\nN\nTamaño del batch\nTamaño del batch\n\n\nC\nCanales (1 para gris, 3 para RGB, o múltiples modalidades apiladas)\nIgual\n\n\nD\n—\nProfundidad (número de cortes)\n\n\nH, W\nAlto, Ancho\nAlto, Ancho",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#autograd-el-motor-de-entrenamiento",
+    "href": "unidad1/notas2.html#autograd-el-motor-de-entrenamiento",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "6.4 Autograd: el motor de entrenamiento",
+    "text": "6.4 Autograd: el motor de entrenamiento\n\nimport torch\n\nx = torch.tensor([2.0], requires_grad=True)\ny = x ** 2 + 3 * x\n\ny.backward()  # calcula dy/dx automáticamente\nprint(\"Gradiente dy/dx:\", x.grad)  # dy/dx = 2x + 3 = 7.0",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#ejemplo-mínimo-una-red-convolucional-3d-simple",
+    "href": "unidad1/notas2.html#ejemplo-mínimo-una-red-convolucional-3d-simple",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "6.5 Ejemplo mínimo: una red convolucional 3D simple",
+    "text": "6.5 Ejemplo mínimo: una red convolucional 3D simple\n\nimport torch\nimport torch.nn as nn\n\nclass CNN3DSimple(nn.Module):\n    \"\"\"Red convolucional 3D simple para clasificación binaria\n    (ej. presencia/ausencia de nódulo pulmonar en un parche de CT).\"\"\"\n    def __init__(self, in_channels=1, num_classes=2):\n        super().__init__()\n        self.features = nn.Sequential(\n            nn.Conv3d(in_channels, 16, kernel_size=3, padding=1),\n            nn.BatchNorm3d(16),\n            nn.ReLU(inplace=True),\n            nn.MaxPool3d(2),\n\n            nn.Conv3d(16, 32, kernel_size=3, padding=1),\n            nn.BatchNorm3d(32),\n            nn.ReLU(inplace=True),\n            nn.MaxPool3d(2),\n        )\n        self.clasificador = nn.Sequential(\n            nn.AdaptiveAvgPool3d(1),\n            nn.Flatten(),\n            nn.Linear(32, num_classes),\n        )\n\n    def forward(self, x):\n        x = self.features(x)\n        x = self.clasificador(x)\n        return x\n\nmodelo = CNN3DSimple()\nentrada_ejemplo = torch.randn(2, 1, 64, 64, 64)  # batch=2\nsalida = modelo(entrada_ejemplo)\nprint(\"Salida:\", salida.shape)  # (2, 2) -&gt; logits por clase",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#bucle-de-entrenamiento-típico",
+    "href": "unidad1/notas2.html#bucle-de-entrenamiento-típico",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "6.6 Bucle de entrenamiento típico",
+    "text": "6.6 Bucle de entrenamiento típico\n\nimport torch\nimport torch.nn as nn\nimport torch.optim as optim\n\nmodelo = CNN3DSimple().to(device)\ncriterio = nn.CrossEntropyLoss()\noptimizador = optim.Adam(modelo.parameters(), lr=1e-4)\n\nmodelo.train()\nfor epoca in range(10):\n    for volumenes, etiquetas in dataloader:  # dataloader definido con Dataset propio\n        volumenes = volumenes.to(device)\n        etiquetas = etiquetas.to(device)\n\n        optimizador.zero_grad()\n        salidas = modelo(volumenes)\n        perdida = criterio(salidas, etiquetas)\n        perdida.backward()\n        optimizador.step()\n\n    print(f\"Época {epoca+1}: pérdida = {perdida.item():.4f}\")\n\n\nflowchart LR\n    A[\"Batch de datos&lt;br/&gt;(volúmenes + etiquetas)\"] --&gt; B[\"Forward pass&lt;br/&gt;modelo(x)\"]\n    B --&gt; C[\"Cálculo de pérdida&lt;br/&gt;criterio(salida, etiqueta)\"]\n    C --&gt; D[\"Backward pass&lt;br/&gt;perdida.backward()\"]\n    D --&gt; E[\"Actualización de pesos&lt;br/&gt;optimizador.step()\"]\n    E --&gt;|\"siguiente batch\"| A\n\n\n\n\n\n\n\n\n\nFigure 7: Ciclo de entrenamiento en PyTorch",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#qué-es-monai",
+    "href": "unidad1/notas2.html#qué-es-monai",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "7.1 ¿Qué es MONAI?",
+    "text": "7.1 ¿Qué es MONAI?\nMONAI (Medical Open Network for AI) es un framework de código abierto construido sobre PyTorch, desarrollado por un consorcio que incluye NVIDIA, King’s College London y otras instituciones, específicamente diseñado para imágenes médicas. Su objetivo es evitar que cada laboratorio reimplemente desde cero:\n\nLectores de DICOM/NIfTI integrados con el Dataset de PyTorch.\nTransformaciones (transforms) conscientes del dominio médico (que respetan spacing, orientación, intensidades en UH, etc.).\nArquitecturas de referencia ya implementadas (U-Net, UNETR, SegResNet, DenseNet, etc.).\nMétricas y funciones de pérdida específicas (Dice, Hausdorff, IoU 3D).\nUtilidades de inferencia por sliding window (necesaria porque los volúmenes 3D completos no siempre caben en memoria de GPU).\n\n\n\n\n\n\n\nNoteRelación entre las piezas del curso\n\n\n\nMONAI no reemplaza a SimpleITK ni a PyTorch: los integra. MONAI usa por debajo lectores basados en ITK/NiBabel para I/O, y todos sus modelos son módulos torch.nn.Module estándar. Es la “capa de dominio médico” sobre el framework general.\n\n\n\nflowchart TB\n    subgraph L1[\"Capa de bajo nivel\"]\n        S[\"SimpleITK / ITK / NiBabel&lt;br/&gt;(I/O, geometría física)\"]\n    end\n    subgraph L2[\"Framework general de Deep Learning\"]\n        P[\"PyTorch&lt;br/&gt;(tensores, autograd, nn.Module)\"]\n    end\n    subgraph L3[\"Capa de dominio médico\"]\n        M[\"MONAI&lt;br/&gt;(transforms, redes, métricas, inferencia)\"]\n    end\n    S --&gt; M\n    P --&gt; M\n    M --&gt; A[\"Aplicación final:&lt;br/&gt;segmentación, clasificación,&lt;br/&gt;detección, radiómica\"]\n\n\n\n\n\n\n\n\n\nFigure 8: MONAI como capa de dominio sobre PyTorch",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#transforms-de-monai",
+    "href": "unidad1/notas2.html#transforms-de-monai",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "7.2 Transforms de MONAI",
+    "text": "7.2 Transforms de MONAI\nLas transforms son el corazón del preprocesamiento en MONAI y siguen dos estilos:\n\nDiccionario (d): operan sobre un diccionario {\"image\": ..., \"label\": ...}, aplicando la misma transformación geométrica sincronizada a la imagen y su máscara. Es el estilo recomendado en segmentación.\nArray: operan directamente sobre un tensor/array.\n\n\nfrom monai.transforms import (\n    Compose, LoadImaged, EnsureChannelFirstd, Spacingd, Orientationd,\n    ScaleIntensityRanged, CropForegroundd, RandCropByPosNegLabeld,\n    RandFlipd, RandRotate90d, ToTensord,\n)\n\ntransformaciones_entrenamiento = Compose([\n    LoadImaged(keys=[\"image\", \"label\"]),                  # lee NIfTI/DICOM\n    EnsureChannelFirstd(keys=[\"image\", \"label\"]),          # asegura formato (C, D, H, W)\n    Orientationd(keys=[\"image\", \"label\"], axcodes=\"RAS\"),  # estandariza orientación\n    Spacingd(\n        keys=[\"image\", \"label\"],\n        pixdim=(1.0, 1.0, 1.0),                             # resampleo a 1mm isotrópico\n        mode=(\"bilinear\", \"nearest\"),\n    ),\n    ScaleIntensityRanged(                                   # normalización de UH (CT)\n        keys=[\"image\"], a_min=-175, a_max=250,\n        b_min=0.0, b_max=1.0, clip=True,\n    ),\n    CropForegroundd(keys=[\"image\", \"label\"], source_key=\"image\"),\n    RandCropByPosNegLabeld(                                  # muestreo balanceado de parches\n        keys=[\"image\", \"label\"], label_key=\"label\",\n        spatial_size=(96, 96, 96), pos=1, neg=1, num_samples=4,\n    ),\n    RandFlipd(keys=[\"image\", \"label\"], prob=0.5, spatial_axis=0),\n    RandRotate90d(keys=[\"image\", \"label\"], prob=0.5),\n    ToTensord(keys=[\"image\", \"label\"]),\n])",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#dataset-y-dataloader-con-monai",
+    "href": "unidad1/notas2.html#dataset-y-dataloader-con-monai",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "7.3 Dataset y DataLoader con MONAI",
+    "text": "7.3 Dataset y DataLoader con MONAI\n\nfrom monai.data import Dataset, DataLoader, CacheDataset\n\narchivos_entrenamiento = [\n    {\"image\": \"paciente001_ct.nii.gz\", \"label\": \"paciente001_mask.nii.gz\"},\n    {\"image\": \"paciente002_ct.nii.gz\", \"label\": \"paciente002_mask.nii.gz\"},\n    # ...\n]\n\n# CacheDataset acelera épocas posteriores cacheando transformaciones deterministas\ndataset_entrenamiento = CacheDataset(\n    data=archivos_entrenamiento,\n    transform=transformaciones_entrenamiento,\n    cache_rate=1.0,\n    num_workers=4,\n)\n\ndataloader_entrenamiento = DataLoader(\n    dataset_entrenamiento, batch_size=2, shuffle=True, num_workers=4\n)",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#arquitecturas-listas-para-usar-ejemplo-con-u-net-3d",
+    "href": "unidad1/notas2.html#arquitecturas-listas-para-usar-ejemplo-con-u-net-3d",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "7.4 Arquitecturas listas para usar: ejemplo con U-Net 3D",
+    "text": "7.4 Arquitecturas listas para usar: ejemplo con U-Net 3D\n\nfrom monai.networks.nets import UNet\nfrom monai.networks.layers import Norm\n\nmodelo = UNet(\n    spatial_dims=3,\n    in_channels=1,\n    out_channels=2,                 # ej: fondo + órgano de interés\n    channels=(16, 32, 64, 128, 256),\n    strides=(2, 2, 2, 2),\n    num_res_units=2,\n    norm=Norm.BATCH,\n).to(device)",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#pérdida-y-métrica-específicas-de-segmentación-dice",
+    "href": "unidad1/notas2.html#pérdida-y-métrica-específicas-de-segmentación-dice",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "7.5 Pérdida y métrica específicas de segmentación: Dice",
+    "text": "7.5 Pérdida y métrica específicas de segmentación: Dice\n\\[\n\\text{DiceLoss} = 1 - \\frac{2 |A \\cap B|}{|A| + |B|}\n\\]\ndonde \\(A\\) es la máscara predicha y \\(B\\) la máscara de referencia (ground truth).\n\nfrom monai.losses import DiceLoss\nfrom monai.metrics import DiceMetric\nfrom monai.inferers import sliding_window_inference\n\ncriterio = DiceLoss(to_onehot_y=True, softmax=True)\nmetrica_dice = DiceMetric(include_background=False, reduction=\"mean\")\n\noptimizador = torch.optim.Adam(modelo.parameters(), lr=1e-4)\n\nfor epoca in range(50):\n    modelo.train()\n    for batch in dataloader_entrenamiento:\n        imagenes = batch[\"image\"].to(device)\n        etiquetas = batch[\"label\"].to(device)\n\n        optimizador.zero_grad()\n        salidas = modelo(imagenes)\n        perdida = criterio(salidas, etiquetas)\n        perdida.backward()\n        optimizador.step()\n\n    # Inferencia por ventana deslizante para volúmenes completos en validación\n    modelo.eval()\n    with torch.no_grad():\n        for batch_val in dataloader_validacion:\n            imagenes_val = batch_val[\"image\"].to(device)\n            etiquetas_val = batch_val[\"label\"].to(device)\n            salidas_val = sliding_window_inference(\n                imagenes_val, roi_size=(96, 96, 96),\n                sw_batch_size=4, predictor=modelo\n            )\n            metrica_dice(y_pred=salidas_val, y=etiquetas_val)\n\n        dice_promedio = metrica_dice.aggregate().item()\n        metrica_dice.reset()\n        print(f\"Época {epoca+1}: Dice de validación = {dice_promedio:.4f}\")\n\n\nflowchart TB\n    A[\"Archivos NIfTI&lt;br/&gt;(image, label)\"] --&gt; B[\"Transforms MONAI&lt;br/&gt;(Load, Spacing, Crop, Augment)\"]\n    B --&gt; C[\"Dataset / DataLoader\"]\n    C --&gt; D[\"Modelo: UNet 3D&lt;br/&gt;(monai.networks.nets)\"]\n    D --&gt; E[\"DiceLoss +&lt;br/&gt;Backpropagation\"]\n    E --&gt; F{\"¿Convergió?\"}\n    F --&gt;|No| C\n    F --&gt;|Sí| G[\"Sliding Window Inference&lt;br/&gt;sobre volumen completo\"]\n    G --&gt; H[\"Métrica Dice /&lt;br/&gt;Evaluación clínica\"]\n\n\n\n\n\n\n\n\n\nFigure 9: Pipeline completo de segmentación con MONAI",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas2.html#tabla-resumen-qué-resuelve-cada-herramienta",
+    "href": "unidad1/notas2.html#tabla-resumen-qué-resuelve-cada-herramienta",
+    "title": "Imágenes Médicas y Frameworks para IA en Física Médica",
+    "section": "7.6 Tabla resumen: ¿qué resuelve cada herramienta?",
+    "text": "7.6 Tabla resumen: ¿qué resuelve cada herramienta?\n\n\n\n\n\n\n\n\nHerramienta\nRol principal\nAnalogía\n\n\n\n\nDICOM\nFormato/protocolo de datos clínicos\nEl “idioma” en que habla el hospital\n\n\nNIfTI\nFormato de datos para investigación\nEl “idioma” en que habla la ciencia de datos\n\n\nSimpleITK\nI/O + procesamiento geométrico clásico\nEl “traductor y editor” de imágenes\n\n\nPyTorch\nMotor de cómputo y aprendizaje profundo\nEl “motor del auto”\n\n\nMONAI\nCapa de dominio médico sobre PyTorch\nEl “kit específico para off-road” sobre ese motor\n\n\n\n\n\n\n\n\n\n\nTipLecturas recomendadas\n\n\n\n\nNEMA. DICOM Standard, Parte 3: Information Object Definitions.\nCardoso, M.J. et al. “MONAI: An open-source framework for deep learning in healthcare imaging” (2022).\nDocumentación oficial: simpleitk.org, pytorch.org, monai.io.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas sobre imágenes médicas"
     ]
   }
 ]
