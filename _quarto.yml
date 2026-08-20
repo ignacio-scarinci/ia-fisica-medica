@@ -19,8 +19,8 @@ website:
         text: Inicio
       - href: unidad0/notas.qmd
         text: Unidad 0  
-      # - href: unidad1/notas.qmd
-      #   text: Unidad 1
+      - href: unidad1/notas.qmd
+        text: Unidad 1
     right:
       - icon: github
         href: https://github.com/ignacio-scarinci/ia-fisica-medica
@@ -46,8 +46,10 @@ website:
             href: unidad1/notas.qmd
           - text: "Notas sobre imágenes médicas"
             href: unidad1/notas2.qmd
-          - text: "Presentación"
-            href: unidad1/presentacion.qmd
+          - text: "Clase 1: De los modelos clásicos al algoritmo del Perceptrón"
+            href: unidad1/clase1.qmd
+          - text: "Clase 2: El ciclo de entrenamiento"
+            href: unidad1/clase2.qmd
           - text: "Notebook 0"
             href: unidad1/notebooks/Notebook0.ipynb
           - text: "Notebook 1"

@@ -1,0 +1,329 @@
+/*-- scss:defaults --*/
+
+// ============================================================
+// Paleta
+// ============================================================
+
+$fm-navy: #17324d;
+$fm-blue: #2f6690;
+$fm-cyan: #3a8fb7;
+$fm-light: #f5f7fa;
+$fm-gray: #66727d;
+$fm-dark: #202a33;
+$fm-accent: #c95d3e;
+
+// ============================================================
+// Colores globales
+// ============================================================
+
+$body-bg: $fm-light;
+$body-color: $fm-dark;
+
+$link-color: $fm-blue;
+$selection-bg: rgba($fm-blue, 0.25);
+
+// ============================================================
+// Tipografía
+// ============================================================
+
+$font-family-sans-serif: "Aptos",
+    "Inter",
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+
+$font-family-monospace: "JetBrains Mono",
+    "Fira Code",
+    "SFMono-Regular",
+    Consolas,
+    monospace;
+
+// ============================================================
+// Encabezados
+// ============================================================
+
+$presentation-heading-font: $font-family-sans-serif;
+$presentation-heading-color: $fm-navy;
+$presentation-heading-font-weight: 650;
+
+$presentation-h1-font-size: 2.2em;
+$presentation-h2-font-size: 1.55em;
+$presentation-h3-font-size: 1.15em;
+
+$presentation-heading-text-shadow: none;
+
+// ============================================================
+// Layout
+// ============================================================
+
+$presentation-font-size-root: 34px;
+$presentation-line-height: 1.35;
+
+$presentation-block-margin: 0.7em;
+$presentation-slide-text-align: left;
+$presentation-title-slide-text-align: left;
+
+$border-radius: 6px;
+
+// ============================================================
+// Código
+// ============================================================
+
+$code-block-bg: #eef2f5;
+$code-block-border-color: #d8e0e6;
+$code-block-font-size: 0.62em;
+
+$code-bg: rgba($fm-blue, 0.08);
+$code-color: $fm-navy;
+
+// ============================================================
+// Callouts
+// ============================================================
+
+$callout-border-width: 0.22rem;
+
+$callout-color-note: $fm-blue;
+$callout-color-tip: #397b64;
+$callout-color-important: $fm-accent;
+$callout-color-warning: #c58a2e;
+
+
+/*-- scss:rules --*/
+
+// ============================================================
+// Slide general
+// ============================================================
+
+.reveal .slide {
+    padding-top: 0.15em;
+}
+
+.reveal .slides {
+    text-align: left;
+}
+
+
+// ============================================================
+// Títulos
+// ============================================================
+
+.reveal h1,
+.reveal h2,
+.reveal h3 {
+    letter-spacing: -0.02em;
+}
+
+.reveal h2 {
+    margin-bottom: 0.65em;
+}
+
+.reveal h2::after {
+    content: "";
+    display: block;
+    width: 2.2em;
+    height: 0.10em;
+    margin-top: 0.22em;
+    background: $fm-blue;
+}
+
+
+// ============================================================
+// Texto
+// ============================================================
+
+.reveal p {
+    line-height: 1.4;
+}
+
+.reveal li {
+    margin-bottom: 0.25em;
+}
+
+.reveal strong {
+    color: $fm-navy;
+    font-weight: 700;
+}
+
+
+// ============================================================
+// Links
+// ============================================================
+
+.reveal a {
+    text-decoration-thickness: 0.06em;
+    text-underline-offset: 0.12em;
+}
+
+
+// ============================================================
+// Código
+// ============================================================
+
+.reveal pre {
+    border-radius: 6px;
+    box-shadow: none;
+    border: 1px solid $code-block-border-color;
+}
+
+.reveal pre code {
+    padding: 0.8em 1em;
+    line-height: 1.35;
+}
+
+.reveal code {
+    border-radius: 4px;
+}
+
+
+// ============================================================
+// Ecuaciones
+// ============================================================
+
+.reveal .MathJax_Display,
+.reveal mjx-container[display="true"] {
+    margin: 0.75em 0 !important;
+}
+
+
+// ============================================================
+// Tablas
+// ============================================================
+
+.reveal table {
+    width: 100%;
+    font-size: 0.78em;
+    border-collapse: collapse;
+}
+
+.reveal table th {
+    background: $fm-navy;
+    color: white;
+    font-weight: 600;
+}
+
+.reveal table th,
+.reveal table td {
+    padding: 0.35em 0.55em;
+    border-bottom: 1px solid #d8e0e6;
+}
+
+.reveal table tbody tr:nth-child(even) {
+    background: rgba($fm-blue, 0.035);
+}
+
+
+// ============================================================
+// Imágenes
+// ============================================================
+
+.reveal img {
+    max-height: 72vh;
+}
+
+
+// ============================================================
+// Callouts
+// ============================================================
+
+.reveal .callout {
+    font-size: 0.82em;
+    border-radius: 5px;
+}
+
+
+// ============================================================
+// Citas
+// ============================================================
+
+.reveal blockquote {
+    width: 90%;
+    padding: 0.4em 0.8em;
+    border-left: 0.16em solid $fm-blue;
+    background: rgba($fm-blue, 0.04);
+    box-shadow: none;
+    font-style: normal;
+}
+
+
+// ============================================================
+// Slide de título
+// ============================================================
+
+.reveal .quarto-title-block .title {
+    color: $fm-navy;
+    font-size: 2.35em;
+    line-height: 1.05;
+    margin-bottom: 0.3em;
+}
+
+.reveal .quarto-title-block .subtitle {
+    color: $fm-gray;
+    font-size: 1.15em;
+    font-weight: 400;
+}
+
+.reveal .quarto-title-block .quarto-title-author-name {
+    color: $fm-dark;
+    font-size: 0.85em;
+}
+
+
+// ============================================================
+// Número de slide
+// ============================================================
+
+.reveal .slide-number {
+    color: $fm-gray;
+    background: transparent;
+    font-size: 0.45em;
+}
+
+
+// ============================================================
+// Clases auxiliares
+// ============================================================
+
+.reveal .small {
+    font-size: 0.75em;
+}
+
+.reveal .smaller {
+    font-size: 0.62em;
+}
+
+.reveal .highlight {
+    color: $fm-blue;
+    font-weight: 700;
+}
+
+.reveal .accent {
+    color: $fm-accent;
+    font-weight: 700;
+}
+
+.reveal .muted {
+    color: $fm-gray;
+}
+
+.reveal .key-idea {
+    margin: 0.8em 0;
+    padding: 0.65em 0.9em;
+    border-left: 0.22em solid $fm-blue;
+    background: rgba($fm-blue, 0.06);
+    font-size: 1.05em;
+}
+
+.reveal .definition {
+    margin: 0.8em 0;
+    padding: 0.65em 0.9em;
+    border: 1px solid #d8e0e6;
+    border-radius: 6px;
+    background: white;
+}
+
+.reveal .question {
+    margin-top: 1em;
+    font-size: 1.2em;
+    font-weight: 600;
+    color: $fm-navy;
+}

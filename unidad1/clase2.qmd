@@ -1,0 +1,1981 @@
+---
+title: "Clase 2: El ciclo de entrenamiento"
+subtitle: "Unidad 1 · Fundamentos de IA"
+author: "Ignacio Scarinci"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    chalkboard: true
+    preview-links: auto
+    transition: fade
+    width: 1600
+    height: 900
+    margin: 0.06
+    center: true
+    smaller: false
+    toc: false
+    code-line-numbers: true
+jupyter: python3
+execute:
+  echo: true
+  warning: false
+  message: false
+  freeze: auto
+---
+
+
+```{python}
+#| label: setup-figuras
+#| echo: false
+#| include: false
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+<style>
+.reveal .visual-note { font-size: 0.72em; opacity: 0.8; }
+.reveal .compact-table table { font-size: 0.72em; }
+.reveal .centered { text-align: center; }
+.reveal .texto-destacado {
+  font-size: 2em;
+  font-weight: 700;
+  text-align: center;
+  margin: 0.5em 0;
+}
+</style>
+
+## Objetivo de la clase
+
+Entender cómo una red neuronal aprende sus parámetros.
+
+```{mermaid}
+%%| echo: false
+
+flowchart LR
+    A["Datos"] --> B["Modelo"]
+    B --> C["Loss"]
+    C --> D["Gradientes"]
+    D --> E["Optimizador"]
+    E -. "actualiza parámetros" .-> B
+
+    classDef main fill:#f8f9fa,stroke:#333,stroke-width:1.5px,color:#111;
+    class A,B,C,D,E main;
+```
+
+:::{.fragment}
+La clase conecta matemática, PyTorch y aplicaciones en imágenes médicas.
+:::
+
+## Mapa conceptual
+
+```{mermaid}
+%%| echo: false
+
+flowchart LR
+    A["Riesgo empírico"] --> B["Forward"]
+    B --> C["Loss"]
+    C --> D["Gradiente"]
+    D --> E["Backpropagation"]
+    E --> F["Actualización"]
+
+    classDef concept fill:#f8f9fa,stroke:#333,stroke-width:1.5px,color:#111;
+    class A,B,C,D,E,F concept;
+```
+
+:::{.fragment}
+Después veremos cómo esto aparece en PyTorch y MONAI.
+:::
+
+## La pregunta central
+
+Tenemos una red:
+
+$$
+\hat y=f_\theta(x)
+$$
+
+y queremos que prediga bien.
+
+:::{.callout-important title="Pregunta central"}
+<p class="texto-destacado">¿Cómo elegimos $\theta$?</p>
+:::
+
+## El ciclo de entrenamiento, visualmente
+
+```{mermaid}
+%%| echo: false
+
+flowchart LR
+    A["Datos<br/>x, y"] --> B["Modelo<br/>fθ(x)"]
+    B --> C["Predicción<br/>ŷ"]
+    C --> D["Loss<br/>L(ŷ,y)"]
+    D --> E["Backward<br/>∇θL"]
+    E --> F["Optimizador<br/>actualiza θ"]
+    F -. "siguiente mini-batch" .-> B
+```
+
+:::{.fragment .visual-note}
+El entrenamiento es un **ciclo**: la salida de una iteración modifica el modelo que verá el siguiente mini-batch.
+:::
+
+## Parámetros de una red
+
+Los parámetros entrenables son los **pesos** y los **sesgos**.
+
+```{mermaid}
+%%| echo: false
+
+flowchart LR
+    x1(("x₁"))
+    x2(("x₂"))
+
+    h1(("h₁"))
+    h2(("h₂"))
+
+    y(("ŷ"))
+
+    x1 -- "w₁₁^(1)" --> h1
+    x2 -- "w₂₁^(1)" --> h1
+    x1 -- "w₁₂^(1)" --> h2
+    x2 -- "w₂₂^(1)" --> h2
+
+    h1 -- "w₁^(2)" --> y
+    h2 -- "w₂^(2)" --> y
+
+    b1["b₁^(1)"] -.-> h1
+    b2["b₂^(1)"] -.-> h2
+    b3["b^(2)"] -.-> y
+
+    classDef neuron fill:#f8f9fa,stroke:#333,stroke-width:1.5px,color:#111;
+    classDef bias fill:#fff7e6,stroke:#a66b00,stroke-width:1.2px,color:#111;
+
+    class x1,x2,h1,h2,y neuron;
+    class b1,b2,b3 bias;
+```
+
+$$
+\theta = \{W^{(1)}, b^{(1)}, W^{(2)}, b^{(2)}\}
+$$
+
+En una red profunda, el número total de parámetros puede ser muy grande.
+
+:::{.fragment}
+Entrenar significa ajustar esos pesos y sesgos usando datos.
+:::
+## De predicción a pérdida
+
+Para un dato $(x_i,y_i)$:
+
+$$
+\hat y_i=f_\theta(x_i)
+$$
+
+La pérdida mide el error:
+
+$$
+\ell(\hat y_i,y_i)
+$$
+
+:::{.fragment}
+La pérdida convierte "se equivocó" en una cantidad optimizable.
+:::
+
+## Riesgo esperado
+
+El objetivo ideal sería minimizar:
+
+$$
+R(\theta)
+=
+\mathbb E_{(x,y)\sim P}
+[
+\ell(f_\theta(x),y)
+]
+$$
+
+:::{.fragment}
+Pero no conocemos la distribución poblacional $P$.
+:::
+
+## Riesgo empírico
+
+Tenemos una muestra finita:
+
+$$
+\mathcal D=\{(x_i,y_i)\}_{i=1}^{N}
+$$
+
+Minimizamos:
+
+$$
+\widehat R(\theta)
+=
+\frac1N
+\sum_{i=1}^{N}
+\ell(f_\theta(x_i),y_i)
+$$
+
+## $\theta^*$ versus $\hat\theta$
+
+Solución ideal:
+
+$$
+\theta^*
+=
+\arg\min_\theta R(\theta)
+$$
+
+Solución empírica:
+
+$$
+\hat\theta
+=
+\arg\min_\theta \widehat R(\theta)
+$$
+
+:::{.fragment}
+Generalizar significa que $\hat\theta$ funcione bien más allá de la muestra.
+:::
+
+## Riesgo real y riesgo empírico: una imagen mental
+
+```{python}
+#| label: fig-riesgo-real-empirico
+#| echo: false
+#| fig-cap: "La muestra permite estimar el comportamiento poblacional, pero no lo determina exactamente."
+#| fig-width: 10
+#| fig-height: 5
+
+rng = np.random.default_rng(7)
+x = np.linspace(-3, 3, 300)
+y_true = 0.25 * x**2 + 0.3
+xs = rng.uniform(-2.8, 2.8, 18)
+ys = 0.25 * xs**2 + 0.3 + rng.normal(0, 0.28, len(xs))
+coef = np.polyfit(xs, ys, 2)
+y_fit = np.polyval(coef, x)
+
+plt.figure(figsize=(10,5))
+plt.plot(x, y_true, linewidth=3, label='Comportamiento poblacional (ideal)')
+plt.scatter(xs, ys, s=55, label='Muestra observada')
+plt.plot(x, y_fit, linestyle='--', linewidth=2.5, label='Modelo ajustado con la muestra')
+plt.xlabel('x')
+plt.ylabel('pérdida / respuesta')
+plt.legend(frameon=False)
+plt.tight_layout()
+plt.show()
+```
+
+:::{.fragment}
+$\widehat R$ es lo que podemos optimizar. $R$ es lo que realmente nos importa.
+:::
+
+## Optimización no es generalización
+
+Podemos tener:
+
+$$
+\widehat R(\hat\theta)\approx0
+$$
+
+y aun así mal desempeño en pacientes nuevos.
+
+:::{.fragment}
+Optimizar el entrenamiento no garantiza desempeño clínico.
+:::
+
+## Funciones de pérdida
+
+La elección de la pérdida depende de la tarea.
+
+| Tarea | Loss frecuente |
+|---|---|
+| Regresión | MSE, MAE, Huber |
+| Clasificación binaria | BCE |
+| Multiclase | Cross Entropy |
+
+## MSE
+
+Para regresión:
+
+$$
+\mathcal L_{\mathrm{MSE}}
+=
+\frac1N
+\sum_{i=1}^{N}
+(y_i-\hat y_i)^2
+$$
+
+:::{.fragment}
+Penaliza fuertemente errores grandes.
+:::
+
+## Binary Cross Entropy
+
+Para clasificación binaria, el modelo produce una probabilidad
+
+$$
+p = P(y=1\mid x)
+$$
+
+con
+
+$$
+0 \leq p \leq 1.
+$$
+
+Por ejemplo, esta probabilidad puede obtenerse aplicando una función sigmoide a la salida de la red.
+
+La pérdida es:
+
+$$
+\mathcal L_{\mathrm{BCE}}
+=
+-\left[
+y\log(p)
++
+(1-y)\log(1-p)
+\right].
+$$
+
+## BCE — intuición
+
+Por ejemplo, si la clase verdadera es $y=1$:
+
+$$
+p=0.9
+\quad\Rightarrow\quad
+\mathcal L=-\log(0.9)\approx0.105
+$$
+
+mientras que
+
+$$
+p=0.1
+\quad\Rightarrow\quad
+\mathcal L=-\log(0.1)\approx2.303.
+$$
+
+:::{.fragment}
+La pérdida es pequeña cuando el modelo asigna **alta probabilidad a la respuesta correcta**.
+:::
+
+## Softmax: de valores de salida a probabilidades {.smaller}
+
+Supongamos que la salida de la red para tres clases es:
+
+$$
+z = (2.0,\;1.0,\;0.1)
+$$
+
+Estos valores todavía **no son probabilidades**.
+
+Softmax los transforma en valores entre 0 y 1 que suman 1:
+
+$$
+\operatorname{softmax}(z_i)=\frac{e^{z_i}}{\sum_j e^{z_j}}
+$$
+
+```{python}
+#| echo: false
+#| fig-cap: "Softmax transforma las salidas de la red en probabilidades."
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+salidas = np.array([2.0, 1.0, 0.1])
+
+exp_salidas = np.exp(salidas)
+probs = exp_salidas / exp_salidas.sum()
+
+clases = ["Clase 1", "Clase 2", "Clase 3"]
+
+fig, axes = plt.subplots(1, 2, figsize=(10, 4))
+
+axes[0].bar(clases, salidas)
+axes[0].set_title("Salida de la red")
+axes[0].set_ylabel("Valor")
+
+axes[1].bar(clases, probs)
+axes[1].set_title("Después de softmax")
+axes[1].set_ylabel("Probabilidad")
+axes[1].set_ylim(0, 1)
+
+plt.tight_layout()
+plt.show()
+```
+
+## Cross Entropy {.smaller}
+
+En un problema de clasificación multiclase donde cada ejemplo pertenece a **una única clase**, softmax produce una probabilidad para cada clase:
+
+$$
+p=(p_1,p_2,\ldots,p_K)
+$$
+
+con
+
+$$
+\sum_{k=1}^{K}p_k=1.
+$$
+
+La función de pérdida es:
+
+$$
+\mathcal L
+=
+-\sum_{k=1}^{K}y_k\log p_k.
+$$
+
+:::{.fragment}
+Como $y_k=1$ solamente para la clase verdadera, la pérdida depende finalmente de la **probabilidad asignada a esa clase**.
+:::
+
+## Cross Entropy — ejemplo numérico
+
+En el ejemplo anterior, softmax produjo:
+
+$$
+p=(0.659,\;0.242,\;0.099)
+$$
+
+Si la clase verdadera es la **Clase 1**, podemos representarla como:
+
+$$
+y=(1,0,0).
+$$
+
+Entonces:
+
+$$
+\mathcal L
+=
+-\left[
+1\log(0.659)
++
+0\log(0.242)
++
+0\log(0.099)
+\right]
+$$
+
+y por lo tanto:
+
+$$
+\mathcal L=-\log(0.659)\approx0.417.
+$$
+
+:::{.fragment}
+**Idea clave:** Cross Entropy penaliza cuando el modelo asigna poca probabilidad a la clase verdadera.
+:::
+
+## Sample, batch y mini-batch
+
+Un **sample** es un ejemplo individual:
+
+$$
+(x_i, y_i)
+$$
+
+Un **mini-batch** es un conjunto de $m$ ejemplos:
+
+$$
+B =
+\left\{
+(x_1,y_1),
+(x_2,y_2),
+\ldots,
+(x_m,y_m)
+\right\}
+$$
+
+Por lo tanto:
+
+$$
+|B| = m
+$$
+
+donde $m$ es el **batch size**.
+
+En la práctica, muchas librerías usan informalmente **batch** para referirse a un mini-batch.
+
+:::{.fragment}
+Una **iteración** procesa un mini-batch y realiza una actualización de los parámetros.
+:::
+
+## ¿Cómo estimamos la loss?
+
+Para un ejemplo individual $(x_i,y_i)$:
+
+$$
+\mathcal L_i(\theta)
+=
+\mathcal L\left(f_\theta(x_i),y_i\right)
+$$
+
+Pero durante el entrenamiento normalmente procesamos varios ejemplos juntos.
+
+Si el mini-batch contiene $m$ ejemplos:
+
+$$
+B =
+\left\{
+(x_1,y_1),
+\ldots,
+(x_m,y_m)
+\right\}
+$$
+
+podemos calcular la pérdida promedio:
+
+$$
+\mathcal L_B(\theta)
+=
+\frac{1}{m}
+\sum_{i=1}^{m}
+\mathcal L_i(\theta)
+$$
+
+:::{.fragment}
+Esta es la cantidad que queremos reducir durante el entrenamiento.
+:::
+
+## La loss depende de los parámetros
+
+La predicción depende de los parámetros de la red:
+
+$$
+\hat y = f_\theta(x)
+$$
+
+por lo tanto la loss también depende de ellos:
+
+$$
+\mathcal L = \mathcal L(\theta)
+$$
+
+La pregunta ahora es:
+
+:::{.callout-important title="Pregunta central"}
+
+<p class="texto-destacado">
+¿Cómo debería modificar $\theta$ para reducir la loss?
+</p>
+
+:::
+
+## Gradiente de la loss
+
+La loss depende de los parámetros de la red:
+
+$$
+\mathcal L = \mathcal L(\theta_1,\theta_2,\ldots,\theta_P)
+$$
+
+El gradiente reúne las derivadas respecto de todos los parámetros:
+
+$$
+\nabla_\theta \mathcal L
+=
+\begin{bmatrix}
+\frac{\partial \mathcal L}{\partial \theta_1}\\
+\frac{\partial \mathcal L}{\partial \theta_2}\\
+\vdots\\
+\frac{\partial \mathcal L}{\partial \theta_P}
+\end{bmatrix}
+$$
+
+:::{.fragment}
+Geométricamente, $\nabla_\theta\mathcal L$ apunta en la dirección de **máximo aumento local** de la loss.
+:::
+
+## Interpretación local
+
+Usando una expansión de Taylor de primer orden:
+
+$$
+\mathcal L(\theta+\Delta\theta)
+\approx
+\mathcal L(\theta)
++
+\nabla_\theta\mathcal L(\theta)^T\Delta\theta
+$$
+
+Si elegimos:
+
+$$
+\Delta\theta=-\eta\nabla_\theta\mathcal L(\theta)
+$$
+
+entonces:
+
+$$
+\mathcal L(\theta+\Delta\theta)
+\approx
+\mathcal L(\theta)
+-
+\eta
+\left\|
+\nabla_\theta\mathcal L(\theta)
+\right\|^2
+$$
+
+:::{.fragment}
+Para disminuir localmente la loss, avanzamos en la dirección **opuesta al gradiente**.
+:::
+
+## Geometría del gradiente
+
+```{python}
+#| label: fig-gradiente-geometria2
+#| echo: false
+#| fig-cap: "El gradiente es perpendicular a las curvas de nivel y apunta hacia el incremento más rápido; para minimizar avanzamos en la dirección opuesta."
+#| fig-width: 8.5
+#| fig-height: 5.5
+
+x = np.linspace(-3, 3, 220)
+y = np.linspace(-2.5, 2.5, 220)
+X, Y = np.meshgrid(x, y)
+
+Z = 0.8*X**2 + 1.6*Y**2 + 0.35*X*Y
+
+px, py = 1.6, 1.1
+gx = 1.6*px + 0.35*py
+gy = 3.2*py + 0.35*px
+
+scale = 0.45/np.hypot(gx, gy)
+
+plt.figure(figsize=(8.5,5.5))
+plt.contour(X, Y, Z, levels=14)
+plt.scatter([px], [py], s=70)
+
+plt.arrow(
+    px, py,
+    gx*scale, gy*scale,
+    width=0.025,
+    length_includes_head=True
+)
+
+plt.arrow(
+    px, py,
+    -gx*scale, -gy*scale,
+    width=0.025,
+    length_includes_head=True
+)
+
+plt.text(px+gx*scale+0.08, py+gy*scale, r'$\nabla \mathcal{L}$')
+plt.text(px-gx*scale-0.35, py-gy*scale, r'$-\nabla \mathcal{L}$')
+
+plt.xlabel(r'$\theta_1$')
+plt.ylabel(r'$\theta_2$')
+plt.tight_layout()
+plt.show()
+```
+
+## Descenso por gradiente
+
+La regla de actualización es:
+
+$$
+\boxed{
+\theta_{t+1}
+=
+\theta_t
+-
+\eta
+\nabla_\theta
+\mathcal L(\theta_t)
+}
+$$
+
+donde $\eta$ es el **learning rate**.
+
+:::{.fragment}
+El gradiente determina la **dirección** de la actualización; $\eta$ determina el **tamaño del paso**.
+:::
+
+## Learning rate
+
+Si $\eta$ es demasiado pequeño:
+
+$$
+\text{convergencia lenta}
+$$
+
+Si $\eta$ es demasiado grande:
+
+$$
+\text{oscilación o divergencia}
+$$
+
+:::{.fragment}
+El learning rate controla la escala de cada actualización.
+:::
+
+## Ejemplo: $\mathcal L(w)=w^2$
+
+En una dimensión:
+
+$$
+\frac{d\mathcal L}{dw}=2w
+$$
+
+por lo tanto:
+
+$$
+w_{t+1}
+=
+w_t-\eta\,2w_t
+$$
+
+o equivalentemente:
+
+$$
+w_{t+1}
+=
+(1-2\eta)w_t
+$$
+
+:::{.fragment}
+Incluso en este ejemplo simple, el learning rate determina la dinámica de convergencia.
+:::
+
+## Superficie de pérdida
+
+En una red con muchos parámetros:
+
+$$
+\mathcal L
+=
+\mathcal L(\theta_1,\theta_2,\ldots,\theta_P)
+$$
+
+El entrenamiento puede interpretarse como una trayectoria sobre esta superficie.
+
+:::{.fragment}
+En redes profundas, esta superficie es de altísima dimensión y, en general, no convexa.
+:::
+
+## ¿Con qué datos calculamos el gradiente?
+
+Ya sabemos cómo actualizar los parámetros:
+
+$$
+\theta_{t+1}
+=
+\theta_t
+-
+\eta\nabla_\theta\mathcal L
+$$
+
+Pero queda una cuestión práctica:
+
+:::{.callout-note title="Pregunta práctica"}
+
+<p class="texto-destacado">
+¿Con cuántos datos estimamos el gradiente?
+</p>
+
+:::
+
+Podemos utilizar:
+
+- todo el dataset;
+- una sola muestra;
+- un mini-batch.
+
+## Full-batch gradient descent
+
+Utilizamos los $N$ ejemplos del dataset:
+
+$$
+\mathcal L_D(\theta)
+=
+\frac{1}{N}
+\sum_{i=1}^{N}
+\mathcal L_i(\theta)
+$$
+
+y por lo tanto:
+
+$$
+g_D
+=
+\nabla_\theta\mathcal L_D
+=
+\frac{1}{N}
+\sum_{i=1}^{N}
+\nabla_\theta\mathcal L_i
+$$
+
+La actualización es:
+
+$$
+\theta_{t+1}
+=
+\theta_t-\eta g_D
+$$
+
+:::{.fragment}
+Gradiente estable, pero cada actualización puede ser computacionalmente costosa.
+:::
+
+## Stochastic Gradient Descent
+
+En el extremo opuesto, utilizamos una sola muestra:
+
+$$
+g_i
+=
+\nabla_\theta\mathcal L_i(\theta)
+$$
+
+y actualizamos:
+
+$$
+\theta_{t+1}
+=
+\theta_t-\eta g_i
+$$
+
+:::{.fragment}
+Cada actualización es barata, pero el gradiente puede variar considerablemente entre muestras.
+:::
+
+## Mini-batch gradient descent {.smaller}
+
+Utilizamos un mini-batch de $m$ ejemplos:
+
+$$
+B=
+\{(x_1,y_1),\ldots,(x_m,y_m)\}
+$$
+
+Calculamos:
+
+$$
+\mathcal L_B(\theta)
+=
+\frac{1}{m}
+\sum_{i=1}^{m}
+\mathcal L_i(\theta)
+$$
+
+y su gradiente:
+
+$$
+g_B
+=
+\nabla_\theta\mathcal L_B
+=
+\frac{1}{m}
+\sum_{i=1}^{m}
+\nabla_\theta\mathcal L_i
+$$
+
+Finalmente:
+
+$$
+\theta_{t+1}
+=
+\theta_t-\eta g_B
+$$
+
+## ¿Cómo cambia el gradiente con el batch size?
+
+```{python}
+#| label: fig-batch-noise
+#| echo: false
+#| fig-cap: "Un batch más pequeño produce estimaciones más ruidosas del gradiente; uno mayor es más estable pero más costoso."
+#| fig-width: 10
+#| fig-height: 5
+
+rng = np.random.default_rng(4)
+t = np.arange(1, 45)
+true_g = 0.8*np.exp(-t/18)
+
+plt.figure(figsize=(10,5))
+
+plt.plot(
+    t,
+    true_g,
+    linewidth=3,
+    label="Gradiente de referencia"
+)
+
+plt.plot(
+    t,
+    true_g + rng.normal(0, 0.22, len(t)),
+    alpha=0.7,
+    label="1 muestra"
+)
+
+plt.plot(
+    t,
+    true_g + rng.normal(0, 0.07, len(t)),
+    linewidth=2,
+    label="Mini-batch"
+)
+
+plt.xlabel("Iteración")
+plt.ylabel("Estimación del gradiente")
+plt.legend(frameon=False)
+plt.tight_layout()
+plt.show()
+```
+
+## ¿Por qué mini-batches?
+
+Representan un compromiso entre:
+
+- costo computacional;
+- memoria disponible;
+- paralelización en GPU;
+- variabilidad del gradiente;
+- frecuencia de actualización de los parámetros.
+
+:::{.fragment}
+En Deep Learning, el entrenamiento se realiza habitualmente mediante mini-batches.
+:::
+
+## Epoch e iteration
+
+Si:
+
+$$
+N=10\,000,
+\qquad
+m=100
+$$
+
+entonces cada epoch requiere:
+
+$$
+\frac{N}{m}
+=
+100
+\quad
+\text{iterations}
+$$
+
+Una **iteration** procesa un mini-batch y, normalmente, realiza una actualización.
+
+Un **epoch** corresponde a haber recorrido una vez todo el dataset.
+
+## Epoch e iteration: visualización
+
+En este ejemplo ilustrativo usamos un dataset pequeño:
+
+$$
+N=20,
+\qquad
+m=4
+\qquad\Rightarrow\qquad
+1\ \text{epoch} = 5\ \text{iterations}
+$$
+
+```{mermaid}
+%%| echo: false
+
+flowchart LR
+    subgraph E["1 epoch = recorrer una vez todo el dataset"]
+        B1["Mini-batch 1<br/>muestras 1–4"]
+        B2["Mini-batch 2<br/>muestras 5–8"]
+        B3["Mini-batch 3<br/>muestras 9–12"]
+        B4["Mini-batch 4<br/>muestras 13–16"]
+        B5["Mini-batch 5<br/>muestras 17–20"]
+    end
+
+    B1 --> B2 --> B3 --> B4 --> B5
+
+    I1["Iteration 1"] -.-> B1
+    I2["Iteration 2"] -.-> B2
+    I3["Iteration 3"] -.-> B3
+    I4["Iteration 4"] -.-> B4
+    I5["Iteration 5"] -.-> B5
+```
+
+:::{.fragment}
+Cada **iteration** procesa un mini-batch.  
+Cuando se procesaron todos los mini-batches, se completó **1 epoch**.
+:::
+
+## Forward pass
+
+Durante el **forward pass**, los datos atraviesan la red capa por capa hasta producir una predicción.
+
+```{mermaid}
+%%| echo: false
+
+flowchart LR
+    X["Entrada<br/>x"] --> L1["Capa 1"]
+    L1 --> L2["Capa 2"]
+    L2 --> O["Predicción<br/>ŷ"]
+    O --> LOSS["Loss<br/>L(ŷ,y)"]
+    Y["Target<br/>y"] --> LOSS
+```
+
+:::{.fragment}
+Durante el forward la red **calcula** activaciones, predicciones y loss.  
+Todavía no modifica sus parámetros.
+:::
+
+## Forward durante entrenamiento
+
+Durante entrenamiento:
+
+$$
+x
+\rightarrow
+f_\theta(x)
+\rightarrow
+\hat y
+\rightarrow
+\mathcal L(\hat y,y)
+$$
+
+El resultado del forward será utilizado después para calcular los gradientes.
+
+:::{.fragment}
+Conviene separar tres operaciones:
+
+$$
+\boxed{
+\text{forward}
+\rightarrow
+\text{backward}
+\rightarrow
+\text{update}
+}
+$$
+:::
+
+## Forward durante inferencia
+
+Después de entrenar:
+
+$$
+\hat y_{\mathrm{new}}
+=
+f_{\hat\theta}(x_{\mathrm{new}})
+$$
+
+Durante inferencia:
+
+- hacemos forward;
+- no calculamos gradientes;
+- no actualizamos parámetros.
+
+:::{.fragment}
+El objetivo ya no es aprender: es **usar el modelo entrenado**.
+:::
+
+## Training, validation, test e inference
+
+| Etapa | ¿Calcula gradientes? | ¿Actualiza parámetros? | Objetivo |
+|---|---:|---:|---|
+| Training | Sí | Sí | aprender |
+| Validation | No | No | seleccionar / monitorear |
+| Test | No | No | evaluación final |
+| Inference | No | No | realizar predicciones |
+
+## Inferencia en PyTorch
+
+```python
+model.eval()
+
+with torch.no_grad():
+    prediction = model(image)
+```
+
+`model.eval()` cambia el comportamiento de algunas capas, como **Dropout** o **BatchNorm**.
+
+`torch.no_grad()` evita construir la información necesaria para calcular gradientes.
+
+:::{.fragment}
+`model.eval()` y `torch.no_grad()` cumplen funciones diferentes.
+:::
+
+## ¿Cómo obtenemos los gradientes?
+
+Para actualizar los parámetros necesitamos:
+
+$$
+\nabla_\theta \mathcal L
+$$
+
+Una red neuronal es una composición de muchas transformaciones.
+
+Backpropagation permite calcular eficientemente cómo contribuye cada parámetro al valor final de la loss.
+
+:::{.fragment}
+La herramienta matemática fundamental es la **regla de la cadena**.
+:::
+
+## Regla de la cadena
+
+Para una composición:
+
+$$
+x
+\rightarrow
+z
+\rightarrow
+\hat y
+\rightarrow
+\mathcal L
+$$
+
+tenemos:
+
+$$
+\frac{\partial\mathcal L}{\partial x}
+=
+\frac{\partial\mathcal L}{\partial\hat y}
+\frac{\partial\hat y}{\partial z}
+\frac{\partial z}{\partial x}
+$$
+
+:::{.fragment}
+Backpropagation aplica sistemáticamente esta idea desde la loss hacia los parámetros.
+:::
+
+## Backpropagation
+
+Conceptualmente:
+
+$$
+\boxed{
+\text{forward}
+\rightarrow
+\mathcal L
+\rightarrow
+\text{backward}
+\rightarrow
+\nabla_\theta\mathcal L
+}
+$$
+
+Durante el **forward** calculamos predicciones y loss.
+
+Durante el **backward** calculamos los gradientes de la loss respecto de los parámetros.
+
+:::{.fragment}
+En PyTorch este cálculo se realiza mediante **automatic differentiation**.
+:::
+
+## Backpropagation en PyTorch
+
+```python
+prediction = model(x)
+
+loss = loss_fn(prediction, y)
+
+loss.backward()
+```
+
+Después de:
+
+```python
+loss.backward()
+```
+
+PyTorch almacena los gradientes en:
+
+```python
+parameter.grad
+```
+
+:::{.fragment}
+`backward()` calcula gradientes, pero **no actualiza los parámetros**.
+:::
+
+## `backward()` versus `step()`
+
+Hay tres operaciones que conviene distinguir:
+
+```python
+optimizer.zero_grad()
+
+loss.backward()
+
+optimizer.step()
+```
+
+- `zero_grad()` → limpia gradientes anteriores;
+- `backward()` → calcula gradientes;
+- `step()` → utiliza esos gradientes para actualizar los parámetros.
+
+:::{.fragment}
+Esta separación es fundamental para entender el ciclo de entrenamiento en PyTorch.
+:::
+
+## ¿Por qué `zero_grad()`?
+
+Por defecto, PyTorch **acumula** gradientes.
+
+Por eso normalmente hacemos:
+
+```python
+optimizer.zero_grad()
+loss.backward()
+optimizer.step()
+```
+
+Si no limpiamos los gradientes, una nueva llamada a `backward()` se suma a los valores anteriores.
+
+:::{.fragment}
+Esta acumulación es intencional y puede aprovecharse, por ejemplo, en **gradient accumulation**.
+:::
+
+## Un paso de entrenamiento en PyTorch
+
+```python
+optimizer.zero_grad()
+
+prediction = model(x)
+
+loss = loss_fn(prediction, y)
+
+loss.backward()
+
+optimizer.step()
+```
+
+Podemos leerlo como:
+
+$$
+\boxed{
+\text{limpiar}
+\rightarrow
+\text{forward}
+\rightarrow
+\text{loss}
+\rightarrow
+\text{backward}
+\rightarrow
+\text{update}
+}
+$$
+
+## ¿Qué hace el optimizador?
+
+Después de `backward()` conocemos:
+
+$$
+g_t
+=
+\nabla_\theta
+\mathcal L_B(\theta_t)
+$$
+
+El optimizador decide cómo transformar esa información en una actualización de parámetros.
+
+:::{.fragment}
+Todos los optimizadores utilizan gradientes, pero **no todos los utilizan de la misma manera**.
+:::
+
+## Optimizadores
+
+| Optimizador | Idea principal |
+|---|---|
+| SGD | usa directamente el gradiente |
+| Momentum | agrega inercia a las actualizaciones |
+| RMSProp | adapta la escala usando gradientes cuadrados |
+| Adam | combina momentum y escalado adaptativo |
+| AdamW | Adam con weight decay desacoplado |
+
+:::{.fragment}
+La elección del optimizador interactúa fuertemente con el **learning rate**.
+:::
+
+## SGD {.smaller}
+
+La actualización básica es:
+
+$$
+\theta_{t+1}
+=
+\theta_t-\eta g_t
+$$
+
+donde:
+
+$$
+g_t
+=
+\nabla_\theta
+\mathcal L_B
+$$
+
+### Ventajas
+
+- simple;
+- poco estado adicional;
+- comportamiento bien entendido.
+
+### Limitaciones
+
+- sensible al learning rate;
+- puede oscilar en direcciones de gran curvatura;
+- puede converger lentamente.
+
+## Momentum
+
+Momentum incorpora información de actualizaciones anteriores:
+
+$$
+v_t
+=
+\beta v_{t-1}
++
+g_t
+$$
+
+$$
+\theta_{t+1}
+=
+\theta_t-\eta v_t
+$$
+
+:::{.fragment}
+La actualización adquiere **inercia**: mantiene movimiento en direcciones consistentes y reduce el zigzagueo.
+:::
+
+## SGD vs Momentum: intuición
+
+```{python}
+#| label: fig-sgd-momentum
+#| echo: false
+#| fig-cap: "Momentum puede reducir las oscilaciones y acelerar el avance en direcciones consistentes."
+#| fig-width: 8.5
+#| fig-height: 5.2
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-4, 4, 240)
+y = np.linspace(-3, 3, 220)
+X, Y = np.meshgrid(x, y)
+Z = 0.12*X**2 + 1.6*Y**2
+
+plt.figure(figsize=(8.5,5.2))
+plt.contour(X, Y, Z, levels=18)
+
+sgd_x = [3.4, 2.7, 2.1, 1.6, 1.15, 0.85, 0.55, 0.35, 0.18, 0.08]
+sgd_y = [2.3,-1.3, 0.9,-0.55,0.34,-0.20,0.12,-0.07,0.03,0.0]
+
+mom_x = [3.4,2.9,2.3,1.65,1.05,0.55,0.18,-0.05,-0.10,-0.05,0.0]
+mom_y = [2.3,1.0,0.2,-0.1,-0.16,-0.12,-0.05,0.01,0.03,0.02,0.0]
+
+plt.plot(sgd_x, sgd_y, marker="o", label="SGD")
+plt.plot(mom_x, mom_y, marker="o", label="Momentum")
+plt.scatter([0],[0], marker="*", s=140, label="mínimo")
+
+plt.xlabel(r"$\theta_1$")
+plt.ylabel(r"$\theta_2$")
+plt.legend(frameon=False)
+plt.tight_layout()
+plt.show()
+```
+
+## Adam
+
+Adam mantiene estimaciones del primer y segundo momento de los gradientes:
+
+$$
+m_t
+=
+\beta_1m_{t-1}
++
+(1-\beta_1)g_t
+$$
+
+$$
+v_t
+=
+\beta_2v_{t-1}
++
+(1-\beta_2)g_t^2
+$$
+
+y adapta la actualización para cada parámetro.
+
+:::{.fragment}
+Intuitivamente, Adam combina **momentum** con un **learning rate adaptativo por parámetro**.
+:::
+
+## AdamW
+
+En Deep Learning moderno es frecuente utilizar **AdamW**.
+
+En PyTorch:
+
+```python
+optimizer = torch.optim.AdamW(
+    model.parameters(),
+    lr=1e-4,
+    weight_decay=1e-5
+)
+```
+
+AdamW desacopla el **weight decay** de la actualización adaptativa de Adam.
+
+:::{.fragment}
+Es un buen baseline en muchos problemas, pero no es universalmente óptimo.
+:::
+
+## Learning rate
+
+El learning rate controla la escala de las actualizaciones:
+
+$$
+\theta_{t+1}
+=
+\theta_t
+-
+\eta\,\Delta_t
+$$
+
+Si $\eta$ es demasiado pequeño:
+
+$$
+\text{entrenamiento lento}
+$$
+
+Si $\eta$ es demasiado grande:
+
+$$
+\text{oscilación o divergencia}
+$$
+
+:::{.fragment}
+En la práctica, el learning rate suele ser uno de los hiperparámetros más importantes.
+:::
+
+## Learning rate scheduling
+
+El learning rate no tiene que permanecer constante durante todo el entrenamiento.
+
+Estrategias frecuentes:
+
+- Step decay;
+- cosine annealing;
+- warm-up;
+- ReduceLROnPlateau.
+
+Por ejemplo:
+
+```python
+scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+    optimizer,
+    T_max=100
+)
+```
+
+## Regularización
+
+Optimizar la loss de entrenamiento no garantiza generalización.
+
+Herramientas frecuentes:
+
+- data augmentation;
+- weight decay;
+- dropout;
+- early stopping;
+- validación cruzada.
+
+:::{.fragment}
+En imágenes médicas, **data augmentation** y **validación cruzada** suelen ser especialmente importantes.
+:::
+
+## El ciclo de entrenamiento en PyTorch
+
+```python
+model.train()
+
+for x_batch, y_batch in train_loader:
+
+    optimizer.zero_grad()
+
+    prediction = model(x_batch)
+
+    loss = loss_fn(prediction, y_batch)
+
+    loss.backward()
+
+    optimizer.step()
+```
+
+:::{.fragment}
+La matemática del entrenamiento aparece condensada en unas pocas líneas de código.
+:::
+
+## Correspondencia matemática ↔ PyTorch
+
+| Concepto | PyTorch |
+|---|---|
+| $f_\theta(x)$ | `model(x)` |
+| $\mathcal L(\hat y,y)$ | `loss_fn(prediction, y)` |
+| $\nabla_\theta\mathcal L$ | `loss.backward()` |
+| actualizar $\theta$ | `optimizer.step()` |
+| limpiar gradientes | `optimizer.zero_grad()` |
+
+## `model.train()` y `model.eval()`
+
+PyTorch distingue dos modos de funcionamiento:
+
+```python
+model.train()
+```
+
+para entrenamiento, y:
+
+```python
+model.eval()
+```
+
+para validación o inferencia.
+
+Esto afecta especialmente a capas como:
+
+- Dropout;
+- BatchNorm.
+
+:::{.fragment}
+No cambia los pesos: cambia el **comportamiento de determinadas capas**.
+:::
+
+## Validación en PyTorch
+
+```python
+model.eval()
+
+validation_loss = 0.0
+
+with torch.no_grad():
+
+    for x_batch, y_batch in val_loader:
+
+        prediction = model(x_batch)
+
+        loss = loss_fn(prediction, y_batch)
+
+        validation_loss += loss.item()
+```
+
+Durante validación:
+
+- no hacemos `backward()`;
+- no hacemos `optimizer.step()`;
+- no actualizamos parámetros.
+
+## Overfitting
+
+Durante entrenamiento podemos observar:
+
+$$
+\mathcal L_{\mathrm{train}}\downarrow
+$$
+
+mientras:
+
+$$
+\mathcal L_{\mathrm{val}}\uparrow
+$$
+
+:::{.fragment}
+La mejor epoch no tiene por qué ser la última.
+:::
+
+## Early stopping
+
+Podemos guardar el modelo que obtiene el mejor resultado de validación:
+
+$$
+\hat\theta
+=
+\theta_{\text{best validation}}
+$$
+
+En PyTorch, normalmente guardamos:
+
+```python
+torch.save(
+    model.state_dict(),
+    "best_model.pt"
+)
+```
+
+:::{.fragment}
+El criterio debería estar definido antes del entrenamiento y ser coherente con el objetivo del problema.
+:::
+
+## El DataLoader
+
+El `DataLoader` organiza cómo llegan los datos al training loop:
+
+```python
+train_loader = DataLoader(
+    train_dataset,
+    batch_size=8,
+    shuffle=True
+)
+```
+
+En cada iteración produce un mini-batch:
+
+```python
+for x_batch, y_batch in train_loader:
+    ...
+```
+
+:::{.fragment}
+Dataset y DataLoader resuelven un problema distinto al modelo: **cómo representar, cargar y agrupar los datos**.
+:::
+
+## Tensores en imágenes médicas {.smaller}
+
+En PyTorch, una imagen 2D suele representarse como:
+
+$$
+(B,C,H,W)
+$$
+
+Un volumen 3D:
+
+$$
+(B,C,D,H,W)
+$$
+
+Por ejemplo:
+
+$$
+(2,1,128,256,256)
+$$
+
+representa:
+
+- batch size = 2;
+- 1 canal;
+- 128 slices;
+- $256\times256$ píxeles por slice.
+
+## Batch size en 3D
+
+Un solo volumen:
+
+$$
+128\times256\times256
+=
+8\,388\,608
+$$
+
+voxels.
+
+Durante entrenamiento también debemos almacenar:
+
+- activaciones intermedias;
+- gradientes;
+- parámetros;
+- estados del optimizador.
+
+:::{.fragment}
+En segmentación 3D, un batch size de **1 o 2** puede ser completamente normal.
+:::
+
+## Estrategias cuando falta memoria
+
+En entrenamiento 3D son frecuentes:
+
+- patch-based training;
+- gradient accumulation;
+- mixed precision;
+- gradient checkpointing;
+- reducir resolución;
+- arquitecturas más eficientes.
+
+## Gradient accumulation
+
+Permite acumular gradientes de varios mini-batches antes de actualizar:
+
+```python
+accumulation_steps = 4
+
+optimizer.zero_grad()
+
+for step, batch in enumerate(train_loader):
+
+    outputs = model(batch["image"])
+    loss = loss_function(outputs, batch["label"])
+
+    loss = loss / accumulation_steps
+    loss.backward()
+
+    if (step + 1) % accumulation_steps == 0:
+        optimizer.step()
+        optimizer.zero_grad()
+```
+
+:::{.fragment}
+Permite simular un batch efectivo mayor sin almacenar todos los ejemplos simultáneamente.
+:::
+
+## Mixed precision
+
+En GPU podemos utilizar menor precisión para parte de los cálculos:
+
+```python
+scaler = torch.amp.GradScaler("cuda")
+
+with torch.autocast(
+    device_type="cuda",
+    dtype=torch.float16
+):
+    predictions = model(images)
+    loss = loss_function(predictions, labels)
+
+scaler.scale(loss).backward()
+scaler.step(optimizer)
+scaler.update()
+```
+
+Beneficios potenciales:
+
+- menor uso de memoria;
+- mayor velocidad;
+- posibilidad de utilizar batches mayores.
+
+## ¿Qué agrega MONAI?
+
+MONAI está construido sobre PyTorch.
+
+El principio de entrenamiento **no cambia**:
+
+$$
+\boxed{
+\text{forward}
+\rightarrow
+\text{loss}
+\rightarrow
+\text{backward}
+\rightarrow
+\text{optimizer.step()}
+}
+$$
+
+MONAI agrega herramientas específicas para imágenes médicas:
+
+- transforms;
+- datasets y caching;
+- losses;
+- métricas;
+- arquitecturas;
+- sliding-window inference.
+
+## MONAI: modelo y loss
+
+```python
+from monai.networks.nets import UNet
+from monai.losses import DiceCELoss
+
+model = UNet(
+    spatial_dims=3,
+    in_channels=1,
+    out_channels=2,
+    channels=(16, 32, 64, 128),
+    strides=(2, 2, 2),
+    num_res_units=2,
+).to(device)
+
+loss_function = DiceCELoss(
+    to_onehot_y=True,
+    softmax=True
+)
+```
+
+:::{.fragment}
+MONAI proporciona componentes adaptados a problemas frecuentes de imágenes médicas, pero el modelo sigue siendo un `torch.nn.Module`.
+:::
+
+## MONAI: transforms
+
+Un pipeline típico puede incluir:
+
+```python
+from monai.transforms import Compose
+
+train_transforms = Compose([
+    # carga
+    # orientación / spacing
+    # normalización
+    # cropping
+    # augmentations
+])
+```
+
+:::{.fragment}
+En imágenes médicas, el **preprocesamiento forma parte del modelo experimental**: debe documentarse y reproducirse.
+:::
+
+## MONAI: training loop
+
+```python
+model.train()
+
+for batch in train_loader:
+
+    images = batch["image"].to(device)
+    labels = batch["label"].to(device)
+
+    optimizer.zero_grad()
+
+    predictions = model(images)
+
+    loss = loss_function(
+        predictions,
+        labels
+    )
+
+    loss.backward()
+
+    optimizer.step()
+```
+
+:::{.fragment}
+El corazón del training loop es exactamente el mismo que en PyTorch.
+:::
+
+## MONAI no reemplaza PyTorch
+
+```{mermaid}
+%%| echo: false
+
+flowchart LR
+    D["Datos médicos"] --> T["MONAI<br/>Transforms / Dataset"]
+    T --> P["PyTorch<br/>DataLoader"]
+    P --> M["PyTorch / MONAI<br/>Model"]
+    M --> L["MONAI / PyTorch<br/>Loss"]
+    L --> B["PyTorch<br/>backward()"]
+    B --> O["PyTorch<br/>optimizer.step()"]
+```
+
+:::{.fragment}
+MONAI especializa el pipeline para imágenes médicas; **PyTorch sigue siendo el motor de entrenamiento**.
+:::
+
+
+## MONAI: inferencia
+
+En volúmenes grandes puede no ser posible procesar toda la imagen de una vez.
+
+MONAI proporciona **sliding-window inference**:
+
+```python
+from monai.inferers import sliding_window_inference
+
+model.eval()
+
+with torch.no_grad():
+
+    outputs = sliding_window_inference(
+        inputs=image,
+        roi_size=(96, 96, 96),
+        sw_batch_size=2,
+        predictor=model,
+    )
+```
+
+:::{.fragment}
+La imagen se divide en regiones que se procesan por separado y luego se combinan.
+:::
+
+
+## Pipeline completo
+
+```{mermaid}
+%%| echo: false
+
+flowchart LR
+    D["Dataset"] --> T["Transforms"]
+    T --> DL["DataLoader"]
+    DL --> F["Forward"]
+    F --> L["Loss"]
+    L --> BW["Backward"]
+    BW --> O["Optimizer"]
+    O --> F
+
+    F -. validation .-> V["Métricas"]
+    V -.-> C["Checkpoint"]
+```
+
+:::{.fragment}
+El entrenamiento no es solo una red neuronal: es un **pipeline completo y reproducible**.
+:::
+
+## Lo que debe quedar claro
+
+1. El **forward** calcula predicciones y loss.
+2. `backward()` calcula gradientes.
+3. El **optimizador** utiliza esos gradientes para modificar los parámetros.
+4. El learning rate controla la escala de las actualizaciones.
+5. Training y validation cumplen funciones diferentes.
+6. En imágenes 3D, memoria y batch size condicionan fuertemente el entrenamiento.
+7. MONAI especializa PyTorch para imágenes médicas, pero no reemplaza su training loop.
+
+## Backpropagation en una línea
+
+No necesitamos implementar manualmente:
+
+$$
+\frac{\partial\mathcal L}
+{\partial\theta_1},
+\ldots,
+\frac{\partial\mathcal L}
+{\partial\theta_P}
+$$
+
+En PyTorch:
+
+```python
+loss.backward()
+```
+
+:::{.fragment}
+Lo importante para usar correctamente el framework es comprender **qué calcula**, **cuándo lo calcula** y **qué ocurre después**.
+:::
+
+## Cierre
+
+El ciclo de entrenamiento puede resumirse como:
+
+$$
+\boxed{
+\text{datos}
+\rightarrow
+\text{forward}
+\rightarrow
+\text{loss}
+\rightarrow
+\text{backward}
+\rightarrow
+\text{optimizer}
+}
+$$
+
+y se repite mini-batch a mini-batch durante múltiples epochs.
+
+:::{.fragment}
+En la práctica, la calidad del modelo depende tanto de este ciclo como de los datos, la validación y las decisiones experimentales.
+:::
+
+
+## Próxima clase
+
+A partir de este ciclo de entrenamiento podemos estudiar arquitecturas específicas para imágenes:
+
+- convoluciones;
+- CNNs;
+- U-Net;
+- segmentación;
+- entrenamiento aplicado a imágenes médicas.

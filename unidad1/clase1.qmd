@@ -1,7 +1,7 @@
 ---
-title: "De los modelos clásicos al algoritmo del Perceptrón"
-subtitle: "Unidad 1 · Clase 1 · IA aplicada a Física Médica"
-author: "Curso de posgrado · Notas de clase"
+title: "Clase 1: De los modelos clásicos al algoritmo del Perceptrón"
+subtitle: "Unidad 1 · Fundamentos de IA"
+author: "Ignacio Scarinci"
 format:
   revealjs:
     theme: simple
