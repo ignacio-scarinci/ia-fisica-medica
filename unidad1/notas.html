@@ -170,6 +170,10 @@ window.Quarto = {
     <a class="nav-link active" href="../unidad0/notas.html" aria-current="page"> 
 <span class="menu-text">Unidad 0</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../unidad1/notas.html"> 
+<span class="menu-text">Unidad 1</span></a>
+  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
@@ -267,8 +271,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidad1/presentacion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Presentación</span></a>
+  <a href="../unidad1/clase1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Clase 1: De los modelos clásicos al algoritmo del Perceptrón</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidad1/clase2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Clase 2: El ciclo de entrenamiento</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -2055,7 +2065,7 @@ f_{\hat\theta}(\mathbf x_{\mathrm{new}})
 }
 \]</span></p>
 <p>En PyTorch:</p>
-<div id="9e544626" class="cell" data-execution_count="6">
+<div id="c41d188e" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
@@ -2840,14 +2850,14 @@ L=9,
 <section id="backward-no-actualiza-los-parámetros" class="level1" data-number="34">
 <h1 data-number="34"><span class="header-section-number">34</span> <code>backward()</code> no actualiza los parámetros</h1>
 <p>Este punto es fundamental.</p>
-<div id="99046f84" class="cell" data-execution_count="10">
+<div id="2687f874" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>loss.backward()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>calcula los gradientes y los almacena, por ejemplo, en:</p>
-<div id="705db037" class="cell" data-execution_count="11">
+<div id="0e00419c" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>parameter.grad</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2855,7 +2865,7 @@ L=9,
 </div>
 <p>pero <strong>no modifica los parámetros</strong>.</p>
 <p>La actualización ocurre cuando ejecutamos:</p>
-<div id="d7115455" class="cell" data-execution_count="12">
+<div id="3279abec" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>optimizer.step()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2885,7 +2895,7 @@ modifica θ</code></pre>
 <h1 data-number="35"><span class="header-section-number">35</span> ¿Por qué <code>zero_grad()</code>?</h1>
 <p>PyTorch acumula gradientes por defecto.</p>
 <p>Por eso un ciclo típico es:</p>
-<div id="c4525ecd" class="cell" data-execution_count="13">
+<div id="881d57a0" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>optimizer.zero_grad()</span>
@@ -3100,7 +3110,7 @@ g,&amp;\|g\|\leq\tau,\\[4pt]
 \end{cases}
 \]</span></p>
 <p>En PyTorch:</p>
-<div id="d39e440a" class="cell" data-execution_count="15">
+<div id="6f523637" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>torch.nn.utils.clip_grad_norm_(</span>
@@ -3130,7 +3140,7 @@ g,&amp;\|g\|\leq\tau,\\[4pt]
 {n_{\mathrm{in}}+n_{\mathrm{out}}}.
 \]</span></p>
 <p>En PyTorch:</p>
-<div id="5d46fd55" class="cell" data-execution_count="16">
+<div id="9eaa49f4" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>torch.nn.init.xavier_uniform_(layer.weight)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -3146,7 +3156,7 @@ g,&amp;\|g\|\leq\tau,\\[4pt]
 \frac{2}{n_{\mathrm{in}}}.
 \]</span></p>
 <p>En PyTorch:</p>
-<div id="225d8c26" class="cell" data-execution_count="17">
+<div id="8fbe3eb6" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>torch.nn.init.kaiming_normal_(</span>
@@ -3207,7 +3217,7 @@ v_t
 <p>La convención exacta puede variar entre textos e implementaciones.</p>
 <p>El efecto intuitivo es introducir una “inercia” que suaviza parte de las oscilaciones y puede acelerar el movimiento en direcciones persistentes.</p>
 <p>En PyTorch:</p>
-<div id="277bc224" class="cell" data-execution_count="18">
+<div id="3db91f02" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.SGD(</span>
@@ -3282,7 +3292,7 @@ v_t
 \]</span></p>
 <p>Adam y AdamW son baselines frecuentes, pero no existe un optimizador universalmente mejor.</p>
 <p>En PyTorch:</p>
-<div id="1ba4d6e8" class="cell" data-execution_count="19">
+<div id="8c1c9595" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.AdamW(</span>
@@ -3338,7 +3348,7 @@ Note
 <li>ReduceLROnPlateau.</li>
 </ul>
 <p>Por ejemplo:</p>
-<div id="b2eef7a3" class="cell" data-execution_count="20">
+<div id="50f1626c" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.AdamW(</span>
@@ -3357,7 +3367,7 @@ Note
 <section id="pytorch-el-ciclo-mínimo-completo" class="level1" data-number="46">
 <h1 data-number="46"><span class="header-section-number">46</span> 35. PyTorch: el ciclo mínimo completo</h1>
 <p>Ahora podemos interpretar cada instrucción matemáticamente.</p>
-<div id="7b6b5cbc" class="cell" data-execution_count="21">
+<div id="1e3607a4" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x_batch, y_batch <span class="kw">in</span> train_loader:</span>
@@ -3481,7 +3491,7 @@ Figure&nbsp;12: Pérdida durante el entrenamiento de una regresión lineal.
 <section id="inspeccionar-gradientes-en-pytorch" class="level1" data-number="48">
 <h1 data-number="48"><span class="header-section-number">48</span> Inspeccionar gradientes en PyTorch</h1>
 <p>Podemos observar los gradientes calculados por autograd:</p>
-<div id="a3f9e613" class="cell" data-execution_count="24">
+<div id="73c3c80a" class="cell" data-execution_count="24">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, parameter <span class="kw">in</span> model.named_parameters():</span>
@@ -3502,7 +3512,7 @@ Figure&nbsp;12: Pérdida durante el entrenamiento de una regresión lineal.
 <section id="dataloader-batches-y-shuffle" class="level1" data-number="49">
 <h1 data-number="49"><span class="header-section-number">49</span> <code>DataLoader</code>, batches y <code>shuffle</code></h1>
 <p>En PyTorch:</p>
-<div id="4549ddc3" class="cell" data-execution_count="25">
+<div id="a2a68e79" class="cell" data-execution_count="25">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>train_loader <span class="op">=</span> DataLoader(</span>
@@ -3520,7 +3530,7 @@ Figure&nbsp;12: Pérdida durante el entrenamiento de una regresión lineal.
 <section id="validación-en-pytorch" class="level1" data-number="50">
 <h1 data-number="50"><span class="header-section-number">50</span> Validación en PyTorch</h1>
 <p>Durante validación no queremos actualizar parámetros:</p>
-<div id="5bcd8acf" class="cell" data-execution_count="26">
+<div id="307796e9" class="cell" data-execution_count="26">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
@@ -3544,7 +3554,7 @@ Figure&nbsp;12: Pérdida durante el entrenamiento de una regresión lineal.
 </details>
 </div>
 <p>No ejecutamos:</p>
-<div id="cc7ba744" class="cell" data-execution_count="27">
+<div id="d0cd3dad" class="cell" data-execution_count="27">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>loss.backward()</span>
@@ -3570,7 +3580,7 @@ Figure&nbsp;12: Pérdida durante el entrenamiento de una regresión lineal.
 =
 \arg\max_k p_k.
 \]</span></p>
-<div id="c61b1dc4" class="cell" data-execution_count="28">
+<div id="4d0995b0" class="cell" data-execution_count="28">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
@@ -3753,7 +3763,7 @@ B_{\mathrm{efectivo}}
 =
 2\times4=8.
 \]</span></p>
-<div id="9786f049" class="cell" data-execution_count="30">
+<div id="63087182" class="cell" data-execution_count="30">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>accumulation_steps <span class="op">=</span> <span class="dv">4</span></span>
@@ -3785,7 +3795,7 @@ B_{\mathrm{efectivo}}
 <section id="mixed-precision" class="level1" data-number="57">
 <h1 data-number="57"><span class="header-section-number">57</span> Mixed precision</h1>
 <p>En GPUs compatibles, podemos utilizar precisión mixta para reducir memoria y aumentar rendimiento.</p>
-<div id="672b6c82" class="cell" data-execution_count="31">
+<div id="c123f43b" class="cell" data-execution_count="31">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> torch.amp.GradScaler(<span class="st">"cuda"</span>)</span>
@@ -3821,7 +3831,7 @@ B_{\mathrm{efectivo}}
 <section id="monai-del-mecanismo-general-a-física-médica" class="level1" data-number="58">
 <h1 data-number="58"><span class="header-section-number">58</span> MONAI: del mecanismo general a física médica</h1>
 <p>MONAI se apoya en PyTorch, por lo que el ciclo matemático no cambia.</p>
-<div id="1f0d08ce" class="cell" data-execution_count="32">
+<div id="2a609913" class="cell" data-execution_count="32">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> monai.networks.nets <span class="im">import</span> UNet</span>
@@ -3849,7 +3859,7 @@ B_{\mathrm{efectivo}}
 </details>
 </div>
 <p>El entrenamiento sigue siendo:</p>
-<div id="a9ad4cd1" class="cell" data-execution_count="33">
+<div id="cd01e6ba" class="cell" data-execution_count="33">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>model.train()</span>
@@ -3890,7 +3900,7 @@ B_{\mathrm{efectivo}}
 <section id="inferencia-con-monaipytorch" class="level1" data-number="59">
 <h1 data-number="59"><span class="header-section-number">59</span> Inferencia con MONAI/PyTorch</h1>
 <p>Para una inferencia multiclase:</p>
-<div id="367b3d6d" class="cell" data-execution_count="34">
+<div id="08b7cc54" class="cell" data-execution_count="34">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>

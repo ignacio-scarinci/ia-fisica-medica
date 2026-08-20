@@ -9,8 +9,8 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.10.18">
 
-  <meta name="author" content="Curso de posgrado · Notas de clase">
-  <title>IA en Física Médica – De los modelos clásicos al algoritmo del Perceptrón</title>
+  <meta name="author" content="Ignacio Scarinci">
+  <title>IA en Física Médica – Clase 1: De los modelos clásicos al algoritmo del Perceptrón</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -199,13 +199,13 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">De los modelos clásicos al algoritmo del Perceptrón</h1>
-  <p class="subtitle">Unidad 1 · Clase 1 · IA aplicada a Física Médica</p>
+  <h1 class="title">Clase 1: De los modelos clásicos al algoritmo del Perceptrón</h1>
+  <p class="subtitle">Unidad 1 · Fundamentos de IA</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Curso de posgrado · Notas de clase
+Ignacio Scarinci
 </div>
 </div>
 </div>
@@ -740,7 +740,7 @@ z = \sum_{j=1}^{d} w_j x_j + b = \mathbf{w}^\top \mathbf{x} + b
 </section>
 <section id="implementación-en-python" class="slide level2 smaller">
 <h2>Implementación en Python</h2>
-<div id="dcacd26f" class="cell" data-execution_count="1">
+<div id="e1e3f925" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-label="1"></a><span class="kw">class</span> Perceptron:</span>
 <span id="cb1-2"><a aria-label="2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, lr<span class="op">=</span><span class="fl">0.1</span>, n_epochs<span class="op">=</span><span class="dv">50</span>):</span>
 <span id="cb1-3"><a aria-label="3"></a>        <span class="va">self</span>.lr <span class="op">=</span> lr</span>
@@ -773,7 +773,7 @@ z = \sum_{j=1}^{d} w_j x_j + b = \mathbf{w}^\top \mathbf{x} + b
 </section>
 <section id="ejemplo-de-entrenamiento" class="slide level2">
 <h2>Ejemplo de entrenamiento</h2>
-<div id="481d877b" class="cell" data-execution_count="2">
+<div id="7be776ef" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a aria-label="1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb2-2"><a aria-label="2"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_blobs</span>
 <span id="cb2-3"><a aria-label="3"></a></span>
@@ -848,7 +848,7 @@ z = \sum_{j=1}^{d} w_j x_j + b = \mathbf{w}^\top \mathbf{x} + b
 </section>
 <section id="and-or-nand-nor-linealmente-separables-1" class="slide level2">
 <h2>AND, OR, NAND, NOR: linealmente separables</h2>
-<div id="e6457bae" class="cell" data-execution_count="3">
+<div id="21df9312" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-label="1"></a>X_bool <span class="op">=</span> np.array([[<span class="dv">0</span>,<span class="dv">0</span>],[<span class="dv">0</span>,<span class="dv">1</span>],[<span class="dv">1</span>,<span class="dv">0</span>],[<span class="dv">1</span>,<span class="dv">1</span>]])</span>
 <span id="cb3-2"><a aria-label="2"></a>compuertas <span class="op">=</span> {</span>
 <span id="cb3-3"><a aria-label="3"></a>    <span class="st">"AND"</span>:  np.array([<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>]),</span>
