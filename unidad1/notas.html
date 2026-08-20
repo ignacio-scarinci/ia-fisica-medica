@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Ignacio Scarinci">
-<meta name="dcterms.date" content="2026-08-19">
+<meta name="dcterms.date" content="2026-08-20">
 
 <title>Fundamentos de IA aplicada a Física Médica – IA en Física Médica</title>
 <style>
@@ -365,7 +365,90 @@ window.Quarto = {
   </ul></li>
   <li><a href="#perceptrón-vs.-regresión-logística-el-puente-conceptual" id="toc-perceptrón-vs.-regresión-logística-el-puente-conceptual" class="nav-link" data-scroll-target="#perceptrón-vs.-regresión-logística-el-puente-conceptual"><span class="header-section-number">12.7</span> Perceptrón vs.&nbsp;Regresión Logística: el puente conceptual</a></li>
   </ul></li>
-  <li><a href="#bibliografía-de-la-unidad" id="toc-bibliografía-de-la-unidad" class="nav-link" data-scroll-target="#bibliografía-de-la-unidad"><span class="header-section-number">13</span> Bibliografía de la unidad</a></li>
+  <li><a href="#qué-significa-entrenar-una-red-neuronal" id="toc-qué-significa-entrenar-una-red-neuronal" class="nav-link" data-scroll-target="#qué-significa-entrenar-una-red-neuronal"><span class="header-section-number">13</span> ¿Qué significa entrenar una red neuronal?</a></li>
+  <li><a href="#funciones-de-pérdida" id="toc-funciones-de-pérdida" class="nav-link" data-scroll-target="#funciones-de-pérdida"><span class="header-section-number">14</span> Funciones de pérdida</a>
+  <ul class="collapse">
+  <li><a href="#regresión" id="toc-regresión" class="nav-link" data-scroll-target="#regresión"><span class="header-section-number">14.1</span> Regresión</a></li>
+  <li><a href="#clasificación-binaria" id="toc-clasificación-binaria" class="nav-link" data-scroll-target="#clasificación-binaria"><span class="header-section-number">14.2</span> Clasificación binaria</a></li>
+  <li><a href="#clasificación-multiclase" id="toc-clasificación-multiclase" class="nav-link" data-scroll-target="#clasificación-multiclase"><span class="header-section-number">14.3</span> Clasificación multiclase</a></li>
+  </ul></li>
+  <li><a href="#sample-batch-mini-batch-iteration-y-epoch" id="toc-sample-batch-mini-batch-iteration-y-epoch" class="nav-link" data-scroll-target="#sample-batch-mini-batch-iteration-y-epoch"><span class="header-section-number">15</span> Sample, batch, mini-batch, iteration y epoch</a>
+  <ul class="collapse">
+  <li><a href="#sample" id="toc-sample" class="nav-link" data-scroll-target="#sample"><span class="header-section-number">15.1</span> Sample</a></li>
+  <li><a href="#batch" id="toc-batch" class="nav-link" data-scroll-target="#batch"><span class="header-section-number">15.2</span> Batch</a></li>
+  <li><a href="#batch-gradient-descent" id="toc-batch-gradient-descent" class="nav-link" data-scroll-target="#batch-gradient-descent"><span class="header-section-number">15.3</span> Batch Gradient Descent</a></li>
+  <li><a href="#stochastic-gradient-descent" id="toc-stochastic-gradient-descent" class="nav-link" data-scroll-target="#stochastic-gradient-descent"><span class="header-section-number">15.4</span> Stochastic Gradient Descent</a></li>
+  <li><a href="#mini-batch-gradient-descent" id="toc-mini-batch-gradient-descent" class="nav-link" data-scroll-target="#mini-batch-gradient-descent"><span class="header-section-number">15.5</span> Mini-batch Gradient Descent</a></li>
+  <li><a href="#epoch-e-iteration" id="toc-epoch-e-iteration" class="nav-link" data-scroll-target="#epoch-e-iteration"><span class="header-section-number">15.6</span> Epoch e iteration</a></li>
+  </ul></li>
+  <li><a href="#el-forward-pass" id="toc-el-forward-pass" class="nav-link" data-scroll-target="#el-forward-pass"><span class="header-section-number">16</span> El forward pass</a></li>
+  <li><a href="#forward-durante-entrenamiento-e-inferencia" id="toc-forward-durante-entrenamiento-e-inferencia" class="nav-link" data-scroll-target="#forward-durante-entrenamiento-e-inferencia"><span class="header-section-number">17</span> Forward durante entrenamiento e inferencia</a>
+  <ul class="collapse">
+  <li><a href="#entrenamiento" id="toc-entrenamiento" class="nav-link" data-scroll-target="#entrenamiento"><span class="header-section-number">17.1</span> Entrenamiento</a></li>
+  <li><a href="#nferencia" id="toc-nferencia" class="nav-link" data-scroll-target="#nferencia"><span class="header-section-number">17.2</span> nferencia</a></li>
+  </ul></li>
+  <li><a href="#training-validation-test-e-inference" id="toc-training-validation-test-e-inference" class="nav-link" data-scroll-target="#training-validation-test-e-inference"><span class="header-section-number">18</span> Training, validation, test e inference</a></li>
+  <li><a href="#de-la-pérdida-al-gradiente" id="toc-de-la-pérdida-al-gradiente" class="nav-link" data-scroll-target="#de-la-pérdida-al-gradiente"><span class="header-section-number">19</span> De la pérdida al gradiente</a></li>
+  <li><a href="#interpretación-geométrica-del-gradiente" id="toc-interpretación-geométrica-del-gradiente" class="nav-link" data-scroll-target="#interpretación-geométrica-del-gradiente"><span class="header-section-number">20</span> Interpretación geométrica del gradiente</a></li>
+  <li><a href="#descenso-por-gradiente" id="toc-descenso-por-gradiente" class="nav-link" data-scroll-target="#descenso-por-gradiente"><span class="header-section-number">21</span> Descenso por gradiente</a></li>
+  <li><a href="#ejemplo-analítico-una-dimensión" id="toc-ejemplo-analítico-una-dimensión" class="nav-link" data-scroll-target="#ejemplo-analítico-una-dimensión"><span class="header-section-number">22</span> Ejemplo analítico: una dimensión</a></li>
+  <li><a href="#superficie-de-pérdida-y-condicionamiento" id="toc-superficie-de-pérdida-y-condicionamiento" class="nav-link" data-scroll-target="#superficie-de-pérdida-y-condicionamiento"><span class="header-section-number">23</span> Superficie de pérdida y condicionamiento</a></li>
+  <li><a href="#por-qué-mini-batches" id="toc-por-qué-mini-batches" class="nav-link" data-scroll-target="#por-qué-mini-batches"><span class="header-section-number">24</span> ¿Por qué mini-batches?</a></li>
+  <li><a href="#regla-de-la-cadena" id="toc-regla-de-la-cadena" class="nav-link" data-scroll-target="#regla-de-la-cadena"><span class="header-section-number">25</span> Regla de la cadena</a></li>
+  <li><a href="#grafos-computacionales" id="toc-grafos-computacionales" class="nav-link" data-scroll-target="#grafos-computacionales"><span class="header-section-number">26</span> Grafos computacionales</a></li>
+  <li><a href="#un-grafo-computacional-a-mano" id="toc-un-grafo-computacional-a-mano" class="nav-link" data-scroll-target="#un-grafo-computacional-a-mano"><span class="header-section-number">27</span> Un grafo computacional a mano</a></li>
+  <li><a href="#de-derivadas-a-jacobianos" id="toc-de-derivadas-a-jacobianos" class="nav-link" data-scroll-target="#de-derivadas-a-jacobianos"><span class="header-section-number">28</span> De derivadas a Jacobianos</a></li>
+  <li><a href="#pytorch-construye-jacobianos-gigantes" id="toc-pytorch-construye-jacobianos-gigantes" class="nav-link" data-scroll-target="#pytorch-construye-jacobianos-gigantes"><span class="header-section-number">29</span> ¿PyTorch construye Jacobianos gigantes?</a></li>
+  <li><a href="#una-capa-neuronal-en-forma-matricial" id="toc-una-capa-neuronal-en-forma-matricial" class="nav-link" data-scroll-target="#una-capa-neuronal-en-forma-matricial"><span class="header-section-number">30</span> Una capa neuronal en forma matricial</a></li>
+  <li><a href="#backpropagation-en-una-capa" id="toc-backpropagation-en-una-capa" class="nav-link" data-scroll-target="#backpropagation-en-una-capa"><span class="header-section-number">31</span> Backpropagation en una capa</a></li>
+  <li><a href="#backpropagation-en-una-red-profunda" id="toc-backpropagation-en-una-red-profunda" class="nav-link" data-scroll-target="#backpropagation-en-una-red-profunda"><span class="header-section-number">32</span> Backpropagation en una red profunda</a></li>
+  <li><a href="#ejemplo-manual-una-neurona-con-mse" id="toc-ejemplo-manual-una-neurona-con-mse" class="nav-link" data-scroll-target="#ejemplo-manual-una-neurona-con-mse"><span class="header-section-number">33</span> Ejemplo manual: una neurona con MSE</a></li>
+  <li><a href="#backward-no-actualiza-los-parámetros" id="toc-backward-no-actualiza-los-parámetros" class="nav-link" data-scroll-target="#backward-no-actualiza-los-parámetros"><span class="header-section-number">34</span> <code>backward()</code> no actualiza los parámetros</a></li>
+  <li><a href="#por-qué-zero_grad" id="toc-por-qué-zero_grad" class="nav-link" data-scroll-target="#por-qué-zero_grad"><span class="header-section-number">35</span> ¿Por qué <code>zero_grad()</code>?</a></li>
+  <li><a href="#funciones-de-activación-y-sus-derivadas" id="toc-funciones-de-activación-y-sus-derivadas" class="nav-link" data-scroll-target="#funciones-de-activación-y-sus-derivadas"><span class="header-section-number">36</span> Funciones de activación y sus derivadas</a>
+  <ul class="collapse">
+  <li><a href="#sigmoide" id="toc-sigmoide" class="nav-link" data-scroll-target="#sigmoide"><span class="header-section-number">36.1</span> Sigmoide</a></li>
+  <li><a href="#tanh" id="toc-tanh" class="nav-link" data-scroll-target="#tanh"><span class="header-section-number">36.2</span> Tanh</a></li>
+  <li><a href="#relu" id="toc-relu" class="nav-link" data-scroll-target="#relu"><span class="header-section-number">36.3</span> ReLU</a></li>
+  <li><a href="#otras-activaciones" id="toc-otras-activaciones" class="nav-link" data-scroll-target="#otras-activaciones"><span class="header-section-number">36.4</span> Otras activaciones</a></li>
+  </ul></li>
+  <li><a href="#vanishing-gradients" id="toc-vanishing-gradients" class="nav-link" data-scroll-target="#vanishing-gradients"><span class="header-section-number">37</span> Vanishing gradients</a></li>
+  <li><a href="#exploding-gradients" id="toc-exploding-gradients" class="nav-link" data-scroll-target="#exploding-gradients"><span class="header-section-number">38</span> Exploding gradients</a></li>
+  <li><a href="#inicialización-de-pesos" id="toc-inicialización-de-pesos" class="nav-link" data-scroll-target="#inicialización-de-pesos"><span class="header-section-number">39</span> Inicialización de pesos</a>
+  <ul class="collapse">
+  <li><a href="#xavier-glorot" id="toc-xavier-glorot" class="nav-link" data-scroll-target="#xavier-glorot"><span class="header-section-number">39.1</span> Xavier / Glorot</a></li>
+  <li><a href="#he-kaiming" id="toc-he-kaiming" class="nav-link" data-scroll-target="#he-kaiming"><span class="header-section-number">39.2</span> He / Kaiming</a></li>
+  </ul></li>
+  <li><a href="#el-learning-rate" id="toc-el-learning-rate" class="nav-link" data-scroll-target="#el-learning-rate"><span class="header-section-number">40</span> El learning rate</a></li>
+  <li><a href="#sgd-con-momentum" id="toc-sgd-con-momentum" class="nav-link" data-scroll-target="#sgd-con-momentum"><span class="header-section-number">41</span> SGD con momentum</a></li>
+  <li><a href="#rmsprop" id="toc-rmsprop" class="nav-link" data-scroll-target="#rmsprop"><span class="header-section-number">42</span> RMSProp</a></li>
+  <li><a href="#adam-y-adamw" id="toc-adam-y-adamw" class="nav-link" data-scroll-target="#adam-y-adamw"><span class="header-section-number">43</span> Adam y AdamW</a></li>
+  <li><a href="#regularización-y-weight-decay" id="toc-regularización-y-weight-decay" class="nav-link" data-scroll-target="#regularización-y-weight-decay"><span class="header-section-number">44</span> Regularización y weight decay</a></li>
+  <li><a href="#learning-rate-scheduling" id="toc-learning-rate-scheduling" class="nav-link" data-scroll-target="#learning-rate-scheduling"><span class="header-section-number">45</span> Learning rate scheduling</a></li>
+  <li><a href="#pytorch-el-ciclo-mínimo-completo" id="toc-pytorch-el-ciclo-mínimo-completo" class="nav-link" data-scroll-target="#pytorch-el-ciclo-mínimo-completo"><span class="header-section-number">46</span> 35. PyTorch: el ciclo mínimo completo</a></li>
+  <li><a href="#un-ejemplo-completo-regresión-lineal" id="toc-un-ejemplo-completo-regresión-lineal" class="nav-link" data-scroll-target="#un-ejemplo-completo-regresión-lineal"><span class="header-section-number">47</span> Un ejemplo completo: regresión lineal</a></li>
+  <li><a href="#inspeccionar-gradientes-en-pytorch" id="toc-inspeccionar-gradientes-en-pytorch" class="nav-link" data-scroll-target="#inspeccionar-gradientes-en-pytorch"><span class="header-section-number">48</span> Inspeccionar gradientes en PyTorch</a></li>
+  <li><a href="#dataloader-batches-y-shuffle" id="toc-dataloader-batches-y-shuffle" class="nav-link" data-scroll-target="#dataloader-batches-y-shuffle"><span class="header-section-number">49</span> <code>DataLoader</code>, batches y <code>shuffle</code></a></li>
+  <li><a href="#validación-en-pytorch" id="toc-validación-en-pytorch" class="nav-link" data-scroll-target="#validación-en-pytorch"><span class="header-section-number">50</span> Validación en PyTorch</a></li>
+  <li><a href="#inferencia-para-clasificación" id="toc-inferencia-para-clasificación" class="nav-link" data-scroll-target="#inferencia-para-clasificación"><span class="header-section-number">51</span> Inferencia para clasificación</a></li>
+  <li><a href="#overfitting-y-early-stopping" id="toc-overfitting-y-early-stopping" class="nav-link" data-scroll-target="#overfitting-y-early-stopping"><span class="header-section-number">52</span> Overfitting y early stopping</a></li>
+  <li><a href="#optimización-no-es-generalización" id="toc-optimización-no-es-generalización" class="nav-link" data-scroll-target="#optimización-no-es-generalización"><span class="header-section-number">53</span> Optimización no es generalización</a></li>
+  <li><a href="#imágenes-médicas-dimensiones-del-tensor" id="toc-imágenes-médicas-dimensiones-del-tensor" class="nav-link" data-scroll-target="#imágenes-médicas-dimensiones-del-tensor"><span class="header-section-number">54</span> Imágenes médicas: dimensiones del tensor</a></li>
+  <li><a href="#por-qué-las-imágenes-3d-consumen-tanta-memoria" id="toc-por-qué-las-imágenes-3d-consumen-tanta-memoria" class="nav-link" data-scroll-target="#por-qué-las-imágenes-3d-consumen-tanta-memoria"><span class="header-section-number">55</span> ¿Por qué las imágenes 3D consumen tanta memoria?</a></li>
+  <li><a href="#gradient-accumulation" id="toc-gradient-accumulation" class="nav-link" data-scroll-target="#gradient-accumulation"><span class="header-section-number">56</span> Gradient accumulation</a></li>
+  <li><a href="#mixed-precision" id="toc-mixed-precision" class="nav-link" data-scroll-target="#mixed-precision"><span class="header-section-number">57</span> Mixed precision</a></li>
+  <li><a href="#monai-del-mecanismo-general-a-física-médica" id="toc-monai-del-mecanismo-general-a-física-médica" class="nav-link" data-scroll-target="#monai-del-mecanismo-general-a-física-médica"><span class="header-section-number">58</span> MONAI: del mecanismo general a física médica</a></li>
+  <li><a href="#inferencia-con-monaipytorch" id="toc-inferencia-con-monaipytorch" class="nav-link" data-scroll-target="#inferencia-con-monaipytorch"><span class="header-section-number">59</span> Inferencia con MONAI/PyTorch</a></li>
+  <li><a href="#el-ciclo-completo" id="toc-el-ciclo-completo" class="nav-link" data-scroll-target="#el-ciclo-completo"><span class="header-section-number">60</span> 49. El ciclo completo</a></li>
+  <li><a href="#resumen-matemático-del-entrenamiento" id="toc-resumen-matemático-del-entrenamiento" class="nav-link" data-scroll-target="#resumen-matemático-del-entrenamiento"><span class="header-section-number">61</span> Resumen matemático del entrenamiento</a>
+  <ul class="collapse">
+  <li><a href="#forward" id="toc-forward" class="nav-link" data-scroll-target="#forward"><span class="header-section-number">61.1</span> Forward</a></li>
+  <li><a href="#loss-de-un-mini-batch" id="toc-loss-de-un-mini-batch" class="nav-link" data-scroll-target="#loss-de-un-mini-batch"><span class="header-section-number">61.2</span> Loss de un mini-batch</a></li>
+  <li><a href="#backward" id="toc-backward" class="nav-link" data-scroll-target="#backward"><span class="header-section-number">61.3</span> Backward</a></li>
+  <li><a href="#update" id="toc-update" class="nav-link" data-scroll-target="#update"><span class="header-section-number">61.4</span> Update</a></li>
+  </ul></li>
+  <li><a href="#resumen-matemático-de-backpropagation" id="toc-resumen-matemático-de-backpropagation" class="nav-link" data-scroll-target="#resumen-matemático-de-backpropagation"><span class="header-section-number">62</span> Resumen matemático de backpropagation</a></li>
+  <li><a href="#bibliografía-de-la-unidad" id="toc-bibliografía-de-la-unidad" class="nav-link" data-scroll-target="#bibliografía-de-la-unidad"><span class="header-section-number">63</span> Bibliografía de la unidad</a></li>
   </ul>
 </nav>
     </div>
@@ -392,7 +475,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 19, 2026</p>
+      <p class="date">August 20, 2026</p>
     </div>
   </div>
   
@@ -1604,8 +1687,2398 @@ h_1 = \text{OR}(x_1, x_2), \qquad h_2 = \text{NAND}(x_1, x_2), \qquad \hat{y} = 
 <hr>
 </section>
 </section>
-<section id="bibliografía-de-la-unidad" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> Bibliografía de la unidad</h1>
+<section id="qué-significa-entrenar-una-red-neuronal" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> ¿Qué significa entrenar una red neuronal?</h1>
+<p>Una red neuronal puede representarse como una función parametrizada:</p>
+<p><span class="math display">\[
+f_\theta:\mathcal X\rightarrow\mathcal Y,
+\]</span></p>
+<p>donde</p>
+<p><span class="math display">\[
+\theta=(\theta_1,\theta_2,\ldots,\theta_P)
+\]</span></p>
+<p>representa todos los parámetros entrenables: pesos y sesgos.</p>
+<p>Dada una entrada <span class="math inline">\(\mathbf x\)</span>, la red produce:</p>
+<p><span class="math display">\[
+\hat y=f_\theta(\mathbf x).
+\]</span></p>
+<p>El entrenamiento consiste en encontrar parámetros que produzcan buenas predicciones.</p>
+<p>Podemos resumir el ciclo fundamental como:</p>
+<p><span class="math display">\[
+\boxed{
+\text{Forward}
+\rightarrow
+\text{Loss}
+\rightarrow
+\text{Backward}
+\rightarrow
+\text{Update}
+}
+\]</span></p>
+<p>En términos más detallados:</p>
+<p><span class="math display">\[
+\mathbf x
+\rightarrow
+f_\theta(\mathbf x)
+\rightarrow
+\hat y
+\rightarrow
+\mathcal L(\hat y,y)
+\rightarrow
+\nabla_\theta\mathcal L
+\rightarrow
+\theta_{\mathrm{nuevo}}.
+\]</span></p>
+<div class="callout callout-style-default callout-important callout-titled" title="Idea central">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Idea central
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El entrenamiento de una red neuronal es, desde el punto de vista matemático, un problema de <strong>optimización numérica</strong>. Los datos y la función de pérdida determinan qué parámetros queremos encontrar; <em>backpropagation</em> permite calcular los gradientes y el optimizador determina cómo utilizar esos gradientes.</p>
+</div>
+</div>
+</section>
+<section id="funciones-de-pérdida" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Funciones de pérdida</h1>
+<p>La función de pérdida para una observación es:</p>
+<p><span class="math display">\[
+\ell(\hat y,y).
+\]</span></p>
+<p>La pérdida promedio sobre un conjunto de observaciones es la función que optimizamos.</p>
+<section id="regresión" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="regresión"><span class="header-section-number">14.1</span> Regresión</h2>
+<p>El error cuadrático medio es:</p>
+<p><span class="math display">\[
+\mathcal L_{\mathrm{MSE}}
+=
+\frac1N
+\sum_{i=1}^{N}
+(y_i-\hat y_i)^2.
+\]</span></p>
+<p>El error absoluto medio es:</p>
+<p><span class="math display">\[
+\mathcal L_{\mathrm{MAE}}
+=
+\frac1N
+\sum_{i=1}^{N}
+|y_i-\hat y_i|.
+\]</span></p>
+<p>La pérdida de Huber combina un comportamiento cuadrático para errores pequeños y lineal para errores grandes:</p>
+<p><span class="math display">\[
+\ell_\delta(r)=
+\begin{cases}
+\frac12r^2,&amp; |r|\leq\delta,\\[4pt]
+\delta\left(|r|-\frac12\delta\right),&amp; |r|&gt;\delta,
+\end{cases}
+\]</span></p>
+<p>donde <span class="math inline">\(r=y-\hat y\)</span>.</p>
+</section>
+<section id="clasificación-binaria" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="clasificación-binaria"><span class="header-section-number">14.2</span> Clasificación binaria</h2>
+<p>Para una probabilidad predicha <span class="math inline">\(p\)</span>:</p>
+<p><span class="math display">\[
+\mathcal L_{\mathrm{BCE}}
+=
+-\frac1N
+\sum_{i=1}^{N}
+\left[
+y_i\log p_i
++
+(1-y_i)\log(1-p_i)
+\right].
+\]</span></p>
+<p>En PyTorch, para estabilidad numérica, normalmente se trabaja directamente con <strong>logits</strong> mediante <code>BCEWithLogitsLoss</code> en lugar de aplicar una sigmoide explícita antes de la pérdida.</p>
+</section>
+<section id="clasificación-multiclase" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="clasificación-multiclase"><span class="header-section-number">14.3</span> Clasificación multiclase</h2>
+<p>Para <span class="math inline">\(K\)</span> clases:</p>
+<p><span class="math display">\[
+\mathcal L_{\mathrm{CE}}
+=
+-\frac1N
+\sum_{i=1}^{N}
+\sum_{k=1}^{K}
+y_{ik}\log p_{ik}.
+\]</span></p>
+<p>Si <span class="math inline">\(z_k\)</span> son los logits:</p>
+<p><span class="math display">\[
+p_k
+=
+\operatorname{softmax}(z)_k
+=
+\frac{e^{z_k}}
+{\sum_j e^{z_j}}.
+\]</span></p>
+<p>En PyTorch, <code>CrossEntropyLoss</code> recibe directamente los logits.</p>
+</section>
+</section>
+<section id="sample-batch-mini-batch-iteration-y-epoch" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Sample, batch, mini-batch, iteration y epoch</h1>
+<p>Esta terminología es fundamental para entender el entrenamiento moderno.</p>
+<p>Supongamos que nuestro conjunto de entrenamiento contiene:</p>
+<p><span class="math display">\[
+N=10\,000
+\]</span></p>
+<p>pacientes o ejemplos.</p>
+<section id="sample" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="sample"><span class="header-section-number">15.1</span> Sample</h2>
+<p>Una <strong>muestra</strong> (<em>sample</em>) es una observación individual:</p>
+<p><span class="math display">\[
+(\mathbf x_i,y_i).
+\]</span></p>
+</section>
+<section id="batch" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="batch"><span class="header-section-number">15.2</span> Batch</h2>
+<p>Un <strong>batch</strong> es un conjunto de observaciones procesadas simultáneamente.</p>
+<p>Si:</p>
+<p><span class="math display">\[
+|B|=32,
+\]</span></p>
+<p>decimos que:</p>
+<p><span class="math display">\[
+\text{batch size}=32.
+\]</span></p>
+<p>En el lenguaje cotidiano de Deep Learning, <code>batch</code> suele utilizarse para referirse a un <strong>mini-batch</strong>.</p>
+</section>
+<section id="batch-gradient-descent" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="batch-gradient-descent"><span class="header-section-number">15.3</span> Batch Gradient Descent</h2>
+<p>Si utilizamos las <span class="math inline">\(N\)</span> observaciones antes de cada actualización:</p>
+<p><span class="math display">\[
+B=\mathcal D,
+\]</span></p>
+<p>entonces:</p>
+<p><span class="math display">\[
+\nabla_\theta\widehat R(\theta)
+=
+\frac1N
+\sum_{i=1}^{N}
+\nabla_\theta\ell_i(\theta).
+\]</span></p>
+<p>Esto es <strong>full-batch gradient descent</strong>.</p>
+</section>
+<section id="stochastic-gradient-descent" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="stochastic-gradient-descent"><span class="header-section-number">15.4</span> Stochastic Gradient Descent</h2>
+<p>En sentido estricto, SGD utiliza una única muestra:</p>
+<p><span class="math display">\[
+|B|=1.
+\]</span></p>
+<p>Entonces:</p>
+<p><span class="math display">\[
+g_i
+=
+\nabla_\theta\ell_i(\theta).
+\]</span></p>
+</section>
+<section id="mini-batch-gradient-descent" class="level2" data-number="15.5">
+<h2 data-number="15.5" class="anchored" data-anchor-id="mini-batch-gradient-descent"><span class="header-section-number">15.5</span> Mini-batch Gradient Descent</h2>
+<p>En Deep Learning se utiliza habitualmente:</p>
+<p><span class="math display">\[
+1&lt;|B|\ll N.
+\]</span></p>
+<p>Por ejemplo:</p>
+<p><span class="math display">\[
+|B|\in\{8,16,32,64,128,\ldots\}.
+\]</span></p>
+<p>El gradiente del mini-batch es:</p>
+<p><span class="math display">\[
+g_B
+=
+\frac1{|B|}
+\sum_{i\in B}
+\nabla_\theta\ell_i(\theta).
+\]</span></p>
+<p>La actualización será aproximadamente:</p>
+<p><span class="math display">\[
+\theta_{t+1}
+=
+\theta_t-\eta g_B.
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En Deep Learning es frecuente decir “entrenamos con SGD” para referirnos al optimizador SGD aplicado sobre <strong>mini-batches</strong>, aunque el SGD matemático estricto corresponda a una observación por actualización.</p>
+</div>
+</div>
+</section>
+<section id="epoch-e-iteration" class="level2" data-number="15.6">
+<h2 data-number="15.6" class="anchored" data-anchor-id="epoch-e-iteration"><span class="header-section-number">15.6</span> Epoch e iteration</h2>
+<p>Una <strong>iteration</strong> o <strong>step</strong> suele corresponder a una actualización de parámetros.</p>
+<p>Una <strong>epoch</strong> es una pasada completa por el dataset de entrenamiento.</p>
+<p>Si:</p>
+<p><span class="math display">\[
+N=10\,000,
+\qquad
+B=100,
+\]</span></p>
+<p>entonces hay:</p>
+<p><span class="math display">\[
+\frac{10\,000}{100}=100
+\]</span></p>
+<p>iterations por epoch.</p>
+<p>Si entrenamos durante 20 epochs:</p>
+<p><span class="math display">\[
+20\times100=2000
+\]</span></p>
+<p>actualizaciones.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Concepto</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sample</td>
+<td>Una observación</td>
+</tr>
+<tr class="even">
+<td>Batch</td>
+<td>Conjunto de observaciones procesadas juntas</td>
+</tr>
+<tr class="odd">
+<td>Batch size</td>
+<td>Número de observaciones por batch</td>
+</tr>
+<tr class="even">
+<td>Iteration / step</td>
+<td>Una actualización de parámetros</td>
+</tr>
+<tr class="odd">
+<td>Epoch</td>
+<td>Una pasada completa por el conjunto de entrenamiento</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="el-forward-pass" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> El forward pass</h1>
+<p>El <strong>forward pass</strong> es la evaluación de la función que representa la red.</p>
+<p>Para una red con <span class="math inline">\(L\)</span> capas:</p>
+<p><span class="math display">\[
+\mathbf a^{(0)}=\mathbf x
+\]</span></p>
+<p>y:</p>
+<p><span class="math display">\[
+\mathbf z^{(l)}
+=
+W^{(l)}\mathbf a^{(l-1)}
++
+\mathbf b^{(l)},
+\]</span></p>
+<p><span class="math display">\[
+\mathbf a^{(l)}
+=
+\phi^{(l)}(\mathbf z^{(l)}).
+\]</span></p>
+<p>La salida final es:</p>
+<p><span class="math display">\[
+\hat y=f_\theta(\mathbf x).
+\]</span></p>
+<p>Por ejemplo, una red de dos capas puede escribirse:</p>
+<p><span class="math display">\[
+\mathbf h
+=
+\phi(W^{(1)}\mathbf x+\mathbf b^{(1)}),
+\]</span></p>
+<p><span class="math display">\[
+\hat{\mathbf y}
+=
+W^{(2)}\mathbf h+\mathbf b^{(2)}.
+\]</span></p>
+<p>El forward pass simplemente evalúa estas operaciones en orden.</p>
+</section>
+<section id="forward-durante-entrenamiento-e-inferencia" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> Forward durante entrenamiento e inferencia</h1>
+<p>El forward aparece tanto durante el entrenamiento como durante la inferencia.</p>
+<section id="entrenamiento" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="entrenamiento"><span class="header-section-number">17.1</span> Entrenamiento</h2>
+<p>Durante entrenamiento:</p>
+<p><span class="math display">\[
+\mathbf x
+\rightarrow
+f_\theta
+\rightarrow
+\hat y
+\rightarrow
+\mathcal L
+\rightarrow
+\nabla_\theta\mathcal L
+\rightarrow
+\theta_{\mathrm{nuevo}}.
+\]</span></p>
+<p>Los parámetros cambian:</p>
+<p><span class="math display">\[
+\theta_0
+\rightarrow
+\theta_1
+\rightarrow
+\cdots
+\rightarrow
+\hat\theta.
+\]</span></p>
+</section>
+<section id="nferencia" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="nferencia"><span class="header-section-number">17.2</span> nferencia</h2>
+<p>Una vez entrenado el modelo, para una nueva observación:</p>
+<p><span class="math display">\[
+\mathbf x_{\mathrm{new}},
+\]</span></p>
+<p>calculamos:</p>
+<p><span class="math display">\[
+\boxed{
+\hat y_{\mathrm{new}}
+=
+f_{\hat\theta}(\mathbf x_{\mathrm{new}})
+}
+\]</span></p>
+<p>sin actualizar los parámetros.</p>
+<p>Por lo tanto:</p>
+<p><span class="math display">\[
+\boxed{
+\text{Inferencia}
+=
+\text{forward con parámetros fijos}
+}
+\]</span></p>
+<p>En PyTorch:</p>
+<div id="9e544626" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    prediction <span class="op">=</span> model(image)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p><code>model.eval()</code> y <code>torch.no_grad()</code> no hacen lo mismo:</p>
+<ul>
+<li><code>model.eval()</code> cambia el comportamiento de módulos como Dropout y Batch Normalization;</li>
+<li><code>torch.no_grad()</code> evita construir el grafo necesario para calcular gradientes.</li>
+</ul>
+</section>
+</section>
+<section id="training-validation-test-e-inference" class="level1" data-number="18">
+<h1 data-number="18"><span class="header-section-number">18</span> Training, validation, test e inference</h1>
+<p>Estas etapas tienen objetivos diferentes.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Etapa</th>
+<th style="text-align: right;">Forward</th>
+<th style="text-align: right;">Loss/métrica</th>
+<th style="text-align: right;">Backward</th>
+<th style="text-align: right;">Actualiza parámetros</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Training</td>
+<td style="text-align: right;">Sí</td>
+<td style="text-align: right;">Sí</td>
+<td style="text-align: right;">Sí</td>
+<td style="text-align: right;">Sí</td>
+</tr>
+<tr class="even">
+<td>Validation</td>
+<td style="text-align: right;">Sí</td>
+<td style="text-align: right;">Sí</td>
+<td style="text-align: right;">No</td>
+<td style="text-align: right;">No</td>
+</tr>
+<tr class="odd">
+<td>Test</td>
+<td style="text-align: right;">Sí</td>
+<td style="text-align: right;">Sí</td>
+<td style="text-align: right;">No</td>
+<td style="text-align: right;">No</td>
+</tr>
+<tr class="even">
+<td>Inferencia clínica</td>
+<td style="text-align: right;">Sí</td>
+<td style="text-align: right;">Opcional</td>
+<td style="text-align: right;">No</td>
+<td style="text-align: right;">No</td>
+</tr>
+</tbody>
+</table>
+<p>La validación participa en el desarrollo del modelo: selección de hiperparámetros, <em>early stopping</em>, selección de arquitectura y checkpoint.</p>
+<p>El test debe reservarse para la evaluación final.</p>
+<p>La inferencia corresponde al uso del modelo entrenado sobre una nueva entrada.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Data leakage">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Data leakage
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En Física Médica, si existen múltiples imágenes o estudios del mismo paciente, la partición debe realizarse a nivel del paciente cuando corresponda. Dividir imágenes del mismo paciente entre entrenamiento y test puede producir estimaciones artificialmente optimistas del desempeño.</p>
+</div>
+</div>
+</section>
+<section id="de-la-pérdida-al-gradiente" class="level1" data-number="19">
+<h1 data-number="19"><span class="header-section-number">19</span> De la pérdida al gradiente</h1>
+<p>Supongamos una función escalar de dos parámetros:</p>
+<p><span class="math display">\[
+L=L(w_1,w_2).
+\]</span></p>
+<p>La derivada parcial respecto de <span class="math inline">\(w_1\)</span> es:</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial w_1}.
+\]</span></p>
+<p>Mide cómo cambia localmente <span class="math inline">\(L\)</span> cuando modificamos <span class="math inline">\(w_1\)</span> manteniendo las otras variables constantes.</p>
+<p>De forma análoga:</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial w_2}.
+\]</span></p>
+<p>Agrupamos las derivadas parciales en el <strong>gradiente</strong>:</p>
+<p><span class="math display">\[
+\boxed{
+\nabla L
+=
+\begin{bmatrix}
+\frac{\partial L}{\partial w_1}\\[5pt]
+\frac{\partial L}{\partial w_2}
+\end{bmatrix}
+}
+\]</span></p>
+<p>Para <span class="math inline">\(P\)</span> parámetros:</p>
+<p><span class="math display">\[
+\nabla_\theta L
+=
+\begin{bmatrix}
+\frac{\partial L}{\partial\theta_1}\\
+\vdots\\
+\frac{\partial L}{\partial\theta_P}
+\end{bmatrix}.
+\]</span></p>
+</section>
+<section id="interpretación-geométrica-del-gradiente" class="level1" data-number="20">
+<h1 data-number="20"><span class="header-section-number">20</span> Interpretación geométrica del gradiente</h1>
+<p>Para un desplazamiento pequeño <span class="math inline">\(\Delta\theta\)</span>, Taylor de primer orden da:</p>
+<p><span class="math display">\[
+L(\theta+\Delta\theta)
+\approx
+L(\theta)
++
+\nabla L(\theta)^T\Delta\theta.
+\]</span></p>
+<p>Si imponemos una magnitud fija al desplazamiento, el producto escalar es máximo cuando <span class="math inline">\(\Delta\theta\)</span> apunta en la misma dirección que el gradiente.</p>
+<p>Por lo tanto:</p>
+<p><span class="math display">\[
+\nabla L
+\]</span></p>
+<p>es la dirección de máximo incremento local.</p>
+<p>La dirección opuesta:</p>
+<p><span class="math display">\[
+-\nabla L
+\]</span></p>
+<p>es la dirección de máximo descenso local en la geometría euclídea.</p>
+</section>
+<section id="descenso-por-gradiente" class="level1" data-number="21">
+<h1 data-number="21"><span class="header-section-number">21</span> Descenso por gradiente</h1>
+<p>Elegimos:</p>
+<p><span class="math display">\[
+\Delta\theta
+=
+-\eta\nabla_\theta L(\theta),
+\]</span></p>
+<p>con <span class="math inline">\(\eta&gt;0\)</span>.</p>
+<p>Entonces:</p>
+<p><span class="math display">\[
+\boxed{
+\theta_{t+1}
+=
+\theta_t
+-
+\eta\nabla_\theta L(\theta_t)
+}
+\]</span></p>
+<p>Si <span class="math inline">\(\eta\)</span> es suficientemente pequeño:</p>
+<p><span class="math display">\[
+L(\theta_{t+1})
+&lt;
+L(\theta_t)
+\]</span></p>
+<p>localmente, salvo casos degenerados.</p>
+<p>El parámetro <span class="math inline">\(\eta\)</span> es el <strong>learning rate</strong>.</p>
+</section>
+<section id="ejemplo-analítico-una-dimensión" class="level1" data-number="22">
+<h1 data-number="22"><span class="header-section-number">22</span> Ejemplo analítico: una dimensión</h1>
+<p>Sea:</p>
+<p><span class="math display">\[
+L(w)=w^2.
+\]</span></p>
+<p>Entonces:</p>
+<p><span class="math display">\[
+\frac{dL}{dw}=2w.
+\]</span></p>
+<p>La actualización es:</p>
+<p><span class="math display">\[
+w_{t+1}
+=
+w_t-2\eta w_t
+=
+(1-2\eta)w_t.
+\]</span></p>
+<p>Por lo tanto:</p>
+<p><span class="math display">\[
+w_t=(1-2\eta)^t w_0.
+\]</span></p>
+<p>Para converger a cero necesitamos:</p>
+<p><span class="math display">\[
+|1-2\eta|&lt;1,
+\]</span></p>
+<p>es decir:</p>
+<p><span class="math display">\[
+\boxed{
+0&lt;\eta&lt;1.
+}
+\]</span></p>
+<p>Este ejemplo muestra que el learning rate está relacionado matemáticamente con la estabilidad del algoritmo.</p>
+<div id="cell-fig-gd-1d" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gd_1d(w0, lr, n_steps):</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    w <span class="op">=</span> w0</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    trajectory <span class="op">=</span> [w]</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(n_steps):</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        w <span class="op">=</span> w <span class="op">-</span> lr <span class="op">*</span> <span class="dv">2</span> <span class="op">*</span> w</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        trajectory.append(w)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(trajectory)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>trajectory <span class="op">=</span> gd_1d(<span class="fl">5.0</span>, <span class="fl">0.1</span>, <span class="dv">20</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>plt.plot(trajectory, marker<span class="op">=</span><span class="st">"o"</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Iteration"</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"$w$"</span>)</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Descenso por gradiente"</span>)</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-gd-1d" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-gd-1d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="notas_files/figure-html/fig-gd-1d-output-1.png" width="577" height="377" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gd-1d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Descenso por gradiente para L(w)=w².
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="superficie-de-pérdida-y-condicionamiento" class="level1" data-number="23">
+<h1 data-number="23"><span class="header-section-number">23</span> Superficie de pérdida y condicionamiento</h1>
+<p>Consideremos:</p>
+<p><span class="math display">\[
+L(w_1,w_2)
+=
+\frac12w_1^2+4w_2^2.
+\]</span></p>
+<p>Su gradiente es:</p>
+<p><span class="math display">\[
+\nabla L
+=
+\begin{bmatrix}
+w_1\\
+8w_2
+\end{bmatrix}.
+\]</span></p>
+<p>La curvatura es muy diferente en ambas direcciones.</p>
+<div id="cell-fig-loss-surface" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>w1 <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">200</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>w2 <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">200</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>W1, W2 <span class="op">=</span> np.meshgrid(w1, w2)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> W1<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">4</span> <span class="op">*</span> W2<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">5</span>))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>plt.contour(W1, W2, L, levels<span class="op">=</span><span class="dv">25</span>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"$w_1$"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"$w_2$"</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Superficie de pérdida mal condicionada"</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-loss-surface" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-loss-surface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="notas_files/figure-html/fig-loss-surface-output-1.png" width="514" height="451" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-loss-surface-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Contornos de una superficie de pérdida con distinta curvatura en cada dirección.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Cuando las escalas de curvatura son muy diferentes, el descenso por gradiente puede zigzaguear y avanzar lentamente en algunas direcciones.</p>
+</section>
+<section id="por-qué-mini-batches" class="level1" data-number="24">
+<h1 data-number="24"><span class="header-section-number">24</span> ¿Por qué mini-batches?</h1>
+<p>El riesgo empírico completo es:</p>
+<p><span class="math display">\[
+\widehat R(\theta)
+=
+\frac1N
+\sum_{i=1}^{N}
+\ell_i(\theta).
+\]</span></p>
+<p>Su gradiente es:</p>
+<p><span class="math display">\[
+\nabla_\theta\widehat R(\theta)
+=
+\frac1N
+\sum_{i=1}^{N}
+\nabla_\theta\ell_i(\theta).
+\]</span></p>
+<p>Con un mini-batch <span class="math inline">\(B\)</span> calculamos:</p>
+<p><span class="math display">\[
+g_B
+=
+\frac1{|B|}
+\sum_{i\in B}
+\nabla_\theta\ell_i(\theta).
+\]</span></p>
+<p>Bajo un esquema de muestreo apropiado, <span class="math inline">\(g_B\)</span> actúa como un estimador del gradiente completo.</p>
+<p>Dos mini-batches diferentes producirán generalmente:</p>
+<p><span class="math display">\[
+g_{B_1}\neq g_{B_2}.
+\]</span></p>
+<p>Por eso el entrenamiento mediante mini-batches introduce <strong>ruido estocástico</strong>.</p>
+<p>El mini-batch ofrece un compromiso entre:</p>
+<ul>
+<li>costo computacional;</li>
+<li>uso de memoria;</li>
+<li>paralelización en GPU;</li>
+<li>varianza del estimador del gradiente;</li>
+<li>frecuencia de actualización.</li>
+</ul>
+</section>
+<section id="regla-de-la-cadena" class="level1" data-number="25">
+<h1 data-number="25"><span class="header-section-number">25</span> Regla de la cadena</h1>
+<p>La regla de la cadena es la herramienta matemática central de <em>backpropagation</em>.</p>
+<p>Si:</p>
+<p><span class="math display">\[
+x
+\rightarrow
+z(x)
+\rightarrow
+y(z)
+\rightarrow
+L(y),
+\]</span></p>
+<p>entonces:</p>
+<p><span class="math display">\[
+\boxed{
+\frac{dL}{dx}
+=
+\frac{dL}{dy}
+\frac{dy}{dz}
+\frac{dz}{dx}
+}
+\]</span></p>
+<p>Consideremos ahora una neurona:</p>
+<p><span class="math display">\[
+z=wx+b,
+\]</span></p>
+<p><span class="math display">\[
+\hat y=\phi(z),
+\]</span></p>
+<p><span class="math display">\[
+L=\ell(\hat y,y).
+\]</span></p>
+<p>Entonces:</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial w}
+=
+\frac{\partial L}{\partial\hat y}
+\frac{\partial\hat y}{\partial z}
+\frac{\partial z}{\partial w}.
+\]</span></p>
+<p>Como:</p>
+<p><span class="math display">\[
+\frac{\partial z}{\partial w}=x,
+\]</span></p>
+<p>obtenemos:</p>
+<p><span class="math display">\[
+\boxed{
+\frac{\partial L}{\partial w}
+=
+\frac{\partial L}{\partial\hat y}
+\phi'(z)x
+}
+\]</span></p>
+<p>y:</p>
+<p><span class="math display">\[
+\boxed{
+\frac{\partial L}{\partial b}
+=
+\frac{\partial L}{\partial\hat y}
+\phi'(z).
+}
+\]</span></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Backpropagation no introduce una nueva regla de derivación.</strong> Es una forma eficiente de aplicar repetidamente la regla de la cadena sobre un grafo de operaciones.</p>
+</div>
+</div>
+</section>
+<section id="grafos-computacionales" class="level1" data-number="26">
+<h1 data-number="26"><span class="header-section-number">26</span> Grafos computacionales</h1>
+<p>Una expresión matemática puede representarse como un grafo de operaciones.</p>
+<p>Por ejemplo:</p>
+<p><span class="math display">\[
+z=wx+b,
+\qquad
+\hat y=\phi(z),
+\qquad
+L=\ell(\hat y,y).
+\]</span></p>
+<p>puede visualizarse como:</p>
+<pre class="text"><code>x ──┐
+    ├──&gt; z = wx + b ──&gt; ŷ = φ(z) ──&gt; L(ŷ,y)
+w ──┤
+b ──┘                              ▲
+                                  y</code></pre>
+<p>Durante el <strong>forward pass</strong> recorremos:</p>
+<p><span class="math display">\[
+x
+\rightarrow
+z
+\rightarrow
+\hat y
+\rightarrow
+L.
+\]</span></p>
+<p>Durante el <strong>backward pass</strong> propagamos información en sentido inverso:</p>
+<p><span class="math display">\[
+L
+\rightarrow
+\hat y
+\rightarrow
+z
+\rightarrow
+w,b.
+\]</span></p>
+<p>Cada nodo necesita conocer una derivada local y recibe desde aguas arriba la derivada de la pérdida respecto de su salida.</p>
+</section>
+<section id="un-grafo-computacional-a-mano" class="level1" data-number="27">
+<h1 data-number="27"><span class="header-section-number">27</span> Un grafo computacional a mano</h1>
+<p>Consideremos:</p>
+<p><span class="math display">\[
+a=wx,
+\]</span></p>
+<p><span class="math display">\[
+z=a+b,
+\]</span></p>
+<p><span class="math display">\[
+L=z^2.
+\]</span></p>
+<p>Forward:</p>
+<p><span class="math display">\[
+a=wx,
+\]</span></p>
+<p><span class="math display">\[
+z=a+b,
+\]</span></p>
+<p><span class="math display">\[
+L=z^2.
+\]</span></p>
+<p>Backward:</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial z}=2z,
+\]</span></p>
+<p><span class="math display">\[
+\frac{\partial z}{\partial a}=1,
+\]</span></p>
+<p><span class="math display">\[
+\frac{\partial a}{\partial w}=x.
+\]</span></p>
+<p>Por lo tanto:</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial w}
+=
+\frac{\partial L}{\partial z}
+\frac{\partial z}{\partial a}
+\frac{\partial a}{\partial w}
+=
+2zx.
+\]</span></p>
+<p>También:</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial b}
+=
+2z.
+\]</span></p>
+<p>Este mecanismo es exactamente el que automatizan frameworks como PyTorch.</p>
+</section>
+<section id="de-derivadas-a-jacobianos" class="level1" data-number="28">
+<h1 data-number="28"><span class="header-section-number">28</span> De derivadas a Jacobianos</h1>
+<p>Hasta ahora trabajamos principalmente con escalares. Las redes neuronales operan con vectores y tensores.</p>
+<p>Sea:</p>
+<p><span class="math display">\[
+\mathbf y=f(\mathbf x),
+\]</span></p>
+<p>con:</p>
+<p><span class="math display">\[
+\mathbf x\in\mathbb R^n,
+\qquad
+\mathbf y\in\mathbb R^m.
+\]</span></p>
+<p>El <strong>Jacobiano</strong> de <span class="math inline">\(f\)</span> respecto de <span class="math inline">\(\mathbf x\)</span> es:</p>
+<p><span class="math display">\[
+\boxed{
+J_f(\mathbf x)
+=
+\frac{\partial\mathbf y}{\partial\mathbf x}
+=
+\begin{bmatrix}
+\frac{\partial y_1}{\partial x_1} &amp; \cdots &amp; \frac{\partial y_1}{\partial x_n}\\
+\vdots &amp; \ddots &amp; \vdots\\
+\frac{\partial y_m}{\partial x_1} &amp; \cdots &amp; \frac{\partial y_m}{\partial x_n}
+\end{bmatrix}
+}
+\]</span></p>
+<p>Si:</p>
+<p><span class="math display">\[
+\mathbf y=f(\mathbf z),
+\qquad
+\mathbf z=g(\mathbf x),
+\]</span></p>
+<p>la regla de la cadena vectorial puede escribirse, según la convención adoptada, como un producto de Jacobianos:</p>
+<p><span class="math display">\[
+J_{f\circ g}(\mathbf x)
+=
+J_f(\mathbf z)
+J_g(\mathbf x).
+\]</span></p>
+<p>Para una composición profunda:</p>
+<p><span class="math display">\[
+f
+=
+f^{(L)}
+\circ
+f^{(L-1)}
+\circ
+\cdots
+\circ
+f^{(1)},
+\]</span></p>
+<p>aparecen productos sucesivos de Jacobianos.</p>
+<p>Esta observación será fundamental para entender los gradientes que desaparecen o explotan.</p>
+</section>
+<section id="pytorch-construye-jacobianos-gigantes" class="level1" data-number="29">
+<h1 data-number="29"><span class="header-section-number">29</span> ¿PyTorch construye Jacobianos gigantes?</h1>
+<p>Conceptualmente, la regla de la cadena puede escribirse mediante Jacobianos.</p>
+<p>Sin embargo, construir explícitamente un Jacobiano completo sería extremadamente costoso para una red con millones de parámetros.</p>
+<p>Para una pérdida escalar, lo que necesitamos finalmente es:</p>
+<p><span class="math display">\[
+\nabla_\theta L.
+\]</span></p>
+<p>Los sistemas de diferenciación automática pueden calcular eficientemente productos vector-Jacobiano durante la propagación inversa sin materializar todos los Jacobianos completos.</p>
+<p>Esta es una de las razones por las que <em>reverse-mode automatic differentiation</em> es especialmente apropiado para entrenar redes neuronales: tenemos muchos parámetros pero normalmente una pérdida escalar.</p>
+</section>
+<section id="una-capa-neuronal-en-forma-matricial" class="level1" data-number="30">
+<h1 data-number="30"><span class="header-section-number">30</span> Una capa neuronal en forma matricial</h1>
+<p>Consideremos una capa:</p>
+<p><span class="math display">\[
+\mathbf z^{(l)}
+=
+W^{(l)}\mathbf a^{(l-1)}
++
+\mathbf b^{(l)},
+\]</span></p>
+<p>seguida de:</p>
+<p><span class="math display">\[
+\mathbf a^{(l)}
+=
+\phi^{(l)}(\mathbf z^{(l)}).
+\]</span></p>
+<p>Las dimensiones pueden ser:</p>
+<p><span class="math display">\[
+\mathbf a^{(l-1)}\in\mathbb R^{n_{l-1}},
+\]</span></p>
+<p><span class="math display">\[
+W^{(l)}
+\in
+\mathbb R^{n_l\times n_{l-1}},
+\]</span></p>
+<p><span class="math display">\[
+\mathbf b^{(l)}
+\in
+\mathbb R^{n_l},
+\]</span></p>
+<p><span class="math display">\[
+\mathbf a^{(l)}
+\in
+\mathbb R^{n_l}.
+\]</span></p>
+<p>Queremos calcular:</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial W^{(l)}},
+\qquad
+\frac{\partial L}{\partial\mathbf b^{(l)}},
+\qquad
+\frac{\partial L}{\partial\mathbf a^{(l-1)}}.
+\]</span></p>
+</section>
+<section id="backpropagation-en-una-capa" class="level1" data-number="31">
+<h1 data-number="31"><span class="header-section-number">31</span> Backpropagation en una capa</h1>
+<p>Definimos:</p>
+<p><span class="math display">\[
+\boldsymbol\delta^{(l)}
+=
+\frac{\partial L}{\partial\mathbf z^{(l)}}.
+\]</span></p>
+<p>Si la activación se aplica elemento a elemento:</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol\delta^{(l)}
+=
+\frac{\partial L}{\partial\mathbf a^{(l)}}
+\odot
+\phi'(\mathbf z^{(l)})
+}
+\]</span></p>
+<p>donde <span class="math inline">\(\odot\)</span> representa el producto elemento a elemento.</p>
+<p>Los gradientes de los parámetros son:</p>
+<p><span class="math display">\[
+\boxed{
+\frac{\partial L}{\partial W^{(l)}}
+=
+\boldsymbol\delta^{(l)}
+(\mathbf a^{(l-1)})^T
+}
+\]</span></p>
+<p>y:</p>
+<p><span class="math display">\[
+\boxed{
+\frac{\partial L}{\partial\mathbf b^{(l)}}
+=
+\boldsymbol\delta^{(l)}.
+}
+\]</span></p>
+<p>Para propagar el gradiente hacia la capa anterior:</p>
+<p><span class="math display">\[
+\boxed{
+\frac{\partial L}{\partial\mathbf a^{(l-1)}}
+=
+(W^{(l)})^T
+\boldsymbol\delta^{(l)}.
+}
+\]</span></p>
+<p>Estas tres expresiones constituyen el núcleo algebraico de <em>backpropagation</em> para una capa densa.</p>
+</section>
+<section id="backpropagation-en-una-red-profunda" class="level1" data-number="32">
+<h1 data-number="32"><span class="header-section-number">32</span> Backpropagation en una red profunda</h1>
+<p>Para una red:</p>
+<p><span class="math display">\[
+\mathbf a^{(0)}
+\rightarrow
+\mathbf z^{(1)}
+\rightarrow
+\mathbf a^{(1)}
+\rightarrow
+\cdots
+\rightarrow
+\mathbf z^{(L)}
+\rightarrow
+\mathbf a^{(L)}
+\rightarrow
+L,
+\]</span></p>
+<p>el forward calcula secuencialmente:</p>
+<p><span class="math display">\[
+\mathbf z^{(l)}
+=
+W^{(l)}\mathbf a^{(l-1)}
++
+\mathbf b^{(l)},
+\]</span></p>
+<p><span class="math display">\[
+\mathbf a^{(l)}
+=
+\phi^{(l)}(\mathbf z^{(l)}).
+\]</span></p>
+<p>El backward comienza en la pérdida y recorre la red en sentido inverso.</p>
+<p>Para una capa oculta:</p>
+<p><span class="math display">\[
+\boxed{
+\boldsymbol\delta^{(l)}
+=
+\left[
+(W^{(l+1)})^T
+\boldsymbol\delta^{(l+1)}
+\right]
+\odot
+\phi'(\mathbf z^{(l)}).
+}
+\]</span></p>
+<p>Después:</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial W^{(l)}}
+=
+\boldsymbol\delta^{(l)}
+(\mathbf a^{(l-1)})^T.
+\]</span></p>
+<p>Por eso hablamos de <strong>propagación hacia atrás del error o del gradiente</strong>.</p>
+</section>
+<section id="ejemplo-manual-una-neurona-con-mse" class="level1" data-number="33">
+<h1 data-number="33"><span class="header-section-number">33</span> Ejemplo manual: una neurona con MSE</h1>
+<p>Consideremos:</p>
+<p><span class="math display">\[
+\hat y=wx+b
+\]</span></p>
+<p>y:</p>
+<p><span class="math display">\[
+L=(\hat y-y)^2.
+\]</span></p>
+<p>Entonces:</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial\hat y}
+=
+2(\hat y-y),
+\]</span></p>
+<p><span class="math display">\[
+\frac{\partial\hat y}{\partial w}=x,
+\]</span></p>
+<p><span class="math display">\[
+\frac{\partial\hat y}{\partial b}=1.
+\]</span></p>
+<p>Por lo tanto:</p>
+<p><span class="math display">\[
+\boxed{
+\frac{\partial L}{\partial w}
+=
+2(\hat y-y)x
+}
+\]</span></p>
+<p>y:</p>
+<p><span class="math display">\[
+\boxed{
+\frac{\partial L}{\partial b}
+=
+2(\hat y-y).
+}
+\]</span></p>
+<p>Podemos verificarlo con PyTorch.</p>
+<div id="autograd-simple" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.tensor(<span class="fl">2.0</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> torch.tensor(<span class="fl">10.0</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> torch.tensor(<span class="fl">3.0</span>, requires_grad<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> torch.tensor(<span class="fl">1.0</span>, requires_grad<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>y_hat <span class="op">=</span> w <span class="op">*</span> x <span class="op">+</span> b</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> (y_hat <span class="op">-</span> y)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>loss.backward()</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"y_hat ="</span>, y_hat.item())</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"loss  ="</span>, loss.item())</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"dL/dw ="</span>, w.grad.item())</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"dL/db ="</span>, b.grad.item())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>y_hat = 7.0
+loss  = 9.0
+dL/dw = -12.0
+dL/db = -6.0</code></pre>
+</div>
+</div>
+<p>Aquí:</p>
+<p><span class="math display">\[
+\hat y=7,
+\]</span></p>
+<p><span class="math display">\[
+L=9,
+\]</span></p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial w}=-12,
+\]</span></p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial b}=-6.
+\]</span></p>
+</section>
+<section id="backward-no-actualiza-los-parámetros" class="level1" data-number="34">
+<h1 data-number="34"><span class="header-section-number">34</span> <code>backward()</code> no actualiza los parámetros</h1>
+<p>Este punto es fundamental.</p>
+<div id="99046f84" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>loss.backward()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>calcula los gradientes y los almacena, por ejemplo, en:</p>
+<div id="705db037" class="cell" data-execution_count="11">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>parameter.grad</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>pero <strong>no modifica los parámetros</strong>.</p>
+<p>La actualización ocurre cuando ejecutamos:</p>
+<div id="d7115455" class="cell" data-execution_count="12">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>optimizer.step()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Por lo tanto:</p>
+<p><span class="math display">\[
+\boxed{
+\texttt{backward()}
+\neq
+\texttt{optimizer.step()}
+}
+\]</span></p>
+<p>Conceptualmente:</p>
+<pre class="text"><code>loss.backward()
+        │
+        ▼
+calcula ∂L/∂θ
+        │
+        ▼
+optimizer.step()
+        │
+        ▼
+modifica θ</code></pre>
+</section>
+<section id="por-qué-zero_grad" class="level1" data-number="35">
+<h1 data-number="35"><span class="header-section-number">35</span> ¿Por qué <code>zero_grad()</code>?</h1>
+<p>PyTorch acumula gradientes por defecto.</p>
+<p>Por eso un ciclo típico es:</p>
+<div id="c4525ecd" class="cell" data-execution_count="13">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>optimizer.zero_grad()</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>prediction <span class="op">=</span> model(x)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>loss <span class="op">=</span> loss_fn(prediction, y)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>loss.backward()</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>optimizer.step()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Si no borramos los gradientes, los nuevos valores se suman a los almacenados previamente.</p>
+<p>La acumulación es útil en algunos contextos, pero no es lo que queremos en el ciclo estándar.</p>
+</section>
+<section id="funciones-de-activación-y-sus-derivadas" class="level1" data-number="36">
+<h1 data-number="36"><span class="header-section-number">36</span> Funciones de activación y sus derivadas</h1>
+<p>Las funciones de activación no solo determinan la capacidad expresiva de la red. Sus derivadas participan directamente en <em>backpropagation</em>.</p>
+<div id="cell-fig-activations" class="cell" data-execution_count="14">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>x_act <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">400</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>sigmoid <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>x_act))</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>tanh <span class="op">=</span> np.tanh(x_act)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>relu <span class="op">=</span> np.maximum(<span class="dv">0</span>, x_act)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>plt.plot(x_act, sigmoid, label<span class="op">=</span><span class="st">"Sigmoid"</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>plt.plot(x_act, tanh, label<span class="op">=</span><span class="st">"tanh"</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>plt.plot(x_act, relu, label<span class="op">=</span><span class="st">"ReLU"</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"$z$"</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"$</span><span class="ch">\\</span><span class="st">phi(z)$"</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-activations" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-activations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="notas_files/figure-html/fig-activations-output-1.png" width="588" height="356" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-activations-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: Sigmoide, tanh y ReLU.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="sigmoide" class="level2" data-number="36.1">
+<h2 data-number="36.1" class="anchored" data-anchor-id="sigmoide"><span class="header-section-number">36.1</span> Sigmoide</h2>
+<p><span class="math display">\[
+\sigma(z)
+=
+\frac{1}{1+e^{-z}}.
+\]</span></p>
+<p>Su derivada es:</p>
+<p><span class="math display">\[
+\boxed{
+\sigma'(z)
+=
+\sigma(z)(1-\sigma(z)).
+}
+\]</span></p>
+<p>Como:</p>
+<p><span class="math display">\[
+0&lt;\sigma(z)&lt;1,
+\]</span></p>
+<p>tenemos:</p>
+<p><span class="math display">\[
+0&lt;\sigma'(z)\leq\frac14.
+\]</span></p>
+<p>Para valores grandes de <span class="math inline">\(|z|\)</span>:</p>
+<p><span class="math display">\[
+\sigma'(z)\approx0.
+\]</span></p>
+<p>Decimos que la sigmoide <strong>satura</strong>.</p>
+</section>
+<section id="tanh" class="level2" data-number="36.2">
+<h2 data-number="36.2" class="anchored" data-anchor-id="tanh"><span class="header-section-number">36.2</span> Tanh</h2>
+<p><span class="math display">\[
+\tanh(z)
+=
+\frac{e^z-e^{-z}}{e^z+e^{-z}}.
+\]</span></p>
+<p>Su derivada:</p>
+<p><span class="math display">\[
+\boxed{
+\frac{d}{dz}\tanh(z)
+=
+1-\tanh^2(z).
+}
+\]</span></p>
+<p>También satura para valores grandes en magnitud.</p>
+</section>
+<section id="relu" class="level2" data-number="36.3">
+<h2 data-number="36.3" class="anchored" data-anchor-id="relu"><span class="header-section-number">36.3</span> ReLU</h2>
+<p><span class="math display">\[
+\operatorname{ReLU}(z)
+=
+\max(0,z).
+\]</span></p>
+<p>Su derivada, salvo en <span class="math inline">\(z=0\)</span>, es:</p>
+<p><span class="math display">\[
+\operatorname{ReLU}'(z)
+=
+\begin{cases}
+0,&amp;z&lt;0,\\
+1,&amp;z&gt;0.
+\end{cases}
+\]</span></p>
+<p>ReLU evita la saturación positiva de sigmoide/tanh, aunque puede producir unidades que permanezcan en la región negativa y reciban gradiente cero.</p>
+</section>
+<section id="otras-activaciones" class="level2" data-number="36.4">
+<h2 data-number="36.4" class="anchored" data-anchor-id="otras-activaciones"><span class="header-section-number">36.4</span> Otras activaciones</h2>
+<p>En redes modernas también aparecen:</p>
+<ul>
+<li>Leaky ReLU;</li>
+<li>ELU;</li>
+<li>GELU;</li>
+<li>SiLU/Swish.</li>
+</ul>
+<p>No existe una activación universalmente óptima. La elección depende de la arquitectura y del problema.</p>
+</section>
+</section>
+<section id="vanishing-gradients" class="level1" data-number="37">
+<h1 data-number="37"><span class="header-section-number">37</span> Vanishing gradients</h1>
+<p>En una red profunda, el gradiente hacia una capa temprana contiene productos repetidos de derivadas o Jacobianos.</p>
+<p>De manera esquemática:</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial\mathbf a^{(l)}}
+=
+\frac{\partial L}{\partial\mathbf a^{(L)}}
+J_L
+J_{L-1}
+\cdots
+J_{l+1}.
+\]</span></p>
+<p>Si las normas de estos factores son sistemáticamente menores que uno:</p>
+<p><span class="math display">\[
+\|J_k\|&lt;1,
+\]</span></p>
+<p>el producto puede decrecer rápidamente con la profundidad:</p>
+<p><span class="math display">\[
+\left\|
+\prod_k J_k
+\right\|
+\rightarrow0.
+\]</span></p>
+<p>Entonces:</p>
+<p><span class="math display">\[
+\boxed{
+\|\nabla L\|\rightarrow0.
+}
+\]</span></p>
+<p>Las capas tempranas reciben señales de aprendizaje extremadamente pequeñas.</p>
+<p>La sigmoide ilustra bien el problema porque:</p>
+<p><span class="math display">\[
+\sigma'(z)\leq0.25.
+\]</span></p>
+<p>Un producto simplificado de 20 factores máximos sería:</p>
+<p><span class="math display">\[
+0.25^{20}
+\approx9.1\times10^{-13}.
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En una red real el fenómeno depende también de los pesos, la arquitectura, la normalización y otras operaciones. El ejemplo <span class="math inline">\(0.25^{20}\)</span> es una intuición matemática, no un modelo completo del comportamiento de una red.</p>
+</div>
+</div>
+</section>
+<section id="exploding-gradients" class="level1" data-number="38">
+<h1 data-number="38"><span class="header-section-number">38</span> Exploding gradients</h1>
+<p>El fenómeno opuesto ocurre cuando los productos de Jacobianos aumentan en magnitud:</p>
+<p><span class="math display">\[
+\left\|
+\prod_k J_k
+\right\|
+\gg1.
+\]</span></p>
+<p>Entonces:</p>
+<p><span class="math display">\[
+\boxed{
+\|\nabla L\|
+\gg1.
+}
+\]</span></p>
+<p>Esto puede provocar:</p>
+<ul>
+<li>actualizaciones excesivamente grandes;</li>
+<li>oscilaciones;</li>
+<li>inestabilidad numérica;</li>
+<li><code>inf</code> o <code>NaN</code>;</li>
+<li>divergencia.</li>
+</ul>
+<p>Una herramienta posible es <strong>gradient clipping</strong>:</p>
+<p><span class="math display">\[
+\tilde g
+=
+\begin{cases}
+g,&amp;\|g\|\leq\tau,\\[4pt]
+\tau\frac{g}{\|g\|},&amp;\|g\|&gt;\tau.
+\end{cases}
+\]</span></p>
+<p>En PyTorch:</p>
+<div id="d39e440a" class="cell" data-execution_count="15">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>torch.nn.utils.clip_grad_norm_(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    model.parameters(),</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    max_norm<span class="op">=</span><span class="fl">1.0</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>El clipping controla la magnitud del gradiente, pero no reemplaza una arquitectura, inicialización y learning rate adecuados.</p>
+</section>
+<section id="inicialización-de-pesos" class="level1" data-number="39">
+<h1 data-number="39"><span class="header-section-number">39</span> Inicialización de pesos</h1>
+<p>La inicialización determina el punto:</p>
+<p><span class="math display">\[
+\theta_0
+\]</span></p>
+<p>desde el cual comienza la optimización.</p>
+<p>Inicializar todos los pesos de una capa oculta en cero es problemático porque las neuronas quedan inicialmente simétricas y reciben actualizaciones equivalentes.</p>
+<p>También queremos evitar que la varianza de las activaciones o de los gradientes crezca o disminuya drásticamente al atravesar capas.</p>
+<section id="xavier-glorot" class="level2" data-number="39.1">
+<h2 data-number="39.1" class="anchored" data-anchor-id="xavier-glorot"><span class="header-section-number">39.1</span> Xavier / Glorot</h2>
+<p>Para activaciones aproximadamente simétricas, una idea es elegir la varianza de los pesos según:</p>
+<p><span class="math display">\[
+\operatorname{Var}(W)
+\approx
+\frac{2}
+{n_{\mathrm{in}}+n_{\mathrm{out}}}.
+\]</span></p>
+<p>En PyTorch:</p>
+<div id="5d46fd55" class="cell" data-execution_count="16">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>torch.nn.init.xavier_uniform_(layer.weight)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="he-kaiming" class="level2" data-number="39.2">
+<h2 data-number="39.2" class="anchored" data-anchor-id="he-kaiming"><span class="header-section-number">39.2</span> He / Kaiming</h2>
+<p>Para redes con ReLU es habitual utilizar:</p>
+<p><span class="math display">\[
+\operatorname{Var}(W)
+\approx
+\frac{2}{n_{\mathrm{in}}}.
+\]</span></p>
+<p>En PyTorch:</p>
+<div id="225d8c26" class="cell" data-execution_count="17">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>torch.nn.init.kaiming_normal_(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    layer.weight,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    nonlinearity<span class="op">=</span><span class="st">"relu"</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>La idea conceptual es:</p>
+<p><span class="math display">\[
+\boxed{
+\text{inicialización}
+\rightarrow
+\text{distribución de activaciones}
+\rightarrow
+\text{distribución de gradientes}
+\rightarrow
+\text{entrenabilidad}.
+}
+\]</span></p>
+</section>
+</section>
+<section id="el-learning-rate" class="level1" data-number="40">
+<h1 data-number="40"><span class="header-section-number">40</span> El learning rate</h1>
+<p>La actualización básica es:</p>
+<p><span class="math display">\[
+\theta_{t+1}
+=
+\theta_t-\eta g_t.
+\]</span></p>
+<p>Si <span class="math inline">\(\eta\)</span> es demasiado pequeño, el entrenamiento puede ser muy lento.</p>
+<p>Si es demasiado grande, podemos sobrepasar regiones favorables, oscilar o divergir.</p>
+<p>El learning rate interactúa con:</p>
+<ul>
+<li>el optimizador;</li>
+<li>el batch size;</li>
+<li>la normalización;</li>
+<li>la arquitectura;</li>
+<li>la escala de la pérdida;</li>
+<li>la inicialización.</li>
+</ul>
+<p>Por eso suele ser uno de los hiperparámetros más importantes del entrenamiento.</p>
+</section>
+<section id="sgd-con-momentum" class="level1" data-number="41">
+<h1 data-number="41"><span class="header-section-number">41</span> SGD con momentum</h1>
+<p>El descenso por gradiente puede zigzaguear en superficies mal condicionadas.</p>
+<p>Momentum acumula información de gradientes anteriores. Una formulación posible es:</p>
+<p><span class="math display">\[
+v_t
+=
+\beta v_{t-1}+g_t,
+\]</span></p>
+<p><span class="math display">\[
+\theta_{t+1}
+=
+\theta_t-\eta v_t.
+\]</span></p>
+<p>La convención exacta puede variar entre textos e implementaciones.</p>
+<p>El efecto intuitivo es introducir una “inercia” que suaviza parte de las oscilaciones y puede acelerar el movimiento en direcciones persistentes.</p>
+<p>En PyTorch:</p>
+<div id="277bc224" class="cell" data-execution_count="18">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.SGD(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    model.parameters(),</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    lr<span class="op">=</span><span class="fl">1e-2</span>,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    momentum<span class="op">=</span><span class="fl">0.9</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="rmsprop" class="level1" data-number="42">
+<h1 data-number="42"><span class="header-section-number">42</span> RMSProp</h1>
+<p>RMSProp mantiene una media móvil de gradientes cuadrados:</p>
+<p><span class="math display">\[
+s_t
+=
+\beta s_{t-1}
++
+(1-\beta)g_t^2.
+\]</span></p>
+<p>La actualización es aproximadamente:</p>
+<p><span class="math display">\[
+\theta_{t+1}
+=
+\theta_t
+-
+\eta
+\frac{g_t}
+{\sqrt{s_t}+\epsilon}.
+\]</span></p>
+<p>Esto produce una escala adaptativa por parámetro.</p>
+</section>
+<section id="adam-y-adamw" class="level1" data-number="43">
+<h1 data-number="43"><span class="header-section-number">43</span> Adam y AdamW</h1>
+<p>Adam combina estimaciones de primer y segundo momento:</p>
+<p><span class="math display">\[
+m_t
+=
+\beta_1m_{t-1}
++
+(1-\beta_1)g_t,
+\]</span></p>
+<p><span class="math display">\[
+v_t
+=
+\beta_2v_{t-1}
++
+(1-\beta_2)g_t^2.
+\]</span></p>
+<p>Con corrección de sesgo:</p>
+<p><span class="math display">\[
+\hat m_t
+=
+\frac{m_t}{1-\beta_1^t},
+\]</span></p>
+<p><span class="math display">\[
+\hat v_t
+=
+\frac{v_t}{1-\beta_2^t}.
+\]</span></p>
+<p>La actualización es:</p>
+<p><span class="math display">\[
+\boxed{
+\theta_{t+1}
+=
+\theta_t
+-
+\eta
+\frac{\hat m_t}
+{\sqrt{\hat v_t}+\epsilon}.
+}
+\]</span></p>
+<p>Adam y AdamW son baselines frecuentes, pero no existe un optimizador universalmente mejor.</p>
+<p>En PyTorch:</p>
+<div id="1ba4d6e8" class="cell" data-execution_count="19">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.AdamW(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    model.parameters(),</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    lr<span class="op">=</span><span class="fl">1e-3</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    weight_decay<span class="op">=</span><span class="fl">1e-4</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="regularización-y-weight-decay" class="level1" data-number="44">
+<h1 data-number="44"><span class="header-section-number">44</span> Regularización y weight decay</h1>
+<p>Podemos introducir una penalización sobre los parámetros:</p>
+<p><span class="math display">\[
+L_{\mathrm{total}}
+=
+L_{\mathrm{data}}
++
+\lambda\|\theta\|_2^2.
+\]</span></p>
+<p>La regularización busca modificar las soluciones favorecidas por el proceso de entrenamiento.</p>
+<p>En la práctica también utilizamos mecanismos como:</p>
+<ul>
+<li>weight decay;</li>
+<li>dropout;</li>
+<li>data augmentation;</li>
+<li>early stopping.</li>
+</ul>
+<p>No son equivalentes entre sí.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En particular, AdamW implementa <em>decoupled weight decay</em>. Aunque está relacionado con la regularización <span class="math inline">\(L_2\)</span>, conviene no identificar ambos conceptos de manera indiscriminada para todos los optimizadores.</p>
+</div>
+</div>
+</section>
+<section id="learning-rate-scheduling" class="level1" data-number="45">
+<h1 data-number="45"><span class="header-section-number">45</span> Learning rate scheduling</h1>
+<p>No es necesario mantener <span class="math inline">\(\eta\)</span> constante.</p>
+<p>Algunas estrategias son:</p>
+<ul>
+<li>Step decay;</li>
+<li>exponential decay;</li>
+<li>cosine annealing;</li>
+<li>warm-up;</li>
+<li>ReduceLROnPlateau.</li>
+</ul>
+<p>Por ejemplo:</p>
+<div id="b2eef7a3" class="cell" data-execution_count="20">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.AdamW(</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    model.parameters(),</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    lr<span class="op">=</span><span class="fl">1e-3</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>scheduler <span class="op">=</span> torch.optim.lr_scheduler.CosineAnnealingLR(</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    optimizer,</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    T_max<span class="op">=</span><span class="dv">100</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>El scheduler modifica la escala de los pasos a lo largo del entrenamiento.</p>
+</section>
+<section id="pytorch-el-ciclo-mínimo-completo" class="level1" data-number="46">
+<h1 data-number="46"><span class="header-section-number">46</span> 35. PyTorch: el ciclo mínimo completo</h1>
+<p>Ahora podemos interpretar cada instrucción matemáticamente.</p>
+<div id="7b6b5cbc" class="cell" data-execution_count="21">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x_batch, y_batch <span class="kw">in</span> train_loader:</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Borrar gradientes acumulados</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    optimizer.zero_grad()</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Forward</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    y_hat <span class="op">=</span> model(x_batch)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Loss</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_fn(y_hat, y_batch)</span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. Backward: calcula ∇θ L</span></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 5. Update</span></span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>    optimizer.step()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>La correspondencia es:</p>
+<p><span class="math display">\[
+\mathbf x
+\overset{\texttt{model}}{\longrightarrow}
+\hat y
+\overset{\texttt{loss\_fn}}{\longrightarrow}
+L
+\overset{\texttt{backward}}{\longrightarrow}
+\nabla_\theta L
+\overset{\texttt{step}}{\longrightarrow}
+\theta_{\mathrm{nuevo}}.
+\]</span></p>
+</section>
+<section id="un-ejemplo-completo-regresión-lineal" class="level1" data-number="47">
+<h1 data-number="47"><span class="header-section-number">47</span> Un ejemplo completo: regresión lineal</h1>
+<div id="pytorch-linear-regression" class="cell" data-execution_count="22">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.utils.data <span class="im">import</span> TensorDataset, DataLoader</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>torch.manual_seed(<span class="dv">42</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>x <span class="op">+</span> <span class="dv">1</span> <span class="op">+</span> <span class="fl">0.5</span><span class="op">*</span>torch.randn_like(x)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>dataset <span class="op">=</span> TensorDataset(x, y)</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>train_loader <span class="op">=</span> DataLoader(</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    dataset,</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    batch_size<span class="op">=</span><span class="dv">16</span>,</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>    shuffle<span class="op">=</span><span class="va">True</span></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> torch.nn.Linear(<span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>loss_fn <span class="op">=</span> torch.nn.MSELoss()</span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.SGD(</span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>    model.parameters(),</span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>    lr<span class="op">=</span><span class="fl">0.01</span></span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>loss_history <span class="op">=</span> []</span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>):</span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>    model.train()</span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>    epoch_loss <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x_batch, y_batch <span class="kw">in</span> train_loader:</span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>        optimizer.zero_grad()</span>
+<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a>        y_hat <span class="op">=</span> model(x_batch)</span>
+<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> loss_fn(y_hat, y_batch)</span>
+<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a>        loss.backward()</span>
+<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a>        optimizer.step()</span>
+<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a>        epoch_loss <span class="op">+=</span> loss.item()</span>
+<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a>    loss_history.append(</span>
+<span id="cb25-48"><a href="#cb25-48" aria-hidden="true" tabindex="-1"></a>        epoch_loss <span class="op">/</span> <span class="bu">len</span>(train_loader)</span>
+<span id="cb25-49"><a href="#cb25-49" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb25-50"><a href="#cb25-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-51"><a href="#cb25-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"w ="</span>, model.weight.item())</span>
+<span id="cb25-52"><a href="#cb25-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"b ="</span>, model.bias.item())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>w = 2.0074307918548584
+b = 0.9900230169296265</code></pre>
+</div>
+</div>
+<div id="cell-fig-linear-loss" class="cell" data-execution_count="23">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>plt.plot(loss_history)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Epoch"</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"MSE"</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Training loss"</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-linear-loss" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-linear-loss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="notas_files/figure-html/fig-linear-loss-output-1.png" width="585" height="377" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-linear-loss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: Pérdida durante el entrenamiento de una regresión lineal.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="inspeccionar-gradientes-en-pytorch" class="level1" data-number="48">
+<h1 data-number="48"><span class="header-section-number">48</span> Inspeccionar gradientes en PyTorch</h1>
+<p>Podemos observar los gradientes calculados por autograd:</p>
+<div id="a3f9e613" class="cell" data-execution_count="24">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, parameter <span class="kw">in</span> model.named_parameters():</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>        name,</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>        parameter.grad</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Esto permite conectar:</p>
+<p><span class="math display">\[
+\frac{\partial L}{\partial w},
+\qquad
+\frac{\partial L}{\partial b}
+\]</span></p>
+<p>con los objetos concretos almacenados en PyTorch.</p>
+</section>
+<section id="dataloader-batches-y-shuffle" class="level1" data-number="49">
+<h1 data-number="49"><span class="header-section-number">49</span> <code>DataLoader</code>, batches y <code>shuffle</code></h1>
+<p>En PyTorch:</p>
+<div id="4549ddc3" class="cell" data-execution_count="25">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>train_loader <span class="op">=</span> DataLoader(</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    dataset,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    batch_size<span class="op">=</span><span class="dv">16</span>,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    shuffle<span class="op">=</span><span class="va">True</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>significa que cada iteration procesa hasta 16 observaciones.</p>
+<p><code>shuffle=True</code> reorganiza el orden de las muestras al comenzar cada epoch.</p>
+<p>Esto ayuda a evitar mini-batches sistemáticamente asociados con el orden original de los datos.</p>
+<p>Sin embargo, <code>shuffle=True</code> <strong>no corrige una partición incorrecta del dataset</strong>. El split entre train/validation/test debe haberse definido apropiadamente antes.</p>
+</section>
+<section id="validación-en-pytorch" class="level1" data-number="50">
+<h1 data-number="50"><span class="header-section-number">50</span> Validación en PyTorch</h1>
+<p>Durante validación no queremos actualizar parámetros:</p>
+<div id="5bcd8acf" class="cell" data-execution_count="26">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>val_loss <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x_batch, y_batch <span class="kw">in</span> val_loader:</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>        prediction <span class="op">=</span> model(x_batch)</span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> loss_fn(</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>            prediction,</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>            y_batch</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>        val_loss <span class="op">+=</span> loss.item()</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>val_loss <span class="op">/=</span> <span class="bu">len</span>(val_loader)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>No ejecutamos:</p>
+<div id="cc7ba744" class="cell" data-execution_count="27">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>loss.backward()</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>optimizer.step()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</section>
+<section id="inferencia-para-clasificación" class="level1" data-number="51">
+<h1 data-number="51"><span class="header-section-number">51</span> Inferencia para clasificación</h1>
+<p>Supongamos que una red multiclase produce logits:</p>
+<p><span class="math display">\[
+\mathbf z=f_{\hat\theta}(\mathbf x).
+\]</span></p>
+<p>Podemos obtener probabilidades:</p>
+<p><span class="math display">\[
+\mathbf p
+=
+\operatorname{softmax}(\mathbf z).
+\]</span></p>
+<p>y una clase:</p>
+<p><span class="math display">\[
+\hat y
+=
+\arg\max_k p_k.
+\]</span></p>
+<div id="c61b1dc4" class="cell" data-execution_count="28">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    logits <span class="op">=</span> model(image)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    probabilities <span class="op">=</span> torch.softmax(</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>        logits,</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>        dim<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    prediction <span class="op">=</span> torch.argmax(</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>        probabilities,</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>        dim<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>La salida de la red y la decisión final no tienen por qué ser el mismo objeto.</p>
+<p>En un problema binario, el umbral tampoco tiene por qué ser <span class="math inline">\(0.5\)</span>; puede seleccionarse según sensibilidad, especificidad, costos clínicos y objetivo de uso.</p>
+</section>
+<section id="overfitting-y-early-stopping" class="level1" data-number="52">
+<h1 data-number="52"><span class="header-section-number">52</span> Overfitting y early stopping</h1>
+<p>Podemos observar:</p>
+<p><span class="math display">\[
+L_{\mathrm{train}}\downarrow
+\]</span></p>
+<p>mientras:</p>
+<p><span class="math display">\[
+L_{\mathrm{val}}
+\]</span></p>
+<p>primero disminuye y luego aumenta.</p>
+<p>Esto sugiere sobreajuste.</p>
+<div id="cell-fig-overfitting" class="cell" data-execution_count="29">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>epochs <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">101</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>train_loss <span class="op">=</span> (</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.5</span><span class="op">*</span>np.exp(<span class="op">-</span><span class="fl">0.06</span><span class="op">*</span>epochs)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> <span class="fl">0.03</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>val_loss <span class="op">=</span> (</span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>    <span class="fl">1.5</span><span class="op">*</span>np.exp(<span class="op">-</span><span class="fl">0.05</span><span class="op">*</span>epochs)</span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> <span class="fl">0.0004</span><span class="op">*</span>(epochs<span class="op">-</span><span class="dv">60</span>)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">+</span> <span class="fl">0.05</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>best_epoch <span class="op">=</span> np.argmin(val_loss) <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">4</span>))</span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>plt.plot(epochs, train_loss, label<span class="op">=</span><span class="st">"Training"</span>)</span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>plt.plot(epochs, val_loss, label<span class="op">=</span><span class="st">"Validation"</span>)</span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a>plt.axvline(</span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a>    best_epoch,</span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a>    linestyle<span class="op">=</span><span class="st">"--"</span>,</span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>    label<span class="op">=</span><span class="ss">f"Best epoch = </span><span class="sc">{</span>best_epoch<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Epoch"</span>)</span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Loss"</span>)</span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-overfitting" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-overfitting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="notas_files/figure-html/fig-overfitting-output-1.png" width="590" height="361" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-overfitting-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13: Ejemplo sintético de training y validation loss.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Con <em>early stopping</em> guardamos el checkpoint correspondiente al mejor desempeño de validación, no necesariamente el de la última epoch.</p>
+</section>
+<section id="optimización-no-es-generalización" class="level1" data-number="53">
+<h1 data-number="53"><span class="header-section-number">53</span> Optimización no es generalización</h1>
+<p>Hay dos preguntas diferentes.</p>
+<p><strong>Optimización:</strong></p>
+<blockquote class="blockquote">
+<p>¿Podemos encontrar parámetros con baja pérdida de entrenamiento?</p>
+</blockquote>
+<p><strong>Generalización:</strong></p>
+<blockquote class="blockquote">
+<p>¿Esos parámetros funcionan bien sobre observaciones nuevas?</p>
+</blockquote>
+<p>Por lo tanto:</p>
+<p><span class="math display">\[
+\boxed{
+\text{optimizar bien}
+\neq
+\text{generalizar bien}.
+}
+\]</span></p>
+<p>Una red puede tener:</p>
+<p><span class="math display">\[
+L_{\mathrm{train}}\approx0
+\]</span></p>
+<p>y aun así tener un desempeño deficiente fuera de la muestra de entrenamiento.</p>
+</section>
+<section id="imágenes-médicas-dimensiones-del-tensor" class="level1" data-number="54">
+<h1 data-number="54"><span class="header-section-number">54</span> Imágenes médicas: dimensiones del tensor</h1>
+<p>Una imagen 2D puede representarse como:</p>
+<p><span class="math display">\[
+(C,H,W).
+\]</span></p>
+<p>Un volumen 3D:</p>
+<p><span class="math display">\[
+(C,D,H,W).
+\]</span></p>
+<p>Al agregar el batch:</p>
+<p><span class="math display">\[
+(B,C,H,W)
+\]</span></p>
+<p>o:</p>
+<p><span class="math display">\[
+(B,C,D,H,W).
+\]</span></p>
+<p>Por ejemplo:</p>
+<p><span class="math display">\[
+(B,C,D,H,W)
+=
+(2,1,128,256,256).
+\]</span></p>
+<p>Aquí:</p>
+<ul>
+<li><span class="math inline">\(B=2\)</span>: dos volúmenes;</li>
+<li><span class="math inline">\(C=1\)</span>: un canal;</li>
+<li><span class="math inline">\(D=128\)</span>: profundidad;</li>
+<li><span class="math inline">\(H=W=256\)</span>: dimensiones espaciales.</li>
+</ul>
+<p>En segmentación 3D, incluso un batch size de 1 o 2 puede ser completamente razonable debido al consumo de memoria.</p>
+</section>
+<section id="por-qué-las-imágenes-3d-consumen-tanta-memoria" class="level1" data-number="55">
+<h1 data-number="55"><span class="header-section-number">55</span> ¿Por qué las imágenes 3D consumen tanta memoria?</h1>
+<p>Un volumen:</p>
+<p><span class="math display">\[
+128\times256\times256
+\]</span></p>
+<p>contiene:</p>
+<p><span class="math display">\[
+8\,388\,608
+\]</span></p>
+<p>voxels.</p>
+<p>Pero durante entrenamiento no almacenamos solamente la entrada.</p>
+<p>También se requieren, entre otros:</p>
+<ul>
+<li>activaciones intermedias;</li>
+<li>parámetros;</li>
+<li>gradientes;</li>
+<li>estados del optimizador;</li>
+<li>buffers de determinadas capas.</li>
+</ul>
+<p>Las activaciones necesarias para el backward pueden constituir una parte importante del consumo de memoria.</p>
+<p>Por eso aparecen técnicas como:</p>
+<ul>
+<li>patch-based training;</li>
+<li>mixed precision;</li>
+<li>gradient accumulation;</li>
+<li>gradient checkpointing;</li>
+<li>reducción de resolución;</li>
+<li>arquitecturas eficientes.</li>
+</ul>
+</section>
+<section id="gradient-accumulation" class="level1" data-number="56">
+<h1 data-number="56"><span class="header-section-number">56</span> Gradient accumulation</h1>
+<p>Supongamos que la GPU permite:</p>
+<p><span class="math display">\[
+B_{\mathrm{micro}}=2
+\]</span></p>
+<p>pero queremos acumular el gradiente de cuatro micro-batches antes de actualizar.</p>
+<p>El batch efectivo es aproximadamente:</p>
+<p><span class="math display">\[
+B_{\mathrm{efectivo}}
+=
+2\times4=8.
+\]</span></p>
+<div id="9786f049" class="cell" data-execution_count="30">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>accumulation_steps <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>optimizer.zero_grad()</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> step, batch <span class="kw">in</span> <span class="bu">enumerate</span>(train_loader):</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    prediction <span class="op">=</span> model(batch[<span class="st">"image"</span>])</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_function(</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>        prediction,</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>        batch[<span class="st">"label"</span>]</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss <span class="op">/</span> accumulation_steps</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (step <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> accumulation_steps <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>        optimizer.step()</span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>        optimizer.zero_grad()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>La equivalencia con un batch grande no es perfecta en todos los modelos y configuraciones, pero la técnica permite reducir la memoria requerida por cada forward/backward.</p>
+</section>
+<section id="mixed-precision" class="level1" data-number="57">
+<h1 data-number="57"><span class="header-section-number">57</span> Mixed precision</h1>
+<p>En GPUs compatibles, podemos utilizar precisión mixta para reducir memoria y aumentar rendimiento.</p>
+<div id="672b6c82" class="cell" data-execution_count="31">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> torch.amp.GradScaler(<span class="st">"cuda"</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> batch <span class="kw">in</span> train_loader:</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    optimizer.zero_grad()</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    images <span class="op">=</span> batch[<span class="st">"image"</span>].to(device)</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    labels <span class="op">=</span> batch[<span class="st">"label"</span>].to(device)</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> torch.autocast(</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>        device_type<span class="op">=</span><span class="st">"cuda"</span>,</span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>        dtype<span class="op">=</span>torch.float16</span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>    ):</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>        predictions <span class="op">=</span> model(images)</span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>        loss <span class="op">=</span> loss_function(</span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>            predictions,</span>
+<span id="cb35-19"><a href="#cb35-19" aria-hidden="true" tabindex="-1"></a>            labels</span>
+<span id="cb35-20"><a href="#cb35-20" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb35-21"><a href="#cb35-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-22"><a href="#cb35-22" aria-hidden="true" tabindex="-1"></a>    scaler.scale(loss).backward()</span>
+<span id="cb35-23"><a href="#cb35-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-24"><a href="#cb35-24" aria-hidden="true" tabindex="-1"></a>    scaler.step(optimizer)</span>
+<span id="cb35-25"><a href="#cb35-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-26"><a href="#cb35-26" aria-hidden="true" tabindex="-1"></a>    scaler.update()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>El objetivo no es simplemente convertir indiscriminadamente todo a <code>float16</code>; el framework administra diferentes precisiones y el escalado ayuda a reducir problemas numéricos durante el backward.</p>
+</section>
+<section id="monai-del-mecanismo-general-a-física-médica" class="level1" data-number="58">
+<h1 data-number="58"><span class="header-section-number">58</span> MONAI: del mecanismo general a física médica</h1>
+<p>MONAI se apoya en PyTorch, por lo que el ciclo matemático no cambia.</p>
+<div id="1f0d08ce" class="cell" data-execution_count="32">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> monai.networks.nets <span class="im">import</span> UNet</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> monai.losses <span class="im">import</span> DiceCELoss</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> UNet(</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    spatial_dims<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    in_channels<span class="op">=</span><span class="dv">1</span>,</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    out_channels<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    channels<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">32</span>, <span class="dv">64</span>),</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    strides<span class="op">=</span>(<span class="dv">2</span>, <span class="dv">2</span>),</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    num_res_units<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>).to(device)</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>loss_function <span class="op">=</span> DiceCELoss(</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>    to_onehot_y<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>    softmax<span class="op">=</span><span class="va">True</span></span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.AdamW(</span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>    model.parameters(),</span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>    lr<span class="op">=</span><span class="fl">1e-3</span>,</span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>    weight_decay<span class="op">=</span><span class="fl">1e-5</span></span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>El entrenamiento sigue siendo:</p>
+<div id="a9ad4cd1" class="cell" data-execution_count="33">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>model.train()</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> batch <span class="kw">in</span> train_loader:</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    images <span class="op">=</span> batch[<span class="st">"image"</span>].to(device)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    labels <span class="op">=</span> batch[<span class="st">"label"</span>].to(device)</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>    optimizer.zero_grad()</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>    predictions <span class="op">=</span> model(images)</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>    loss <span class="op">=</span> loss_function(</span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>        predictions,</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>        labels</span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>    loss.backward()</span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a>    optimizer.step()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Por compleja que sea la arquitectura:</p>
+<p><span class="math display">\[
+\boxed{
+\text{forward}
+\rightarrow
+\text{loss}
+\rightarrow
+\text{backward}
+\rightarrow
+\text{update}
+}
+\]</span></p>
+<p>sigue siendo el núcleo del entrenamiento.</p>
+</section>
+<section id="inferencia-con-monaipytorch" class="level1" data-number="59">
+<h1 data-number="59"><span class="header-section-number">59</span> Inferencia con MONAI/PyTorch</h1>
+<p>Para una inferencia multiclase:</p>
+<div id="367b3d6d" class="cell" data-execution_count="34">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> torch.no_grad():</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    logits <span class="op">=</span> model(image)</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    probabilities <span class="op">=</span> torch.softmax(</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>        logits,</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>        dim<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>    segmentation <span class="op">=</span> torch.argmax(</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a>        probabilities,</span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>        dim<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Conceptualmente:</p>
+<p><span class="math display">\[
+\text{imagen}
+\rightarrow
+f_{\hat\theta}
+\rightarrow
+\text{logits}
+\rightarrow
+\text{probabilidades}
+\rightarrow
+\text{máscara}.
+\]</span></p>
+<p>En volúmenes grandes, la inferencia puede realizarse mediante estrategias por ventanas o parches y luego reconstruir el volumen completo.</p>
+</section>
+<section id="el-ciclo-completo" class="level1" data-number="60">
+<h1 data-number="60"><span class="header-section-number">60</span> 49. El ciclo completo</h1>
+<pre class="text"><code>                           DATASET
+                              │
+                   ┌──────────┴──────────┐
+                   │                     │
+                TRAIN                VALIDATION
+                   │                     │
+               DataLoader                │
+                   │                     │
+               mini-batch                │
+                   │                     │
+                   ▼                     ▼
+                forward               forward
+                   │                     │
+                   ▼                     ▼
+               prediction             metric/loss
+                   │
+                   ▼
+                  loss
+                   │
+                   ▼
+                backward
+                   │
+                   ▼
+                ∇θ loss
+                   │
+                   ▼
+               optimizer
+                   │
+                   ▼
+               nuevos θ
+                   │
+                   └──────► siguiente mini-batch
+
+                   después de varias epochs
+                              │
+                              ▼
+                        mejor checkpoint
+                              │
+                              ▼
+                            TEST
+                              │
+                              ▼
+                       modelo final θ̂
+                              │
+                              ▼
+                         NUEVO ESTUDIO
+                              │
+                              ▼
+                           forward
+                              │
+                              ▼
+                         predicción</code></pre>
+</section>
+<section id="resumen-matemático-del-entrenamiento" class="level1" data-number="61">
+<h1 data-number="61"><span class="header-section-number">61</span> Resumen matemático del entrenamiento</h1>
+<section id="forward" class="level2" data-number="61.1">
+<h2 data-number="61.1" class="anchored" data-anchor-id="forward"><span class="header-section-number">61.1</span> Forward</h2>
+<p><span class="math display">\[
+\hat y=f_\theta(\mathbf x).
+\]</span></p>
+</section>
+<section id="loss-de-un-mini-batch" class="level2" data-number="61.2">
+<h2 data-number="61.2" class="anchored" data-anchor-id="loss-de-un-mini-batch"><span class="header-section-number">61.2</span> Loss de un mini-batch</h2>
+<p><span class="math display">\[
+L_B(\theta)
+=
+\frac1{|B|}
+\sum_{i\in B}
+\ell(f_\theta(\mathbf x_i),y_i).
+\]</span></p>
+</section>
+<section id="backward" class="level2" data-number="61.3">
+<h2 data-number="61.3" class="anchored" data-anchor-id="backward"><span class="header-section-number">61.3</span> Backward</h2>
+<p><span class="math display">\[
+g_B
+=
+\nabla_\theta L_B(\theta).
+\]</span></p>
+</section>
+<section id="update" class="level2" data-number="61.4">
+<h2 data-number="61.4" class="anchored" data-anchor-id="update"><span class="header-section-number">61.4</span> Update</h2>
+<p>Para SGD:</p>
+<p><span class="math display">\[
+\theta_{t+1}
+=
+\theta_t-\eta g_B.
+\]</span></p>
+<p>Para un optimizador adaptativo, la transformación de <span class="math inline">\(g_B\)</span> es más compleja, pero la lógica sigue siendo:</p>
+<p><span class="math display">\[
+\boxed{
+\text{gradiente}
+\rightarrow
+\text{regla del optimizador}
+\rightarrow
+\text{nuevos parámetros}.
+}
+\]</span></p>
+</section>
+</section>
+<section id="resumen-matemático-de-backpropagation" class="level1" data-number="62">
+<h1 data-number="62"><span class="header-section-number">62</span> Resumen matemático de backpropagation</h1>
+<p>Para cada capa:</p>
+<p><span class="math display">\[
+\mathbf z^{(l)}
+=
+W^{(l)}
+\mathbf a^{(l-1)}
++
+\mathbf b^{(l)},
+\]</span></p>
+<p><span class="math display">\[
+\mathbf a^{(l)}
+=
+\phi(\mathbf z^{(l)}).
+\]</span></p>
+<p>Definimos:</p>
+<p><span class="math display">\[
+\boldsymbol\delta^{(l)}
+=
+\frac{\partial L}
+{\partial\mathbf z^{(l)}}.
+\]</span></p>
+<p>La propagación inversa es:</p>
+<p><span class="math display">\[
+\boldsymbol\delta^{(l)}
+=
+\left[
+(W^{(l+1)})^T
+\boldsymbol\delta^{(l+1)}
+\right]
+\odot
+\phi'(\mathbf z^{(l)}).
+\]</span></p>
+<p>Los gradientes de los parámetros son:</p>
+<p><span class="math display">\[
+\boxed{
+\frac{\partial L}{\partial W^{(l)}}
+=
+\boldsymbol\delta^{(l)}
+(\mathbf a^{(l-1)})^T
+}
+\]</span></p>
+<p>y:</p>
+<p><span class="math display">\[
+\boxed{
+\frac{\partial L}{\partial\mathbf b^{(l)}}
+=
+\boldsymbol\delta^{(l)}.
+}
+\]</span></p>
+</section>
+<section id="bibliografía-de-la-unidad" class="level1" data-number="63">
+<h1 data-number="63"><span class="header-section-number">63</span> Bibliografía de la unidad</h1>
 <ul>
 <li>Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016). <em>Deep Learning</em>. MIT Press. (Cap. 1, 4, 6, 8 y 9)</li>
 <li>Bishop, C. M. (2006). <em>Pattern Recognition and Machine Learning</em>. Springer.</li>

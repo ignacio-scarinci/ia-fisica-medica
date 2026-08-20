@@ -840,6 +840,258 @@
     ]
   },
   {
+    "objectID": "unidad1/notas.html#regresión",
+    "href": "unidad1/notas.html#regresión",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "14.1 Regresión",
+    "text": "14.1 Regresión\nEl error cuadrático medio es:\n\\[\n\\mathcal L_{\\mathrm{MSE}}\n=\n\\frac1N\n\\sum_{i=1}^{N}\n(y_i-\\hat y_i)^2.\n\\]\nEl error absoluto medio es:\n\\[\n\\mathcal L_{\\mathrm{MAE}}\n=\n\\frac1N\n\\sum_{i=1}^{N}\n|y_i-\\hat y_i|.\n\\]\nLa pérdida de Huber combina un comportamiento cuadrático para errores pequeños y lineal para errores grandes:\n\\[\n\\ell_\\delta(r)=\n\\begin{cases}\n\\frac12r^2,& |r|\\leq\\delta,\\\\[4pt]\n\\delta\\left(|r|-\\frac12\\delta\\right),& |r|&gt;\\delta,\n\\end{cases}\n\\]\ndonde \\(r=y-\\hat y\\).",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#clasificación-binaria",
+    "href": "unidad1/notas.html#clasificación-binaria",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "14.2 Clasificación binaria",
+    "text": "14.2 Clasificación binaria\nPara una probabilidad predicha \\(p\\):\n\\[\n\\mathcal L_{\\mathrm{BCE}}\n=\n-\\frac1N\n\\sum_{i=1}^{N}\n\\left[\ny_i\\log p_i\n+\n(1-y_i)\\log(1-p_i)\n\\right].\n\\]\nEn PyTorch, para estabilidad numérica, normalmente se trabaja directamente con logits mediante BCEWithLogitsLoss en lugar de aplicar una sigmoide explícita antes de la pérdida.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#clasificación-multiclase",
+    "href": "unidad1/notas.html#clasificación-multiclase",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "14.3 Clasificación multiclase",
+    "text": "14.3 Clasificación multiclase\nPara \\(K\\) clases:\n\\[\n\\mathcal L_{\\mathrm{CE}}\n=\n-\\frac1N\n\\sum_{i=1}^{N}\n\\sum_{k=1}^{K}\ny_{ik}\\log p_{ik}.\n\\]\nSi \\(z_k\\) son los logits:\n\\[\np_k\n=\n\\operatorname{softmax}(z)_k\n=\n\\frac{e^{z_k}}\n{\\sum_j e^{z_j}}.\n\\]\nEn PyTorch, CrossEntropyLoss recibe directamente los logits.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#sample",
+    "href": "unidad1/notas.html#sample",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "15.1 Sample",
+    "text": "15.1 Sample\nUna muestra (sample) es una observación individual:\n\\[\n(\\mathbf x_i,y_i).\n\\]",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#batch",
+    "href": "unidad1/notas.html#batch",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "15.2 Batch",
+    "text": "15.2 Batch\nUn batch es un conjunto de observaciones procesadas simultáneamente.\nSi:\n\\[\n|B|=32,\n\\]\ndecimos que:\n\\[\n\\text{batch size}=32.\n\\]\nEn el lenguaje cotidiano de Deep Learning, batch suele utilizarse para referirse a un mini-batch.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#batch-gradient-descent",
+    "href": "unidad1/notas.html#batch-gradient-descent",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "15.3 Batch Gradient Descent",
+    "text": "15.3 Batch Gradient Descent\nSi utilizamos las \\(N\\) observaciones antes de cada actualización:\n\\[\nB=\\mathcal D,\n\\]\nentonces:\n\\[\n\\nabla_\\theta\\widehat R(\\theta)\n=\n\\frac1N\n\\sum_{i=1}^{N}\n\\nabla_\\theta\\ell_i(\\theta).\n\\]\nEsto es full-batch gradient descent.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#stochastic-gradient-descent",
+    "href": "unidad1/notas.html#stochastic-gradient-descent",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "15.4 Stochastic Gradient Descent",
+    "text": "15.4 Stochastic Gradient Descent\nEn sentido estricto, SGD utiliza una única muestra:\n\\[\n|B|=1.\n\\]\nEntonces:\n\\[\ng_i\n=\n\\nabla_\\theta\\ell_i(\\theta).\n\\]",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#mini-batch-gradient-descent",
+    "href": "unidad1/notas.html#mini-batch-gradient-descent",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "15.5 Mini-batch Gradient Descent",
+    "text": "15.5 Mini-batch Gradient Descent\nEn Deep Learning se utiliza habitualmente:\n\\[\n1&lt;|B|\\ll N.\n\\]\nPor ejemplo:\n\\[\n|B|\\in\\{8,16,32,64,128,\\ldots\\}.\n\\]\nEl gradiente del mini-batch es:\n\\[\ng_B\n=\n\\frac1{|B|}\n\\sum_{i\\in B}\n\\nabla_\\theta\\ell_i(\\theta).\n\\]\nLa actualización será aproximadamente:\n\\[\n\\theta_{t+1}\n=\n\\theta_t-\\eta g_B.\n\\]\n\n\n\n\n\n\nNote\n\n\n\nEn Deep Learning es frecuente decir “entrenamos con SGD” para referirnos al optimizador SGD aplicado sobre mini-batches, aunque el SGD matemático estricto corresponda a una observación por actualización.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#epoch-e-iteration",
+    "href": "unidad1/notas.html#epoch-e-iteration",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "15.6 Epoch e iteration",
+    "text": "15.6 Epoch e iteration\nUna iteration o step suele corresponder a una actualización de parámetros.\nUna epoch es una pasada completa por el dataset de entrenamiento.\nSi:\n\\[\nN=10\\,000,\n\\qquad\nB=100,\n\\]\nentonces hay:\n\\[\n\\frac{10\\,000}{100}=100\n\\]\niterations por epoch.\nSi entrenamos durante 20 epochs:\n\\[\n20\\times100=2000\n\\]\nactualizaciones.\n\n\n\nConcepto\nSignificado\n\n\n\n\nSample\nUna observación\n\n\nBatch\nConjunto de observaciones procesadas juntas\n\n\nBatch size\nNúmero de observaciones por batch\n\n\nIteration / step\nUna actualización de parámetros\n\n\nEpoch\nUna pasada completa por el conjunto de entrenamiento",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#entrenamiento",
+    "href": "unidad1/notas.html#entrenamiento",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "17.1 Entrenamiento",
+    "text": "17.1 Entrenamiento\nDurante entrenamiento:\n\\[\n\\mathbf x\n\\rightarrow\nf_\\theta\n\\rightarrow\n\\hat y\n\\rightarrow\n\\mathcal L\n\\rightarrow\n\\nabla_\\theta\\mathcal L\n\\rightarrow\n\\theta_{\\mathrm{nuevo}}.\n\\]\nLos parámetros cambian:\n\\[\n\\theta_0\n\\rightarrow\n\\theta_1\n\\rightarrow\n\\cdots\n\\rightarrow\n\\hat\\theta.\n\\]",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#nferencia",
+    "href": "unidad1/notas.html#nferencia",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "17.2 nferencia",
+    "text": "17.2 nferencia\nUna vez entrenado el modelo, para una nueva observación:\n\\[\n\\mathbf x_{\\mathrm{new}},\n\\]\ncalculamos:\n\\[\n\\boxed{\n\\hat y_{\\mathrm{new}}\n=\nf_{\\hat\\theta}(\\mathbf x_{\\mathrm{new}})\n}\n\\]\nsin actualizar los parámetros.\nPor lo tanto:\n\\[\n\\boxed{\n\\text{Inferencia}\n=\n\\text{forward con parámetros fijos}\n}\n\\]\nEn PyTorch:\n\n\nCode\nmodel.eval()\n\nwith torch.no_grad():\n    prediction = model(image)\n\n\nmodel.eval() y torch.no_grad() no hacen lo mismo:\n\nmodel.eval() cambia el comportamiento de módulos como Dropout y Batch Normalization;\ntorch.no_grad() evita construir el grafo necesario para calcular gradientes.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#sigmoide",
+    "href": "unidad1/notas.html#sigmoide",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "36.1 Sigmoide",
+    "text": "36.1 Sigmoide\n\\[\n\\sigma(z)\n=\n\\frac{1}{1+e^{-z}}.\n\\]\nSu derivada es:\n\\[\n\\boxed{\n\\sigma'(z)\n=\n\\sigma(z)(1-\\sigma(z)).\n}\n\\]\nComo:\n\\[\n0&lt;\\sigma(z)&lt;1,\n\\]\ntenemos:\n\\[\n0&lt;\\sigma'(z)\\leq\\frac14.\n\\]\nPara valores grandes de \\(|z|\\):\n\\[\n\\sigma'(z)\\approx0.\n\\]\nDecimos que la sigmoide satura.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#tanh",
+    "href": "unidad1/notas.html#tanh",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "36.2 Tanh",
+    "text": "36.2 Tanh\n\\[\n\\tanh(z)\n=\n\\frac{e^z-e^{-z}}{e^z+e^{-z}}.\n\\]\nSu derivada:\n\\[\n\\boxed{\n\\frac{d}{dz}\\tanh(z)\n=\n1-\\tanh^2(z).\n}\n\\]\nTambién satura para valores grandes en magnitud.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#relu",
+    "href": "unidad1/notas.html#relu",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "36.3 ReLU",
+    "text": "36.3 ReLU\n\\[\n\\operatorname{ReLU}(z)\n=\n\\max(0,z).\n\\]\nSu derivada, salvo en \\(z=0\\), es:\n\\[\n\\operatorname{ReLU}'(z)\n=\n\\begin{cases}\n0,&z&lt;0,\\\\\n1,&z&gt;0.\n\\end{cases}\n\\]\nReLU evita la saturación positiva de sigmoide/tanh, aunque puede producir unidades que permanezcan en la región negativa y reciban gradiente cero.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#otras-activaciones",
+    "href": "unidad1/notas.html#otras-activaciones",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "36.4 Otras activaciones",
+    "text": "36.4 Otras activaciones\nEn redes modernas también aparecen:\n\nLeaky ReLU;\nELU;\nGELU;\nSiLU/Swish.\n\nNo existe una activación universalmente óptima. La elección depende de la arquitectura y del problema.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#xavier-glorot",
+    "href": "unidad1/notas.html#xavier-glorot",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "39.1 Xavier / Glorot",
+    "text": "39.1 Xavier / Glorot\nPara activaciones aproximadamente simétricas, una idea es elegir la varianza de los pesos según:\n\\[\n\\operatorname{Var}(W)\n\\approx\n\\frac{2}\n{n_{\\mathrm{in}}+n_{\\mathrm{out}}}.\n\\]\nEn PyTorch:\n\n\nCode\ntorch.nn.init.xavier_uniform_(layer.weight)",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#he-kaiming",
+    "href": "unidad1/notas.html#he-kaiming",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "39.2 He / Kaiming",
+    "text": "39.2 He / Kaiming\nPara redes con ReLU es habitual utilizar:\n\\[\n\\operatorname{Var}(W)\n\\approx\n\\frac{2}{n_{\\mathrm{in}}}.\n\\]\nEn PyTorch:\n\n\nCode\ntorch.nn.init.kaiming_normal_(\n    layer.weight,\n    nonlinearity=\"relu\"\n)\n\n\nLa idea conceptual es:\n\\[\n\\boxed{\n\\text{inicialización}\n\\rightarrow\n\\text{distribución de activaciones}\n\\rightarrow\n\\text{distribución de gradientes}\n\\rightarrow\n\\text{entrenabilidad}.\n}\n\\]",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#forward",
+    "href": "unidad1/notas.html#forward",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "61.1 Forward",
+    "text": "61.1 Forward\n\\[\n\\hat y=f_\\theta(\\mathbf x).\n\\]",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#loss-de-un-mini-batch",
+    "href": "unidad1/notas.html#loss-de-un-mini-batch",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "61.2 Loss de un mini-batch",
+    "text": "61.2 Loss de un mini-batch\n\\[\nL_B(\\theta)\n=\n\\frac1{|B|}\n\\sum_{i\\in B}\n\\ell(f_\\theta(\\mathbf x_i),y_i).\n\\]",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#backward",
+    "href": "unidad1/notas.html#backward",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "61.3 Backward",
+    "text": "61.3 Backward\n\\[\ng_B\n=\n\\nabla_\\theta L_B(\\theta).\n\\]",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad1/notas.html#update",
+    "href": "unidad1/notas.html#update",
+    "title": "Fundamentos de IA aplicada a Física Médica",
+    "section": "61.4 Update",
+    "text": "61.4 Update\nPara SGD:\n\\[\n\\theta_{t+1}\n=\n\\theta_t-\\eta g_B.\n\\]\nPara un optimizador adaptativo, la transformación de \\(g_B\\) es más compleja, pero la lógica sigue siendo:\n\\[\n\\boxed{\n\\text{gradiente}\n\\rightarrow\n\\text{regla del optimizador}\n\\rightarrow\n\\text{nuevos parámetros}.\n}\n\\]",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Notas de clase"
+    ]
+  },
+  {
     "objectID": "unidad1/notas.html#footnotes",
     "href": "unidad1/notas.html#footnotes",
     "title": "Fundamentos de IA aplicada a Física Médica",
