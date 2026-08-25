@@ -1,51 +1,66 @@
 ---
 title: "Presentación de la materia"
+subtitle: "IA aplicada a Física Médica"
+author: "Ignacio Scarinci"
+lang: es
 format:
   revealjs:
-    theme: moon
+    theme: ../themes/presentaciones.scss
     slide-number: true
     footer: "IA en Física Médica"
-    smaller: true
+    transition: fade
+    width: 1600
+    height: 900
+    margin: 0.06
+    center: false
+    smaller: false
     number-sections: false
+    toc: false
 ---
 
-## Cursado {.smaller}
+## Cursado {.section-slide}
 
-- Modalidad: virtual
-- Clases: lunes y jueves de 19:00-21:00
+::: {.columns}
+::: {.column width="48%"}
+### Modalidad
 
-## Unidad 1: Fundamentos de IA {.smaller}
+Virtual
+:::
 
+::: {.column width="48%"}
+### Clases
 
-- Revisión de modelos clásicos
-- Introducción al Deep Learning,breve historia 
-- Redes Neuronales simples: El algoritmo de perceptron
-- El ciclo de entrenamiento:
-  - Funciones de perdida
-  - Optimizadores
-  - Lerning rate
-  - ...
+Lunes y jueves
 
-## Unidad 1: Fundamentos de IA (cont.) {.smaller}
+19:00–21:00
+:::
+:::
 
-- Arquitecturas: CNN, U-Net, VIT
-- Funcionamiento de los LLMs
-- Transfer learning:
-  - Fine-Tuning
-  - Few-Shot
-- PyTorch, MONAI, SimpleITK
-- DICOM, NIFTI
-- Bases de datos públicas de imágenes médicas anotadas.
+## Unidad 1: Fundamentos de IA
+
+::: {.key-idea}
+La ruta va desde los modelos clásicos hasta el entrenamiento de redes neuronales.
+:::
+
+- Modelos clásicos y sus supuestos.
+- Introducción al Deep Learning y su historia.
+- El algoritmo del **Perceptrón**.
+- Funciones de pérdida, optimizadores y *learning rate*.
+
+## Unidad 1: Herramientas y aplicaciones
+
+- Arquitecturas: CNN, U-Net y ViT.
+- LLMs y *transfer learning*.
+- PyTorch, MONAI y SimpleITK.
+- DICOM, NIfTI y bases de datos públicas.
     
-## Unidad 2: Segmetación
+## Unidad 2: Segmentación
 
 - Segmentación semántica en imágenes médicas
-- Métricas: DICE, distacia Hausdorff, IoU, etc.
+- Métricas: Dice, distancia de Hausdorff e IoU
 - Relevancia clínica de la segmentación automática de órganos en riesgo (OARs).
-- Paradigmas de segmentación:
-  - modelos totalmente automáticos: nnU-Net
-  - modelos guiados por experto: Med-SAM
-- Arquitectura, variantes y entrenamiento.
+- Paradigmas automáticos y guiados por expertos
+- Arquitecturas, variantes y entrenamiento
 
 ## Unidad 3: Detección, clasificación y diagnóstico asistido
 
@@ -58,9 +73,9 @@ format:
 - Flujo clínico de radioterapia: simulación, planificación y verificación dosimétrica. 
 - Predicción de planes de dosis y estimación de distribuciones 3D con redes profundas. 
 - Knowledge-Based Planning (KBP) asistido por IA. 
-- Control de calidad específico del paciente (patient-specific QA) en IMRT, VMAT y SBRT
-- Detección de errores de posicionamiento a partir de imágenes CBCT. 
-- Radioterapia adaptativa guiada por IA (ART online).
+- Control de calidad específico del paciente en IMRT, VMAT y SBRT
+- Detección de errores de posicionamiento con imágenes CBCT
+- Radioterapia adaptativa guiada por IA (ART online)
 
 ## Unidad 5: Síntesis, fusión y coregistro de imágenes médicas
 
@@ -73,12 +88,12 @@ format:
 ## Unidad 6: Agentes de inteligencia artificial en el ámbito clínico
 
 - Introducción a los grandes modelos de lenguaje (LLMs) y su potencial en medicina: capacidades, limitaciones y casos de uso. 
-- Concepto de agente de IA: qué es, cómo razona y cómo interactúa con herramientas externas. Aplicaciones emergentes en el ámbito clínico: consulta de literatura médica, soporte en la toma de decisiones y automatización de flujos de trabajo. 
-- Consideraciones éticas y de seguridad: sesgos, alucinaciones,
-responsabilidad y supervisión humana. 
-- Perspectivas futuras: modelos fundacionales médicos y la evolución hacia sistemas autónomos en entornos clínicos.
+- Concepto de agente de IA y uso de herramientas externas
+- Aplicaciones clínicas: literatura, soporte de decisiones y automatización
+- Sesgos, alucinaciones, responsabilidad y supervisión humana
+- Modelos fundacionales médicos y sistemas autónomos
 
-## Material de clase
+## Material de clase {.section-slide}
 
 - Repositorio del curso: [https://github.com/ignacio-scarinci/ia-fisica-medica](https://github.com/ignacio-scarinci/ia-fisica-medica)
 
@@ -86,10 +101,10 @@ responsabilidad y supervisión humana.
 
 ## Aprobación
 
-- Trabajos practicos
+- Trabajos prácticos
 - Proyecto final
 
-## Links de interés
+## Enlaces de interés
 
 - **Hugging Face**: [https://huggingface.co/](https://huggingface.co/)
 
@@ -97,7 +112,7 @@ responsabilidad y supervisión humana.
 
 - **The Cancer Image Archive (TCIA)**: [https://www.cancerimagingarchive.net/](https://www.cancerimagingarchive.net/)
 
-## Software/Frameworks/Librerias
+## Software, frameworks y bibliotecas
 
 - Python 3.12/13
 - PyTorch

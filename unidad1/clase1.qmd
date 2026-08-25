@@ -2,17 +2,22 @@
 title: "Clase 1: De los modelos clásicos al algoritmo del Perceptrón"
 subtitle: "Unidad 1 · Fundamentos de IA"
 author: "Ignacio Scarinci"
+lang: es
 format:
-  revealjs:
-    theme: simple
-    slide-number: true
-    transition: fade
-    incremental: false
-    toc: false
-    center-title-slide: true
-    footer: "IA aplicada a Física Médica · Unidad 1, Clase 1"
-    auto-stretch: true
-    code-block-height: 650px
+    revealjs:
+        theme: ../themes/presentaciones.scss
+        slide-number: true
+        transition: fade
+        incremental: false
+        toc: false
+        center-title-slide: true
+        footer: "IA aplicada a Física Médica · Unidad 1, Clase 1"
+        auto-stretch: true
+        code-block-height: 650px
+        width: 1600
+        height: 900
+        margin: 0.06
+        center: false
 execute:
   eval: false
   echo: true
@@ -34,7 +39,7 @@ execute:
 5. De AND y OR a XOR: qué puede (y no puede) aprender un perceptrón
 6. Síntesis y puente hacia la próxima clase
 
-# Bloque 1 · Revisión de modelos clásicos
+# Bloque 1 · Revisión de modelos clásicos {.section-slide}
 
 ## ¿Por qué empezar por lo clásico?
 
@@ -238,7 +243,7 @@ La función sigmoide de la regresión logística es, matemáticamente, idéntica
 
 - A esto se lo llama el **sesgo inductivo** del modelo: sus supuestos implícitos sobre cómo deberían verse los datos.
 
-# Bloque 2 · Introducción al Deep Learning
+# Bloque 2 · Introducción al Deep Learning {.section-slide}
 
 ## ¿Qué es el Deep Learning?
 
@@ -328,7 +333,7 @@ AlexNet (5 capas convolucionales + 3 totalmente conectadas, entrenada en paralel
 * Control de calidad automatizado y predicción de *outcomes* clínicos
 :::
 
-# Bloque 3 · El Perceptrón
+# Bloque 3 · El Perceptrón {.section-slide}
 
 ## La neurona biológica como inspiración
 
@@ -423,7 +428,7 @@ modelo = Perceptron(lr=0.1, n_epochs=30).fit(X, y)
 
 ![](./imagenes/perceptron_separable.png){fig-align="center" width="80%"}
 
-# De AND/OR a XOR
+# De AND/OR a XOR {.section-slide}
 
 ## ¿Qué tipo de problema resuelve un perceptrón?
 
@@ -526,7 +531,7 @@ Esta arquitectura de tres perceptrones —dos en una "capa oculta" y uno de sali
 
 La solución existía conceptualmente desde los años 60, pero faltaba un ingrediente clave: **un algoritmo que aprendiera automáticamente los pesos** de cada perceptrón. Ese ingrediente es el **backpropagation** (1986), que retomaremos en la próxima clase.
 
-# Síntesis
+# Síntesis {.section-slide}
 
 ## Perceptrón vs. Regresión Logística
 
@@ -539,12 +544,12 @@ La solución existía conceptualmente desde los años 60, pero faltaba un ingred
 | Frontera de decisión | Lineal | Lineal |
 | Interpretación probabilística | No | Sí |
 
-## Lo que viene en la próxima clase
+## Lo que viene en la próxima clase {.takeaway}
 
 - El **ciclo de entrenamiento**: funciones de pérdida, optimizadores (SGD, Adam) y learning rate.
 - **Backpropagation**: cómo se entrenan automáticamente los pesos de un Perceptrón Multicapa.
 - **Arquitecturas especializadas**: CNN, U-Net, ViT — y su aplicación directa a imágenes médicas.
 
-## ¿Preguntas? {.center}
+## ¿Preguntas? {.section-slide}
 
 Gracias por su atención

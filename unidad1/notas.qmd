@@ -17,38 +17,9 @@ execute:
 jupyter: python3
 ---
 
-# Unidad 1 — Del aprendizaje automático clásico al Deep Learning
-
-## Presentación de la unidad
-
-Esta primera unidad tiene como objetivo tender un puente entre los métodos estadísticos y computacionales clásicos, ampliamente utilizados en Física Médica —dosimetría, radiodiagnóstico, radioterapia y medicina nuclear— y el paradigma del **Deep Learning**.
-
-La pregunta que guía la unidad es:
-
-> **¿Por qué y cuándo conviene reemplazar —o complementar— un modelo clásico por uno basado en redes neuronales?**
-
-La respuesta no es que los modelos de Deep Learning sean necesariamente "mejores". Un modelo más complejo puede ser innecesario si un modelo clásico resuelve adecuadamente el problema. La ventaja de las redes neuronales aparece especialmente cuando necesitamos aprender relaciones complejas a partir de datos de alta dimensionalidad y cuando diseñar manualmente una representación adecuada resulta difícil.
-
-Por eso, antes de estudiar redes profundas, necesitamos entender qué pueden hacer los modelos clásicos, cuáles son sus supuestos y dónde aparecen sus limitaciones.
-
-## Objetivos de aprendizaje
-
-Al finalizar esta unidad se espera que el estudiante pueda:
-
-1. Distinguir los principales paradigmas del aprendizaje automático: supervisado, no supervisado y por refuerzo.
-2. Comprender la diferencia entre riesgo esperado y riesgo empírico.
-3. Explicar los conceptos de generalización, sobreajuste y *dataset shift*.
-4. Reconocer los principales modelos clásicos de aprendizaje automático y sus supuestos.
-5. Comprender matemáticamente la regresión lineal y logística.
-6. Interpretar geométricamente un clasificador lineal.
-7. Formalizar matemáticamente el **Perceptrón**.
-8. Implementar el algoritmo de aprendizaje del Perceptrón.
-9. Comprender por qué una única neurona no puede resolver problemas no linealmente separables como XOR.
-10. Entender cómo la composición de múltiples neuronas conduce naturalmente al concepto de red neuronal.
-11. Comprender por qué el Deep Learning permite aprender representaciones complejas de los datos.
-12. Reconocer algunos de los principales hitos históricos que condujeron desde las primeras redes neuronales hasta los modelos actuales.
-
----
+::: {.callout-note}
+**Descarga:** [obtener estas notas en PDF](notas.pdf)
+:::
 
 # 1. ¿Por qué empezar por lo clásico?
 

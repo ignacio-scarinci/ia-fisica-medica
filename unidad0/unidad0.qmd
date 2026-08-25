@@ -1,0 +1,118 @@
+---
+title: "Unidad 0: Introducción"
+subtitle: "Conocer el curso, sus herramientas y su recorrido"
+lang: es
+format:
+  html:
+    toc: false
+    number-sections: false
+---
+
+::: {.unit-hero}
+<div class="unit-kicker">Unidad 0 · Introducción</div>
+
+# Bienvenidos al curso
+
+Una introducción al recorrido de Inteligencia Artificial aplicada a la Física Médica, sus herramientas y sus desafíos.
+:::
+
+::: {.unit-section}
+## El punto de partida
+
+Esta unidad presenta la propuesta del curso de posgrado **Inteligencia Artificial en Física Médica** y establece el mapa de contenidos que vamos a recorrer.
+
+La formación combina fundamentos de aprendizaje automático, trabajo práctico con herramientas abiertas y aplicaciones concretas en imágenes médicas, radioterapia y entornos clínicos.
+
+::: {.guiding-question}
+¿Cómo podemos incorporar Inteligencia Artificial en Física Médica de forma rigurosa, reproducible y clínicamente relevante?
+:::
+
+A lo largo del curso vamos a conectar modelos, datos, software y problemas de dominio para comprender tanto las posibilidades de estas tecnologías como sus límites.
+:::
+
+::: {.unit-section}
+## Objetivos de esta introducción
+
+Al finalizar esta unidad, el estudiante podrá:
+
+::: {.objectives-grid}
+::: {.objective-block}
+### Orientarse en el curso
+
+1. Reconocer la organización general del curso y sus seis unidades.
+2. Identificar los principales problemas de Física Médica que abordaremos.
+3. Comprender la relación entre fundamentos, prácticas y proyecto final.
+:::
+
+::: {.objective-block}
+### Preparar el entorno
+
+4. Identificar las herramientas y bibliotecas que utilizaremos.
+5. Reconocer el papel de Python, PyTorch, MONAI y SimpleITK.
+6. Localizar notebooks, materiales de clase y recursos complementarios.
+:::
+
+::: {.objective-block}
+### Trabajar con criterio
+
+7. Valorar la importancia de la reproducibilidad en investigación y práctica clínica.
+8. Comprender la necesidad de validar modelos en el contexto de uso.
+9. Reconocer los desafíos éticos y técnicos de la IA en medicina.
+:::
+:::
+:::
+
+::: {.unit-section}
+## Material de la unidad
+
+::: {.resource-grid}
+::: {.resource-card}
+### Notas de clase
+
+Descripción general del curso, sus objetivos, herramientas y criterios de trabajo.
+
+[Abrir notas de clase](notas.qmd) · [Descargar PDF](notas.pdf)
+:::
+
+::: {.resource-card}
+### Calendario
+
+Fechas de clases, temas, actividades y entregas prácticas del curso.
+
+[Consultar calendario](calendario.qmd)
+:::
+
+::: {.resource-card}
+### Presentación
+
+Recorrido visual por la propuesta, las unidades y el modo de cursado.
+
+[Ver presentación](presentacion.qmd){target="_blank"} · [Descargar PDF](presentacion.pdf)
+:::
+
+::: {.resource-card}
+### Programa del curso
+
+Documento con la planificación general y los contenidos previstos.
+
+[Ver programa en PDF](https://drive.google.com/file/d/1RXPOsP2VfH3lT_edhKEpFnqvNoP5yw3b/view?usp=drive_link)
+:::
+:::
+:::
+
+::: {.unit-section}
+## Recorrido del curso
+
+| Unidad | Tema central |
+|---|---|
+| **1** | Fundamentos de IA y aprendizaje profundo |
+| **2** | Segmentación de imágenes médicas |
+| **3** | Detección, clasificación y diagnóstico asistido |
+| **4** | Radioterapia asistida por IA |
+| **5** | Síntesis, fusión y coregistro de imágenes |
+| **6** | Agentes de IA en el ámbito clínico |
+
+::: {.guiding-question}
+El objetivo no es solo aprender a usar modelos: es aprender a formular problemas relevantes y evaluar sus resultados en contexto.
+:::
+:::

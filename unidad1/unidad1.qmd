@@ -1,0 +1,106 @@
+---
+title: "Unidad 1: Fundamentos de IA"
+subtitle: "Del aprendizaje automático clásico al Deep Learning"
+lang: es
+format:
+  html:
+    toc: false
+    number-sections: false
+---
+
+::: {.unit-hero}
+<div class="unit-kicker">Unidad 1 · Fundamentos de IA</div>
+
+# Del aprendizaje automático clásico al Deep Learning
+
+Una ruta conceptual y práctica desde los modelos estadísticos hasta las redes neuronales aplicadas a la Física Médica.
+:::
+
+::: {.unit-section}
+## El punto de partida
+
+Esta primera unidad tiene como objetivo tender un puente entre los métodos estadísticos y computacionales clásicos, ampliamente utilizados en Física Médica —dosimetría, radiodiagnóstico, radioterapia y medicina nuclear— y el paradigma del **Deep Learning**.
+
+La pregunta que guía el recorrido es:
+
+::: {.guiding-question}
+¿Por qué y cuándo conviene reemplazar —o complementar— un modelo clásico por uno basado en redes neuronales?
+:::
+
+La respuesta no es que los modelos de Deep Learning sean necesariamente "mejores". Un modelo más complejo puede ser innecesario si un modelo clásico resuelve adecuadamente el problema. La ventaja de las redes neuronales aparece especialmente cuando necesitamos aprender relaciones complejas a partir de datos de alta dimensionalidad y cuando diseñar manualmente una representación adecuada resulta difícil.
+
+Por eso, antes de estudiar redes profundas, necesitamos entender qué pueden hacer los modelos clásicos, cuáles son sus supuestos y dónde aparecen sus limitaciones.
+:::
+
+::: {.unit-section}
+## Al finalizar la unidad
+
+Se espera que el estudiante pueda:
+
+::: {.objectives-grid}
+::: {.objective-block}
+### Conceptos y evaluación
+
+1. Distinguir los paradigmas supervisado, no supervisado y por refuerzo.
+2. Comprender la diferencia entre riesgo esperado y riesgo empírico.
+3. Explicar generalización, sobreajuste y *dataset shift*.
+4. Reconocer modelos clásicos de aprendizaje automático y sus supuestos.
+:::
+
+::: {.objective-block}
+### Modelos y fundamentos
+
+5. Comprender matemáticamente la regresión lineal y logística.
+6. Interpretar geométricamente un clasificador lineal.
+7. Formalizar matemáticamente el **Perceptrón**.
+8. Implementar el algoritmo de aprendizaje del Perceptrón.
+:::
+
+::: {.objective-block}
+### Del perceptrón al Deep Learning
+
+9. Comprender las limitaciones de una neurona frente a problemas como XOR.
+10. Entender cómo múltiples neuronas forman una red neuronal.
+11. Comprender cómo el Deep Learning aprende representaciones complejas.
+12. Reconocer hitos históricos de las redes neuronales hasta los modelos actuales.
+:::
+:::
+:::
+
+::: {.unit-section}
+## Material de la unidad
+
+::: {.resource-grid}
+::: {.resource-card}
+### Notas de clase
+
+Fundamentos conceptuales, modelos clásicos, riesgo, generalización y perceptrón.
+
+[Abrir notas de clase](notas.qmd) · [Descargar PDF](notas.pdf)
+:::
+
+::: {.resource-card}
+### Imágenes médicas
+
+Representación, formatos, herramientas y fundamentos para trabajar con imágenes médicas.
+
+[Abrir notas sobre imágenes](notas2.qmd) · [Descargar PDF](notas2.pdf)
+:::
+
+::: {.resource-card}
+### Presentaciones
+
+Material visual para recorrer la unidad en dos clases: modelos clásicos, perceptrón y entrenamiento.
+
+[Clase 1: modelos clásicos y perceptrón](clase1.qmd){target="_blank"} · [PDF](clase1.pdf) · [Clase 2: ciclo de entrenamiento](clase2.qmd){target="_blank"} · [PDF](clase2.pdf)
+:::
+
+::: {.resource-card}
+### Notebooks
+
+Prácticas guiadas para explorar MONAI, PyTorch y el entrenamiento de modelos.
+
+[Notebook 0](notebooks/Notebook0.ipynb) · [Notebook 1](notebooks/Notebook1.ipynb) ·  [Ciclo de entrenamiento](notebooks/Ciclo_de_entrenamiento.ipynb) 
+:::
+:::
+:::

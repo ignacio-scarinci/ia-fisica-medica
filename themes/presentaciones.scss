@@ -8,9 +8,11 @@ $fm-navy: #17324d;
 $fm-blue: #2f6690;
 $fm-cyan: #3a8fb7;
 $fm-light: #f5f7fa;
+$fm-white: #ffffff;
 $fm-gray: #66727d;
 $fm-dark: #202a33;
 $fm-accent: #c95d3e;
+$fm-green: #397b64;
 
 // ============================================================
 // Colores globales
@@ -18,9 +20,11 @@ $fm-accent: #c95d3e;
 
 $body-bg: $fm-light;
 $body-color: $fm-dark;
-
+$presentation-background-color: $fm-light;
+$presentation-heading-color: $fm-navy;
+$presentation-heading-text-shadow: none;
 $link-color: $fm-blue;
-$selection-bg: rgba($fm-blue, 0.25);
+$selection-background-color: rgba($fm-cyan, 0.28);
 
 // ============================================================
 // Tipografía
@@ -43,14 +47,11 @@ $font-family-monospace: "JetBrains Mono",
 // ============================================================
 
 $presentation-heading-font: $font-family-sans-serif;
-$presentation-heading-color: $fm-navy;
 $presentation-heading-font-weight: 650;
 
 $presentation-h1-font-size: 2.2em;
 $presentation-h2-font-size: 1.55em;
 $presentation-h3-font-size: 1.15em;
-
-$presentation-heading-text-shadow: none;
 
 // ============================================================
 // Layout
@@ -62,6 +63,7 @@ $presentation-line-height: 1.35;
 $presentation-block-margin: 0.7em;
 $presentation-slide-text-align: left;
 $presentation-title-slide-text-align: left;
+$presentation-title-slide-background: $fm-light;
 
 $border-radius: 6px;
 
@@ -102,6 +104,92 @@ $callout-color-warning: #c58a2e;
     text-align: left;
 }
 
+.reveal .slides section {
+    box-sizing: border-box;
+    background: $fm-light;
+    padding: 0.7em 0.8em 1.6em;
+    text-align: left;
+    top: 0 !important;
+}
+
+.reveal .slides section h1,
+.reveal .slides section h2,
+.reveal .slides section h3 {
+    margin-top: 0;
+}
+
+.reveal .slides section h2 {
+    min-height: 1.45em;
+}
+
+.reveal .slides section:not(.title-slide) {
+    border-top: 0.18em solid rgba($fm-cyan, 0.22);
+}
+
+.reveal .slides section[data-background-color] {
+    border-top: 0;
+}
+
+.reveal .slides section.title-slide {
+    padding-top: 0;
+    background: linear-gradient(120deg, $fm-navy 0%, $fm-blue 72%, $fm-cyan 100%);
+}
+
+.reveal .slides section.title-slide h1,
+.reveal .slides section.title-slide h2,
+.reveal .slides section.title-slide p,
+.reveal .slides section.title-slide .subtitle,
+.reveal .slides section.title-slide .quarto-title-author-name {
+    color: white;
+}
+
+.reveal .slides section.title-slide h1 {
+    max-width: 11em;
+    font-size: 2.45em;
+    line-height: 1.05;
+}
+
+.reveal .slides section.title-slide h1::after {
+    display: block;
+    width: 2.5em;
+    height: 0.1em;
+    margin-top: 0.45em;
+    background: $fm-accent;
+    content: "";
+}
+
+.reveal .slides section.title-slide .subtitle {
+    max-width: 40em;
+    opacity: 0.86;
+}
+
+.reveal .slides section.section-slide,
+.reveal .slides section[data-background-color="#17324d"] {
+    background: $fm-navy;
+    color: white;
+}
+
+.reveal .slides section.section-slide h1,
+.reveal .slides section.section-slide h2,
+.reveal .slides section[data-background-color="#17324d"] h1,
+.reveal .slides section[data-background-color="#17324d"] h2 {
+    color: white;
+}
+
+.reveal .slides section.section-slide h2::after,
+.reveal .slides section[data-background-color="#17324d"] h2::after {
+    background: $fm-accent;
+}
+
+.reveal .progress {
+    height: 5px;
+    background: rgba($fm-navy, 0.12);
+}
+
+.reveal .progress span {
+    background: $fm-accent;
+}
+
 
 // ============================================================
 // Títulos
@@ -110,7 +198,7 @@ $callout-color-warning: #c58a2e;
 .reveal h1,
 .reveal h2,
 .reveal h3 {
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
 }
 
 .reveal h2 {
@@ -126,6 +214,16 @@ $callout-color-warning: #c58a2e;
     background: $fm-blue;
 }
 
+.reveal h3 {
+    color: $fm-blue;
+}
+
+.reveal h4 {
+    color: $fm-gray;
+    font-size: 0.95em;
+    font-weight: 700;
+}
+
 
 // ============================================================
 // Texto
@@ -137,6 +235,10 @@ $callout-color-warning: #c58a2e;
 
 .reveal li {
     margin-bottom: 0.25em;
+}
+
+.reveal li::marker {
+    color: $fm-accent;
 }
 
 .reveal strong {
@@ -168,6 +270,10 @@ $callout-color-warning: #c58a2e;
 .reveal pre code {
     padding: 0.8em 1em;
     line-height: 1.35;
+}
+
+.reveal .sourceCode {
+    box-shadow: 0 0.3em 1em rgba($fm-navy, 0.08);
 }
 
 .reveal code {
@@ -211,6 +317,14 @@ $callout-color-warning: #c58a2e;
     background: rgba($fm-blue, 0.035);
 }
 
+.reveal .columns {
+    gap: 1.2em;
+}
+
+.reveal .column {
+    min-width: 0;
+}
+
 
 // ============================================================
 // Imágenes
@@ -228,6 +342,12 @@ $callout-color-warning: #c58a2e;
 .reveal .callout {
     font-size: 0.82em;
     border-radius: 5px;
+    box-shadow: 0 0.25em 0.8em rgba($fm-navy, 0.06);
+}
+
+.reveal .callout-title {
+    color: $fm-navy;
+    font-weight: 700;
 }
 
 
@@ -242,6 +362,60 @@ $callout-color-warning: #c58a2e;
     background: rgba($fm-blue, 0.04);
     box-shadow: none;
     font-style: normal;
+}
+
+.reveal .mermaid {
+    box-sizing: border-box;
+    padding: 0.35em 0.55em;
+    border: 1px solid rgba($fm-blue, 0.16);
+    border-radius: 0.35em;
+    background: $fm-white;
+    max-width: 100%;
+    max-height: 62vh;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.reveal .mermaid svg {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    max-height: 58vh;
+    margin: 0 auto;
+}
+
+.reveal .mermaid .node rect,
+.reveal .mermaid .node circle,
+.reveal .mermaid .node polygon,
+.reveal .mermaid .node path {
+    stroke: $fm-blue;
+    stroke-width: 1.5px;
+}
+
+.reveal .mermaid .edgePath .path,
+.reveal .mermaid .flowchart-link {
+    stroke: $fm-navy;
+    stroke-width: 1.5px;
+}
+
+.reveal .mermaid .edgeLabel,
+.reveal .mermaid .edgeLabel rect {
+    background-color: $fm-white;
+    fill: $fm-white;
+}
+
+.reveal .mermaid .label,
+.reveal .mermaid .nodeLabel,
+.reveal .mermaid .edgeLabel {
+    color: $fm-dark;
+    font-family: $font-family-sans-serif;
+    font-size: 0.82em;
+}
+
+.reveal .mermaid .cluster rect {
+    fill: rgba($fm-cyan, 0.08);
+    stroke: rgba($fm-blue, 0.35);
+    stroke-width: 1px;
 }
 
 
@@ -326,4 +500,109 @@ $callout-color-warning: #c58a2e;
     font-size: 1.2em;
     font-weight: 600;
     color: $fm-navy;
+}
+
+.reveal .key-idea,
+.reveal .definition,
+.reveal .example,
+.reveal .takeaway {
+    padding: 0.7em 0.95em;
+    border-radius: 0.25em;
+    background: $fm-white;
+    box-shadow: 0 0.25em 0.9em rgba($fm-navy, 0.08);
+}
+
+.reveal .key-idea {
+    border-left: 0.25em solid $fm-cyan;
+}
+
+.reveal .definition {
+    border-top: 0.25em solid $fm-blue;
+}
+
+.reveal .example {
+    border-top: 0.25em solid $fm-green;
+}
+
+.reveal .takeaway {
+    border-top: 0.25em solid $fm-accent;
+}
+
+.reveal .eyebrow {
+    color: $fm-accent;
+    font-size: 0.55em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.reveal .muted {
+    color: $fm-gray;
+}
+
+.reveal .centered {
+    text-align: center;
+}
+
+.reveal .compact {
+    font-size: 0.78em;
+}
+
+.reveal .dense {
+    font-size: 0.68em;
+}
+
+.reveal .metric {
+    color: $fm-blue;
+    font-size: 1.8em;
+    font-weight: 700;
+}
+
+.reveal .metric-label {
+    color: $fm-gray;
+    font-size: 0.7em;
+    text-transform: uppercase;
+}
+
+.reveal .visual-note {
+    font-size: 0.72em;
+    opacity: 0.8;
+}
+
+.reveal .compact-table table {
+    font-size: 0.72em;
+}
+
+.reveal .centered {
+    text-align: center;
+}
+
+.reveal .texto-destacado {
+    margin: 0.5em 0;
+    color: $fm-navy;
+    font-size: 2em;
+    font-weight: 700;
+    text-align: center;
+}
+
+.reveal .slide-number {
+    right: 1.2em;
+    bottom: 0.8em;
+    color: $fm-gray;
+    background: transparent;
+    font-size: 0.45em;
+}
+
+@media screen and (max-width: 800px) {
+    .reveal .slides section.title-slide h1 {
+        font-size: 2em;
+    }
+
+    .reveal table {
+        font-size: 0.68em;
+    }
+
+    .reveal .slides section:not(.title-slide) {
+        border-top-width: 0.12em;
+    }
 }

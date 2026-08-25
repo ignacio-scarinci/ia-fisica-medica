@@ -11,8 +11,9 @@ Presentación de la materia y de los objetivos del curso. Se presentarán los co
 
 ## Material complementario
 
-- 📄 Programa del curso: [ver PDF](https://drive.google.com/file/d/1RXPOsP2VfH3lT_edhKEpFnqvNoP5yw3b/view?usp=drive_link)
-- 📊 Presentación de la clase: [ver slides](presentacion.qmd)
+- Programa del curso: [ver PDF](https://drive.google.com/file/d/1RXPOsP2VfH3lT_edhKEpFnqvNoP5yw3b/view?usp=drive_link)
+- Presentación de la clase: [ver slides](presentacion.qmd){target="_blank"}
+- Notas de clase: [descargar PDF](notas.pdf)
 
 ## Links de interés
 

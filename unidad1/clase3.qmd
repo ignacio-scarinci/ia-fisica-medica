@@ -1,0 +1,1237 @@
+---
+title: "Clase 3: Arquitecturas para visión médica"
+subtitle: "Unidad 1 · Fundamentos de IA"
+author: "Ignacio Scarinci"
+lang: es
+format:
+    revealjs:
+        theme: ../themes/presentaciones.scss
+        slide-number: true
+        chalkboard: true
+        preview-links: auto
+        transition: fade
+        width: 1600
+        height: 900
+        margin: 0.06
+        center: false
+        smaller: false
+        toc: false
+        code-line-numbers: true
+jupyter: python3
+execute:
+  echo: true
+  warning: false
+  message: false
+  freeze: auto
+---
+
+
+
+## Objetivos de la clase
+
+Al finalizar la clase deberíamos poder:
+
+- reconocer las principales familias arquitectónicas;
+- entender qué sesgo inductivo incorpora cada una;
+- explicar cómo opera una CNN sobre imágenes;
+- entender por qué U-Net fue decisiva en imagen médica;
+- introducir atención, Transformers y State Space Models;
+- relacionar arquitectura con problemas concretos de Física Médica.
+
+
+## El recorrido de hoy
+
+```{mermaid}
+%%| echo: false
+
+flowchart LR
+    A[MLP] --> B[CNN]
+    B --> C[Autoencoder]
+    C --> D[U-Net]
+    D --> E[Transformer]
+    E --> F[State Space Models]
+    F --> G[Mamba]
+```
+
+No es una historia de reemplazos.
+
+Es una historia de **nuevas formas de organizar el flujo de información**.
+
+
+## ¿Qué es una arquitectura?
+
+Una arquitectura define:
+
+- qué operaciones se realizan;
+- qué conexiones existen;
+- cómo circula la información;
+- qué información puede interactuar;
+- qué estructura del problema incorporamos al modelo.
+
+$$
+\hat y=f_\theta(x)
+$$
+
+La pregunta no es solamente **qué aprende $\theta$**, sino:
+
+:::{.fragment}
+> ¿cómo construimos $f_\theta$?
+:::
+
+## Sesgo inductivo
+
+Una arquitectura contiene supuestos sobre el problema.
+
+:::: {.columns}
+::: {.column width="48%"}
+### Ejemplos
+
+- CNN → localidad espacial
+- U-Net → información multiescala
+- Transformer → interacción flexible
+- Mamba → memoria selectiva
+:::
+
+::: {.column width="48%"}
+### En Física Médica
+
+Nuestros datos no son vectores genéricos:
+
+- imágenes 2D;
+- volúmenes 3D;
+- series temporales;
+- dosis;
+- multimodalidad.
+:::
+::::
+
+# Bloque 1 · Multi Layer Perceptron {.section-slide}
+
+## Redes multicapa: MLP
+
+![](./imagenes/MLP.png){width=60%}
+
+## ¿Qué significa *feedforward*?
+
+```{mermaid}
+flowchart LR
+    X[Entrada x] --> H1[Capa oculta 1]
+    H1 --> H2[Capa oculta 2]
+    H2 --> Y[Salida ŷ]
+```
+
+Durante el *forward pass*:
+
+$$
+x \rightarrow h^{(1)} \rightarrow h^{(2)} \rightarrow \hat y
+$$
+
+La información avanza hacia la salida, sin ciclos internos.
+
+
+## Muchas capas lineales no alcanzan
+
+Supongamos:
+
+$$
+h=W_1x
+$$
+
+y luego:
+
+$$
+y=W_2h
+$$
+
+Entonces:
+
+$$
+y=W_2W_1x=Wx
+$$
+
+Dos transformaciones lineales siguen siendo una transformación lineal.
+
+> La profundidad por sí sola no produce no linealidad.
+
+
+## Funciones de activación
+
+La activación permite que la red represente relaciones complejas:
+
+$$
+h=\phi(Wx+b)
+$$
+
+:::: {.columns}
+::: {.column width="48%"}
+### Sigmoide
+
+$$
+\sigma(x)=\frac{1}{1+e^{-x}}
+$$
+
+Puede saturarse.
+:::
+
+::: {.column width="48%"}
+### $\tanh$
+
+$$
+\tanh(x)
+=
+\frac{e^x-e^{-x}}{e^x+e^{-x}}
+$$
+
+Salida entre -1 y 1.
+:::
+::::
+
+
+## ReLU y Leaky ReLU
+
+:::: {.columns}
+::: {.column width="48%"}
+### ReLU
+
+$$
+\operatorname{ReLU}(x)=\max(0,x)
+$$
+
+- simple;
+- barata;
+- muy utilizada en CNNs;
+- posible *dying ReLU*.
+:::
+
+::: {.column width="48%"}
+### Leaky ReLU
+
+$$
+\operatorname{LeakyReLU}(x)=
+\begin{cases}
+x & x>0\\
+\alpha x & x\leq0
+\end{cases}
+$$
+
+Mantiene gradiente para $x<0$.
+:::
+::::
+
+También aparecen GELU, SiLU/Swish y Mish.
+
+
+## ¿Por qué un MLP es incómodo para imágenes?
+
+Una imagen CT de:
+
+$$
+512\times512
+$$
+
+tiene:
+
+$$
+262\,144
+$$
+
+píxeles.
+
+Una capa con 1000 neuronas requeriría aproximadamente:
+
+$$
+262\,144\times1000
+\approx
+262\text{ millones de pesos}
+$$
+
+Y además perderíamos explícitamente la estructura espacial.
+
+# Bloque 2 · Convolutional Neural Networks {.section-slide}
+
+## La idea central de una CNN
+
+Una CNN utiliza pequeños filtros que se desplazan sobre la imagen.
+
+$$
+Y(i,j)
+=
+\sum_m\sum_n
+K(m,n)\,I(i+m,j+n)
+$$
+
+La operación es:
+
+- local;
+- compartida espacialmente;
+- aprendible.
+
+
+## ¿Qué hace una convolución?
+
+:::: {.columns}
+::: {.column width="45%"}
+### Región de imagen
+
+$$
+\begin{bmatrix}
+2&1&0\\
+3&5&1\\
+0&2&4
+\end{bmatrix}
+$$
+:::
+
+::: {.column width="45%"}
+### Kernel
+
+$$
+\begin{bmatrix}
+1&0&-1\\
+1&0&-1\\
+1&0&-1
+\end{bmatrix}
+$$
+:::
+::::
+
+La salida local resulta de una **suma ponderada**.
+
+
+## En Deep Learning los filtros se aprenden
+
+Procesamiento clásico:
+
+$$
+\text{kernel diseñado por el experto}
+$$
+
+Deep Learning:
+
+$$
+\text{kernel inicial}
+\xrightarrow{\text{backpropagation}}
+\text{kernel aprendido}
+$$
+
+En muchas librerías la operación es técnicamente una **correlación cruzada**, pero seguimos llamándola convolución.
+
+
+## Compartir parámetros
+
+El mismo kernel se aplica en toda la imagen.
+
+```{mermaid}
+flowchart LR
+    K[Kernel 3×3] --> A[Región 1]
+    K --> B[Región 2]
+    K --> C[Región 3]
+```
+
+Esto produce:
+
+- muchos menos parámetros;
+- detección de patrones independientemente de su posición;
+- un fuerte sesgo hacia la estructura espacial.
+
+
+## Canales y *feature maps*
+
+Entrada:
+
+$$
+1\times H\times W
+$$
+
+Después de una convolución:
+
+$$
+32\times H\times W
+$$
+
+La red ya no representa solo intensidades.
+
+Cada canal codifica una característica aprendida.
+
+```{mermaid}
+flowchart LR
+    A[Intensidad] --> B[Patrones locales]
+    B --> C[Texturas]
+    C --> D[Estructuras]
+    D --> E[Representaciones abstractas]
+```
+
+
+## Stride y padding
+
+:::: {.columns}
+::: {.column width="48%"}
+### Stride
+
+$$
+s=1
+$$
+
+desplazamiento de un píxel.
+
+$$
+s=2
+$$
+
+puede producir *downsampling*.
+:::
+
+::: {.column width="48%"}
+### Padding
+
+Agrega valores alrededor de la imagen.
+
+Permite controlar el tamaño espacial de la salida.
+:::
+::::
+
+
+## Campo receptivo
+
+Una unidad profunda puede depender de una región cada vez mayor de la entrada.
+
+Para convoluciones $3\times3$ con stride 1:
+
+$$
+3\times3
+\rightarrow
+5\times5
+\rightarrow
+7\times7
+\rightarrow\dots
+$$
+
+Para identificar anatomía necesitamos combinar:
+
+- información local;
+- textura;
+- bordes;
+- contexto anatómico.
+
+
+## Max pooling
+
+En una ventana $2\times2$:
+
+$$
+\begin{bmatrix}
+1&3\\
+2&8
+\end{bmatrix}
+\rightarrow 8
+$$
+
+Efectos:
+
+- reduce resolución;
+- disminuye costo computacional;
+- aumenta el campo receptivo efectivo.
+
+En arquitecturas modernas también se usa convolución con *stride*.
+
+
+## Un bloque CNN clásico
+
+```{mermaid}
+flowchart LR
+    A[Entrada] --> B[Convolution]
+    B --> C[Normalization]
+    C --> D[Activation]
+    D --> E[Salida]
+```
+
+Un patrón frecuente:
+
+$$
+\boxed{\text{Conv}}
+\rightarrow
+\boxed{\text{Norm}}
+\rightarrow
+\boxed{\text{ReLU}}
+$$
+
+
+## Batch Normalization
+
+$$
+\hat{x}
+=
+\frac{x-\mu_B}
+{\sqrt{\sigma_B^2+\epsilon}}
+$$
+
+$$
+y=\gamma\hat{x}+\beta
+$$
+
+Los parámetros $\gamma$ y $\beta$ se aprenden.
+
+BatchNorm ayudó a estabilizar el entrenamiento de muchas redes profundas.
+
+
+### BatchNorm y el problema del 3D
+
+Las imágenes volumétricas consumen mucha memoria.
+
+Por eso podemos entrenar con:
+
+$$
+B=1,\ 2,\ 4
+$$
+
+Con *batch size* pequeño las estadísticas de BatchNorm pueden ser poco estables.
+
+Alternativas frecuentes:
+
+- InstanceNorm;
+- GroupNorm.
+
+
+## CNN 2D, CNN 3D y anisotropía
+
+:::: {.columns}
+::: {.column width="48%"}
+### 2D
+
+$$
+C\times H\times W
+$$
+
+Kernel típico:
+
+$$
+3\times3
+$$
+:::
+
+::: {.column width="48%"}
+### 3D
+
+$$
+C\times D\times H\times W
+$$
+
+Kernel típico:
+
+$$
+3\times3\times3
+$$
+:::
+::::
+
+Pero en imagen médica:
+
+$$
+\Delta x \neq \Delta y \neq \Delta z
+$$
+
+
+## ¿Por qué redes más profundas?
+
+Más profundidad puede permitir:
+
+- campos receptivos mayores;
+- composiciones más complejas;
+- representaciones jerárquicas.
+
+Pero entrenar redes muy profundas introduce dificultades de optimización.
+
+Una respuesta histórica: **conexiones residuales**.
+
+
+## Conexiones residuales
+
+En ResNet:
+
+$$
+y=F(x)+x
+$$
+
+```{mermaid}
+flowchart LR
+    X[x] --> F[Bloque F(x)]
+    X --> S[Skip]
+    F --> A((+))
+    S --> A
+    A --> Y[y]
+```
+
+Facilitan el flujo de información y gradientes.
+
+# Bloque 3 · Autoencoders {.section-slide}
+
+## Autoencoder: comprimir y reconstruir
+
+```{mermaid}
+flowchart LR
+    X[Entrada x] --> E[Encoder]
+    E --> Z[Latente z]
+    Z --> D[Decoder]
+    D --> Y[Reconstrucción x̂]
+```
+
+$$
+z=f_\theta(x)
+$$
+
+$$
+\hat x=g_\phi(z)
+$$
+
+
+## ¿Qué aprende el espacio latente?
+
+Podemos entrenar minimizando:
+
+$$
+\mathcal{L}=\|x-\hat{x}\|^2
+$$
+
+La representación $z$ debe conservar información útil.
+
+Aplicaciones:
+
+- reducción de dimensionalidad;
+- denoising;
+- anomalías;
+- reconstrucción;
+- preentrenamiento;
+- modelos generativos.
+
+
+## De autoencoder a encoder–decoder
+
+No necesitamos reconstruir la misma entrada.
+
+```{mermaid}
+flowchart LR
+    X[CT] --> E[Encoder]
+    E --> Z[Representación]
+    Z --> D[Decoder]
+    D --> M[Máscara]
+```
+
+El decoder puede producir:
+
+- una imagen;
+- un mapa continuo;
+- una segmentación.
+
+# Bloque 4 · U-Net {.section-slide}
+
+## U-Net
+
+U-Net fue propuesta en 2015 para segmentación biomédica.
+
+```{mermaid}
+flowchart LR
+    A[Encoder] --> B[Bottleneck]
+    B --> C[Decoder]
+```
+
+La estructura combina:
+
+$$
+\boxed{\text{encoder}}
++
+\boxed{\text{decoder}}
++
+\boxed{\text{skip connections}}
+$$
+
+
+## El encoder: ganar contexto
+
+El encoder reduce resolución:
+
+$$
+256^2
+\rightarrow
+128^2
+\rightarrow
+64^2
+\rightarrow
+32^2
+$$
+
+A cambio obtiene:
+
+- mayor campo receptivo;
+- más contexto;
+- representaciones más abstractas.
+
+Pregunta que responde bien:
+
+> **¿qué estoy observando?**
+
+
+## El problema: perdemos localización
+
+Para segmentar no alcanza con saber **qué** estructura está presente.
+
+Necesitamos saber:
+
+> **¿dónde está exactamente cada borde?**
+
+El *downsampling* elimina resolución espacial.
+
+
+## Skip connections de U-Net
+
+```{mermaid}
+flowchart LR
+    E1[Encoder 256] --> E2[128]
+    E2 --> E3[64]
+    E3 --> B[32]
+    B --> D3[64]
+    D3 --> D2[128]
+    D2 --> D1[256]
+
+    E1 -. skip .-> D1
+    E2 -. skip .-> D2
+    E3 -. skip .-> D3
+```
+
+Las características de alta resolución llegan directamente al decoder.
+
+
+## U-Net: “qué” + “dónde”
+
+$$
+\boxed{\text{contexto semántico}}
++
+\boxed{\text{detalle espacial}}
+\rightarrow
+\boxed{\text{segmentación}}
+$$
+
+Una aclaración:
+
+- skip de **ResNet** → facilita optimización;
+- skip de **U-Net** → recupera información espacial.
+
+Mismo nombre informal, función distinta.
+
+
+## 3D U-Net
+
+La idea se extiende a:
+
+$$
+C\times D\times H\times W
+$$
+
+Aplicaciones:
+
+- órganos en riesgo;
+- tumores;
+- lesiones;
+- anatomía en MRI;
+- CT y CBCT.
+
+El gran limitante práctico es la **memoria**.
+
+
+### Patches y ventanas deslizantes
+
+Para volúmenes grandes suelen utilizarse:
+
+- entrenamiento por *patches*;
+- resampling;
+- inferencia por *sliding window*;
+- solapamiento entre ventanas.
+
+```{mermaid}
+flowchart LR
+    V[Volumen completo] --> P[Patches]
+    P --> M[Modelo]
+    M --> R[Reconstrucción de salida]
+```
+
+
+## ResUNet
+
+ResUNet combina:
+
+- estructura encoder–decoder;
+- skip connections de U-Net;
+- bloques residuales.
+
+```{mermaid}
+flowchart LR
+    A[Input] --> B[Residual block]
+    B --> C[Downsample]
+    C --> D[Bottleneck]
+    D --> E[Upsample]
+    E --> F[Residual block]
+```
+
+
+## Attention U-Net y U-Net++
+
+:::: {.columns}
+::: {.column width="48%"}
+### Attention U-Net
+
+Filtra qué características del encoder pasan al decoder.
+
+$$
+\text{skip}\rightarrow\text{attention gate}\rightarrow\text{decoder}
+$$
+:::
+
+::: {.column width="48%"}
+### U-Net++
+
+Introduce conexiones más densas e intermedias entre encoder y decoder.
+:::
+::::
+
+Ambas conservan la lógica multiescala.
+
+
+## nnU-Net: una aclaración importante
+
+**nnU-Net no es simplemente otra U-Net.**
+
+Es un sistema auto-configurable que adapta:
+
+- preprocesamiento;
+- resolución;
+- tamaño de patch;
+- arquitectura 2D/3D;
+- entrenamiento;
+- postprocesamiento.
+
+> El pipeline completo importa tanto como la arquitectura.
+
+
+# Bloque 5 · Transformers {.section-slide}
+
+## Una limitación de las CNN
+
+Una convolución $3\times3$ empieza preguntando:
+
+> ¿qué ocurre cerca de esta posición?
+
+Para relacionar regiones muy distantes necesitamos:
+
+- profundidad;
+- downsampling;
+- dilataciones;
+- kernels mayores.
+
+¿Podemos construir interacciones globales más directas?
+
+
+## La intuición de atención
+
+Para representar un elemento queremos saber:
+
+> ¿qué otros elementos son relevantes para él?
+
+```{mermaid}
+flowchart LR
+    A[Elemento i] --> B[Buscar relaciones]
+    B --> C[Ponderar información]
+    C --> D[Nueva representación]
+```
+
+La interacción ya no está determinada solamente por vecindad.
+
+
+## Query, Key y Value
+
+Para cada token generamos:
+
+$$
+Q=XW_Q,\qquad K=XW_K,\qquad V=XW_V
+$$
+
+:::: {.columns}
+::: {.column width="32%"}
+**Query**
+
+¿Qué estoy buscando?
+:::
+
+::: {.column width="32%"}
+**Key**
+
+¿Qué contiene este elemento?
+:::
+
+::: {.column width="32%"}
+**Value**
+
+¿Qué información recupero?
+:::
+::::
+
+
+## Self-attention
+
+$$
+\operatorname{Attention}(Q,K,V)
+=
+\operatorname{softmax}
+\left(
+\frac{QK^\top}{\sqrt{d_k}}
+\right)V
+$$
+
+```{mermaid}
+flowchart LR
+    Q[Query] --> S[Similitudes]
+    K[Keys] --> S
+    S --> W[Pesos]
+    W --> O[Combinación]
+    V[Values] --> O
+```
+
+
+## Multi-head attention y posición
+
+Varias cabezas permiten aprender relaciones diferentes:
+
+$$
+\text{head}_1,\dots,\text{head}_h
+$$
+
+Pero además debemos incorporar posición:
+
+$$
+\boxed{\text{contenido}}
++
+\boxed{\text{posición}}
+$$
+
+Sin posición, la auto-atención no conoce explícitamente el orden espacial/secuencial.
+
+
+## El bloque Transformer
+
+```{mermaid}
+flowchart TB
+    X[Input] --> N1[Normalization]
+    N1 --> A[Multi-Head Attention]
+    A --> R1[Residual +]
+    X --> R1
+    R1 --> N2[Normalization]
+    N2 --> F[Feed-Forward]
+    F --> R2[Residual +]
+    R1 --> R2
+    R2 --> Y[Output]
+```
+
+Reaparecen:
+
+- capas lineales;
+- activaciones;
+- normalización;
+- conexiones residuales.
+
+
+## Vision Transformer
+
+Una imagen se divide en *patches*:
+
+```{mermaid}
+flowchart LR
+    I[Imagen] --> P[Patches]
+    P --> T[Tokens]
+    T --> E[Embeddings]
+    E --> TR[Transformer]
+```
+
+Ejemplo:
+
+$$
+224\times224
+\quad\text{con patches}\quad
+16\times16
+$$
+
+
+## CNN vs Transformer
+
+| CNN | Transformer |
+|---|---|
+| interacción local | interacción flexible |
+| fuerte sesgo espacial | menor sesgo local |
+| kernels compartidos | atención |
+| jerarquía natural | requiere diseño de escala |
+| muy eficiente localmente | atención global costosa |
+
+No existe un ganador universal.
+
+
+## ¿Qué puede aportar atención en imagen médica?
+
+Puede ser útil cuando la decisión depende de:
+
+- relaciones anatómicas distantes;
+- simetría;
+- contexto global;
+- múltiples regiones;
+- información multimodal.
+
+Esto es especialmente atractivo en volúmenes 3D.
+
+
+## UNETR
+
+UNETR combina un encoder Transformer con un decoder tipo U-Net.
+
+```{mermaid}
+flowchart LR
+    V[Volumen] --> T[Transformer encoder]
+    T --> B[Bottleneck]
+    B --> D[Decoder convolucional]
+    D --> S[Segmentación]
+```
+
+Las representaciones intermedias se conectan con el decoder.
+
+
+## Swin Transformer
+
+La atención global completa es costosa.
+
+Swin Transformer utiliza:
+
+- atención dentro de ventanas;
+- ventanas desplazadas entre capas;
+- representación jerárquica.
+
+```{mermaid}
+flowchart LR
+    A[Ventanas locales] --> B[Shift]
+    B --> C[Nuevas interacciones]
+    C --> D[Jerarquía]
+```
+
+
+## Swin UNETR
+
+Combina:
+
+$$
+\boxed{\text{Swin Transformer}}
++
+\boxed{\text{decoder tipo U-Net}}
++
+\boxed{\text{skip connections}}
+$$
+
+Es un buen ejemplo de arquitectura híbrida:
+
+> ideas de CNN, U-Net y Transformers en un mismo modelo.
+
+
+## El costo de la atención
+
+Para $N$ tokens, la atención estándar construye aproximadamente:
+
+$$
+N\times N
+$$
+
+relaciones.
+
+Costo:
+
+$$
+O(N^2)
+$$
+
+Si:
+
+$$
+N\rightarrow 10N
+$$
+
+entonces:
+
+$$
+N^2\rightarrow100N^2
+$$
+
+
+## ¿Por qué esto es crítico en 3D?
+
+Un CT puede tener del orden de:
+
+$$
+512\times512\times500
+$$
+
+voxels.
+
+Incluso trabajando con patches, el número de tokens puede ser grande.
+
+Necesitamos capturar contexto amplio sin que memoria y cómputo crezcan demasiado.
+
+
+## State Space Models
+
+Otra estrategia es mantener un estado interno:
+
+$$
+h_t=f(h_{t-1},x_t)
+$$
+
+$$
+y_t=g(h_t)
+$$
+
+```{mermaid}
+flowchart LR
+    X1[x₁] --> H1[h₁]
+    H1 --> H2[h₂]
+    X2[x₂] --> H2
+    H2 --> H3[h₃]
+    X3[x₃] --> H3
+```
+
+El estado funciona como memoria.
+
+
+## Mamba
+
+Mamba utiliza **Selective State Space Models**.
+
+No es un Transformer.
+
+Su idea central es permitir que el sistema seleccione dinámicamente:
+
+> qué información conservar y qué información descartar.
+
+La selectividad depende del contenido de la entrada.
+
+
+## Transformer vs Mamba
+
+:::: {.columns}
+::: {.column width="48%"}
+### Transformer
+
+Cada token consulta otros tokens mediante atención.
+
+Costo de la atención estándar:
+
+$$
+O(N^2)
+$$
+:::
+
+::: {.column width="48%"}
+### Mamba
+
+La información se propaga mediante un estado selectivo.
+
+Escalamiento respecto de la secuencia:
+
+$$
+O(N)
+$$
+:::
+::::
+
+
+## Mamba en imágenes médicas
+
+La motivación es especialmente atractiva en 3D:
+
+- secuencias largas;
+- grandes volúmenes;
+- contexto global;
+- memoria limitada.
+
+Arquitecturas como **SegMamba** exploran esta dirección para segmentación médica 3D.
+
+> Es un área todavía en evolución.
+
+
+## Un mismo problema, distintos sesgos
+
+| Arquitectura | Idea central | Sesgo principal |
+|---|---|---|
+| MLP | conectividad densa | poca estructura explícita |
+| CNN | convolución local | localidad |
+| Autoencoder | compresión | representación latente |
+| U-Net | multiescala + skip | localización |
+| Transformer | atención | relaciones flexibles |
+| Mamba | estado selectivo | contexto largo eficiente |
+
+
+## ¿Qué usaría para cada problema?
+
+:::: {.columns}
+::: {.column width="48%"}
+### Datos tabulares
+
+- regresión;
+- árboles;
+- MLP.
+
+### Clasificación de imágenes
+
+- CNN;
+- ViT;
+- híbridos.
+:::
+
+::: {.column width="48%"}
+### Segmentación 3D
+
+- U-Net;
+- nnU-Net;
+- UNETR;
+- Swin UNETR;
+- variantes Mamba.
+:::
+::::
+
+La arquitectura debe responder al problema, no a la moda.
+
+
+## La arquitectura no es el modelo completo
+
+$$
+\boxed{\text{datos}}
++
+\boxed{\text{preprocesamiento}}
++
+\boxed{\text{arquitectura}}
++
+\boxed{\text{loss}}
++
+\boxed{\text{optimización}}
++
+\boxed{\text{evaluación}}
+$$
+
+En Física Médica además importan:
+
+- resolución y orientación;
+- anisotropía;
+- adquisición y reconstrucción;
+- fabricante y protocolo;
+- calidad de anotaciones.
+
+
+## Cinco ideas para llevarse
+
+1. La arquitectura incorpora un **sesgo inductivo**.
+2. Las CNN explotan **localidad y estructura espacial**.
+3. U-Net combina **contexto + precisión espacial**.
+4. Transformers permiten **interacciones flexibles y de largo alcance**.
+5. Mamba propone una alternativa basada en **estado selectivo**.
+
+> La mejor arquitectura es la que introduce el flujo de información adecuado para el problema.

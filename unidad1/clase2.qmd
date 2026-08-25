@@ -2,20 +2,21 @@
 title: "Clase 2: El ciclo de entrenamiento"
 subtitle: "Unidad 1 · Fundamentos de IA"
 author: "Ignacio Scarinci"
+lang: es
 format:
-  revealjs:
-    theme: simple
-    slide-number: true
-    chalkboard: true
-    preview-links: auto
-    transition: fade
-    width: 1600
-    height: 900
-    margin: 0.06
-    center: true
-    smaller: false
-    toc: false
-    code-line-numbers: true
+    revealjs:
+        theme: ../themes/presentaciones.scss
+        slide-number: true
+        chalkboard: true
+        preview-links: auto
+        transition: fade
+        width: 1600
+        height: 900
+        margin: 0.06
+        center: false
+        smaller: false
+        toc: false
+        code-line-numbers: true
 jupyter: python3
 execute:
   echo: true
@@ -33,17 +34,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 ```
 
-<style>
-.reveal .visual-note { font-size: 0.72em; opacity: 0.8; }
-.reveal .compact-table table { font-size: 0.72em; }
-.reveal .centered { text-align: center; }
-.reveal .texto-destacado {
-  font-size: 2em;
-  font-weight: 700;
-  text-align: center;
-  margin: 0.5em 0;
-}
-</style>
+# Bloque 1 · La pregunta del entrenamiento {.section-slide}
 
 ## Objetivo de la clase
 
@@ -163,6 +154,8 @@ En una red profunda, el número total de parámetros puede ser muy grande.
 :::{.fragment}
 Entrenar significa ajustar esos pesos y sesgos usando datos.
 :::
+# Bloque 2 · De la predicción a la pérdida {.section-slide}
+
 ## De predicción a pérdida
 
 Para un dato $(x_i,y_i)$:
@@ -469,6 +462,8 @@ $$
 **Idea clave:** Cross Entropy penaliza cuando el modelo asigna poca probabilidad a la clase verdadera.
 :::
 
+# Bloque 3 · Optimizar la pérdida: gradiente y learning rate {.section-slide}
+
 ## Sample, batch y mini-batch
 
 Un **sample** es un ejemplo individual:
@@ -740,7 +735,7 @@ $$
 Incluso en este ejemplo simple, el learning rate determina la dinámica de convergencia.
 :::
 
-## Superficie de pérdida
+## Superficie de pérdida {.takeaway}
 
 En una red con muchos parámetros:
 
@@ -755,6 +750,8 @@ El entrenamiento puede interpretarse como una trayectoria sobre esta superficie.
 :::{.fragment}
 En redes profundas, esta superficie es de altísima dimensión y, en general, no convexa.
 :::
+
+# Bloque 4 · Cómo recorremos el dataset {.section-slide}
 
 ## ¿Con qué datos calculamos el gradiente?
 
@@ -1000,6 +997,54 @@ Cada **iteration** procesa un mini-batch.
 Cuando se procesaron todos los mini-batches, se completó **1 epoch**.
 :::
 
+# Puente · Del gradiente al aprendizaje {.section-slide}
+
+## Lo que ya sabemos
+
+::: {.columns}
+::: {.column width="48%"}
+### En los bloques 1–4
+
+1. El modelo recibe datos.
+2. Produce una predicción.
+3. La predicción se compara con el objetivo.
+4. La pérdida resume el error.
+5. El gradiente indica cómo cambia la pérdida.
+6. El *learning rate* define el tamaño del paso.
+:::
+
+::: {.column width="48%"}
+### La pregunta que sigue
+
+¿Cómo se usan esos gradientes para cambiar los parámetros?
+
+```{mermaid}
+%%| echo: false
+
+flowchart LR
+    X["Datos"] --> M["Modelo"]
+    M --> P["Predicción"]
+    P --> L["Pérdida"]
+    L --> G["Gradientes"]
+    G --> U["Actualización"]
+    U -. "siguiente iteración" .-> M
+
+    classDef data fill:#e5f3f8,stroke:#2f6690,stroke-width:1.5px,color:#17324d;
+    classDef loss fill:#fff0eb,stroke:#c95d3e,stroke-width:1.5px,color:#17324d;
+    classDef learn fill:#e9f4ee,stroke:#397b64,stroke-width:1.5px,color:#17324d;
+    class X,M,P data;
+    class L loss;
+    class G,U learn;
+```
+:::
+:::
+
+::: {.takeaway}
+El modelo aprende porque la pérdida produce una señal que permite corregir sus parámetros.
+:::
+
+# Bloque 5 · Forward y backpropagation {.section-slide}
+
 ## Forward pass
 
 Durante el **forward pass**, los datos atraviesan la red capa por capa hasta producir una predicción.
@@ -1008,16 +1053,47 @@ Durante el **forward pass**, los datos atraviesan la red capa por capa hasta pro
 %%| echo: false
 
 flowchart LR
-    X["Entrada<br/>x"] --> L1["Capa 1"]
-    L1 --> L2["Capa 2"]
+    X["Entrada<br/>x"] --> L1["Capa 1<br/>h₁"]
+    L1 --> L2["Capa 2<br/>h₂"]
     L2 --> O["Predicción<br/>ŷ"]
-    O --> LOSS["Loss<br/>L(ŷ,y)"]
-    Y["Target<br/>y"] --> LOSS
+    O --> LOSS["Pérdida<br/>L(ŷ,y)"]
+    Y["Objetivo<br/>y"] --> LOSS
+
+    classDef data fill:#e5f3f8,stroke:#2f6690,stroke-width:1.5px,color:#17324d;
+    classDef model fill:#eef1f8,stroke:#2f6690,stroke-width:1.5px,color:#17324d;
+    classDef loss fill:#fff0eb,stroke:#c95d3e,stroke-width:1.5px,color:#17324d;
+    class X,Y data;
+    class L1,L2,O model;
+    class LOSS loss;
 ```
 
 :::{.fragment}
 Durante el forward la red **calcula** activaciones, predicciones y loss.  
 Todavía no modifica sus parámetros.
+:::
+
+## La información cambia de dirección
+
+```{mermaid}
+%%| echo: false
+
+flowchart LR
+    X["x"] --> F1["Forward<br/>transforma"]
+    F1 --> YH["ŷ"]
+    YH --> E["Pérdida<br/>compara con y"]
+    E --> B1["Backward<br/>calcula ∂L/∂θ"]
+    B1 --> U["Update<br/>θ ← θ − η∇L"]
+
+    classDef forward fill:#e5f3f8,stroke:#2f6690,stroke-width:1.5px,color:#17324d;
+    classDef error fill:#fff0eb,stroke:#c95d3e,stroke-width:1.5px,color:#17324d;
+    classDef backward fill:#e9f4ee,stroke:#397b64,stroke-width:1.5px,color:#17324d;
+    class X,F1,YH forward;
+    class E error;
+    class B1,U backward;
+```
+
+::: {.takeaway}
+El **forward** lleva los datos hacia la predicción. El **backward** lleva la señal del error hacia los parámetros.
 :::
 
 ## Forward durante entrenamiento
@@ -1230,6 +1306,30 @@ Esta acumulación es intencional y puede aprovecharse, por ejemplo, en **gradien
 
 ## Un paso de entrenamiento en PyTorch
 
+Antes de mirar el código completo, podemos leer el entrenamiento como una secuencia de cuatro preguntas:
+
+```{mermaid}
+%%| echo: false
+
+flowchart LR
+    Z["1. Limpiar<br/>gradientes"] --> F["2. Forward<br/>¿qué predice?"]
+    F --> L["3. Loss<br/>¿cuánto se equivoca?"]
+    L --> G["4. Backward<br/>¿cómo corregir?"]
+    G --> U["Update<br/>cambiar θ"]
+    U -. "siguiente batch" .-> F
+
+    classDef prepare fill:#f1f3f5,stroke:#66727d,stroke-width:1.5px,color:#202a33;
+    classDef forward fill:#e5f3f8,stroke:#2f6690,stroke-width:1.5px,color:#17324d;
+    classDef loss fill:#fff0eb,stroke:#c95d3e,stroke-width:1.5px,color:#17324d;
+    classDef update fill:#e9f4ee,stroke:#397b64,stroke-width:1.5px,color:#17324d;
+    class Z prepare;
+    class F forward;
+    class L loss;
+    class G,U update;
+```
+
+El código implementa exactamente esta secuencia:
+
 ```python
 optimizer.zero_grad()
 
@@ -1242,21 +1342,7 @@ loss.backward()
 optimizer.step()
 ```
 
-Podemos leerlo como:
-
-$$
-\boxed{
-\text{limpiar}
-\rightarrow
-\text{forward}
-\rightarrow
-\text{loss}
-\rightarrow
-\text{backward}
-\rightarrow
-\text{update}
-}
-$$
+# Bloque 6 · Optimización en PyTorch {.section-slide}
 
 ## ¿Qué hace el optimizador?
 
@@ -1273,6 +1359,34 @@ El optimizador decide cómo transformar esa información en una actualización d
 
 :::{.fragment}
 Todos los optimizadores utilizan gradientes, pero **no todos los utilizan de la misma manera**.
+:::
+
+## Un gradiente modifica un parámetro
+
+Supongamos que para un peso tenemos:
+
+$$
+w=2.0,
+\qquad
+\frac{\partial\mathcal L}{\partial w}=0.8,
+\qquad
+\eta=0.1
+$$
+
+La actualización es:
+
+$$
+w_{\mathrm{nuevo}}
+=
+w-\eta\frac{\partial\mathcal L}{\partial w}
+=
+2.0-0.1\cdot0.8
+=
+1.92
+$$
+
+::: {.takeaway}
+El gradiente no reemplaza al peso: indica cuánto conviene modificarlo y en qué dirección.
 :::
 
 ## Optimizadores
@@ -1611,6 +1725,8 @@ torch.save(
 El criterio debería estar definido antes del entrenamiento y ser coherente con el objetivo del problema.
 :::
 
+# Bloque 7 · De PyTorch a imágenes médicas {.section-slide}
+
 ## El DataLoader
 
 El `DataLoader` organiza cómo llegan los datos al training loop:
@@ -1632,6 +1748,30 @@ for x_batch, y_batch in train_loader:
 
 :::{.fragment}
 Dataset y DataLoader resuelven un problema distinto al modelo: **cómo representar, cargar y agrupar los datos**.
+:::
+
+## Del archivo médico al modelo
+
+```{mermaid}
+%%| echo: false
+
+flowchart LR
+    D["DICOM / NIfTI"] --> I["Imagen médica"]
+    I --> T["Tensor<br/>(C,D,H,W)"]
+    T --> B["Batch<br/>(B,C,D,H,W)"]
+    B --> M["Modelo"]
+    M --> O["Predicción"]
+
+    classDef input fill:#e5f3f8,stroke:#2f6690,stroke-width:1.5px,color:#17324d;
+    classDef process fill:#eef1f8,stroke:#2f6690,stroke-width:1.5px,color:#17324d;
+    classDef output fill:#e9f4ee,stroke:#397b64,stroke-width:1.5px,color:#17324d;
+    class D,I input;
+    class T,B,M process;
+    class O output;
+```
+
+::: {.fragment .visual-note}
+El modelo no recibe directamente un archivo DICOM: recibe tensores con una forma y una representación definidas.
 :::
 
 ## Tensores en imágenes médicas {.smaller}
@@ -1662,6 +1802,24 @@ representa:
 - $256\times256$ píxeles por slice.
 
 ## Batch size en 3D
+
+```{mermaid}
+%%| echo: false
+
+flowchart TB
+    V["Volumen 3D grande"] --> A["Activaciones intermedias"]
+    A --> G["Gradientes"]
+    G --> S["Memoria requerida"]
+    S --> R["Reducir batch<br/>o usar patches"]
+    R --> C["Gradient accumulation<br/>o mixed precision"]
+
+    classDef volume fill:#e5f3f8,stroke:#2f6690,stroke-width:1.5px,color:#17324d;
+    classDef memory fill:#fff0eb,stroke:#c95d3e,stroke-width:1.5px,color:#17324d;
+    classDef strategy fill:#e9f4ee,stroke:#397b64,stroke-width:1.5px,color:#17324d;
+    class V,A,G volume;
+    class S memory;
+    class R,C strategy;
+```
 
 Un solo volumen:
 
@@ -1745,6 +1903,8 @@ Beneficios potenciales:
 - menor uso de memoria;
 - mayor velocidad;
 - posibilidad de utilizar batches mayores.
+
+# Bloque 8 · Pipeline completo y cierre {.section-slide}
 
 ## ¿Qué agrega MONAI?
 
@@ -1913,7 +2073,7 @@ flowchart LR
 El entrenamiento no es solo una red neuronal: es un **pipeline completo y reproducible**.
 :::
 
-## Lo que debe quedar claro
+## Lo que debe quedar claro {.takeaway}
 
 1. El **forward** calcula predicciones y loss.
 2. `backward()` calcula gradientes.
@@ -1945,7 +2105,7 @@ loss.backward()
 Lo importante para usar correctamente el framework es comprender **qué calcula**, **cuándo lo calcula** y **qué ocurre después**.
 :::
 
-## Cierre
+## Cierre {.section-slide}
 
 El ciclo de entrenamiento puede resumirse como:
 
@@ -1970,7 +2130,7 @@ En la práctica, la calidad del modelo depende tanto de este ciclo como de los d
 :::
 
 
-## Próxima clase
+## Próxima clase {.takeaway}
 
 A partir de este ciclo de entrenamiento podemos estudiar arquitecturas específicas para imágenes:
 
