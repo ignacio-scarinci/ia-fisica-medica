@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Ignacio Scarinci">
-<meta name="dcterms.date" content="2026-08-20">
+<meta name="dcterms.date" content="2026-08-25">
 
 <title>Fundamentos de IA aplicada a Física Médica – IA en Física Médica</title>
 <style>
@@ -74,6 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../unidad1/notas2.html" rel="next">
+<link href="../unidad1/unidad1.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -142,7 +143,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../themes/site.scss">
 </head>
 
 <body class="nav-sidebar docked nav-fixed quarto-light">
@@ -167,11 +168,11 @@ window.Quarto = {
 <span class="menu-text">Inicio</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../unidad0/notas.html" aria-current="page"> 
+    <a class="nav-link active" href="../unidad0/unidad0.html" aria-current="page"> 
 <span class="menu-text">Unidad 0</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../unidad1/notas.html"> 
+    <a class="nav-link" href="../unidad1/unidad1.html"> 
 <span class="menu-text">Unidad 1</span></a>
   </li>  
 </ul>
@@ -197,7 +198,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidad1/notas.html">1. Fundamentos de IA</a></li><li class="breadcrumb-item"><a href="../unidad1/notas.html">Notas de clase</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidad1/unidad1.html">1. Fundamentos de IA</a></li><li class="breadcrumb-item"><a href="../unidad1/notas.html">Notas de clase</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -229,6 +230,12 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../unidad0/unidad0.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Índice de la unidad</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../unidad0/notas.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Notas de clase</span></a>
   </div>
@@ -241,8 +248,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidad0/presentacion.html" class="sidebar-item-text sidebar-link">
+  <a href="../unidad0/presentacion.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Presentación</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidad0/notas.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PDF de notas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidad0/presentacion.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PDF de presentación</span></a>
   </div>
 </li>
       </ul>
@@ -259,6 +278,12 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../unidad1/unidad1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Índice de la unidad</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../unidad1/notas.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Notas de clase</span></a>
   </div>
@@ -271,14 +296,44 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidad1/clase1.html" class="sidebar-item-text sidebar-link">
+  <a href="../unidad1/notas2.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PDF notas sobre imágenes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidad1/clase1.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Clase 1: De los modelos clásicos al algoritmo del Perceptrón</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidad1/clase2.html" class="sidebar-item-text sidebar-link">
+  <a href="../unidad1/clase1.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PDF Clase 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidad1/clase2.html" class="sidebar-item-text sidebar-link" target="_blank">
  <span class="menu-text">Clase 2: El ciclo de entrenamiento</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidad1/clase2.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PDF Clase 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidad1/clase3.html" class="sidebar-item-text sidebar-link" target="_blank">
+ <span class="menu-text">Clase 3: Redes neuronales convolucionales y Transformers</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidad1/notas.pdf" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PDF de notas</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -293,6 +348,12 @@ window.Quarto = {
  <span class="menu-text">Notebook 1</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unidad1/notebooks/Ciclo_de_entrenamiento.ipynb" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ciclo de entrenamiento</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -305,167 +366,162 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#unidad-1-del-aprendizaje-automático-clásico-al-deep-learning" id="toc-unidad-1-del-aprendizaje-automático-clásico-al-deep-learning" class="nav-link active" data-scroll-target="#unidad-1-del-aprendizaje-automático-clásico-al-deep-learning"><span class="header-section-number">1</span> Unidad 1 — Del aprendizaje automático clásico al Deep Learning</a>
+  <li><a href="#por-qué-empezar-por-lo-clásico" id="toc-por-qué-empezar-por-lo-clásico" class="nav-link active" data-scroll-target="#por-qué-empezar-por-lo-clásico"><span class="header-section-number">1</span> 1. ¿Por qué empezar por lo clásico?</a></li>
+  <li><a href="#los-paradigmas-del-aprendizaje-automático" id="toc-los-paradigmas-del-aprendizaje-automático" class="nav-link" data-scroll-target="#los-paradigmas-del-aprendizaje-automático"><span class="header-section-number">2</span> 2. Los paradigmas del aprendizaje automático</a></li>
+  <li><a href="#aprendizaje-supervisado" id="toc-aprendizaje-supervisado" class="nav-link" data-scroll-target="#aprendizaje-supervisado"><span class="header-section-number">3</span> 3. Aprendizaje supervisado</a></li>
+  <li><a href="#aprendizaje-no-supervisado" id="toc-aprendizaje-no-supervisado" class="nav-link" data-scroll-target="#aprendizaje-no-supervisado"><span class="header-section-number">4</span> 4. Aprendizaje no supervisado</a>
   <ul class="collapse">
-  <li><a href="#presentación-de-la-unidad" id="toc-presentación-de-la-unidad" class="nav-link" data-scroll-target="#presentación-de-la-unidad"><span class="header-section-number">1.1</span> Presentación de la unidad</a></li>
-  <li><a href="#objetivos-de-aprendizaje" id="toc-objetivos-de-aprendizaje" class="nav-link" data-scroll-target="#objetivos-de-aprendizaje"><span class="header-section-number">1.2</span> Objetivos de aprendizaje</a></li>
+  <li><a href="#aplicaciones" id="toc-aplicaciones" class="nav-link" data-scroll-target="#aplicaciones"><span class="header-section-number">4.1</span> Aplicaciones</a></li>
   </ul></li>
-  <li><a href="#por-qué-empezar-por-lo-clásico" id="toc-por-qué-empezar-por-lo-clásico" class="nav-link" data-scroll-target="#por-qué-empezar-por-lo-clásico"><span class="header-section-number">2</span> 1. ¿Por qué empezar por lo clásico?</a></li>
-  <li><a href="#los-paradigmas-del-aprendizaje-automático" id="toc-los-paradigmas-del-aprendizaje-automático" class="nav-link" data-scroll-target="#los-paradigmas-del-aprendizaje-automático"><span class="header-section-number">3</span> 2. Los paradigmas del aprendizaje automático</a></li>
-  <li><a href="#aprendizaje-supervisado" id="toc-aprendizaje-supervisado" class="nav-link" data-scroll-target="#aprendizaje-supervisado"><span class="header-section-number">4</span> 3. Aprendizaje supervisado</a></li>
-  <li><a href="#aprendizaje-no-supervisado" id="toc-aprendizaje-no-supervisado" class="nav-link" data-scroll-target="#aprendizaje-no-supervisado"><span class="header-section-number">5</span> 4. Aprendizaje no supervisado</a>
+  <li><a href="#aprendizaje-por-refuerzo" id="toc-aprendizaje-por-refuerzo" class="nav-link" data-scroll-target="#aprendizaje-por-refuerzo"><span class="header-section-number">5</span> 5. Aprendizaje por refuerzo</a></li>
+  <li><a href="#modelos-clásicos-de-aprendizaje-automático" id="toc-modelos-clásicos-de-aprendizaje-automático" class="nav-link" data-scroll-target="#modelos-clásicos-de-aprendizaje-automático"><span class="header-section-number">6</span> 6. Modelos clásicos de aprendizaje automático</a></li>
+  <li><a href="#riesgo-esperado-y-riesgo-empírico" id="toc-riesgo-esperado-y-riesgo-empírico" class="nav-link" data-scroll-target="#riesgo-esperado-y-riesgo-empírico"><span class="header-section-number">7</span> Riesgo esperado y riesgo empírico</a>
   <ul class="collapse">
-  <li><a href="#aplicaciones" id="toc-aplicaciones" class="nav-link" data-scroll-target="#aplicaciones"><span class="header-section-number">5.1</span> Aplicaciones</a></li>
+  <li><a href="#una-analogía" id="toc-una-analogía" class="nav-link" data-scroll-target="#una-analogía"><span class="header-section-number">7.0.1</span> Una analogía</a></li>
+  <li><a href="#generalización-y-sobreajuste" id="toc-generalización-y-sobreajuste" class="nav-link" data-scroll-target="#generalización-y-sobreajuste"><span class="header-section-number">7.1</span> Generalización y sobreajuste</a></li>
+  <li><a href="#generalización-en-física-médica" id="toc-generalización-en-física-médica" class="nav-link" data-scroll-target="#generalización-en-física-médica"><span class="header-section-number">7.2</span> Generalización en Física Médica</a></li>
   </ul></li>
-  <li><a href="#aprendizaje-por-refuerzo" id="toc-aprendizaje-por-refuerzo" class="nav-link" data-scroll-target="#aprendizaje-por-refuerzo"><span class="header-section-number">6</span> 5. Aprendizaje por refuerzo</a></li>
-  <li><a href="#modelos-clásicos-de-aprendizaje-automático" id="toc-modelos-clásicos-de-aprendizaje-automático" class="nav-link" data-scroll-target="#modelos-clásicos-de-aprendizaje-automático"><span class="header-section-number">7</span> 6. Modelos clásicos de aprendizaje automático</a></li>
-  <li><a href="#riesgo-esperado-y-riesgo-empírico" id="toc-riesgo-esperado-y-riesgo-empírico" class="nav-link" data-scroll-target="#riesgo-esperado-y-riesgo-empírico"><span class="header-section-number">8</span> Riesgo esperado y riesgo empírico</a>
+  <li><a href="#regresión-lineal-y-logística" id="toc-regresión-lineal-y-logística" class="nav-link" data-scroll-target="#regresión-lineal-y-logística"><span class="header-section-number">8</span> 7. Regresión lineal y logística</a>
   <ul class="collapse">
-  <li><a href="#una-analogía" id="toc-una-analogía" class="nav-link" data-scroll-target="#una-analogía"><span class="header-section-number">8.0.1</span> Una analogía</a></li>
-  <li><a href="#generalización-y-sobreajuste" id="toc-generalización-y-sobreajuste" class="nav-link" data-scroll-target="#generalización-y-sobreajuste"><span class="header-section-number">8.1</span> Generalización y sobreajuste</a></li>
-  <li><a href="#generalización-en-física-médica" id="toc-generalización-en-física-médica" class="nav-link" data-scroll-target="#generalización-en-física-médica"><span class="header-section-number">8.2</span> Generalización en Física Médica</a></li>
+  <li><a href="#regresión-lineal" id="toc-regresión-lineal" class="nav-link" data-scroll-target="#regresión-lineal"><span class="header-section-number">8.1</span> Regresión lineal</a></li>
+  <li><a href="#regresión-logística" id="toc-regresión-logística" class="nav-link" data-scroll-target="#regresión-logística"><span class="header-section-number">8.2</span> Regresión logística</a></li>
+  <li><a href="#el-puente-hacia-las-redes-neuronales" id="toc-el-puente-hacia-las-redes-neuronales" class="nav-link" data-scroll-target="#el-puente-hacia-las-redes-neuronales"><span class="header-section-number">8.3</span> El puente hacia las redes neuronales</a></li>
   </ul></li>
-  <li><a href="#regresión-lineal-y-logística" id="toc-regresión-lineal-y-logística" class="nav-link" data-scroll-target="#regresión-lineal-y-logística"><span class="header-section-number">9</span> 7. Regresión lineal y logística</a>
+  <li><a href="#qué-significa-que-un-modelo-sea-lineal" id="toc-qué-significa-que-un-modelo-sea-lineal" class="nav-link" data-scroll-target="#qué-significa-que-un-modelo-sea-lineal"><span class="header-section-number">9</span> 8. ¿Qué significa que un modelo sea lineal?</a>
   <ul class="collapse">
-  <li><a href="#regresión-lineal" id="toc-regresión-lineal" class="nav-link" data-scroll-target="#regresión-lineal"><span class="header-section-number">9.1</span> Regresión lineal</a></li>
-  <li><a href="#regresión-logística" id="toc-regresión-logística" class="nav-link" data-scroll-target="#regresión-logística"><span class="header-section-number">9.2</span> Regresión logística</a></li>
-  <li><a href="#el-puente-hacia-las-redes-neuronales" id="toc-el-puente-hacia-las-redes-neuronales" class="nav-link" data-scroll-target="#el-puente-hacia-las-redes-neuronales"><span class="header-section-number">9.3</span> El puente hacia las redes neuronales</a></li>
+  <li><a href="#ejemplo-práctico-comparación-de-fronteras-de-decisión" id="toc-ejemplo-práctico-comparación-de-fronteras-de-decisión" class="nav-link" data-scroll-target="#ejemplo-práctico-comparación-de-fronteras-de-decisión"><span class="header-section-number">9.1</span> Ejemplo práctico: comparación de fronteras de decisión</a></li>
   </ul></li>
-  <li><a href="#qué-significa-que-un-modelo-sea-lineal" id="toc-qué-significa-que-un-modelo-sea-lineal" class="nav-link" data-scroll-target="#qué-significa-que-un-modelo-sea-lineal"><span class="header-section-number">10</span> 8. ¿Qué significa que un modelo sea lineal?</a>
+  <li><a href="#introducción-al-deep-learning-breve-historia" id="toc-introducción-al-deep-learning-breve-historia" class="nav-link" data-scroll-target="#introducción-al-deep-learning-breve-historia"><span class="header-section-number">10</span> Introducción al Deep Learning: breve historia</a>
   <ul class="collapse">
-  <li><a href="#ejemplo-práctico-comparación-de-fronteras-de-decisión" id="toc-ejemplo-práctico-comparación-de-fronteras-de-decisión" class="nav-link" data-scroll-target="#ejemplo-práctico-comparación-de-fronteras-de-decisión"><span class="header-section-number">10.1</span> Ejemplo práctico: comparación de fronteras de decisión</a></li>
-  </ul></li>
-  <li><a href="#introducción-al-deep-learning-breve-historia" id="toc-introducción-al-deep-learning-breve-historia" class="nav-link" data-scroll-target="#introducción-al-deep-learning-breve-historia"><span class="header-section-number">11</span> Introducción al Deep Learning: breve historia</a>
+  <li><a href="#qué-es-el-deep-learning" id="toc-qué-es-el-deep-learning" class="nav-link" data-scroll-target="#qué-es-el-deep-learning"><span class="header-section-number">10.1</span> ¿Qué es el Deep Learning?</a></li>
+  <li><a href="#línea-de-tiempo-histórica" id="toc-línea-de-tiempo-histórica" class="nav-link" data-scroll-target="#línea-de-tiempo-histórica"><span class="header-section-number">10.2</span> Línea de tiempo histórica</a></li>
+  <li><a href="#los-dos-inviernos-de-la-ia-neuronal" id="toc-los-dos-inviernos-de-la-ia-neuronal" class="nav-link" data-scroll-target="#los-dos-inviernos-de-la-ia-neuronal"><span class="header-section-number">10.3</span> Los “dos inviernos” de la IA neuronal</a></li>
+  <li><a href="#imagenet-y-el-auge-de-las-cnns" id="toc-imagenet-y-el-auge-de-las-cnns" class="nav-link" data-scroll-target="#imagenet-y-el-auge-de-las-cnns"><span class="header-section-number">10.4</span> ImageNet y el auge de las CNNs</a></li>
+  <li><a href="#los-últimos-años-modelos-fundacionales-y-la-ia-generativa" id="toc-los-últimos-años-modelos-fundacionales-y-la-ia-generativa" class="nav-link" data-scroll-target="#los-últimos-años-modelos-fundacionales-y-la-ia-generativa"><span class="header-section-number">10.5</span> Los últimos años: modelos fundacionales y la IA generativa</a>
   <ul class="collapse">
-  <li><a href="#qué-es-el-deep-learning" id="toc-qué-es-el-deep-learning" class="nav-link" data-scroll-target="#qué-es-el-deep-learning"><span class="header-section-number">11.1</span> ¿Qué es el Deep Learning?</a></li>
-  <li><a href="#línea-de-tiempo-histórica" id="toc-línea-de-tiempo-histórica" class="nav-link" data-scroll-target="#línea-de-tiempo-histórica"><span class="header-section-number">11.2</span> Línea de tiempo histórica</a></li>
-  <li><a href="#los-dos-inviernos-de-la-ia-neuronal" id="toc-los-dos-inviernos-de-la-ia-neuronal" class="nav-link" data-scroll-target="#los-dos-inviernos-de-la-ia-neuronal"><span class="header-section-number">11.3</span> Los “dos inviernos” de la IA neuronal</a></li>
-  <li><a href="#imagenet-y-el-auge-de-las-cnns" id="toc-imagenet-y-el-auge-de-las-cnns" class="nav-link" data-scroll-target="#imagenet-y-el-auge-de-las-cnns"><span class="header-section-number">11.4</span> ImageNet y el auge de las CNNs</a></li>
-  <li><a href="#los-últimos-años-modelos-fundacionales-y-la-ia-generativa" id="toc-los-últimos-años-modelos-fundacionales-y-la-ia-generativa" class="nav-link" data-scroll-target="#los-últimos-años-modelos-fundacionales-y-la-ia-generativa"><span class="header-section-number">11.5</span> Los últimos años: modelos fundacionales y la IA generativa</a>
+  <li><a href="#alexnet-y-los-autoencoders-variacionales" id="toc-alexnet-y-los-autoencoders-variacionales" class="nav-link" data-scroll-target="#alexnet-y-los-autoencoders-variacionales"><span class="header-section-number">10.5.1</span> 2013 — AlexNet y los Autoencoders Variacionales</a></li>
+  <li><a href="#redes-generativas-adversarias-gans" id="toc-redes-generativas-adversarias-gans" class="nav-link" data-scroll-target="#redes-generativas-adversarias-gans"><span class="header-section-number">10.5.2</span> 2014 — Redes Generativas Adversarias (GANs)</a></li>
+  <li><a href="#resnets-y-avances-en-nlp" id="toc-resnets-y-avances-en-nlp" class="nav-link" data-scroll-target="#resnets-y-avances-en-nlp"><span class="header-section-number">10.5.3</span> 2015 — ResNets y avances en NLP</a></li>
+  <li><a href="#alphago" id="toc-alphago" class="nav-link" data-scroll-target="#alphago"><span class="header-section-number">10.5.4</span> 2016 — AlphaGo</a></li>
+  <li><a href="#arquitectura-transformer" id="toc-arquitectura-transformer" class="nav-link" data-scroll-target="#arquitectura-transformer"><span class="header-section-number">10.5.5</span> 2017 — Arquitectura Transformer</a></li>
+  <li><a href="#gpt-1-bert-y-graph-neural-networks" id="toc-gpt-1-bert-y-graph-neural-networks" class="nav-link" data-scroll-target="#gpt-1-bert-y-graph-neural-networks"><span class="header-section-number">10.5.6</span> 2018 — GPT-1, BERT y Graph Neural Networks</a></li>
+  <li><a href="#gpt-2-y-modelos-generativos-mejorados" id="toc-gpt-2-y-modelos-generativos-mejorados" class="nav-link" data-scroll-target="#gpt-2-y-modelos-generativos-mejorados"><span class="header-section-number">10.5.7</span> 2019 — GPT-2 y modelos generativos mejorados</a></li>
+  <li><a href="#gpt-3-y-aprendizaje-auto-supervisado" id="toc-gpt-3-y-aprendizaje-auto-supervisado" class="nav-link" data-scroll-target="#gpt-3-y-aprendizaje-auto-supervisado"><span class="header-section-number">10.5.8</span> 2020 — GPT-3 y aprendizaje auto-supervisado</a></li>
+  <li><a href="#alphafold-2-dalle-y-github-copilot" id="toc-alphafold-2-dalle-y-github-copilot" class="nav-link" data-scroll-target="#alphafold-2-dalle-y-github-copilot"><span class="header-section-number">10.5.9</span> 2021 — AlphaFold 2, DALL·E y GitHub Copilot</a></li>
+  <li><a href="#chatgpt-y-stable-diffusion" id="toc-chatgpt-y-stable-diffusion" class="nav-link" data-scroll-target="#chatgpt-y-stable-diffusion"><span class="header-section-number">10.5.10</span> 2022 — ChatGPT y Stable Diffusion</a></li>
+  <li><a href="#llms-y-bots-por-todas-partes" id="toc-llms-y-bots-por-todas-partes" class="nav-link" data-scroll-target="#llms-y-bots-por-todas-partes"><span class="header-section-number">10.5.11</span> 2023 — LLMs y bots por todas partes</a></li>
+  <li><a href="#la-era-del-razonamiento-y-la-multimodalidad-nativa" id="toc-la-era-del-razonamiento-y-la-multimodalidad-nativa" class="nav-link" data-scroll-target="#la-era-del-razonamiento-y-la-multimodalidad-nativa"><span class="header-section-number">10.5.12</span> 2024 — La era del razonamiento y la multimodalidad nativa</a></li>
+  <li><a href="#razonamiento-abierto-y-el-ascenso-de-los-agentes" id="toc-razonamiento-abierto-y-el-ascenso-de-los-agentes" class="nav-link" data-scroll-target="#razonamiento-abierto-y-el-ascenso-de-los-agentes"><span class="header-section-number">10.5.13</span> 2025 — Razonamiento abierto y el ascenso de los agentes</a></li>
+  <li><a href="#el-ascenso-de-china" id="toc-el-ascenso-de-china" class="nav-link" data-scroll-target="#el-ascenso-de-china"><span class="header-section-number">10.5.14</span> 2026 — El ascenso de China</a></li>
+  </ul></li>
+  <li><a href="#por-qué-profundo-y-por-qué-ahora-es-relevante-en-física-médica" id="toc-por-qué-profundo-y-por-qué-ahora-es-relevante-en-física-médica" class="nav-link" data-scroll-target="#por-qué-profundo-y-por-qué-ahora-es-relevante-en-física-médica"><span class="header-section-number">10.6</span> ¿Por qué “profundo” y por qué ahora es relevante en Física Médica?</a></li>
+  </ul></li>
+  <li><a href="#redes-neuronales-simples-el-algoritmo-del-perceptrón" id="toc-redes-neuronales-simples-el-algoritmo-del-perceptrón" class="nav-link" data-scroll-target="#redes-neuronales-simples-el-algoritmo-del-perceptrón"><span class="header-section-number">11</span> Redes neuronales simples: el algoritmo del Perceptrón</a>
   <ul class="collapse">
-  <li><a href="#alexnet-y-los-autoencoders-variacionales" id="toc-alexnet-y-los-autoencoders-variacionales" class="nav-link" data-scroll-target="#alexnet-y-los-autoencoders-variacionales"><span class="header-section-number">11.5.1</span> 2013 — AlexNet y los Autoencoders Variacionales</a></li>
-  <li><a href="#redes-generativas-adversarias-gans" id="toc-redes-generativas-adversarias-gans" class="nav-link" data-scroll-target="#redes-generativas-adversarias-gans"><span class="header-section-number">11.5.2</span> 2014 — Redes Generativas Adversarias (GANs)</a></li>
-  <li><a href="#resnets-y-avances-en-nlp" id="toc-resnets-y-avances-en-nlp" class="nav-link" data-scroll-target="#resnets-y-avances-en-nlp"><span class="header-section-number">11.5.3</span> 2015 — ResNets y avances en NLP</a></li>
-  <li><a href="#alphago" id="toc-alphago" class="nav-link" data-scroll-target="#alphago"><span class="header-section-number">11.5.4</span> 2016 — AlphaGo</a></li>
-  <li><a href="#arquitectura-transformer" id="toc-arquitectura-transformer" class="nav-link" data-scroll-target="#arquitectura-transformer"><span class="header-section-number">11.5.5</span> 2017 — Arquitectura Transformer</a></li>
-  <li><a href="#gpt-1-bert-y-graph-neural-networks" id="toc-gpt-1-bert-y-graph-neural-networks" class="nav-link" data-scroll-target="#gpt-1-bert-y-graph-neural-networks"><span class="header-section-number">11.5.6</span> 2018 — GPT-1, BERT y Graph Neural Networks</a></li>
-  <li><a href="#gpt-2-y-modelos-generativos-mejorados" id="toc-gpt-2-y-modelos-generativos-mejorados" class="nav-link" data-scroll-target="#gpt-2-y-modelos-generativos-mejorados"><span class="header-section-number">11.5.7</span> 2019 — GPT-2 y modelos generativos mejorados</a></li>
-  <li><a href="#gpt-3-y-aprendizaje-auto-supervisado" id="toc-gpt-3-y-aprendizaje-auto-supervisado" class="nav-link" data-scroll-target="#gpt-3-y-aprendizaje-auto-supervisado"><span class="header-section-number">11.5.8</span> 2020 — GPT-3 y aprendizaje auto-supervisado</a></li>
-  <li><a href="#alphafold-2-dalle-y-github-copilot" id="toc-alphafold-2-dalle-y-github-copilot" class="nav-link" data-scroll-target="#alphafold-2-dalle-y-github-copilot"><span class="header-section-number">11.5.9</span> 2021 — AlphaFold 2, DALL·E y GitHub Copilot</a></li>
-  <li><a href="#chatgpt-y-stable-diffusion" id="toc-chatgpt-y-stable-diffusion" class="nav-link" data-scroll-target="#chatgpt-y-stable-diffusion"><span class="header-section-number">11.5.10</span> 2022 — ChatGPT y Stable Diffusion</a></li>
-  <li><a href="#llms-y-bots-por-todas-partes" id="toc-llms-y-bots-por-todas-partes" class="nav-link" data-scroll-target="#llms-y-bots-por-todas-partes"><span class="header-section-number">11.5.11</span> 2023 — LLMs y bots por todas partes</a></li>
-  <li><a href="#la-era-del-razonamiento-y-la-multimodalidad-nativa" id="toc-la-era-del-razonamiento-y-la-multimodalidad-nativa" class="nav-link" data-scroll-target="#la-era-del-razonamiento-y-la-multimodalidad-nativa"><span class="header-section-number">11.5.12</span> 2024 — La era del razonamiento y la multimodalidad nativa</a></li>
-  <li><a href="#razonamiento-abierto-y-el-ascenso-de-los-agentes" id="toc-razonamiento-abierto-y-el-ascenso-de-los-agentes" class="nav-link" data-scroll-target="#razonamiento-abierto-y-el-ascenso-de-los-agentes"><span class="header-section-number">11.5.13</span> 2025 — Razonamiento abierto y el ascenso de los agentes</a></li>
-  <li><a href="#el-ascenso-de-china" id="toc-el-ascenso-de-china" class="nav-link" data-scroll-target="#el-ascenso-de-china"><span class="header-section-number">11.5.14</span> 2026 — El ascenso de China</a></li>
-  </ul></li>
-  <li><a href="#por-qué-profundo-y-por-qué-ahora-es-relevante-en-física-médica" id="toc-por-qué-profundo-y-por-qué-ahora-es-relevante-en-física-médica" class="nav-link" data-scroll-target="#por-qué-profundo-y-por-qué-ahora-es-relevante-en-física-médica"><span class="header-section-number">11.6</span> ¿Por qué “profundo” y por qué ahora es relevante en Física Médica?</a></li>
-  </ul></li>
-  <li><a href="#redes-neuronales-simples-el-algoritmo-del-perceptrón" id="toc-redes-neuronales-simples-el-algoritmo-del-perceptrón" class="nav-link" data-scroll-target="#redes-neuronales-simples-el-algoritmo-del-perceptrón"><span class="header-section-number">12</span> Redes neuronales simples: el algoritmo del Perceptrón</a>
+  <li><a href="#la-neurona-biológica-como-inspiración" id="toc-la-neurona-biológica-como-inspiración" class="nav-link" data-scroll-target="#la-neurona-biológica-como-inspiración"><span class="header-section-number">11.1</span> La neurona biológica como inspiración</a></li>
+  <li><a href="#definición-formal" id="toc-definición-formal" class="nav-link" data-scroll-target="#definición-formal"><span class="header-section-number">11.2</span> Definición formal</a></li>
+  <li><a href="#el-algoritmo-de-aprendizaje-del-perceptrón" id="toc-el-algoritmo-de-aprendizaje-del-perceptrón" class="nav-link" data-scroll-target="#el-algoritmo-de-aprendizaje-del-perceptrón"><span class="header-section-number">11.3</span> El algoritmo de aprendizaje del Perceptrón</a></li>
+  <li><a href="#implementación-desde-cero" id="toc-implementación-desde-cero" class="nav-link" data-scroll-target="#implementación-desde-cero"><span class="header-section-number">11.4</span> Implementación desde cero</a></li>
+  <li><a href="#ejemplo-separación-de-dos-clases-sintéticas-linealmente-separables" id="toc-ejemplo-separación-de-dos-clases-sintéticas-linealmente-separables" class="nav-link" data-scroll-target="#ejemplo-separación-de-dos-clases-sintéticas-linealmente-separables"><span class="header-section-number">11.5</span> Ejemplo: separación de dos clases sintéticas (linealmente separables)</a></li>
+  <li><a href="#de-funciones-lógicas-simples-a-xor-qué-separa-un-perceptrón-y-qué-no" id="toc-de-funciones-lógicas-simples-a-xor-qué-separa-un-perceptrón-y-qué-no" class="nav-link" data-scroll-target="#de-funciones-lógicas-simples-a-xor-qué-separa-un-perceptrón-y-qué-no"><span class="header-section-number">11.6</span> De funciones lógicas simples a XOR: qué separa un perceptrón y qué no</a>
   <ul class="collapse">
-  <li><a href="#la-neurona-biológica-como-inspiración" id="toc-la-neurona-biológica-como-inspiración" class="nav-link" data-scroll-target="#la-neurona-biológica-como-inspiración"><span class="header-section-number">12.1</span> La neurona biológica como inspiración</a></li>
-  <li><a href="#definición-formal" id="toc-definición-formal" class="nav-link" data-scroll-target="#definición-formal"><span class="header-section-number">12.2</span> Definición formal</a></li>
-  <li><a href="#el-algoritmo-de-aprendizaje-del-perceptrón" id="toc-el-algoritmo-de-aprendizaje-del-perceptrón" class="nav-link" data-scroll-target="#el-algoritmo-de-aprendizaje-del-perceptrón"><span class="header-section-number">12.3</span> El algoritmo de aprendizaje del Perceptrón</a></li>
-  <li><a href="#implementación-desde-cero" id="toc-implementación-desde-cero" class="nav-link" data-scroll-target="#implementación-desde-cero"><span class="header-section-number">12.4</span> Implementación desde cero</a></li>
-  <li><a href="#ejemplo-separación-de-dos-clases-sintéticas-linealmente-separables" id="toc-ejemplo-separación-de-dos-clases-sintéticas-linealmente-separables" class="nav-link" data-scroll-target="#ejemplo-separación-de-dos-clases-sintéticas-linealmente-separables"><span class="header-section-number">12.5</span> Ejemplo: separación de dos clases sintéticas (linealmente separables)</a></li>
-  <li><a href="#de-funciones-lógicas-simples-a-xor-qué-separa-un-perceptrón-y-qué-no" id="toc-de-funciones-lógicas-simples-a-xor-qué-separa-un-perceptrón-y-qué-no" class="nav-link" data-scroll-target="#de-funciones-lógicas-simples-a-xor-qué-separa-un-perceptrón-y-qué-no"><span class="header-section-number">12.6</span> De funciones lógicas simples a XOR: qué separa un perceptrón y qué no</a>
+  <li><a href="#and-or-nand-nor-linealmente-separables" id="toc-and-or-nand-nor-linealmente-separables" class="nav-link" data-scroll-target="#and-or-nand-nor-linealmente-separables"><span class="header-section-number">11.6.1</span> AND, OR, NAND, NOR: linealmente separables</a></li>
+  <li><a href="#el-límite-fundamental-el-problema-xor" id="toc-el-límite-fundamental-el-problema-xor" class="nav-link" data-scroll-target="#el-límite-fundamental-el-problema-xor"><span class="header-section-number">11.6.2</span> El límite fundamental: el problema XOR</a></li>
+  <li><a href="#la-solución-combinar-perceptrones" id="toc-la-solución-combinar-perceptrones" class="nav-link" data-scroll-target="#la-solución-combinar-perceptrones"><span class="header-section-number">11.6.3</span> La solución: combinar perceptrones</a></li>
+  </ul></li>
+  <li><a href="#perceptrón-vs.-regresión-logística-el-puente-conceptual" id="toc-perceptrón-vs.-regresión-logística-el-puente-conceptual" class="nav-link" data-scroll-target="#perceptrón-vs.-regresión-logística-el-puente-conceptual"><span class="header-section-number">11.7</span> Perceptrón vs.&nbsp;Regresión Logística: el puente conceptual</a></li>
+  </ul></li>
+  <li><a href="#qué-significa-entrenar-una-red-neuronal" id="toc-qué-significa-entrenar-una-red-neuronal" class="nav-link" data-scroll-target="#qué-significa-entrenar-una-red-neuronal"><span class="header-section-number">12</span> ¿Qué significa entrenar una red neuronal?</a></li>
+  <li><a href="#funciones-de-pérdida" id="toc-funciones-de-pérdida" class="nav-link" data-scroll-target="#funciones-de-pérdida"><span class="header-section-number">13</span> Funciones de pérdida</a>
   <ul class="collapse">
-  <li><a href="#and-or-nand-nor-linealmente-separables" id="toc-and-or-nand-nor-linealmente-separables" class="nav-link" data-scroll-target="#and-or-nand-nor-linealmente-separables"><span class="header-section-number">12.6.1</span> AND, OR, NAND, NOR: linealmente separables</a></li>
-  <li><a href="#el-límite-fundamental-el-problema-xor" id="toc-el-límite-fundamental-el-problema-xor" class="nav-link" data-scroll-target="#el-límite-fundamental-el-problema-xor"><span class="header-section-number">12.6.2</span> El límite fundamental: el problema XOR</a></li>
-  <li><a href="#la-solución-combinar-perceptrones" id="toc-la-solución-combinar-perceptrones" class="nav-link" data-scroll-target="#la-solución-combinar-perceptrones"><span class="header-section-number">12.6.3</span> La solución: combinar perceptrones</a></li>
+  <li><a href="#regresión" id="toc-regresión" class="nav-link" data-scroll-target="#regresión"><span class="header-section-number">13.1</span> Regresión</a></li>
+  <li><a href="#clasificación-binaria" id="toc-clasificación-binaria" class="nav-link" data-scroll-target="#clasificación-binaria"><span class="header-section-number">13.2</span> Clasificación binaria</a></li>
+  <li><a href="#clasificación-multiclase" id="toc-clasificación-multiclase" class="nav-link" data-scroll-target="#clasificación-multiclase"><span class="header-section-number">13.3</span> Clasificación multiclase</a></li>
   </ul></li>
-  <li><a href="#perceptrón-vs.-regresión-logística-el-puente-conceptual" id="toc-perceptrón-vs.-regresión-logística-el-puente-conceptual" class="nav-link" data-scroll-target="#perceptrón-vs.-regresión-logística-el-puente-conceptual"><span class="header-section-number">12.7</span> Perceptrón vs.&nbsp;Regresión Logística: el puente conceptual</a></li>
-  </ul></li>
-  <li><a href="#qué-significa-entrenar-una-red-neuronal" id="toc-qué-significa-entrenar-una-red-neuronal" class="nav-link" data-scroll-target="#qué-significa-entrenar-una-red-neuronal"><span class="header-section-number">13</span> ¿Qué significa entrenar una red neuronal?</a></li>
-  <li><a href="#funciones-de-pérdida" id="toc-funciones-de-pérdida" class="nav-link" data-scroll-target="#funciones-de-pérdida"><span class="header-section-number">14</span> Funciones de pérdida</a>
+  <li><a href="#sample-batch-mini-batch-iteration-y-epoch" id="toc-sample-batch-mini-batch-iteration-y-epoch" class="nav-link" data-scroll-target="#sample-batch-mini-batch-iteration-y-epoch"><span class="header-section-number">14</span> Sample, batch, mini-batch, iteration y epoch</a>
   <ul class="collapse">
-  <li><a href="#regresión" id="toc-regresión" class="nav-link" data-scroll-target="#regresión"><span class="header-section-number">14.1</span> Regresión</a></li>
-  <li><a href="#clasificación-binaria" id="toc-clasificación-binaria" class="nav-link" data-scroll-target="#clasificación-binaria"><span class="header-section-number">14.2</span> Clasificación binaria</a></li>
-  <li><a href="#clasificación-multiclase" id="toc-clasificación-multiclase" class="nav-link" data-scroll-target="#clasificación-multiclase"><span class="header-section-number">14.3</span> Clasificación multiclase</a></li>
+  <li><a href="#sample" id="toc-sample" class="nav-link" data-scroll-target="#sample"><span class="header-section-number">14.1</span> Sample</a></li>
+  <li><a href="#batch" id="toc-batch" class="nav-link" data-scroll-target="#batch"><span class="header-section-number">14.2</span> Batch</a></li>
+  <li><a href="#batch-gradient-descent" id="toc-batch-gradient-descent" class="nav-link" data-scroll-target="#batch-gradient-descent"><span class="header-section-number">14.3</span> Batch Gradient Descent</a></li>
+  <li><a href="#stochastic-gradient-descent" id="toc-stochastic-gradient-descent" class="nav-link" data-scroll-target="#stochastic-gradient-descent"><span class="header-section-number">14.4</span> Stochastic Gradient Descent</a></li>
+  <li><a href="#mini-batch-gradient-descent" id="toc-mini-batch-gradient-descent" class="nav-link" data-scroll-target="#mini-batch-gradient-descent"><span class="header-section-number">14.5</span> Mini-batch Gradient Descent</a></li>
+  <li><a href="#epoch-e-iteration" id="toc-epoch-e-iteration" class="nav-link" data-scroll-target="#epoch-e-iteration"><span class="header-section-number">14.6</span> Epoch e iteration</a></li>
   </ul></li>
-  <li><a href="#sample-batch-mini-batch-iteration-y-epoch" id="toc-sample-batch-mini-batch-iteration-y-epoch" class="nav-link" data-scroll-target="#sample-batch-mini-batch-iteration-y-epoch"><span class="header-section-number">15</span> Sample, batch, mini-batch, iteration y epoch</a>
+  <li><a href="#el-forward-pass" id="toc-el-forward-pass" class="nav-link" data-scroll-target="#el-forward-pass"><span class="header-section-number">15</span> El forward pass</a></li>
+  <li><a href="#forward-durante-entrenamiento-e-inferencia" id="toc-forward-durante-entrenamiento-e-inferencia" class="nav-link" data-scroll-target="#forward-durante-entrenamiento-e-inferencia"><span class="header-section-number">16</span> Forward durante entrenamiento e inferencia</a>
   <ul class="collapse">
-  <li><a href="#sample" id="toc-sample" class="nav-link" data-scroll-target="#sample"><span class="header-section-number">15.1</span> Sample</a></li>
-  <li><a href="#batch" id="toc-batch" class="nav-link" data-scroll-target="#batch"><span class="header-section-number">15.2</span> Batch</a></li>
-  <li><a href="#batch-gradient-descent" id="toc-batch-gradient-descent" class="nav-link" data-scroll-target="#batch-gradient-descent"><span class="header-section-number">15.3</span> Batch Gradient Descent</a></li>
-  <li><a href="#stochastic-gradient-descent" id="toc-stochastic-gradient-descent" class="nav-link" data-scroll-target="#stochastic-gradient-descent"><span class="header-section-number">15.4</span> Stochastic Gradient Descent</a></li>
-  <li><a href="#mini-batch-gradient-descent" id="toc-mini-batch-gradient-descent" class="nav-link" data-scroll-target="#mini-batch-gradient-descent"><span class="header-section-number">15.5</span> Mini-batch Gradient Descent</a></li>
-  <li><a href="#epoch-e-iteration" id="toc-epoch-e-iteration" class="nav-link" data-scroll-target="#epoch-e-iteration"><span class="header-section-number">15.6</span> Epoch e iteration</a></li>
+  <li><a href="#entrenamiento" id="toc-entrenamiento" class="nav-link" data-scroll-target="#entrenamiento"><span class="header-section-number">16.1</span> Entrenamiento</a></li>
+  <li><a href="#nferencia" id="toc-nferencia" class="nav-link" data-scroll-target="#nferencia"><span class="header-section-number">16.2</span> nferencia</a></li>
   </ul></li>
-  <li><a href="#el-forward-pass" id="toc-el-forward-pass" class="nav-link" data-scroll-target="#el-forward-pass"><span class="header-section-number">16</span> El forward pass</a></li>
-  <li><a href="#forward-durante-entrenamiento-e-inferencia" id="toc-forward-durante-entrenamiento-e-inferencia" class="nav-link" data-scroll-target="#forward-durante-entrenamiento-e-inferencia"><span class="header-section-number">17</span> Forward durante entrenamiento e inferencia</a>
+  <li><a href="#training-validation-test-e-inference" id="toc-training-validation-test-e-inference" class="nav-link" data-scroll-target="#training-validation-test-e-inference"><span class="header-section-number">17</span> Training, validation, test e inference</a></li>
+  <li><a href="#de-la-pérdida-al-gradiente" id="toc-de-la-pérdida-al-gradiente" class="nav-link" data-scroll-target="#de-la-pérdida-al-gradiente"><span class="header-section-number">18</span> De la pérdida al gradiente</a></li>
+  <li><a href="#interpretación-geométrica-del-gradiente" id="toc-interpretación-geométrica-del-gradiente" class="nav-link" data-scroll-target="#interpretación-geométrica-del-gradiente"><span class="header-section-number">19</span> Interpretación geométrica del gradiente</a></li>
+  <li><a href="#descenso-por-gradiente" id="toc-descenso-por-gradiente" class="nav-link" data-scroll-target="#descenso-por-gradiente"><span class="header-section-number">20</span> Descenso por gradiente</a></li>
+  <li><a href="#ejemplo-analítico-una-dimensión" id="toc-ejemplo-analítico-una-dimensión" class="nav-link" data-scroll-target="#ejemplo-analítico-una-dimensión"><span class="header-section-number">21</span> Ejemplo analítico: una dimensión</a></li>
+  <li><a href="#superficie-de-pérdida-y-condicionamiento" id="toc-superficie-de-pérdida-y-condicionamiento" class="nav-link" data-scroll-target="#superficie-de-pérdida-y-condicionamiento"><span class="header-section-number">22</span> Superficie de pérdida y condicionamiento</a></li>
+  <li><a href="#por-qué-mini-batches" id="toc-por-qué-mini-batches" class="nav-link" data-scroll-target="#por-qué-mini-batches"><span class="header-section-number">23</span> ¿Por qué mini-batches?</a></li>
+  <li><a href="#regla-de-la-cadena" id="toc-regla-de-la-cadena" class="nav-link" data-scroll-target="#regla-de-la-cadena"><span class="header-section-number">24</span> Regla de la cadena</a></li>
+  <li><a href="#grafos-computacionales" id="toc-grafos-computacionales" class="nav-link" data-scroll-target="#grafos-computacionales"><span class="header-section-number">25</span> Grafos computacionales</a></li>
+  <li><a href="#un-grafo-computacional-a-mano" id="toc-un-grafo-computacional-a-mano" class="nav-link" data-scroll-target="#un-grafo-computacional-a-mano"><span class="header-section-number">26</span> Un grafo computacional a mano</a></li>
+  <li><a href="#de-derivadas-a-jacobianos" id="toc-de-derivadas-a-jacobianos" class="nav-link" data-scroll-target="#de-derivadas-a-jacobianos"><span class="header-section-number">27</span> De derivadas a Jacobianos</a></li>
+  <li><a href="#pytorch-construye-jacobianos-gigantes" id="toc-pytorch-construye-jacobianos-gigantes" class="nav-link" data-scroll-target="#pytorch-construye-jacobianos-gigantes"><span class="header-section-number">28</span> ¿PyTorch construye Jacobianos gigantes?</a></li>
+  <li><a href="#una-capa-neuronal-en-forma-matricial" id="toc-una-capa-neuronal-en-forma-matricial" class="nav-link" data-scroll-target="#una-capa-neuronal-en-forma-matricial"><span class="header-section-number">29</span> Una capa neuronal en forma matricial</a></li>
+  <li><a href="#backpropagation-en-una-capa" id="toc-backpropagation-en-una-capa" class="nav-link" data-scroll-target="#backpropagation-en-una-capa"><span class="header-section-number">30</span> Backpropagation en una capa</a></li>
+  <li><a href="#backpropagation-en-una-red-profunda" id="toc-backpropagation-en-una-red-profunda" class="nav-link" data-scroll-target="#backpropagation-en-una-red-profunda"><span class="header-section-number">31</span> Backpropagation en una red profunda</a></li>
+  <li><a href="#ejemplo-manual-una-neurona-con-mse" id="toc-ejemplo-manual-una-neurona-con-mse" class="nav-link" data-scroll-target="#ejemplo-manual-una-neurona-con-mse"><span class="header-section-number">32</span> Ejemplo manual: una neurona con MSE</a></li>
+  <li><a href="#backward-no-actualiza-los-parámetros" id="toc-backward-no-actualiza-los-parámetros" class="nav-link" data-scroll-target="#backward-no-actualiza-los-parámetros"><span class="header-section-number">33</span> <code>backward()</code> no actualiza los parámetros</a></li>
+  <li><a href="#por-qué-zero_grad" id="toc-por-qué-zero_grad" class="nav-link" data-scroll-target="#por-qué-zero_grad"><span class="header-section-number">34</span> ¿Por qué <code>zero_grad()</code>?</a></li>
+  <li><a href="#funciones-de-activación-y-sus-derivadas" id="toc-funciones-de-activación-y-sus-derivadas" class="nav-link" data-scroll-target="#funciones-de-activación-y-sus-derivadas"><span class="header-section-number">35</span> Funciones de activación y sus derivadas</a>
   <ul class="collapse">
-  <li><a href="#entrenamiento" id="toc-entrenamiento" class="nav-link" data-scroll-target="#entrenamiento"><span class="header-section-number">17.1</span> Entrenamiento</a></li>
-  <li><a href="#nferencia" id="toc-nferencia" class="nav-link" data-scroll-target="#nferencia"><span class="header-section-number">17.2</span> nferencia</a></li>
+  <li><a href="#sigmoide" id="toc-sigmoide" class="nav-link" data-scroll-target="#sigmoide"><span class="header-section-number">35.1</span> Sigmoide</a></li>
+  <li><a href="#tanh" id="toc-tanh" class="nav-link" data-scroll-target="#tanh"><span class="header-section-number">35.2</span> Tanh</a></li>
+  <li><a href="#relu" id="toc-relu" class="nav-link" data-scroll-target="#relu"><span class="header-section-number">35.3</span> ReLU</a></li>
+  <li><a href="#otras-activaciones" id="toc-otras-activaciones" class="nav-link" data-scroll-target="#otras-activaciones"><span class="header-section-number">35.4</span> Otras activaciones</a></li>
   </ul></li>
-  <li><a href="#training-validation-test-e-inference" id="toc-training-validation-test-e-inference" class="nav-link" data-scroll-target="#training-validation-test-e-inference"><span class="header-section-number">18</span> Training, validation, test e inference</a></li>
-  <li><a href="#de-la-pérdida-al-gradiente" id="toc-de-la-pérdida-al-gradiente" class="nav-link" data-scroll-target="#de-la-pérdida-al-gradiente"><span class="header-section-number">19</span> De la pérdida al gradiente</a></li>
-  <li><a href="#interpretación-geométrica-del-gradiente" id="toc-interpretación-geométrica-del-gradiente" class="nav-link" data-scroll-target="#interpretación-geométrica-del-gradiente"><span class="header-section-number">20</span> Interpretación geométrica del gradiente</a></li>
-  <li><a href="#descenso-por-gradiente" id="toc-descenso-por-gradiente" class="nav-link" data-scroll-target="#descenso-por-gradiente"><span class="header-section-number">21</span> Descenso por gradiente</a></li>
-  <li><a href="#ejemplo-analítico-una-dimensión" id="toc-ejemplo-analítico-una-dimensión" class="nav-link" data-scroll-target="#ejemplo-analítico-una-dimensión"><span class="header-section-number">22</span> Ejemplo analítico: una dimensión</a></li>
-  <li><a href="#superficie-de-pérdida-y-condicionamiento" id="toc-superficie-de-pérdida-y-condicionamiento" class="nav-link" data-scroll-target="#superficie-de-pérdida-y-condicionamiento"><span class="header-section-number">23</span> Superficie de pérdida y condicionamiento</a></li>
-  <li><a href="#por-qué-mini-batches" id="toc-por-qué-mini-batches" class="nav-link" data-scroll-target="#por-qué-mini-batches"><span class="header-section-number">24</span> ¿Por qué mini-batches?</a></li>
-  <li><a href="#regla-de-la-cadena" id="toc-regla-de-la-cadena" class="nav-link" data-scroll-target="#regla-de-la-cadena"><span class="header-section-number">25</span> Regla de la cadena</a></li>
-  <li><a href="#grafos-computacionales" id="toc-grafos-computacionales" class="nav-link" data-scroll-target="#grafos-computacionales"><span class="header-section-number">26</span> Grafos computacionales</a></li>
-  <li><a href="#un-grafo-computacional-a-mano" id="toc-un-grafo-computacional-a-mano" class="nav-link" data-scroll-target="#un-grafo-computacional-a-mano"><span class="header-section-number">27</span> Un grafo computacional a mano</a></li>
-  <li><a href="#de-derivadas-a-jacobianos" id="toc-de-derivadas-a-jacobianos" class="nav-link" data-scroll-target="#de-derivadas-a-jacobianos"><span class="header-section-number">28</span> De derivadas a Jacobianos</a></li>
-  <li><a href="#pytorch-construye-jacobianos-gigantes" id="toc-pytorch-construye-jacobianos-gigantes" class="nav-link" data-scroll-target="#pytorch-construye-jacobianos-gigantes"><span class="header-section-number">29</span> ¿PyTorch construye Jacobianos gigantes?</a></li>
-  <li><a href="#una-capa-neuronal-en-forma-matricial" id="toc-una-capa-neuronal-en-forma-matricial" class="nav-link" data-scroll-target="#una-capa-neuronal-en-forma-matricial"><span class="header-section-number">30</span> Una capa neuronal en forma matricial</a></li>
-  <li><a href="#backpropagation-en-una-capa" id="toc-backpropagation-en-una-capa" class="nav-link" data-scroll-target="#backpropagation-en-una-capa"><span class="header-section-number">31</span> Backpropagation en una capa</a></li>
-  <li><a href="#backpropagation-en-una-red-profunda" id="toc-backpropagation-en-una-red-profunda" class="nav-link" data-scroll-target="#backpropagation-en-una-red-profunda"><span class="header-section-number">32</span> Backpropagation en una red profunda</a></li>
-  <li><a href="#ejemplo-manual-una-neurona-con-mse" id="toc-ejemplo-manual-una-neurona-con-mse" class="nav-link" data-scroll-target="#ejemplo-manual-una-neurona-con-mse"><span class="header-section-number">33</span> Ejemplo manual: una neurona con MSE</a></li>
-  <li><a href="#backward-no-actualiza-los-parámetros" id="toc-backward-no-actualiza-los-parámetros" class="nav-link" data-scroll-target="#backward-no-actualiza-los-parámetros"><span class="header-section-number">34</span> <code>backward()</code> no actualiza los parámetros</a></li>
-  <li><a href="#por-qué-zero_grad" id="toc-por-qué-zero_grad" class="nav-link" data-scroll-target="#por-qué-zero_grad"><span class="header-section-number">35</span> ¿Por qué <code>zero_grad()</code>?</a></li>
-  <li><a href="#funciones-de-activación-y-sus-derivadas" id="toc-funciones-de-activación-y-sus-derivadas" class="nav-link" data-scroll-target="#funciones-de-activación-y-sus-derivadas"><span class="header-section-number">36</span> Funciones de activación y sus derivadas</a>
+  <li><a href="#vanishing-gradients" id="toc-vanishing-gradients" class="nav-link" data-scroll-target="#vanishing-gradients"><span class="header-section-number">36</span> Vanishing gradients</a></li>
+  <li><a href="#exploding-gradients" id="toc-exploding-gradients" class="nav-link" data-scroll-target="#exploding-gradients"><span class="header-section-number">37</span> Exploding gradients</a></li>
+  <li><a href="#inicialización-de-pesos" id="toc-inicialización-de-pesos" class="nav-link" data-scroll-target="#inicialización-de-pesos"><span class="header-section-number">38</span> Inicialización de pesos</a>
   <ul class="collapse">
-  <li><a href="#sigmoide" id="toc-sigmoide" class="nav-link" data-scroll-target="#sigmoide"><span class="header-section-number">36.1</span> Sigmoide</a></li>
-  <li><a href="#tanh" id="toc-tanh" class="nav-link" data-scroll-target="#tanh"><span class="header-section-number">36.2</span> Tanh</a></li>
-  <li><a href="#relu" id="toc-relu" class="nav-link" data-scroll-target="#relu"><span class="header-section-number">36.3</span> ReLU</a></li>
-  <li><a href="#otras-activaciones" id="toc-otras-activaciones" class="nav-link" data-scroll-target="#otras-activaciones"><span class="header-section-number">36.4</span> Otras activaciones</a></li>
+  <li><a href="#xavier-glorot" id="toc-xavier-glorot" class="nav-link" data-scroll-target="#xavier-glorot"><span class="header-section-number">38.1</span> Xavier / Glorot</a></li>
+  <li><a href="#he-kaiming" id="toc-he-kaiming" class="nav-link" data-scroll-target="#he-kaiming"><span class="header-section-number">38.2</span> He / Kaiming</a></li>
   </ul></li>
-  <li><a href="#vanishing-gradients" id="toc-vanishing-gradients" class="nav-link" data-scroll-target="#vanishing-gradients"><span class="header-section-number">37</span> Vanishing gradients</a></li>
-  <li><a href="#exploding-gradients" id="toc-exploding-gradients" class="nav-link" data-scroll-target="#exploding-gradients"><span class="header-section-number">38</span> Exploding gradients</a></li>
-  <li><a href="#inicialización-de-pesos" id="toc-inicialización-de-pesos" class="nav-link" data-scroll-target="#inicialización-de-pesos"><span class="header-section-number">39</span> Inicialización de pesos</a>
+  <li><a href="#el-learning-rate" id="toc-el-learning-rate" class="nav-link" data-scroll-target="#el-learning-rate"><span class="header-section-number">39</span> El learning rate</a></li>
+  <li><a href="#sgd-con-momentum" id="toc-sgd-con-momentum" class="nav-link" data-scroll-target="#sgd-con-momentum"><span class="header-section-number">40</span> SGD con momentum</a></li>
+  <li><a href="#rmsprop" id="toc-rmsprop" class="nav-link" data-scroll-target="#rmsprop"><span class="header-section-number">41</span> RMSProp</a></li>
+  <li><a href="#adam-y-adamw" id="toc-adam-y-adamw" class="nav-link" data-scroll-target="#adam-y-adamw"><span class="header-section-number">42</span> Adam y AdamW</a></li>
+  <li><a href="#regularización-y-weight-decay" id="toc-regularización-y-weight-decay" class="nav-link" data-scroll-target="#regularización-y-weight-decay"><span class="header-section-number">43</span> Regularización y weight decay</a></li>
+  <li><a href="#learning-rate-scheduling" id="toc-learning-rate-scheduling" class="nav-link" data-scroll-target="#learning-rate-scheduling"><span class="header-section-number">44</span> Learning rate scheduling</a></li>
+  <li><a href="#pytorch-el-ciclo-mínimo-completo" id="toc-pytorch-el-ciclo-mínimo-completo" class="nav-link" data-scroll-target="#pytorch-el-ciclo-mínimo-completo"><span class="header-section-number">45</span> 35. PyTorch: el ciclo mínimo completo</a></li>
+  <li><a href="#un-ejemplo-completo-regresión-lineal" id="toc-un-ejemplo-completo-regresión-lineal" class="nav-link" data-scroll-target="#un-ejemplo-completo-regresión-lineal"><span class="header-section-number">46</span> Un ejemplo completo: regresión lineal</a></li>
+  <li><a href="#inspeccionar-gradientes-en-pytorch" id="toc-inspeccionar-gradientes-en-pytorch" class="nav-link" data-scroll-target="#inspeccionar-gradientes-en-pytorch"><span class="header-section-number">47</span> Inspeccionar gradientes en PyTorch</a></li>
+  <li><a href="#dataloader-batches-y-shuffle" id="toc-dataloader-batches-y-shuffle" class="nav-link" data-scroll-target="#dataloader-batches-y-shuffle"><span class="header-section-number">48</span> <code>DataLoader</code>, batches y <code>shuffle</code></a></li>
+  <li><a href="#validación-en-pytorch" id="toc-validación-en-pytorch" class="nav-link" data-scroll-target="#validación-en-pytorch"><span class="header-section-number">49</span> Validación en PyTorch</a></li>
+  <li><a href="#inferencia-para-clasificación" id="toc-inferencia-para-clasificación" class="nav-link" data-scroll-target="#inferencia-para-clasificación"><span class="header-section-number">50</span> Inferencia para clasificación</a></li>
+  <li><a href="#overfitting-y-early-stopping" id="toc-overfitting-y-early-stopping" class="nav-link" data-scroll-target="#overfitting-y-early-stopping"><span class="header-section-number">51</span> Overfitting y early stopping</a></li>
+  <li><a href="#optimización-no-es-generalización" id="toc-optimización-no-es-generalización" class="nav-link" data-scroll-target="#optimización-no-es-generalización"><span class="header-section-number">52</span> Optimización no es generalización</a></li>
+  <li><a href="#imágenes-médicas-dimensiones-del-tensor" id="toc-imágenes-médicas-dimensiones-del-tensor" class="nav-link" data-scroll-target="#imágenes-médicas-dimensiones-del-tensor"><span class="header-section-number">53</span> Imágenes médicas: dimensiones del tensor</a></li>
+  <li><a href="#por-qué-las-imágenes-3d-consumen-tanta-memoria" id="toc-por-qué-las-imágenes-3d-consumen-tanta-memoria" class="nav-link" data-scroll-target="#por-qué-las-imágenes-3d-consumen-tanta-memoria"><span class="header-section-number">54</span> ¿Por qué las imágenes 3D consumen tanta memoria?</a></li>
+  <li><a href="#gradient-accumulation" id="toc-gradient-accumulation" class="nav-link" data-scroll-target="#gradient-accumulation"><span class="header-section-number">55</span> Gradient accumulation</a></li>
+  <li><a href="#mixed-precision" id="toc-mixed-precision" class="nav-link" data-scroll-target="#mixed-precision"><span class="header-section-number">56</span> Mixed precision</a></li>
+  <li><a href="#monai-del-mecanismo-general-a-física-médica" id="toc-monai-del-mecanismo-general-a-física-médica" class="nav-link" data-scroll-target="#monai-del-mecanismo-general-a-física-médica"><span class="header-section-number">57</span> MONAI: del mecanismo general a física médica</a></li>
+  <li><a href="#inferencia-con-monaipytorch" id="toc-inferencia-con-monaipytorch" class="nav-link" data-scroll-target="#inferencia-con-monaipytorch"><span class="header-section-number">58</span> Inferencia con MONAI/PyTorch</a></li>
+  <li><a href="#el-ciclo-completo" id="toc-el-ciclo-completo" class="nav-link" data-scroll-target="#el-ciclo-completo"><span class="header-section-number">59</span> 49. El ciclo completo</a></li>
+  <li><a href="#resumen-matemático-del-entrenamiento" id="toc-resumen-matemático-del-entrenamiento" class="nav-link" data-scroll-target="#resumen-matemático-del-entrenamiento"><span class="header-section-number">60</span> Resumen matemático del entrenamiento</a>
   <ul class="collapse">
-  <li><a href="#xavier-glorot" id="toc-xavier-glorot" class="nav-link" data-scroll-target="#xavier-glorot"><span class="header-section-number">39.1</span> Xavier / Glorot</a></li>
-  <li><a href="#he-kaiming" id="toc-he-kaiming" class="nav-link" data-scroll-target="#he-kaiming"><span class="header-section-number">39.2</span> He / Kaiming</a></li>
+  <li><a href="#forward" id="toc-forward" class="nav-link" data-scroll-target="#forward"><span class="header-section-number">60.1</span> Forward</a></li>
+  <li><a href="#loss-de-un-mini-batch" id="toc-loss-de-un-mini-batch" class="nav-link" data-scroll-target="#loss-de-un-mini-batch"><span class="header-section-number">60.2</span> Loss de un mini-batch</a></li>
+  <li><a href="#backward" id="toc-backward" class="nav-link" data-scroll-target="#backward"><span class="header-section-number">60.3</span> Backward</a></li>
+  <li><a href="#update" id="toc-update" class="nav-link" data-scroll-target="#update"><span class="header-section-number">60.4</span> Update</a></li>
   </ul></li>
-  <li><a href="#el-learning-rate" id="toc-el-learning-rate" class="nav-link" data-scroll-target="#el-learning-rate"><span class="header-section-number">40</span> El learning rate</a></li>
-  <li><a href="#sgd-con-momentum" id="toc-sgd-con-momentum" class="nav-link" data-scroll-target="#sgd-con-momentum"><span class="header-section-number">41</span> SGD con momentum</a></li>
-  <li><a href="#rmsprop" id="toc-rmsprop" class="nav-link" data-scroll-target="#rmsprop"><span class="header-section-number">42</span> RMSProp</a></li>
-  <li><a href="#adam-y-adamw" id="toc-adam-y-adamw" class="nav-link" data-scroll-target="#adam-y-adamw"><span class="header-section-number">43</span> Adam y AdamW</a></li>
-  <li><a href="#regularización-y-weight-decay" id="toc-regularización-y-weight-decay" class="nav-link" data-scroll-target="#regularización-y-weight-decay"><span class="header-section-number">44</span> Regularización y weight decay</a></li>
-  <li><a href="#learning-rate-scheduling" id="toc-learning-rate-scheduling" class="nav-link" data-scroll-target="#learning-rate-scheduling"><span class="header-section-number">45</span> Learning rate scheduling</a></li>
-  <li><a href="#pytorch-el-ciclo-mínimo-completo" id="toc-pytorch-el-ciclo-mínimo-completo" class="nav-link" data-scroll-target="#pytorch-el-ciclo-mínimo-completo"><span class="header-section-number">46</span> 35. PyTorch: el ciclo mínimo completo</a></li>
-  <li><a href="#un-ejemplo-completo-regresión-lineal" id="toc-un-ejemplo-completo-regresión-lineal" class="nav-link" data-scroll-target="#un-ejemplo-completo-regresión-lineal"><span class="header-section-number">47</span> Un ejemplo completo: regresión lineal</a></li>
-  <li><a href="#inspeccionar-gradientes-en-pytorch" id="toc-inspeccionar-gradientes-en-pytorch" class="nav-link" data-scroll-target="#inspeccionar-gradientes-en-pytorch"><span class="header-section-number">48</span> Inspeccionar gradientes en PyTorch</a></li>
-  <li><a href="#dataloader-batches-y-shuffle" id="toc-dataloader-batches-y-shuffle" class="nav-link" data-scroll-target="#dataloader-batches-y-shuffle"><span class="header-section-number">49</span> <code>DataLoader</code>, batches y <code>shuffle</code></a></li>
-  <li><a href="#validación-en-pytorch" id="toc-validación-en-pytorch" class="nav-link" data-scroll-target="#validación-en-pytorch"><span class="header-section-number">50</span> Validación en PyTorch</a></li>
-  <li><a href="#inferencia-para-clasificación" id="toc-inferencia-para-clasificación" class="nav-link" data-scroll-target="#inferencia-para-clasificación"><span class="header-section-number">51</span> Inferencia para clasificación</a></li>
-  <li><a href="#overfitting-y-early-stopping" id="toc-overfitting-y-early-stopping" class="nav-link" data-scroll-target="#overfitting-y-early-stopping"><span class="header-section-number">52</span> Overfitting y early stopping</a></li>
-  <li><a href="#optimización-no-es-generalización" id="toc-optimización-no-es-generalización" class="nav-link" data-scroll-target="#optimización-no-es-generalización"><span class="header-section-number">53</span> Optimización no es generalización</a></li>
-  <li><a href="#imágenes-médicas-dimensiones-del-tensor" id="toc-imágenes-médicas-dimensiones-del-tensor" class="nav-link" data-scroll-target="#imágenes-médicas-dimensiones-del-tensor"><span class="header-section-number">54</span> Imágenes médicas: dimensiones del tensor</a></li>
-  <li><a href="#por-qué-las-imágenes-3d-consumen-tanta-memoria" id="toc-por-qué-las-imágenes-3d-consumen-tanta-memoria" class="nav-link" data-scroll-target="#por-qué-las-imágenes-3d-consumen-tanta-memoria"><span class="header-section-number">55</span> ¿Por qué las imágenes 3D consumen tanta memoria?</a></li>
-  <li><a href="#gradient-accumulation" id="toc-gradient-accumulation" class="nav-link" data-scroll-target="#gradient-accumulation"><span class="header-section-number">56</span> Gradient accumulation</a></li>
-  <li><a href="#mixed-precision" id="toc-mixed-precision" class="nav-link" data-scroll-target="#mixed-precision"><span class="header-section-number">57</span> Mixed precision</a></li>
-  <li><a href="#monai-del-mecanismo-general-a-física-médica" id="toc-monai-del-mecanismo-general-a-física-médica" class="nav-link" data-scroll-target="#monai-del-mecanismo-general-a-física-médica"><span class="header-section-number">58</span> MONAI: del mecanismo general a física médica</a></li>
-  <li><a href="#inferencia-con-monaipytorch" id="toc-inferencia-con-monaipytorch" class="nav-link" data-scroll-target="#inferencia-con-monaipytorch"><span class="header-section-number">59</span> Inferencia con MONAI/PyTorch</a></li>
-  <li><a href="#el-ciclo-completo" id="toc-el-ciclo-completo" class="nav-link" data-scroll-target="#el-ciclo-completo"><span class="header-section-number">60</span> 49. El ciclo completo</a></li>
-  <li><a href="#resumen-matemático-del-entrenamiento" id="toc-resumen-matemático-del-entrenamiento" class="nav-link" data-scroll-target="#resumen-matemático-del-entrenamiento"><span class="header-section-number">61</span> Resumen matemático del entrenamiento</a>
-  <ul class="collapse">
-  <li><a href="#forward" id="toc-forward" class="nav-link" data-scroll-target="#forward"><span class="header-section-number">61.1</span> Forward</a></li>
-  <li><a href="#loss-de-un-mini-batch" id="toc-loss-de-un-mini-batch" class="nav-link" data-scroll-target="#loss-de-un-mini-batch"><span class="header-section-number">61.2</span> Loss de un mini-batch</a></li>
-  <li><a href="#backward" id="toc-backward" class="nav-link" data-scroll-target="#backward"><span class="header-section-number">61.3</span> Backward</a></li>
-  <li><a href="#update" id="toc-update" class="nav-link" data-scroll-target="#update"><span class="header-section-number">61.4</span> Update</a></li>
-  </ul></li>
-  <li><a href="#resumen-matemático-de-backpropagation" id="toc-resumen-matemático-de-backpropagation" class="nav-link" data-scroll-target="#resumen-matemático-de-backpropagation"><span class="header-section-number">62</span> Resumen matemático de backpropagation</a></li>
-  <li><a href="#bibliografía-de-la-unidad" id="toc-bibliografía-de-la-unidad" class="nav-link" data-scroll-target="#bibliografía-de-la-unidad"><span class="header-section-number">63</span> Bibliografía de la unidad</a></li>
+  <li><a href="#resumen-matemático-de-backpropagation" id="toc-resumen-matemático-de-backpropagation" class="nav-link" data-scroll-target="#resumen-matemático-de-backpropagation"><span class="header-section-number">61</span> Resumen matemático de backpropagation</a></li>
+  <li><a href="#bibliografía-de-la-unidad" id="toc-bibliografía-de-la-unidad" class="nav-link" data-scroll-target="#bibliografía-de-la-unidad"><span class="header-section-number">62</span> Bibliografía de la unidad</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidad1/notas.html">1. Fundamentos de IA</a></li><li class="breadcrumb-item"><a href="../unidad1/notas.html">Notas de clase</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidad1/unidad1.html">1. Fundamentos de IA</a></li><li class="breadcrumb-item"><a href="../unidad1/notas.html">Notas de clase</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Fundamentos de IA aplicada a Física Médica</h1>
 <p class="subtitle lead">Notas de clase — Curso de Posgrado en Inteligencia Artificial en Física Médica</p>
@@ -485,7 +541,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 20, 2026</p>
+      <p class="date">August 25, 2026</p>
     </div>
   </div>
   
@@ -497,40 +553,21 @@ window.Quarto = {
 </header>
 
 
-<section id="unidad-1-del-aprendizaje-automático-clásico-al-deep-learning" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Unidad 1 — Del aprendizaje automático clásico al Deep Learning</h1>
-<section id="presentación-de-la-unidad" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="presentación-de-la-unidad"><span class="header-section-number">1.1</span> Presentación de la unidad</h2>
-<p>Esta primera unidad tiene como objetivo tender un puente entre los métodos estadísticos y computacionales clásicos, ampliamente utilizados en Física Médica —dosimetría, radiodiagnóstico, radioterapia y medicina nuclear— y el paradigma del <strong>Deep Learning</strong>.</p>
-<p>La pregunta que guía la unidad es:</p>
-<blockquote class="blockquote">
-<p><strong>¿Por qué y cuándo conviene reemplazar —o complementar— un modelo clásico por uno basado en redes neuronales?</strong></p>
-</blockquote>
-<p>La respuesta no es que los modelos de Deep Learning sean necesariamente “mejores”. Un modelo más complejo puede ser innecesario si un modelo clásico resuelve adecuadamente el problema. La ventaja de las redes neuronales aparece especialmente cuando necesitamos aprender relaciones complejas a partir de datos de alta dimensionalidad y cuando diseñar manualmente una representación adecuada resulta difícil.</p>
-<p>Por eso, antes de estudiar redes profundas, necesitamos entender qué pueden hacer los modelos clásicos, cuáles son sus supuestos y dónde aparecen sus limitaciones.</p>
-</section>
-<section id="objetivos-de-aprendizaje" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="objetivos-de-aprendizaje"><span class="header-section-number">1.2</span> Objetivos de aprendizaje</h2>
-<p>Al finalizar esta unidad se espera que el estudiante pueda:</p>
-<ol type="1">
-<li>Distinguir los principales paradigmas del aprendizaje automático: supervisado, no supervisado y por refuerzo.</li>
-<li>Comprender la diferencia entre riesgo esperado y riesgo empírico.</li>
-<li>Explicar los conceptos de generalización, sobreajuste y <em>dataset shift</em>.</li>
-<li>Reconocer los principales modelos clásicos de aprendizaje automático y sus supuestos.</li>
-<li>Comprender matemáticamente la regresión lineal y logística.</li>
-<li>Interpretar geométricamente un clasificador lineal.</li>
-<li>Formalizar matemáticamente el <strong>Perceptrón</strong>.</li>
-<li>Implementar el algoritmo de aprendizaje del Perceptrón.</li>
-<li>Comprender por qué una única neurona no puede resolver problemas no linealmente separables como XOR.</li>
-<li>Entender cómo la composición de múltiples neuronas conduce naturalmente al concepto de red neuronal.</li>
-<li>Comprender por qué el Deep Learning permite aprender representaciones complejas de los datos.</li>
-<li>Reconocer algunos de los principales hitos históricos que condujeron desde las primeras redes neuronales hasta los modelos actuales.</li>
-</ol>
-<hr>
-</section>
-</section>
-<section id="por-qué-empezar-por-lo-clásico" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> 1. ¿Por qué empezar por lo clásico?</h1>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Descarga:</strong> <a href="notas.pdf">obtener estas notas en PDF</a></p>
+</div>
+</div>
+<section id="por-qué-empezar-por-lo-clásico" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> 1. ¿Por qué empezar por lo clásico?</h1>
 <p>Antes de introducir las redes neuronales profundas, conviene entender los métodos que dominaron —y que siguen dominando en muchos contextos clínicos— el análisis de datos médicos.</p>
 <p>Los modelos clásicos tienen ventajas importantes:</p>
 <ul>
@@ -563,8 +600,8 @@ window.Quarto = {
 </blockquote>
 <p>La elección del modelo depende del problema, de los datos disponibles, de los objetivos y del costo asociado a su desarrollo, validación y utilización.</p>
 </section>
-<section id="los-paradigmas-del-aprendizaje-automático" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> 2. Los paradigmas del aprendizaje automático</h1>
+<section id="los-paradigmas-del-aprendizaje-automático" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> 2. Los paradigmas del aprendizaje automático</h1>
 <p>Podemos organizar una gran parte de los métodos de aprendizaje automático según la información disponible durante el entrenamiento.</p>
 <table class="caption-top table">
 <colgroup>
@@ -604,8 +641,8 @@ window.Quarto = {
 <p>En este caso, las etiquetas utilizadas para entrenar el modelo se construyen automáticamente a partir de los propios datos. Esto permite aprovechar grandes cantidades de datos sin etiquetar y será especialmente importante al estudiar modelos fundacionales y modelos de lenguaje.</p>
 <hr>
 </section>
-<section id="aprendizaje-supervisado" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> 3. Aprendizaje supervisado</h1>
+<section id="aprendizaje-supervisado" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> 3. Aprendizaje supervisado</h1>
 <p>Dado un conjunto de datos</p>
 <p><span class="math display">\[
 \mathcal{D} = {(\mathbf{x}_i,y_i)}_{i=1}^{N}
@@ -656,8 +693,8 @@ f_\theta(\mathbf{x}_i),y_i
 <p>Donde el primer término mide el error cometido sobre los datos de entrenamiento y <span class="math inline">\(\Omega(\theta)\)</span> representa un término de regularización.</p>
 <p>El parámetro <span class="math inline">\(\lambda\)</span> controla cuánto penalizamos la complejidad del modelo.</p>
 </section>
-<section id="aprendizaje-no-supervisado" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> 4. Aprendizaje no supervisado</h1>
+<section id="aprendizaje-no-supervisado" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> 4. Aprendizaje no supervisado</h1>
 <p>En el aprendizaje no supervisado partimos de un conjunto de datos</p>
 <p><span class="math display">\[
 \mathcal{D}={\mathbf{x}_i}_{i=1}^{N},
@@ -688,8 +725,8 @@ f_\theta(\mathbf{x}_i),y_i
 <p><strong>¿Los patrones encontrados son reales y clínicamente relevantes, o son simplemente estructuras particulares de nuestra muestra?</strong></p>
 </blockquote>
 <p>Por eso, también en aprendizaje no supervisado es necesario evaluar la estabilidad y reproducibilidad de los resultados.</p>
-<section id="aplicaciones" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="aplicaciones"><span class="header-section-number">5.1</span> Aplicaciones</h2>
+<section id="aplicaciones" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="aplicaciones"><span class="header-section-number">4.1</span> Aplicaciones</h2>
 <p>En Física Médica, el aprendizaje no supervisado puede utilizarse para:</p>
 <ul>
 <li>exploración de datos;</li>
@@ -704,8 +741,8 @@ f_\theta(\mathbf{x}_i),y_i
 <hr>
 </section>
 </section>
-<section id="aprendizaje-por-refuerzo" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> 5. Aprendizaje por refuerzo</h1>
+<section id="aprendizaje-por-refuerzo" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> 5. Aprendizaje por refuerzo</h1>
 <p>En el aprendizaje por refuerzo el problema es diferente.</p>
 <p>En lugar de aprender a partir de ejemplos <span class="math inline">\((\mathbf{x}_i,y_i)\)</span>, tenemos un <strong>agente</strong> que interactúa con un <strong>entorno</strong>.</p>
 <p>En cada instante <span class="math inline">\(t\)</span>:</p>
@@ -765,8 +802,8 @@ s_t
 </blockquote>
 <hr>
 </section>
-<section id="modelos-clásicos-de-aprendizaje-automático" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> 6. Modelos clásicos de aprendizaje automático</h1>
+<section id="modelos-clásicos-de-aprendizaje-automático" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> 6. Modelos clásicos de aprendizaje automático</h1>
 <p>Los distintos algoritmos incorporan diferentes <strong>sesgos inductivos</strong>: supuestos sobre la estructura de los datos que hacen que determinadas soluciones sean más fáciles de aprender que otras.</p>
 <table class="caption-top table">
 <colgroup>
@@ -838,8 +875,8 @@ s_t
 <p><strong>“¿Qué modelo es adecuado para este problema y estos datos?”</strong></p>
 </blockquote>
 </section>
-<section id="riesgo-esperado-y-riesgo-empírico" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Riesgo esperado y riesgo empírico</h1>
+<section id="riesgo-esperado-y-riesgo-empírico" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Riesgo esperado y riesgo empírico</h1>
 <p>Este concepto es fundamental para entender el aprendizaje automático.</p>
 <p>El <strong>riesgo esperado</strong> o <strong>riesgo real</strong> de un modelo es:</p>
 <p><span class="math display">\[
@@ -871,8 +908,8 @@ f(\mathbf{x}_i),y_i
 \right).
 \]</span></p>
 <p>El riesgo empírico es nuestro estimador del riesgo esperado.</p>
-<section id="una-analogía" class="level3" data-number="8.0.1">
-<h3 data-number="8.0.1" class="anchored" data-anchor-id="una-analogía"><span class="header-section-number">8.0.1</span> Una analogía</h3>
+<section id="una-analogía" class="level3" data-number="7.0.1">
+<h3 data-number="7.0.1" class="anchored" data-anchor-id="una-analogía"><span class="header-section-number">7.0.1</span> Una analogía</h3>
 <p>Supongamos que queremos conocer la altura promedio de todos los adultos de Argentina.</p>
 <p>No podemos medir a toda la población. Podemos seleccionar una muestra de 1.000 personas y calcular su altura promedio.</p>
 <p>El promedio de esas 1.000 personas es una estimación del promedio poblacional.</p>
@@ -882,8 +919,8 @@ f(\mathbf{x}_i),y_i
 <p><strong>entrenamos y evaluamos sobre una muestra, pero queremos que el modelo funcione sobre una población más amplia.</strong></p>
 </blockquote>
 </section>
-<section id="generalización-y-sobreajuste" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="generalización-y-sobreajuste"><span class="header-section-number">8.1</span> Generalización y sobreajuste</h2>
+<section id="generalización-y-sobreajuste" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="generalización-y-sobreajuste"><span class="header-section-number">7.1</span> Generalización y sobreajuste</h2>
 <p>Un modelo puede obtener un error extremadamente bajo sobre los datos de entrenamiento sin necesariamente generalizar bien a nuevos datos.</p>
 <p>Esto es el <strong>sobreajuste (<em>overfitting</em>)</strong>.</p>
 <p>Conceptualmente:</p>
@@ -918,8 +955,8 @@ f(\mathbf{x}_i),y_i
 <p>Por ejemplo, si tenemos múltiples imágenes del mismo paciente, no deberíamos distribuir aleatoriamente esas imágenes entre entrenamiento y test. De lo contrario, el modelo podría encontrarse durante el test con información muy relacionada con algo que ya vio durante el entrenamiento.</p>
 <hr>
 </section>
-<section id="generalización-en-física-médica" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="generalización-en-física-médica"><span class="header-section-number">8.2</span> Generalización en Física Médica</h2>
+<section id="generalización-en-física-médica" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="generalización-en-física-médica"><span class="header-section-number">7.2</span> Generalización en Física Médica</h2>
 <p>En Física Médica, la generalización tiene una dificultad adicional.</p>
 <p>Un modelo puede funcionar correctamente sobre nuevos pacientes del mismo centro y, sin embargo, degradar su desempeño cuando cambia:</p>
 <ul>
@@ -941,8 +978,8 @@ f(\mathbf{x}_i),y_i
 <hr>
 </section>
 </section>
-<section id="regresión-lineal-y-logística" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> 7. Regresión lineal y logística</h1>
+<section id="regresión-lineal-y-logística" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> 7. Regresión lineal y logística</h1>
 <p>La regresión lineal y la regresión logística son dos modelos fundamentales de aprendizaje supervisado.</p>
 <p>Ambos reciben un vector de características <span class="math inline">\(\mathbf{x}\)</span> y calculan una combinación lineal:</p>
 <p><span class="math display">\[
@@ -955,8 +992,8 @@ z=\mathbf{w}^{\top}\mathbf{x}+b.
 </ul>
 <p>El <strong>bias</strong> permite desplazar la salida del modelo independientemente de los valores de entrada.</p>
 <p>La diferencia entre ambos modelos está en qué hacemos con esta combinación lineal y qué tipo de variable queremos predecir.</p>
-<section id="regresión-lineal" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="regresión-lineal"><span class="header-section-number">9.1</span> Regresión lineal</h2>
+<section id="regresión-lineal" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="regresión-lineal"><span class="header-section-number">8.1</span> Regresión lineal</h2>
 <p>Se utiliza cuando la variable objetivo <span class="math inline">\(y\)</span> es continua.</p>
 <p>El modelo predice directamente:</p>
 <p><span class="math display">\[
@@ -975,8 +1012,8 @@ z=\mathbf{w}^{\top}\mathbf{x}+b.
 \]</span></p>
 <p>El modelo busca una combinación de las características que produzca predicciones lo más cercanas posible a los valores observados.</p>
 </section>
-<section id="regresión-logística" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="regresión-logística"><span class="header-section-number">9.2</span> Regresión logística</h2>
+<section id="regresión-logística" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="regresión-logística"><span class="header-section-number">8.2</span> Regresión logística</h2>
 <p>Se utiliza para clasificación. En el caso binario queremos distinguir, por ejemplo, entre una lesión benigna y una maligna.</p>
 <p>Partimos de la misma combinación lineal:</p>
 <p><span class="math display">\[
@@ -1019,8 +1056,8 @@ y_i\log(\hat p_i)
 <p>El valor 0.5 es una elección habitual, pero no necesariamente óptima en aplicaciones clínicas. El umbral puede modificarse dependiendo del costo relativo de falsos positivos y falsos negativos.</p>
 <hr>
 </section>
-<section id="el-puente-hacia-las-redes-neuronales" class="level2" data-number="9.3">
-<h2 data-number="9.3" class="anchored" data-anchor-id="el-puente-hacia-las-redes-neuronales"><span class="header-section-number">9.3</span> El puente hacia las redes neuronales</h2>
+<section id="el-puente-hacia-las-redes-neuronales" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="el-puente-hacia-las-redes-neuronales"><span class="header-section-number">8.3</span> El puente hacia las redes neuronales</h2>
 <p>La regresión logística contiene una idea que volveremos a encontrar en las redes neuronales.</p>
 <p>Primero calculamos:</p>
 <p><span class="math display">\[
@@ -1036,8 +1073,8 @@ z=\mathbf{w}^{\top}\mathbf{x}+b,
 <hr>
 </section>
 </section>
-<section id="qué-significa-que-un-modelo-sea-lineal" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> 8. ¿Qué significa que un modelo sea lineal?</h1>
+<section id="qué-significa-que-un-modelo-sea-lineal" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> 8. ¿Qué significa que un modelo sea lineal?</h1>
 <p>En un problema de clasificación binaria, un modelo lineal define una frontera de decisión mediante:</p>
 <p><span class="math display">\[
 \mathbf{w}^{\top}\mathbf{x}+b=0.
@@ -1056,8 +1093,8 @@ z=\mathbf{w}^{\top}\mathbf{x}+b,
 <p>¿Qué ocurre cuando los datos no pueden separarse mediante una frontera lineal?</p>
 </blockquote>
 <p>La respuesta nos lleva directamente al Perceptrón.</p>
-<section id="ejemplo-práctico-comparación-de-fronteras-de-decisión" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="ejemplo-práctico-comparación-de-fronteras-de-decisión"><span class="header-section-number">10.1</span> Ejemplo práctico: comparación de fronteras de decisión</h2>
+<section id="ejemplo-práctico-comparación-de-fronteras-de-decisión" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="ejemplo-práctico-comparación-de-fronteras-de-decisión"><span class="header-section-number">9.1</span> Ejemplo práctico: comparación de fronteras de decisión</h2>
 <div id="cell-fig-comparacion-clasica" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1112,10 +1149,10 @@ Figure&nbsp;1: Fronteras de decisión de modelos clásicos sobre un dataset sint
 <hr>
 </section>
 </section>
-<section id="introducción-al-deep-learning-breve-historia" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Introducción al Deep Learning: breve historia</h1>
-<section id="qué-es-el-deep-learning" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="qué-es-el-deep-learning"><span class="header-section-number">11.1</span> ¿Qué es el Deep Learning?</h2>
+<section id="introducción-al-deep-learning-breve-historia" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Introducción al Deep Learning: breve historia</h1>
+<section id="qué-es-el-deep-learning" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="qué-es-el-deep-learning"><span class="header-section-number">10.1</span> ¿Qué es el Deep Learning?</h2>
 <p>El <strong>Deep Learning</strong> (aprendizaje profundo) es una subfamilia del aprendizaje automático basada en <strong>redes neuronales artificiales con múltiples capas</strong>, capaces de aprender representaciones jerárquicas de los datos directamente desde datos crudos (píxeles, señales), sin necesidad de ingeniería manual de <em>features</em>.</p>
 <div id="fig-dl-ml-ai" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1144,8 +1181,8 @@ Figure&nbsp;3: Machine Learning vs.&nbsp;Deep Learning
 </figure>
 </div>
 </section>
-<section id="línea-de-tiempo-histórica" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="línea-de-tiempo-histórica"><span class="header-section-number">11.2</span> Línea de tiempo histórica</h2>
+<section id="línea-de-tiempo-histórica" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="línea-de-tiempo-histórica"><span class="header-section-number">10.2</span> Línea de tiempo histórica</h2>
 <div id="fig-timeline" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-timeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1158,16 +1195,16 @@ Figure&nbsp;4: Hitos históricos de la IA
 </div>
 <p>La historia del Deep Learning no fue una línea recta: tuvo dos períodos de estancamiento —los llamados “inviernos de la IA”— separados por avances puntuales, y un resurgimiento sostenido a partir de 2012 que se extiende hasta hoy. Repasamos primero esos inviernos y luego, con más detalle, la década que va de AlexNet (2012) a la actualidad.</p>
 </section>
-<section id="los-dos-inviernos-de-la-ia-neuronal" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="los-dos-inviernos-de-la-ia-neuronal"><span class="header-section-number">11.3</span> Los “dos inviernos” de la IA neuronal</h2>
+<section id="los-dos-inviernos-de-la-ia-neuronal" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="los-dos-inviernos-de-la-ia-neuronal"><span class="header-section-number">10.3</span> Los “dos inviernos” de la IA neuronal</h2>
 <ol type="1">
 <li><strong>Primer invierno (post-1969):</strong> Minsky y Papert demuestran que el perceptrón simple no puede resolver problemas no linealmente separables (el caso paradigmático: la función XOR, que analizaremos en detalle más adelante). Esto reduce drásticamente el financiamiento a la investigación en redes neuronales durante casi dos décadas.</li>
 <li><strong>Segundo invierno (fines de los 90s-2000s):</strong> a pesar del backpropagation (1986), la falta de datos masivos y de poder de cómputo, sumada al auge de las SVMs y los métodos de <em>ensemble</em>, relega nuevamente a las redes neuronales.</li>
 <li><strong>El resurgimiento (2006-2012):</strong> la disponibilidad de GPUs, de grandes bases de datos etiquetadas (ImageNet) y de mejoras algorítmicas (ReLU, dropout, mejor inicialización) permite entrenar redes verdaderamente profundas. <strong>AlexNet (2012)</strong> es el punto de inflexión que marca el inicio de la era moderna del Deep Learning.</li>
 </ol>
 </section>
-<section id="imagenet-y-el-auge-de-las-cnns" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="imagenet-y-el-auge-de-las-cnns"><span class="header-section-number">11.4</span> ImageNet y el auge de las CNNs</h2>
+<section id="imagenet-y-el-auge-de-las-cnns" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="imagenet-y-el-auge-de-las-cnns"><span class="header-section-number">10.4</span> ImageNet y el auge de las CNNs</h2>
 <p>El <strong>ImageNet Large Scale Visual Recognition Challenge (ILSVRC)</strong> fue una competencia anual iniciada en 2010 para evaluar y comparar algoritmos de reconocimiento visual a gran escala, sobre un subconjunto de ImageNet de aproximadamente 1.000 clases. Se convirtió en el benchmark de referencia para medir el progreso en clasificación de imágenes, y su evolución durante la década de 2010 resume, en una sola tabla, la revolución de las CNNs:</p>
 <ul>
 <li><strong>2010:</strong> el modelo ganador, basado en SVM y características tradicionales (HoG, LBP), obtuvo 71,8% de top-5 accuracy (28,2% de error).</li>
@@ -1187,8 +1224,8 @@ Figure&nbsp;4: Hitos históricos de la IA
 </figure>
 </div>
 </section>
-<section id="los-últimos-años-modelos-fundacionales-y-la-ia-generativa" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="los-últimos-años-modelos-fundacionales-y-la-ia-generativa"><span class="header-section-number">11.5</span> Los últimos años: modelos fundacionales y la IA generativa</h2>
+<section id="los-últimos-años-modelos-fundacionales-y-la-ia-generativa" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="los-últimos-años-modelos-fundacionales-y-la-ia-generativa"><span class="header-section-number">10.5</span> Los últimos años: modelos fundacionales y la IA generativa</h2>
 <p>Desde AlexNet en 2012, el ritmo de avances no hizo más que acelerarse. A continuación repasamos, año a año, los hitos que llevaron del “renacimiento” del deep learning en visión por computadora a los modelos fundacionales y agénticos actuales, con aplicaciones clínicas cada vez más concretas en diagnóstico asistido, segmentación automática y predicción de resultados.</p>
 <div id="fig-recent" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1200,65 +1237,65 @@ Figure&nbsp;5: Hitos recientes de la IA
 </figcaption>
 </figure>
 </div>
-<section id="alexnet-y-los-autoencoders-variacionales" class="level3" data-number="11.5.1">
-<h3 data-number="11.5.1" class="anchored" data-anchor-id="alexnet-y-los-autoencoders-variacionales"><span class="header-section-number">11.5.1</span> 2013 — AlexNet y los Autoencoders Variacionales</h3>
+<section id="alexnet-y-los-autoencoders-variacionales" class="level3" data-number="10.5.1">
+<h3 data-number="10.5.1" class="anchored" data-anchor-id="alexnet-y-los-autoencoders-variacionales"><span class="header-section-number">10.5.1</span> 2013 — AlexNet y los Autoencoders Variacionales</h3>
 <p>2013 es considerado el año de “mayoría de edad” del deep learning, consolidando el impacto de AlexNet un año antes. En paralelo surgen los <strong>VAEs (Autoencoders Variacionales)</strong>, modelos generativos que aprenden una representación comprimida (espacio latente) de los datos para luego generar nuevas muestras, abriendo camino a aplicaciones en arte, diseño y videojuegos.</p>
 </section>
-<section id="redes-generativas-adversarias-gans" class="level3" data-number="11.5.2">
-<h3 data-number="11.5.2" class="anchored" data-anchor-id="redes-generativas-adversarias-gans"><span class="header-section-number">11.5.2</span> 2014 — Redes Generativas Adversarias (GANs)</h3>
+<section id="redes-generativas-adversarias-gans" class="level3" data-number="10.5.2">
+<h3 data-number="10.5.2" class="anchored" data-anchor-id="redes-generativas-adversarias-gans"><span class="header-section-number">10.5.2</span> 2014 — Redes Generativas Adversarias (GANs)</h3>
 <p>Ian Goodfellow presenta las <strong>GANs</strong>: dos redes —generadora y discriminadora— entrenadas en un esquema competitivo, donde una intenta crear datos sintéticos convincentes y la otra intenta detectarlos. Se convirtieron rápidamente en una herramienta central para generar imágenes, video, música y arte, e impulsaron el aprendizaje no supervisado —hasta entonces un área poco desarrollada— al demostrar que era posible producir datos de alta calidad sin depender de etiquetas.</p>
 </section>
-<section id="resnets-y-avances-en-nlp" class="level3" data-number="11.5.3">
-<h3 data-number="11.5.3" class="anchored" data-anchor-id="resnets-y-avances-en-nlp"><span class="header-section-number">11.5.3</span> 2015 — ResNets y avances en NLP</h3>
+<section id="resnets-y-avances-en-nlp" class="level3" data-number="10.5.3">
+<h3 data-number="10.5.3" class="anchored" data-anchor-id="resnets-y-avances-en-nlp"><span class="header-section-number">10.5.3</span> 2015 — ResNets y avances en NLP</h3>
 <p>Kaiming He introduce las <strong>ResNets</strong>, redes con conexiones residuales que “saltean” capas para resolver el desvanecimiento del gradiente, permitiendo entrenar redes mucho más profundas de lo que se creía posible (visto en la tabla de ImageNet más arriba). En paralelo, las <strong>RNNs y LSTMs</strong> —existentes desde los años 90— empiezan a rendir gracias a más datos, más cómputo y mejores mecanismos de <em>gating</em>, mejorando traducción automática, generación de texto y análisis de sentimiento: las bases de los LLMs actuales.</p>
 </section>
-<section id="alphago" class="level3" data-number="11.5.4">
-<h3 data-number="11.5.4" class="anchored" data-anchor-id="alphago"><span class="header-section-number">11.5.4</span> 2016 — AlphaGo</h3>
+<section id="alphago" class="level3" data-number="10.5.4">
+<h3 data-number="10.5.4" class="anchored" data-anchor-id="alphago"><span class="header-section-number">10.5.4</span> 2016 — AlphaGo</h3>
 <p><strong>AlphaGo</strong>, de DeepMind, derrota al campeón mundial de Go Lee Sedol, casi dos décadas después de la caída de Kasparov ante Deep Blue en ajedrez. Combinando aprendizaje por refuerzo profundo con búsqueda Monte Carlo Tree Search, el sistema evaluó millones de posiciones para tomar decisiones que superaron la intuición humana en un juego considerado, hasta entonces, demasiado complejo para las máquinas.</p>
 </section>
-<section id="arquitectura-transformer" class="level3" data-number="11.5.5">
-<h3 data-number="11.5.5" class="anchored" data-anchor-id="arquitectura-transformer"><span class="header-section-number">11.5.5</span> 2017 — Arquitectura Transformer</h3>
+<section id="arquitectura-transformer" class="level3" data-number="10.5.5">
+<h3 data-number="10.5.5" class="anchored" data-anchor-id="arquitectura-transformer"><span class="header-section-number">10.5.5</span> 2017 — Arquitectura Transformer</h3>
 <p>El año más determinante de la década. Vaswani y colegas publican <em>“Attention Is All You Need”</em>, introduciendo la <strong>arquitectura Transformer</strong>, basada en auto-atención: en vez de procesar palabras en orden fijo, examina toda la secuencia en simultáneo, asignando puntajes de relevancia entre palabras. El diseño encoder-decoder resuelve el problema de las dependencias de largo alcance que limitaba a las RNNs, y se convierte en el componente base de todo el desarrollo posterior en NLP y, más adelante, en visión (Unidad siguiente).</p>
 </section>
-<section id="gpt-1-bert-y-graph-neural-networks" class="level3" data-number="11.5.6">
-<h3 data-number="11.5.6" class="anchored" data-anchor-id="gpt-1-bert-y-graph-neural-networks"><span class="header-section-number">11.5.6</span> 2018 — GPT-1, BERT y Graph Neural Networks</h3>
+<section id="gpt-1-bert-y-graph-neural-networks" class="level3" data-number="10.5.6">
+<h3 data-number="10.5.6" class="anchored" data-anchor-id="gpt-1-bert-y-graph-neural-networks"><span class="header-section-number">10.5.6</span> 2018 — GPT-1, BERT y Graph Neural Networks</h3>
 <p><strong>OpenAI</strong> lanza <strong>GPT-1</strong>, demostrando la efectividad de pre-entrenar de forma no supervisada y luego hacer <em>fine-tuning</em> en tareas específicas. Meses después, <strong>Google</strong> presenta <strong>BERT</strong>, que representa el contexto de cada palabra en ambas direcciones simultáneamente (no solo hacia adelante, como GPT-1), superando el estado del arte en múltiples benchmarks de NLP. Ese mismo año, las <strong>Graph Neural Networks (GNNs)</strong> ganan tracción aplicando <em>message-passing</em> sobre datos en forma de grafo, con avances en redes sociales, sistemas de recomendación y descubrimiento de fármacos.</p>
 </section>
-<section id="gpt-2-y-modelos-generativos-mejorados" class="level3" data-number="11.5.7">
-<h3 data-number="11.5.7" class="anchored" data-anchor-id="gpt-2-y-modelos-generativos-mejorados"><span class="header-section-number">11.5.7</span> 2019 — GPT-2 y modelos generativos mejorados</h3>
+<section id="gpt-2-y-modelos-generativos-mejorados" class="level3" data-number="10.5.7">
+<h3 data-number="10.5.7" class="anchored" data-anchor-id="gpt-2-y-modelos-generativos-mejorados"><span class="header-section-number">10.5.7</span> 2019 — GPT-2 y modelos generativos mejorados</h3>
 <p><strong>GPT-2</strong> alcanza desempeño de estado del arte en múltiples tareas de NLP y genera texto notablemente coherente, anticipando lo que vendría en los años siguientes. En generación de imágenes, <strong>BigGAN</strong> (DeepMind) y <strong>StyleGAN</strong> (NVIDIA) elevan drásticamente la calidad y el control sobre las imágenes sintéticas.</p>
 </section>
-<section id="gpt-3-y-aprendizaje-auto-supervisado" class="level3" data-number="11.5.8">
-<h3 data-number="11.5.8" class="anchored" data-anchor-id="gpt-3-y-aprendizaje-auto-supervisado"><span class="header-section-number">11.5.8</span> 2020 — GPT-3 y aprendizaje auto-supervisado</h3>
+<section id="gpt-3-y-aprendizaje-auto-supervisado" class="level3" data-number="10.5.8">
+<h3 data-number="10.5.8" class="anchored" data-anchor-id="gpt-3-y-aprendizaje-auto-supervisado"><span class="header-section-number">10.5.8</span> 2020 — GPT-3 y aprendizaje auto-supervisado</h3>
 <p><strong>GPT-3</strong> representa un salto de escala mayúsculo: de 117 millones de parámetros (GPT-1) a 1.500 millones (GPT-2) y <strong>175.000 millones</strong> en GPT-3. Esto le permite generar texto coherente en una enorme variedad de tareas —completado, preguntas y respuestas, escritura creativa— sin <em>fine-tuning</em> específico, poniendo de relieve el valor del <strong>aprendizaje auto-supervisado</strong>: entrenar sobre grandes volúmenes de datos no etiquetados logra una comprensión amplia del lenguaje de forma mucho más económica que el entrenamiento supervisado tradicional.</p>
 </section>
-<section id="alphafold-2-dalle-y-github-copilot" class="level3" data-number="11.5.9">
-<h3 data-number="11.5.9" class="anchored" data-anchor-id="alphafold-2-dalle-y-github-copilot"><span class="header-section-number">11.5.9</span> 2021 — AlphaFold 2, DALL·E y GitHub Copilot</h3>
+<section id="alphafold-2-dalle-y-github-copilot" class="level3" data-number="10.5.9">
+<h3 data-number="10.5.9" class="anchored" data-anchor-id="alphafold-2-dalle-y-github-copilot"><span class="header-section-number">10.5.9</span> 2021 — AlphaFold 2, DALL·E y GitHub Copilot</h3>
 <p><strong>AlphaFold 2</strong> (DeepMind) resuelve el problema del plegado de proteínas extendiendo la arquitectura Transformer, prediciendo la estructura 3D de una proteína a partir de su secuencia de aminoácidos — con enorme potencial para el descubrimiento de fármacos y la biología estructural. <strong>DALL·E</strong> (OpenAI) combina modelos de lenguaje estilo GPT con generación de imágenes a partir de texto, mientras que <strong>GitHub Copilot</strong> (con el modelo Codex) lleva la asistencia de IA a la programación cotidiana.</p>
 </section>
-<section id="chatgpt-y-stable-diffusion" class="level3" data-number="11.5.10">
-<h3 data-number="11.5.10" class="anchored" data-anchor-id="chatgpt-y-stable-diffusion"><span class="header-section-number">11.5.10</span> 2022 — ChatGPT y Stable Diffusion</h3>
+<section id="chatgpt-y-stable-diffusion" class="level3" data-number="10.5.10">
+<h3 data-number="10.5.10" class="anchored" data-anchor-id="chatgpt-y-stable-diffusion"><span class="header-section-number">10.5.10</span> 2022 — ChatGPT y Stable Diffusion</h3>
 <p><strong>ChatGPT</strong> (OpenAI, noviembre) lleva los LLMs al público masivo: conversación fluida, explicaciones, código, distintos estilos de escritura, todo desde una interfaz simple. Su adopción cruza rápidamente del ámbito técnico a prácticamente todas las profesiones. En paralelo, <strong>Stable Diffusion</strong> (Stability AI) genera imágenes fotorrealistas desde texto operando en un espacio latente de menor dimensión. Juntos, disparan una ola masiva de inversión en IA generativa multimodal.</p>
 </section>
-<section id="llms-y-bots-por-todas-partes" class="level3" data-number="11.5.11">
-<h3 data-number="11.5.11" class="anchored" data-anchor-id="llms-y-bots-por-todas-partes"><span class="header-section-number">11.5.11</span> 2023 — LLMs y bots por todas partes</h3>
+<section id="llms-y-bots-por-todas-partes" class="level3" data-number="10.5.11">
+<h3 data-number="10.5.11" class="anchored" data-anchor-id="llms-y-bots-por-todas-partes"><span class="header-section-number">10.5.11</span> 2023 — LLMs y bots por todas partes</h3>
 <p>Cadencia vertiginosa de lanzamientos: <strong>LLaMA</strong> (Meta, febrero) supera a GPT-3 con muchos menos parámetros; <strong>GPT-4</strong> (OpenAI, marzo) llega multimodal y con capacidades muy superiores; <strong>Alpaca</strong> (Stanford) y <strong>Bard</strong>/<strong>PaLM-2</strong> (Google) completan un panorama de competencia intensa entre laboratorios, mientras la adopción empresarial se acelera (Duolingo Max, Slack GPT, Shopify, Bing con GPT-4).</p>
 </section>
-<section id="la-era-del-razonamiento-y-la-multimodalidad-nativa" class="level3" data-number="11.5.12">
-<h3 data-number="11.5.12" class="anchored" data-anchor-id="la-era-del-razonamiento-y-la-multimodalidad-nativa"><span class="header-section-number">11.5.12</span> 2024 — La era del razonamiento y la multimodalidad nativa</h3>
+<section id="la-era-del-razonamiento-y-la-multimodalidad-nativa" class="level3" data-number="10.5.12">
+<h3 data-number="10.5.12" class="anchored" data-anchor-id="la-era-del-razonamiento-y-la-multimodalidad-nativa"><span class="header-section-number">10.5.12</span> 2024 — La era del razonamiento y la multimodalidad nativa</h3>
 <p><strong>OpenAI lanza o1</strong> (septiembre), el primer modelo de “razonamiento”: entrenado con RL a gran escala para pensar paso a paso antes de responder, con saltos notables en matemática y programación. <strong>GPT-4o</strong> aporta multimodalidad nativa (texto, imagen y audio en un solo modelo), y OpenAI muestra <strong>Sora</strong>, capaz de generar video fotorrealista desde texto. Google presenta <strong>Gemini</strong> y Meta libera <strong>Llama 3</strong>. En el plano regulatorio, la Unión Europea promulga la <strong>AI Act</strong>, primer marco normativo integral del mundo para IA.</p>
 </section>
-<section id="razonamiento-abierto-y-el-ascenso-de-los-agentes" class="level3" data-number="11.5.13">
-<h3 data-number="11.5.13" class="anchored" data-anchor-id="razonamiento-abierto-y-el-ascenso-de-los-agentes"><span class="header-section-number">11.5.13</span> 2025 — Razonamiento abierto y el ascenso de los agentes</h3>
+<section id="razonamiento-abierto-y-el-ascenso-de-los-agentes" class="level3" data-number="10.5.13">
+<h3 data-number="10.5.13" class="anchored" data-anchor-id="razonamiento-abierto-y-el-ascenso-de-los-agentes"><span class="header-section-number">10.5.13</span> 2025 — Razonamiento abierto y el ascenso de los agentes</h3>
 <p><strong>DeepSeek-R1</strong> (enero) iguala el desempeño de o1 con una fracción del costo de entrenamiento, consolidando a China como competidor de primer nivel en modelos abiertos. OpenAI responde con <strong>o3</strong>, y los laboratorios grandes (Google, Anthropic, Meta, Alibaba) lanzan sus propias familias de modelos de razonamiento. El foco se desplaza de “modelos que responden” a <strong>agentes que actúan</strong>: Claude 4/4.5 y herramientas como Claude Code o Cursor permiten delegar tareas de programación completas. Google presenta <strong>Gemini 3</strong>, primer modelo en superar 1500 Elo en LMArena.</p>
 </section>
-<section id="el-ascenso-de-china" class="level3" data-number="11.5.14">
-<h3 data-number="11.5.14" class="anchored" data-anchor-id="el-ascenso-de-china"><span class="header-section-number">11.5.14</span> 2026 — El ascenso de China</h3>
+<section id="el-ascenso-de-china" class="level3" data-number="10.5.14">
+<h3 data-number="10.5.14" class="anchored" data-anchor-id="el-ascenso-de-china"><span class="header-section-number">10.5.14</span> 2026 — El ascenso de China</h3>
 <p>China se posiciona como líder global en investigación y desarrollo de IA, con avances importantes en modelos de lenguaje, visión por computadora y sistemas de razonamiento. La inversión estatal y el ecosistema empresarial local aceleran la innovación, consolidando al país como un actor central en la evolución de la inteligencia artificial. <strong>Kimi K3</strong>, un modelo de pesos abiertos desarrollado por <strong>Moonshot AI</strong> con cerca de 3 billones de parámetros (arquitectura <em>mixture-of-experts</em>), se posiciona al mismo nivel que GPT-5 o Gemini 3 en varios benchmarks — un nuevo capítulo en la democratización de la inteligencia artificial.</p>
 </section>
 </section>
-<section id="por-qué-profundo-y-por-qué-ahora-es-relevante-en-física-médica" class="level2" data-number="11.6">
-<h2 data-number="11.6" class="anchored" data-anchor-id="por-qué-profundo-y-por-qué-ahora-es-relevante-en-física-médica"><span class="header-section-number">11.6</span> ¿Por qué “profundo” y por qué ahora es relevante en Física Médica?</h2>
+<section id="por-qué-profundo-y-por-qué-ahora-es-relevante-en-física-médica" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="por-qué-profundo-y-por-qué-ahora-es-relevante-en-física-médica"><span class="header-section-number">10.6</span> ¿Por qué “profundo” y por qué ahora es relevante en Física Médica?</h2>
 <ul>
 <li><strong>Datos:</strong> las imágenes médicas (CT, RM, PET, mamografía) son datos de alta dimensionalidad donde el Deep Learning —en particular las CNNs— sobresale.</li>
 <li><strong>Cómputo:</strong> las GPUs/TPUs permiten entrenar modelos con millones de parámetros en tiempos razonables.</li>
@@ -1286,14 +1323,14 @@ Figure&nbsp;5: Hitos recientes de la IA
 <hr>
 </section>
 </section>
-<section id="redes-neuronales-simples-el-algoritmo-del-perceptrón" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Redes neuronales simples: el algoritmo del Perceptrón</h1>
-<section id="la-neurona-biológica-como-inspiración" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="la-neurona-biológica-como-inspiración"><span class="header-section-number">12.1</span> La neurona biológica como inspiración</h2>
+<section id="redes-neuronales-simples-el-algoritmo-del-perceptrón" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Redes neuronales simples: el algoritmo del Perceptrón</h1>
+<section id="la-neurona-biológica-como-inspiración" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="la-neurona-biológica-como-inspiración"><span class="header-section-number">11.1</span> La neurona biológica como inspiración</h2>
 <p>McCulloch y Pitts (1943) propusieron un modelo matemático simplificado de la neurona: recibe señales de entrada, las pondera y produce una salida binaria si supera un umbral. Con ese modelo mostraron que una red de neuronas simples podía implementar cualquier función lógica booleana. Rosenblatt (1958) retomó esa idea y la convirtió en un <strong>algoritmo de aprendizaje</strong> capaz de ajustar los pesos automáticamente a partir de ejemplos: el Perceptrón.</p>
 </section>
-<section id="definición-formal" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="definición-formal"><span class="header-section-number">12.2</span> Definición formal</h2>
+<section id="definición-formal" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="definición-formal"><span class="header-section-number">11.2</span> Definición formal</h2>
 <p>Dado un vector de entrada <span class="math inline">\(\mathbf{x} = (x_1, x_2, \dots, x_d) \in \mathbb{R}^d\)</span>, el perceptrón calcula:</p>
 <p><span class="math display">\[
 z = \sum_{j=1}^{d} w_j x_j + b = \mathbf{w}^\top \mathbf{x} + b
@@ -1308,8 +1345,8 @@ z = \sum_{j=1}^{d} w_j x_j + b = \mathbf{w}^\top \mathbf{x} + b
 <p>donde <span class="math inline">\(\phi\)</span> es la <strong>función de activación escalón (Heaviside)</strong>, <span class="math inline">\(\mathbf{w}\)</span> es el vector de pesos sinápticos y <span class="math inline">\(b\)</span> el sesgo (<em>bias</em>).</p>
 <p>Geométricamente, el perceptrón define un <strong>hiperplano separador</strong> en <span class="math inline">\(\mathbb{R}^d\)</span>: <span class="math inline">\(\mathbf{w}^\top \mathbf{x} + b = 0\)</span>. Todo lo que quede de un lado del hiperplano se clasifica como <span class="math inline">\(+1\)</span>; todo lo que quede del otro lado, como <span class="math inline">\(-1\)</span> (o <span class="math inline">\(0\)</span>). Esta lectura geométrica es la clave para entender, en la próxima sección, qué puede y qué no puede aprender un único perceptrón.</p>
 </section>
-<section id="el-algoritmo-de-aprendizaje-del-perceptrón" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="el-algoritmo-de-aprendizaje-del-perceptrón"><span class="header-section-number">12.3</span> El algoritmo de aprendizaje del Perceptrón</h2>
+<section id="el-algoritmo-de-aprendizaje-del-perceptrón" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="el-algoritmo-de-aprendizaje-del-perceptrón"><span class="header-section-number">11.3</span> El algoritmo de aprendizaje del Perceptrón</h2>
 <p>Dado un conjunto de entrenamiento <span class="math inline">\(\{(\mathbf{x}_i, y_i)\}_{i=1}^N\)</span> con <span class="math inline">\(y_i \in \{-1, +1\}\)</span>, el algoritmo actualiza los pesos <strong>solo cuando comete un error</strong>:</p>
 <p><strong>Algoritmo (Rosenblatt, 1958):</strong></p>
 <ol type="1">
@@ -1337,8 +1374,8 @@ z = \sum_{j=1}^{d} w_j x_j + b = \mathbf{w}^\top \mathbf{x} + b
 </div>
 </div>
 </section>
-<section id="implementación-desde-cero" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="implementación-desde-cero"><span class="header-section-number">12.4</span> Implementación desde cero</h2>
+<section id="implementación-desde-cero" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="implementación-desde-cero"><span class="header-section-number">11.4</span> Implementación desde cero</h2>
 <div id="perceptron-impl" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1375,8 +1412,8 @@ z = \sum_{j=1}^{d} w_j x_j + b = \mathbf{w}^\top \mathbf{x} + b
 </details>
 </div>
 </section>
-<section id="ejemplo-separación-de-dos-clases-sintéticas-linealmente-separables" class="level2" data-number="12.5">
-<h2 data-number="12.5" class="anchored" data-anchor-id="ejemplo-separación-de-dos-clases-sintéticas-linealmente-separables"><span class="header-section-number">12.5</span> Ejemplo: separación de dos clases sintéticas (linealmente separables)</h2>
+<section id="ejemplo-separación-de-dos-clases-sintéticas-linealmente-separables" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="ejemplo-separación-de-dos-clases-sintéticas-linealmente-separables"><span class="header-section-number">11.5</span> Ejemplo: separación de dos clases sintéticas (linealmente separables)</h2>
 <div id="cell-fig-perceptron-separable" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
@@ -1422,11 +1459,11 @@ Figure&nbsp;6: Convergencia del Perceptrón sobre datos linealmente separables
 </div>
 </div>
 </section>
-<section id="de-funciones-lógicas-simples-a-xor-qué-separa-un-perceptrón-y-qué-no" class="level2" data-number="12.6">
-<h2 data-number="12.6" class="anchored" data-anchor-id="de-funciones-lógicas-simples-a-xor-qué-separa-un-perceptrón-y-qué-no"><span class="header-section-number">12.6</span> De funciones lógicas simples a XOR: qué separa un perceptrón y qué no</h2>
+<section id="de-funciones-lógicas-simples-a-xor-qué-separa-un-perceptrón-y-qué-no" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="de-funciones-lógicas-simples-a-xor-qué-separa-un-perceptrón-y-qué-no"><span class="header-section-number">11.6</span> De funciones lógicas simples a XOR: qué separa un perceptrón y qué no</h2>
 <p>Antes de llegar al límite del perceptrón conviene ver, en detalle, en qué tipo de problemas sí funciona — y por qué. La forma más simple de probar un clasificador binario con dos entradas es pedirle que aprenda una <strong>función lógica booleana</strong>: AND, OR, NAND, NOR y, finalmente, XOR. Todas ellas toman dos entradas <span class="math inline">\(x_1, x_2 \in \{0,1\}\)</span> y devuelven una salida binaria, y todas caben en un plano de dos dimensiones — lo que las vuelve ideales para visualizar qué significa “ser linealmente separable”.</p>
-<section id="and-or-nand-nor-linealmente-separables" class="level3" data-number="12.6.1">
-<h3 data-number="12.6.1" class="anchored" data-anchor-id="and-or-nand-nor-linealmente-separables"><span class="header-section-number">12.6.1</span> AND, OR, NAND, NOR: linealmente separables</h3>
+<section id="and-or-nand-nor-linealmente-separables" class="level3" data-number="11.6.1">
+<h3 data-number="11.6.1" class="anchored" data-anchor-id="and-or-nand-nor-linealmente-separables"><span class="header-section-number">11.6.1</span> AND, OR, NAND, NOR: linealmente separables</h3>
 <p>Las siguientes tablas de verdad definen las funciones AND, OR, NAND y NOR:</p>
 <table class="caption-top table">
 <thead>
@@ -1523,8 +1560,8 @@ Figure&nbsp;7: El perceptrón simple aprende AND, OR, NAND y NOR: todas son line
 </div>
 <p>En los cuatro casos aparece una recta que separa limpiamente ambas clases, y el algoritmo converge en pocas épocas — tal como predice el teorema de Novikoff.</p>
 </section>
-<section id="el-límite-fundamental-el-problema-xor" class="level3" data-number="12.6.2">
-<h3 data-number="12.6.2" class="anchored" data-anchor-id="el-límite-fundamental-el-problema-xor"><span class="header-section-number">12.6.2</span> El límite fundamental: el problema XOR</h3>
+<section id="el-límite-fundamental-el-problema-xor" class="level3" data-number="11.6.2">
+<h3 data-number="11.6.2" class="anchored" data-anchor-id="el-límite-fundamental-el-problema-xor"><span class="header-section-number">11.6.2</span> El límite fundamental: el problema XOR</h3>
 <p>La función <strong>XOR</strong> (OR exclusivo) es la excepción:</p>
 <table class="caption-top table">
 <thead>
@@ -1590,8 +1627,8 @@ Figure&nbsp;8: El perceptrón simple no puede separar el problema XOR (no lineal
 </div>
 <p>A diferencia de las compuertas anteriores, aquí el número de errores <strong>nunca llega a cero</strong>: el algoritmo sigue “empujando” la recta de un lado a otro sin encontrar jamás una posición que satisfaga a los cuatro puntos simultáneamente. Este resultado —señalado críticamente por Minsky y Papert en 1969— es precisamente lo que causó el primer “invierno de la IA”.</p>
 </section>
-<section id="la-solución-combinar-perceptrones" class="level3" data-number="12.6.3">
-<h3 data-number="12.6.3" class="anchored" data-anchor-id="la-solución-combinar-perceptrones"><span class="header-section-number">12.6.3</span> La solución: combinar perceptrones</h3>
+<section id="la-solución-combinar-perceptrones" class="level3" data-number="11.6.3">
+<h3 data-number="11.6.3" class="anchored" data-anchor-id="la-solución-combinar-perceptrones"><span class="header-section-number">11.6.3</span> La solución: combinar perceptrones</h3>
 <p>La salida de XOR se puede reescribir en términos de las compuertas que sí sabemos resolver:</p>
 <p><span class="math display">\[
 \text{XOR}(x_1, x_2) = \text{OR}(x_1, x_2) \;\land\; \text{NAND}(x_1, x_2)
@@ -1645,8 +1682,8 @@ h_1 = \text{OR}(x_1, x_2), \qquad h_2 = \text{NAND}(x_1, x_2), \qquad \hat{y} = 
 <p>Esta arquitectura de tres perceptrones —dos en una “capa oculta” y uno de salida— es, ni más ni menos, el <strong>Perceptrón Multicapa (MLP)</strong> en su forma más pequeña posible. La solución existía conceptualmente desde los años 60, pero faltaba un ingrediente clave: <strong>un algoritmo que aprendiera automáticamente los pesos de cada perceptrón</strong> en lugar de tener que diseñarlos a mano combinando compuertas conocidas. Ese ingrediente —el algoritmo de <strong>backpropagation</strong> (1986)— es el que retomaremos en la luego para entrenar redes multicapa de punta a punta.</p>
 </section>
 </section>
-<section id="perceptrón-vs.-regresión-logística-el-puente-conceptual" class="level2" data-number="12.7">
-<h2 data-number="12.7" class="anchored" data-anchor-id="perceptrón-vs.-regresión-logística-el-puente-conceptual"><span class="header-section-number">12.7</span> Perceptrón vs.&nbsp;Regresión Logística: el puente conceptual</h2>
+<section id="perceptrón-vs.-regresión-logística-el-puente-conceptual" class="level2" data-number="11.7">
+<h2 data-number="11.7" class="anchored" data-anchor-id="perceptrón-vs.-regresión-logística-el-puente-conceptual"><span class="header-section-number">11.7</span> Perceptrón vs.&nbsp;Regresión Logística: el puente conceptual</h2>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 33%">
@@ -1697,8 +1734,8 @@ h_1 = \text{OR}(x_1, x_2), \qquad h_2 = \text{NAND}(x_1, x_2), \qquad \hat{y} = 
 <hr>
 </section>
 </section>
-<section id="qué-significa-entrenar-una-red-neuronal" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> ¿Qué significa entrenar una red neuronal?</h1>
+<section id="qué-significa-entrenar-una-red-neuronal" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> ¿Qué significa entrenar una red neuronal?</h1>
 <p>Una red neuronal puede representarse como una función parametrizada:</p>
 <p><span class="math display">\[
 f_\theta:\mathcal X\rightarrow\mathcal Y,
@@ -1753,15 +1790,15 @@ f_\theta(\mathbf x)
 </div>
 </div>
 </section>
-<section id="funciones-de-pérdida" class="level1" data-number="14">
-<h1 data-number="14"><span class="header-section-number">14</span> Funciones de pérdida</h1>
+<section id="funciones-de-pérdida" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Funciones de pérdida</h1>
 <p>La función de pérdida para una observación es:</p>
 <p><span class="math display">\[
 \ell(\hat y,y).
 \]</span></p>
 <p>La pérdida promedio sobre un conjunto de observaciones es la función que optimizamos.</p>
-<section id="regresión" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="regresión"><span class="header-section-number">14.1</span> Regresión</h2>
+<section id="regresión" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="regresión"><span class="header-section-number">13.1</span> Regresión</h2>
 <p>El error cuadrático medio es:</p>
 <p><span class="math display">\[
 \mathcal L_{\mathrm{MSE}}
@@ -1788,8 +1825,8 @@ f_\theta(\mathbf x)
 \]</span></p>
 <p>donde <span class="math inline">\(r=y-\hat y\)</span>.</p>
 </section>
-<section id="clasificación-binaria" class="level2" data-number="14.2">
-<h2 data-number="14.2" class="anchored" data-anchor-id="clasificación-binaria"><span class="header-section-number">14.2</span> Clasificación binaria</h2>
+<section id="clasificación-binaria" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="clasificación-binaria"><span class="header-section-number">13.2</span> Clasificación binaria</h2>
 <p>Para una probabilidad predicha <span class="math inline">\(p\)</span>:</p>
 <p><span class="math display">\[
 \mathcal L_{\mathrm{BCE}}
@@ -1804,8 +1841,8 @@ y_i\log p_i
 \]</span></p>
 <p>En PyTorch, para estabilidad numérica, normalmente se trabaja directamente con <strong>logits</strong> mediante <code>BCEWithLogitsLoss</code> en lugar de aplicar una sigmoide explícita antes de la pérdida.</p>
 </section>
-<section id="clasificación-multiclase" class="level2" data-number="14.3">
-<h2 data-number="14.3" class="anchored" data-anchor-id="clasificación-multiclase"><span class="header-section-number">14.3</span> Clasificación multiclase</h2>
+<section id="clasificación-multiclase" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="clasificación-multiclase"><span class="header-section-number">13.3</span> Clasificación multiclase</h2>
 <p>Para <span class="math inline">\(K\)</span> clases:</p>
 <p><span class="math display">\[
 \mathcal L_{\mathrm{CE}}
@@ -1827,23 +1864,23 @@ p_k
 <p>En PyTorch, <code>CrossEntropyLoss</code> recibe directamente los logits.</p>
 </section>
 </section>
-<section id="sample-batch-mini-batch-iteration-y-epoch" class="level1" data-number="15">
-<h1 data-number="15"><span class="header-section-number">15</span> Sample, batch, mini-batch, iteration y epoch</h1>
+<section id="sample-batch-mini-batch-iteration-y-epoch" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Sample, batch, mini-batch, iteration y epoch</h1>
 <p>Esta terminología es fundamental para entender el entrenamiento moderno.</p>
 <p>Supongamos que nuestro conjunto de entrenamiento contiene:</p>
 <p><span class="math display">\[
 N=10\,000
 \]</span></p>
 <p>pacientes o ejemplos.</p>
-<section id="sample" class="level2" data-number="15.1">
-<h2 data-number="15.1" class="anchored" data-anchor-id="sample"><span class="header-section-number">15.1</span> Sample</h2>
+<section id="sample" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="sample"><span class="header-section-number">14.1</span> Sample</h2>
 <p>Una <strong>muestra</strong> (<em>sample</em>) es una observación individual:</p>
 <p><span class="math display">\[
 (\mathbf x_i,y_i).
 \]</span></p>
 </section>
-<section id="batch" class="level2" data-number="15.2">
-<h2 data-number="15.2" class="anchored" data-anchor-id="batch"><span class="header-section-number">15.2</span> Batch</h2>
+<section id="batch" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="batch"><span class="header-section-number">14.2</span> Batch</h2>
 <p>Un <strong>batch</strong> es un conjunto de observaciones procesadas simultáneamente.</p>
 <p>Si:</p>
 <p><span class="math display">\[
@@ -1855,8 +1892,8 @@ N=10\,000
 \]</span></p>
 <p>En el lenguaje cotidiano de Deep Learning, <code>batch</code> suele utilizarse para referirse a un <strong>mini-batch</strong>.</p>
 </section>
-<section id="batch-gradient-descent" class="level2" data-number="15.3">
-<h2 data-number="15.3" class="anchored" data-anchor-id="batch-gradient-descent"><span class="header-section-number">15.3</span> Batch Gradient Descent</h2>
+<section id="batch-gradient-descent" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="batch-gradient-descent"><span class="header-section-number">14.3</span> Batch Gradient Descent</h2>
 <p>Si utilizamos las <span class="math inline">\(N\)</span> observaciones antes de cada actualización:</p>
 <p><span class="math display">\[
 B=\mathcal D,
@@ -1871,8 +1908,8 @@ B=\mathcal D,
 \]</span></p>
 <p>Esto es <strong>full-batch gradient descent</strong>.</p>
 </section>
-<section id="stochastic-gradient-descent" class="level2" data-number="15.4">
-<h2 data-number="15.4" class="anchored" data-anchor-id="stochastic-gradient-descent"><span class="header-section-number">15.4</span> Stochastic Gradient Descent</h2>
+<section id="stochastic-gradient-descent" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="stochastic-gradient-descent"><span class="header-section-number">14.4</span> Stochastic Gradient Descent</h2>
 <p>En sentido estricto, SGD utiliza una única muestra:</p>
 <p><span class="math display">\[
 |B|=1.
@@ -1884,8 +1921,8 @@ g_i
 \nabla_\theta\ell_i(\theta).
 \]</span></p>
 </section>
-<section id="mini-batch-gradient-descent" class="level2" data-number="15.5">
-<h2 data-number="15.5" class="anchored" data-anchor-id="mini-batch-gradient-descent"><span class="header-section-number">15.5</span> Mini-batch Gradient Descent</h2>
+<section id="mini-batch-gradient-descent" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="mini-batch-gradient-descent"><span class="header-section-number">14.5</span> Mini-batch Gradient Descent</h2>
 <p>En Deep Learning se utiliza habitualmente:</p>
 <p><span class="math display">\[
 1&lt;|B|\ll N.
@@ -1922,8 +1959,8 @@ Note
 </div>
 </div>
 </section>
-<section id="epoch-e-iteration" class="level2" data-number="15.6">
-<h2 data-number="15.6" class="anchored" data-anchor-id="epoch-e-iteration"><span class="header-section-number">15.6</span> Epoch e iteration</h2>
+<section id="epoch-e-iteration" class="level2" data-number="14.6">
+<h2 data-number="14.6" class="anchored" data-anchor-id="epoch-e-iteration"><span class="header-section-number">14.6</span> Epoch e iteration</h2>
 <p>Una <strong>iteration</strong> o <strong>step</strong> suele corresponder a una actualización de parámetros.</p>
 <p>Una <strong>epoch</strong> es una pasada completa por el dataset de entrenamiento.</p>
 <p>Si:</p>
@@ -1974,8 +2011,8 @@ B=100,
 </table>
 </section>
 </section>
-<section id="el-forward-pass" class="level1" data-number="16">
-<h1 data-number="16"><span class="header-section-number">16</span> El forward pass</h1>
+<section id="el-forward-pass" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> El forward pass</h1>
 <p>El <strong>forward pass</strong> es la evaluación de la función que representa la red.</p>
 <p>Para una red con <span class="math inline">\(L\)</span> capas:</p>
 <p><span class="math display">\[
@@ -2011,11 +2048,11 @@ W^{(2)}\mathbf h+\mathbf b^{(2)}.
 \]</span></p>
 <p>El forward pass simplemente evalúa estas operaciones en orden.</p>
 </section>
-<section id="forward-durante-entrenamiento-e-inferencia" class="level1" data-number="17">
-<h1 data-number="17"><span class="header-section-number">17</span> Forward durante entrenamiento e inferencia</h1>
+<section id="forward-durante-entrenamiento-e-inferencia" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> Forward durante entrenamiento e inferencia</h1>
 <p>El forward aparece tanto durante el entrenamiento como durante la inferencia.</p>
-<section id="entrenamiento" class="level2" data-number="17.1">
-<h2 data-number="17.1" class="anchored" data-anchor-id="entrenamiento"><span class="header-section-number">17.1</span> Entrenamiento</h2>
+<section id="entrenamiento" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="entrenamiento"><span class="header-section-number">16.1</span> Entrenamiento</h2>
 <p>Durante entrenamiento:</p>
 <p><span class="math display">\[
 \mathbf x
@@ -2041,8 +2078,8 @@ f_\theta
 \hat\theta.
 \]</span></p>
 </section>
-<section id="nferencia" class="level2" data-number="17.2">
-<h2 data-number="17.2" class="anchored" data-anchor-id="nferencia"><span class="header-section-number">17.2</span> nferencia</h2>
+<section id="nferencia" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="nferencia"><span class="header-section-number">16.2</span> nferencia</h2>
 <p>Una vez entrenado el modelo, para una nueva observación:</p>
 <p><span class="math display">\[
 \mathbf x_{\mathrm{new}},
@@ -2065,7 +2102,7 @@ f_{\hat\theta}(\mathbf x_{\mathrm{new}})
 }
 \]</span></p>
 <p>En PyTorch:</p>
-<div id="c41d188e" class="cell" data-execution_count="6">
+<div id="e244d6db" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
@@ -2081,8 +2118,8 @@ f_{\hat\theta}(\mathbf x_{\mathrm{new}})
 </ul>
 </section>
 </section>
-<section id="training-validation-test-e-inference" class="level1" data-number="18">
-<h1 data-number="18"><span class="header-section-number">18</span> Training, validation, test e inference</h1>
+<section id="training-validation-test-e-inference" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> Training, validation, test e inference</h1>
 <p>Estas etapas tienen objetivos diferentes.</p>
 <table class="caption-top table">
 <thead>
@@ -2142,8 +2179,8 @@ f_{\hat\theta}(\mathbf x_{\mathrm{new}})
 </div>
 </div>
 </section>
-<section id="de-la-pérdida-al-gradiente" class="level1" data-number="19">
-<h1 data-number="19"><span class="header-section-number">19</span> De la pérdida al gradiente</h1>
+<section id="de-la-pérdida-al-gradiente" class="level1" data-number="18">
+<h1 data-number="18"><span class="header-section-number">18</span> De la pérdida al gradiente</h1>
 <p>Supongamos una función escalar de dos parámetros:</p>
 <p><span class="math display">\[
 L=L(w_1,w_2).
@@ -2179,8 +2216,8 @@ L=L(w_1,w_2).
 \end{bmatrix}.
 \]</span></p>
 </section>
-<section id="interpretación-geométrica-del-gradiente" class="level1" data-number="20">
-<h1 data-number="20"><span class="header-section-number">20</span> Interpretación geométrica del gradiente</h1>
+<section id="interpretación-geométrica-del-gradiente" class="level1" data-number="19">
+<h1 data-number="19"><span class="header-section-number">19</span> Interpretación geométrica del gradiente</h1>
 <p>Para un desplazamiento pequeño <span class="math inline">\(\Delta\theta\)</span>, Taylor de primer orden da:</p>
 <p><span class="math display">\[
 L(\theta+\Delta\theta)
@@ -2201,8 +2238,8 @@ L(\theta)
 \]</span></p>
 <p>es la dirección de máximo descenso local en la geometría euclídea.</p>
 </section>
-<section id="descenso-por-gradiente" class="level1" data-number="21">
-<h1 data-number="21"><span class="header-section-number">21</span> Descenso por gradiente</h1>
+<section id="descenso-por-gradiente" class="level1" data-number="20">
+<h1 data-number="20"><span class="header-section-number">20</span> Descenso por gradiente</h1>
 <p>Elegimos:</p>
 <p><span class="math display">\[
 \Delta\theta
@@ -2229,8 +2266,8 @@ L(\theta_t)
 <p>localmente, salvo casos degenerados.</p>
 <p>El parámetro <span class="math inline">\(\eta\)</span> es el <strong>learning rate</strong>.</p>
 </section>
-<section id="ejemplo-analítico-una-dimensión" class="level1" data-number="22">
-<h1 data-number="22"><span class="header-section-number">22</span> Ejemplo analítico: una dimensión</h1>
+<section id="ejemplo-analítico-una-dimensión" class="level1" data-number="21">
+<h1 data-number="21"><span class="header-section-number">21</span> Ejemplo analítico: una dimensión</h1>
 <p>Sea:</p>
 <p><span class="math display">\[
 L(w)=w^2.
@@ -2299,8 +2336,8 @@ Figure&nbsp;9: Descenso por gradiente para L(w)=w².
 </div>
 </div>
 </section>
-<section id="superficie-de-pérdida-y-condicionamiento" class="level1" data-number="23">
-<h1 data-number="23"><span class="header-section-number">23</span> Superficie de pérdida y condicionamiento</h1>
+<section id="superficie-de-pérdida-y-condicionamiento" class="level1" data-number="22">
+<h1 data-number="22"><span class="header-section-number">22</span> Superficie de pérdida y condicionamiento</h1>
 <p>Consideremos:</p>
 <p><span class="math display">\[
 L(w_1,w_2)
@@ -2348,8 +2385,8 @@ Figure&nbsp;10: Contornos de una superficie de pérdida con distinta curvatura e
 </div>
 <p>Cuando las escalas de curvatura son muy diferentes, el descenso por gradiente puede zigzaguear y avanzar lentamente en algunas direcciones.</p>
 </section>
-<section id="por-qué-mini-batches" class="level1" data-number="24">
-<h1 data-number="24"><span class="header-section-number">24</span> ¿Por qué mini-batches?</h1>
+<section id="por-qué-mini-batches" class="level1" data-number="23">
+<h1 data-number="23"><span class="header-section-number">23</span> ¿Por qué mini-batches?</h1>
 <p>El riesgo empírico completo es:</p>
 <p><span class="math display">\[
 \widehat R(\theta)
@@ -2389,8 +2426,8 @@ g_{B_1}\neq g_{B_2}.
 <li>frecuencia de actualización.</li>
 </ul>
 </section>
-<section id="regla-de-la-cadena" class="level1" data-number="25">
-<h1 data-number="25"><span class="header-section-number">25</span> Regla de la cadena</h1>
+<section id="regla-de-la-cadena" class="level1" data-number="24">
+<h1 data-number="24"><span class="header-section-number">24</span> Regla de la cadena</h1>
 <p>La regla de la cadena es la herramienta matemática central de <em>backpropagation</em>.</p>
 <p>Si:</p>
 <p><span class="math display">\[
@@ -2466,8 +2503,8 @@ Important
 </div>
 </div>
 </section>
-<section id="grafos-computacionales" class="level1" data-number="26">
-<h1 data-number="26"><span class="header-section-number">26</span> Grafos computacionales</h1>
+<section id="grafos-computacionales" class="level1" data-number="25">
+<h1 data-number="25"><span class="header-section-number">25</span> Grafos computacionales</h1>
 <p>Una expresión matemática puede representarse como un grafo de operaciones.</p>
 <p>Por ejemplo:</p>
 <p><span class="math display">\[
@@ -2505,8 +2542,8 @@ w,b.
 \]</span></p>
 <p>Cada nodo necesita conocer una derivada local y recibe desde aguas arriba la derivada de la pérdida respecto de su salida.</p>
 </section>
-<section id="un-grafo-computacional-a-mano" class="level1" data-number="27">
-<h1 data-number="27"><span class="header-section-number">27</span> Un grafo computacional a mano</h1>
+<section id="un-grafo-computacional-a-mano" class="level1" data-number="26">
+<h1 data-number="26"><span class="header-section-number">26</span> Un grafo computacional a mano</h1>
 <p>Consideremos:</p>
 <p><span class="math display">\[
 a=wx,
@@ -2555,8 +2592,8 @@ L=z^2.
 \]</span></p>
 <p>Este mecanismo es exactamente el que automatizan frameworks como PyTorch.</p>
 </section>
-<section id="de-derivadas-a-jacobianos" class="level1" data-number="28">
-<h1 data-number="28"><span class="header-section-number">28</span> De derivadas a Jacobianos</h1>
+<section id="de-derivadas-a-jacobianos" class="level1" data-number="27">
+<h1 data-number="27"><span class="header-section-number">27</span> De derivadas a Jacobianos</h1>
 <p>Hasta ahora trabajamos principalmente con escalares. Las redes neuronales operan con vectores y tensores.</p>
 <p>Sea:</p>
 <p><span class="math display">\[
@@ -2610,8 +2647,8 @@ f^{(1)},
 <p>aparecen productos sucesivos de Jacobianos.</p>
 <p>Esta observación será fundamental para entender los gradientes que desaparecen o explotan.</p>
 </section>
-<section id="pytorch-construye-jacobianos-gigantes" class="level1" data-number="29">
-<h1 data-number="29"><span class="header-section-number">29</span> ¿PyTorch construye Jacobianos gigantes?</h1>
+<section id="pytorch-construye-jacobianos-gigantes" class="level1" data-number="28">
+<h1 data-number="28"><span class="header-section-number">28</span> ¿PyTorch construye Jacobianos gigantes?</h1>
 <p>Conceptualmente, la regla de la cadena puede escribirse mediante Jacobianos.</p>
 <p>Sin embargo, construir explícitamente un Jacobiano completo sería extremadamente costoso para una red con millones de parámetros.</p>
 <p>Para una pérdida escalar, lo que necesitamos finalmente es:</p>
@@ -2621,8 +2658,8 @@ f^{(1)},
 <p>Los sistemas de diferenciación automática pueden calcular eficientemente productos vector-Jacobiano durante la propagación inversa sin materializar todos los Jacobianos completos.</p>
 <p>Esta es una de las razones por las que <em>reverse-mode automatic differentiation</em> es especialmente apropiado para entrenar redes neuronales: tenemos muchos parámetros pero normalmente una pérdida escalar.</p>
 </section>
-<section id="una-capa-neuronal-en-forma-matricial" class="level1" data-number="30">
-<h1 data-number="30"><span class="header-section-number">30</span> Una capa neuronal en forma matricial</h1>
+<section id="una-capa-neuronal-en-forma-matricial" class="level1" data-number="29">
+<h1 data-number="29"><span class="header-section-number">29</span> Una capa neuronal en forma matricial</h1>
 <p>Consideremos una capa:</p>
 <p><span class="math display">\[
 \mathbf z^{(l)}
@@ -2665,8 +2702,8 @@ W^{(l)}
 \frac{\partial L}{\partial\mathbf a^{(l-1)}}.
 \]</span></p>
 </section>
-<section id="backpropagation-en-una-capa" class="level1" data-number="31">
-<h1 data-number="31"><span class="header-section-number">31</span> Backpropagation en una capa</h1>
+<section id="backpropagation-en-una-capa" class="level1" data-number="30">
+<h1 data-number="30"><span class="header-section-number">30</span> Backpropagation en una capa</h1>
 <p>Definimos:</p>
 <p><span class="math display">\[
 \boldsymbol\delta^{(l)}
@@ -2712,8 +2749,8 @@ W^{(l)}
 \]</span></p>
 <p>Estas tres expresiones constituyen el núcleo algebraico de <em>backpropagation</em> para una capa densa.</p>
 </section>
-<section id="backpropagation-en-una-red-profunda" class="level1" data-number="32">
-<h1 data-number="32"><span class="header-section-number">32</span> Backpropagation en una red profunda</h1>
+<section id="backpropagation-en-una-red-profunda" class="level1" data-number="31">
+<h1 data-number="31"><span class="header-section-number">31</span> Backpropagation en una red profunda</h1>
 <p>Para una red:</p>
 <p><span class="math display">\[
 \mathbf a^{(0)}
@@ -2766,8 +2803,8 @@ W^{(l)}\mathbf a^{(l-1)}
 \]</span></p>
 <p>Por eso hablamos de <strong>propagación hacia atrás del error o del gradiente</strong>.</p>
 </section>
-<section id="ejemplo-manual-una-neurona-con-mse" class="level1" data-number="33">
-<h1 data-number="33"><span class="header-section-number">33</span> Ejemplo manual: una neurona con MSE</h1>
+<section id="ejemplo-manual-una-neurona-con-mse" class="level1" data-number="32">
+<h1 data-number="32"><span class="header-section-number">32</span> Ejemplo manual: una neurona con MSE</h1>
 <p>Consideremos:</p>
 <p><span class="math display">\[
 \hat y=wx+b
@@ -2847,17 +2884,17 @@ L=9,
 \frac{\partial L}{\partial b}=-6.
 \]</span></p>
 </section>
-<section id="backward-no-actualiza-los-parámetros" class="level1" data-number="34">
-<h1 data-number="34"><span class="header-section-number">34</span> <code>backward()</code> no actualiza los parámetros</h1>
+<section id="backward-no-actualiza-los-parámetros" class="level1" data-number="33">
+<h1 data-number="33"><span class="header-section-number">33</span> <code>backward()</code> no actualiza los parámetros</h1>
 <p>Este punto es fundamental.</p>
-<div id="2687f874" class="cell" data-execution_count="10">
+<div id="71d7604e" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>loss.backward()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <p>calcula los gradientes y los almacena, por ejemplo, en:</p>
-<div id="0e00419c" class="cell" data-execution_count="11">
+<div id="4df94b0b" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>parameter.grad</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2865,7 +2902,7 @@ L=9,
 </div>
 <p>pero <strong>no modifica los parámetros</strong>.</p>
 <p>La actualización ocurre cuando ejecutamos:</p>
-<div id="3279abec" class="cell" data-execution_count="12">
+<div id="2501721f" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>optimizer.step()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -2891,11 +2928,11 @@ optimizer.step()
         ▼
 modifica θ</code></pre>
 </section>
-<section id="por-qué-zero_grad" class="level1" data-number="35">
-<h1 data-number="35"><span class="header-section-number">35</span> ¿Por qué <code>zero_grad()</code>?</h1>
+<section id="por-qué-zero_grad" class="level1" data-number="34">
+<h1 data-number="34"><span class="header-section-number">34</span> ¿Por qué <code>zero_grad()</code>?</h1>
 <p>PyTorch acumula gradientes por defecto.</p>
 <p>Por eso un ciclo típico es:</p>
-<div id="881d57a0" class="cell" data-execution_count="13">
+<div id="67f95442" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>optimizer.zero_grad()</span>
@@ -2912,8 +2949,8 @@ modifica θ</code></pre>
 <p>Si no borramos los gradientes, los nuevos valores se suman a los almacenados previamente.</p>
 <p>La acumulación es útil en algunos contextos, pero no es lo que queremos en el ciclo estándar.</p>
 </section>
-<section id="funciones-de-activación-y-sus-derivadas" class="level1" data-number="36">
-<h1 data-number="36"><span class="header-section-number">36</span> Funciones de activación y sus derivadas</h1>
+<section id="funciones-de-activación-y-sus-derivadas" class="level1" data-number="35">
+<h1 data-number="35"><span class="header-section-number">35</span> Funciones de activación y sus derivadas</h1>
 <p>Las funciones de activación no solo determinan la capacidad expresiva de la red. Sus derivadas participan directamente en <em>backpropagation</em>.</p>
 <div id="cell-fig-activations" class="cell" data-execution_count="14">
 <details class="code-fold">
@@ -2946,8 +2983,8 @@ Figure&nbsp;11: Sigmoide, tanh y ReLU.
 </div>
 </div>
 </div>
-<section id="sigmoide" class="level2" data-number="36.1">
-<h2 data-number="36.1" class="anchored" data-anchor-id="sigmoide"><span class="header-section-number">36.1</span> Sigmoide</h2>
+<section id="sigmoide" class="level2" data-number="35.1">
+<h2 data-number="35.1" class="anchored" data-anchor-id="sigmoide"><span class="header-section-number">35.1</span> Sigmoide</h2>
 <p><span class="math display">\[
 \sigma(z)
 =
@@ -2975,8 +3012,8 @@ Figure&nbsp;11: Sigmoide, tanh y ReLU.
 \]</span></p>
 <p>Decimos que la sigmoide <strong>satura</strong>.</p>
 </section>
-<section id="tanh" class="level2" data-number="36.2">
-<h2 data-number="36.2" class="anchored" data-anchor-id="tanh"><span class="header-section-number">36.2</span> Tanh</h2>
+<section id="tanh" class="level2" data-number="35.2">
+<h2 data-number="35.2" class="anchored" data-anchor-id="tanh"><span class="header-section-number">35.2</span> Tanh</h2>
 <p><span class="math display">\[
 \tanh(z)
 =
@@ -2992,8 +3029,8 @@ Figure&nbsp;11: Sigmoide, tanh y ReLU.
 \]</span></p>
 <p>También satura para valores grandes en magnitud.</p>
 </section>
-<section id="relu" class="level2" data-number="36.3">
-<h2 data-number="36.3" class="anchored" data-anchor-id="relu"><span class="header-section-number">36.3</span> ReLU</h2>
+<section id="relu" class="level2" data-number="35.3">
+<h2 data-number="35.3" class="anchored" data-anchor-id="relu"><span class="header-section-number">35.3</span> ReLU</h2>
 <p><span class="math display">\[
 \operatorname{ReLU}(z)
 =
@@ -3010,8 +3047,8 @@ Figure&nbsp;11: Sigmoide, tanh y ReLU.
 \]</span></p>
 <p>ReLU evita la saturación positiva de sigmoide/tanh, aunque puede producir unidades que permanezcan en la región negativa y reciban gradiente cero.</p>
 </section>
-<section id="otras-activaciones" class="level2" data-number="36.4">
-<h2 data-number="36.4" class="anchored" data-anchor-id="otras-activaciones"><span class="header-section-number">36.4</span> Otras activaciones</h2>
+<section id="otras-activaciones" class="level2" data-number="35.4">
+<h2 data-number="35.4" class="anchored" data-anchor-id="otras-activaciones"><span class="header-section-number">35.4</span> Otras activaciones</h2>
 <p>En redes modernas también aparecen:</p>
 <ul>
 <li>Leaky ReLU;</li>
@@ -3022,8 +3059,8 @@ Figure&nbsp;11: Sigmoide, tanh y ReLU.
 <p>No existe una activación universalmente óptima. La elección depende de la arquitectura y del problema.</p>
 </section>
 </section>
-<section id="vanishing-gradients" class="level1" data-number="37">
-<h1 data-number="37"><span class="header-section-number">37</span> Vanishing gradients</h1>
+<section id="vanishing-gradients" class="level1" data-number="36">
+<h1 data-number="36"><span class="header-section-number">36</span> Vanishing gradients</h1>
 <p>En una red profunda, el gradiente hacia una capa temprana contiene productos repetidos de derivadas o Jacobianos.</p>
 <p>De manera esquemática:</p>
 <p><span class="math display">\[
@@ -3076,8 +3113,8 @@ Note
 </div>
 </div>
 </section>
-<section id="exploding-gradients" class="level1" data-number="38">
-<h1 data-number="38"><span class="header-section-number">38</span> Exploding gradients</h1>
+<section id="exploding-gradients" class="level1" data-number="37">
+<h1 data-number="37"><span class="header-section-number">37</span> Exploding gradients</h1>
 <p>El fenómeno opuesto ocurre cuando los productos de Jacobianos aumentan en magnitud:</p>
 <p><span class="math display">\[
 \left\|
@@ -3110,7 +3147,7 @@ g,&amp;\|g\|\leq\tau,\\[4pt]
 \end{cases}
 \]</span></p>
 <p>En PyTorch:</p>
-<div id="6f523637" class="cell" data-execution_count="15">
+<div id="89760814" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>torch.nn.utils.clip_grad_norm_(</span>
@@ -3121,8 +3158,8 @@ g,&amp;\|g\|\leq\tau,\\[4pt]
 </div>
 <p>El clipping controla la magnitud del gradiente, pero no reemplaza una arquitectura, inicialización y learning rate adecuados.</p>
 </section>
-<section id="inicialización-de-pesos" class="level1" data-number="39">
-<h1 data-number="39"><span class="header-section-number">39</span> Inicialización de pesos</h1>
+<section id="inicialización-de-pesos" class="level1" data-number="38">
+<h1 data-number="38"><span class="header-section-number">38</span> Inicialización de pesos</h1>
 <p>La inicialización determina el punto:</p>
 <p><span class="math display">\[
 \theta_0
@@ -3130,8 +3167,8 @@ g,&amp;\|g\|\leq\tau,\\[4pt]
 <p>desde el cual comienza la optimización.</p>
 <p>Inicializar todos los pesos de una capa oculta en cero es problemático porque las neuronas quedan inicialmente simétricas y reciben actualizaciones equivalentes.</p>
 <p>También queremos evitar que la varianza de las activaciones o de los gradientes crezca o disminuya drásticamente al atravesar capas.</p>
-<section id="xavier-glorot" class="level2" data-number="39.1">
-<h2 data-number="39.1" class="anchored" data-anchor-id="xavier-glorot"><span class="header-section-number">39.1</span> Xavier / Glorot</h2>
+<section id="xavier-glorot" class="level2" data-number="38.1">
+<h2 data-number="38.1" class="anchored" data-anchor-id="xavier-glorot"><span class="header-section-number">38.1</span> Xavier / Glorot</h2>
 <p>Para activaciones aproximadamente simétricas, una idea es elegir la varianza de los pesos según:</p>
 <p><span class="math display">\[
 \operatorname{Var}(W)
@@ -3140,15 +3177,15 @@ g,&amp;\|g\|\leq\tau,\\[4pt]
 {n_{\mathrm{in}}+n_{\mathrm{out}}}.
 \]</span></p>
 <p>En PyTorch:</p>
-<div id="9eaa49f4" class="cell" data-execution_count="16">
+<div id="7fa76ec0" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>torch.nn.init.xavier_uniform_(layer.weight)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
-<section id="he-kaiming" class="level2" data-number="39.2">
-<h2 data-number="39.2" class="anchored" data-anchor-id="he-kaiming"><span class="header-section-number">39.2</span> He / Kaiming</h2>
+<section id="he-kaiming" class="level2" data-number="38.2">
+<h2 data-number="38.2" class="anchored" data-anchor-id="he-kaiming"><span class="header-section-number">38.2</span> He / Kaiming</h2>
 <p>Para redes con ReLU es habitual utilizar:</p>
 <p><span class="math display">\[
 \operatorname{Var}(W)
@@ -3156,7 +3193,7 @@ g,&amp;\|g\|\leq\tau,\\[4pt]
 \frac{2}{n_{\mathrm{in}}}.
 \]</span></p>
 <p>En PyTorch:</p>
-<div id="8fbe3eb6" class="cell" data-execution_count="17">
+<div id="ebafa83e" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>torch.nn.init.kaiming_normal_(</span>
@@ -3179,8 +3216,8 @@ g,&amp;\|g\|\leq\tau,\\[4pt]
 \]</span></p>
 </section>
 </section>
-<section id="el-learning-rate" class="level1" data-number="40">
-<h1 data-number="40"><span class="header-section-number">40</span> El learning rate</h1>
+<section id="el-learning-rate" class="level1" data-number="39">
+<h1 data-number="39"><span class="header-section-number">39</span> El learning rate</h1>
 <p>La actualización básica es:</p>
 <p><span class="math display">\[
 \theta_{t+1}
@@ -3200,8 +3237,8 @@ g,&amp;\|g\|\leq\tau,\\[4pt]
 </ul>
 <p>Por eso suele ser uno de los hiperparámetros más importantes del entrenamiento.</p>
 </section>
-<section id="sgd-con-momentum" class="level1" data-number="41">
-<h1 data-number="41"><span class="header-section-number">41</span> SGD con momentum</h1>
+<section id="sgd-con-momentum" class="level1" data-number="40">
+<h1 data-number="40"><span class="header-section-number">40</span> SGD con momentum</h1>
 <p>El descenso por gradiente puede zigzaguear en superficies mal condicionadas.</p>
 <p>Momentum acumula información de gradientes anteriores. Una formulación posible es:</p>
 <p><span class="math display">\[
@@ -3217,7 +3254,7 @@ v_t
 <p>La convención exacta puede variar entre textos e implementaciones.</p>
 <p>El efecto intuitivo es introducir una “inercia” que suaviza parte de las oscilaciones y puede acelerar el movimiento en direcciones persistentes.</p>
 <p>En PyTorch:</p>
-<div id="3db91f02" class="cell" data-execution_count="18">
+<div id="058ecb0f" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.SGD(</span>
@@ -3228,8 +3265,8 @@ v_t
 </details>
 </div>
 </section>
-<section id="rmsprop" class="level1" data-number="42">
-<h1 data-number="42"><span class="header-section-number">42</span> RMSProp</h1>
+<section id="rmsprop" class="level1" data-number="41">
+<h1 data-number="41"><span class="header-section-number">41</span> RMSProp</h1>
 <p>RMSProp mantiene una media móvil de gradientes cuadrados:</p>
 <p><span class="math display">\[
 s_t
@@ -3250,8 +3287,8 @@ s_t
 \]</span></p>
 <p>Esto produce una escala adaptativa por parámetro.</p>
 </section>
-<section id="adam-y-adamw" class="level1" data-number="43">
-<h1 data-number="43"><span class="header-section-number">43</span> Adam y AdamW</h1>
+<section id="adam-y-adamw" class="level1" data-number="42">
+<h1 data-number="42"><span class="header-section-number">42</span> Adam y AdamW</h1>
 <p>Adam combina estimaciones de primer y segundo momento:</p>
 <p><span class="math display">\[
 m_t
@@ -3292,7 +3329,7 @@ v_t
 \]</span></p>
 <p>Adam y AdamW son baselines frecuentes, pero no existe un optimizador universalmente mejor.</p>
 <p>En PyTorch:</p>
-<div id="8c1c9595" class="cell" data-execution_count="19">
+<div id="e87b25b4" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.AdamW(</span>
@@ -3303,8 +3340,8 @@ v_t
 </details>
 </div>
 </section>
-<section id="regularización-y-weight-decay" class="level1" data-number="44">
-<h1 data-number="44"><span class="header-section-number">44</span> Regularización y weight decay</h1>
+<section id="regularización-y-weight-decay" class="level1" data-number="43">
+<h1 data-number="43"><span class="header-section-number">43</span> Regularización y weight decay</h1>
 <p>Podemos introducir una penalización sobre los parámetros:</p>
 <p><span class="math display">\[
 L_{\mathrm{total}}
@@ -3336,8 +3373,8 @@ Note
 </div>
 </div>
 </section>
-<section id="learning-rate-scheduling" class="level1" data-number="45">
-<h1 data-number="45"><span class="header-section-number">45</span> Learning rate scheduling</h1>
+<section id="learning-rate-scheduling" class="level1" data-number="44">
+<h1 data-number="44"><span class="header-section-number">44</span> Learning rate scheduling</h1>
 <p>No es necesario mantener <span class="math inline">\(\eta\)</span> constante.</p>
 <p>Algunas estrategias son:</p>
 <ul>
@@ -3348,7 +3385,7 @@ Note
 <li>ReduceLROnPlateau.</li>
 </ul>
 <p>Por ejemplo:</p>
-<div id="50f1626c" class="cell" data-execution_count="20">
+<div id="d1865a23" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>optimizer <span class="op">=</span> torch.optim.AdamW(</span>
@@ -3364,10 +3401,10 @@ Note
 </div>
 <p>El scheduler modifica la escala de los pasos a lo largo del entrenamiento.</p>
 </section>
-<section id="pytorch-el-ciclo-mínimo-completo" class="level1" data-number="46">
-<h1 data-number="46"><span class="header-section-number">46</span> 35. PyTorch: el ciclo mínimo completo</h1>
+<section id="pytorch-el-ciclo-mínimo-completo" class="level1" data-number="45">
+<h1 data-number="45"><span class="header-section-number">45</span> 35. PyTorch: el ciclo mínimo completo</h1>
 <p>Ahora podemos interpretar cada instrucción matemáticamente.</p>
-<div id="1e3607a4" class="cell" data-execution_count="21">
+<div id="44188f83" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x_batch, y_batch <span class="kw">in</span> train_loader:</span>
@@ -3401,8 +3438,8 @@ L
 \theta_{\mathrm{nuevo}}.
 \]</span></p>
 </section>
-<section id="un-ejemplo-completo-regresión-lineal" class="level1" data-number="47">
-<h1 data-number="47"><span class="header-section-number">47</span> Un ejemplo completo: regresión lineal</h1>
+<section id="un-ejemplo-completo-regresión-lineal" class="level1" data-number="46">
+<h1 data-number="46"><span class="header-section-number">46</span> Un ejemplo completo: regresión lineal</h1>
 <div id="pytorch-linear-regression" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3461,7 +3498,7 @@ L
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>w = 2.0074307918548584
-b = 0.9900230169296265</code></pre>
+b = 0.9900229573249817</code></pre>
 </div>
 </div>
 <div id="cell-fig-linear-loss" class="cell" data-execution_count="23">
@@ -3488,10 +3525,10 @@ Figure&nbsp;12: Pérdida durante el entrenamiento de una regresión lineal.
 </div>
 </div>
 </section>
-<section id="inspeccionar-gradientes-en-pytorch" class="level1" data-number="48">
-<h1 data-number="48"><span class="header-section-number">48</span> Inspeccionar gradientes en PyTorch</h1>
+<section id="inspeccionar-gradientes-en-pytorch" class="level1" data-number="47">
+<h1 data-number="47"><span class="header-section-number">47</span> Inspeccionar gradientes en PyTorch</h1>
 <p>Podemos observar los gradientes calculados por autograd:</p>
-<div id="73c3c80a" class="cell" data-execution_count="24">
+<div id="a78954e4" class="cell" data-execution_count="24">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name, parameter <span class="kw">in</span> model.named_parameters():</span>
@@ -3509,10 +3546,10 @@ Figure&nbsp;12: Pérdida durante el entrenamiento de una regresión lineal.
 \]</span></p>
 <p>con los objetos concretos almacenados en PyTorch.</p>
 </section>
-<section id="dataloader-batches-y-shuffle" class="level1" data-number="49">
-<h1 data-number="49"><span class="header-section-number">49</span> <code>DataLoader</code>, batches y <code>shuffle</code></h1>
+<section id="dataloader-batches-y-shuffle" class="level1" data-number="48">
+<h1 data-number="48"><span class="header-section-number">48</span> <code>DataLoader</code>, batches y <code>shuffle</code></h1>
 <p>En PyTorch:</p>
-<div id="a2a68e79" class="cell" data-execution_count="25">
+<div id="4dcbbeff" class="cell" data-execution_count="25">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>train_loader <span class="op">=</span> DataLoader(</span>
@@ -3527,10 +3564,10 @@ Figure&nbsp;12: Pérdida durante el entrenamiento de una regresión lineal.
 <p>Esto ayuda a evitar mini-batches sistemáticamente asociados con el orden original de los datos.</p>
 <p>Sin embargo, <code>shuffle=True</code> <strong>no corrige una partición incorrecta del dataset</strong>. El split entre train/validation/test debe haberse definido apropiadamente antes.</p>
 </section>
-<section id="validación-en-pytorch" class="level1" data-number="50">
-<h1 data-number="50"><span class="header-section-number">50</span> Validación en PyTorch</h1>
+<section id="validación-en-pytorch" class="level1" data-number="49">
+<h1 data-number="49"><span class="header-section-number">49</span> Validación en PyTorch</h1>
 <p>Durante validación no queremos actualizar parámetros:</p>
-<div id="307796e9" class="cell" data-execution_count="26">
+<div id="3215375d" class="cell" data-execution_count="26">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
@@ -3554,7 +3591,7 @@ Figure&nbsp;12: Pérdida durante el entrenamiento de una regresión lineal.
 </details>
 </div>
 <p>No ejecutamos:</p>
-<div id="d0cd3dad" class="cell" data-execution_count="27">
+<div id="38b92665" class="cell" data-execution_count="27">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>loss.backward()</span>
@@ -3562,8 +3599,8 @@ Figure&nbsp;12: Pérdida durante el entrenamiento de una regresión lineal.
 </details>
 </div>
 </section>
-<section id="inferencia-para-clasificación" class="level1" data-number="51">
-<h1 data-number="51"><span class="header-section-number">51</span> Inferencia para clasificación</h1>
+<section id="inferencia-para-clasificación" class="level1" data-number="50">
+<h1 data-number="50"><span class="header-section-number">50</span> Inferencia para clasificación</h1>
 <p>Supongamos que una red multiclase produce logits:</p>
 <p><span class="math display">\[
 \mathbf z=f_{\hat\theta}(\mathbf x).
@@ -3580,7 +3617,7 @@ Figure&nbsp;12: Pérdida durante el entrenamiento de una regresión lineal.
 =
 \arg\max_k p_k.
 \]</span></p>
-<div id="4d0995b0" class="cell" data-execution_count="28">
+<div id="21d63fcb" class="cell" data-execution_count="28">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
@@ -3603,8 +3640,8 @@ Figure&nbsp;12: Pérdida durante el entrenamiento de una regresión lineal.
 <p>La salida de la red y la decisión final no tienen por qué ser el mismo objeto.</p>
 <p>En un problema binario, el umbral tampoco tiene por qué ser <span class="math inline">\(0.5\)</span>; puede seleccionarse según sensibilidad, especificidad, costos clínicos y objetivo de uso.</p>
 </section>
-<section id="overfitting-y-early-stopping" class="level1" data-number="52">
-<h1 data-number="52"><span class="header-section-number">52</span> Overfitting y early stopping</h1>
+<section id="overfitting-y-early-stopping" class="level1" data-number="51">
+<h1 data-number="51"><span class="header-section-number">51</span> Overfitting y early stopping</h1>
 <p>Podemos observar:</p>
 <p><span class="math display">\[
 L_{\mathrm{train}}\downarrow
@@ -3661,8 +3698,8 @@ Figure&nbsp;13: Ejemplo sintético de training y validation loss.
 </div>
 <p>Con <em>early stopping</em> guardamos el checkpoint correspondiente al mejor desempeño de validación, no necesariamente el de la última epoch.</p>
 </section>
-<section id="optimización-no-es-generalización" class="level1" data-number="53">
-<h1 data-number="53"><span class="header-section-number">53</span> Optimización no es generalización</h1>
+<section id="optimización-no-es-generalización" class="level1" data-number="52">
+<h1 data-number="52"><span class="header-section-number">52</span> Optimización no es generalización</h1>
 <p>Hay dos preguntas diferentes.</p>
 <p><strong>Optimización:</strong></p>
 <blockquote class="blockquote">
@@ -3686,8 +3723,8 @@ L_{\mathrm{train}}\approx0
 \]</span></p>
 <p>y aun así tener un desempeño deficiente fuera de la muestra de entrenamiento.</p>
 </section>
-<section id="imágenes-médicas-dimensiones-del-tensor" class="level1" data-number="54">
-<h1 data-number="54"><span class="header-section-number">54</span> Imágenes médicas: dimensiones del tensor</h1>
+<section id="imágenes-médicas-dimensiones-del-tensor" class="level1" data-number="53">
+<h1 data-number="53"><span class="header-section-number">53</span> Imágenes médicas: dimensiones del tensor</h1>
 <p>Una imagen 2D puede representarse como:</p>
 <p><span class="math display">\[
 (C,H,W).
@@ -3719,8 +3756,8 @@ L_{\mathrm{train}}\approx0
 </ul>
 <p>En segmentación 3D, incluso un batch size de 1 o 2 puede ser completamente razonable debido al consumo de memoria.</p>
 </section>
-<section id="por-qué-las-imágenes-3d-consumen-tanta-memoria" class="level1" data-number="55">
-<h1 data-number="55"><span class="header-section-number">55</span> ¿Por qué las imágenes 3D consumen tanta memoria?</h1>
+<section id="por-qué-las-imágenes-3d-consumen-tanta-memoria" class="level1" data-number="54">
+<h1 data-number="54"><span class="header-section-number">54</span> ¿Por qué las imágenes 3D consumen tanta memoria?</h1>
 <p>Un volumen:</p>
 <p><span class="math display">\[
 128\times256\times256
@@ -3750,8 +3787,8 @@ L_{\mathrm{train}}\approx0
 <li>arquitecturas eficientes.</li>
 </ul>
 </section>
-<section id="gradient-accumulation" class="level1" data-number="56">
-<h1 data-number="56"><span class="header-section-number">56</span> Gradient accumulation</h1>
+<section id="gradient-accumulation" class="level1" data-number="55">
+<h1 data-number="55"><span class="header-section-number">55</span> Gradient accumulation</h1>
 <p>Supongamos que la GPU permite:</p>
 <p><span class="math display">\[
 B_{\mathrm{micro}}=2
@@ -3763,7 +3800,7 @@ B_{\mathrm{efectivo}}
 =
 2\times4=8.
 \]</span></p>
-<div id="63087182" class="cell" data-execution_count="30">
+<div id="b0635cc6" class="cell" data-execution_count="30">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>accumulation_steps <span class="op">=</span> <span class="dv">4</span></span>
@@ -3792,10 +3829,10 @@ B_{\mathrm{efectivo}}
 </div>
 <p>La equivalencia con un batch grande no es perfecta en todos los modelos y configuraciones, pero la técnica permite reducir la memoria requerida por cada forward/backward.</p>
 </section>
-<section id="mixed-precision" class="level1" data-number="57">
-<h1 data-number="57"><span class="header-section-number">57</span> Mixed precision</h1>
+<section id="mixed-precision" class="level1" data-number="56">
+<h1 data-number="56"><span class="header-section-number">56</span> Mixed precision</h1>
 <p>En GPUs compatibles, podemos utilizar precisión mixta para reducir memoria y aumentar rendimiento.</p>
-<div id="c123f43b" class="cell" data-execution_count="31">
+<div id="1e2b68db" class="cell" data-execution_count="31">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> torch.amp.GradScaler(<span class="st">"cuda"</span>)</span>
@@ -3828,10 +3865,10 @@ B_{\mathrm{efectivo}}
 </div>
 <p>El objetivo no es simplemente convertir indiscriminadamente todo a <code>float16</code>; el framework administra diferentes precisiones y el escalado ayuda a reducir problemas numéricos durante el backward.</p>
 </section>
-<section id="monai-del-mecanismo-general-a-física-médica" class="level1" data-number="58">
-<h1 data-number="58"><span class="header-section-number">58</span> MONAI: del mecanismo general a física médica</h1>
+<section id="monai-del-mecanismo-general-a-física-médica" class="level1" data-number="57">
+<h1 data-number="57"><span class="header-section-number">57</span> MONAI: del mecanismo general a física médica</h1>
 <p>MONAI se apoya en PyTorch, por lo que el ciclo matemático no cambia.</p>
-<div id="2a609913" class="cell" data-execution_count="32">
+<div id="0da6a921" class="cell" data-execution_count="32">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> monai.networks.nets <span class="im">import</span> UNet</span>
@@ -3859,7 +3896,7 @@ B_{\mathrm{efectivo}}
 </details>
 </div>
 <p>El entrenamiento sigue siendo:</p>
-<div id="cd01e6ba" class="cell" data-execution_count="33">
+<div id="445a26d3" class="cell" data-execution_count="33">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>model.train()</span>
@@ -3897,10 +3934,10 @@ B_{\mathrm{efectivo}}
 \]</span></p>
 <p>sigue siendo el núcleo del entrenamiento.</p>
 </section>
-<section id="inferencia-con-monaipytorch" class="level1" data-number="59">
-<h1 data-number="59"><span class="header-section-number">59</span> Inferencia con MONAI/PyTorch</h1>
+<section id="inferencia-con-monaipytorch" class="level1" data-number="58">
+<h1 data-number="58"><span class="header-section-number">58</span> Inferencia con MONAI/PyTorch</h1>
 <p>Para una inferencia multiclase:</p>
-<div id="08b7cc54" class="cell" data-execution_count="34">
+<div id="03d598b2" class="cell" data-execution_count="34">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">eval</span>()</span>
@@ -3934,8 +3971,8 @@ f_{\hat\theta}
 \]</span></p>
 <p>En volúmenes grandes, la inferencia puede realizarse mediante estrategias por ventanas o parches y luego reconstruir el volumen completo.</p>
 </section>
-<section id="el-ciclo-completo" class="level1" data-number="60">
-<h1 data-number="60"><span class="header-section-number">60</span> 49. El ciclo completo</h1>
+<section id="el-ciclo-completo" class="level1" data-number="59">
+<h1 data-number="59"><span class="header-section-number">59</span> 49. El ciclo completo</h1>
 <pre class="text"><code>                           DATASET
                               │
                    ┌──────────┴──────────┐
@@ -3989,16 +4026,16 @@ f_{\hat\theta}
                               ▼
                          predicción</code></pre>
 </section>
-<section id="resumen-matemático-del-entrenamiento" class="level1" data-number="61">
-<h1 data-number="61"><span class="header-section-number">61</span> Resumen matemático del entrenamiento</h1>
-<section id="forward" class="level2" data-number="61.1">
-<h2 data-number="61.1" class="anchored" data-anchor-id="forward"><span class="header-section-number">61.1</span> Forward</h2>
+<section id="resumen-matemático-del-entrenamiento" class="level1" data-number="60">
+<h1 data-number="60"><span class="header-section-number">60</span> Resumen matemático del entrenamiento</h1>
+<section id="forward" class="level2" data-number="60.1">
+<h2 data-number="60.1" class="anchored" data-anchor-id="forward"><span class="header-section-number">60.1</span> Forward</h2>
 <p><span class="math display">\[
 \hat y=f_\theta(\mathbf x).
 \]</span></p>
 </section>
-<section id="loss-de-un-mini-batch" class="level2" data-number="61.2">
-<h2 data-number="61.2" class="anchored" data-anchor-id="loss-de-un-mini-batch"><span class="header-section-number">61.2</span> Loss de un mini-batch</h2>
+<section id="loss-de-un-mini-batch" class="level2" data-number="60.2">
+<h2 data-number="60.2" class="anchored" data-anchor-id="loss-de-un-mini-batch"><span class="header-section-number">60.2</span> Loss de un mini-batch</h2>
 <p><span class="math display">\[
 L_B(\theta)
 =
@@ -4007,16 +4044,16 @@ L_B(\theta)
 \ell(f_\theta(\mathbf x_i),y_i).
 \]</span></p>
 </section>
-<section id="backward" class="level2" data-number="61.3">
-<h2 data-number="61.3" class="anchored" data-anchor-id="backward"><span class="header-section-number">61.3</span> Backward</h2>
+<section id="backward" class="level2" data-number="60.3">
+<h2 data-number="60.3" class="anchored" data-anchor-id="backward"><span class="header-section-number">60.3</span> Backward</h2>
 <p><span class="math display">\[
 g_B
 =
 \nabla_\theta L_B(\theta).
 \]</span></p>
 </section>
-<section id="update" class="level2" data-number="61.4">
-<h2 data-number="61.4" class="anchored" data-anchor-id="update"><span class="header-section-number">61.4</span> Update</h2>
+<section id="update" class="level2" data-number="60.4">
+<h2 data-number="60.4" class="anchored" data-anchor-id="update"><span class="header-section-number">60.4</span> Update</h2>
 <p>Para SGD:</p>
 <p><span class="math display">\[
 \theta_{t+1}
@@ -4035,8 +4072,8 @@ g_B
 \]</span></p>
 </section>
 </section>
-<section id="resumen-matemático-de-backpropagation" class="level1" data-number="62">
-<h1 data-number="62"><span class="header-section-number">62</span> Resumen matemático de backpropagation</h1>
+<section id="resumen-matemático-de-backpropagation" class="level1" data-number="61">
+<h1 data-number="61"><span class="header-section-number">61</span> Resumen matemático de backpropagation</h1>
 <p>Para cada capa:</p>
 <p><span class="math display">\[
 \mathbf z^{(l)}
@@ -4087,8 +4124,8 @@ W^{(l)}
 }
 \]</span></p>
 </section>
-<section id="bibliografía-de-la-unidad" class="level1" data-number="63">
-<h1 data-number="63"><span class="header-section-number">63</span> Bibliografía de la unidad</h1>
+<section id="bibliografía-de-la-unidad" class="level1" data-number="62">
+<h1 data-number="62"><span class="header-section-number">62</span> Bibliografía de la unidad</h1>
 <ul>
 <li>Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016). <em>Deep Learning</em>. MIT Press. (Cap. 1, 4, 6, 8 y 9)</li>
 <li>Bishop, C. M. (2006). <em>Pattern Recognition and Machine Learning</em>. Springer.</li>
@@ -4520,6 +4557,9 @@ W^{(l)}
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../unidad1/unidad1.html" class="pagination-link" aria-label="Índice de la unidad">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Índice de la unidad</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../unidad1/notas2.html" class="pagination-link" aria-label="Notas sobre imágenes médicas">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="es"><head>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -101,7 +101,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-0427d8d92a431aa6a6430e53ec02a470.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-bd6b8afe794f1985a8fa1719a4bb2ade.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -216,21 +216,12 @@ Ignacio Scarinci
 </div>
 
 </section>
-<section class="slide level2 center">
+<section>
+<section id="bloque-1-la-pregunta-del-entrenamiento" class="title-slide slide level1 section-slide center">
+<h1>Bloque 1 · La pregunta del entrenamiento</h1>
 
-<style>
-.reveal .visual-note { font-size: 0.72em; opacity: 0.8; }
-.reveal .compact-table table { font-size: 0.72em; }
-.reveal .centered { text-align: center; }
-.reveal .texto-destacado {
-  font-size: 2em;
-  font-weight: 700;
-  text-align: center;
-  margin: 0.5em 0;
-}
-</style>
 </section>
-<section id="objetivo-de-la-clase" class="slide level2 center">
+<section id="objetivo-de-la-clase" class="slide level2">
 <h2>Objetivo de la clase</h2>
 <p>Entender cómo una red neuronal aprende sus parámetros.</p>
 <div class="cell" data-reveal="true" data-layout-align="default">
@@ -257,7 +248,7 @@ Ignacio Scarinci
 <p>La clase conecta matemática, PyTorch y aplicaciones en imágenes médicas.</p>
 </div>
 </section>
-<section id="mapa-conceptual" class="slide level2 center">
+<section id="mapa-conceptual" class="slide level2">
 <h2>Mapa conceptual</h2>
 <div class="cell" data-reveal="true" data-layout-align="default">
 <div class="cell-output-display">
@@ -283,7 +274,7 @@ Ignacio Scarinci
 <p>Después veremos cómo esto aparece en PyTorch y MONAI.</p>
 </div>
 </section>
-<section id="la-pregunta-central" class="slide level2 center">
+<section id="la-pregunta-central" class="slide level2">
 <h2>La pregunta central</h2>
 <p>Tenemos una red:</p>
 <p><span class="math display">\[
@@ -308,7 +299,7 @@ Ignacio Scarinci
 </div>
 </div>
 </section>
-<section id="el-ciclo-de-entrenamiento-visualmente" class="slide level2 center">
+<section id="el-ciclo-de-entrenamiento-visualmente" class="slide level2">
 <h2>El ciclo de entrenamiento, visualmente</h2>
 <div class="cell" data-reveal="true" data-layout-align="default">
 <div class="cell-output-display">
@@ -332,7 +323,7 @@ Ignacio Scarinci
 <p>El entrenamiento es un <strong>ciclo</strong>: la salida de una iteración modifica el modelo que verá el siguiente mini-batch.</p>
 </div>
 </section>
-<section id="parámetros-de-una-red" class="slide level2 center">
+<section id="parámetros-de-una-red" class="slide level2">
 <h2>Parámetros de una red</h2>
 <p>Los parámetros entrenables son los <strong>pesos</strong> y los <strong>sesgos</strong>.</p>
 <div class="cell" data-reveal="true" data-layout-align="default">
@@ -379,8 +370,13 @@ Ignacio Scarinci
 <div class="fragment">
 <p>Entrenar significa ajustar esos pesos y sesgos usando datos.</p>
 </div>
+</section></section>
+<section>
+<section id="bloque-2-de-la-predicción-a-la-pérdida" class="title-slide slide level1 section-slide center">
+<h1>Bloque 2 · De la predicción a la pérdida</h1>
+
 </section>
-<section id="de-predicción-a-pérdida" class="slide level2 center">
+<section id="de-predicción-a-pérdida" class="slide level2">
 <h2>De predicción a pérdida</h2>
 <p>Para un dato <span class="math inline">\((x_i,y_i)\)</span>:</p>
 <p><span class="math display">\[
@@ -394,7 +390,7 @@ Ignacio Scarinci
 <p>La pérdida convierte “se equivocó” en una cantidad optimizable.</p>
 </div>
 </section>
-<section id="riesgo-esperado" class="slide level2 center">
+<section id="riesgo-esperado" class="slide level2">
 <h2>Riesgo esperado</h2>
 <p>El objetivo ideal sería minimizar:</p>
 <p><span class="math display">\[
@@ -409,7 +405,7 @@ R(\theta)
 <p>Pero no conocemos la distribución poblacional <span class="math inline">\(P\)</span>.</p>
 </div>
 </section>
-<section id="riesgo-empírico" class="slide level2 center">
+<section id="riesgo-empírico" class="slide level2">
 <h2>Riesgo empírico</h2>
 <p>Tenemos una muestra finita:</p>
 <p><span class="math display">\[
@@ -424,7 +420,7 @@ R(\theta)
 \ell(f_\theta(x_i),y_i)
 \]</span></p>
 </section>
-<section id="theta-versus-hattheta" class="slide level2 center">
+<section id="theta-versus-hattheta" class="slide level2">
 <h2><span class="math inline">\(\theta^*\)</span> versus <span class="math inline">\(\hat\theta\)</span></h2>
 <p>Solución ideal:</p>
 <p><span class="math display">\[
@@ -442,7 +438,7 @@ R(\theta)
 <p>Generalizar significa que <span class="math inline">\(\hat\theta\)</span> funcione bien más allá de la muestra.</p>
 </div>
 </section>
-<section id="riesgo-real-y-riesgo-empírico-una-imagen-mental" class="slide level2 center">
+<section id="riesgo-real-y-riesgo-empírico-una-imagen-mental" class="slide level2">
 <h2>Riesgo real y riesgo empírico: una imagen mental</h2>
 <div id="cell-fig-riesgo-real-empirico" class="cell" data-fig-height="5" data-fig-width="10" data-execution_count="2">
 <div class="cell-output cell-output-display">
@@ -452,7 +448,7 @@ R(\theta)
 <img data-src="clase2_files/figure-revealjs/fig-riesgo-real-empirico-output-1.png" width="952" height="470">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-riesgo-real-empirico-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: La muestra permite estimar el comportamiento poblacional, pero no lo determina exactamente.
+Figura&nbsp;1: La muestra permite estimar el comportamiento poblacional, pero no lo determina exactamente.
 </figcaption>
 </figure>
 </div>
@@ -462,7 +458,7 @@ Figure&nbsp;1: La muestra permite estimar el comportamiento poblacional, pero no
 <p><span class="math inline">\(\widehat R\)</span> es lo que podemos optimizar. <span class="math inline">\(R\)</span> es lo que realmente nos importa.</p>
 </div>
 </section>
-<section id="optimización-no-es-generalización" class="slide level2 center">
+<section id="optimización-no-es-generalización" class="slide level2">
 <h2>Optimización no es generalización</h2>
 <p>Podemos tener:</p>
 <p><span class="math display">\[
@@ -473,7 +469,7 @@ Figure&nbsp;1: La muestra permite estimar el comportamiento poblacional, pero no
 <p>Optimizar el entrenamiento no garantiza desempeño clínico.</p>
 </div>
 </section>
-<section id="funciones-de-pérdida" class="slide level2 center">
+<section id="funciones-de-pérdida" class="slide level2">
 <h2>Funciones de pérdida</h2>
 <p>La elección de la pérdida depende de la tarea.</p>
 <table class="caption-top">
@@ -499,7 +495,7 @@ Figure&nbsp;1: La muestra permite estimar el comportamiento poblacional, pero no
 </tbody>
 </table>
 </section>
-<section id="mse" class="slide level2 center">
+<section id="mse" class="slide level2">
 <h2>MSE</h2>
 <p>Para regresión:</p>
 <p><span class="math display">\[
@@ -513,7 +509,7 @@ Figure&nbsp;1: La muestra permite estimar el comportamiento poblacional, pero no
 <p>Penaliza fuertemente errores grandes.</p>
 </div>
 </section>
-<section id="binary-cross-entropy" class="slide level2 center">
+<section id="binary-cross-entropy" class="slide level2">
 <h2>Binary Cross Entropy</h2>
 <p>Para clasificación binaria, el modelo produce una probabilidad</p>
 <p><span class="math display">\[
@@ -535,7 +531,7 @@ y\log(p)
 \right].
 \]</span></p>
 </section>
-<section id="bce-intuición" class="slide level2 center">
+<section id="bce-intuición" class="slide level2">
 <h2>BCE — intuición</h2>
 <p>Por ejemplo, si la clase verdadera es <span class="math inline">\(y=1\)</span>:</p>
 <p><span class="math display">\[
@@ -553,7 +549,7 @@ p=0.1
 <p>La pérdida es pequeña cuando el modelo asigna <strong>alta probabilidad a la respuesta correcta</strong>.</p>
 </div>
 </section>
-<section id="softmax-de-valores-de-salida-a-probabilidades" class="slide level2 smaller center">
+<section id="softmax-de-valores-de-salida-a-probabilidades" class="slide level2 smaller">
 <h2>Softmax: de valores de salida a probabilidades</h2>
 <p>Supongamos que la salida de la red para tres clases es:</p>
 <p><span class="math display">\[
@@ -564,7 +560,7 @@ z = (2.0,\;1.0,\;0.1)
 <p><span class="math display">\[
 \operatorname{softmax}(z_i)=\frac{e^{z_i}}{\sum_j e^{z_j}}
 \]</span></p>
-<div id="c0fa715f" class="cell" data-execution_count="3">
+<div id="4b18f2b1" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
@@ -575,7 +571,7 @@ z = (2.0,\;1.0,\;0.1)
 </div>
 </div>
 </section>
-<section id="cross-entropy" class="slide level2 smaller center">
+<section id="cross-entropy" class="slide level2 smaller">
 <h2>Cross Entropy</h2>
 <p>En un problema de clasificación multiclase donde cada ejemplo pertenece a <strong>una única clase</strong>, softmax produce una probabilidad para cada clase:</p>
 <p><span class="math display">\[
@@ -595,7 +591,7 @@ p=(p_1,p_2,\ldots,p_K)
 <p>Como <span class="math inline">\(y_k=1\)</span> solamente para la clase verdadera, la pérdida depende finalmente de la <strong>probabilidad asignada a esa clase</strong>.</p>
 </div>
 </section>
-<section id="cross-entropy-ejemplo-numérico" class="slide level2 center">
+<section id="cross-entropy-ejemplo-numérico" class="slide level2">
 <h2>Cross Entropy — ejemplo numérico</h2>
 <p>En el ejemplo anterior, softmax produjo:</p>
 <p><span class="math display">\[
@@ -624,8 +620,13 @@ y=(1,0,0).
 <div class="fragment">
 <p><strong>Idea clave:</strong> Cross Entropy penaliza cuando el modelo asigna poca probabilidad a la clase verdadera.</p>
 </div>
+</section></section>
+<section>
+<section id="bloque-3-optimizar-la-pérdida-gradiente-y-learning-rate" class="title-slide slide level1 section-slide center">
+<h1>Bloque 3 · Optimizar la pérdida: gradiente y learning rate</h1>
+
 </section>
-<section id="sample-batch-y-mini-batch" class="slide level2 center">
+<section id="sample-batch-y-mini-batch" class="slide level2">
 <h2>Sample, batch y mini-batch</h2>
 <p>Un <strong>sample</strong> es un ejemplo individual:</p>
 <p><span class="math display">\[
@@ -651,7 +652,7 @@ B =
 <p>Una <strong>iteración</strong> procesa un mini-batch y realiza una actualización de los parámetros.</p>
 </div>
 </section>
-<section id="cómo-estimamos-la-loss" class="slide level2 center">
+<section id="cómo-estimamos-la-loss" class="slide level2">
 <h2>¿Cómo estimamos la loss?</h2>
 <p>Para un ejemplo individual <span class="math inline">\((x_i,y_i)\)</span>:</p>
 <p><span class="math display">\[
@@ -681,7 +682,7 @@ B =
 <p>Esta es la cantidad que queremos reducir durante el entrenamiento.</p>
 </div>
 </section>
-<section id="la-loss-depende-de-los-parámetros" class="slide level2 center">
+<section id="la-loss-depende-de-los-parámetros" class="slide level2">
 <h2>La loss depende de los parámetros</h2>
 <p>La predicción depende de los parámetros de la red:</p>
 <p><span class="math display">\[
@@ -710,7 +711,7 @@ B =
 </div>
 </div>
 </section>
-<section id="gradiente-de-la-loss" class="slide level2 center">
+<section id="gradiente-de-la-loss" class="slide level2">
 <h2>Gradiente de la loss</h2>
 <p>La loss depende de los parámetros de la red:</p>
 <p><span class="math display">\[
@@ -731,7 +732,7 @@ B =
 <p>Geométricamente, <span class="math inline">\(\nabla_\theta\mathcal L\)</span> apunta en la dirección de <strong>máximo aumento local</strong> de la loss.</p>
 </div>
 </section>
-<section id="interpretación-local" class="slide level2 center">
+<section id="interpretación-local" class="slide level2">
 <h2>Interpretación local</h2>
 <p>Usando una expansión de Taylor de primer orden:</p>
 <p><span class="math display">\[
@@ -760,7 +761,7 @@ B =
 <p>Para disminuir localmente la loss, avanzamos en la dirección <strong>opuesta al gradiente</strong>.</p>
 </div>
 </section>
-<section id="geometría-del-gradiente" class="slide level2 center">
+<section id="geometría-del-gradiente" class="slide level2">
 <h2>Geometría del gradiente</h2>
 <div id="cell-fig-gradiente-geometria2" class="cell" data-fig-height="5.5" data-fig-width="8.5" data-execution_count="4">
 <div class="cell-output cell-output-display">
@@ -770,14 +771,14 @@ B =
 <img data-src="clase2_files/figure-revealjs/fig-gradiente-geometria2-output-1.png" width="807" height="518">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-gradiente-geometria2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: El gradiente es perpendicular a las curvas de nivel y apunta hacia el incremento más rápido; para minimizar avanzamos en la dirección opuesta.
+Figura&nbsp;2: El gradiente es perpendicular a las curvas de nivel y apunta hacia el incremento más rápido; para minimizar avanzamos en la dirección opuesta.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="descenso-por-gradiente" class="slide level2 center">
+<section id="descenso-por-gradiente" class="slide level2">
 <h2>Descenso por gradiente</h2>
 <p>La regla de actualización es:</p>
 <p><span class="math display">\[
@@ -796,7 +797,7 @@ Figure&nbsp;2: El gradiente es perpendicular a las curvas de nivel y apunta haci
 <p>El gradiente determina la <strong>dirección</strong> de la actualización; <span class="math inline">\(\eta\)</span> determina el <strong>tamaño del paso</strong>.</p>
 </div>
 </section>
-<section id="learning-rate" class="slide level2 center">
+<section id="learning-rate" class="slide level2">
 <h2>Learning rate</h2>
 <p>Si <span class="math inline">\(\eta\)</span> es demasiado pequeño:</p>
 <p><span class="math display">\[
@@ -810,7 +811,7 @@ Figure&nbsp;2: El gradiente es perpendicular a las curvas de nivel y apunta haci
 <p>El learning rate controla la escala de cada actualización.</p>
 </div>
 </section>
-<section id="ejemplo-mathcal-lww2" class="slide level2 center">
+<section id="ejemplo-mathcal-lww2" class="slide level2">
 <h2>Ejemplo: <span class="math inline">\(\mathcal L(w)=w^2\)</span></h2>
 <p>En una dimensión:</p>
 <p><span class="math display">\[
@@ -832,7 +833,7 @@ w_{t+1}
 <p>Incluso en este ejemplo simple, el learning rate determina la dinámica de convergencia.</p>
 </div>
 </section>
-<section id="superficie-de-pérdida" class="slide level2 center">
+<section id="superficie-de-pérdida" class="slide level2 takeaway">
 <h2>Superficie de pérdida</h2>
 <p>En una red con muchos parámetros:</p>
 <p><span class="math display">\[
@@ -844,8 +845,13 @@ w_{t+1}
 <div class="fragment">
 <p>En redes profundas, esta superficie es de altísima dimensión y, en general, no convexa.</p>
 </div>
+</section></section>
+<section>
+<section id="bloque-4-cómo-recorremos-el-dataset" class="title-slide slide level1 section-slide center">
+<h1>Bloque 4 · Cómo recorremos el dataset</h1>
+
 </section>
-<section id="con-qué-datos-calculamos-el-gradiente" class="slide level2 center">
+<section id="con-qué-datos-calculamos-el-gradiente" class="slide level2">
 <h2>¿Con qué datos calculamos el gradiente?</h2>
 <p>Ya sabemos cómo actualizar los parámetros:</p>
 <p><span class="math display">\[
@@ -880,7 +886,7 @@ w_{t+1}
 <li>un mini-batch.</li>
 </ul>
 </section>
-<section id="full-batch-gradient-descent" class="slide level2 center">
+<section id="full-batch-gradient-descent" class="slide level2">
 <h2>Full-batch gradient descent</h2>
 <p>Utilizamos los <span class="math inline">\(N\)</span> ejemplos del dataset:</p>
 <p><span class="math display">\[
@@ -910,7 +916,7 @@ g_D
 <p>Gradiente estable, pero cada actualización puede ser computacionalmente costosa.</p>
 </div>
 </section>
-<section id="stochastic-gradient-descent" class="slide level2 center">
+<section id="stochastic-gradient-descent" class="slide level2">
 <h2>Stochastic Gradient Descent</h2>
 <p>En el extremo opuesto, utilizamos una sola muestra:</p>
 <p><span class="math display">\[
@@ -928,7 +934,7 @@ g_i
 <p>Cada actualización es barata, pero el gradiente puede variar considerablemente entre muestras.</p>
 </div>
 </section>
-<section id="mini-batch-gradient-descent" class="slide level2 smaller center">
+<section id="mini-batch-gradient-descent" class="slide level2 smaller">
 <h2>Mini-batch gradient descent</h2>
 <p>Utilizamos un mini-batch de <span class="math inline">\(m\)</span> ejemplos:</p>
 <p><span class="math display">\[
@@ -960,7 +966,7 @@ g_B
 \theta_t-\eta g_B
 \]</span></p>
 </section>
-<section id="cómo-cambia-el-gradiente-con-el-batch-size" class="slide level2 center">
+<section id="cómo-cambia-el-gradiente-con-el-batch-size" class="slide level2">
 <h2>¿Cómo cambia el gradiente con el batch size?</h2>
 <div id="cell-fig-batch-noise" class="cell" data-fig-height="5" data-fig-width="10" data-execution_count="5">
 <div class="cell-output cell-output-display">
@@ -970,14 +976,14 @@ g_B
 <img data-src="clase2_files/figure-revealjs/fig-batch-noise-output-1.png" width="952" height="471">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-batch-noise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Un batch más pequeño produce estimaciones más ruidosas del gradiente; uno mayor es más estable pero más costoso.
+Figura&nbsp;3: Un batch más pequeño produce estimaciones más ruidosas del gradiente; uno mayor es más estable pero más costoso.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="por-qué-mini-batches" class="slide level2 center">
+<section id="por-qué-mini-batches" class="slide level2">
 <h2>¿Por qué mini-batches?</h2>
 <p>Representan un compromiso entre:</p>
 <ul>
@@ -991,7 +997,7 @@ Figure&nbsp;3: Un batch más pequeño produce estimaciones más ruidosas del gra
 <p>En Deep Learning, el entrenamiento se realiza habitualmente mediante mini-batches.</p>
 </div>
 </section>
-<section id="epoch-e-iteration" class="slide level2 center">
+<section id="epoch-e-iteration" class="slide level2">
 <h2>Epoch e iteration</h2>
 <p>Si:</p>
 <p><span class="math display">\[
@@ -1010,7 +1016,7 @@ m=100
 <p>Una <strong>iteration</strong> procesa un mini-batch y, normalmente, realiza una actualización.</p>
 <p>Un <strong>epoch</strong> corresponde a haber recorrido una vez todo el dataset.</p>
 </section>
-<section id="epoch-e-iteration-visualización" class="slide level2 center">
+<section id="epoch-e-iteration-visualización" class="slide level2">
 <h2>Epoch e iteration: visualización</h2>
 <p>En este ejemplo ilustrativo usamos un dataset pequeño:</p>
 <p><span class="math display">\[
@@ -1051,8 +1057,64 @@ m=4
 <p>Cada <strong>iteration</strong> procesa un mini-batch.<br>
 Cuando se procesaron todos los mini-batches, se completó <strong>1 epoch</strong>.</p>
 </div>
+</section></section>
+<section>
+<section id="puente-del-gradiente-al-aprendizaje" class="title-slide slide level1 section-slide center">
+<h1>Puente · Del gradiente al aprendizaje</h1>
+
 </section>
-<section id="forward-pass" class="slide level2 center">
+<section id="lo-que-ya-sabemos" class="slide level2">
+<h2>Lo que ya sabemos</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<h3 id="en-los-bloques-14">En los bloques 1–4</h3>
+<ol type="1">
+<li>El modelo recibe datos.</li>
+<li>Produce una predicción.</li>
+<li>La predicción se compara con el objetivo.</li>
+<li>La pérdida resume el error.</li>
+<li>El gradiente indica cómo cambia la pérdida.</li>
+<li>El <em>learning rate</em> define el tamaño del paso.</li>
+</ol>
+</div><div class="column" style="width:48%;">
+<h3 id="la-pregunta-que-sigue">La pregunta que sigue</h3>
+<p>¿Cómo se usan esos gradientes para cambiar los parámetros?</p>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    X["Datos"] --&gt; M["Modelo"]
+    M --&gt; P["Predicción"]
+    P --&gt; L["Pérdida"]
+    L --&gt; G["Gradientes"]
+    G --&gt; U["Actualización"]
+    U -. "siguiente iteración" .-&gt; M
+
+    classDef data fill:#e5f3f8,stroke:#2f6690,stroke-width:1.5px,color:#17324d;
+    classDef loss fill:#fff0eb,stroke:#c95d3e,stroke-width:1.5px,color:#17324d;
+    classDef learn fill:#e9f4ee,stroke:#397b64,stroke-width:1.5px,color:#17324d;
+    class X,M,P data;
+    class L loss;
+    class G,U learn;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</div></div>
+<div class="takeaway">
+<p>El modelo aprende porque la pérdida produce una señal que permite corregir sus parámetros.</p>
+</div>
+</section></section>
+<section>
+<section id="bloque-5-forward-y-backpropagation" class="title-slide slide level1 section-slide center">
+<h1>Bloque 5 · Forward y backpropagation</h1>
+
+</section>
+<section id="forward-pass" class="slide level2">
 <h2>Forward pass</h2>
 <p>Durante el <strong>forward pass</strong>, los datos atraviesan la red capa por capa hasta producir una predicción.</p>
 <div class="cell" data-reveal="true" data-layout-align="default">
@@ -1061,11 +1123,18 @@ Cuando se procesaron todos los mini-batches, se completó <strong>1 epoch</stron
 <p></p><figure class=""><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
-    X["Entrada&lt;br/&gt;x"] --&gt; L1["Capa 1"]
-    L1 --&gt; L2["Capa 2"]
+    X["Entrada&lt;br/&gt;x"] --&gt; L1["Capa 1&lt;br/&gt;h₁"]
+    L1 --&gt; L2["Capa 2&lt;br/&gt;h₂"]
     L2 --&gt; O["Predicción&lt;br/&gt;ŷ"]
-    O --&gt; LOSS["Loss&lt;br/&gt;L(ŷ,y)"]
-    Y["Target&lt;br/&gt;y"] --&gt; LOSS
+    O --&gt; LOSS["Pérdida&lt;br/&gt;L(ŷ,y)"]
+    Y["Objetivo&lt;br/&gt;y"] --&gt; LOSS
+
+    classDef data fill:#e5f3f8,stroke:#2f6690,stroke-width:1.5px,color:#17324d;
+    classDef model fill:#eef1f8,stroke:#2f6690,stroke-width:1.5px,color:#17324d;
+    classDef loss fill:#fff0eb,stroke:#c95d3e,stroke-width:1.5px,color:#17324d;
+    class X,Y data;
+    class L1,L2,O model;
+    class LOSS loss;
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -1077,7 +1146,37 @@ Cuando se procesaron todos los mini-batches, se completó <strong>1 epoch</stron
 Todavía no modifica sus parámetros.</p>
 </div>
 </section>
-<section id="forward-durante-entrenamiento" class="slide level2 center">
+<section id="la-información-cambia-de-dirección" class="slide level2">
+<h2>La información cambia de dirección</h2>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    X["x"] --&gt; F1["Forward&lt;br/&gt;transforma"]
+    F1 --&gt; YH["ŷ"]
+    YH --&gt; E["Pérdida&lt;br/&gt;compara con y"]
+    E --&gt; B1["Backward&lt;br/&gt;calcula ∂L/∂θ"]
+    B1 --&gt; U["Update&lt;br/&gt;θ ← θ − η∇L"]
+
+    classDef forward fill:#e5f3f8,stroke:#2f6690,stroke-width:1.5px,color:#17324d;
+    classDef error fill:#fff0eb,stroke:#c95d3e,stroke-width:1.5px,color:#17324d;
+    classDef backward fill:#e9f4ee,stroke:#397b64,stroke-width:1.5px,color:#17324d;
+    class X,F1,YH forward;
+    class E error;
+    class B1,U backward;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<div class="takeaway">
+<p>El <strong>forward</strong> lleva los datos hacia la predicción. El <strong>backward</strong> lleva la señal del error hacia los parámetros.</p>
+</div>
+</section>
+<section id="forward-durante-entrenamiento" class="slide level2">
 <h2>Forward durante entrenamiento</h2>
 <p>Durante entrenamiento:</p>
 <p><span class="math display">\[
@@ -1103,7 +1202,7 @@ f_\theta(x)
 \]</span></p>
 </div>
 </section>
-<section id="forward-durante-inferencia" class="slide level2 center">
+<section id="forward-durante-inferencia" class="slide level2">
 <h2>Forward durante inferencia</h2>
 <p>Después de entrenar:</p>
 <p><span class="math display">\[
@@ -1121,7 +1220,7 @@ f_{\hat\theta}(x_{\mathrm{new}})
 <p>El objetivo ya no es aprender: es <strong>usar el modelo entrenado</strong>.</p>
 </div>
 </section>
-<section id="training-validation-test-e-inference" class="slide level2 center">
+<section id="training-validation-test-e-inference" class="slide level2">
 <h2>Training, validation, test e inference</h2>
 <table class="caption-top">
 <thead>
@@ -1160,19 +1259,19 @@ f_{\hat\theta}(x_{\mathrm{new}})
 </tbody>
 </table>
 </section>
-<section id="inferencia-en-pytorch" class="slide level2 center">
+<section id="inferencia-en-pytorch" class="slide level2">
 <h2>Inferencia en PyTorch</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-label="1"></a>model.<span class="bu">eval</span>()</span>
 <span id="cb1-2"><a aria-label="2"></a></span>
 <span id="cb1-3"><a aria-label="3"></a><span class="cf">with</span> torch.no_grad():</span>
-<span id="cb1-4"><a aria-label="4"></a>    prediction <span class="op">=</span> model(image)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-4"><a aria-label="4"></a>    prediction <span class="op">=</span> model(image)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p><code>model.eval()</code> cambia el comportamiento de algunas capas, como <strong>Dropout</strong> o <strong>BatchNorm</strong>.</p>
 <p><code>torch.no_grad()</code> evita construir la información necesaria para calcular gradientes.</p>
 <div class="fragment">
 <p><code>model.eval()</code> y <code>torch.no_grad()</code> cumplen funciones diferentes.</p>
 </div>
 </section>
-<section id="cómo-obtenemos-los-gradientes" class="slide level2 center">
+<section id="cómo-obtenemos-los-gradientes" class="slide level2">
 <h2>¿Cómo obtenemos los gradientes?</h2>
 <p>Para actualizar los parámetros necesitamos:</p>
 <p><span class="math display">\[
@@ -1184,7 +1283,7 @@ f_{\hat\theta}(x_{\mathrm{new}})
 <p>La herramienta matemática fundamental es la <strong>regla de la cadena</strong>.</p>
 </div>
 </section>
-<section id="regla-de-la-cadena" class="slide level2 center">
+<section id="regla-de-la-cadena" class="slide level2">
 <h2>Regla de la cadena</h2>
 <p>Para una composición:</p>
 <p><span class="math display">\[
@@ -1208,7 +1307,7 @@ z
 <p>Backpropagation aplica sistemáticamente esta idea desde la loss hacia los parámetros.</p>
 </div>
 </section>
-<section id="backpropagation" class="slide level2 center">
+<section id="backpropagation" class="slide level2">
 <h2>Backpropagation</h2>
 <p>Conceptualmente:</p>
 <p><span class="math display">\[
@@ -1228,29 +1327,29 @@ z
 <p>En PyTorch este cálculo se realiza mediante <strong>automatic differentiation</strong>.</p>
 </div>
 </section>
-<section id="backpropagation-en-pytorch" class="slide level2 center">
+<section id="backpropagation-en-pytorch" class="slide level2">
 <h2>Backpropagation en PyTorch</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a aria-label="1"></a>prediction <span class="op">=</span> model(x)</span>
 <span id="cb2-2"><a aria-label="2"></a></span>
 <span id="cb2-3"><a aria-label="3"></a>loss <span class="op">=</span> loss_fn(prediction, y)</span>
 <span id="cb2-4"><a aria-label="4"></a></span>
-<span id="cb2-5"><a aria-label="5"></a>loss.backward()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-5"><a aria-label="5"></a>loss.backward()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Después de:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-label="1"></a>loss.backward()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-label="1"></a>loss.backward()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>PyTorch almacena los gradientes en:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a aria-label="1"></a>parameter.grad</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a aria-label="1"></a>parameter.grad</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p><code>backward()</code> calcula gradientes, pero <strong>no actualiza los parámetros</strong>.</p>
 </div>
 </section>
-<section id="backward-versus-step" class="slide level2 center">
+<section id="backward-versus-step" class="slide level2">
 <h2><code>backward()</code> versus <code>step()</code></h2>
 <p>Hay tres operaciones que conviene distinguir:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a aria-label="1"></a>optimizer.zero_grad()</span>
 <span id="cb5-2"><a aria-label="2"></a></span>
 <span id="cb5-3"><a aria-label="3"></a>loss.backward()</span>
 <span id="cb5-4"><a aria-label="4"></a></span>
-<span id="cb5-5"><a aria-label="5"></a>optimizer.step()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-5"><a aria-label="5"></a>optimizer.step()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li><code>zero_grad()</code> → limpia gradientes anteriores;</li>
 <li><code>backward()</code> → calcula gradientes;</li>
@@ -1260,20 +1359,48 @@ z
 <p>Esta separación es fundamental para entender el ciclo de entrenamiento en PyTorch.</p>
 </div>
 </section>
-<section id="por-qué-zero_grad" class="slide level2 center">
+<section id="por-qué-zero_grad" class="slide level2">
 <h2>¿Por qué <code>zero_grad()</code>?</h2>
 <p>Por defecto, PyTorch <strong>acumula</strong> gradientes.</p>
 <p>Por eso normalmente hacemos:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a aria-label="1"></a>optimizer.zero_grad()</span>
 <span id="cb6-2"><a aria-label="2"></a>loss.backward()</span>
-<span id="cb6-3"><a aria-label="3"></a>optimizer.step()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-3"><a aria-label="3"></a>optimizer.step()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Si no limpiamos los gradientes, una nueva llamada a <code>backward()</code> se suma a los valores anteriores.</p>
 <div class="fragment">
 <p>Esta acumulación es intencional y puede aprovecharse, por ejemplo, en <strong>gradient accumulation</strong>.</p>
 </div>
 </section>
-<section id="un-paso-de-entrenamiento-en-pytorch" class="slide level2 center">
+<section id="un-paso-de-entrenamiento-en-pytorch" class="slide level2">
 <h2>Un paso de entrenamiento en PyTorch</h2>
+<p>Antes de mirar el código completo, podemos leer el entrenamiento como una secuencia de cuatro preguntas:</p>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    Z["1. Limpiar&lt;br/&gt;gradientes"] --&gt; F["2. Forward&lt;br/&gt;¿qué predice?"]
+    F --&gt; L["3. Loss&lt;br/&gt;¿cuánto se equivoca?"]
+    L --&gt; G["4. Backward&lt;br/&gt;¿cómo corregir?"]
+    G --&gt; U["Update&lt;br/&gt;cambiar θ"]
+    U -. "siguiente batch" .-&gt; F
+
+    classDef prepare fill:#f1f3f5,stroke:#66727d,stroke-width:1.5px,color:#202a33;
+    classDef forward fill:#e5f3f8,stroke:#2f6690,stroke-width:1.5px,color:#17324d;
+    classDef loss fill:#fff0eb,stroke:#c95d3e,stroke-width:1.5px,color:#17324d;
+    classDef update fill:#e9f4ee,stroke:#397b64,stroke-width:1.5px,color:#17324d;
+    class Z prepare;
+    class F forward;
+    class L loss;
+    class G,U update;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>El código implementa exactamente esta secuencia:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a aria-label="1"></a>optimizer.zero_grad()</span>
 <span id="cb7-2"><a aria-label="2"></a></span>
 <span id="cb7-3"><a aria-label="3"></a>prediction <span class="op">=</span> model(x)</span>
@@ -1282,23 +1409,14 @@ z
 <span id="cb7-6"><a aria-label="6"></a></span>
 <span id="cb7-7"><a aria-label="7"></a>loss.backward()</span>
 <span id="cb7-8"><a aria-label="8"></a></span>
-<span id="cb7-9"><a aria-label="9"></a>optimizer.step()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Podemos leerlo como:</p>
-<p><span class="math display">\[
-\boxed{
-\text{limpiar}
-\rightarrow
-\text{forward}
-\rightarrow
-\text{loss}
-\rightarrow
-\text{backward}
-\rightarrow
-\text{update}
-}
-\]</span></p>
+<span id="cb7-9"><a aria-label="9"></a>optimizer.step()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</section></section>
+<section>
+<section id="bloque-6-optimización-en-pytorch" class="title-slide slide level1 section-slide center">
+<h1>Bloque 6 · Optimización en PyTorch</h1>
+
 </section>
-<section id="qué-hace-el-optimizador" class="slide level2 center">
+<section id="qué-hace-el-optimizador" class="slide level2">
 <h2>¿Qué hace el optimizador?</h2>
 <p>Después de <code>backward()</code> conocemos:</p>
 <p><span class="math display">\[
@@ -1312,7 +1430,31 @@ g_t
 <p>Todos los optimizadores utilizan gradientes, pero <strong>no todos los utilizan de la misma manera</strong>.</p>
 </div>
 </section>
-<section id="optimizadores" class="slide level2 center">
+<section id="un-gradiente-modifica-un-parámetro" class="slide level2">
+<h2>Un gradiente modifica un parámetro</h2>
+<p>Supongamos que para un peso tenemos:</p>
+<p><span class="math display">\[
+w=2.0,
+\qquad
+\frac{\partial\mathcal L}{\partial w}=0.8,
+\qquad
+\eta=0.1
+\]</span></p>
+<p>La actualización es:</p>
+<p><span class="math display">\[
+w_{\mathrm{nuevo}}
+=
+w-\eta\frac{\partial\mathcal L}{\partial w}
+=
+2.0-0.1\cdot0.8
+=
+1.92
+\]</span></p>
+<div class="takeaway">
+<p>El gradiente no reemplaza al peso: indica cuánto conviene modificarlo y en qué dirección.</p>
+</div>
+</section>
+<section id="optimizadores" class="slide level2">
 <h2>Optimizadores</h2>
 <table class="caption-top">
 <thead>
@@ -1348,7 +1490,7 @@ g_t
 <p>La elección del optimizador interactúa fuertemente con el <strong>learning rate</strong>.</p>
 </div>
 </section>
-<section id="sgd" class="slide level2 smaller center">
+<section id="sgd" class="slide level2 smaller">
 <h2>SGD</h2>
 <p>La actualización básica es:</p>
 <p><span class="math display">\[
@@ -1376,7 +1518,7 @@ g_t
 <li>puede converger lentamente.</li>
 </ul>
 </section>
-<section id="momentum" class="slide level2 center">
+<section id="momentum" class="slide level2">
 <h2>Momentum</h2>
 <p>Momentum incorpora información de actualizaciones anteriores:</p>
 <p><span class="math display">\[
@@ -1395,7 +1537,7 @@ g_t
 <p>La actualización adquiere <strong>inercia</strong>: mantiene movimiento en direcciones consistentes y reduce el zigzagueo.</p>
 </div>
 </section>
-<section id="sgd-vs-momentum-intuición" class="slide level2 center">
+<section id="sgd-vs-momentum-intuición" class="slide level2">
 <h2>SGD vs Momentum: intuición</h2>
 <div id="cell-fig-sgd-momentum" class="cell" data-fig-height="5.2" data-fig-width="8.5" data-execution_count="6">
 <div class="cell-output cell-output-display">
@@ -1405,14 +1547,14 @@ g_t
 <img data-src="clase2_files/figure-revealjs/fig-sgd-momentum-output-1.png" width="807" height="489">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sgd-momentum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Momentum puede reducir las oscilaciones y acelerar el avance en direcciones consistentes.
+Figura&nbsp;4: Momentum puede reducir las oscilaciones y acelerar el avance en direcciones consistentes.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="adam" class="slide level2 center">
+<section id="adam" class="slide level2">
 <h2>Adam</h2>
 <p>Adam mantiene estimaciones del primer y segundo momento de los gradientes:</p>
 <p><span class="math display">\[
@@ -1434,7 +1576,7 @@ v_t
 <p>Intuitivamente, Adam combina <strong>momentum</strong> con un <strong>learning rate adaptativo por parámetro</strong>.</p>
 </div>
 </section>
-<section id="adamw" class="slide level2 center">
+<section id="adamw" class="slide level2">
 <h2>AdamW</h2>
 <p>En Deep Learning moderno es frecuente utilizar <strong>AdamW</strong>.</p>
 <p>En PyTorch:</p>
@@ -1442,13 +1584,13 @@ v_t
 <span id="cb8-2"><a aria-label="2"></a>    model.parameters(),</span>
 <span id="cb8-3"><a aria-label="3"></a>    lr<span class="op">=</span><span class="fl">1e-4</span>,</span>
 <span id="cb8-4"><a aria-label="4"></a>    weight_decay<span class="op">=</span><span class="fl">1e-5</span></span>
-<span id="cb8-5"><a aria-label="5"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-5"><a aria-label="5"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>AdamW desacopla el <strong>weight decay</strong> de la actualización adaptativa de Adam.</p>
 <div class="fragment">
 <p>Es un buen baseline en muchos problemas, pero no es universalmente óptimo.</p>
 </div>
 </section>
-<section id="learning-rate-1" class="slide level2 center">
+<section id="learning-rate-1" class="slide level2">
 <h2>Learning rate</h2>
 <p>El learning rate controla la escala de las actualizaciones:</p>
 <p><span class="math display">\[
@@ -1470,7 +1612,7 @@ v_t
 <p>En la práctica, el learning rate suele ser uno de los hiperparámetros más importantes.</p>
 </div>
 </section>
-<section id="learning-rate-scheduling" class="slide level2 center">
+<section id="learning-rate-scheduling" class="slide level2">
 <h2>Learning rate scheduling</h2>
 <p>El learning rate no tiene que permanecer constante durante todo el entrenamiento.</p>
 <p>Estrategias frecuentes:</p>
@@ -1484,9 +1626,9 @@ v_t
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a aria-label="1"></a>scheduler <span class="op">=</span> torch.optim.lr_scheduler.CosineAnnealingLR(</span>
 <span id="cb9-2"><a aria-label="2"></a>    optimizer,</span>
 <span id="cb9-3"><a aria-label="3"></a>    T_max<span class="op">=</span><span class="dv">100</span></span>
-<span id="cb9-4"><a aria-label="4"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-4"><a aria-label="4"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="regularización" class="slide level2 center">
+<section id="regularización" class="slide level2">
 <h2>Regularización</h2>
 <p>Optimizar la loss de entrenamiento no garantiza generalización.</p>
 <p>Herramientas frecuentes:</p>
@@ -1501,7 +1643,7 @@ v_t
 <p>En imágenes médicas, <strong>data augmentation</strong> y <strong>validación cruzada</strong> suelen ser especialmente importantes.</p>
 </div>
 </section>
-<section id="el-ciclo-de-entrenamiento-en-pytorch" class="slide level2 center">
+<section id="el-ciclo-de-entrenamiento-en-pytorch" class="slide level2">
 <h2>El ciclo de entrenamiento en PyTorch</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a aria-label="1"></a>model.train()</span>
 <span id="cb10-2"><a aria-label="2"></a></span>
@@ -1515,12 +1657,12 @@ v_t
 <span id="cb10-10"><a aria-label="10"></a></span>
 <span id="cb10-11"><a aria-label="11"></a>    loss.backward()</span>
 <span id="cb10-12"><a aria-label="12"></a></span>
-<span id="cb10-13"><a aria-label="13"></a>    optimizer.step()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-13"><a aria-label="13"></a>    optimizer.step()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>La matemática del entrenamiento aparece condensada en unas pocas líneas de código.</p>
 </div>
 </section>
-<section id="correspondencia-matemática-pytorch" class="slide level2 center">
+<section id="correspondencia-matemática-pytorch" class="slide level2">
 <h2>Correspondencia matemática ↔︎ PyTorch</h2>
 <table class="caption-top">
 <thead>
@@ -1553,12 +1695,12 @@ v_t
 </tbody>
 </table>
 </section>
-<section id="model.train-y-model.eval" class="slide level2 center">
+<section id="model.train-y-model.eval" class="slide level2">
 <h2><code>model.train()</code> y <code>model.eval()</code></h2>
 <p>PyTorch distingue dos modos de funcionamiento:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a aria-label="1"></a>model.train()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a aria-label="1"></a>model.train()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>para entrenamiento, y:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a aria-label="1"></a>model.<span class="bu">eval</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a aria-label="1"></a>model.<span class="bu">eval</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>para validación o inferencia.</p>
 <p>Esto afecta especialmente a capas como:</p>
 <ul>
@@ -1569,7 +1711,7 @@ v_t
 <p>No cambia los pesos: cambia el <strong>comportamiento de determinadas capas</strong>.</p>
 </div>
 </section>
-<section id="validación-en-pytorch" class="slide level2 center">
+<section id="validación-en-pytorch" class="slide level2">
 <h2>Validación en PyTorch</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a aria-label="1"></a>model.<span class="bu">eval</span>()</span>
 <span id="cb13-2"><a aria-label="2"></a></span>
@@ -1583,7 +1725,7 @@ v_t
 <span id="cb13-10"><a aria-label="10"></a></span>
 <span id="cb13-11"><a aria-label="11"></a>        loss <span class="op">=</span> loss_fn(prediction, y_batch)</span>
 <span id="cb13-12"><a aria-label="12"></a></span>
-<span id="cb13-13"><a aria-label="13"></a>        validation_loss <span class="op">+=</span> loss.item()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-13"><a aria-label="13"></a>        validation_loss <span class="op">+=</span> loss.item()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Durante validación:</p>
 <ul>
 <li>no hacemos <code>backward()</code>;</li>
@@ -1591,7 +1733,7 @@ v_t
 <li>no actualizamos parámetros.</li>
 </ul>
 </section>
-<section id="overfitting" class="slide level2 center">
+<section id="overfitting" class="slide level2">
 <h2>Overfitting</h2>
 <p>Durante entrenamiento podemos observar:</p>
 <p><span class="math display">\[
@@ -1605,7 +1747,7 @@ v_t
 <p>La mejor epoch no tiene por qué ser la última.</p>
 </div>
 </section>
-<section id="early-stopping" class="slide level2 center">
+<section id="early-stopping" class="slide level2">
 <h2>Early stopping</h2>
 <p>Podemos guardar el modelo que obtiene el mejor resultado de validación:</p>
 <p><span class="math display">\[
@@ -1617,27 +1759,62 @@ v_t
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a aria-label="1"></a>torch.save(</span>
 <span id="cb14-2"><a aria-label="2"></a>    model.state_dict(),</span>
 <span id="cb14-3"><a aria-label="3"></a>    <span class="st">"best_model.pt"</span></span>
-<span id="cb14-4"><a aria-label="4"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-4"><a aria-label="4"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>El criterio debería estar definido antes del entrenamiento y ser coherente con el objetivo del problema.</p>
 </div>
+</section></section>
+<section>
+<section id="bloque-7-de-pytorch-a-imágenes-médicas" class="title-slide slide level1 section-slide center">
+<h1>Bloque 7 · De PyTorch a imágenes médicas</h1>
+
 </section>
-<section id="el-dataloader" class="slide level2 center">
+<section id="el-dataloader" class="slide level2">
 <h2>El DataLoader</h2>
 <p>El <code>DataLoader</code> organiza cómo llegan los datos al training loop:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a aria-label="1"></a>train_loader <span class="op">=</span> DataLoader(</span>
 <span id="cb15-2"><a aria-label="2"></a>    train_dataset,</span>
 <span id="cb15-3"><a aria-label="3"></a>    batch_size<span class="op">=</span><span class="dv">8</span>,</span>
 <span id="cb15-4"><a aria-label="4"></a>    shuffle<span class="op">=</span><span class="va">True</span></span>
-<span id="cb15-5"><a aria-label="5"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-5"><a aria-label="5"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>En cada iteración produce un mini-batch:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a aria-label="1"></a><span class="cf">for</span> x_batch, y_batch <span class="kw">in</span> train_loader:</span>
-<span id="cb16-2"><a aria-label="2"></a>    ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-2"><a aria-label="2"></a>    ...</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>Dataset y DataLoader resuelven un problema distinto al modelo: <strong>cómo representar, cargar y agrupar los datos</strong>.</p>
 </div>
 </section>
-<section id="tensores-en-imágenes-médicas" class="slide level2 smaller center">
+<section id="del-archivo-médico-al-modelo" class="slide level2">
+<h2>Del archivo médico al modelo</h2>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    D["DICOM / NIfTI"] --&gt; I["Imagen médica"]
+    I --&gt; T["Tensor&lt;br/&gt;(C,D,H,W)"]
+    T --&gt; B["Batch&lt;br/&gt;(B,C,D,H,W)"]
+    B --&gt; M["Modelo"]
+    M --&gt; O["Predicción"]
+
+    classDef input fill:#e5f3f8,stroke:#2f6690,stroke-width:1.5px,color:#17324d;
+    classDef process fill:#eef1f8,stroke:#2f6690,stroke-width:1.5px,color:#17324d;
+    classDef output fill:#e9f4ee,stroke:#397b64,stroke-width:1.5px,color:#17324d;
+    class D,I input;
+    class T,B,M process;
+    class O output;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<div class="fragment visual-note">
+<p>El modelo no recibe directamente un archivo DICOM: recibe tensores con una forma y una representación definidas.</p>
+</div>
+</section>
+<section id="tensores-en-imágenes-médicas" class="slide level2 smaller">
 <h2>Tensores en imágenes médicas</h2>
 <p>En PyTorch, una imagen 2D suele representarse como:</p>
 <p><span class="math display">\[
@@ -1659,8 +1836,32 @@ v_t
 <li><span class="math inline">\(256\times256\)</span> píxeles por slice.</li>
 </ul>
 </section>
-<section id="batch-size-en-3d" class="slide level2 center">
+<section id="batch-size-en-3d" class="slide level2">
 <h2>Batch size en 3D</h2>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    V["Volumen 3D grande"] --&gt; A["Activaciones intermedias"]
+    A --&gt; G["Gradientes"]
+    G --&gt; S["Memoria requerida"]
+    S --&gt; R["Reducir batch&lt;br/&gt;o usar patches"]
+    R --&gt; C["Gradient accumulation&lt;br/&gt;o mixed precision"]
+
+    classDef volume fill:#e5f3f8,stroke:#2f6690,stroke-width:1.5px,color:#17324d;
+    classDef memory fill:#fff0eb,stroke:#c95d3e,stroke-width:1.5px,color:#17324d;
+    classDef strategy fill:#e9f4ee,stroke:#397b64,stroke-width:1.5px,color:#17324d;
+    class V,A,G volume;
+    class S memory;
+    class R,C strategy;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 <p>Un solo volumen:</p>
 <p><span class="math display">\[
 128\times256\times256
@@ -1679,7 +1880,7 @@ v_t
 <p>En segmentación 3D, un batch size de <strong>1 o 2</strong> puede ser completamente normal.</p>
 </div>
 </section>
-<section id="estrategias-cuando-falta-memoria" class="slide level2 center">
+<section id="estrategias-cuando-falta-memoria" class="slide level2">
 <h2>Estrategias cuando falta memoria</h2>
 <p>En entrenamiento 3D son frecuentes:</p>
 <ul>
@@ -1691,7 +1892,7 @@ v_t
 <li>arquitecturas más eficientes.</li>
 </ul>
 </section>
-<section id="gradient-accumulation" class="slide level2 center">
+<section id="gradient-accumulation" class="slide level2">
 <h2>Gradient accumulation</h2>
 <p>Permite acumular gradientes de varios mini-batches antes de actualizar:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a aria-label="1"></a>accumulation_steps <span class="op">=</span> <span class="dv">4</span></span>
@@ -1708,12 +1909,12 @@ v_t
 <span id="cb17-12"><a aria-label="12"></a></span>
 <span id="cb17-13"><a aria-label="13"></a>    <span class="cf">if</span> (step <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> accumulation_steps <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb17-14"><a aria-label="14"></a>        optimizer.step()</span>
-<span id="cb17-15"><a aria-label="15"></a>        optimizer.zero_grad()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-15"><a aria-label="15"></a>        optimizer.zero_grad()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>Permite simular un batch efectivo mayor sin almacenar todos los ejemplos simultáneamente.</p>
 </div>
 </section>
-<section id="mixed-precision" class="slide level2 center">
+<section id="mixed-precision" class="slide level2">
 <h2>Mixed precision</h2>
 <p>En GPU podemos utilizar menor precisión para parte de los cálculos:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a aria-label="1"></a>scaler <span class="op">=</span> torch.amp.GradScaler(<span class="st">"cuda"</span>)</span>
@@ -1727,15 +1928,20 @@ v_t
 <span id="cb18-9"><a aria-label="9"></a></span>
 <span id="cb18-10"><a aria-label="10"></a>scaler.scale(loss).backward()</span>
 <span id="cb18-11"><a aria-label="11"></a>scaler.step(optimizer)</span>
-<span id="cb18-12"><a aria-label="12"></a>scaler.update()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb18-12"><a aria-label="12"></a>scaler.update()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Beneficios potenciales:</p>
 <ul>
 <li>menor uso de memoria;</li>
 <li>mayor velocidad;</li>
 <li>posibilidad de utilizar batches mayores.</li>
 </ul>
+</section></section>
+<section>
+<section id="bloque-8-pipeline-completo-y-cierre" class="title-slide slide level1 section-slide center">
+<h1>Bloque 8 · Pipeline completo y cierre</h1>
+
 </section>
-<section id="qué-agrega-monai" class="slide level2 center">
+<section id="qué-agrega-monai" class="slide level2">
 <h2>¿Qué agrega MONAI?</h2>
 <p>MONAI está construido sobre PyTorch.</p>
 <p>El principio de entrenamiento <strong>no cambia</strong>:</p>
@@ -1760,7 +1966,7 @@ v_t
 <li>sliding-window inference.</li>
 </ul>
 </section>
-<section id="monai-modelo-y-loss" class="slide level2 center">
+<section id="monai-modelo-y-loss" class="slide level2">
 <h2>MONAI: modelo y loss</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a aria-label="1"></a><span class="im">from</span> monai.networks.nets <span class="im">import</span> UNet</span>
 <span id="cb19-2"><a aria-label="2"></a><span class="im">from</span> monai.losses <span class="im">import</span> DiceCELoss</span>
@@ -1777,12 +1983,12 @@ v_t
 <span id="cb19-13"><a aria-label="13"></a>loss_function <span class="op">=</span> DiceCELoss(</span>
 <span id="cb19-14"><a aria-label="14"></a>    to_onehot_y<span class="op">=</span><span class="va">True</span>,</span>
 <span id="cb19-15"><a aria-label="15"></a>    softmax<span class="op">=</span><span class="va">True</span></span>
-<span id="cb19-16"><a aria-label="16"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb19-16"><a aria-label="16"></a>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>MONAI proporciona componentes adaptados a problemas frecuentes de imágenes médicas, pero el modelo sigue siendo un <code>torch.nn.Module</code>.</p>
 </div>
 </section>
-<section id="monai-transforms" class="slide level2 center">
+<section id="monai-transforms" class="slide level2">
 <h2>MONAI: transforms</h2>
 <p>Un pipeline típico puede incluir:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a aria-label="1"></a><span class="im">from</span> monai.transforms <span class="im">import</span> Compose</span>
@@ -1793,12 +1999,12 @@ v_t
 <span id="cb20-6"><a aria-label="6"></a>    <span class="co"># normalización</span></span>
 <span id="cb20-7"><a aria-label="7"></a>    <span class="co"># cropping</span></span>
 <span id="cb20-8"><a aria-label="8"></a>    <span class="co"># augmentations</span></span>
-<span id="cb20-9"><a aria-label="9"></a>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb20-9"><a aria-label="9"></a>])</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>En imágenes médicas, el <strong>preprocesamiento forma parte del modelo experimental</strong>: debe documentarse y reproducirse.</p>
 </div>
 </section>
-<section id="monai-training-loop" class="slide level2 center">
+<section id="monai-training-loop" class="slide level2">
 <h2>MONAI: training loop</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a aria-label="1"></a>model.train()</span>
 <span id="cb21-2"><a aria-label="2"></a></span>
@@ -1818,12 +2024,12 @@ v_t
 <span id="cb21-16"><a aria-label="16"></a></span>
 <span id="cb21-17"><a aria-label="17"></a>    loss.backward()</span>
 <span id="cb21-18"><a aria-label="18"></a></span>
-<span id="cb21-19"><a aria-label="19"></a>    optimizer.step()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb21-19"><a aria-label="19"></a>    optimizer.step()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>El corazón del training loop es exactamente el mismo que en PyTorch.</p>
 </div>
 </section>
-<section id="monai-no-reemplaza-pytorch" class="slide level2 center">
+<section id="monai-no-reemplaza-pytorch" class="slide level2">
 <h2>MONAI no reemplaza PyTorch</h2>
 <div class="cell" data-reveal="true" data-layout-align="default">
 <div class="cell-output-display">
@@ -1847,7 +2053,7 @@ v_t
 <p>MONAI especializa el pipeline para imágenes médicas; <strong>PyTorch sigue siendo el motor de entrenamiento</strong>.</p>
 </div>
 </section>
-<section id="monai-inferencia" class="slide level2 center">
+<section id="monai-inferencia" class="slide level2">
 <h2>MONAI: inferencia</h2>
 <p>En volúmenes grandes puede no ser posible procesar toda la imagen de una vez.</p>
 <p>MONAI proporciona <strong>sliding-window inference</strong>:</p>
@@ -1862,12 +2068,12 @@ v_t
 <span id="cb22-9"><a aria-label="9"></a>        roi_size<span class="op">=</span>(<span class="dv">96</span>, <span class="dv">96</span>, <span class="dv">96</span>),</span>
 <span id="cb22-10"><a aria-label="10"></a>        sw_batch_size<span class="op">=</span><span class="dv">2</span>,</span>
 <span id="cb22-11"><a aria-label="11"></a>        predictor<span class="op">=</span>model,</span>
-<span id="cb22-12"><a aria-label="12"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb22-12"><a aria-label="12"></a>    )</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>La imagen se divide en regiones que se procesan por separado y luego se combinan.</p>
 </div>
 </section>
-<section id="pipeline-completo" class="slide level2 center">
+<section id="pipeline-completo" class="slide level2">
 <h2>Pipeline completo</h2>
 <div class="cell" data-reveal="true" data-layout-align="default">
 <div class="cell-output-display">
@@ -1895,7 +2101,7 @@ v_t
 <p>El entrenamiento no es solo una red neuronal: es un <strong>pipeline completo y reproducible</strong>.</p>
 </div>
 </section>
-<section id="lo-que-debe-quedar-claro" class="slide level2 center">
+<section id="lo-que-debe-quedar-claro" class="slide level2 takeaway">
 <h2>Lo que debe quedar claro</h2>
 <ol type="1">
 <li>El <strong>forward</strong> calcula predicciones y loss.</li>
@@ -1907,7 +2113,7 @@ v_t
 <li>MONAI especializa PyTorch para imágenes médicas, pero no reemplaza su training loop.</li>
 </ol>
 </section>
-<section id="backpropagation-en-una-línea" class="slide level2 center">
+<section id="backpropagation-en-una-línea" class="slide level2">
 <h2>Backpropagation en una línea</h2>
 <p>No necesitamos implementar manualmente:</p>
 <p><span class="math display">\[
@@ -1918,12 +2124,12 @@ v_t
 {\partial\theta_P}
 \]</span></p>
 <p>En PyTorch:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a aria-label="1"></a>loss.backward()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a aria-label="1"></a>loss.backward()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>Lo importante para usar correctamente el framework es comprender <strong>qué calcula</strong>, <strong>cuándo lo calcula</strong> y <strong>qué ocurre después</strong>.</p>
 </div>
 </section>
-<section id="cierre" class="slide level2 center">
+<section id="cierre" class="slide level2 section-slide">
 <h2>Cierre</h2>
 <p>El ciclo de entrenamiento puede resumirse como:</p>
 <p><span class="math display">\[
@@ -1944,7 +2150,7 @@ v_t
 <p>En la práctica, la calidad del modelo depende tanto de este ciclo como de los datos, la validación y las decisiones experimentales.</p>
 </div>
 </section>
-<section id="próxima-clase" class="slide level2 center">
+<section id="próxima-clase" class="slide level2 takeaway">
 <h2>Próxima clase</h2>
 <p>A partir de este ciclo de entrenamiento podemos estudiar arquitecturas específicas para imágenes:</p>
 <ul>
@@ -1956,7 +2162,7 @@ v_t
 </ul>
 
 
-</section>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
@@ -2044,7 +2250,7 @@ v_t
         disableLayout: false,
 
         // Vertical centering of slides
-        center: true,
+        center: false,
 
         // Enables touch navigation on devices with touch input
         touch: true,
@@ -2196,12 +2402,12 @@ v_t
           // flash "checked"
           button.classList.add('code-copy-button-checked');
           var currentTitle = button.getAttribute("title");
-          button.setAttribute("title", "Copied!");
+          button.setAttribute("title", "Copiado");
           let tooltip;
           if (window.bootstrap) {
             button.setAttribute("data-bs-toggle", "tooltip");
             button.setAttribute("data-bs-placement", "left");
-            button.setAttribute("data-bs-title", "Copied!");
+            button.setAttribute("data-bs-title", "Copiado");
             tooltip = new bootstrap.Tooltip(button, 
               { trigger: "manual", 
                 customClass: "code-copy-button-tooltip",

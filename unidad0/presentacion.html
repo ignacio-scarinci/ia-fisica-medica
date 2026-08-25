@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="es"><head>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.10.18">
 
+  <meta name="author" content="Ignacio Scarinci">
   <title>IA en Física Médica – Presentación de la materia</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -34,7 +35,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-84b150702567ae7e15cad124fb9039e2.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-bd6b8afe794f1985a8fa1719a4bb2ade.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -127,66 +128,64 @@
     }
   </style>
 </head>
-<body class="quarto-dark">
+<body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
   <h1 class="title">Presentación de la materia</h1>
+  <p class="subtitle">IA aplicada a Física Médica</p>
 
 <div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Ignacio Scarinci
+</div>
+</div>
 </div>
 
 </section>
-<section id="cursado" class="slide level2 smaller">
+<section id="cursado" class="slide level2 section-slide">
 <h2>Cursado</h2>
-<ul>
-<li>Modalidad: virtual</li>
-<li>Clases: lunes y jueves de 19:00-21:00</li>
-</ul>
+<div class="columns">
+<div class="column" style="width:48%;">
+<h3 id="modalidad">Modalidad</h3>
+<p>Virtual</p>
+</div><div class="column" style="width:48%;">
+<h3 id="clases">Clases</h3>
+<p>Lunes y jueves</p>
+<p>19:00–21:00</p>
+</div></div>
 </section>
-<section id="unidad-1-fundamentos-de-ia" class="slide level2 smaller">
+<section id="unidad-1-fundamentos-de-ia" class="slide level2">
 <h2>Unidad 1: Fundamentos de IA</h2>
+<div class="key-idea">
+<p>La ruta va desde los modelos clásicos hasta el entrenamiento de redes neuronales.</p>
+</div>
 <ul>
-<li>Revisión de modelos clásicos</li>
-<li>Introducción al Deep Learning,breve historia</li>
-<li>Redes Neuronales simples: El algoritmo de perceptron</li>
-<li>El ciclo de entrenamiento:
-<ul>
-<li>Funciones de perdida</li>
-<li>Optimizadores</li>
-<li>Lerning rate</li>
-<li>…</li>
-</ul></li>
+<li>Modelos clásicos y sus supuestos.</li>
+<li>Introducción al Deep Learning y su historia.</li>
+<li>El algoritmo del <strong>Perceptrón</strong>.</li>
+<li>Funciones de pérdida, optimizadores y <em>learning rate</em>.</li>
 </ul>
 </section>
-<section id="unidad-1-fundamentos-de-ia-cont." class="slide level2 smaller">
-<h2>Unidad 1: Fundamentos de IA (cont.)</h2>
+<section id="unidad-1-herramientas-y-aplicaciones" class="slide level2">
+<h2>Unidad 1: Herramientas y aplicaciones</h2>
 <ul>
-<li>Arquitecturas: CNN, U-Net, VIT</li>
-<li>Funcionamiento de los LLMs</li>
-<li>Transfer learning:
-<ul>
-<li>Fine-Tuning</li>
-<li>Few-Shot</li>
-</ul></li>
-<li>PyTorch, MONAI, SimpleITK</li>
-<li>DICOM, NIFTI</li>
-<li>Bases de datos públicas de imágenes médicas anotadas.</li>
+<li>Arquitecturas: CNN, U-Net y ViT.</li>
+<li>LLMs y <em>transfer learning</em>.</li>
+<li>PyTorch, MONAI y SimpleITK.</li>
+<li>DICOM, NIfTI y bases de datos públicas.</li>
 </ul>
 </section>
-<section id="unidad-2-segmetación" class="slide level2">
-<h2>Unidad 2: Segmetación</h2>
+<section id="unidad-2-segmentación" class="slide level2">
+<h2>Unidad 2: Segmentación</h2>
 <ul>
 <li>Segmentación semántica en imágenes médicas</li>
-<li>Métricas: DICE, distacia Hausdorff, IoU, etc.</li>
+<li>Métricas: Dice, distancia de Hausdorff e IoU</li>
 <li>Relevancia clínica de la segmentación automática de órganos en riesgo (OARs).</li>
-<li>Paradigmas de segmentación:
-<ul>
-<li>modelos totalmente automáticos: nnU-Net</li>
-<li>modelos guiados por experto: Med-SAM</li>
-</ul></li>
-<li>Arquitectura, variantes y entrenamiento.</li>
+<li>Paradigmas automáticos y guiados por expertos</li>
+<li>Arquitecturas, variantes y entrenamiento</li>
 </ul>
 </section>
 <section id="unidad-3-detección-clasificación-y-diagnóstico-asistido" class="slide level2">
@@ -203,9 +202,9 @@
 <li>Flujo clínico de radioterapia: simulación, planificación y verificación dosimétrica.</li>
 <li>Predicción de planes de dosis y estimación de distribuciones 3D con redes profundas.</li>
 <li>Knowledge-Based Planning (KBP) asistido por IA.</li>
-<li>Control de calidad específico del paciente (patient-specific QA) en IMRT, VMAT y SBRT</li>
-<li>Detección de errores de posicionamiento a partir de imágenes CBCT.</li>
-<li>Radioterapia adaptativa guiada por IA (ART online).</li>
+<li>Control de calidad específico del paciente en IMRT, VMAT y SBRT</li>
+<li>Detección de errores de posicionamiento con imágenes CBCT</li>
+<li>Radioterapia adaptativa guiada por IA (ART online)</li>
 </ul>
 </section>
 <section id="unidad-5-síntesis-fusión-y-coregistro-de-imágenes-médicas" class="slide level2">
@@ -222,12 +221,13 @@
 <h2>Unidad 6: Agentes de inteligencia artificial en el ámbito clínico</h2>
 <ul>
 <li>Introducción a los grandes modelos de lenguaje (LLMs) y su potencial en medicina: capacidades, limitaciones y casos de uso.</li>
-<li>Concepto de agente de IA: qué es, cómo razona y cómo interactúa con herramientas externas. Aplicaciones emergentes en el ámbito clínico: consulta de literatura médica, soporte en la toma de decisiones y automatización de flujos de trabajo.</li>
-<li>Consideraciones éticas y de seguridad: sesgos, alucinaciones, responsabilidad y supervisión humana.</li>
-<li>Perspectivas futuras: modelos fundacionales médicos y la evolución hacia sistemas autónomos en entornos clínicos.</li>
+<li>Concepto de agente de IA y uso de herramientas externas</li>
+<li>Aplicaciones clínicas: literatura, soporte de decisiones y automatización</li>
+<li>Sesgos, alucinaciones, responsabilidad y supervisión humana</li>
+<li>Modelos fundacionales médicos y sistemas autónomos</li>
 </ul>
 </section>
-<section id="material-de-clase" class="slide level2">
+<section id="material-de-clase" class="slide level2 section-slide">
 <h2>Material de clase</h2>
 <ul>
 <li><p>Repositorio del curso: <a href="https://github.com/ignacio-scarinci/ia-fisica-medica">https://github.com/ignacio-scarinci/ia-fisica-medica</a></p></li>
@@ -237,20 +237,20 @@
 <section id="aprobación" class="slide level2">
 <h2>Aprobación</h2>
 <ul>
-<li>Trabajos practicos</li>
+<li>Trabajos prácticos</li>
 <li>Proyecto final</li>
 </ul>
 </section>
-<section id="links-de-interés" class="slide level2">
-<h2>Links de interés</h2>
+<section id="enlaces-de-interés" class="slide level2">
+<h2>Enlaces de interés</h2>
 <ul>
 <li><p><strong>Hugging Face</strong>: <a href="https://huggingface.co/">https://huggingface.co/</a></p></li>
 <li><p><strong>Kaggle</strong>: <a href="https://www.kaggle.com/">https://www.kaggle.com/</a></p></li>
 <li><p><strong>The Cancer Image Archive (TCIA)</strong>: <a href="https://www.cancerimagingarchive.net/">https://www.cancerimagingarchive.net/</a></p></li>
 </ul>
 </section>
-<section id="softwareframeworkslibrerias" class="slide level2">
-<h2>Software/Frameworks/Librerias</h2>
+<section id="software-frameworks-y-bibliotecas" class="slide level2">
+<h2>Software, frameworks y bibliotecas</h2>
 <ul>
 <li>Python 3.12/13</li>
 <li>PyTorch</li>
@@ -297,7 +297,7 @@
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
 'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'smaller': true,
+'smaller': false,
  
         // Display controls in the bottom right corner
         controls: false,
@@ -422,7 +422,7 @@
         previewLinks: false,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
-        transition: 'none',
+        transition: 'fade',
 
         // Transition speed (default/fast/slow)
         transitionSpeed: 'default',
@@ -442,12 +442,12 @@
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1050,
+        width: 1600,
 
-        height: 700,
+        height: 900,
 
         // Factor of the display size that should remain empty around the content
-        margin: 0.1,
+        margin: 6.0e-2,
 
         math: {
           mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
@@ -498,12 +498,12 @@
           // flash "checked"
           button.classList.add('code-copy-button-checked');
           var currentTitle = button.getAttribute("title");
-          button.setAttribute("title", "Copied!");
+          button.setAttribute("title", "Copiado");
           let tooltip;
           if (window.bootstrap) {
             button.setAttribute("data-bs-toggle", "tooltip");
             button.setAttribute("data-bs-placement", "left");
-            button.setAttribute("data-bs-title", "Copied!");
+            button.setAttribute("data-bs-title", "Copiado");
             tooltip = new bootstrap.Tooltip(button, 
               { trigger: "manual", 
                 customClass: "code-copy-button-tooltip",

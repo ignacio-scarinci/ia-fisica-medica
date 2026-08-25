@@ -1,0 +1,231 @@
+/* Estilos compartidos de las páginas HTML del curso */
+:root {
+  --unit-navy: #17324d;
+  --unit-blue: #2f6690;
+  --unit-cyan: #3a8fb7;
+  --unit-accent: #c95d3e;
+  --unit-ink: #202a33;
+  --unit-muted: #66727d;
+  --unit-surface: #f5f7fa;
+  --unit-line: #d8e0e6;
+}
+
+body {
+  background: var(--unit-surface);
+  color: var(--unit-ink);
+}
+
+h1, h2, h3, h4 {
+  letter-spacing: 0;
+}
+
+.navbar {
+  box-shadow: 0 0.2rem 0.8rem rgba(23, 50, 77, 0.12);
+}
+
+.navbar-brand,
+.navbar .nav-link {
+  font-weight: 600;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus-visible {
+  color: var(--unit-accent);
+}
+
+main.content {
+  max-width: 76rem;
+}
+
+main.content > h1:first-child {
+  color: var(--unit-navy);
+  font-weight: 750;
+}
+
+main.content > h2,
+main.content > h3 {
+  color: var(--unit-navy);
+}
+
+main.content table {
+  border-color: var(--unit-line);
+}
+
+main.content table thead th {
+  background: var(--unit-navy);
+  color: white;
+}
+
+main.content table tbody tr:nth-child(even) {
+  background: rgba(58, 143, 183, 0.05);
+}
+
+main.content a {
+  text-underline-offset: 0.16em;
+}
+
+.sidebar-title {
+  font-weight: 600;
+}
+
+.unit-hero {
+  position: relative;
+  overflow: hidden;
+  margin: 1rem 0 2.5rem;
+  padding: clamp(2rem, 5vw, 4.5rem);
+  border-radius: 0.5rem;
+  background: linear-gradient(120deg, var(--unit-navy), var(--unit-blue));
+  color: white;
+  box-shadow: 0 1rem 2.5rem rgba(23, 50, 77, 0.16);
+}
+
+.unit-hero::after {
+  position: absolute;
+  right: -4rem;
+  bottom: -5rem;
+  width: 18rem;
+  height: 18rem;
+  border: 2rem solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  content: "";
+}
+
+.unit-kicker {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 0.75rem;
+  color: #b9e2ef;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.unit-hero h1 {
+  position: relative;
+  z-index: 1;
+  max-width: 46rem;
+  margin: 0;
+  color: white;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  line-height: 1.05;
+}
+
+.unit-hero p {
+  position: relative;
+  z-index: 1;
+  max-width: 46rem;
+  margin: 1.25rem 0 0;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 1.15rem;
+}
+
+.unit-section {
+  margin: 3rem 0;
+}
+
+.unit-section h2 {
+  color: var(--unit-navy);
+  font-weight: 700;
+}
+
+.unit-section h2::after {
+  display: block;
+  width: 3rem;
+  height: 0.22rem;
+  margin-top: 0.55rem;
+  background: var(--unit-accent);
+  content: "";
+}
+
+.guiding-question {
+  margin: 1.5rem 0 0;
+  padding: 1.25rem 1.5rem;
+  border-left: 0.35rem solid var(--unit-accent);
+  background: var(--unit-surface);
+  color: var(--unit-navy);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.objectives-grid,
+.resource-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 1.5rem;
+}
+
+.objective-block,
+.resource-card {
+  padding: 1.35rem;
+  border: 1px solid var(--unit-line);
+  border-radius: 0.45rem;
+  background: white;
+}
+
+.objective-block {
+  border-top: 0.25rem solid var(--unit-cyan);
+}
+
+.objective-block h3,
+.resource-card h3 {
+  margin-top: 0;
+  color: var(--unit-navy);
+  font-size: 1.05rem;
+}
+
+.objective-block ol {
+  padding-left: 1.25rem;
+  margin-bottom: 0;
+}
+
+.objective-block li {
+  margin-bottom: 0.65rem;
+}
+
+.resource-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.resource-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 9rem;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.resource-card:hover {
+  border-color: var(--unit-cyan);
+  box-shadow: 0 0.6rem 1.4rem rgba(23, 50, 77, 0.1);
+  transform: translateY(-2px);
+}
+
+.resource-card p {
+  flex: 1;
+  margin-bottom: 1rem;
+  color: var(--unit-muted);
+}
+
+.resource-card a {
+  color: var(--unit-blue);
+  font-weight: 700;
+  text-decoration-thickness: 0.1em;
+  text-underline-offset: 0.16em;
+}
+
+.resource-card a:focus-visible {
+  outline: 0.2rem solid var(--unit-accent);
+  outline-offset: 0.2rem;
+}
+
+@media (max-width: 768px) {
+  .objectives-grid,
+  .resource-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .unit-hero {
+    margin-top: 0.5rem;
+  }
+}

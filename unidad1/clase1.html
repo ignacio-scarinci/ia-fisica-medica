@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="es"><head>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -101,7 +101,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-b6f14133bb08f9a80e936059b2915b8b.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-87fd29fb66ddcc4e7fd375cb879784f4.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -232,7 +232,7 @@ Ignacio Scarinci
 </ol>
 </section>
 <section>
-<section id="bloque-1-revisión-de-modelos-clásicos" class="title-slide slide level1 center">
+<section id="bloque-1-revisión-de-modelos-clásicos" class="title-slide slide level1 section-slide center">
 <h1>Bloque 1 · Revisión de modelos clásicos</h1>
 
 </section>
@@ -440,7 +440,7 @@ f(\mathbf{x}_i),y_i
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Important</strong></p>
+<p><strong>Importante</strong></p>
 </div>
 <div class="callout-content">
 <p>La función sigmoide de la regresión logística es, matemáticamente, idéntica a la función de activación que usaremos en las primeras redes neuronales. <strong>La regresión logística es, de hecho, un perceptrón con activación sigmoide y una sola capa.</strong></p>
@@ -504,7 +504,7 @@ f(\mathbf{x}_i),y_i
 </ul>
 </section></section>
 <section>
-<section id="bloque-2-introducción-al-deep-learning" class="title-slide slide level1 center">
+<section id="bloque-2-introducción-al-deep-learning" class="title-slide slide level1 section-slide center">
 <h1>Bloque 2 · Introducción al Deep Learning</h1>
 
 </section>
@@ -535,7 +535,7 @@ f_\theta(\mathbf{x}) = f^{(L)} \circ f^{(L-1)} \circ \cdots \circ f^{(1)}(\mathb
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Warning</strong></p>
+<p><strong>Advertencia</strong></p>
 </div>
 <div class="callout-content">
 <p>Minsky y Papert demuestran que el perceptrón simple no puede resolver problemas no linealmente separables (el caso paradigmático: XOR, que veremos en detalle). El financiamiento a redes neuronales cae drásticamente durante casi dos décadas.</p>
@@ -551,7 +551,7 @@ f_\theta(\mathbf{x}) = f^{(L)} \circ f^{(L-1)} \circ \cdots \circ f^{(1)}(\mathb
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Warning</strong></p>
+<p><strong>Advertencia</strong></p>
 </div>
 <div class="callout-content">
 <p>A pesar del backpropagation (1986), la falta de datos masivos y poder de cómputo, sumada al auge de las SVMs y los métodos de <em>ensemble</em>, relega nuevamente a las redes neuronales.</p>
@@ -567,7 +567,7 @@ f_\theta(\mathbf{x}) = f^{(L)} \circ f^{(L-1)} \circ \cdots \circ f^{(1)}(\mathb
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Note</strong></p>
+<p><strong>Nota</strong></p>
 </div>
 <div class="callout-content">
 <p>La disponibilidad de GPUs, de grandes bases de datos etiquetadas (ImageNet) y de mejoras algorítmicas (ReLU, dropout, mejor inicialización) permite entrenar redes verdaderamente profundas. <strong>AlexNet (2012)</strong> marca el inicio de la era moderna del Deep Learning.</p>
@@ -677,7 +677,7 @@ f_\theta(\mathbf{x}) = f^{(L)} \circ f^{(L-1)} \circ \cdots \circ f^{(1)}(\mathb
 </div>
 </section></section>
 <section>
-<section id="bloque-3-el-perceptrón" class="title-slide slide level1 center">
+<section id="bloque-3-el-perceptrón" class="title-slide slide level1 section-slide center">
 <h1>Bloque 3 · El Perceptrón</h1>
 
 </section>
@@ -730,7 +730,7 @@ z = \sum_{j=1}^{d} w_j x_j + b = \mathbf{w}^\top \mathbf{x} + b
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Warning</strong></p>
+<p><strong>Advertencia</strong></p>
 </div>
 <div class="callout-content">
 <p>Si los datos son <strong>linealmente separables</strong>, el algoritmo converge en un número finito de pasos a una solución que clasifica correctamente todo el conjunto de entrenamiento. Si los datos <strong>no</strong> son linealmente separables, el algoritmo <strong>nunca converge</strong> y oscila indefinidamente.</p>
@@ -740,7 +740,7 @@ z = \sum_{j=1}^{d} w_j x_j + b = \mathbf{w}^\top \mathbf{x} + b
 </section>
 <section id="implementación-en-python" class="slide level2 smaller">
 <h2>Implementación en Python</h2>
-<div id="e1e3f925" class="cell" data-execution_count="1">
+<div id="3ce100f6" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-label="1"></a><span class="kw">class</span> Perceptron:</span>
 <span id="cb1-2"><a aria-label="2"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, lr<span class="op">=</span><span class="fl">0.1</span>, n_epochs<span class="op">=</span><span class="dv">50</span>):</span>
 <span id="cb1-3"><a aria-label="3"></a>        <span class="va">self</span>.lr <span class="op">=</span> lr</span>
@@ -768,24 +768,24 @@ z = \sum_{j=1}^{d} w_j x_j + b = \mathbf{w}^\top \mathbf{x} + b
 <span id="cb1-25"><a aria-label="25"></a></span>
 <span id="cb1-26"><a aria-label="26"></a>    <span class="kw">def</span> predict(<span class="va">self</span>, X):</span>
 <span id="cb1-27"><a aria-label="27"></a>        z <span class="op">=</span> X <span class="op">@</span> <span class="va">self</span>.w <span class="op">+</span> <span class="va">self</span>.b</span>
-<span id="cb1-28"><a aria-label="28"></a>        <span class="cf">return</span> np.where(z <span class="op">&gt;=</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-28"><a aria-label="28"></a>        <span class="cf">return</span> np.where(z <span class="op">&gt;=</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="ejemplo-de-entrenamiento" class="slide level2">
 <h2>Ejemplo de entrenamiento</h2>
-<div id="7be776ef" class="cell" data-execution_count="2">
+<div id="75e0a711" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a aria-label="1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb2-2"><a aria-label="2"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_blobs</span>
 <span id="cb2-3"><a aria-label="3"></a></span>
 <span id="cb2-4"><a aria-label="4"></a>X, y <span class="op">=</span> make_blobs(n_samples<span class="op">=</span><span class="dv">100</span>, centers<span class="op">=</span><span class="dv">2</span>, cluster_std<span class="op">=</span><span class="fl">1.0</span>, random_state<span class="op">=</span><span class="dv">7</span>)</span>
 <span id="cb2-5"><a aria-label="5"></a>y <span class="op">=</span> np.where(y <span class="op">==</span> <span class="dv">0</span>, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
 <span id="cb2-6"><a aria-label="6"></a></span>
-<span id="cb2-7"><a aria-label="7"></a>modelo <span class="op">=</span> Perceptron(lr<span class="op">=</span><span class="fl">0.1</span>, n_epochs<span class="op">=</span><span class="dv">30</span>).fit(X, y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-7"><a aria-label="7"></a>modelo <span class="op">=</span> Perceptron(lr<span class="op">=</span><span class="fl">0.1</span>, n_epochs<span class="op">=</span><span class="dv">30</span>).fit(X, y)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 <img data-src="./imagenes/perceptron_separable.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"></section></section>
 <section>
-<section id="de-andor-a-xor" class="title-slide slide level1 center">
+<section id="de-andor-a-xor" class="title-slide slide level1 section-slide center">
 <h1>De AND/OR a XOR</h1>
 
 </section>
@@ -848,7 +848,7 @@ z = \sum_{j=1}^{d} w_j x_j + b = \mathbf{w}^\top \mathbf{x} + b
 </section>
 <section id="and-or-nand-nor-linealmente-separables-1" class="slide level2">
 <h2>AND, OR, NAND, NOR: linealmente separables</h2>
-<div id="21df9312" class="cell" data-execution_count="3">
+<div id="f368bacc" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a aria-label="1"></a>X_bool <span class="op">=</span> np.array([[<span class="dv">0</span>,<span class="dv">0</span>],[<span class="dv">0</span>,<span class="dv">1</span>],[<span class="dv">1</span>,<span class="dv">0</span>],[<span class="dv">1</span>,<span class="dv">1</span>]])</span>
 <span id="cb3-2"><a aria-label="2"></a>compuertas <span class="op">=</span> {</span>
 <span id="cb3-3"><a aria-label="3"></a>    <span class="st">"AND"</span>:  np.array([<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>]),</span>
@@ -870,7 +870,7 @@ z = \sum_{j=1}^{d} w_j x_j + b = \mathbf{w}^\top \mathbf{x} + b
 <span id="cb3-19"><a aria-label="19"></a>    ax.set_xticks([<span class="dv">0</span>,<span class="dv">1</span>])<span class="op">;</span> ax.set_yticks([<span class="dv">0</span>,<span class="dv">1</span>])</span>
 <span id="cb3-20"><a aria-label="20"></a></span>
 <span id="cb3-21"><a aria-label="21"></a>plt.tight_layout()</span>
-<span id="cb3-22"><a aria-label="22"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-22"><a aria-label="22"></a>plt.show()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="and-or-nand-nor-linealmente-separables-2" class="slide level2">
@@ -1000,7 +1000,7 @@ h_1 = \text{OR}(x_1, x_2), \qquad h_2 = \text{NAND}(x_1, x_2), \qquad \hat{y} = 
 <p>La solución existía conceptualmente desde los años 60, pero faltaba un ingrediente clave: <strong>un algoritmo que aprendiera automáticamente los pesos</strong> de cada perceptrón. Ese ingrediente es el <strong>backpropagation</strong> (1986), que retomaremos en la próxima clase.</p>
 </section></section>
 <section>
-<section id="síntesis" class="title-slide slide level1 center">
+<section id="síntesis" class="title-slide slide level1 section-slide center">
 <h1>Síntesis</h1>
 
 </section>
@@ -1053,7 +1053,7 @@ h_1 = \text{OR}(x_1, x_2), \qquad h_2 = \text{NAND}(x_1, x_2), \qquad \hat{y} = 
 </tbody>
 </table>
 </section>
-<section id="lo-que-viene-en-la-próxima-clase" class="slide level2">
+<section id="lo-que-viene-en-la-próxima-clase" class="slide level2 takeaway">
 <h2>Lo que viene en la próxima clase</h2>
 <ul>
 <li>El <strong>ciclo de entrenamiento</strong>: funciones de pérdida, optimizadores (SGD, Adam) y learning rate.</li>
@@ -1061,7 +1061,7 @@ h_1 = \text{OR}(x_1, x_2), \qquad h_2 = \text{NAND}(x_1, x_2), \qquad \hat{y} = 
 <li><strong>Arquitecturas especializadas</strong>: CNN, U-Net, ViT — y su aplicación directa a imágenes médicas.</li>
 </ul>
 </section>
-<section id="preguntas" class="slide level2 center">
+<section id="preguntas" class="slide level2 section-slide">
 <h2>¿Preguntas?</h2>
 <p>Gracias por su atención</p>
 
@@ -1248,12 +1248,12 @@ h_1 = \text{OR}(x_1, x_2), \qquad h_2 = \text{NAND}(x_1, x_2), \qquad \hat{y} = 
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1050,
+        width: 1600,
 
-        height: 700,
+        height: 900,
 
         // Factor of the display size that should remain empty around the content
-        margin: 0.1,
+        margin: 6.0e-2,
 
         math: {
           mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
@@ -1304,12 +1304,12 @@ h_1 = \text{OR}(x_1, x_2), \qquad h_2 = \text{NAND}(x_1, x_2), \qquad \hat{y} = 
           // flash "checked"
           button.classList.add('code-copy-button-checked');
           var currentTitle = button.getAttribute("title");
-          button.setAttribute("title", "Copied!");
+          button.setAttribute("title", "Copiado");
           let tooltip;
           if (window.bootstrap) {
             button.setAttribute("data-bs-toggle", "tooltip");
             button.setAttribute("data-bs-placement", "left");
-            button.setAttribute("data-bs-title", "Copied!");
+            button.setAttribute("data-bs-title", "Copiado");
             tooltip = new bootstrap.Tooltip(button, 
               { trigger: "manual", 
                 customClass: "code-copy-button-tooltip",

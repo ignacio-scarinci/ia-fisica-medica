@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
+
+  <meta name="author" content="Ignacio Scarinci">
+  <title>IA en Física Médica – Clase 3: Arquitecturas para visión médica</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-bd6b8afe794f1985a8fa1719a4bb2ade.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="../site_libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="../site_libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="../site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Clase 3: Arquitecturas para visión médica</h1>
+  <p class="subtitle">Unidad 1 · Fundamentos de IA</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Ignacio Scarinci
+</div>
+</div>
+</div>
+
+</section>
+<section id="objetivos-de-la-clase" class="slide level2">
+<h2>Objetivos de la clase</h2>
+<p>Al finalizar la clase deberíamos poder:</p>
+<ul>
+<li>reconocer las principales familias arquitectónicas;</li>
+<li>entender qué sesgo inductivo incorpora cada una;</li>
+<li>explicar cómo opera una CNN sobre imágenes;</li>
+<li>entender por qué U-Net fue decisiva en imagen médica;</li>
+<li>introducir atención, Transformers y State Space Models;</li>
+<li>relacionar arquitectura con problemas concretos de Física Médica.</li>
+</ul>
+</section>
+<section id="el-recorrido-de-hoy" class="slide level2">
+<h2>El recorrido de hoy</h2>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[MLP] --&gt; B[CNN]
+    B --&gt; C[Autoencoder]
+    C --&gt; D[U-Net]
+    D --&gt; E[Transformer]
+    E --&gt; F[State Space Models]
+    F --&gt; G[Mamba]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>No es una historia de reemplazos.</p>
+<p>Es una historia de <strong>nuevas formas de organizar el flujo de información</strong>.</p>
+</section>
+<section id="qué-es-una-arquitectura" class="slide level2">
+<h2>¿Qué es una arquitectura?</h2>
+<p>Una arquitectura define:</p>
+<ul>
+<li>qué operaciones se realizan;</li>
+<li>qué conexiones existen;</li>
+<li>cómo circula la información;</li>
+<li>qué información puede interactuar;</li>
+<li>qué estructura del problema incorporamos al modelo.</li>
+</ul>
+<p><span class="math display">\[
+\hat y=f_\theta(x)
+\]</span></p>
+<p>La pregunta no es solamente <strong>qué aprende <span class="math inline">\(\theta\)</span></strong>, sino:</p>
+<div class="fragment">
+<blockquote>
+<p>¿cómo construimos <span class="math inline">\(f_\theta\)</span>?</p>
+</blockquote>
+</div>
+</section>
+<section id="sesgo-inductivo" class="slide level2">
+<h2>Sesgo inductivo</h2>
+<p>Una arquitectura contiene supuestos sobre el problema.</p>
+<div class="columns">
+<div class="column" style="width:48%;">
+<h3 id="ejemplos">Ejemplos</h3>
+<ul>
+<li>CNN → localidad espacial</li>
+<li>U-Net → información multiescala</li>
+<li>Transformer → interacción flexible</li>
+<li>Mamba → memoria selectiva</li>
+</ul>
+</div><div class="column" style="width:48%;">
+<h3 id="en-física-médica">En Física Médica</h3>
+<p>Nuestros datos no son vectores genéricos:</p>
+<ul>
+<li>imágenes 2D;</li>
+<li>volúmenes 3D;</li>
+<li>series temporales;</li>
+<li>dosis;</li>
+<li>multimodalidad.</li>
+</ul>
+</div></div>
+</section>
+<section>
+<section id="bloque-1-multi-layer-perceptron" class="title-slide slide level1 section-slide center">
+<h1>Bloque 1 · Multi Layer Perceptron</h1>
+
+</section>
+<section id="redes-multicapa-mlp" class="slide level2">
+<h2>Redes multicapa: MLP</h2>
+
+<img data-src="./imagenes/MLP.png" style="width:60.0%" class="r-stretch"></section>
+<section id="qué-significa-feedforward" class="slide level2">
+<h2>¿Qué significa <em>feedforward</em>?</h2>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb1-2"><a aria-label="2"></a>    X[Entrada x] --&gt; H1[Capa oculta 1]</span>
+<span id="cb1-3"><a aria-label="3"></a>    H1 --&gt; H2[Capa oculta 2]</span>
+<span id="cb1-4"><a aria-label="4"></a>    H2 --&gt; Y[Salida ŷ]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    X[Entrada x] --&gt; H1[Capa oculta 1]
+    H1 --&gt; H2[Capa oculta 2]
+    H2 --&gt; Y[Salida ŷ]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Durante el <em>forward pass</em>:</p>
+<p><span class="math display">\[
+x \rightarrow h^{(1)} \rightarrow h^{(2)} \rightarrow \hat y
+\]</span></p>
+<p>La información avanza hacia la salida, sin ciclos internos.</p>
+</section>
+<section id="muchas-capas-lineales-no-alcanzan" class="slide level2">
+<h2>Muchas capas lineales no alcanzan</h2>
+<p>Supongamos:</p>
+<p><span class="math display">\[
+h=W_1x
+\]</span></p>
+<p>y luego:</p>
+<p><span class="math display">\[
+y=W_2h
+\]</span></p>
+<p>Entonces:</p>
+<p><span class="math display">\[
+y=W_2W_1x=Wx
+\]</span></p>
+<p>Dos transformaciones lineales siguen siendo una transformación lineal.</p>
+<blockquote>
+<p>La profundidad por sí sola no produce no linealidad.</p>
+</blockquote>
+</section>
+<section id="funciones-de-activación" class="slide level2">
+<h2>Funciones de activación</h2>
+<p>La activación permite que la red represente relaciones complejas:</p>
+<p><span class="math display">\[
+h=\phi(Wx+b)
+\]</span></p>
+<div class="columns">
+<div class="column" style="width:48%;">
+<h3 id="sigmoide">Sigmoide</h3>
+<p><span class="math display">\[
+\sigma(x)=\frac{1}{1+e^{-x}}
+\]</span></p>
+<p>Puede saturarse.</p>
+</div><div class="column" style="width:48%;">
+<h3 id="tanh"><span class="math inline">\(\tanh\)</span></h3>
+<p><span class="math display">\[
+\tanh(x)
+=
+\frac{e^x-e^{-x}}{e^x+e^{-x}}
+\]</span></p>
+<p>Salida entre -1 y 1.</p>
+</div></div>
+</section>
+<section id="relu-y-leaky-relu" class="slide level2">
+<h2>ReLU y Leaky ReLU</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<h3 id="relu">ReLU</h3>
+<p><span class="math display">\[
+\operatorname{ReLU}(x)=\max(0,x)
+\]</span></p>
+<ul>
+<li>simple;</li>
+<li>barata;</li>
+<li>muy utilizada en CNNs;</li>
+<li>posible <em>dying ReLU</em>.</li>
+</ul>
+</div><div class="column" style="width:48%;">
+<h3 id="leaky-relu">Leaky ReLU</h3>
+<p><span class="math display">\[
+\operatorname{LeakyReLU}(x)=
+\begin{cases}
+x &amp; x&gt;0\\
+\alpha x &amp; x\leq0
+\end{cases}
+\]</span></p>
+<p>Mantiene gradiente para <span class="math inline">\(x&lt;0\)</span>.</p>
+</div></div>
+<p>También aparecen GELU, SiLU/Swish y Mish.</p>
+</section>
+<section id="por-qué-un-mlp-es-incómodo-para-imágenes" class="slide level2">
+<h2>¿Por qué un MLP es incómodo para imágenes?</h2>
+<p>Una imagen CT de:</p>
+<p><span class="math display">\[
+512\times512
+\]</span></p>
+<p>tiene:</p>
+<p><span class="math display">\[
+262\,144
+\]</span></p>
+<p>píxeles.</p>
+<p>Una capa con 1000 neuronas requeriría aproximadamente:</p>
+<p><span class="math display">\[
+262\,144\times1000
+\approx
+262\text{ millones de pesos}
+\]</span></p>
+<p>Y además perderíamos explícitamente la estructura espacial.</p>
+</section></section>
+<section>
+<section id="bloque-2-convolutional-neural-networks" class="title-slide slide level1 section-slide center">
+<h1>Bloque 2 · Convolutional Neural Networks</h1>
+
+</section>
+<section id="la-idea-central-de-una-cnn" class="slide level2">
+<h2>La idea central de una CNN</h2>
+<p>Una CNN utiliza pequeños filtros que se desplazan sobre la imagen.</p>
+<p><span class="math display">\[
+Y(i,j)
+=
+\sum_m\sum_n
+K(m,n)\,I(i+m,j+n)
+\]</span></p>
+<p>La operación es:</p>
+<ul>
+<li>local;</li>
+<li>compartida espacialmente;</li>
+<li>aprendible.</li>
+</ul>
+</section>
+<section id="qué-hace-una-convolución" class="slide level2">
+<h2>¿Qué hace una convolución?</h2>
+<div class="columns">
+<div class="column" style="width:45%;">
+<h3 id="región-de-imagen">Región de imagen</h3>
+<p><span class="math display">\[
+\begin{bmatrix}
+2&amp;1&amp;0\\
+3&amp;5&amp;1\\
+0&amp;2&amp;4
+\end{bmatrix}
+\]</span></p>
+</div><div class="column" style="width:45%;">
+<h3 id="kernel">Kernel</h3>
+<p><span class="math display">\[
+\begin{bmatrix}
+1&amp;0&amp;-1\\
+1&amp;0&amp;-1\\
+1&amp;0&amp;-1
+\end{bmatrix}
+\]</span></p>
+</div></div>
+<p>La salida local resulta de una <strong>suma ponderada</strong>.</p>
+</section>
+<section id="en-deep-learning-los-filtros-se-aprenden" class="slide level2">
+<h2>En Deep Learning los filtros se aprenden</h2>
+<p>Procesamiento clásico:</p>
+<p><span class="math display">\[
+\text{kernel diseñado por el experto}
+\]</span></p>
+<p>Deep Learning:</p>
+<p><span class="math display">\[
+\text{kernel inicial}
+\xrightarrow{\text{backpropagation}}
+\text{kernel aprendido}
+\]</span></p>
+<p>En muchas librerías la operación es técnicamente una <strong>correlación cruzada</strong>, pero seguimos llamándola convolución.</p>
+</section>
+<section id="compartir-parámetros" class="slide level2">
+<h2>Compartir parámetros</h2>
+<p>El mismo kernel se aplica en toda la imagen.</p>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb2-2"><a aria-label="2"></a>    K[Kernel 3×3] --&gt; A[Región 1]</span>
+<span id="cb2-3"><a aria-label="3"></a>    K --&gt; B[Región 2]</span>
+<span id="cb2-4"><a aria-label="4"></a>    K --&gt; C[Región 3]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    K[Kernel 3×3] --&gt; A[Región 1]
+    K --&gt; B[Región 2]
+    K --&gt; C[Región 3]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Esto produce:</p>
+<ul>
+<li>muchos menos parámetros;</li>
+<li>detección de patrones independientemente de su posición;</li>
+<li>un fuerte sesgo hacia la estructura espacial.</li>
+</ul>
+</section>
+<section id="canales-y-feature-maps" class="slide level2">
+<h2>Canales y <em>feature maps</em></h2>
+<p>Entrada:</p>
+<p><span class="math display">\[
+1\times H\times W
+\]</span></p>
+<p>Después de una convolución:</p>
+<p><span class="math display">\[
+32\times H\times W
+\]</span></p>
+<p>La red ya no representa solo intensidades.</p>
+<p>Cada canal codifica una característica aprendida.</p>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb3-2"><a aria-label="2"></a>    A[Intensidad] --&gt; B[Patrones locales]</span>
+<span id="cb3-3"><a aria-label="3"></a>    B --&gt; C[Texturas]</span>
+<span id="cb3-4"><a aria-label="4"></a>    C --&gt; D[Estructuras]</span>
+<span id="cb3-5"><a aria-label="5"></a>    D --&gt; E[Representaciones abstractas]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[Intensidad] --&gt; B[Patrones locales]
+    B --&gt; C[Texturas]
+    C --&gt; D[Estructuras]
+    D --&gt; E[Representaciones abstractas]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="stride-y-padding" class="slide level2">
+<h2>Stride y padding</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<h3 id="stride">Stride</h3>
+<p><span class="math display">\[
+s=1
+\]</span></p>
+<p>desplazamiento de un píxel.</p>
+<p><span class="math display">\[
+s=2
+\]</span></p>
+<p>puede producir <em>downsampling</em>.</p>
+</div><div class="column" style="width:48%;">
+<h3 id="padding">Padding</h3>
+<p>Agrega valores alrededor de la imagen.</p>
+<p>Permite controlar el tamaño espacial de la salida.</p>
+</div></div>
+</section>
+<section id="campo-receptivo" class="slide level2">
+<h2>Campo receptivo</h2>
+<p>Una unidad profunda puede depender de una región cada vez mayor de la entrada.</p>
+<p>Para convoluciones <span class="math inline">\(3\times3\)</span> con stride 1:</p>
+<p><span class="math display">\[
+3\times3
+\rightarrow
+5\times5
+\rightarrow
+7\times7
+\rightarrow\dots
+\]</span></p>
+<p>Para identificar anatomía necesitamos combinar:</p>
+<ul>
+<li>información local;</li>
+<li>textura;</li>
+<li>bordes;</li>
+<li>contexto anatómico.</li>
+</ul>
+</section>
+<section id="max-pooling" class="slide level2">
+<h2>Max pooling</h2>
+<p>En una ventana <span class="math inline">\(2\times2\)</span>:</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+1&amp;3\\
+2&amp;8
+\end{bmatrix}
+\rightarrow 8
+\]</span></p>
+<p>Efectos:</p>
+<ul>
+<li>reduce resolución;</li>
+<li>disminuye costo computacional;</li>
+<li>aumenta el campo receptivo efectivo.</li>
+</ul>
+<p>En arquitecturas modernas también se usa convolución con <em>stride</em>.</p>
+</section>
+<section id="un-bloque-cnn-clásico" class="slide level2">
+<h2>Un bloque CNN clásico</h2>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb4-2"><a aria-label="2"></a>    A[Entrada] --&gt; B[Convolution]</span>
+<span id="cb4-3"><a aria-label="3"></a>    B --&gt; C[Normalization]</span>
+<span id="cb4-4"><a aria-label="4"></a>    C --&gt; D[Activation]</span>
+<span id="cb4-5"><a aria-label="5"></a>    D --&gt; E[Salida]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[Entrada] --&gt; B[Convolution]
+    B --&gt; C[Normalization]
+    C --&gt; D[Activation]
+    D --&gt; E[Salida]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Un patrón frecuente:</p>
+<p><span class="math display">\[
+\boxed{\text{Conv}}
+\rightarrow
+\boxed{\text{Norm}}
+\rightarrow
+\boxed{\text{ReLU}}
+\]</span></p>
+</section>
+<section id="batch-normalization" class="slide level2">
+<h2>Batch Normalization</h2>
+<p><span class="math display">\[
+\hat{x}
+=
+\frac{x-\mu_B}
+{\sqrt{\sigma_B^2+\epsilon}}
+\]</span></p>
+<p><span class="math display">\[
+y=\gamma\hat{x}+\beta
+\]</span></p>
+<p>Los parámetros <span class="math inline">\(\gamma\)</span> y <span class="math inline">\(\beta\)</span> se aprenden.</p>
+<p>BatchNorm ayudó a estabilizar el entrenamiento de muchas redes profundas.</p>
+<h3 id="batchnorm-y-el-problema-del-3d">BatchNorm y el problema del 3D</h3>
+<p>Las imágenes volumétricas consumen mucha memoria.</p>
+<p>Por eso podemos entrenar con:</p>
+<p><span class="math display">\[
+B=1,\ 2,\ 4
+\]</span></p>
+<p>Con <em>batch size</em> pequeño las estadísticas de BatchNorm pueden ser poco estables.</p>
+<p>Alternativas frecuentes:</p>
+<ul>
+<li>InstanceNorm;</li>
+<li>GroupNorm.</li>
+</ul>
+</section>
+<section id="cnn-2d-cnn-3d-y-anisotropía" class="slide level2">
+<h2>CNN 2D, CNN 3D y anisotropía</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<h3 id="d">2D</h3>
+<p><span class="math display">\[
+C\times H\times W
+\]</span></p>
+<p>Kernel típico:</p>
+<p><span class="math display">\[
+3\times3
+\]</span></p>
+</div><div class="column" style="width:48%;">
+<h3 id="d-1">3D</h3>
+<p><span class="math display">\[
+C\times D\times H\times W
+\]</span></p>
+<p>Kernel típico:</p>
+<p><span class="math display">\[
+3\times3\times3
+\]</span></p>
+</div></div>
+<p>Pero en imagen médica:</p>
+<p><span class="math display">\[
+\Delta x \neq \Delta y \neq \Delta z
+\]</span></p>
+</section>
+<section id="por-qué-redes-más-profundas" class="slide level2">
+<h2>¿Por qué redes más profundas?</h2>
+<p>Más profundidad puede permitir:</p>
+<ul>
+<li>campos receptivos mayores;</li>
+<li>composiciones más complejas;</li>
+<li>representaciones jerárquicas.</li>
+</ul>
+<p>Pero entrenar redes muy profundas introduce dificultades de optimización.</p>
+<p>Una respuesta histórica: <strong>conexiones residuales</strong>.</p>
+</section>
+<section id="conexiones-residuales" class="slide level2">
+<h2>Conexiones residuales</h2>
+<p>En ResNet:</p>
+<p><span class="math display">\[
+y=F(x)+x
+\]</span></p>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb5-2"><a aria-label="2"></a>    X[x] --&gt; F[Bloque F(x)]</span>
+<span id="cb5-3"><a aria-label="3"></a>    X --&gt; S[Skip]</span>
+<span id="cb5-4"><a aria-label="4"></a>    F --&gt; A((+))</span>
+<span id="cb5-5"><a aria-label="5"></a>    S --&gt; A</span>
+<span id="cb5-6"><a aria-label="6"></a>    A --&gt; Y[y]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    X[x] --&gt; F[Bloque F(x)]
+    X --&gt; S[Skip]
+    F --&gt; A((+))
+    S --&gt; A
+    A --&gt; Y[y]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Facilitan el flujo de información y gradientes.</p>
+</section></section>
+<section>
+<section id="bloque-3-autoencoders" class="title-slide slide level1 section-slide center">
+<h1>Bloque 3 · Autoencoders</h1>
+
+</section>
+<section id="autoencoder-comprimir-y-reconstruir" class="slide level2">
+<h2>Autoencoder: comprimir y reconstruir</h2>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb6-2"><a aria-label="2"></a>    X[Entrada x] --&gt; E[Encoder]</span>
+<span id="cb6-3"><a aria-label="3"></a>    E --&gt; Z[Latente z]</span>
+<span id="cb6-4"><a aria-label="4"></a>    Z --&gt; D[Decoder]</span>
+<span id="cb6-5"><a aria-label="5"></a>    D --&gt; Y[Reconstrucción x̂]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    X[Entrada x] --&gt; E[Encoder]
+    E --&gt; Z[Latente z]
+    Z --&gt; D[Decoder]
+    D --&gt; Y[Reconstrucción x̂]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><span class="math display">\[
+z=f_\theta(x)
+\]</span></p>
+<p><span class="math display">\[
+\hat x=g_\phi(z)
+\]</span></p>
+</section>
+<section id="qué-aprende-el-espacio-latente" class="slide level2">
+<h2>¿Qué aprende el espacio latente?</h2>
+<p>Podemos entrenar minimizando:</p>
+<p><span class="math display">\[
+\mathcal{L}=\|x-\hat{x}\|^2
+\]</span></p>
+<p>La representación <span class="math inline">\(z\)</span> debe conservar información útil.</p>
+<p>Aplicaciones:</p>
+<ul>
+<li>reducción de dimensionalidad;</li>
+<li>denoising;</li>
+<li>anomalías;</li>
+<li>reconstrucción;</li>
+<li>preentrenamiento;</li>
+<li>modelos generativos.</li>
+</ul>
+</section>
+<section id="de-autoencoder-a-encoderdecoder" class="slide level2">
+<h2>De autoencoder a encoder–decoder</h2>
+<p>No necesitamos reconstruir la misma entrada.</p>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb7-2"><a aria-label="2"></a>    X[CT] --&gt; E[Encoder]</span>
+<span id="cb7-3"><a aria-label="3"></a>    E --&gt; Z[Representación]</span>
+<span id="cb7-4"><a aria-label="4"></a>    Z --&gt; D[Decoder]</span>
+<span id="cb7-5"><a aria-label="5"></a>    D --&gt; M[Máscara]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    X[CT] --&gt; E[Encoder]
+    E --&gt; Z[Representación]
+    Z --&gt; D[Decoder]
+    D --&gt; M[Máscara]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>El decoder puede producir:</p>
+<ul>
+<li>una imagen;</li>
+<li>un mapa continuo;</li>
+<li>una segmentación.</li>
+</ul>
+</section></section>
+<section>
+<section id="bloque-4-u-net" class="title-slide slide level1 section-slide center">
+<h1>Bloque 4 · U-Net</h1>
+
+</section>
+<section id="u-net" class="slide level2">
+<h2>U-Net</h2>
+<p>U-Net fue propuesta en 2015 para segmentación biomédica.</p>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb8-2"><a aria-label="2"></a>    A[Encoder] --&gt; B[Bottleneck]</span>
+<span id="cb8-3"><a aria-label="3"></a>    B --&gt; C[Decoder]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[Encoder] --&gt; B[Bottleneck]
+    B --&gt; C[Decoder]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>La estructura combina:</p>
+<p><span class="math display">\[
+\boxed{\text{encoder}}
++
+\boxed{\text{decoder}}
++
+\boxed{\text{skip connections}}
+\]</span></p>
+</section>
+<section id="el-encoder-ganar-contexto" class="slide level2">
+<h2>El encoder: ganar contexto</h2>
+<p>El encoder reduce resolución:</p>
+<p><span class="math display">\[
+256^2
+\rightarrow
+128^2
+\rightarrow
+64^2
+\rightarrow
+32^2
+\]</span></p>
+<p>A cambio obtiene:</p>
+<ul>
+<li>mayor campo receptivo;</li>
+<li>más contexto;</li>
+<li>representaciones más abstractas.</li>
+</ul>
+<p>Pregunta que responde bien:</p>
+<blockquote>
+<p><strong>¿qué estoy observando?</strong></p>
+</blockquote>
+</section>
+<section id="el-problema-perdemos-localización" class="slide level2">
+<h2>El problema: perdemos localización</h2>
+<p>Para segmentar no alcanza con saber <strong>qué</strong> estructura está presente.</p>
+<p>Necesitamos saber:</p>
+<blockquote>
+<p><strong>¿dónde está exactamente cada borde?</strong></p>
+</blockquote>
+<p>El <em>downsampling</em> elimina resolución espacial.</p>
+</section>
+<section id="skip-connections-de-u-net" class="slide level2">
+<h2>Skip connections de U-Net</h2>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb9-2"><a aria-label="2"></a>    E1[Encoder 256] --&gt; E2[128]</span>
+<span id="cb9-3"><a aria-label="3"></a>    E2 --&gt; E3[64]</span>
+<span id="cb9-4"><a aria-label="4"></a>    E3 --&gt; B[32]</span>
+<span id="cb9-5"><a aria-label="5"></a>    B --&gt; D3[64]</span>
+<span id="cb9-6"><a aria-label="6"></a>    D3 --&gt; D2[128]</span>
+<span id="cb9-7"><a aria-label="7"></a>    D2 --&gt; D1[256]</span>
+<span id="cb9-8"><a aria-label="8"></a></span>
+<span id="cb9-9"><a aria-label="9"></a>    E1 -. skip .-&gt; D1</span>
+<span id="cb9-10"><a aria-label="10"></a>    E2 -. skip .-&gt; D2</span>
+<span id="cb9-11"><a aria-label="11"></a>    E3 -. skip .-&gt; D3</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    E1[Encoder 256] --&gt; E2[128]
+    E2 --&gt; E3[64]
+    E3 --&gt; B[32]
+    B --&gt; D3[64]
+    D3 --&gt; D2[128]
+    D2 --&gt; D1[256]
+
+    E1 -. skip .-&gt; D1
+    E2 -. skip .-&gt; D2
+    E3 -. skip .-&gt; D3
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Las características de alta resolución llegan directamente al decoder.</p>
+</section>
+<section id="u-net-qué-dónde" class="slide level2">
+<h2>U-Net: “qué” + “dónde”</h2>
+<p><span class="math display">\[
+\boxed{\text{contexto semántico}}
++
+\boxed{\text{detalle espacial}}
+\rightarrow
+\boxed{\text{segmentación}}
+\]</span></p>
+<p>Una aclaración:</p>
+<ul>
+<li>skip de <strong>ResNet</strong> → facilita optimización;</li>
+<li>skip de <strong>U-Net</strong> → recupera información espacial.</li>
+</ul>
+<p>Mismo nombre informal, función distinta.</p>
+</section>
+<section id="d-u-net" class="slide level2">
+<h2>3D U-Net</h2>
+<p>La idea se extiende a:</p>
+<p><span class="math display">\[
+C\times D\times H\times W
+\]</span></p>
+<p>Aplicaciones:</p>
+<ul>
+<li>órganos en riesgo;</li>
+<li>tumores;</li>
+<li>lesiones;</li>
+<li>anatomía en MRI;</li>
+<li>CT y CBCT.</li>
+</ul>
+<p>El gran limitante práctico es la <strong>memoria</strong>.</p>
+<h3 id="patches-y-ventanas-deslizantes">Patches y ventanas deslizantes</h3>
+<p>Para volúmenes grandes suelen utilizarse:</p>
+<ul>
+<li>entrenamiento por <em>patches</em>;</li>
+<li>resampling;</li>
+<li>inferencia por <em>sliding window</em>;</li>
+<li>solapamiento entre ventanas.</li>
+</ul>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb10-2"><a aria-label="2"></a>    V[Volumen completo] --&gt; P[Patches]</span>
+<span id="cb10-3"><a aria-label="3"></a>    P --&gt; M[Modelo]</span>
+<span id="cb10-4"><a aria-label="4"></a>    M --&gt; R[Reconstrucción de salida]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    V[Volumen completo] --&gt; P[Patches]
+    P --&gt; M[Modelo]
+    M --&gt; R[Reconstrucción de salida]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="resunet" class="slide level2">
+<h2>ResUNet</h2>
+<p>ResUNet combina:</p>
+<ul>
+<li>estructura encoder–decoder;</li>
+<li>skip connections de U-Net;</li>
+<li>bloques residuales.</li>
+</ul>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb11-2"><a aria-label="2"></a>    A[Input] --&gt; B[Residual block]</span>
+<span id="cb11-3"><a aria-label="3"></a>    B --&gt; C[Downsample]</span>
+<span id="cb11-4"><a aria-label="4"></a>    C --&gt; D[Bottleneck]</span>
+<span id="cb11-5"><a aria-label="5"></a>    D --&gt; E[Upsample]</span>
+<span id="cb11-6"><a aria-label="6"></a>    E --&gt; F[Residual block]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[Input] --&gt; B[Residual block]
+    B --&gt; C[Downsample]
+    C --&gt; D[Bottleneck]
+    D --&gt; E[Upsample]
+    E --&gt; F[Residual block]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="attention-u-net-y-u-net" class="slide level2">
+<h2>Attention U-Net y U-Net++</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<h3 id="attention-u-net">Attention U-Net</h3>
+<p>Filtra qué características del encoder pasan al decoder.</p>
+<p><span class="math display">\[
+\text{skip}\rightarrow\text{attention gate}\rightarrow\text{decoder}
+\]</span></p>
+</div><div class="column" style="width:48%;">
+<h3 id="u-net-1">U-Net++</h3>
+<p>Introduce conexiones más densas e intermedias entre encoder y decoder.</p>
+</div></div>
+<p>Ambas conservan la lógica multiescala.</p>
+</section>
+<section id="nnu-net-una-aclaración-importante" class="slide level2">
+<h2>nnU-Net: una aclaración importante</h2>
+<p><strong>nnU-Net no es simplemente otra U-Net.</strong></p>
+<p>Es un sistema auto-configurable que adapta:</p>
+<ul>
+<li>preprocesamiento;</li>
+<li>resolución;</li>
+<li>tamaño de patch;</li>
+<li>arquitectura 2D/3D;</li>
+<li>entrenamiento;</li>
+<li>postprocesamiento.</li>
+</ul>
+<blockquote>
+<p>El pipeline completo importa tanto como la arquitectura.</p>
+</blockquote>
+</section></section>
+<section>
+<section id="bloque-5-transformers" class="title-slide slide level1 section-slide center">
+<h1>Bloque 5 · Transformers</h1>
+
+</section>
+<section id="una-limitación-de-las-cnn" class="slide level2">
+<h2>Una limitación de las CNN</h2>
+<p>Una convolución <span class="math inline">\(3\times3\)</span> empieza preguntando:</p>
+<blockquote>
+<p>¿qué ocurre cerca de esta posición?</p>
+</blockquote>
+<p>Para relacionar regiones muy distantes necesitamos:</p>
+<ul>
+<li>profundidad;</li>
+<li>downsampling;</li>
+<li>dilataciones;</li>
+<li>kernels mayores.</li>
+</ul>
+<p>¿Podemos construir interacciones globales más directas?</p>
+</section>
+<section id="la-intuición-de-atención" class="slide level2">
+<h2>La intuición de atención</h2>
+<p>Para representar un elemento queremos saber:</p>
+<blockquote>
+<p>¿qué otros elementos son relevantes para él?</p>
+</blockquote>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb12-2"><a aria-label="2"></a>    A[Elemento i] --&gt; B[Buscar relaciones]</span>
+<span id="cb12-3"><a aria-label="3"></a>    B --&gt; C[Ponderar información]</span>
+<span id="cb12-4"><a aria-label="4"></a>    C --&gt; D[Nueva representación]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[Elemento i] --&gt; B[Buscar relaciones]
+    B --&gt; C[Ponderar información]
+    C --&gt; D[Nueva representación]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>La interacción ya no está determinada solamente por vecindad.</p>
+</section>
+<section id="query-key-y-value" class="slide level2">
+<h2>Query, Key y Value</h2>
+<p>Para cada token generamos:</p>
+<p><span class="math display">\[
+Q=XW_Q,\qquad K=XW_K,\qquad V=XW_V
+\]</span></p>
+<div class="columns">
+<div class="column" style="width:32%;">
+<p><strong>Query</strong></p>
+<p>¿Qué estoy buscando?</p>
+</div><div class="column" style="width:32%;">
+<p><strong>Key</strong></p>
+<p>¿Qué contiene este elemento?</p>
+</div><div class="column" style="width:32%;">
+<p><strong>Value</strong></p>
+<p>¿Qué información recupero?</p>
+</div></div>
+</section>
+<section id="self-attention" class="slide level2">
+<h2>Self-attention</h2>
+<p><span class="math display">\[
+\operatorname{Attention}(Q,K,V)
+=
+\operatorname{softmax}
+\left(
+\frac{QK^\top}{\sqrt{d_k}}
+\right)V
+\]</span></p>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb13-2"><a aria-label="2"></a>    Q[Query] --&gt; S[Similitudes]</span>
+<span id="cb13-3"><a aria-label="3"></a>    K[Keys] --&gt; S</span>
+<span id="cb13-4"><a aria-label="4"></a>    S --&gt; W[Pesos]</span>
+<span id="cb13-5"><a aria-label="5"></a>    W --&gt; O[Combinación]</span>
+<span id="cb13-6"><a aria-label="6"></a>    V[Values] --&gt; O</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    Q[Query] --&gt; S[Similitudes]
+    K[Keys] --&gt; S
+    S --&gt; W[Pesos]
+    W --&gt; O[Combinación]
+    V[Values] --&gt; O
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="multi-head-attention-y-posición" class="slide level2">
+<h2>Multi-head attention y posición</h2>
+<p>Varias cabezas permiten aprender relaciones diferentes:</p>
+<p><span class="math display">\[
+\text{head}_1,\dots,\text{head}_h
+\]</span></p>
+<p>Pero además debemos incorporar posición:</p>
+<p><span class="math display">\[
+\boxed{\text{contenido}}
++
+\boxed{\text{posición}}
+\]</span></p>
+<p>Sin posición, la auto-atención no conoce explícitamente el orden espacial/secuencial.</p>
+</section>
+<section id="el-bloque-transformer" class="slide level2">
+<h2>El bloque Transformer</h2>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a aria-label="1"></a>flowchart TB</span>
+<span id="cb14-2"><a aria-label="2"></a>    X[Input] --&gt; N1[Normalization]</span>
+<span id="cb14-3"><a aria-label="3"></a>    N1 --&gt; A[Multi-Head Attention]</span>
+<span id="cb14-4"><a aria-label="4"></a>    A --&gt; R1[Residual +]</span>
+<span id="cb14-5"><a aria-label="5"></a>    X --&gt; R1</span>
+<span id="cb14-6"><a aria-label="6"></a>    R1 --&gt; N2[Normalization]</span>
+<span id="cb14-7"><a aria-label="7"></a>    N2 --&gt; F[Feed-Forward]</span>
+<span id="cb14-8"><a aria-label="8"></a>    F --&gt; R2[Residual +]</span>
+<span id="cb14-9"><a aria-label="9"></a>    R1 --&gt; R2</span>
+<span id="cb14-10"><a aria-label="10"></a>    R2 --&gt; Y[Output]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    X[Input] --&gt; N1[Normalization]
+    N1 --&gt; A[Multi-Head Attention]
+    A --&gt; R1[Residual +]
+    X --&gt; R1
+    R1 --&gt; N2[Normalization]
+    N2 --&gt; F[Feed-Forward]
+    F --&gt; R2[Residual +]
+    R1 --&gt; R2
+    R2 --&gt; Y[Output]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Reaparecen:</p>
+<ul>
+<li>capas lineales;</li>
+<li>activaciones;</li>
+<li>normalización;</li>
+<li>conexiones residuales.</li>
+</ul>
+</section>
+<section id="vision-transformer" class="slide level2">
+<h2>Vision Transformer</h2>
+<p>Una imagen se divide en <em>patches</em>:</p>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb15-2"><a aria-label="2"></a>    I[Imagen] --&gt; P[Patches]</span>
+<span id="cb15-3"><a aria-label="3"></a>    P --&gt; T[Tokens]</span>
+<span id="cb15-4"><a aria-label="4"></a>    T --&gt; E[Embeddings]</span>
+<span id="cb15-5"><a aria-label="5"></a>    E --&gt; TR[Transformer]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    I[Imagen] --&gt; P[Patches]
+    P --&gt; T[Tokens]
+    T --&gt; E[Embeddings]
+    E --&gt; TR[Transformer]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Ejemplo:</p>
+<p><span class="math display">\[
+224\times224
+\quad\text{con patches}\quad
+16\times16
+\]</span></p>
+</section>
+<section id="cnn-vs-transformer" class="slide level2">
+<h2>CNN vs Transformer</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>CNN</th>
+<th>Transformer</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>interacción local</td>
+<td>interacción flexible</td>
+</tr>
+<tr class="even">
+<td>fuerte sesgo espacial</td>
+<td>menor sesgo local</td>
+</tr>
+<tr class="odd">
+<td>kernels compartidos</td>
+<td>atención</td>
+</tr>
+<tr class="even">
+<td>jerarquía natural</td>
+<td>requiere diseño de escala</td>
+</tr>
+<tr class="odd">
+<td>muy eficiente localmente</td>
+<td>atención global costosa</td>
+</tr>
+</tbody>
+</table>
+<p>No existe un ganador universal.</p>
+</section>
+<section id="qué-puede-aportar-atención-en-imagen-médica" class="slide level2">
+<h2>¿Qué puede aportar atención en imagen médica?</h2>
+<p>Puede ser útil cuando la decisión depende de:</p>
+<ul>
+<li>relaciones anatómicas distantes;</li>
+<li>simetría;</li>
+<li>contexto global;</li>
+<li>múltiples regiones;</li>
+<li>información multimodal.</li>
+</ul>
+<p>Esto es especialmente atractivo en volúmenes 3D.</p>
+</section>
+<section id="unetr" class="slide level2">
+<h2>UNETR</h2>
+<p>UNETR combina un encoder Transformer con un decoder tipo U-Net.</p>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb16-2"><a aria-label="2"></a>    V[Volumen] --&gt; T[Transformer encoder]</span>
+<span id="cb16-3"><a aria-label="3"></a>    T --&gt; B[Bottleneck]</span>
+<span id="cb16-4"><a aria-label="4"></a>    B --&gt; D[Decoder convolucional]</span>
+<span id="cb16-5"><a aria-label="5"></a>    D --&gt; S[Segmentación]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    V[Volumen] --&gt; T[Transformer encoder]
+    T --&gt; B[Bottleneck]
+    B --&gt; D[Decoder convolucional]
+    D --&gt; S[Segmentación]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>Las representaciones intermedias se conectan con el decoder.</p>
+</section>
+<section id="swin-transformer" class="slide level2">
+<h2>Swin Transformer</h2>
+<p>La atención global completa es costosa.</p>
+<p>Swin Transformer utiliza:</p>
+<ul>
+<li>atención dentro de ventanas;</li>
+<li>ventanas desplazadas entre capas;</li>
+<li>representación jerárquica.</li>
+</ul>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb17-2"><a aria-label="2"></a>    A[Ventanas locales] --&gt; B[Shift]</span>
+<span id="cb17-3"><a aria-label="3"></a>    B --&gt; C[Nuevas interacciones]</span>
+<span id="cb17-4"><a aria-label="4"></a>    C --&gt; D[Jerarquía]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    A[Ventanas locales] --&gt; B[Shift]
+    B --&gt; C[Nuevas interacciones]
+    C --&gt; D[Jerarquía]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="swin-unetr" class="slide level2">
+<h2>Swin UNETR</h2>
+<p>Combina:</p>
+<p><span class="math display">\[
+\boxed{\text{Swin Transformer}}
++
+\boxed{\text{decoder tipo U-Net}}
++
+\boxed{\text{skip connections}}
+\]</span></p>
+<p>Es un buen ejemplo de arquitectura híbrida:</p>
+<blockquote>
+<p>ideas de CNN, U-Net y Transformers en un mismo modelo.</p>
+</blockquote>
+</section>
+<section id="el-costo-de-la-atención" class="slide level2">
+<h2>El costo de la atención</h2>
+<p>Para <span class="math inline">\(N\)</span> tokens, la atención estándar construye aproximadamente:</p>
+<p><span class="math display">\[
+N\times N
+\]</span></p>
+<p>relaciones.</p>
+<p>Costo:</p>
+<p><span class="math display">\[
+O(N^2)
+\]</span></p>
+<p>Si:</p>
+<p><span class="math display">\[
+N\rightarrow 10N
+\]</span></p>
+<p>entonces:</p>
+<p><span class="math display">\[
+N^2\rightarrow100N^2
+\]</span></p>
+</section>
+<section id="por-qué-esto-es-crítico-en-3d" class="slide level2">
+<h2>¿Por qué esto es crítico en 3D?</h2>
+<p>Un CT puede tener del orden de:</p>
+<p><span class="math display">\[
+512\times512\times500
+\]</span></p>
+<p>voxels.</p>
+<p>Incluso trabajando con patches, el número de tokens puede ser grande.</p>
+<p>Necesitamos capturar contexto amplio sin que memoria y cómputo crezcan demasiado.</p>
+</section>
+<section id="state-space-models" class="slide level2">
+<h2>State Space Models</h2>
+<p>Otra estrategia es mantener un estado interno:</p>
+<p><span class="math display">\[
+h_t=f(h_{t-1},x_t)
+\]</span></p>
+<p><span class="math display">\[
+y_t=g(h_t)
+\]</span></p>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb18-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb18-2"><a aria-label="2"></a>    X1[x₁] --&gt; H1[h₁]</span>
+<span id="cb18-3"><a aria-label="3"></a>    H1 --&gt; H2[h₂]</span>
+<span id="cb18-4"><a aria-label="4"></a>    X2[x₂] --&gt; H2</span>
+<span id="cb18-5"><a aria-label="5"></a>    H2 --&gt; H3[h₃]</span>
+<span id="cb18-6"><a aria-label="6"></a>    X3[x₃] --&gt; H3</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+    X1[x₁] --&gt; H1[h₁]
+    H1 --&gt; H2[h₂]
+    X2[x₂] --&gt; H2
+    H2 --&gt; H3[h₃]
+    X3[x₃] --&gt; H3
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>El estado funciona como memoria.</p>
+</section>
+<section id="mamba" class="slide level2">
+<h2>Mamba</h2>
+<p>Mamba utiliza <strong>Selective State Space Models</strong>.</p>
+<p>No es un Transformer.</p>
+<p>Su idea central es permitir que el sistema seleccione dinámicamente:</p>
+<blockquote>
+<p>qué información conservar y qué información descartar.</p>
+</blockquote>
+<p>La selectividad depende del contenido de la entrada.</p>
+</section>
+<section id="transformer-vs-mamba" class="slide level2">
+<h2>Transformer vs Mamba</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<h3 id="transformer">Transformer</h3>
+<p>Cada token consulta otros tokens mediante atención.</p>
+<p>Costo de la atención estándar:</p>
+<p><span class="math display">\[
+O(N^2)
+\]</span></p>
+</div><div class="column" style="width:48%;">
+<h3 id="mamba-1">Mamba</h3>
+<p>La información se propaga mediante un estado selectivo.</p>
+<p>Escalamiento respecto de la secuencia:</p>
+<p><span class="math display">\[
+O(N)
+\]</span></p>
+</div></div>
+</section>
+<section id="mamba-en-imágenes-médicas" class="slide level2">
+<h2>Mamba en imágenes médicas</h2>
+<p>La motivación es especialmente atractiva en 3D:</p>
+<ul>
+<li>secuencias largas;</li>
+<li>grandes volúmenes;</li>
+<li>contexto global;</li>
+<li>memoria limitada.</li>
+</ul>
+<p>Arquitecturas como <strong>SegMamba</strong> exploran esta dirección para segmentación médica 3D.</p>
+<blockquote>
+<p>Es un área todavía en evolución.</p>
+</blockquote>
+</section>
+<section id="un-mismo-problema-distintos-sesgos" class="slide level2">
+<h2>Un mismo problema, distintos sesgos</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Arquitectura</th>
+<th>Idea central</th>
+<th>Sesgo principal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MLP</td>
+<td>conectividad densa</td>
+<td>poca estructura explícita</td>
+</tr>
+<tr class="even">
+<td>CNN</td>
+<td>convolución local</td>
+<td>localidad</td>
+</tr>
+<tr class="odd">
+<td>Autoencoder</td>
+<td>compresión</td>
+<td>representación latente</td>
+</tr>
+<tr class="even">
+<td>U-Net</td>
+<td>multiescala + skip</td>
+<td>localización</td>
+</tr>
+<tr class="odd">
+<td>Transformer</td>
+<td>atención</td>
+<td>relaciones flexibles</td>
+</tr>
+<tr class="even">
+<td>Mamba</td>
+<td>estado selectivo</td>
+<td>contexto largo eficiente</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="qué-usaría-para-cada-problema" class="slide level2">
+<h2>¿Qué usaría para cada problema?</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<h3 id="datos-tabulares">Datos tabulares</h3>
+<ul>
+<li>regresión;</li>
+<li>árboles;</li>
+<li>MLP.</li>
+</ul>
+<h3 id="clasificación-de-imágenes">Clasificación de imágenes</h3>
+<ul>
+<li>CNN;</li>
+<li>ViT;</li>
+<li>híbridos.</li>
+</ul>
+</div><div class="column" style="width:48%;">
+<h3 id="segmentación-3d">Segmentación 3D</h3>
+<ul>
+<li>U-Net;</li>
+<li>nnU-Net;</li>
+<li>UNETR;</li>
+<li>Swin UNETR;</li>
+<li>variantes Mamba.</li>
+</ul>
+</div></div>
+<p>La arquitectura debe responder al problema, no a la moda.</p>
+</section>
+<section id="la-arquitectura-no-es-el-modelo-completo" class="slide level2">
+<h2>La arquitectura no es el modelo completo</h2>
+<p><span class="math display">\[
+\boxed{\text{datos}}
++
+\boxed{\text{preprocesamiento}}
++
+\boxed{\text{arquitectura}}
++
+\boxed{\text{loss}}
++
+\boxed{\text{optimización}}
++
+\boxed{\text{evaluación}}
+\]</span></p>
+<p>En Física Médica además importan:</p>
+<ul>
+<li>resolución y orientación;</li>
+<li>anisotropía;</li>
+<li>adquisición y reconstrucción;</li>
+<li>fabricante y protocolo;</li>
+<li>calidad de anotaciones.</li>
+</ul>
+</section>
+<section id="cinco-ideas-para-llevarse" class="slide level2">
+<h2>Cinco ideas para llevarse</h2>
+<ol type="1">
+<li>La arquitectura incorpora un <strong>sesgo inductivo</strong>.</li>
+<li>Las CNN explotan <strong>localidad y estructura espacial</strong>.</li>
+<li>U-Net combina <strong>contexto + precisión espacial</strong>.</li>
+<li>Transformers permiten <strong>interacciones flexibles y de largo alcance</strong>.</li>
+<li>Mamba propone una alternativa basada en <strong>estado selectivo</strong>.</li>
+</ol>
+<blockquote>
+<p>La mejor arquitectura es la que introduce el flujo de información adecuado para el problema.</p>
+</blockquote>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1600,
+
+        height: 900,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 6.0e-2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copiado");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copiado");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

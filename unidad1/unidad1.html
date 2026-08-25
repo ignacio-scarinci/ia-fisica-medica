@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.10.18">
@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Calendario – IA en Física Médica</title>
+<title>Unidad 1: Fundamentos de IA – IA en Física Médica</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -36,8 +36,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../unidad0/presentacion.html" rel="next">
-<link href="../unidad0/notas.html" rel="prev">
+<link href="../unidad1/notas.html" rel="next">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -62,17 +61,17 @@ ul.task-list li input[type="checkbox"] {
   ],
   "show-item-context": false,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
+    "search-no-results-text": "No se han encontrado resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
     "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar",
+    "search-label": "Buscar"
   }
 }</script>
 
@@ -80,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../themes/site.scss">
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-sidebar docked nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -91,8 +90,8 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">IA en Física Médica</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -119,7 +118,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Alternar modo lector">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
   </div>
@@ -129,13 +128,13 @@ ul.task-list li input[type="checkbox"] {
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidad0/unidad0.html">0. Introducción</a></li><li class="breadcrumb-item"><a href="../unidad0/calendario.html">Calendario</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidad1/unidad1.html">1. Fundamentos de IA</a></li><li class="breadcrumb-item"><a href="../unidad1/unidad1.html">Índice de la unidad</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -147,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
+        <div id="quarto-search" class="" title="Buscar"></div>
         </div>
         </div>
     <div class="sidebar-menu-container"> 
@@ -157,7 +156,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">0. Introducción</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -176,7 +175,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidad0/calendario.html" class="sidebar-item-text sidebar-link active">
+  <a href="../unidad0/calendario.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Calendario</span></a>
   </div>
 </li>
@@ -205,14 +204,14 @@ ul.task-list li input[type="checkbox"] {
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">1. Fundamentos de IA</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar sección">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidad1/unidad1.html" class="sidebar-item-text sidebar-link">
+  <a href="../unidad1/unidad1.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Índice de la unidad</span></a>
   </div>
 </li>
@@ -295,15 +294,14 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidad0/unidad0.html">0. Introducción</a></li><li class="breadcrumb-item"><a href="../unidad0/calendario.html">Calendario</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidad1/unidad1.html">1. Fundamentos de IA</a></li><li class="breadcrumb-item"><a href="../unidad1/unidad1.html">Índice de la unidad</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Calendario</h1>
+<h1 class="title">Unidad 1: Fundamentos de IA</h1>
+<p class="subtitle lead">Del aprendizaje automático clásico al Deep Learning</p>
 </div>
 
 
@@ -320,203 +318,83 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<table class="table-striped table-hover caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Fecha</th>
-<th>Tema</th>
-<th>Actividad</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>10/08</td>
-<td>Presentación de la materia</td>
-<td></td>
-</tr>
-<tr class="even">
-<td></td>
-<td><strong>Unidad 1: Fundamentos de IA</strong></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>18/08</td>
-<td>Introducción a la IA</td>
-<td>Notebook 0</td>
-</tr>
-<tr class="even">
-<td>20/08</td>
-<td>Entrenamiento de modelos</td>
-<td>Notebook 1</td>
-</tr>
-<tr class="odd">
-<td>25/08</td>
-<td>Cont.</td>
-<td>Notebook 1</td>
-</tr>
-<tr class="even">
-<td>27/08</td>
-<td>Arquitecturas en DL</td>
-<td>Notebook 1</td>
-</tr>
-<tr class="odd">
-<td>01/09</td>
-<td>Cont.</td>
-<td>Notebook 1</td>
-</tr>
-<tr class="even">
-<td>03/09</td>
-<td>Revisión de notebooks</td>
-<td>Notebook 1</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td><strong>Unidad 2: Segmentación</strong></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>08/09</td>
-<td>Segmentación de imagenes medicas</td>
-<td>Notebook 2</td>
-</tr>
-<tr class="odd">
-<td>10/09</td>
-<td>Métricas de segmentación</td>
-<td>Notebook 2</td>
-</tr>
-<tr class="even">
-<td>15/09</td>
-<td>Paradigmas de segmentación</td>
-<td>Notebook 2</td>
-</tr>
-<tr class="odd">
-<td>17/09</td>
-<td>Variantes de segmentación</td>
-<td>Notebook 2</td>
-</tr>
-<tr class="even">
-<td>22/09</td>
-<td>Revisión de notebooks</td>
-<td>Notebook 2</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td><strong>Unidad 3: Detección, clasificación y diagnóstico asistido</strong></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>24/09</td>
-<td>Modelos de detección</td>
-<td>Notebook 3</td>
-</tr>
-<tr class="odd">
-<td>29/10</td>
-<td>Clasificación de hallazgos</td>
-<td>Notebook 3</td>
-</tr>
-<tr class="even">
-<td>01/10</td>
-<td>Explicabilidad de modelos</td>
-<td>Notebook 3</td>
-</tr>
-<tr class="odd">
-<td>06/10</td>
-<td>Revisión de notebooks</td>
-<td>Notebook 3</td>
-</tr>
-<tr class="even">
-<td>08/10</td>
-<td><strong>Feriado</strong></td>
-<td>-</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td><strong>Unidad 4: Radioterapia asistida por inteligencia artificial</strong></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>13/10</td>
-<td>IA en Radioterapia</td>
-<td>Revision proyectos</td>
-</tr>
-<tr class="odd">
-<td>15/10</td>
-<td>Cont.</td>
-<td>Revision proyectos</td>
-</tr>
-<tr class="even">
-<td></td>
-<td><strong>Unidad 5: Síntesis, fusión y coregistro de imágenes médicas</strong></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>20/10</td>
-<td>Co-registro de imágenes</td>
-<td>Notebook 4</td>
-</tr>
-<tr class="even">
-<td>22/10</td>
-<td>Aplicaciones en imágenes médicas</td>
-<td>Notebook 4</td>
-</tr>
-<tr class="odd">
-<td>27/10</td>
-<td>Revisión de notebooks</td>
-<td>Notebook 4</td>
-</tr>
-<tr class="even">
-<td></td>
-<td><strong>Unidad 6: Agentes de inteligencia artificial en el ámbito clínico</strong></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td>29/11</td>
-<td>LLMs y medicina</td>
-<td>Revsion proyectos</td>
-</tr>
-<tr class="even">
-<td>03/11</td>
-<td>Agentes de IA</td>
-<td>Revsion proyectos</td>
-</tr>
-<tr class="odd">
-<td>05/11</td>
-<td>Cont.</td>
-<td>Revsion proyectos</td>
-</tr>
-<tr class="even">
-<td>10/11</td>
-<td>Etica y seguridad en IA</td>
-<td>Revsion proyectos</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td><strong>Presentación de proyectos finales</strong></td>
-<td></td>
-</tr>
-<tr class="even">
-<td>12/11</td>
-<td>Presentación de proyectos</td>
-<td>Presentaciones</td>
-</tr>
-<tr class="odd">
-<td>17/11</td>
-<td>Presentación de proyectos</td>
-<td>Presentaciones</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Practicos</strong></p>
-<p><strong>13/08</strong> Notebook 0: PyTorch y MONAI: <a href="notebooks/tarea0.ipynb">ver notebook</a></p>
-<p><strong>24/08 al 07/09</strong> Notebook 1: Entrenamiento de modelos: <a href="notebooks/tarea1.ipynb">ver notebook</a></p>
-<p><strong>10/09 al 24/09</strong> **Notebook 2: Segmentación de imágenes médicas: <a href="notebooks/tarea2.ipynb">ver notebook</a></p>
-<p><strong>28/09 al 08/10</strong> **Notebook 3: Detección y clasificación de hallazgos: <a href="notebooks/tarea3.ipynb">ver notebook</a></p>
-<p><strong>22/10 al 29/10</strong> **Notebook 4: Co-registro de imágenes médicas: <a href="notebooks/tarea4.ipynb">ver notebook</a></p>
+<div class="unit-hero">
+<div class="unit-kicker">
+Unidad 1 · Fundamentos de IA
+</div>
+<section id="del-aprendizaje-automático-clásico-al-deep-learning" class="level1">
+<h1>Del aprendizaje automático clásico al Deep Learning</h1>
+<p>Una ruta conceptual y práctica desde los modelos estadísticos hasta las redes neuronales aplicadas a la Física Médica.</p>
+</section>
+</div>
+<section id="el-punto-de-partida" class="level2 unit-section">
+<h2 class="anchored" data-anchor-id="el-punto-de-partida">El punto de partida</h2>
+<p>Esta primera unidad tiene como objetivo tender un puente entre los métodos estadísticos y computacionales clásicos, ampliamente utilizados en Física Médica —dosimetría, radiodiagnóstico, radioterapia y medicina nuclear— y el paradigma del <strong>Deep Learning</strong>.</p>
+<p>La pregunta que guía el recorrido es:</p>
+<div class="guiding-question">
+<p>¿Por qué y cuándo conviene reemplazar —o complementar— un modelo clásico por uno basado en redes neuronales?</p>
+</div>
+<p>La respuesta no es que los modelos de Deep Learning sean necesariamente “mejores”. Un modelo más complejo puede ser innecesario si un modelo clásico resuelve adecuadamente el problema. La ventaja de las redes neuronales aparece especialmente cuando necesitamos aprender relaciones complejas a partir de datos de alta dimensionalidad y cuando diseñar manualmente una representación adecuada resulta difícil.</p>
+<p>Por eso, antes de estudiar redes profundas, necesitamos entender qué pueden hacer los modelos clásicos, cuáles son sus supuestos y dónde aparecen sus limitaciones.</p>
+</section>
+<section id="al-finalizar-la-unidad" class="level2 unit-section">
+<h2 class="anchored" data-anchor-id="al-finalizar-la-unidad">Al finalizar la unidad</h2>
+<p>Se espera que el estudiante pueda:</p>
+<div class="objectives-grid">
+<section id="conceptos-y-evaluación" class="level3 objective-block">
+<h3 class="anchored" data-anchor-id="conceptos-y-evaluación">Conceptos y evaluación</h3>
+<ol type="1">
+<li>Distinguir los paradigmas supervisado, no supervisado y por refuerzo.</li>
+<li>Comprender la diferencia entre riesgo esperado y riesgo empírico.</li>
+<li>Explicar generalización, sobreajuste y <em>dataset shift</em>.</li>
+<li>Reconocer modelos clásicos de aprendizaje automático y sus supuestos.</li>
+</ol>
+</section>
+<section id="modelos-y-fundamentos" class="level3 objective-block">
+<h3 class="anchored" data-anchor-id="modelos-y-fundamentos">Modelos y fundamentos</h3>
+<ol start="5" type="1">
+<li>Comprender matemáticamente la regresión lineal y logística.</li>
+<li>Interpretar geométricamente un clasificador lineal.</li>
+<li>Formalizar matemáticamente el <strong>Perceptrón</strong>.</li>
+<li>Implementar el algoritmo de aprendizaje del Perceptrón.</li>
+</ol>
+</section>
+<section id="del-perceptrón-al-deep-learning" class="level3 objective-block">
+<h3 class="anchored" data-anchor-id="del-perceptrón-al-deep-learning">Del perceptrón al Deep Learning</h3>
+<ol start="9" type="1">
+<li>Comprender las limitaciones de una neurona frente a problemas como XOR.</li>
+<li>Entender cómo múltiples neuronas forman una red neuronal.</li>
+<li>Comprender cómo el Deep Learning aprende representaciones complejas.</li>
+<li>Reconocer hitos históricos de las redes neuronales hasta los modelos actuales.</li>
+</ol>
+</section>
+</div>
+</section>
+<section id="material-de-la-unidad" class="level2 unit-section">
+<h2 class="anchored" data-anchor-id="material-de-la-unidad">Material de la unidad</h2>
+<div class="resource-grid">
+<section id="notas-de-clase" class="level3 resource-card">
+<h3 class="anchored" data-anchor-id="notas-de-clase">Notas de clase</h3>
+<p>Fundamentos conceptuales, modelos clásicos, riesgo, generalización y perceptrón.</p>
+<p><a href="../unidad1/notas.html">Abrir notas de clase</a> · <a href="notas.pdf">Descargar PDF</a></p>
+</section>
+<section id="imágenes-médicas" class="level3 resource-card">
+<h3 class="anchored" data-anchor-id="imágenes-médicas">Imágenes médicas</h3>
+<p>Representación, formatos, herramientas y fundamentos para trabajar con imágenes médicas.</p>
+<p><a href="../unidad1/notas2.html">Abrir notas sobre imágenes</a> · <a href="notas2.pdf">Descargar PDF</a></p>
+</section>
+<section id="presentaciones" class="level3 resource-card">
+<h3 class="anchored" data-anchor-id="presentaciones">Presentaciones</h3>
+<p>Material visual para recorrer la unidad en dos clases: modelos clásicos, perceptrón y entrenamiento.</p>
+<p><a href="../unidad1/clase1.html" target="_blank">Clase 1: modelos clásicos y perceptrón</a> · <a href="clase1.pdf">PDF</a> · <a href="../unidad1/clase2.html" target="_blank">Clase 2: ciclo de entrenamiento</a> · <a href="clase2.pdf">PDF</a></p>
+</section>
+<section id="notebooks" class="level3 resource-card">
+<h3 class="anchored" data-anchor-id="notebooks">Notebooks</h3>
+<p>Prácticas guiadas para explorar MONAI, PyTorch y el entrenamiento de modelos.</p>
+<p><a href="notebooks/Notebook0.ipynb">Notebook 0</a> · <a href="notebooks/Notebook1.ipynb">Notebook 1</a> · <a href="notebooks/Ciclo_de_entrenamiento.ipynb">Ciclo de entrenamiento</a></p>
+</section>
+</div>
+</section>
 
 
 
@@ -546,12 +424,12 @@ ul.task-list li input[type="checkbox"] {
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
+      button.setAttribute("title", "Copiado");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
+        button.setAttribute("data-bs-title", "Copiado");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -923,13 +801,10 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../unidad0/notas.html" class="pagination-link" aria-label="Notas de clase">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Notas de clase</span>
-      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../unidad0/presentacion.html" class="pagination-link" aria-label="Presentación">
-        <span class="nav-page-text">Presentación</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../unidad1/notas.html" class="pagination-link" aria-label="Notas de clase">
+        <span class="nav-page-text">Notas de clase</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
