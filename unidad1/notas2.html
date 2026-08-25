@@ -657,7 +657,7 @@ Figure&nbsp;2: Del espacio índice (voxel) al espacio físico (mundo del pacient
 </section>
 <section id="ejemplo-conceptual-de-foto-a-volumen" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="ejemplo-conceptual-de-foto-a-volumen"><span class="header-section-number">2.4</span> Ejemplo conceptual: de foto a volumen</h2>
-<div id="fa68cfa5" class="cell" data-execution_count="1">
+<div id="92b31563" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Imagen natural: (alto, ancho, canales), 8 bits, sin significado físico de escala</span></span>
@@ -936,7 +936,7 @@ Figure&nbsp;4: Single-frame (CT/MR clásico) vs.&nbsp;Multi-frame (SPECT/PET tí
 </ol>
 </div>
 </div>
-<div id="ada44d8e" class="cell" data-execution_count="2">
+<div id="c1b0aa69" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pydicom</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> SimpleITK <span class="im">as</span> sitk</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -968,7 +968,7 @@ Figure&nbsp;4: Single-frame (CT/MR clásico) vs.&nbsp;Multi-frame (SPECT/PET tí
 </section>
 <section id="ejemplo-de-lectura-con-pydicom" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="ejemplo-de-lectura-con-pydicom"><span class="header-section-number">3.5</span> Ejemplo de lectura con <code>pydicom</code></h2>
-<div id="a5b1cd9c" class="cell" data-execution_count="3">
+<div id="67150a40" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pydicom</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> pydicom.dcmread(<span class="st">"ejemplo.dcm"</span>)</span>
@@ -992,7 +992,7 @@ Figure&nbsp;4: Single-frame (CT/MR clásico) vs.&nbsp;Multi-frame (SPECT/PET tí
 </section>
 <section id="lectura-de-una-serie-completa-volumen-3d-con-simpleitk" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="lectura-de-una-serie-completa-volumen-3d-con-simpleitk"><span class="header-section-number">3.6</span> Lectura de una serie completa (volumen 3D) con SimpleITK</h2>
-<div id="de598285" class="cell" data-execution_count="4">
+<div id="f8fe0081" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> SimpleITK <span class="im">as</span> sitk</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>reader <span class="op">=</span> sitk.ImageSeriesReader()</span>
@@ -1121,7 +1121,7 @@ a_{31} &amp; a_{32} &amp; a_{33} &amp; t_z \\
 <li><strong>sform (<code>sform_code</code>, matriz 4×4 general):</strong> Es una matriz afín completa de 4×4, que además de rotación y traslación puede incluir <strong>escala anisotrópica y cizalladura (shear)</strong>. Se usa para representar transformaciones posteriores a la adquisición, como el resultado de un <strong>registro (co-registro)</strong> a un espacio estándar — por ejemplo, llevar un cerebro individual al espacio del atlas <strong>MNI152</strong> o <strong>Talairach</strong>.</li>
 </ul>
 <p>Cada matriz tiene un código de estado asociado (<code>qform_code</code>, <code>sform_code</code>) que indica si es válida y qué tipo de espacio de referencia representa (0 = desconocido, 1 = espacio del scanner, 2 = espacio alineado a otro archivo, 3 = espacio Talairach, 4 = espacio MNI152). <strong>Cuando ambas están presentes y difieren, la convención más aceptada (y la que usan NiBabel, ITK y FSL) es dar prioridad al sform</strong> por ser la transformación más general y, generalmente, la más “actualizada” (post-procesamiento).</p>
-<div id="52ca1b2e" class="cell" data-execution_count="5">
+<div id="d28dbcb2" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nibabel <span class="im">as</span> nib</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>img <span class="op">=</span> nib.load(<span class="st">"volumen_paciente.nii.gz"</span>)</span>
@@ -1169,7 +1169,7 @@ a_{31} &amp; a_{32} &amp; a_{33} &amp; t_z \\
 <section id="conversión-dicom-nifti" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="conversión-dicom-nifti"><span class="header-section-number">4.4</span> Conversión DICOM → NIfTI</h2>
 <p>Es una de las tareas más comunes en un pipeline de investigación. Herramientas típicas: <code>dcm2niix</code>, SimpleITK, <code>dicom2nifti</code>.</p>
-<div id="b2d25db0" class="cell" data-execution_count="6">
+<div id="784522fe" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> SimpleITK <span class="im">as</span> sitk</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Leer serie DICOM (como en la sección anterior)</span></span>
@@ -1187,7 +1187,7 @@ dcm2niix -z y -f "paciente_%p_%s" -o salida/ carpeta_dicom/</code></pre>
 </section>
 <section id="lectura-de-nifti-con-nibabel" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="lectura-de-nifti-con-nibabel"><span class="header-section-number">4.5</span> Lectura de NIfTI con NiBabel</h2>
-<div id="8f073562" class="cell" data-execution_count="7">
+<div id="fb06e977" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nibabel <span class="im">as</span> nib</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1242,7 +1242,7 @@ Figure&nbsp;5: Flujo típico: adquisición en DICOM, investigación en NIfTI
 <section id="la-clase-image-más-que-un-array" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="la-clase-image-más-que-un-array"><span class="header-section-number">5.2</span> La clase <code>Image</code>: más que un array</h2>
 <p>Un objeto <code>sitk.Image</code> <strong>no es solo una matriz de números</strong>: lleva consigo su información geométrica. Esta es la diferencia clave frente a trabajar directamente con <code>numpy.ndarray</code>.</p>
-<div id="c09b19f2" class="cell" data-execution_count="8">
+<div id="5f4323bb" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> SimpleITK <span class="im">as</span> sitk</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>imagen <span class="op">=</span> sitk.ReadImage(<span class="st">"volumen_paciente.nii.gz"</span>)</span>
@@ -1277,7 +1277,7 @@ Figure&nbsp;5: Flujo típico: adquisición en DICOM, investigación en NIfTI
 </section>
 <section id="ejemplo-filtrado-y-realce" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="ejemplo-filtrado-y-realce"><span class="header-section-number">5.3</span> Ejemplo: filtrado y realce</h2>
-<div id="3074b3c5" class="cell" data-execution_count="9">
+<div id="ec91f974" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> SimpleITK <span class="im">as</span> sitk</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>imagen <span class="op">=</span> sitk.ReadImage(<span class="st">"volumen_paciente.nii.gz"</span>, sitk.sitkFloat32)</span>
@@ -1300,7 +1300,7 @@ Figure&nbsp;5: Flujo típico: adquisición en DICOM, investigación en NIfTI
 <section id="ejemplo-registro-de-imágenes-image-registration" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="ejemplo-registro-de-imágenes-image-registration"><span class="header-section-number">5.4</span> Ejemplo: registro de imágenes (<em>image registration</em>)</h2>
 <p>Uno de los usos más importantes en física médica: alinear dos volúmenes (por ejemplo, un CT de planificación de radioterapia con un CT de control).</p>
-<div id="c246789d" class="cell" data-execution_count="10">
+<div id="4a04473f" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> SimpleITK <span class="im">as</span> sitk</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>imagen_fija <span class="op">=</span> sitk.ReadImage(<span class="st">"ct_planificacion.nii.gz"</span>, sitk.sitkFloat32)</span>
@@ -1373,7 +1373,7 @@ Figure&nbsp;6: Concepto de registro de imágenes
 </section>
 <section id="tensores-la-estructura-de-datos-fundamental" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="tensores-la-estructura-de-datos-fundamental"><span class="header-section-number">6.2</span> Tensores: la estructura de datos fundamental</h2>
-<div id="a84e9934" class="cell" data-execution_count="11">
+<div id="238d8ca3" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Un volumen CT como tensor: (Canal, Profundidad, Alto, Ancho)</span></span>
@@ -1436,7 +1436,7 @@ Figure&nbsp;6: Concepto de registro de imágenes
 </section>
 <section id="autograd-el-motor-de-entrenamiento" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="autograd-el-motor-de-entrenamiento"><span class="header-section-number">6.4</span> Autograd: el motor de entrenamiento</h2>
-<div id="401bb04e" class="cell" data-execution_count="12">
+<div id="d899c026" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> torch.tensor([<span class="fl">2.0</span>], requires_grad<span class="op">=</span><span class="va">True</span>)</span>
@@ -1448,7 +1448,7 @@ Figure&nbsp;6: Concepto de registro de imágenes
 </section>
 <section id="ejemplo-mínimo-una-red-convolucional-3d-simple" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="ejemplo-mínimo-una-red-convolucional-3d-simple"><span class="header-section-number">6.5</span> Ejemplo mínimo: una red convolucional 3D simple</h2>
-<div id="0962bfbc" class="cell" data-execution_count="13">
+<div id="6de89828" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1487,7 +1487,7 @@ Figure&nbsp;6: Concepto de registro de imágenes
 </section>
 <section id="bucle-de-entrenamiento-típico" class="level2" data-number="6.6">
 <h2 data-number="6.6" class="anchored" data-anchor-id="bucle-de-entrenamiento-típico"><span class="header-section-number">6.6</span> Bucle de entrenamiento típico</h2>
-<div id="39818cd0" class="cell" data-execution_count="14">
+<div id="e98c17f1" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.optim <span class="im">as</span> optim</span>
@@ -1597,7 +1597,7 @@ Figure&nbsp;8: MONAI como capa de dominio sobre PyTorch
 <li><strong>Diccionario (<code>d</code>)</strong>: operan sobre un diccionario <code>{"image": ..., "label": ...}</code>, aplicando la misma transformación geométrica sincronizada a la imagen y su máscara. <strong>Es el estilo recomendado en segmentación.</strong></li>
 <li><strong>Array</strong>: operan directamente sobre un tensor/array.</li>
 </ul>
-<div id="b9e7ac71" class="cell" data-execution_count="15">
+<div id="e63dac9e" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> monai.transforms <span class="im">import</span> (</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    Compose, LoadImaged, EnsureChannelFirstd, Spacingd, Orientationd,</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    ScaleIntensityRanged, CropForegroundd, RandCropByPosNegLabeld,</span>
@@ -1630,7 +1630,7 @@ Figure&nbsp;8: MONAI como capa de dominio sobre PyTorch
 </section>
 <section id="dataset-y-dataloader-con-monai" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="dataset-y-dataloader-con-monai"><span class="header-section-number">7.3</span> Dataset y DataLoader con MONAI</h2>
-<div id="74c06eab" class="cell" data-execution_count="16">
+<div id="fd13f219" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> monai.data <span class="im">import</span> Dataset, DataLoader, CacheDataset</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>archivos_entrenamiento <span class="op">=</span> [</span>
@@ -1654,7 +1654,7 @@ Figure&nbsp;8: MONAI como capa de dominio sobre PyTorch
 </section>
 <section id="arquitecturas-listas-para-usar-ejemplo-con-u-net-3d" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="arquitecturas-listas-para-usar-ejemplo-con-u-net-3d"><span class="header-section-number">7.4</span> Arquitecturas listas para usar: ejemplo con U-Net 3D</h2>
-<div id="a0ddd75a" class="cell" data-execution_count="17">
+<div id="c5d8aa29" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> monai.networks.nets <span class="im">import</span> UNet</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> monai.networks.layers <span class="im">import</span> Norm</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1675,7 +1675,7 @@ Figure&nbsp;8: MONAI como capa de dominio sobre PyTorch
 \text{DiceLoss} = 1 - \frac{2 |A \cap B|}{|A| + |B|}
 \]</span></p>
 <p>donde <span class="math inline">\(A\)</span> es la máscara predicha y <span class="math inline">\(B\)</span> la máscara de referencia (<em>ground truth</em>).</p>
-<div id="2706a7a6" class="cell" data-execution_count="18">
+<div id="13420395" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> monai.losses <span class="im">import</span> DiceLoss</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> monai.metrics <span class="im">import</span> DiceMetric</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> monai.inferers <span class="im">import</span> sliding_window_inference</span>
