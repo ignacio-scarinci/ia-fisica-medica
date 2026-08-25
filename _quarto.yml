@@ -17,9 +17,9 @@ website:
     left:
       - href: index.qmd
         text: Inicio
-      - href: unidad0/notas.qmd
+      - href: unidad0/unidad0.qmd
         text: Unidad 0  
-      - href: unidad1/notas.qmd
+      - href: unidad1/unidad1.qmd
         text: Unidad 1
     right:
       - icon: github
@@ -33,34 +33,58 @@ website:
       - text: "---"
       - section: "0.  Introducción"
         contents:
+          - text: "Índice de la unidad"
+            href: unidad0/unidad0.qmd
           - text: "Notas de clase"
             href: unidad0/notas.qmd
           - text: "Calendario"
             href: unidad0/calendario.qmd
           - text: "Presentación"
             href: unidad0/presentacion.qmd
+            target: _blank
+          - text: "PDF de notas"
+            href: unidad0/notas.pdf
+          - text: "PDF de presentación"
+            href: unidad0/presentacion.pdf
       - text: "---"
       - section: "1. Fundamentos de IA"
         contents:
+          - text: "Índice de la unidad"
+            href: unidad1/unidad1.qmd
           - text: "Notas de clase"
             href: unidad1/notas.qmd
           - text: "Notas sobre imágenes médicas"
             href: unidad1/notas2.qmd
+          - text: "PDF notas sobre imágenes"
+            href: unidad1/notas2.pdf
           - text: "Clase 1: De los modelos clásicos al algoritmo del Perceptrón"
             href: unidad1/clase1.qmd
+            target: _blank
+          - text: "PDF Clase 1"
+            href: unidad1/clase1.pdf
           - text: "Clase 2: El ciclo de entrenamiento"
             href: unidad1/clase2.qmd
+            target: _blank
+          - text: "PDF Clase 2"
+            href: unidad1/clase2.pdf
+          - text: "Clase 3: Redes neuronales convolucionales y Transformers"
+            href: unidad1/clase3.qmd
+            target: _blank
+          - text: "PDF de notas"
+            href: unidad1/notas.pdf
           - text: "Notebook 0"
             href: unidad1/notebooks/Notebook0.ipynb
           - text: "Notebook 1"
             href: unidad1/notebooks/Notebook1.ipynb
+          - text: "Ciclo de entrenamiento"
+            href: unidad1/notebooks/Ciclo_de_entrenamiento.ipynb
 
 format:
   html:
     theme: cerulean
     toc: true
     number-sections: true
-    css: styles.css
+    css: themes/site.scss
 
 execute:
   freeze: auto  # evita re-ejecutar código si el .qmd no cambió

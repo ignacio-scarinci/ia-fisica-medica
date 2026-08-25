@@ -17,6 +17,10 @@ execute:
   echo: true
 ---
 
+::: {.callout-note}
+**Descarga:** [obtener estas notas en PDF](notas2.pdf)
+:::
+
 # Introducción
 
 La Física Médica moderna descansa sobre un flujo de trabajo que va desde la **adquisición de la imagen** (en un tomógrafo, resonador, equipo de rayos X, PET, SPECT, ecógrafo, etc.) hasta el **análisis cuantitativo asistido por Inteligencia Artificial** (segmentación de órganos y tumores, radiómica, dosimetría, detección de patologías, generación de contornos para radioterapia, entre otros).
