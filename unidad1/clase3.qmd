@@ -45,12 +45,13 @@ Al finalizar la clase deberíamos poder:
 %%| echo: false
 
 flowchart LR
-    A[MLP] --> B[CNN]
-    B --> C[Autoencoder]
-    C --> D[U-Net]
-    D --> E[Transformer]
-    E --> F[State Space Models]
-    F --> G[Mamba]
+    A(MLP) -->
+    B(CNN) -->
+    C(Autoencoder) -->
+    D(U-Net) -->
+    E(Transformer) -->
+    F(State Space Models) -->
+    G(Mamba) 
 ```
 
 No es una historia de reemplazos.
@@ -74,8 +75,8 @@ $$
 
 La pregunta no es solamente **qué aprende $\theta$**, sino:
 
-:::{.fragment}
-> ¿cómo construimos $f_\theta$?
+:::{.question}
+¿cómo construimos $f_\theta$?
 :::
 
 ## Sesgo inductivo
@@ -97,11 +98,10 @@ Una arquitectura contiene supuestos sobre el problema.
 
 Nuestros datos no son vectores genéricos:
 
-- imágenes 2D;
-- volúmenes 3D;
-- series temporales;
-- dosis;
-- multimodalidad.
+- imágenes 2D
+- volúmenes 3D
+- series temporales
+- multimodalidad
 :::
 ::::
 
@@ -113,13 +113,13 @@ Nuestros datos no son vectores genéricos:
 
 ## ¿Qué significa *feedforward*?
 
-```{mermaid}
-flowchart LR
-    X[Entrada x] --> H1[Capa oculta 1]
-    H1 --> H2[Capa oculta 2]
-    H2 --> Y[Salida ŷ]
-```
+::::{.columns}
+::: {.column width="48%"}
 
+![](./imagenes/feedforward.png){width=90%}
+
+:::
+::: {.column width="48%"}
 Durante el *forward pass*:
 
 $$
@@ -127,7 +127,8 @@ x \rightarrow h^{(1)} \rightarrow h^{(2)} \rightarrow \hat y
 $$
 
 La información avanza hacia la salida, sin ciclos internos.
-
+:::
+::::
 
 ## Muchas capas lineales no alcanzan
 
@@ -151,8 +152,9 @@ $$
 
 Dos transformaciones lineales siguen siendo una transformación lineal.
 
-> La profundidad por sí sola no produce no linealidad.
-
+:::{.callout-important}
+# La profundidad por sí sola no produce no linealidad.
+:::
 
 ## Funciones de activación
 
@@ -162,19 +164,17 @@ $$
 h=\phi(Wx+b)
 $$
 
-:::: {.columns}
-::: {.column width="48%"}
-### Sigmoide
+## Sigmoide
 
 $$
 \sigma(x)=\frac{1}{1+e^{-x}}
 $$
 
 Puede saturarse.
-:::
 
-::: {.column width="48%"}
-### $\tanh$
+![](./imagenes/Sigmoid.png){width=80%}
+
+## $\tanh$
 
 $$
 \tanh(x)
@@ -183,15 +183,10 @@ $$
 $$
 
 Salida entre -1 y 1.
-:::
-::::
 
+![](./imagenes/Tanh.png){width=80%}
 
-## ReLU y Leaky ReLU
-
-:::: {.columns}
-::: {.column width="48%"}
-### ReLU
+## ReLU
 
 $$
 \operatorname{ReLU}(x)=\max(0,x)
@@ -200,11 +195,10 @@ $$
 - simple;
 - barata;
 - muy utilizada en CNNs;
-- posible *dying ReLU*.
-:::
 
-::: {.column width="48%"}
-### Leaky ReLU
+![](./imagenes/ReLU.png){width=80%}
+
+## Leaky ReLU
 
 $$
 \operatorname{LeakyReLU}(x)=
@@ -215,10 +209,8 @@ x & x>0\\
 $$
 
 Mantiene gradiente para $x<0$.
-:::
-::::
 
-También aparecen GELU, SiLU/Swish y Mish.
+![](./imagenes/LeakyReLU.png){width=40%}
 
 
 ## ¿Por qué un MLP es incómodo para imágenes?
@@ -235,301 +227,79 @@ $$
 262\,144
 $$
 
-píxeles.
+píxeles de entrada.
 
-Una capa con 1000 neuronas requeriría aproximadamente:
+Cada una de las 1000 neuronas necesita un peso para cada píxel:
 
 $$
-262\,144\times1000
+\underbrace{262\,144}_{\text{entradas}}
+	\times
+\underbrace{1000}_{\text{neuronas}}
 \approx
 262\text{ millones de pesos}
 $$
 
+Los $262\,144$ son datos de entrada, no pesos.
+
 Y además perderíamos explícitamente la estructura espacial.
+
+## Antes de seguir: A jugar
+
+[TensorFlow Playground](https://playground.tensorflow.org)
+
+
 
 # Bloque 2 · Convolutional Neural Networks {.section-slide}
 
 ## La idea central de una CNN
 
-Una CNN utiliza pequeños filtros que se desplazan sobre la imagen.
+![](./imagenes/cnn_idea_central.jpg){width=60%}
 
-$$
-Y(i,j)
-=
-\sum_m\sum_n
-K(m,n)\,I(i+m,j+n)
-$$
+## Filtros convolucionales
 
-La operación es:
-
-- local;
-- compartida espacialmente;
-- aprendible.
-
-
-## ¿Qué hace una convolución?
-
-:::: {.columns}
-::: {.column width="45%"}
-### Región de imagen
-
-$$
-\begin{bmatrix}
-2&1&0\\
-3&5&1\\
-0&2&4
-\end{bmatrix}
-$$
-:::
-
-::: {.column width="45%"}
-### Kernel
-
-$$
-\begin{bmatrix}
-1&0&-1\\
-1&0&-1\\
-1&0&-1
-\end{bmatrix}
-$$
-:::
-::::
-
-La salida local resulta de una **suma ponderada**.
-
+![](./imagenes/filtros.jpg){width=60%}
 
 ## En Deep Learning los filtros se aprenden
 
-Procesamiento clásico:
-
-$$
-\text{kernel diseñado por el experto}
-$$
-
-Deep Learning:
-
-$$
-\text{kernel inicial}
-\xrightarrow{\text{backpropagation}}
-\text{kernel aprendido}
-$$
-
-En muchas librerías la operación es técnicamente una **correlación cruzada**, pero seguimos llamándola convolución.
-
-
-## Compartir parámetros
-
-El mismo kernel se aplica en toda la imagen.
-
-```{mermaid}
-flowchart LR
-    K[Kernel 3×3] --> A[Región 1]
-    K --> B[Región 2]
-    K --> C[Región 3]
-```
-
-Esto produce:
-
-- muchos menos parámetros;
-- detección de patrones independientemente de su posición;
-- un fuerte sesgo hacia la estructura espacial.
-
+![](./imagenes/cnn_aprende.jpg){width=60%}
 
 ## Canales y *feature maps*
 
-Entrada:
+Después de una convolución la red ya no representa solo intensidades.
 
-$$
-1\times H\times W
-$$
-
-Después de una convolución:
-
-$$
-32\times H\times W
-$$
-
-La red ya no representa solo intensidades.
-
-Cada canal codifica una característica aprendida.
-
-```{mermaid}
-flowchart LR
-    A[Intensidad] --> B[Patrones locales]
-    B --> C[Texturas]
-    C --> D[Estructuras]
-    D --> E[Representaciones abstractas]
-```
+![](./imagenes/canales.jpg){width=60%}
 
 
-## Stride y padding
+## Kenel, Stride y padding
 
-:::: {.columns}
-::: {.column width="48%"}
-### Stride
+![](./imagenes/kenel_stride_padding.jpg){width=60%}
 
-$$
-s=1
-$$
+## Kenel, Stride y padding
 
-desplazamiento de un píxel.
+![](./imagenes/stride.jpg){width=60%}
 
-$$
-s=2
-$$
+## Kenel, Stride y padding
 
-puede producir *downsampling*.
-:::
+### Entrada: 7, Kernel:3 y Stride: 3
 
-::: {.column width="48%"}
-### Padding
-
-Agrega valores alrededor de la imagen.
-
-Permite controlar el tamaño espacial de la salida.
-:::
-::::
-
+![](./imagenes/7_3_3.jpg){width=60%}
 
 ## Campo receptivo
 
-Una unidad profunda puede depender de una región cada vez mayor de la entrada.
-
-Para convoluciones $3\times3$ con stride 1:
-
-$$
-3\times3
-\rightarrow
-5\times5
-\rightarrow
-7\times7
-\rightarrow\dots
-$$
-
-Para identificar anatomía necesitamos combinar:
-
-- información local;
-- textura;
-- bordes;
-- contexto anatómico.
-
+![](./imagenes/campo_receptivo.jpg){width=60%}
 
 ## Max pooling
 
-En una ventana $2\times2$:
-
-$$
-\begin{bmatrix}
-1&3\\
-2&8
-\end{bmatrix}
-\rightarrow 8
-$$
-
-Efectos:
-
-- reduce resolución;
-- disminuye costo computacional;
-- aumenta el campo receptivo efectivo.
-
-En arquitecturas modernas también se usa convolución con *stride*.
-
-
-## Un bloque CNN clásico
-
-```{mermaid}
-flowchart LR
-    A[Entrada] --> B[Convolution]
-    B --> C[Normalization]
-    C --> D[Activation]
-    D --> E[Salida]
-```
-
-Un patrón frecuente:
-
-$$
-\boxed{\text{Conv}}
-\rightarrow
-\boxed{\text{Norm}}
-\rightarrow
-\boxed{\text{ReLU}}
-$$
-
+![](./imagenes/max_pooling.jpg){width=60%}
 
 ## Batch Normalization
 
-$$
-\hat{x}
-=
-\frac{x-\mu_B}
-{\sqrt{\sigma_B^2+\epsilon}}
-$$
+![](./imagenes/batch_norm.jpg){width=60%}
 
-$$
-y=\gamma\hat{x}+\beta
-$$
-
-Los parámetros $\gamma$ y $\beta$ se aprenden.
-
-BatchNorm ayudó a estabilizar el entrenamiento de muchas redes profundas.
+## Un bloque CNN clásico
 
 
-### BatchNorm y el problema del 3D
-
-Las imágenes volumétricas consumen mucha memoria.
-
-Por eso podemos entrenar con:
-
-$$
-B=1,\ 2,\ 4
-$$
-
-Con *batch size* pequeño las estadísticas de BatchNorm pueden ser poco estables.
-
-Alternativas frecuentes:
-
-- InstanceNorm;
-- GroupNorm.
-
-
-## CNN 2D, CNN 3D y anisotropía
-
-:::: {.columns}
-::: {.column width="48%"}
-### 2D
-
-$$
-C\times H\times W
-$$
-
-Kernel típico:
-
-$$
-3\times3
-$$
-:::
-
-::: {.column width="48%"}
-### 3D
-
-$$
-C\times D\times H\times W
-$$
-
-Kernel típico:
-
-$$
-3\times3\times3
-$$
-:::
-::::
-
-Pero en imagen médica:
-
-$$
-\Delta x \neq \Delta y \neq \Delta z
-$$
-
+![](./imagenes/bloque_comun.jpg){width=60%}
 
 ## ¿Por qué redes más profundas?
 
@@ -543,46 +313,18 @@ Pero entrenar redes muy profundas introduce dificultades de optimización.
 
 Una respuesta histórica: **conexiones residuales**.
 
+## Ejemplos de CNN
+
+![](./imagenes/ejemplos.jpg){width=60%}
 
 ## Conexiones residuales
 
-En ResNet:
-
-$$
-y=F(x)+x
-$$
-
-```{mermaid}
-flowchart LR
-    X[x] --> F[Bloque F(x)]
-    X --> S[Skip]
-    F --> A((+))
-    S --> A
-    A --> Y[y]
-```
-
-Facilitan el flujo de información y gradientes.
+![](./imagenes/residual.jpg){width=60%}
 
 # Bloque 3 · Autoencoders {.section-slide}
 
 ## Autoencoder: comprimir y reconstruir
-
-```{mermaid}
-flowchart LR
-    X[Entrada x] --> E[Encoder]
-    E --> Z[Latente z]
-    Z --> D[Decoder]
-    D --> Y[Reconstrucción x̂]
-```
-
-$$
-z=f_\theta(x)
-$$
-
-$$
-\hat x=g_\phi(z)
-$$
-
+![](./imagenes/autoencoder.jpg){width=60%}
 
 ## ¿Qué aprende el espacio latente?
 
@@ -603,71 +345,15 @@ Aplicaciones:
 - preentrenamiento;
 - modelos generativos.
 
-
-## De autoencoder a encoder–decoder
-
-No necesitamos reconstruir la misma entrada.
-
-```{mermaid}
-flowchart LR
-    X[CT] --> E[Encoder]
-    E --> Z[Representación]
-    Z --> D[Decoder]
-    D --> M[Máscara]
-```
-
-El decoder puede producir:
-
-- una imagen;
-- un mapa continuo;
-- una segmentación.
-
 # Bloque 4 · U-Net {.section-slide}
 
 ## U-Net
 
-U-Net fue propuesta en 2015 para segmentación biomédica.
-
-```{mermaid}
-flowchart LR
-    A[Encoder] --> B[Bottleneck]
-    B --> C[Decoder]
-```
-
-La estructura combina:
-
-$$
-\boxed{\text{encoder}}
-+
-\boxed{\text{decoder}}
-+
-\boxed{\text{skip connections}}
-$$
-
+![](./imagenes/unet.jpg){width=60%}
 
 ## El encoder: ganar contexto
 
-El encoder reduce resolución:
-
-$$
-256^2
-\rightarrow
-128^2
-\rightarrow
-64^2
-\rightarrow
-32^2
-$$
-
-A cambio obtiene:
-
-- mayor campo receptivo;
-- más contexto;
-- representaciones más abstractas.
-
-Pregunta que responde bien:
-
-> **¿qué estoy observando?**
+![](./imagenes/unet_encoder.jpg){width=60%}
 
 
 ## El problema: perdemos localización
@@ -683,40 +369,7 @@ El *downsampling* elimina resolución espacial.
 
 ## Skip connections de U-Net
 
-```{mermaid}
-flowchart LR
-    E1[Encoder 256] --> E2[128]
-    E2 --> E3[64]
-    E3 --> B[32]
-    B --> D3[64]
-    D3 --> D2[128]
-    D2 --> D1[256]
-
-    E1 -. skip .-> D1
-    E2 -. skip .-> D2
-    E3 -. skip .-> D3
-```
-
-Las características de alta resolución llegan directamente al decoder.
-
-
-## U-Net: “qué” + “dónde”
-
-$$
-\boxed{\text{contexto semántico}}
-+
-\boxed{\text{detalle espacial}}
-\rightarrow
-\boxed{\text{segmentación}}
-$$
-
-Una aclaración:
-
-- skip de **ResNet** → facilita optimización;
-- skip de **U-Net** → recupera información espacial.
-
-Mismo nombre informal, función distinta.
-
+![](./imagenes/skip_unet.jpg){width=60%}
 
 ## 3D U-Net
 
@@ -739,77 +392,16 @@ El gran limitante práctico es la **memoria**.
 
 ### Patches y ventanas deslizantes
 
-Para volúmenes grandes suelen utilizarse:
-
-- entrenamiento por *patches*;
-- resampling;
-- inferencia por *sliding window*;
-- solapamiento entre ventanas.
-
-```{mermaid}
-flowchart LR
-    V[Volumen completo] --> P[Patches]
-    P --> M[Modelo]
-    M --> R[Reconstrucción de salida]
-```
-
+![](./imagenes/patches.jpg){width=60%}
 
 ## ResUNet
 
-ResUNet combina:
-
-- estructura encoder–decoder;
-- skip connections de U-Net;
-- bloques residuales.
-
-```{mermaid}
-flowchart LR
-    A[Input] --> B[Residual block]
-    B --> C[Downsample]
-    C --> D[Bottleneck]
-    D --> E[Upsample]
-    E --> F[Residual block]
-```
+![](./imagenes/res_unet.jpg){width=60%}
 
 
 ## Attention U-Net y U-Net++
 
-:::: {.columns}
-::: {.column width="48%"}
-### Attention U-Net
-
-Filtra qué características del encoder pasan al decoder.
-
-$$
-\text{skip}\rightarrow\text{attention gate}\rightarrow\text{decoder}
-$$
-:::
-
-::: {.column width="48%"}
-### U-Net++
-
-Introduce conexiones más densas e intermedias entre encoder y decoder.
-:::
-::::
-
-Ambas conservan la lógica multiescala.
-
-
-## nnU-Net: una aclaración importante
-
-**nnU-Net no es simplemente otra U-Net.**
-
-Es un sistema auto-configurable que adapta:
-
-- preprocesamiento;
-- resolución;
-- tamaño de patch;
-- arquitectura 2D/3D;
-- entrenamiento;
-- postprocesamiento.
-
-> El pipeline completo importa tanto como la arquitectura.
-
+![](./imagenes/unet_variantes.jpg){width=60%}
 
 # Bloque 5 · Transformers {.section-slide}
 
