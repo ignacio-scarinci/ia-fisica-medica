@@ -236,12 +236,13 @@ Ignacio Scarinci
 <p></p><figure class=""><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
-    A[MLP] --&gt; B[CNN]
-    B --&gt; C[Autoencoder]
-    C --&gt; D[U-Net]
-    D --&gt; E[Transformer]
-    E --&gt; F[State Space Models]
-    F --&gt; G[Mamba]
+    A(MLP) --&gt;
+    B(CNN) --&gt;
+    C(Autoencoder) --&gt;
+    D(U-Net) --&gt;
+    E(Transformer) --&gt;
+    F(State Space Models) --&gt;
+    G(Mamba) 
 </pre>
 </div>
 <p></p></figure><p></p>
@@ -265,10 +266,8 @@ Ignacio Scarinci
 \hat y=f_\theta(x)
 \]</span></p>
 <p>La pregunta no es solamente <strong>qué aprende <span class="math inline">\(\theta\)</span></strong>, sino:</p>
-<div class="fragment">
-<blockquote>
+<div class="question">
 <p>¿cómo construimos <span class="math inline">\(f_\theta\)</span>?</p>
-</blockquote>
 </div>
 </section>
 <section id="sesgo-inductivo" class="slide level2">
@@ -287,11 +286,10 @@ Ignacio Scarinci
 <h3 id="en-física-médica">En Física Médica</h3>
 <p>Nuestros datos no son vectores genéricos:</p>
 <ul>
-<li>imágenes 2D;</li>
-<li>volúmenes 3D;</li>
-<li>series temporales;</li>
-<li>dosis;</li>
-<li>multimodalidad.</li>
+<li>imágenes 2D</li>
+<li>volúmenes 3D</li>
+<li>series temporales</li>
+<li>multimodalidad</li>
 </ul>
 </div></div>
 </section>
@@ -306,30 +304,16 @@ Ignacio Scarinci
 <img data-src="./imagenes/MLP.png" style="width:60.0%" class="r-stretch"></section>
 <section id="qué-significa-feedforward" class="slide level2">
 <h2>¿Qué significa <em>feedforward</em>?</h2>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb1-2"><a aria-label="2"></a>    X[Entrada x] --&gt; H1[Capa oculta 1]</span>
-<span id="cb1-3"><a aria-label="3"></a>    H1 --&gt; H2[Capa oculta 2]</span>
-<span id="cb1-4"><a aria-label="4"></a>    H2 --&gt; Y[Salida ŷ]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    X[Entrada x] --&gt; H1[Capa oculta 1]
-    H1 --&gt; H2[Capa oculta 2]
-    H2 --&gt; Y[Salida ŷ]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p><img data-src="./imagenes/feedforward.png" style="width:90.0%"></p>
+</div><div class="column" style="width:48%;">
 <p>Durante el <em>forward pass</em>:</p>
 <p><span class="math display">\[
 x \rightarrow h^{(1)} \rightarrow h^{(2)} \rightarrow \hat y
 \]</span></p>
 <p>La información avanza hacia la salida, sin ciclos internos.</p>
+</div></div>
 </section>
 <section id="muchas-capas-lineales-no-alcanzan" class="slide level2">
 <h2>Muchas capas lineales no alcanzan</h2>
@@ -346,9 +330,19 @@ y=W_2h
 y=W_2W_1x=Wx
 \]</span></p>
 <p>Dos transformaciones lineales siguen siendo una transformación lineal.</p>
-<blockquote>
-<p>La profundidad por sí sola no produce no linealidad.</p>
-</blockquote>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>La profundidad por sí sola no produce no linealidad.</strong></p>
+</div>
+<div class="callout-content">
+
+</div>
+</div>
+</div>
 </section>
 <section id="funciones-de-activación" class="slide level2">
 <h2>Funciones de activación</h2>
@@ -356,28 +350,27 @@ y=W_2W_1x=Wx
 <p><span class="math display">\[
 h=\phi(Wx+b)
 \]</span></p>
-<div class="columns">
-<div class="column" style="width:48%;">
-<h3 id="sigmoide">Sigmoide</h3>
+</section>
+<section id="sigmoide" class="slide level2">
+<h2>Sigmoide</h2>
 <p><span class="math display">\[
 \sigma(x)=\frac{1}{1+e^{-x}}
 \]</span></p>
 <p>Puede saturarse.</p>
-</div><div class="column" style="width:48%;">
-<h3 id="tanh"><span class="math inline">\(\tanh\)</span></h3>
+
+<img data-src="./imagenes/Sigmoid.png" style="width:80.0%" class="r-stretch"></section>
+<section id="tanh" class="slide level2">
+<h2><span class="math inline">\(\tanh\)</span></h2>
 <p><span class="math display">\[
 \tanh(x)
 =
 \frac{e^x-e^{-x}}{e^x+e^{-x}}
 \]</span></p>
 <p>Salida entre -1 y 1.</p>
-</div></div>
-</section>
-<section id="relu-y-leaky-relu" class="slide level2">
-<h2>ReLU y Leaky ReLU</h2>
-<div class="columns">
-<div class="column" style="width:48%;">
-<h3 id="relu">ReLU</h3>
+
+<img data-src="./imagenes/Tanh.png" style="width:80.0%" class="r-stretch"></section>
+<section id="relu" class="slide level2">
+<h2>ReLU</h2>
 <p><span class="math display">\[
 \operatorname{ReLU}(x)=\max(0,x)
 \]</span></p>
@@ -385,10 +378,11 @@ h=\phi(Wx+b)
 <li>simple;</li>
 <li>barata;</li>
 <li>muy utilizada en CNNs;</li>
-<li>posible <em>dying ReLU</em>.</li>
 </ul>
-</div><div class="column" style="width:48%;">
-<h3 id="leaky-relu">Leaky ReLU</h3>
+
+<img data-src="./imagenes/ReLU.png" style="width:80.0%" class="r-stretch"></section>
+<section id="leaky-relu" class="slide level2">
+<h2>Leaky ReLU</h2>
 <p><span class="math display">\[
 \operatorname{LeakyReLU}(x)=
 \begin{cases}
@@ -397,9 +391,8 @@ x &amp; x&gt;0\\
 \end{cases}
 \]</span></p>
 <p>Mantiene gradiente para <span class="math inline">\(x&lt;0\)</span>.</p>
-</div></div>
-<p>También aparecen GELU, SiLU/Swish y Mish.</p>
-</section>
+
+<img data-src="./imagenes/LeakyReLU.png" style="width:40.0%" class="r-stretch"></section>
 <section id="por-qué-un-mlp-es-incómodo-para-imágenes" class="slide level2">
 <h2>¿Por qué un MLP es incómodo para imágenes?</h2>
 <p>Una imagen CT de:</p>
@@ -410,14 +403,21 @@ x &amp; x&gt;0\\
 <p><span class="math display">\[
 262\,144
 \]</span></p>
-<p>píxeles.</p>
-<p>Una capa con 1000 neuronas requeriría aproximadamente:</p>
+<p>píxeles de entrada.</p>
+<p>Cada una de las 1000 neuronas necesita un peso para cada píxel:</p>
 <p><span class="math display">\[
-262\,144\times1000
+\underbrace{262\,144}_{\text{entradas}}
+    \times
+\underbrace{1000}_{\text{neuronas}}
 \approx
 262\text{ millones de pesos}
 \]</span></p>
+<p>Los <span class="math inline">\(262\,144\)</span> son datos de entrada, no pesos.</p>
 <p>Y además perderíamos explícitamente la estructura espacial.</p>
+</section>
+<section id="antes-de-seguir-a-jugar" class="slide level2">
+<h2>Antes de seguir: A jugar</h2>
+<p><a href="https://playground.tensorflow.org">TensorFlow Playground</a></p>
 </section></section>
 <section>
 <section id="bloque-2-convolutional-neural-networks" class="title-slide slide level1 section-slide center">
@@ -426,263 +426,50 @@ x &amp; x&gt;0\\
 </section>
 <section id="la-idea-central-de-una-cnn" class="slide level2">
 <h2>La idea central de una CNN</h2>
-<p>Una CNN utiliza pequeños filtros que se desplazan sobre la imagen.</p>
-<p><span class="math display">\[
-Y(i,j)
-=
-\sum_m\sum_n
-K(m,n)\,I(i+m,j+n)
-\]</span></p>
-<p>La operación es:</p>
-<ul>
-<li>local;</li>
-<li>compartida espacialmente;</li>
-<li>aprendible.</li>
-</ul>
-</section>
-<section id="qué-hace-una-convolución" class="slide level2">
-<h2>¿Qué hace una convolución?</h2>
-<div class="columns">
-<div class="column" style="width:45%;">
-<h3 id="región-de-imagen">Región de imagen</h3>
-<p><span class="math display">\[
-\begin{bmatrix}
-2&amp;1&amp;0\\
-3&amp;5&amp;1\\
-0&amp;2&amp;4
-\end{bmatrix}
-\]</span></p>
-</div><div class="column" style="width:45%;">
-<h3 id="kernel">Kernel</h3>
-<p><span class="math display">\[
-\begin{bmatrix}
-1&amp;0&amp;-1\\
-1&amp;0&amp;-1\\
-1&amp;0&amp;-1
-\end{bmatrix}
-\]</span></p>
-</div></div>
-<p>La salida local resulta de una <strong>suma ponderada</strong>.</p>
-</section>
+
+<img data-src="./imagenes/cnn_idea_central.jpg" style="width:60.0%" class="r-stretch"></section>
+<section id="filtros-convolucionales" class="slide level2">
+<h2>Filtros convolucionales</h2>
+
+<img data-src="./imagenes/filtros.jpg" style="width:60.0%" class="r-stretch"></section>
 <section id="en-deep-learning-los-filtros-se-aprenden" class="slide level2">
 <h2>En Deep Learning los filtros se aprenden</h2>
-<p>Procesamiento clásico:</p>
-<p><span class="math display">\[
-\text{kernel diseñado por el experto}
-\]</span></p>
-<p>Deep Learning:</p>
-<p><span class="math display">\[
-\text{kernel inicial}
-\xrightarrow{\text{backpropagation}}
-\text{kernel aprendido}
-\]</span></p>
-<p>En muchas librerías la operación es técnicamente una <strong>correlación cruzada</strong>, pero seguimos llamándola convolución.</p>
-</section>
-<section id="compartir-parámetros" class="slide level2">
-<h2>Compartir parámetros</h2>
-<p>El mismo kernel se aplica en toda la imagen.</p>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb2-2"><a aria-label="2"></a>    K[Kernel 3×3] --&gt; A[Región 1]</span>
-<span id="cb2-3"><a aria-label="3"></a>    K --&gt; B[Región 2]</span>
-<span id="cb2-4"><a aria-label="4"></a>    K --&gt; C[Región 3]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    K[Kernel 3×3] --&gt; A[Región 1]
-    K --&gt; B[Región 2]
-    K --&gt; C[Región 3]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>Esto produce:</p>
-<ul>
-<li>muchos menos parámetros;</li>
-<li>detección de patrones independientemente de su posición;</li>
-<li>un fuerte sesgo hacia la estructura espacial.</li>
-</ul>
-</section>
+
+<img data-src="./imagenes/cnn_aprende.jpg" style="width:60.0%" class="r-stretch"></section>
 <section id="canales-y-feature-maps" class="slide level2">
 <h2>Canales y <em>feature maps</em></h2>
-<p>Entrada:</p>
-<p><span class="math display">\[
-1\times H\times W
-\]</span></p>
-<p>Después de una convolución:</p>
-<p><span class="math display">\[
-32\times H\times W
-\]</span></p>
-<p>La red ya no representa solo intensidades.</p>
-<p>Cada canal codifica una característica aprendida.</p>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb3-2"><a aria-label="2"></a>    A[Intensidad] --&gt; B[Patrones locales]</span>
-<span id="cb3-3"><a aria-label="3"></a>    B --&gt; C[Texturas]</span>
-<span id="cb3-4"><a aria-label="4"></a>    C --&gt; D[Estructuras]</span>
-<span id="cb3-5"><a aria-label="5"></a>    D --&gt; E[Representaciones abstractas]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    A[Intensidad] --&gt; B[Patrones locales]
-    B --&gt; C[Texturas]
-    C --&gt; D[Estructuras]
-    D --&gt; E[Representaciones abstractas]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</section>
-<section id="stride-y-padding" class="slide level2">
-<h2>Stride y padding</h2>
-<div class="columns">
-<div class="column" style="width:48%;">
-<h3 id="stride">Stride</h3>
-<p><span class="math display">\[
-s=1
-\]</span></p>
-<p>desplazamiento de un píxel.</p>
-<p><span class="math display">\[
-s=2
-\]</span></p>
-<p>puede producir <em>downsampling</em>.</p>
-</div><div class="column" style="width:48%;">
-<h3 id="padding">Padding</h3>
-<p>Agrega valores alrededor de la imagen.</p>
-<p>Permite controlar el tamaño espacial de la salida.</p>
-</div></div>
-</section>
+<p>Después de una convolución la red ya no representa solo intensidades.</p>
+
+<img data-src="./imagenes/canales.jpg" style="width:60.0%" class="r-stretch"></section>
+<section id="kenel-stride-y-padding" class="slide level2">
+<h2>Kenel, Stride y padding</h2>
+
+<img data-src="./imagenes/kenel_stride_padding.jpg" style="width:60.0%" class="r-stretch"></section>
+<section id="kenel-stride-y-padding-1" class="slide level2">
+<h2>Kenel, Stride y padding</h2>
+
+<img data-src="./imagenes/stride.jpg" style="width:60.0%" class="r-stretch"></section>
+<section id="kenel-stride-y-padding-2" class="slide level2">
+<h2>Kenel, Stride y padding</h2>
+<h3 id="entrada-7-kernel3-y-stride-3">Entrada: 7, Kernel:3 y Stride: 3</h3>
+
+<img data-src="./imagenes/7_3_3.jpg" style="width:60.0%" class="r-stretch"></section>
 <section id="campo-receptivo" class="slide level2">
 <h2>Campo receptivo</h2>
-<p>Una unidad profunda puede depender de una región cada vez mayor de la entrada.</p>
-<p>Para convoluciones <span class="math inline">\(3\times3\)</span> con stride 1:</p>
-<p><span class="math display">\[
-3\times3
-\rightarrow
-5\times5
-\rightarrow
-7\times7
-\rightarrow\dots
-\]</span></p>
-<p>Para identificar anatomía necesitamos combinar:</p>
-<ul>
-<li>información local;</li>
-<li>textura;</li>
-<li>bordes;</li>
-<li>contexto anatómico.</li>
-</ul>
-</section>
+
+<img data-src="./imagenes/campo_receptivo.jpg" style="width:60.0%" class="r-stretch"></section>
 <section id="max-pooling" class="slide level2">
 <h2>Max pooling</h2>
-<p>En una ventana <span class="math inline">\(2\times2\)</span>:</p>
-<p><span class="math display">\[
-\begin{bmatrix}
-1&amp;3\\
-2&amp;8
-\end{bmatrix}
-\rightarrow 8
-\]</span></p>
-<p>Efectos:</p>
-<ul>
-<li>reduce resolución;</li>
-<li>disminuye costo computacional;</li>
-<li>aumenta el campo receptivo efectivo.</li>
-</ul>
-<p>En arquitecturas modernas también se usa convolución con <em>stride</em>.</p>
-</section>
-<section id="un-bloque-cnn-clásico" class="slide level2">
-<h2>Un bloque CNN clásico</h2>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb4-2"><a aria-label="2"></a>    A[Entrada] --&gt; B[Convolution]</span>
-<span id="cb4-3"><a aria-label="3"></a>    B --&gt; C[Normalization]</span>
-<span id="cb4-4"><a aria-label="4"></a>    C --&gt; D[Activation]</span>
-<span id="cb4-5"><a aria-label="5"></a>    D --&gt; E[Salida]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    A[Entrada] --&gt; B[Convolution]
-    B --&gt; C[Normalization]
-    C --&gt; D[Activation]
-    D --&gt; E[Salida]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>Un patrón frecuente:</p>
-<p><span class="math display">\[
-\boxed{\text{Conv}}
-\rightarrow
-\boxed{\text{Norm}}
-\rightarrow
-\boxed{\text{ReLU}}
-\]</span></p>
-</section>
+
+<img data-src="./imagenes/max_pooling.jpg" style="width:60.0%" class="r-stretch"></section>
 <section id="batch-normalization" class="slide level2">
 <h2>Batch Normalization</h2>
-<p><span class="math display">\[
-\hat{x}
-=
-\frac{x-\mu_B}
-{\sqrt{\sigma_B^2+\epsilon}}
-\]</span></p>
-<p><span class="math display">\[
-y=\gamma\hat{x}+\beta
-\]</span></p>
-<p>Los parámetros <span class="math inline">\(\gamma\)</span> y <span class="math inline">\(\beta\)</span> se aprenden.</p>
-<p>BatchNorm ayudó a estabilizar el entrenamiento de muchas redes profundas.</p>
-<h3 id="batchnorm-y-el-problema-del-3d">BatchNorm y el problema del 3D</h3>
-<p>Las imágenes volumétricas consumen mucha memoria.</p>
-<p>Por eso podemos entrenar con:</p>
-<p><span class="math display">\[
-B=1,\ 2,\ 4
-\]</span></p>
-<p>Con <em>batch size</em> pequeño las estadísticas de BatchNorm pueden ser poco estables.</p>
-<p>Alternativas frecuentes:</p>
-<ul>
-<li>InstanceNorm;</li>
-<li>GroupNorm.</li>
-</ul>
-</section>
-<section id="cnn-2d-cnn-3d-y-anisotropía" class="slide level2">
-<h2>CNN 2D, CNN 3D y anisotropía</h2>
-<div class="columns">
-<div class="column" style="width:48%;">
-<h3 id="d">2D</h3>
-<p><span class="math display">\[
-C\times H\times W
-\]</span></p>
-<p>Kernel típico:</p>
-<p><span class="math display">\[
-3\times3
-\]</span></p>
-</div><div class="column" style="width:48%;">
-<h3 id="d-1">3D</h3>
-<p><span class="math display">\[
-C\times D\times H\times W
-\]</span></p>
-<p>Kernel típico:</p>
-<p><span class="math display">\[
-3\times3\times3
-\]</span></p>
-</div></div>
-<p>Pero en imagen médica:</p>
-<p><span class="math display">\[
-\Delta x \neq \Delta y \neq \Delta z
-\]</span></p>
-</section>
+
+<img data-src="./imagenes/batch_norm.jpg" style="width:60.0%" class="r-stretch"></section>
+<section id="un-bloque-cnn-clásico" class="slide level2">
+<h2>Un bloque CNN clásico</h2>
+
+<img data-src="./imagenes/bloque_comun.jpg" style="width:60.0%" class="r-stretch"></section>
 <section id="por-qué-redes-más-profundas" class="slide level2">
 <h2>¿Por qué redes más profundas?</h2>
 <p>Más profundidad puede permitir:</p>
@@ -694,37 +481,14 @@ C\times D\times H\times W
 <p>Pero entrenar redes muy profundas introduce dificultades de optimización.</p>
 <p>Una respuesta histórica: <strong>conexiones residuales</strong>.</p>
 </section>
+<section id="ejemplos-de-cnn" class="slide level2">
+<h2>Ejemplos de CNN</h2>
+
+<img data-src="./imagenes/ejemplos.jpg" style="width:60.0%" class="r-stretch"></section>
 <section id="conexiones-residuales" class="slide level2">
 <h2>Conexiones residuales</h2>
-<p>En ResNet:</p>
-<p><span class="math display">\[
-y=F(x)+x
-\]</span></p>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb5-2"><a aria-label="2"></a>    X[x] --&gt; F[Bloque F(x)]</span>
-<span id="cb5-3"><a aria-label="3"></a>    X --&gt; S[Skip]</span>
-<span id="cb5-4"><a aria-label="4"></a>    F --&gt; A((+))</span>
-<span id="cb5-5"><a aria-label="5"></a>    S --&gt; A</span>
-<span id="cb5-6"><a aria-label="6"></a>    A --&gt; Y[y]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    X[x] --&gt; F[Bloque F(x)]
-    X --&gt; S[Skip]
-    F --&gt; A((+))
-    S --&gt; A
-    A --&gt; Y[y]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>Facilitan el flujo de información y gradientes.</p>
-</section></section>
+
+<img data-src="./imagenes/residual.jpg" style="width:60.0%" class="r-stretch"></section></section>
 <section>
 <section id="bloque-3-autoencoders" class="title-slide slide level1 section-slide center">
 <h1>Bloque 3 · Autoencoders</h1>
@@ -732,34 +496,8 @@ y=F(x)+x
 </section>
 <section id="autoencoder-comprimir-y-reconstruir" class="slide level2">
 <h2>Autoencoder: comprimir y reconstruir</h2>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb6-2"><a aria-label="2"></a>    X[Entrada x] --&gt; E[Encoder]</span>
-<span id="cb6-3"><a aria-label="3"></a>    E --&gt; Z[Latente z]</span>
-<span id="cb6-4"><a aria-label="4"></a>    Z --&gt; D[Decoder]</span>
-<span id="cb6-5"><a aria-label="5"></a>    D --&gt; Y[Reconstrucción x̂]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    X[Entrada x] --&gt; E[Encoder]
-    E --&gt; Z[Latente z]
-    Z --&gt; D[Decoder]
-    D --&gt; Y[Reconstrucción x̂]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p><span class="math display">\[
-z=f_\theta(x)
-\]</span></p>
-<p><span class="math display">\[
-\hat x=g_\phi(z)
-\]</span></p>
-</section>
+
+<img data-src="./imagenes/autoencoder.jpg" style="width:60.0%" class="r-stretch"></section>
 <section id="qué-aprende-el-espacio-latente" class="slide level2">
 <h2>¿Qué aprende el espacio latente?</h2>
 <p>Podemos entrenar minimizando:</p>
@@ -776,37 +514,6 @@ z=f_\theta(x)
 <li>preentrenamiento;</li>
 <li>modelos generativos.</li>
 </ul>
-</section>
-<section id="de-autoencoder-a-encoderdecoder" class="slide level2">
-<h2>De autoencoder a encoder–decoder</h2>
-<p>No necesitamos reconstruir la misma entrada.</p>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb7-2"><a aria-label="2"></a>    X[CT] --&gt; E[Encoder]</span>
-<span id="cb7-3"><a aria-label="3"></a>    E --&gt; Z[Representación]</span>
-<span id="cb7-4"><a aria-label="4"></a>    Z --&gt; D[Decoder]</span>
-<span id="cb7-5"><a aria-label="5"></a>    D --&gt; M[Máscara]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    X[CT] --&gt; E[Encoder]
-    E --&gt; Z[Representación]
-    Z --&gt; D[Decoder]
-    D --&gt; M[Máscara]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>El decoder puede producir:</p>
-<ul>
-<li>una imagen;</li>
-<li>un mapa continuo;</li>
-<li>una segmentación.</li>
-</ul>
 </section></section>
 <section>
 <section id="bloque-4-u-net" class="title-slide slide level1 section-slide center">
@@ -815,56 +522,12 @@ z=f_\theta(x)
 </section>
 <section id="u-net" class="slide level2">
 <h2>U-Net</h2>
-<p>U-Net fue propuesta en 2015 para segmentación biomédica.</p>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb8-2"><a aria-label="2"></a>    A[Encoder] --&gt; B[Bottleneck]</span>
-<span id="cb8-3"><a aria-label="3"></a>    B --&gt; C[Decoder]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    A[Encoder] --&gt; B[Bottleneck]
-    B --&gt; C[Decoder]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>La estructura combina:</p>
-<p><span class="math display">\[
-\boxed{\text{encoder}}
-+
-\boxed{\text{decoder}}
-+
-\boxed{\text{skip connections}}
-\]</span></p>
-</section>
+
+<img data-src="./imagenes/unet.jpg" style="width:60.0%" class="r-stretch"></section>
 <section id="el-encoder-ganar-contexto" class="slide level2">
 <h2>El encoder: ganar contexto</h2>
-<p>El encoder reduce resolución:</p>
-<p><span class="math display">\[
-256^2
-\rightarrow
-128^2
-\rightarrow
-64^2
-\rightarrow
-32^2
-\]</span></p>
-<p>A cambio obtiene:</p>
-<ul>
-<li>mayor campo receptivo;</li>
-<li>más contexto;</li>
-<li>representaciones más abstractas.</li>
-</ul>
-<p>Pregunta que responde bien:</p>
-<blockquote>
-<p><strong>¿qué estoy observando?</strong></p>
-</blockquote>
-</section>
+
+<img data-src="./imagenes/unet_encoder.jpg" style="width:60.0%" class="r-stretch"></section>
 <section id="el-problema-perdemos-localización" class="slide level2">
 <h2>El problema: perdemos localización</h2>
 <p>Para segmentar no alcanza con saber <strong>qué</strong> estructura está presente.</p>
@@ -876,57 +539,8 @@ z=f_\theta(x)
 </section>
 <section id="skip-connections-de-u-net" class="slide level2">
 <h2>Skip connections de U-Net</h2>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb9-2"><a aria-label="2"></a>    E1[Encoder 256] --&gt; E2[128]</span>
-<span id="cb9-3"><a aria-label="3"></a>    E2 --&gt; E3[64]</span>
-<span id="cb9-4"><a aria-label="4"></a>    E3 --&gt; B[32]</span>
-<span id="cb9-5"><a aria-label="5"></a>    B --&gt; D3[64]</span>
-<span id="cb9-6"><a aria-label="6"></a>    D3 --&gt; D2[128]</span>
-<span id="cb9-7"><a aria-label="7"></a>    D2 --&gt; D1[256]</span>
-<span id="cb9-8"><a aria-label="8"></a></span>
-<span id="cb9-9"><a aria-label="9"></a>    E1 -. skip .-&gt; D1</span>
-<span id="cb9-10"><a aria-label="10"></a>    E2 -. skip .-&gt; D2</span>
-<span id="cb9-11"><a aria-label="11"></a>    E3 -. skip .-&gt; D3</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    E1[Encoder 256] --&gt; E2[128]
-    E2 --&gt; E3[64]
-    E3 --&gt; B[32]
-    B --&gt; D3[64]
-    D3 --&gt; D2[128]
-    D2 --&gt; D1[256]
 
-    E1 -. skip .-&gt; D1
-    E2 -. skip .-&gt; D2
-    E3 -. skip .-&gt; D3
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>Las características de alta resolución llegan directamente al decoder.</p>
-</section>
-<section id="u-net-qué-dónde" class="slide level2">
-<h2>U-Net: “qué” + “dónde”</h2>
-<p><span class="math display">\[
-\boxed{\text{contexto semántico}}
-+
-\boxed{\text{detalle espacial}}
-\rightarrow
-\boxed{\text{segmentación}}
-\]</span></p>
-<p>Una aclaración:</p>
-<ul>
-<li>skip de <strong>ResNet</strong> → facilita optimización;</li>
-<li>skip de <strong>U-Net</strong> → recupera información espacial.</li>
-</ul>
-<p>Mismo nombre informal, función distinta.</p>
-</section>
+<img data-src="./imagenes/skip_unet.jpg" style="width:60.0%" class="r-stretch"></section>
 <section id="d-u-net" class="slide level2">
 <h2>3D U-Net</h2>
 <p>La idea se extiende a:</p>
@@ -943,96 +557,16 @@ C\times D\times H\times W
 </ul>
 <p>El gran limitante práctico es la <strong>memoria</strong>.</p>
 <h3 id="patches-y-ventanas-deslizantes">Patches y ventanas deslizantes</h3>
-<p>Para volúmenes grandes suelen utilizarse:</p>
-<ul>
-<li>entrenamiento por <em>patches</em>;</li>
-<li>resampling;</li>
-<li>inferencia por <em>sliding window</em>;</li>
-<li>solapamiento entre ventanas.</li>
-</ul>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb10-2"><a aria-label="2"></a>    V[Volumen completo] --&gt; P[Patches]</span>
-<span id="cb10-3"><a aria-label="3"></a>    P --&gt; M[Modelo]</span>
-<span id="cb10-4"><a aria-label="4"></a>    M --&gt; R[Reconstrucción de salida]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    V[Volumen completo] --&gt; P[Patches]
-    P --&gt; M[Modelo]
-    M --&gt; R[Reconstrucción de salida]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</section>
+
+<img data-src="./imagenes/patches.jpg" style="width:60.0%" class="r-stretch"></section>
 <section id="resunet" class="slide level2">
 <h2>ResUNet</h2>
-<p>ResUNet combina:</p>
-<ul>
-<li>estructura encoder–decoder;</li>
-<li>skip connections de U-Net;</li>
-<li>bloques residuales.</li>
-</ul>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb11-2"><a aria-label="2"></a>    A[Input] --&gt; B[Residual block]</span>
-<span id="cb11-3"><a aria-label="3"></a>    B --&gt; C[Downsample]</span>
-<span id="cb11-4"><a aria-label="4"></a>    C --&gt; D[Bottleneck]</span>
-<span id="cb11-5"><a aria-label="5"></a>    D --&gt; E[Upsample]</span>
-<span id="cb11-6"><a aria-label="6"></a>    E --&gt; F[Residual block]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    A[Input] --&gt; B[Residual block]
-    B --&gt; C[Downsample]
-    C --&gt; D[Bottleneck]
-    D --&gt; E[Upsample]
-    E --&gt; F[Residual block]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</section>
+
+<img data-src="./imagenes/res_unet.jpg" style="width:60.0%" class="r-stretch"></section>
 <section id="attention-u-net-y-u-net" class="slide level2">
 <h2>Attention U-Net y U-Net++</h2>
-<div class="columns">
-<div class="column" style="width:48%;">
-<h3 id="attention-u-net">Attention U-Net</h3>
-<p>Filtra qué características del encoder pasan al decoder.</p>
-<p><span class="math display">\[
-\text{skip}\rightarrow\text{attention gate}\rightarrow\text{decoder}
-\]</span></p>
-</div><div class="column" style="width:48%;">
-<h3 id="u-net-1">U-Net++</h3>
-<p>Introduce conexiones más densas e intermedias entre encoder y decoder.</p>
-</div></div>
-<p>Ambas conservan la lógica multiescala.</p>
-</section>
-<section id="nnu-net-una-aclaración-importante" class="slide level2">
-<h2>nnU-Net: una aclaración importante</h2>
-<p><strong>nnU-Net no es simplemente otra U-Net.</strong></p>
-<p>Es un sistema auto-configurable que adapta:</p>
-<ul>
-<li>preprocesamiento;</li>
-<li>resolución;</li>
-<li>tamaño de patch;</li>
-<li>arquitectura 2D/3D;</li>
-<li>entrenamiento;</li>
-<li>postprocesamiento.</li>
-</ul>
-<blockquote>
-<p>El pipeline completo importa tanto como la arquitectura.</p>
-</blockquote>
-</section></section>
+
+<img data-src="./imagenes/unet_variantes.jpg" style="width:60.0%" class="r-stretch"></section></section>
 <section>
 <section id="bloque-5-transformers" class="title-slide slide level1 section-slide center">
 <h1>Bloque 5 · Transformers</h1>
@@ -1060,10 +594,10 @@ C\times D\times H\times W
 <p>¿qué otros elementos son relevantes para él?</p>
 </blockquote>
 <div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb12-2"><a aria-label="2"></a>    A[Elemento i] --&gt; B[Buscar relaciones]</span>
-<span id="cb12-3"><a aria-label="3"></a>    B --&gt; C[Ponderar información]</span>
-<span id="cb12-4"><a aria-label="4"></a>    C --&gt; D[Nueva representación]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb1-2"><a aria-label="2"></a>    A[Elemento i] --&gt; B[Buscar relaciones]</span>
+<span id="cb1-3"><a aria-label="3"></a>    B --&gt; C[Ponderar información]</span>
+<span id="cb1-4"><a aria-label="4"></a>    C --&gt; D[Nueva representación]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -1109,12 +643,12 @@ Q=XW_Q,\qquad K=XW_K,\qquad V=XW_V
 \right)V
 \]</span></p>
 <div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb13-2"><a aria-label="2"></a>    Q[Query] --&gt; S[Similitudes]</span>
-<span id="cb13-3"><a aria-label="3"></a>    K[Keys] --&gt; S</span>
-<span id="cb13-4"><a aria-label="4"></a>    S --&gt; W[Pesos]</span>
-<span id="cb13-5"><a aria-label="5"></a>    W --&gt; O[Combinación]</span>
-<span id="cb13-6"><a aria-label="6"></a>    V[Values] --&gt; O</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb2-2"><a aria-label="2"></a>    Q[Query] --&gt; S[Similitudes]</span>
+<span id="cb2-3"><a aria-label="3"></a>    K[Keys] --&gt; S</span>
+<span id="cb2-4"><a aria-label="4"></a>    S --&gt; W[Pesos]</span>
+<span id="cb2-5"><a aria-label="5"></a>    W --&gt; O[Combinación]</span>
+<span id="cb2-6"><a aria-label="6"></a>    V[Values] --&gt; O</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -1149,16 +683,16 @@ Q=XW_Q,\qquad K=XW_K,\qquad V=XW_V
 <section id="el-bloque-transformer" class="slide level2">
 <h2>El bloque Transformer</h2>
 <div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a aria-label="1"></a>flowchart TB</span>
-<span id="cb14-2"><a aria-label="2"></a>    X[Input] --&gt; N1[Normalization]</span>
-<span id="cb14-3"><a aria-label="3"></a>    N1 --&gt; A[Multi-Head Attention]</span>
-<span id="cb14-4"><a aria-label="4"></a>    A --&gt; R1[Residual +]</span>
-<span id="cb14-5"><a aria-label="5"></a>    X --&gt; R1</span>
-<span id="cb14-6"><a aria-label="6"></a>    R1 --&gt; N2[Normalization]</span>
-<span id="cb14-7"><a aria-label="7"></a>    N2 --&gt; F[Feed-Forward]</span>
-<span id="cb14-8"><a aria-label="8"></a>    F --&gt; R2[Residual +]</span>
-<span id="cb14-9"><a aria-label="9"></a>    R1 --&gt; R2</span>
-<span id="cb14-10"><a aria-label="10"></a>    R2 --&gt; Y[Output]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a aria-label="1"></a>flowchart TB</span>
+<span id="cb3-2"><a aria-label="2"></a>    X[Input] --&gt; N1[Normalization]</span>
+<span id="cb3-3"><a aria-label="3"></a>    N1 --&gt; A[Multi-Head Attention]</span>
+<span id="cb3-4"><a aria-label="4"></a>    A --&gt; R1[Residual +]</span>
+<span id="cb3-5"><a aria-label="5"></a>    X --&gt; R1</span>
+<span id="cb3-6"><a aria-label="6"></a>    R1 --&gt; N2[Normalization]</span>
+<span id="cb3-7"><a aria-label="7"></a>    N2 --&gt; F[Feed-Forward]</span>
+<span id="cb3-8"><a aria-label="8"></a>    F --&gt; R2[Residual +]</span>
+<span id="cb3-9"><a aria-label="9"></a>    R1 --&gt; R2</span>
+<span id="cb3-10"><a aria-label="10"></a>    R2 --&gt; Y[Output]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -1191,11 +725,11 @@ Q=XW_Q,\qquad K=XW_K,\qquad V=XW_V
 <h2>Vision Transformer</h2>
 <p>Una imagen se divide en <em>patches</em>:</p>
 <div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb15-2"><a aria-label="2"></a>    I[Imagen] --&gt; P[Patches]</span>
-<span id="cb15-3"><a aria-label="3"></a>    P --&gt; T[Tokens]</span>
-<span id="cb15-4"><a aria-label="4"></a>    T --&gt; E[Embeddings]</span>
-<span id="cb15-5"><a aria-label="5"></a>    E --&gt; TR[Transformer]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb4-2"><a aria-label="2"></a>    I[Imagen] --&gt; P[Patches]</span>
+<span id="cb4-3"><a aria-label="3"></a>    P --&gt; T[Tokens]</span>
+<span id="cb4-4"><a aria-label="4"></a>    T --&gt; E[Embeddings]</span>
+<span id="cb4-5"><a aria-label="5"></a>    E --&gt; TR[Transformer]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -1268,11 +802,11 @@ Q=XW_Q,\qquad K=XW_K,\qquad V=XW_V
 <h2>UNETR</h2>
 <p>UNETR combina un encoder Transformer con un decoder tipo U-Net.</p>
 <div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb16-2"><a aria-label="2"></a>    V[Volumen] --&gt; T[Transformer encoder]</span>
-<span id="cb16-3"><a aria-label="3"></a>    T --&gt; B[Bottleneck]</span>
-<span id="cb16-4"><a aria-label="4"></a>    B --&gt; D[Decoder convolucional]</span>
-<span id="cb16-5"><a aria-label="5"></a>    D --&gt; S[Segmentación]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb5-2"><a aria-label="2"></a>    V[Volumen] --&gt; T[Transformer encoder]</span>
+<span id="cb5-3"><a aria-label="3"></a>    T --&gt; B[Bottleneck]</span>
+<span id="cb5-4"><a aria-label="4"></a>    B --&gt; D[Decoder convolucional]</span>
+<span id="cb5-5"><a aria-label="5"></a>    D --&gt; S[Segmentación]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -1300,10 +834,10 @@ Q=XW_Q,\qquad K=XW_K,\qquad V=XW_V
 <li>representación jerárquica.</li>
 </ul>
 <div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb17-2"><a aria-label="2"></a>    A[Ventanas locales] --&gt; B[Shift]</span>
-<span id="cb17-3"><a aria-label="3"></a>    B --&gt; C[Nuevas interacciones]</span>
-<span id="cb17-4"><a aria-label="4"></a>    C --&gt; D[Jerarquía]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb6-2"><a aria-label="2"></a>    A[Ventanas locales] --&gt; B[Shift]</span>
+<span id="cb6-3"><a aria-label="3"></a>    B --&gt; C[Nuevas interacciones]</span>
+<span id="cb6-4"><a aria-label="4"></a>    C --&gt; D[Jerarquía]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -1374,12 +908,12 @@ h_t=f(h_{t-1},x_t)
 y_t=g(h_t)
 \]</span></p>
 <div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb18-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb18-2"><a aria-label="2"></a>    X1[x₁] --&gt; H1[h₁]</span>
-<span id="cb18-3"><a aria-label="3"></a>    H1 --&gt; H2[h₂]</span>
-<span id="cb18-4"><a aria-label="4"></a>    X2[x₂] --&gt; H2</span>
-<span id="cb18-5"><a aria-label="5"></a>    H2 --&gt; H3[h₃]</span>
-<span id="cb18-6"><a aria-label="6"></a>    X3[x₃] --&gt; H3</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb7-2"><a aria-label="2"></a>    X1[x₁] --&gt; H1[h₁]</span>
+<span id="cb7-3"><a aria-label="3"></a>    H1 --&gt; H2[h₂]</span>
+<span id="cb7-4"><a aria-label="4"></a>    X2[x₂] --&gt; H2</span>
+<span id="cb7-5"><a aria-label="5"></a>    H2 --&gt; H3[h₃]</span>
+<span id="cb7-6"><a aria-label="6"></a>    X3[x₃] --&gt; H3</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>

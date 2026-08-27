@@ -2454,7 +2454,7 @@
     "href": "unidad1/clase3.html#el-recorrido-de-hoy",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "El recorrido de hoy",
-    "text": "El recorrido de hoy\n\n\n\n\n\nflowchart LR\n    A[MLP] --&gt; B[CNN]\n    B --&gt; C[Autoencoder]\n    C --&gt; D[U-Net]\n    D --&gt; E[Transformer]\n    E --&gt; F[State Space Models]\n    F --&gt; G[Mamba]\n\n\n\n\n\n\nNo es una historia de reemplazos.\nEs una historia de nuevas formas de organizar el flujo de información.",
+    "text": "El recorrido de hoy\n\n\n\n\n\nflowchart LR\n    A(MLP) --&gt;\n    B(CNN) --&gt;\n    C(Autoencoder) --&gt;\n    D(U-Net) --&gt;\n    E(Transformer) --&gt;\n    F(State Space Models) --&gt;\n    G(Mamba) \n\n\n\n\n\n\nNo es una historia de reemplazos.\nEs una historia de nuevas formas de organizar el flujo de información.",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2466,7 +2466,7 @@
     "href": "unidad1/clase3.html#qué-es-una-arquitectura",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "¿Qué es una arquitectura?",
-    "text": "¿Qué es una arquitectura?\nUna arquitectura define:\n\nqué operaciones se realizan;\nqué conexiones existen;\ncómo circula la información;\nqué información puede interactuar;\nqué estructura del problema incorporamos al modelo.\n\n\\[\n\\hat y=f_\\theta(x)\n\\]\nLa pregunta no es solamente qué aprende \\(\\theta\\), sino:\n\n\n¿cómo construimos \\(f_\\theta\\)?",
+    "text": "¿Qué es una arquitectura?\nUna arquitectura define:\n\nqué operaciones se realizan;\nqué conexiones existen;\ncómo circula la información;\nqué información puede interactuar;\nqué estructura del problema incorporamos al modelo.\n\n\\[\n\\hat y=f_\\theta(x)\n\\]\nLa pregunta no es solamente qué aprende \\(\\theta\\), sino:\n\n¿cómo construimos \\(f_\\theta\\)?",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2478,7 +2478,7 @@
     "href": "unidad1/clase3.html#sesgo-inductivo",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "Sesgo inductivo",
-    "text": "Sesgo inductivo\nUna arquitectura contiene supuestos sobre el problema.\n\n\nEjemplos\n\nCNN → localidad espacial\nU-Net → información multiescala\nTransformer → interacción flexible\nMamba → memoria selectiva\n\n\nEn Física Médica\nNuestros datos no son vectores genéricos:\n\nimágenes 2D;\nvolúmenes 3D;\nseries temporales;\ndosis;\nmultimodalidad.",
+    "text": "Sesgo inductivo\nUna arquitectura contiene supuestos sobre el problema.\n\n\nEjemplos\n\nCNN → localidad espacial\nU-Net → información multiescala\nTransformer → interacción flexible\nMamba → memoria selectiva\n\n\nEn Física Médica\nNuestros datos no son vectores genéricos:\n\nimágenes 2D\nvolúmenes 3D\nseries temporales\nmultimodalidad",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2502,7 +2502,7 @@
     "href": "unidad1/clase3.html#qué-significa-feedforward",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "¿Qué significa feedforward?",
-    "text": "¿Qué significa feedforward?\n\nflowchart LR\n    X[Entrada x] --&gt; H1[Capa oculta 1]\n    H1 --&gt; H2[Capa oculta 2]\n    H2 --&gt; Y[Salida ŷ]\n\n\n\n\nflowchart LR\n    X[Entrada x] --&gt; H1[Capa oculta 1]\n    H1 --&gt; H2[Capa oculta 2]\n    H2 --&gt; Y[Salida ŷ]\n\n\n\n\n\n\nDurante el forward pass:\n\\[\nx \\rightarrow h^{(1)} \\rightarrow h^{(2)} \\rightarrow \\hat y\n\\]\nLa información avanza hacia la salida, sin ciclos internos.",
+    "text": "¿Qué significa feedforward?\n\n\n\n\nDurante el forward pass:\n\\[\nx \\rightarrow h^{(1)} \\rightarrow h^{(2)} \\rightarrow \\hat y\n\\]\nLa información avanza hacia la salida, sin ciclos internos.",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2514,7 +2514,7 @@
     "href": "unidad1/clase3.html#muchas-capas-lineales-no-alcanzan",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "Muchas capas lineales no alcanzan",
-    "text": "Muchas capas lineales no alcanzan\nSupongamos:\n\\[\nh=W_1x\n\\]\ny luego:\n\\[\ny=W_2h\n\\]\nEntonces:\n\\[\ny=W_2W_1x=Wx\n\\]\nDos transformaciones lineales siguen siendo una transformación lineal.\n\nLa profundidad por sí sola no produce no linealidad.",
+    "text": "Muchas capas lineales no alcanzan\nSupongamos:\n\\[\nh=W_1x\n\\]\ny luego:\n\\[\ny=W_2h\n\\]\nEntonces:\n\\[\ny=W_2W_1x=Wx\n\\]\nDos transformaciones lineales siguen siendo una transformación lineal.\n\n\n\n\n\n\nLa profundidad por sí sola no produce no linealidad.",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2526,7 +2526,7 @@
     "href": "unidad1/clase3.html#funciones-de-activación",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "Funciones de activación",
-    "text": "Funciones de activación\nLa activación permite que la red represente relaciones complejas:\n\\[\nh=\\phi(Wx+b)\n\\]\n\n\nSigmoide\n\\[\n\\sigma(x)=\\frac{1}{1+e^{-x}}\n\\]\nPuede saturarse.\n\n\\(\\tanh\\)\n\\[\n\\tanh(x)\n=\n\\frac{e^x-e^{-x}}{e^x+e^{-x}}\n\\]\nSalida entre -1 y 1.",
+    "text": "Funciones de activación\nLa activación permite que la red represente relaciones complejas:\n\\[\nh=\\phi(Wx+b)\n\\]",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2534,11 +2534,47 @@
     ]
   },
   {
-    "objectID": "unidad1/clase3.html#relu-y-leaky-relu",
-    "href": "unidad1/clase3.html#relu-y-leaky-relu",
+    "objectID": "unidad1/clase3.html#sigmoide",
+    "href": "unidad1/clase3.html#sigmoide",
     "title": "Clase 3: Arquitecturas para visión médica",
-    "section": "ReLU y Leaky ReLU",
-    "text": "ReLU y Leaky ReLU\n\n\nReLU\n\\[\n\\operatorname{ReLU}(x)=\\max(0,x)\n\\]\n\nsimple;\nbarata;\nmuy utilizada en CNNs;\nposible dying ReLU.\n\n\nLeaky ReLU\n\\[\n\\operatorname{LeakyReLU}(x)=\n\\begin{cases}\nx & x&gt;0\\\\\n\\alpha x & x\\leq0\n\\end{cases}\n\\]\nMantiene gradiente para \\(x&lt;0\\).\n\nTambién aparecen GELU, SiLU/Swish y Mish.",
+    "section": "Sigmoide",
+    "text": "Sigmoide\n\\[\n\\sigma(x)=\\frac{1}{1+e^{-x}}\n\\]\nPuede saturarse.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Clase 3: Redes neuronales convolucionales y Transformers"
+    ]
+  },
+  {
+    "objectID": "unidad1/clase3.html#tanh",
+    "href": "unidad1/clase3.html#tanh",
+    "title": "Clase 3: Arquitecturas para visión médica",
+    "section": "\\(\\tanh\\)",
+    "text": "\\(\\tanh\\)\n\\[\n\\tanh(x)\n=\n\\frac{e^x-e^{-x}}{e^x+e^{-x}}\n\\]\nSalida entre -1 y 1.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Clase 3: Redes neuronales convolucionales y Transformers"
+    ]
+  },
+  {
+    "objectID": "unidad1/clase3.html#relu",
+    "href": "unidad1/clase3.html#relu",
+    "title": "Clase 3: Arquitecturas para visión médica",
+    "section": "ReLU",
+    "text": "ReLU\n\\[\n\\operatorname{ReLU}(x)=\\max(0,x)\n\\]\n\nsimple;\nbarata;\nmuy utilizada en CNNs;",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Clase 3: Redes neuronales convolucionales y Transformers"
+    ]
+  },
+  {
+    "objectID": "unidad1/clase3.html#leaky-relu",
+    "href": "unidad1/clase3.html#leaky-relu",
+    "title": "Clase 3: Arquitecturas para visión médica",
+    "section": "Leaky ReLU",
+    "text": "Leaky ReLU\n\\[\n\\operatorname{LeakyReLU}(x)=\n\\begin{cases}\nx & x&gt;0\\\\\n\\alpha x & x\\leq0\n\\end{cases}\n\\]\nMantiene gradiente para \\(x&lt;0\\).",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2550,7 +2586,19 @@
     "href": "unidad1/clase3.html#por-qué-un-mlp-es-incómodo-para-imágenes",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "¿Por qué un MLP es incómodo para imágenes?",
-    "text": "¿Por qué un MLP es incómodo para imágenes?\nUna imagen CT de:\n\\[\n512\\times512\n\\]\ntiene:\n\\[\n262\\,144\n\\]\npíxeles.\nUna capa con 1000 neuronas requeriría aproximadamente:\n\\[\n262\\,144\\times1000\n\\approx\n262\\text{ millones de pesos}\n\\]\nY además perderíamos explícitamente la estructura espacial.",
+    "text": "¿Por qué un MLP es incómodo para imágenes?\nUna imagen CT de:\n\\[\n512\\times512\n\\]\ntiene:\n\\[\n262\\,144\n\\]\npíxeles de entrada.\nCada una de las 1000 neuronas necesita un peso para cada píxel:\n\\[\n\\underbrace{262\\,144}_{\\text{entradas}}\n    \\times\n\\underbrace{1000}_{\\text{neuronas}}\n\\approx\n262\\text{ millones de pesos}\n\\]\nLos \\(262\\,144\\) son datos de entrada, no pesos.\nY además perderíamos explícitamente la estructura espacial.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Clase 3: Redes neuronales convolucionales y Transformers"
+    ]
+  },
+  {
+    "objectID": "unidad1/clase3.html#antes-de-seguir-a-jugar",
+    "href": "unidad1/clase3.html#antes-de-seguir-a-jugar",
+    "title": "Clase 3: Arquitecturas para visión médica",
+    "section": "Antes de seguir: A jugar",
+    "text": "Antes de seguir: A jugar\nTensorFlow Playground",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2562,7 +2610,7 @@
     "href": "unidad1/clase3.html#la-idea-central-de-una-cnn",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "La idea central de una CNN",
-    "text": "La idea central de una CNN\nUna CNN utiliza pequeños filtros que se desplazan sobre la imagen.\n\\[\nY(i,j)\n=\n\\sum_m\\sum_n\nK(m,n)\\,I(i+m,j+n)\n\\]\nLa operación es:\n\nlocal;\ncompartida espacialmente;\naprendible.",
+    "text": "La idea central de una CNN",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2570,11 +2618,11 @@
     ]
   },
   {
-    "objectID": "unidad1/clase3.html#qué-hace-una-convolución",
-    "href": "unidad1/clase3.html#qué-hace-una-convolución",
+    "objectID": "unidad1/clase3.html#filtros-convolucionales",
+    "href": "unidad1/clase3.html#filtros-convolucionales",
     "title": "Clase 3: Arquitecturas para visión médica",
-    "section": "¿Qué hace una convolución?",
-    "text": "¿Qué hace una convolución?\n\n\nRegión de imagen\n\\[\n\\begin{bmatrix}\n2&1&0\\\\\n3&5&1\\\\\n0&2&4\n\\end{bmatrix}\n\\]\n\nKernel\n\\[\n\\begin{bmatrix}\n1&0&-1\\\\\n1&0&-1\\\\\n1&0&-1\n\\end{bmatrix}\n\\]\n\nLa salida local resulta de una suma ponderada.",
+    "section": "Filtros convolucionales",
+    "text": "Filtros convolucionales",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2586,19 +2634,7 @@
     "href": "unidad1/clase3.html#en-deep-learning-los-filtros-se-aprenden",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "En Deep Learning los filtros se aprenden",
-    "text": "En Deep Learning los filtros se aprenden\nProcesamiento clásico:\n\\[\n\\text{kernel diseñado por el experto}\n\\]\nDeep Learning:\n\\[\n\\text{kernel inicial}\n\\xrightarrow{\\text{backpropagation}}\n\\text{kernel aprendido}\n\\]\nEn muchas librerías la operación es técnicamente una correlación cruzada, pero seguimos llamándola convolución.",
-    "crumbs": [
-      "Inicio",
-      "1. Fundamentos de IA",
-      "Clase 3: Redes neuronales convolucionales y Transformers"
-    ]
-  },
-  {
-    "objectID": "unidad1/clase3.html#compartir-parámetros",
-    "href": "unidad1/clase3.html#compartir-parámetros",
-    "title": "Clase 3: Arquitecturas para visión médica",
-    "section": "Compartir parámetros",
-    "text": "Compartir parámetros\nEl mismo kernel se aplica en toda la imagen.\n\nflowchart LR\n    K[Kernel 3×3] --&gt; A[Región 1]\n    K --&gt; B[Región 2]\n    K --&gt; C[Región 3]\n\n\n\n\nflowchart LR\n    K[Kernel 3×3] --&gt; A[Región 1]\n    K --&gt; B[Región 2]\n    K --&gt; C[Región 3]\n\n\n\n\n\n\nEsto produce:\n\nmuchos menos parámetros;\ndetección de patrones independientemente de su posición;\nun fuerte sesgo hacia la estructura espacial.",
+    "text": "En Deep Learning los filtros se aprenden",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2610,7 +2646,7 @@
     "href": "unidad1/clase3.html#canales-y-feature-maps",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "Canales y feature maps",
-    "text": "Canales y feature maps\nEntrada:\n\\[\n1\\times H\\times W\n\\]\nDespués de una convolución:\n\\[\n32\\times H\\times W\n\\]\nLa red ya no representa solo intensidades.\nCada canal codifica una característica aprendida.\n\nflowchart LR\n    A[Intensidad] --&gt; B[Patrones locales]\n    B --&gt; C[Texturas]\n    C --&gt; D[Estructuras]\n    D --&gt; E[Representaciones abstractas]\n\n\n\n\nflowchart LR\n    A[Intensidad] --&gt; B[Patrones locales]\n    B --&gt; C[Texturas]\n    C --&gt; D[Estructuras]\n    D --&gt; E[Representaciones abstractas]",
+    "text": "Canales y feature maps\nDespués de una convolución la red ya no representa solo intensidades.",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2618,11 +2654,35 @@
     ]
   },
   {
-    "objectID": "unidad1/clase3.html#stride-y-padding",
-    "href": "unidad1/clase3.html#stride-y-padding",
+    "objectID": "unidad1/clase3.html#kenel-stride-y-padding",
+    "href": "unidad1/clase3.html#kenel-stride-y-padding",
     "title": "Clase 3: Arquitecturas para visión médica",
-    "section": "Stride y padding",
-    "text": "Stride y padding\n\n\nStride\n\\[\ns=1\n\\]\ndesplazamiento de un píxel.\n\\[\ns=2\n\\]\npuede producir downsampling.\n\nPadding\nAgrega valores alrededor de la imagen.\nPermite controlar el tamaño espacial de la salida.",
+    "section": "Kenel, Stride y padding",
+    "text": "Kenel, Stride y padding",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Clase 3: Redes neuronales convolucionales y Transformers"
+    ]
+  },
+  {
+    "objectID": "unidad1/clase3.html#kenel-stride-y-padding-1",
+    "href": "unidad1/clase3.html#kenel-stride-y-padding-1",
+    "title": "Clase 3: Arquitecturas para visión médica",
+    "section": "Kenel, Stride y padding",
+    "text": "Kenel, Stride y padding",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Clase 3: Redes neuronales convolucionales y Transformers"
+    ]
+  },
+  {
+    "objectID": "unidad1/clase3.html#kenel-stride-y-padding-2",
+    "href": "unidad1/clase3.html#kenel-stride-y-padding-2",
+    "title": "Clase 3: Arquitecturas para visión médica",
+    "section": "Kenel, Stride y padding",
+    "text": "Kenel, Stride y padding\nEntrada: 7, Kernel:3 y Stride: 3",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2634,7 +2694,7 @@
     "href": "unidad1/clase3.html#campo-receptivo",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "Campo receptivo",
-    "text": "Campo receptivo\nUna unidad profunda puede depender de una región cada vez mayor de la entrada.\nPara convoluciones \\(3\\times3\\) con stride 1:\n\\[\n3\\times3\n\\rightarrow\n5\\times5\n\\rightarrow\n7\\times7\n\\rightarrow\\dots\n\\]\nPara identificar anatomía necesitamos combinar:\n\ninformación local;\ntextura;\nbordes;\ncontexto anatómico.",
+    "text": "Campo receptivo",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2646,19 +2706,7 @@
     "href": "unidad1/clase3.html#max-pooling",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "Max pooling",
-    "text": "Max pooling\nEn una ventana \\(2\\times2\\):\n\\[\n\\begin{bmatrix}\n1&3\\\\\n2&8\n\\end{bmatrix}\n\\rightarrow 8\n\\]\nEfectos:\n\nreduce resolución;\ndisminuye costo computacional;\naumenta el campo receptivo efectivo.\n\nEn arquitecturas modernas también se usa convolución con stride.",
-    "crumbs": [
-      "Inicio",
-      "1. Fundamentos de IA",
-      "Clase 3: Redes neuronales convolucionales y Transformers"
-    ]
-  },
-  {
-    "objectID": "unidad1/clase3.html#un-bloque-cnn-clásico",
-    "href": "unidad1/clase3.html#un-bloque-cnn-clásico",
-    "title": "Clase 3: Arquitecturas para visión médica",
-    "section": "Un bloque CNN clásico",
-    "text": "Un bloque CNN clásico\n\nflowchart LR\n    A[Entrada] --&gt; B[Convolution]\n    B --&gt; C[Normalization]\n    C --&gt; D[Activation]\n    D --&gt; E[Salida]\n\n\n\n\nflowchart LR\n    A[Entrada] --&gt; B[Convolution]\n    B --&gt; C[Normalization]\n    C --&gt; D[Activation]\n    D --&gt; E[Salida]\n\n\n\n\n\n\nUn patrón frecuente:\n\\[\n\\boxed{\\text{Conv}}\n\\rightarrow\n\\boxed{\\text{Norm}}\n\\rightarrow\n\\boxed{\\text{ReLU}}\n\\]",
+    "text": "Max pooling",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2670,7 +2718,7 @@
     "href": "unidad1/clase3.html#batch-normalization",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "Batch Normalization",
-    "text": "Batch Normalization\n\\[\n\\hat{x}\n=\n\\frac{x-\\mu_B}\n{\\sqrt{\\sigma_B^2+\\epsilon}}\n\\]\n\\[\ny=\\gamma\\hat{x}+\\beta\n\\]\nLos parámetros \\(\\gamma\\) y \\(\\beta\\) se aprenden.\nBatchNorm ayudó a estabilizar el entrenamiento de muchas redes profundas.\nBatchNorm y el problema del 3D\nLas imágenes volumétricas consumen mucha memoria.\nPor eso podemos entrenar con:\n\\[\nB=1,\\ 2,\\ 4\n\\]\nCon batch size pequeño las estadísticas de BatchNorm pueden ser poco estables.\nAlternativas frecuentes:\n\nInstanceNorm;\nGroupNorm.",
+    "text": "Batch Normalization",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2678,11 +2726,11 @@
     ]
   },
   {
-    "objectID": "unidad1/clase3.html#cnn-2d-cnn-3d-y-anisotropía",
-    "href": "unidad1/clase3.html#cnn-2d-cnn-3d-y-anisotropía",
+    "objectID": "unidad1/clase3.html#un-bloque-cnn-clásico",
+    "href": "unidad1/clase3.html#un-bloque-cnn-clásico",
     "title": "Clase 3: Arquitecturas para visión médica",
-    "section": "CNN 2D, CNN 3D y anisotropía",
-    "text": "CNN 2D, CNN 3D y anisotropía\n\n\n2D\n\\[\nC\\times H\\times W\n\\]\nKernel típico:\n\\[\n3\\times3\n\\]\n\n3D\n\\[\nC\\times D\\times H\\times W\n\\]\nKernel típico:\n\\[\n3\\times3\\times3\n\\]\n\nPero en imagen médica:\n\\[\n\\Delta x \\neq \\Delta y \\neq \\Delta z\n\\]",
+    "section": "Un bloque CNN clásico",
+    "text": "Un bloque CNN clásico",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2702,11 +2750,23 @@
     ]
   },
   {
+    "objectID": "unidad1/clase3.html#ejemplos-de-cnn",
+    "href": "unidad1/clase3.html#ejemplos-de-cnn",
+    "title": "Clase 3: Arquitecturas para visión médica",
+    "section": "Ejemplos de CNN",
+    "text": "Ejemplos de CNN",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Clase 3: Redes neuronales convolucionales y Transformers"
+    ]
+  },
+  {
     "objectID": "unidad1/clase3.html#conexiones-residuales",
     "href": "unidad1/clase3.html#conexiones-residuales",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "Conexiones residuales",
-    "text": "Conexiones residuales\nEn ResNet:\n\\[\ny=F(x)+x\n\\]\n\nflowchart LR\n    X[x] --&gt; F[Bloque F(x)]\n    X --&gt; S[Skip]\n    F --&gt; A((+))\n    S --&gt; A\n    A --&gt; Y[y]\n\n\n\n\nflowchart LR\n    X[x] --&gt; F[Bloque F(x)]\n    X --&gt; S[Skip]\n    F --&gt; A((+))\n    S --&gt; A\n    A --&gt; Y[y]\n\n\n\n\n\n\nFacilitan el flujo de información y gradientes.",
+    "text": "Conexiones residuales",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2718,7 +2778,7 @@
     "href": "unidad1/clase3.html#autoencoder-comprimir-y-reconstruir",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "Autoencoder: comprimir y reconstruir",
-    "text": "Autoencoder: comprimir y reconstruir\n\nflowchart LR\n    X[Entrada x] --&gt; E[Encoder]\n    E --&gt; Z[Latente z]\n    Z --&gt; D[Decoder]\n    D --&gt; Y[Reconstrucción x̂]\n\n\n\n\nflowchart LR\n    X[Entrada x] --&gt; E[Encoder]\n    E --&gt; Z[Latente z]\n    Z --&gt; D[Decoder]\n    D --&gt; Y[Reconstrucción x̂]\n\n\n\n\n\n\n\\[\nz=f_\\theta(x)\n\\]\n\\[\n\\hat x=g_\\phi(z)\n\\]",
+    "text": "Autoencoder: comprimir y reconstruir",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2738,23 +2798,11 @@
     ]
   },
   {
-    "objectID": "unidad1/clase3.html#de-autoencoder-a-encoderdecoder",
-    "href": "unidad1/clase3.html#de-autoencoder-a-encoderdecoder",
-    "title": "Clase 3: Arquitecturas para visión médica",
-    "section": "De autoencoder a encoder–decoder",
-    "text": "De autoencoder a encoder–decoder\nNo necesitamos reconstruir la misma entrada.\n\nflowchart LR\n    X[CT] --&gt; E[Encoder]\n    E --&gt; Z[Representación]\n    Z --&gt; D[Decoder]\n    D --&gt; M[Máscara]\n\n\n\n\nflowchart LR\n    X[CT] --&gt; E[Encoder]\n    E --&gt; Z[Representación]\n    Z --&gt; D[Decoder]\n    D --&gt; M[Máscara]\n\n\n\n\n\n\nEl decoder puede producir:\n\nuna imagen;\nun mapa continuo;\nuna segmentación.",
-    "crumbs": [
-      "Inicio",
-      "1. Fundamentos de IA",
-      "Clase 3: Redes neuronales convolucionales y Transformers"
-    ]
-  },
-  {
     "objectID": "unidad1/clase3.html#u-net",
     "href": "unidad1/clase3.html#u-net",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "U-Net",
-    "text": "U-Net\nU-Net fue propuesta en 2015 para segmentación biomédica.\n\nflowchart LR\n    A[Encoder] --&gt; B[Bottleneck]\n    B --&gt; C[Decoder]\n\n\n\n\nflowchart LR\n    A[Encoder] --&gt; B[Bottleneck]\n    B --&gt; C[Decoder]\n\n\n\n\n\n\nLa estructura combina:\n\\[\n\\boxed{\\text{encoder}}\n+\n\\boxed{\\text{decoder}}\n+\n\\boxed{\\text{skip connections}}\n\\]",
+    "text": "U-Net",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2766,7 +2814,7 @@
     "href": "unidad1/clase3.html#el-encoder-ganar-contexto",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "El encoder: ganar contexto",
-    "text": "El encoder: ganar contexto\nEl encoder reduce resolución:\n\\[\n256^2\n\\rightarrow\n128^2\n\\rightarrow\n64^2\n\\rightarrow\n32^2\n\\]\nA cambio obtiene:\n\nmayor campo receptivo;\nmás contexto;\nrepresentaciones más abstractas.\n\nPregunta que responde bien:\n\n¿qué estoy observando?",
+    "text": "El encoder: ganar contexto",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2790,19 +2838,7 @@
     "href": "unidad1/clase3.html#skip-connections-de-u-net",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "Skip connections de U-Net",
-    "text": "Skip connections de U-Net\n\nflowchart LR\n    E1[Encoder 256] --&gt; E2[128]\n    E2 --&gt; E3[64]\n    E3 --&gt; B[32]\n    B --&gt; D3[64]\n    D3 --&gt; D2[128]\n    D2 --&gt; D1[256]\n\n    E1 -. skip .-&gt; D1\n    E2 -. skip .-&gt; D2\n    E3 -. skip .-&gt; D3\n\n\n\n\nflowchart LR\n    E1[Encoder 256] --&gt; E2[128]\n    E2 --&gt; E3[64]\n    E3 --&gt; B[32]\n    B --&gt; D3[64]\n    D3 --&gt; D2[128]\n    D2 --&gt; D1[256]\n\n    E1 -. skip .-&gt; D1\n    E2 -. skip .-&gt; D2\n    E3 -. skip .-&gt; D3\n\n\n\n\n\n\nLas características de alta resolución llegan directamente al decoder.",
-    "crumbs": [
-      "Inicio",
-      "1. Fundamentos de IA",
-      "Clase 3: Redes neuronales convolucionales y Transformers"
-    ]
-  },
-  {
-    "objectID": "unidad1/clase3.html#u-net-qué-dónde",
-    "href": "unidad1/clase3.html#u-net-qué-dónde",
-    "title": "Clase 3: Arquitecturas para visión médica",
-    "section": "U-Net: “qué” + “dónde”",
-    "text": "U-Net: “qué” + “dónde”\n\\[\n\\boxed{\\text{contexto semántico}}\n+\n\\boxed{\\text{detalle espacial}}\n\\rightarrow\n\\boxed{\\text{segmentación}}\n\\]\nUna aclaración:\n\nskip de ResNet → facilita optimización;\nskip de U-Net → recupera información espacial.\n\nMismo nombre informal, función distinta.",
+    "text": "Skip connections de U-Net",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2814,7 +2850,7 @@
     "href": "unidad1/clase3.html#d-u-net",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "3D U-Net",
-    "text": "3D U-Net\nLa idea se extiende a:\n\\[\nC\\times D\\times H\\times W\n\\]\nAplicaciones:\n\nórganos en riesgo;\ntumores;\nlesiones;\nanatomía en MRI;\nCT y CBCT.\n\nEl gran limitante práctico es la memoria.\nPatches y ventanas deslizantes\nPara volúmenes grandes suelen utilizarse:\n\nentrenamiento por patches;\nresampling;\ninferencia por sliding window;\nsolapamiento entre ventanas.\n\n\nflowchart LR\n    V[Volumen completo] --&gt; P[Patches]\n    P --&gt; M[Modelo]\n    M --&gt; R[Reconstrucción de salida]\n\n\n\n\nflowchart LR\n    V[Volumen completo] --&gt; P[Patches]\n    P --&gt; M[Modelo]\n    M --&gt; R[Reconstrucción de salida]",
+    "text": "3D U-Net\nLa idea se extiende a:\n\\[\nC\\times D\\times H\\times W\n\\]\nAplicaciones:\n\nórganos en riesgo;\ntumores;\nlesiones;\nanatomía en MRI;\nCT y CBCT.\n\nEl gran limitante práctico es la memoria.\nPatches y ventanas deslizantes",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2826,7 +2862,7 @@
     "href": "unidad1/clase3.html#resunet",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "ResUNet",
-    "text": "ResUNet\nResUNet combina:\n\nestructura encoder–decoder;\nskip connections de U-Net;\nbloques residuales.\n\n\nflowchart LR\n    A[Input] --&gt; B[Residual block]\n    B --&gt; C[Downsample]\n    C --&gt; D[Bottleneck]\n    D --&gt; E[Upsample]\n    E --&gt; F[Residual block]\n\n\n\n\nflowchart LR\n    A[Input] --&gt; B[Residual block]\n    B --&gt; C[Downsample]\n    C --&gt; D[Bottleneck]\n    D --&gt; E[Upsample]\n    E --&gt; F[Residual block]",
+    "text": "ResUNet",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2838,19 +2874,7 @@
     "href": "unidad1/clase3.html#attention-u-net-y-u-net",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "Attention U-Net y U-Net++",
-    "text": "Attention U-Net y U-Net++\n\n\nAttention U-Net\nFiltra qué características del encoder pasan al decoder.\n\\[\n\\text{skip}\\rightarrow\\text{attention gate}\\rightarrow\\text{decoder}\n\\]\n\nU-Net++\nIntroduce conexiones más densas e intermedias entre encoder y decoder.\n\nAmbas conservan la lógica multiescala.",
-    "crumbs": [
-      "Inicio",
-      "1. Fundamentos de IA",
-      "Clase 3: Redes neuronales convolucionales y Transformers"
-    ]
-  },
-  {
-    "objectID": "unidad1/clase3.html#nnu-net-una-aclaración-importante",
-    "href": "unidad1/clase3.html#nnu-net-una-aclaración-importante",
-    "title": "Clase 3: Arquitecturas para visión médica",
-    "section": "nnU-Net: una aclaración importante",
-    "text": "nnU-Net: una aclaración importante\nnnU-Net no es simplemente otra U-Net.\nEs un sistema auto-configurable que adapta:\n\npreprocesamiento;\nresolución;\ntamaño de patch;\narquitectura 2D/3D;\nentrenamiento;\npostprocesamiento.\n\n\nEl pipeline completo importa tanto como la arquitectura.",
+    "text": "Attention U-Net y U-Net++",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
