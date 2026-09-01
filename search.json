@@ -2442,7 +2442,7 @@
     "href": "unidad1/clase3.html#objetivos-de-la-clase",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "Objetivos de la clase",
-    "text": "Objetivos de la clase\nAl finalizar la clase deberíamos poder:\n\nreconocer las principales familias arquitectónicas;\nentender qué sesgo inductivo incorpora cada una;\nexplicar cómo opera una CNN sobre imágenes;\nentender por qué U-Net fue decisiva en imagen médica;\nintroducir atención, Transformers y State Space Models;\nrelacionar arquitectura con problemas concretos de Física Médica.",
+    "text": "Objetivos de la clase\nAl finalizar la clase deberíamos poder:\n\nreconocer las principales familias arquitectónicas\nentender qué sesgo inductivo incorpora cada una\nexplicar cómo opera una CNN sobre imágenes;\nentender por qué U-Net fue decisiva en imagen médica\nintroducir atención y Transformers\nrelacionar arquitectura con problemas concretos de Física Médica",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2850,7 +2850,7 @@
     "href": "unidad1/clase3.html#d-u-net",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "3D U-Net",
-    "text": "3D U-Net\nLa idea se extiende a:\n\\[\nC\\times D\\times H\\times W\n\\]\nAplicaciones:\n\nórganos en riesgo;\ntumores;\nlesiones;\nanatomía en MRI;\nCT y CBCT.\n\nEl gran limitante práctico es la memoria.\nPatches y ventanas deslizantes",
+    "text": "3D U-Net\nLa idea se extiende a:\n\\[\nC\\times D\\times H\\times W\n\\]\nAplicaciones:\n\nórganos en riesgo;\ntumores;\nlesiones;\nanatomía en MRI;\nCT y CBCT.\n\nEl gran limitante práctico es la memoria.",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2882,6 +2882,18 @@
     ]
   },
   {
+    "objectID": "unidad1/clase3.html#patches-y-ventanas-deslizantes",
+    "href": "unidad1/clase3.html#patches-y-ventanas-deslizantes",
+    "title": "Clase 3: Arquitecturas para visión médica",
+    "section": "Patches y ventanas deslizantes",
+    "text": "Patches y ventanas deslizantes",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Clase 3: Redes neuronales convolucionales y Transformers"
+    ]
+  },
+  {
     "objectID": "unidad1/clase3.html#una-limitación-de-las-cnn",
     "href": "unidad1/clase3.html#una-limitación-de-las-cnn",
     "title": "Clase 3: Arquitecturas para visión médica",
@@ -2894,11 +2906,59 @@
     ]
   },
   {
+    "objectID": "unidad1/clase3.html#qué-es-un-token",
+    "href": "unidad1/clase3.html#qué-es-un-token",
+    "title": "Clase 3: Arquitecturas para visión médica",
+    "section": "¿Qué es un Token?",
+    "text": "¿Qué es un Token?\nEl transformer procesa una secuencia de elementos llamados tokens.",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Clase 3: Redes neuronales convolucionales y Transformers"
+    ]
+  },
+  {
+    "objectID": "unidad1/clase3.html#de-tokens-a-embeddings",
+    "href": "unidad1/clase3.html#de-tokens-a-embeddings",
+    "title": "Clase 3: Arquitecturas para visión médica",
+    "section": "De Tokens a Embeddings",
+    "text": "De Tokens a Embeddings",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Clase 3: Redes neuronales convolucionales y Transformers"
+    ]
+  },
+  {
+    "objectID": "unidad1/clase3.html#la-posición-importa",
+    "href": "unidad1/clase3.html#la-posición-importa",
+    "title": "Clase 3: Arquitecturas para visión médica",
+    "section": "La posición importa",
+    "text": "La posición importa",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Clase 3: Redes neuronales convolucionales y Transformers"
+    ]
+  },
+  {
+    "objectID": "unidad1/clase3.html#por-qué-usar-embeddings-de-posición",
+    "href": "unidad1/clase3.html#por-qué-usar-embeddings-de-posición",
+    "title": "Clase 3: Arquitecturas para visión médica",
+    "section": "¿Por qué usar embeddings de posición?",
+    "text": "¿Por qué usar embeddings de posición?",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Clase 3: Redes neuronales convolucionales y Transformers"
+    ]
+  },
+  {
     "objectID": "unidad1/clase3.html#la-intuición-de-atención",
     "href": "unidad1/clase3.html#la-intuición-de-atención",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "La intuición de atención",
-    "text": "La intuición de atención\nPara representar un elemento queremos saber:\n\n¿qué otros elementos son relevantes para él?\n\n\nflowchart LR\n    A[Elemento i] --&gt; B[Buscar relaciones]\n    B --&gt; C[Ponderar información]\n    C --&gt; D[Nueva representación]\n\n\n\n\nflowchart LR\n    A[Elemento i] --&gt; B[Buscar relaciones]\n    B --&gt; C[Ponderar información]\n    C --&gt; D[Nueva representación]\n\n\n\n\n\n\nLa interacción ya no está determinada solamente por vecindad.",
+    "text": "La intuición de atención",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2910,7 +2970,31 @@
     "href": "unidad1/clase3.html#query-key-y-value",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "Query, Key y Value",
-    "text": "Query, Key y Value\nPara cada token generamos:\n\\[\nQ=XW_Q,\\qquad K=XW_K,\\qquad V=XW_V\n\\]\n\n\nQuery\n¿Qué estoy buscando?\n\nKey\n¿Qué contiene este elemento?\n\nValue\n¿Qué información recupero?",
+    "text": "Query, Key y Value",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Clase 3: Redes neuronales convolucionales y Transformers"
+    ]
+  },
+  {
+    "objectID": "unidad1/clase3.html#de-token-a-atención",
+    "href": "unidad1/clase3.html#de-token-a-atención",
+    "title": "Clase 3: Arquitecturas para visión médica",
+    "section": "De token a atención",
+    "text": "De token a atención",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Clase 3: Redes neuronales convolucionales y Transformers"
+    ]
+  },
+  {
+    "objectID": "unidad1/clase3.html#de-q-k-a-pesos-de-atención",
+    "href": "unidad1/clase3.html#de-q-k-a-pesos-de-atención",
+    "title": "Clase 3: Arquitecturas para visión médica",
+    "section": "De Q, K a pesos de atención",
+    "text": "De Q, K a pesos de atención",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2922,7 +3006,7 @@
     "href": "unidad1/clase3.html#self-attention",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "Self-attention",
-    "text": "Self-attention\n\\[\n\\operatorname{Attention}(Q,K,V)\n=\n\\operatorname{softmax}\n\\left(\n\\frac{QK^\\top}{\\sqrt{d_k}}\n\\right)V\n\\]\n\nflowchart LR\n    Q[Query] --&gt; S[Similitudes]\n    K[Keys] --&gt; S\n    S --&gt; W[Pesos]\n    W --&gt; O[Combinación]\n    V[Values] --&gt; O\n\n\n\n\nflowchart LR\n    Q[Query] --&gt; S[Similitudes]\n    K[Keys] --&gt; S\n    S --&gt; W[Pesos]\n    W --&gt; O[Combinación]\n    V[Values] --&gt; O",
+    "text": "Self-attention",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2930,11 +3014,11 @@
     ]
   },
   {
-    "objectID": "unidad1/clase3.html#multi-head-attention-y-posición",
-    "href": "unidad1/clase3.html#multi-head-attention-y-posición",
+    "objectID": "unidad1/clase3.html#multi-head-attention",
+    "href": "unidad1/clase3.html#multi-head-attention",
     "title": "Clase 3: Arquitecturas para visión médica",
-    "section": "Multi-head attention y posición",
-    "text": "Multi-head attention y posición\nVarias cabezas permiten aprender relaciones diferentes:\n\\[\n\\text{head}_1,\\dots,\\text{head}_h\n\\]\nPero además debemos incorporar posición:\n\\[\n\\boxed{\\text{contenido}}\n+\n\\boxed{\\text{posición}}\n\\]\nSin posición, la auto-atención no conoce explícitamente el orden espacial/secuencial.",
+    "section": "Multi-head attention",
+    "text": "Multi-head attention",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2946,7 +3030,19 @@
     "href": "unidad1/clase3.html#el-bloque-transformer",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "El bloque Transformer",
-    "text": "El bloque Transformer\n\nflowchart TB\n    X[Input] --&gt; N1[Normalization]\n    N1 --&gt; A[Multi-Head Attention]\n    A --&gt; R1[Residual +]\n    X --&gt; R1\n    R1 --&gt; N2[Normalization]\n    N2 --&gt; F[Feed-Forward]\n    F --&gt; R2[Residual +]\n    R1 --&gt; R2\n    R2 --&gt; Y[Output]\n\n\n\n\nflowchart TB\n    X[Input] --&gt; N1[Normalization]\n    N1 --&gt; A[Multi-Head Attention]\n    A --&gt; R1[Residual +]\n    X --&gt; R1\n    R1 --&gt; N2[Normalization]\n    N2 --&gt; F[Feed-Forward]\n    F --&gt; R2[Residual +]\n    R1 --&gt; R2\n    R2 --&gt; Y[Output]\n\n\n\n\n\n\nReaparecen:\n\ncapas lineales;\nactivaciones;\nnormalización;\nconexiones residuales.",
+    "text": "El bloque Transformer",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Clase 3: Redes neuronales convolucionales y Transformers"
+    ]
+  },
+  {
+    "objectID": "unidad1/clase3.html#por-qué-hay-una-ffn-después-de-la-atención",
+    "href": "unidad1/clase3.html#por-qué-hay-una-ffn-después-de-la-atención",
+    "title": "Clase 3: Arquitecturas para visión médica",
+    "section": "¿Por qué hay una FFN después de la atención?",
+    "text": "¿Por qué hay una FFN después de la atención?",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2958,7 +3054,7 @@
     "href": "unidad1/clase3.html#vision-transformer",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "Vision Transformer",
-    "text": "Vision Transformer\nUna imagen se divide en patches:\n\nflowchart LR\n    I[Imagen] --&gt; P[Patches]\n    P --&gt; T[Tokens]\n    T --&gt; E[Embeddings]\n    E --&gt; TR[Transformer]\n\n\n\n\nflowchart LR\n    I[Imagen] --&gt; P[Patches]\n    P --&gt; T[Tokens]\n    T --&gt; E[Embeddings]\n    E --&gt; TR[Transformer]\n\n\n\n\n\n\nEjemplo:\n\\[\n224\\times224\n\\quad\\text{con patches}\\quad\n16\\times16\n\\]",
+    "text": "Vision Transformer",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -2994,7 +3090,19 @@
     "href": "unidad1/clase3.html#unetr",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "UNETR",
-    "text": "UNETR\nUNETR combina un encoder Transformer con un decoder tipo U-Net.\n\nflowchart LR\n    V[Volumen] --&gt; T[Transformer encoder]\n    T --&gt; B[Bottleneck]\n    B --&gt; D[Decoder convolucional]\n    D --&gt; S[Segmentación]\n\n\n\n\nflowchart LR\n    V[Volumen] --&gt; T[Transformer encoder]\n    T --&gt; B[Bottleneck]\n    B --&gt; D[Decoder convolucional]\n    D --&gt; S[Segmentación]\n\n\n\n\n\n\nLas representaciones intermedias se conectan con el decoder.",
+    "text": "UNETR\n\nUNETR: Transformers for 3D Medical Image Segmentation",
+    "crumbs": [
+      "Inicio",
+      "1. Fundamentos de IA",
+      "Clase 3: Redes neuronales convolucionales y Transformers"
+    ]
+  },
+  {
+    "objectID": "unidad1/clase3.html#unetr-1",
+    "href": "unidad1/clase3.html#unetr-1",
+    "title": "Clase 3: Arquitecturas para visión médica",
+    "section": "UNETR",
+    "text": "UNETR\n\nUNETR: Transformers for 3D Medical Image Segmentation",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -3006,7 +3114,7 @@
     "href": "unidad1/clase3.html#swin-transformer",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "Swin Transformer",
-    "text": "Swin Transformer\nLa atención global completa es costosa.\nSwin Transformer utiliza:\n\natención dentro de ventanas;\nventanas desplazadas entre capas;\nrepresentación jerárquica.\n\n\nflowchart LR\n    A[Ventanas locales] --&gt; B[Shift]\n    B --&gt; C[Nuevas interacciones]\n    C --&gt; D[Jerarquía]\n\n\n\n\nflowchart LR\n    A[Ventanas locales] --&gt; B[Shift]\n    B --&gt; C[Nuevas interacciones]\n    C --&gt; D[Jerarquía]",
+    "text": "Swin Transformer",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -3018,7 +3126,7 @@
     "href": "unidad1/clase3.html#swin-unetr",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "Swin UNETR",
-    "text": "Swin UNETR\nCombina:\n\\[\n\\boxed{\\text{Swin Transformer}}\n+\n\\boxed{\\text{decoder tipo U-Net}}\n+\n\\boxed{\\text{skip connections}}\n\\]\nEs un buen ejemplo de arquitectura híbrida:\n\nideas de CNN, U-Net y Transformers en un mismo modelo.",
+    "text": "Swin UNETR",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -3030,7 +3138,7 @@
     "href": "unidad1/clase3.html#el-costo-de-la-atención",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "El costo de la atención",
-    "text": "El costo de la atención\nPara \\(N\\) tokens, la atención estándar construye aproximadamente:\n\\[\nN\\times N\n\\]\nrelaciones.\nCosto:\n\\[\nO(N^2)\n\\]\nSi:\n\\[\nN\\rightarrow 10N\n\\]\nentonces:\n\\[\nN^2\\rightarrow100N^2\n\\]",
+    "text": "El costo de la atención",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -3042,55 +3150,7 @@
     "href": "unidad1/clase3.html#por-qué-esto-es-crítico-en-3d",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "¿Por qué esto es crítico en 3D?",
-    "text": "¿Por qué esto es crítico en 3D?\nUn CT puede tener del orden de:\n\\[\n512\\times512\\times500\n\\]\nvoxels.\nIncluso trabajando con patches, el número de tokens puede ser grande.\nNecesitamos capturar contexto amplio sin que memoria y cómputo crezcan demasiado.",
-    "crumbs": [
-      "Inicio",
-      "1. Fundamentos de IA",
-      "Clase 3: Redes neuronales convolucionales y Transformers"
-    ]
-  },
-  {
-    "objectID": "unidad1/clase3.html#state-space-models",
-    "href": "unidad1/clase3.html#state-space-models",
-    "title": "Clase 3: Arquitecturas para visión médica",
-    "section": "State Space Models",
-    "text": "State Space Models\nOtra estrategia es mantener un estado interno:\n\\[\nh_t=f(h_{t-1},x_t)\n\\]\n\\[\ny_t=g(h_t)\n\\]\n\nflowchart LR\n    X1[x₁] --&gt; H1[h₁]\n    H1 --&gt; H2[h₂]\n    X2[x₂] --&gt; H2\n    H2 --&gt; H3[h₃]\n    X3[x₃] --&gt; H3\n\n\n\n\nflowchart LR\n    X1[x₁] --&gt; H1[h₁]\n    H1 --&gt; H2[h₂]\n    X2[x₂] --&gt; H2\n    H2 --&gt; H3[h₃]\n    X3[x₃] --&gt; H3\n\n\n\n\n\n\nEl estado funciona como memoria.",
-    "crumbs": [
-      "Inicio",
-      "1. Fundamentos de IA",
-      "Clase 3: Redes neuronales convolucionales y Transformers"
-    ]
-  },
-  {
-    "objectID": "unidad1/clase3.html#mamba",
-    "href": "unidad1/clase3.html#mamba",
-    "title": "Clase 3: Arquitecturas para visión médica",
-    "section": "Mamba",
-    "text": "Mamba\nMamba utiliza Selective State Space Models.\nNo es un Transformer.\nSu idea central es permitir que el sistema seleccione dinámicamente:\n\nqué información conservar y qué información descartar.\n\nLa selectividad depende del contenido de la entrada.",
-    "crumbs": [
-      "Inicio",
-      "1. Fundamentos de IA",
-      "Clase 3: Redes neuronales convolucionales y Transformers"
-    ]
-  },
-  {
-    "objectID": "unidad1/clase3.html#transformer-vs-mamba",
-    "href": "unidad1/clase3.html#transformer-vs-mamba",
-    "title": "Clase 3: Arquitecturas para visión médica",
-    "section": "Transformer vs Mamba",
-    "text": "Transformer vs Mamba\n\n\nTransformer\nCada token consulta otros tokens mediante atención.\nCosto de la atención estándar:\n\\[\nO(N^2)\n\\]\n\nMamba\nLa información se propaga mediante un estado selectivo.\nEscalamiento respecto de la secuencia:\n\\[\nO(N)\n\\]",
-    "crumbs": [
-      "Inicio",
-      "1. Fundamentos de IA",
-      "Clase 3: Redes neuronales convolucionales y Transformers"
-    ]
-  },
-  {
-    "objectID": "unidad1/clase3.html#mamba-en-imágenes-médicas",
-    "href": "unidad1/clase3.html#mamba-en-imágenes-médicas",
-    "title": "Clase 3: Arquitecturas para visión médica",
-    "section": "Mamba en imágenes médicas",
-    "text": "Mamba en imágenes médicas\nLa motivación es especialmente atractiva en 3D:\n\nsecuencias largas;\ngrandes volúmenes;\ncontexto global;\nmemoria limitada.\n\nArquitecturas como SegMamba exploran esta dirección para segmentación médica 3D.\n\nEs un área todavía en evolución.",
+    "text": "¿Por qué esto es crítico en 3D?",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -3114,7 +3174,7 @@
     "href": "unidad1/clase3.html#qué-usaría-para-cada-problema",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "¿Qué usaría para cada problema?",
-    "text": "¿Qué usaría para cada problema?\n\n\nDatos tabulares\n\nregresión;\nárboles;\nMLP.\n\nClasificación de imágenes\n\nCNN;\nViT;\nhíbridos.\n\n\nSegmentación 3D\n\nU-Net;\nnnU-Net;\nUNETR;\nSwin UNETR;\nvariantes Mamba.\n\n\nLa arquitectura debe responder al problema, no a la moda.",
+    "text": "¿Qué usaría para cada problema?\n\n\nDatos tabulares\n\nregresión;\nárboles;\nMLP.\n\nClasificación de imágenes\n\nCNN;\nViT;\nCNN(ViT) + SVM.\n\n\nSegmentación 3D\n\nU-Net;\nUNETR;\nSwin UNETR;\n\n\nLa arquitectura debe responder al problema, no a la moda.",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -3126,7 +3186,7 @@
     "href": "unidad1/clase3.html#la-arquitectura-no-es-el-modelo-completo",
     "title": "Clase 3: Arquitecturas para visión médica",
     "section": "La arquitectura no es el modelo completo",
-    "text": "La arquitectura no es el modelo completo\n\\[\n\\boxed{\\text{datos}}\n+\n\\boxed{\\text{preprocesamiento}}\n+\n\\boxed{\\text{arquitectura}}\n+\n\\boxed{\\text{loss}}\n+\n\\boxed{\\text{optimización}}\n+\n\\boxed{\\text{evaluación}}\n\\]\nEn Física Médica además importan:\n\nresolución y orientación;\nanisotropía;\nadquisición y reconstrucción;\nfabricante y protocolo;\ncalidad de anotaciones.",
+    "text": "La arquitectura no es el modelo completo",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",
@@ -3134,11 +3194,11 @@
     ]
   },
   {
-    "objectID": "unidad1/clase3.html#cinco-ideas-para-llevarse",
-    "href": "unidad1/clase3.html#cinco-ideas-para-llevarse",
+    "objectID": "unidad1/clase3.html#cuatro-ideas-para-llevarse",
+    "href": "unidad1/clase3.html#cuatro-ideas-para-llevarse",
     "title": "Clase 3: Arquitecturas para visión médica",
-    "section": "Cinco ideas para llevarse",
-    "text": "Cinco ideas para llevarse\n\nLa arquitectura incorpora un sesgo inductivo.\nLas CNN explotan localidad y estructura espacial.\nU-Net combina contexto + precisión espacial.\nTransformers permiten interacciones flexibles y de largo alcance.\nMamba propone una alternativa basada en estado selectivo.\n\n\nLa mejor arquitectura es la que introduce el flujo de información adecuado para el problema.",
+    "section": "Cuatro ideas para llevarse",
+    "text": "Cuatro ideas para llevarse\n\nLa arquitectura incorpora un sesgo inductivo.\nLas CNN explotan localidad y estructura espacial.\nU-Net combina contexto + precisión espacial.\nTransformers permiten interacciones flexibles y de largo alcance.\n\n\nLa mejor arquitectura es la que introduce el flujo de información adecuado para el problema.",
     "crumbs": [
       "Inicio",
       "1. Fundamentos de IA",

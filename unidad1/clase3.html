@@ -34,72 +34,6 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    html { -webkit-text-size-adjust: 100%; }
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-bd6b8afe794f1985a8fa1719a4bb2ade.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -220,12 +154,12 @@ Ignacio Scarinci
 <h2>Objetivos de la clase</h2>
 <p>Al finalizar la clase deberíamos poder:</p>
 <ul>
-<li>reconocer las principales familias arquitectónicas;</li>
-<li>entender qué sesgo inductivo incorpora cada una;</li>
+<li>reconocer las principales familias arquitectónicas</li>
+<li>entender qué sesgo inductivo incorpora cada una</li>
 <li>explicar cómo opera una CNN sobre imágenes;</li>
-<li>entender por qué U-Net fue decisiva en imagen médica;</li>
-<li>introducir atención, Transformers y State Space Models;</li>
-<li>relacionar arquitectura con problemas concretos de Física Médica.</li>
+<li>entender por qué U-Net fue decisiva en imagen médica</li>
+<li>introducir atención y Transformers</li>
+<li>relacionar arquitectura con problemas concretos de Física Médica</li>
 </ul>
 </section>
 <section id="el-recorrido-de-hoy" class="slide level2">
@@ -556,9 +490,7 @@ C\times D\times H\times W
 <li>CT y CBCT.</li>
 </ul>
 <p>El gran limitante práctico es la <strong>memoria</strong>.</p>
-<h3 id="patches-y-ventanas-deslizantes">Patches y ventanas deslizantes</h3>
-
-<img data-src="./imagenes/patches.jpg" style="width:60.0%" class="r-stretch"></section>
+</section>
 <section id="resunet" class="slide level2">
 <h2>ResUNet</h2>
 
@@ -566,7 +498,11 @@ C\times D\times H\times W
 <section id="attention-u-net-y-u-net" class="slide level2">
 <h2>Attention U-Net y U-Net++</h2>
 
-<img data-src="./imagenes/unet_variantes.jpg" style="width:60.0%" class="r-stretch"></section></section>
+<img data-src="./imagenes/unet_variantes.jpg" style="width:60.0%" class="r-stretch"></section>
+<section id="patches-y-ventanas-deslizantes" class="slide level2">
+<h2>Patches y ventanas deslizantes</h2>
+
+<img data-src="./imagenes/patches.jpg" style="width:60.0%" class="r-stretch"></section></section>
 <section>
 <section id="bloque-5-transformers" class="title-slide slide level1 section-slide center">
 <h1>Bloque 5 · Transformers</h1>
@@ -587,171 +523,59 @@ C\times D\times H\times W
 </ul>
 <p>¿Podemos construir interacciones globales más directas?</p>
 </section>
+<section id="qué-es-un-token" class="slide level2">
+<h2>¿Qué es un Token?</h2>
+<h3 id="el-transformer-procesa-una-secuencia-de-elementos-llamados-tokens.">El transformer procesa una secuencia de elementos llamados <em>tokens</em>.</h3>
+
+<img data-src="./imagenes/tokens.jpg" style="width:60.0%" class="r-stretch"></section>
+<section id="de-tokens-a-embeddings" class="slide level2">
+<h2>De Tokens a Embeddings</h2>
+
+<img data-src="./imagenes/token_a_embedding.jpg" style="width:60.0%" class="r-stretch"></section>
+<section id="la-posición-importa" class="slide level2">
+<h2>La posición importa</h2>
+
+<img data-src="./imagenes/posicion.jpg" style="width:60.0%" class="r-stretch"></section>
+<section id="por-qué-usar-embeddings-de-posición" class="slide level2">
+<h2>¿Por qué usar embeddings de posición?</h2>
+
+<img data-src="./imagenes/posicion2.jpg" style="width:60.0%" class="r-stretch"></section>
 <section id="la-intuición-de-atención" class="slide level2">
 <h2>La intuición de atención</h2>
-<p>Para representar un elemento queremos saber:</p>
-<blockquote>
-<p>¿qué otros elementos son relevantes para él?</p>
-</blockquote>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb1-2"><a aria-label="2"></a>    A[Elemento i] --&gt; B[Buscar relaciones]</span>
-<span id="cb1-3"><a aria-label="3"></a>    B --&gt; C[Ponderar información]</span>
-<span id="cb1-4"><a aria-label="4"></a>    C --&gt; D[Nueva representación]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    A[Elemento i] --&gt; B[Buscar relaciones]
-    B --&gt; C[Ponderar información]
-    C --&gt; D[Nueva representación]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>La interacción ya no está determinada solamente por vecindad.</p>
-</section>
+
+<img data-src="./imagenes/attention.jpg" style="width:60.0%" class="r-stretch"></section>
 <section id="query-key-y-value" class="slide level2">
 <h2>Query, Key y Value</h2>
-<p>Para cada token generamos:</p>
-<p><span class="math display">\[
-Q=XW_Q,\qquad K=XW_K,\qquad V=XW_V
-\]</span></p>
-<div class="columns">
-<div class="column" style="width:32%;">
-<p><strong>Query</strong></p>
-<p>¿Qué estoy buscando?</p>
-</div><div class="column" style="width:32%;">
-<p><strong>Key</strong></p>
-<p>¿Qué contiene este elemento?</p>
-</div><div class="column" style="width:32%;">
-<p><strong>Value</strong></p>
-<p>¿Qué información recupero?</p>
-</div></div>
-</section>
+
+<img data-src="./imagenes/qkv.jpg" style="width:60.0%" class="r-stretch"></section>
+<section id="de-token-a-atención" class="slide level2">
+<h2>De token a atención</h2>
+
+<img data-src="./imagenes/token_a_atencion.jpg" style="width:60.0%" class="r-stretch"></section>
+<section id="de-q-k-a-pesos-de-atención" class="slide level2">
+<h2>De Q, K a pesos de atención</h2>
+
+<img data-src="./imagenes/q_k_atencion.jpg" style="width:60.0%" class="r-stretch"></section>
 <section id="self-attention" class="slide level2">
 <h2>Self-attention</h2>
-<p><span class="math display">\[
-\operatorname{Attention}(Q,K,V)
-=
-\operatorname{softmax}
-\left(
-\frac{QK^\top}{\sqrt{d_k}}
-\right)V
-\]</span></p>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb2-2"><a aria-label="2"></a>    Q[Query] --&gt; S[Similitudes]</span>
-<span id="cb2-3"><a aria-label="3"></a>    K[Keys] --&gt; S</span>
-<span id="cb2-4"><a aria-label="4"></a>    S --&gt; W[Pesos]</span>
-<span id="cb2-5"><a aria-label="5"></a>    W --&gt; O[Combinación]</span>
-<span id="cb2-6"><a aria-label="6"></a>    V[Values] --&gt; O</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    Q[Query] --&gt; S[Similitudes]
-    K[Keys] --&gt; S
-    S --&gt; W[Pesos]
-    W --&gt; O[Combinación]
-    V[Values] --&gt; O
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</section>
-<section id="multi-head-attention-y-posición" class="slide level2">
-<h2>Multi-head attention y posición</h2>
-<p>Varias cabezas permiten aprender relaciones diferentes:</p>
-<p><span class="math display">\[
-\text{head}_1,\dots,\text{head}_h
-\]</span></p>
-<p>Pero además debemos incorporar posición:</p>
-<p><span class="math display">\[
-\boxed{\text{contenido}}
-+
-\boxed{\text{posición}}
-\]</span></p>
-<p>Sin posición, la auto-atención no conoce explícitamente el orden espacial/secuencial.</p>
-</section>
+
+<img data-src="./imagenes/pesos_atencion_representacion.jpg" style="width:60.0%" class="r-stretch"></section>
+<section id="multi-head-attention" class="slide level2">
+<h2>Multi-head attention</h2>
+
+<img data-src="./imagenes/multi-head_atencion.jpg" style="width:60.0%" class="r-stretch"></section>
 <section id="el-bloque-transformer" class="slide level2">
 <h2>El bloque Transformer</h2>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a aria-label="1"></a>flowchart TB</span>
-<span id="cb3-2"><a aria-label="2"></a>    X[Input] --&gt; N1[Normalization]</span>
-<span id="cb3-3"><a aria-label="3"></a>    N1 --&gt; A[Multi-Head Attention]</span>
-<span id="cb3-4"><a aria-label="4"></a>    A --&gt; R1[Residual +]</span>
-<span id="cb3-5"><a aria-label="5"></a>    X --&gt; R1</span>
-<span id="cb3-6"><a aria-label="6"></a>    R1 --&gt; N2[Normalization]</span>
-<span id="cb3-7"><a aria-label="7"></a>    N2 --&gt; F[Feed-Forward]</span>
-<span id="cb3-8"><a aria-label="8"></a>    F --&gt; R2[Residual +]</span>
-<span id="cb3-9"><a aria-label="9"></a>    R1 --&gt; R2</span>
-<span id="cb3-10"><a aria-label="10"></a>    R2 --&gt; Y[Output]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TB
-    X[Input] --&gt; N1[Normalization]
-    N1 --&gt; A[Multi-Head Attention]
-    A --&gt; R1[Residual +]
-    X --&gt; R1
-    R1 --&gt; N2[Normalization]
-    N2 --&gt; F[Feed-Forward]
-    F --&gt; R2[Residual +]
-    R1 --&gt; R2
-    R2 --&gt; Y[Output]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>Reaparecen:</p>
-<ul>
-<li>capas lineales;</li>
-<li>activaciones;</li>
-<li>normalización;</li>
-<li>conexiones residuales.</li>
-</ul>
-</section>
+
+<img data-src="./imagenes/bloque_transformer.jpg" style="width:60.0%" class="r-stretch"></section>
+<section id="por-qué-hay-una-ffn-después-de-la-atención" class="slide level2">
+<h2>¿Por qué hay una FFN después de la atención?</h2>
+
+<img data-src="./imagenes/ffn_post_atencion.jpg" style="width:60.0%" class="r-stretch"></section>
 <section id="vision-transformer" class="slide level2">
 <h2>Vision Transformer</h2>
-<p>Una imagen se divide en <em>patches</em>:</p>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb4-2"><a aria-label="2"></a>    I[Imagen] --&gt; P[Patches]</span>
-<span id="cb4-3"><a aria-label="3"></a>    P --&gt; T[Tokens]</span>
-<span id="cb4-4"><a aria-label="4"></a>    T --&gt; E[Embeddings]</span>
-<span id="cb4-5"><a aria-label="5"></a>    E --&gt; TR[Transformer]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    I[Imagen] --&gt; P[Patches]
-    P --&gt; T[Tokens]
-    T --&gt; E[Embeddings]
-    E --&gt; TR[Transformer]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>Ejemplo:</p>
-<p><span class="math display">\[
-224\times224
-\quad\text{con patches}\quad
-16\times16
-\]</span></p>
-</section>
+
+<img data-src="./imagenes/vit.jpg" style="width:60.0%" class="r-stretch"></section>
 <section id="cnn-vs-transformer" class="slide level2">
 <h2>CNN vs Transformer</h2>
 <table class="caption-top">
@@ -800,181 +624,30 @@ Q=XW_Q,\qquad K=XW_K,\qquad V=XW_V
 </section>
 <section id="unetr" class="slide level2">
 <h2>UNETR</h2>
-<p>UNETR combina un encoder Transformer con un decoder tipo U-Net.</p>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb5-2"><a aria-label="2"></a>    V[Volumen] --&gt; T[Transformer encoder]</span>
-<span id="cb5-3"><a aria-label="3"></a>    T --&gt; B[Bottleneck]</span>
-<span id="cb5-4"><a aria-label="4"></a>    B --&gt; D[Decoder convolucional]</span>
-<span id="cb5-5"><a aria-label="5"></a>    D --&gt; S[Segmentación]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    V[Volumen] --&gt; T[Transformer encoder]
-    T --&gt; B[Bottleneck]
-    B --&gt; D[Decoder convolucional]
-    D --&gt; S[Segmentación]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>Las representaciones intermedias se conectan con el decoder.</p>
+
+<img data-src="./imagenes/unetr1.webp" style="width:60.0%" class="r-stretch"><p><a href="https://openaccess.thecvf.com/content/WACV2022/papers/Hatamizadeh_UNETR_Transformers_for_3D_Medical_Image_Segmentation_WACV_2022_paper.pdf">UNETR: Transformers for 3D Medical Image Segmentation</a></p>
+</section>
+<section id="unetr-1" class="slide level2">
+<h2>UNETR</h2>
+
+<img data-src="./imagenes/unetr2.webp" style="width:60.0%" class="r-stretch"><p><a href="https://openaccess.thecvf.com/content/WACV2022/papers/Hatamizadeh_UNETR_Transformers_for_3D_Medical_Image_Segmentation_WACV_2022_paper.pdf">UNETR: Transformers for 3D Medical Image Segmentation</a></p>
 </section>
 <section id="swin-transformer" class="slide level2">
 <h2>Swin Transformer</h2>
-<p>La atención global completa es costosa.</p>
-<p>Swin Transformer utiliza:</p>
-<ul>
-<li>atención dentro de ventanas;</li>
-<li>ventanas desplazadas entre capas;</li>
-<li>representación jerárquica.</li>
-</ul>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb6-2"><a aria-label="2"></a>    A[Ventanas locales] --&gt; B[Shift]</span>
-<span id="cb6-3"><a aria-label="3"></a>    B --&gt; C[Nuevas interacciones]</span>
-<span id="cb6-4"><a aria-label="4"></a>    C --&gt; D[Jerarquía]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    A[Ventanas locales] --&gt; B[Shift]
-    B --&gt; C[Nuevas interacciones]
-    C --&gt; D[Jerarquía]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</section>
+
+<img data-src="./imagenes/swin_transformer.jpg" style="width:60.0%" class="r-stretch"></section>
 <section id="swin-unetr" class="slide level2">
 <h2>Swin UNETR</h2>
-<p>Combina:</p>
-<p><span class="math display">\[
-\boxed{\text{Swin Transformer}}
-+
-\boxed{\text{decoder tipo U-Net}}
-+
-\boxed{\text{skip connections}}
-\]</span></p>
-<p>Es un buen ejemplo de arquitectura híbrida:</p>
-<blockquote>
-<p>ideas de CNN, U-Net y Transformers en un mismo modelo.</p>
-</blockquote>
-</section>
+
+<img data-src="./imagenes/swin_unet.jpg" style="width:60.0%" class="r-stretch"></section>
 <section id="el-costo-de-la-atención" class="slide level2">
 <h2>El costo de la atención</h2>
-<p>Para <span class="math inline">\(N\)</span> tokens, la atención estándar construye aproximadamente:</p>
-<p><span class="math display">\[
-N\times N
-\]</span></p>
-<p>relaciones.</p>
-<p>Costo:</p>
-<p><span class="math display">\[
-O(N^2)
-\]</span></p>
-<p>Si:</p>
-<p><span class="math display">\[
-N\rightarrow 10N
-\]</span></p>
-<p>entonces:</p>
-<p><span class="math display">\[
-N^2\rightarrow100N^2
-\]</span></p>
-</section>
+
+<img data-src="./imagenes/costo.jpg" style="width:60.0%" class="r-stretch"></section>
 <section id="por-qué-esto-es-crítico-en-3d" class="slide level2">
 <h2>¿Por qué esto es crítico en 3D?</h2>
-<p>Un CT puede tener del orden de:</p>
-<p><span class="math display">\[
-512\times512\times500
-\]</span></p>
-<p>voxels.</p>
-<p>Incluso trabajando con patches, el número de tokens puede ser grande.</p>
-<p>Necesitamos capturar contexto amplio sin que memoria y cómputo crezcan demasiado.</p>
-</section>
-<section id="state-space-models" class="slide level2">
-<h2>State Space Models</h2>
-<p>Otra estrategia es mantener un estado interno:</p>
-<p><span class="math display">\[
-h_t=f(h_{t-1},x_t)
-\]</span></p>
-<p><span class="math display">\[
-y_t=g(h_t)
-\]</span></p>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb7-2"><a aria-label="2"></a>    X1[x₁] --&gt; H1[h₁]</span>
-<span id="cb7-3"><a aria-label="3"></a>    H1 --&gt; H2[h₂]</span>
-<span id="cb7-4"><a aria-label="4"></a>    X2[x₂] --&gt; H2</span>
-<span id="cb7-5"><a aria-label="5"></a>    H2 --&gt; H3[h₃]</span>
-<span id="cb7-6"><a aria-label="6"></a>    X3[x₃] --&gt; H3</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    X1[x₁] --&gt; H1[h₁]
-    H1 --&gt; H2[h₂]
-    X2[x₂] --&gt; H2
-    H2 --&gt; H3[h₃]
-    X3[x₃] --&gt; H3
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>El estado funciona como memoria.</p>
-</section>
-<section id="mamba" class="slide level2">
-<h2>Mamba</h2>
-<p>Mamba utiliza <strong>Selective State Space Models</strong>.</p>
-<p>No es un Transformer.</p>
-<p>Su idea central es permitir que el sistema seleccione dinámicamente:</p>
-<blockquote>
-<p>qué información conservar y qué información descartar.</p>
-</blockquote>
-<p>La selectividad depende del contenido de la entrada.</p>
-</section>
-<section id="transformer-vs-mamba" class="slide level2">
-<h2>Transformer vs Mamba</h2>
-<div class="columns">
-<div class="column" style="width:48%;">
-<h3 id="transformer">Transformer</h3>
-<p>Cada token consulta otros tokens mediante atención.</p>
-<p>Costo de la atención estándar:</p>
-<p><span class="math display">\[
-O(N^2)
-\]</span></p>
-</div><div class="column" style="width:48%;">
-<h3 id="mamba-1">Mamba</h3>
-<p>La información se propaga mediante un estado selectivo.</p>
-<p>Escalamiento respecto de la secuencia:</p>
-<p><span class="math display">\[
-O(N)
-\]</span></p>
-</div></div>
-</section>
-<section id="mamba-en-imágenes-médicas" class="slide level2">
-<h2>Mamba en imágenes médicas</h2>
-<p>La motivación es especialmente atractiva en 3D:</p>
-<ul>
-<li>secuencias largas;</li>
-<li>grandes volúmenes;</li>
-<li>contexto global;</li>
-<li>memoria limitada.</li>
-</ul>
-<p>Arquitecturas como <strong>SegMamba</strong> exploran esta dirección para segmentación médica 3D.</p>
-<blockquote>
-<p>Es un área todavía en evolución.</p>
-</blockquote>
-</section>
+
+<img data-src="./imagenes/costo_3d.jpg" style="width:60.0%" class="r-stretch"></section>
 <section id="un-mismo-problema-distintos-sesgos" class="slide level2">
 <h2>Un mismo problema, distintos sesgos</h2>
 <table class="caption-top">
@@ -1033,52 +706,29 @@ O(N)
 <ul>
 <li>CNN;</li>
 <li>ViT;</li>
-<li>híbridos.</li>
+<li>CNN(ViT) + SVM.</li>
 </ul>
 </div><div class="column" style="width:48%;">
 <h3 id="segmentación-3d">Segmentación 3D</h3>
 <ul>
 <li>U-Net;</li>
-<li>nnU-Net;</li>
 <li>UNETR;</li>
 <li>Swin UNETR;</li>
-<li>variantes Mamba.</li>
 </ul>
 </div></div>
 <p>La arquitectura debe responder al problema, no a la moda.</p>
 </section>
 <section id="la-arquitectura-no-es-el-modelo-completo" class="slide level2">
 <h2>La arquitectura no es el modelo completo</h2>
-<p><span class="math display">\[
-\boxed{\text{datos}}
-+
-\boxed{\text{preprocesamiento}}
-+
-\boxed{\text{arquitectura}}
-+
-\boxed{\text{loss}}
-+
-\boxed{\text{optimización}}
-+
-\boxed{\text{evaluación}}
-\]</span></p>
-<p>En Física Médica además importan:</p>
-<ul>
-<li>resolución y orientación;</li>
-<li>anisotropía;</li>
-<li>adquisición y reconstrucción;</li>
-<li>fabricante y protocolo;</li>
-<li>calidad de anotaciones.</li>
-</ul>
-</section>
-<section id="cinco-ideas-para-llevarse" class="slide level2">
-<h2>Cinco ideas para llevarse</h2>
+
+<img data-src="./imagenes/modelo_all.jpg" style="width:60.0%" class="r-stretch"></section>
+<section id="cuatro-ideas-para-llevarse" class="slide level2">
+<h2>Cuatro ideas para llevarse</h2>
 <ol type="1">
 <li>La arquitectura incorpora un <strong>sesgo inductivo</strong>.</li>
 <li>Las CNN explotan <strong>localidad y estructura espacial</strong>.</li>
 <li>U-Net combina <strong>contexto + precisión espacial</strong>.</li>
 <li>Transformers permiten <strong>interacciones flexibles y de largo alcance</strong>.</li>
-<li>Mamba propone una alternativa basada en <strong>estado selectivo</strong>.</li>
 </ol>
 <blockquote>
 <p>La mejor arquitectura es la que introduce el flujo de información adecuado para el problema.</p>
