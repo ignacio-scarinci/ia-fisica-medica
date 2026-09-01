@@ -31,12 +31,12 @@ execute:
 
 Al finalizar la clase deberíamos poder:
 
-- reconocer las principales familias arquitectónicas;
-- entender qué sesgo inductivo incorpora cada una;
+- reconocer las principales familias arquitectónicas
+- entender qué sesgo inductivo incorpora cada una
 - explicar cómo opera una CNN sobre imágenes;
-- entender por qué U-Net fue decisiva en imagen médica;
-- introducir atención, Transformers y State Space Models;
-- relacionar arquitectura con problemas concretos de Física Médica.
+- entender por qué U-Net fue decisiva en imagen médica
+- introducir atención y Transformers
+- relacionar arquitectura con problemas concretos de Física Médica
 
 
 ## El recorrido de hoy
@@ -389,11 +389,6 @@ Aplicaciones:
 
 El gran limitante práctico es la **memoria**.
 
-
-### Patches y ventanas deslizantes
-
-![](./imagenes/patches.jpg){width=60%}
-
 ## ResUNet
 
 ![](./imagenes/res_unet.jpg){width=60%}
@@ -402,6 +397,10 @@ El gran limitante práctico es la **memoria**.
 ## Attention U-Net y U-Net++
 
 ![](./imagenes/unet_variantes.jpg){width=60%}
+
+## Patches y ventanas deslizantes
+
+![](./imagenes/patches.jpg){width=60%}
 
 # Bloque 5 · Transformers {.section-slide}
 
@@ -420,134 +419,63 @@ Para relacionar regiones muy distantes necesitamos:
 
 ¿Podemos construir interacciones globales más directas?
 
+## ¿Qué es un Token?
+
+### El transformer procesa una secuencia de elementos llamados *tokens*.
+
+![](./imagenes/tokens.jpg){width=60%}
+
+
+## De Tokens a Embeddings
+
+![](./imagenes/token_a_embedding.jpg){width=60%}
+
+## La posición importa
+
+![](./imagenes/posicion.jpg){width=60%}
+
+## ¿Por qué usar embeddings de posición?
+
+![](./imagenes/posicion2.jpg){width=60%}
+
 
 ## La intuición de atención
 
-Para representar un elemento queremos saber:
-
-> ¿qué otros elementos son relevantes para él?
-
-```{mermaid}
-flowchart LR
-    A[Elemento i] --> B[Buscar relaciones]
-    B --> C[Ponderar información]
-    C --> D[Nueva representación]
-```
-
-La interacción ya no está determinada solamente por vecindad.
+![](./imagenes/attention.jpg){width=60%}
 
 
 ## Query, Key y Value
 
-Para cada token generamos:
+![](./imagenes/qkv.jpg){width=60%}
 
-$$
-Q=XW_Q,\qquad K=XW_K,\qquad V=XW_V
-$$
+## De token a atención
 
-:::: {.columns}
-::: {.column width="32%"}
-**Query**
+![](./imagenes/token_a_atencion.jpg){width=60%}
 
-¿Qué estoy buscando?
-:::
+## De Q, K a pesos de atención
 
-::: {.column width="32%"}
-**Key**
-
-¿Qué contiene este elemento?
-:::
-
-::: {.column width="32%"}
-**Value**
-
-¿Qué información recupero?
-:::
-::::
-
+![](./imagenes/q_k_atencion.jpg){width=60%}
 
 ## Self-attention
 
-$$
-\operatorname{Attention}(Q,K,V)
-=
-\operatorname{softmax}
-\left(
-\frac{QK^\top}{\sqrt{d_k}}
-\right)V
-$$
+![](./imagenes/pesos_atencion_representacion.jpg){width=60%}
 
-```{mermaid}
-flowchart LR
-    Q[Query] --> S[Similitudes]
-    K[Keys] --> S
-    S --> W[Pesos]
-    W --> O[Combinación]
-    V[Values] --> O
-```
+## Multi-head attention 
 
-
-## Multi-head attention y posición
-
-Varias cabezas permiten aprender relaciones diferentes:
-
-$$
-\text{head}_1,\dots,\text{head}_h
-$$
-
-Pero además debemos incorporar posición:
-
-$$
-\boxed{\text{contenido}}
-+
-\boxed{\text{posición}}
-$$
-
-Sin posición, la auto-atención no conoce explícitamente el orden espacial/secuencial.
+![](./imagenes/multi-head_atencion.jpg){width=60%}
 
 
 ## El bloque Transformer
 
-```{mermaid}
-flowchart TB
-    X[Input] --> N1[Normalization]
-    N1 --> A[Multi-Head Attention]
-    A --> R1[Residual +]
-    X --> R1
-    R1 --> N2[Normalization]
-    N2 --> F[Feed-Forward]
-    F --> R2[Residual +]
-    R1 --> R2
-    R2 --> Y[Output]
-```
+![](./imagenes/bloque_transformer.jpg){width=60%}
 
-Reaparecen:
+## ¿Por qué hay una FFN después de la atención?
 
-- capas lineales;
-- activaciones;
-- normalización;
-- conexiones residuales.
-
+![](./imagenes/ffn_post_atencion.jpg){width=60%}
 
 ## Vision Transformer
 
-Una imagen se divide en *patches*:
-
-```{mermaid}
-flowchart LR
-    I[Imagen] --> P[Patches]
-    P --> T[Tokens]
-    T --> E[Embeddings]
-    E --> TR[Transformer]
-```
-
-Ejemplo:
-
-$$
-224\times224
-\quad\text{con patches}\quad
-16\times16
-$$
+![](./imagenes/vit.jpg){width=60%}
 
 
 ## CNN vs Transformer
@@ -578,176 +506,32 @@ Esto es especialmente atractivo en volúmenes 3D.
 
 ## UNETR
 
-UNETR combina un encoder Transformer con un decoder tipo U-Net.
+![](./imagenes/unetr1.webp){width=60%}
 
-```{mermaid}
-flowchart LR
-    V[Volumen] --> T[Transformer encoder]
-    T --> B[Bottleneck]
-    B --> D[Decoder convolucional]
-    D --> S[Segmentación]
-```
+[UNETR: Transformers for 3D Medical Image Segmentation](https://openaccess.thecvf.com/content/WACV2022/papers/Hatamizadeh_UNETR_Transformers_for_3D_Medical_Image_Segmentation_WACV_2022_paper.pdf)
 
-Las representaciones intermedias se conectan con el decoder.
+## UNETR
+![](./imagenes/unetr2.webp){width=60%}
 
+[UNETR: Transformers for 3D Medical Image Segmentation](https://openaccess.thecvf.com/content/WACV2022/papers/Hatamizadeh_UNETR_Transformers_for_3D_Medical_Image_Segmentation_WACV_2022_paper.pdf)
 
 ## Swin Transformer
 
-La atención global completa es costosa.
-
-Swin Transformer utiliza:
-
-- atención dentro de ventanas;
-- ventanas desplazadas entre capas;
-- representación jerárquica.
-
-```{mermaid}
-flowchart LR
-    A[Ventanas locales] --> B[Shift]
-    B --> C[Nuevas interacciones]
-    C --> D[Jerarquía]
-```
-
+![](./imagenes/swin_transformer.jpg){width=60%}
 
 ## Swin UNETR
 
-Combina:
-
-$$
-\boxed{\text{Swin Transformer}}
-+
-\boxed{\text{decoder tipo U-Net}}
-+
-\boxed{\text{skip connections}}
-$$
-
-Es un buen ejemplo de arquitectura híbrida:
-
-> ideas de CNN, U-Net y Transformers en un mismo modelo.
+![](./imagenes/swin_unet.jpg){width=60%}
 
 
 ## El costo de la atención
 
-Para $N$ tokens, la atención estándar construye aproximadamente:
-
-$$
-N\times N
-$$
-
-relaciones.
-
-Costo:
-
-$$
-O(N^2)
-$$
-
-Si:
-
-$$
-N\rightarrow 10N
-$$
-
-entonces:
-
-$$
-N^2\rightarrow100N^2
-$$
+![](./imagenes/costo.jpg){width=60%}
 
 
 ## ¿Por qué esto es crítico en 3D?
 
-Un CT puede tener del orden de:
-
-$$
-512\times512\times500
-$$
-
-voxels.
-
-Incluso trabajando con patches, el número de tokens puede ser grande.
-
-Necesitamos capturar contexto amplio sin que memoria y cómputo crezcan demasiado.
-
-
-## State Space Models
-
-Otra estrategia es mantener un estado interno:
-
-$$
-h_t=f(h_{t-1},x_t)
-$$
-
-$$
-y_t=g(h_t)
-$$
-
-```{mermaid}
-flowchart LR
-    X1[x₁] --> H1[h₁]
-    H1 --> H2[h₂]
-    X2[x₂] --> H2
-    H2 --> H3[h₃]
-    X3[x₃] --> H3
-```
-
-El estado funciona como memoria.
-
-
-## Mamba
-
-Mamba utiliza **Selective State Space Models**.
-
-No es un Transformer.
-
-Su idea central es permitir que el sistema seleccione dinámicamente:
-
-> qué información conservar y qué información descartar.
-
-La selectividad depende del contenido de la entrada.
-
-
-## Transformer vs Mamba
-
-:::: {.columns}
-::: {.column width="48%"}
-### Transformer
-
-Cada token consulta otros tokens mediante atención.
-
-Costo de la atención estándar:
-
-$$
-O(N^2)
-$$
-:::
-
-::: {.column width="48%"}
-### Mamba
-
-La información se propaga mediante un estado selectivo.
-
-Escalamiento respecto de la secuencia:
-
-$$
-O(N)
-$$
-:::
-::::
-
-
-## Mamba en imágenes médicas
-
-La motivación es especialmente atractiva en 3D:
-
-- secuencias largas;
-- grandes volúmenes;
-- contexto global;
-- memoria limitada.
-
-Arquitecturas como **SegMamba** exploran esta dirección para segmentación médica 3D.
-
-> Es un área todavía en evolución.
+![](./imagenes/costo_3d.jpg){width=60%}
 
 
 ## Un mismo problema, distintos sesgos
@@ -776,17 +560,15 @@ Arquitecturas como **SegMamba** exploran esta dirección para segmentación méd
 
 - CNN;
 - ViT;
-- híbridos.
+- CNN(ViT) + SVM.
 :::
 
 ::: {.column width="48%"}
 ### Segmentación 3D
 
 - U-Net;
-- nnU-Net;
 - UNETR;
 - Swin UNETR;
-- variantes Mamba.
 :::
 ::::
 
@@ -795,35 +577,13 @@ La arquitectura debe responder al problema, no a la moda.
 
 ## La arquitectura no es el modelo completo
 
-$$
-\boxed{\text{datos}}
-+
-\boxed{\text{preprocesamiento}}
-+
-\boxed{\text{arquitectura}}
-+
-\boxed{\text{loss}}
-+
-\boxed{\text{optimización}}
-+
-\boxed{\text{evaluación}}
-$$
+![](./imagenes/modelo_all.jpg){width=60%}
 
-En Física Médica además importan:
-
-- resolución y orientación;
-- anisotropía;
-- adquisición y reconstrucción;
-- fabricante y protocolo;
-- calidad de anotaciones.
-
-
-## Cinco ideas para llevarse
+## Cuatro ideas para llevarse
 
 1. La arquitectura incorpora un **sesgo inductivo**.
 2. Las CNN explotan **localidad y estructura espacial**.
 3. U-Net combina **contexto + precisión espacial**.
 4. Transformers permiten **interacciones flexibles y de largo alcance**.
-5. Mamba propone una alternativa basada en **estado selectivo**.
 
 > La mejor arquitectura es la que introduce el flujo de información adecuado para el problema.
