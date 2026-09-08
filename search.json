@@ -124,7 +124,7 @@
     "href": "unidad2/clase2.html#por-qué-accuracy-puede-ser-engañosa",
     "title": "Unidad 2 — Segmentación de estructuras anatómicas",
     "section": "¿Por qué accuracy puede ser engañosa?",
-    "text": "¿Por qué accuracy puede ser engañosa?\nSupongamos que una lesión ocupa solo el (1%) del volumen.\nUn modelo que predice todo como fondo obtiene:\n\\[\n\\text{Accuracy}\\approx 99\\%\n\\]\npero:\n\\[\n\\text{segmentación de la lesión}=0\n\\]\n\n\n\n\n\n\nWarning\n\n\nEn segmentación médica, la accuracy global suele estar dominada por el fondo y puede ocultar un fracaso completo sobre la estructura de interés.\n\n\n\nPor eso preferimos métricas centradas en la región positiva.",
+    "text": "¿Por qué accuracy puede ser engañosa?\nSupongamos que una lesión ocupa solo el (1%) del volumen.\nUn modelo que predice todo como fondo obtiene:\n\\[\n\\text{Accuracy}\\approx 99\\%\n\\]\npero:\n\\[\n\\text{segmentación de la lesión}=0\n\\]\n\n\n\n\n\n\nAdvertencia\n\n\nEn segmentación médica, la accuracy global suele estar dominada por el fondo y puede ocultar un fracaso completo sobre la estructura de interés.\n\n\n\nPor eso preferimos métricas centradas en la región positiva.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -328,7 +328,7 @@
     "href": "unidad2/clase2.html#qué-aporta-hausdorff",
     "title": "Unidad 2 — Segmentación de estructuras anatómicas",
     "section": "¿Qué aporta Hausdorff?",
-    "text": "¿Qué aporta Hausdorff?\nDice e IoU pueden permanecer altos aunque exista una desviación localizada.\nHausdorff es sensible a ese tipo de error.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDice / IoU\n\n\n\n\n\n\n\nSuperposición global\n\n\n\n\n\n\n\nHausdorff\n\n\n\n\n\n\n\nPeor discrepancia de borde\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\nLas métricas de superposición y las métricas de superficie responden a preguntas diferentes y son complementarias.",
+    "text": "¿Qué aporta Hausdorff?\nDice e IoU pueden permanecer altos aunque exista una desviación localizada.\nHausdorff es sensible a ese tipo de error.\n\nflowchart LR\n    D[Dice / IoU] --&gt; D1[Superposición global]\n    H[Hausdorff] --&gt; H1[Peor discrepancia de borde]\n\n\n\n\nflowchart LR\n    D[Dice / IoU] --&gt; D1[Superposición global]\n    H[Hausdorff] --&gt; H1[Peor discrepancia de borde]\n\n\n\n\n\n\n\n\n\n\n\n\nImportante\n\n\nLas métricas de superposición y las métricas de superficie responden a preguntas diferentes y son complementarias.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -352,7 +352,7 @@
     "href": "unidad2/clase2.html#hd95-una-alternativa-más-robusta",
     "title": "Unidad 2 — Segmentación de estructuras anatómicas",
     "section": "HD95: una alternativa más robusta",
-    "text": "HD95: una alternativa más robusta\nUna práctica habitual es utilizar el percentil 95 de las distancias de superficie:\n\\[\nHD_{95}\n=\nP_{95}\n\\left(\n\\{d(p,\\partial G)\\}\\cup\n\\{d(g,\\partial P)\\}\n\\right)\n\\]\nInterpretación:\n\nEl \\(95\\%\\) de las discrepancias de superficie se encuentra por debajo de ese valor.\n\nEsto reduce la sensibilidad a unos pocos puntos extremos.\n\n\n\n\n\n\nNote\n\n\nHD95 no reemplaza conceptualmente a Hausdorff: cambia deliberadamente la pregunta para obtener una medida más robusta.",
+    "text": "HD95: una alternativa más robusta\nUna práctica habitual es utilizar el percentil 95 de las distancias de superficie:\n\\[\nHD_{95}\n=\nP_{95}\n\\left(\n\\{d(p,\\partial G)\\}\\cup\n\\{d(g,\\partial P)\\}\n\\right)\n\\]\nInterpretación:\n\nEl \\(95\\%\\) de las discrepancias de superficie se encuentra por debajo de ese valor.\n\nEsto reduce la sensibilidad a unos pocos puntos extremos.\n\n\n\n\n\n\nNota\n\n\nHD95 no reemplaza conceptualmente a Hausdorff: cambia deliberadamente la pregunta para obtener una medida más robusta.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -364,7 +364,7 @@
     "href": "unidad2/clase2.html#el-spacing-importa",
     "title": "Unidad 2 — Segmentación de estructuras anatómicas",
     "section": "El spacing importa",
-    "text": "El spacing importa\nEn imágenes médicas, un vóxel no tiene necesariamente el mismo tamaño en todas las direcciones.\nPor ejemplo:\n\\[\n0.8\\times0.8\\times3.0\\ \\mathrm{mm^3}\n\\]\nUna distancia calculada solo en índices de vóxel puede ser físicamente incorrecta.\n\n\n\n\n\n\nWarning\n\n\nLas métricas de distancia deben calcularse utilizando el pixel/voxel spacing real de la imagen.\n\n\n\nEspecialmente en estudios anisotrópicos.",
+    "text": "El spacing importa\nEn imágenes médicas, un vóxel no tiene necesariamente el mismo tamaño en todas las direcciones.\nPor ejemplo:\n\\[\n0.8\\times0.8\\times3.0\\ \\mathrm{mm^3}\n\\]\nUna distancia calculada solo en índices de vóxel puede ser físicamente incorrecta.\n\n\n\n\n\n\nAdvertencia\n\n\nLas métricas de distancia deben calcularse utilizando el pixel/voxel spacing real de la imagen.\n\n\n\nEspecialmente en estudios anisotrópicos.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -412,7 +412,7 @@
     "href": "unidad2/clase2.html#macro-o-micro-promedio",
     "title": "Unidad 2 — Segmentación de estructuras anatómicas",
     "section": "¿Macro o micro promedio?",
-    "text": "¿Macro o micro promedio?\nMacro average\n\\[\n\\mathrm{Dice}_{macro}\n=\n\\frac{1}{K}\\sum_{k=1}^{K}\\mathrm{Dice}_k\n\\]\nCada clase tiene el mismo peso.\nMicro / global\nAgrega primero los TP, FP y FN de todas las clases y luego calcula la métrica.\n\n\n\n\n\n\nNote\n\n\nEn conjuntos desbalanceados, el promedio global puede quedar dominado por las estructuras más grandes.\n\n\n\nPara Física Médica suele ser importante reportar resultados por estructura.",
+    "text": "¿Macro o micro promedio?\nMacro average\n\\[\n\\mathrm{Dice}_{macro}\n=\n\\frac{1}{K}\\sum_{k=1}^{K}\\mathrm{Dice}_k\n\\]\nCada clase tiene el mismo peso.\nMicro / global\nAgrega primero los TP, FP y FN de todas las clases y luego calcula la métrica.\n\n\n\n\n\n\nNota\n\n\nEn conjuntos desbalanceados, el promedio global puede quedar dominado por las estructuras más grandes.\n\n\n\nPara Física Médica suele ser importante reportar resultados por estructura.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -436,7 +436,7 @@
     "href": "unidad2/clase2.html#la-métrica-debe-responder-a-la-aplicación",
     "title": "Unidad 2 — Segmentación de estructuras anatómicas",
     "section": "La métrica debe responder a la aplicación",
-    "text": "La métrica debe responder a la aplicación\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPregunta clínica\n\n\n\n\n\n\n\nSelección de métricas\n\n\n\n\n\n\n\nOverlap\n\n\n\n\n\n\n\nSuperficie\n\n\n\n\n\n\n\nImpacto clínico\n\n\n\n\n\n\n\n\n\n\nEjemplos:\n\nsegmentación hepática para volumetría → volumen + Dice pueden ser relevantes;\nmédula espinal en radioterapia → errores de superficie pueden ser críticos;\ntumor junto a alto gradiente de dosis → la geometría debe relacionarse con dosimetría.\n\n\n\n\n\n\n\nImportant\n\n\nNo existe una métrica universal que determine por sí sola si una segmentación es clínicamente aceptable.",
+    "text": "La métrica debe responder a la aplicación\n\nflowchart LR\n    A[Pregunta clínica] --&gt; M[Selección de métricas]\n    M --&gt; O[Overlap]\n    M --&gt; S[Superficie]\n    M --&gt; C[Impacto clínico]\n\n\n\n\nflowchart LR\n    A[Pregunta clínica] --&gt; M[Selección de métricas]\n    M --&gt; O[Overlap]\n    M --&gt; S[Superficie]\n    M --&gt; C[Impacto clínico]\n\n\n\n\n\n\nEjemplos:\n\nsegmentación hepática para volumetría → volumen + Dice pueden ser relevantes;\nmédula espinal en radioterapia → errores de superficie pueden ser críticos;\ntumor junto a alto gradiente de dosis → la geometría debe relacionarse con dosimetría.\n\n\n\n\n\n\n\nImportante\n\n\nNo existe una métrica universal que determine por sí sola si una segmentación es clínicamente aceptable.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -448,7 +448,7 @@
     "href": "unidad2/clase2.html#training-validation-y-test-cumplen-roles-distintos",
     "title": "Unidad 2 — Segmentación de estructuras anatómicas",
     "section": "Training, validation y test cumplen roles distintos",
-    "text": "Training, validation y test cumplen roles distintos\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDataset\n\n\n\n\n\n\n\nTraining\n\n\n\n\n\n\n\nValidation\n\n\n\n\n\n\n\nTest\n\n\n\n\n\n\n\nAjustar parámetros\n\n\n\n\n\n\n\nElegir modeloe hiperparámetros\n\n\n\n\n\n\n\nEvaluación final\n\n\n\n\n\n\n\n\n\n\nDurante el desarrollo usamos el conjunto de validación repetidamente.\nEl test debe permanecer reservado hasta que el proceso de desarrollo esté definido.",
+    "text": "Training, validation y test cumplen roles distintos\n\nflowchart LR\n    D[Dataset] --&gt; T[Training]\n    D --&gt; V[Validation]\n    D --&gt; E[Test]\n\n    T --&gt; T1[Ajustar parámetros]\n    V --&gt; V1[Elegir modelo&lt;br/&gt;e hiperparámetros]\n    E --&gt; E1[Evaluación final]\n\n\n\n\nflowchart LR\n    D[Dataset] --&gt; T[Training]\n    D --&gt; V[Validation]\n    D --&gt; E[Test]\n\n    T --&gt; T1[Ajustar parámetros]\n    V --&gt; V1[Elegir modelo&lt;br/&gt;e hiperparámetros]\n    E --&gt; E1[Evaluación final]\n\n\n\n\n\n\nDurante el desarrollo usamos el conjunto de validación repetidamente.\nEl test debe permanecer reservado hasta que el proceso de desarrollo esté definido.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -460,7 +460,7 @@
     "href": "unidad2/clase2.html#la-unidad-de-separación-debe-ser-el-paciente",
     "title": "Unidad 2 — Segmentación de estructuras anatómicas",
     "section": "La unidad de separación debe ser el paciente",
-    "text": "La unidad de separación debe ser el paciente\nEn imágenes médicas, un paciente puede aportar:\n\nmúltiples cortes;\nmúltiples series;\ndistintas modalidades;\nestudios longitudinales;\nmúltiples lesiones.\n\n\n\n\n\n\n\nWarning\n\n\nNo debemos colocar imágenes del mismo paciente en entrenamiento y validación/test.\n\n\n\nDe lo contrario aparece data leakage y el desempeño puede quedar artificialmente inflado.",
+    "text": "La unidad de separación debe ser el paciente\nEn imágenes médicas, un paciente puede aportar:\n\nmúltiples cortes;\nmúltiples series;\ndistintas modalidades;\nestudios longitudinales;\nmúltiples lesiones.\n\n\n\n\n\n\n\nAdvertencia\n\n\nNo debemos colocar imágenes del mismo paciente en entrenamiento y validación/test.\n\n\n\nDe lo contrario aparece data leakage y el desempeño puede quedar artificialmente inflado.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -472,7 +472,7 @@
     "href": "unidad2/clase2.html#validar-no-es-mirar-solo-la-loss",
     "title": "Unidad 2 — Segmentación de estructuras anatómicas",
     "section": "Validar no es mirar solo la loss",
-    "text": "Validar no es mirar solo la loss\nDurante el entrenamiento podemos seguir:\n\ntraining loss;\nvalidation loss;\nDice por estructura;\nHD95;\nejemplos visuales representativos.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nÉpocas\n\n\n\n\n\n\n\nLoss\n\n\n\n\n\n\n\nDice\n\n\n\n\n\n\n\nHD95\n\n\n\n\n\n\n\nRevisión visual\n\n\n\n\n\n\n\nSelección del modelo\n\n\n\n\n\n\n\n\n\n\n\nLa mejor loss no necesariamente corresponde al mejor comportamiento clínico.",
+    "text": "Validar no es mirar solo la loss\nDurante el entrenamiento podemos seguir:\n\ntraining loss;\nvalidation loss;\nDice por estructura;\nHD95;\nejemplos visuales representativos.\n\n\nflowchart LR\n    E[Épocas] --&gt; L[Loss]\n    E --&gt; D[Dice]\n    E --&gt; H[HD95]\n    E --&gt; Q[Revisión visual]\n    L --&gt; S[Selección del modelo]\n    D --&gt; S\n    H --&gt; S\n    Q --&gt; S\n\n\n\n\nflowchart LR\n    E[Épocas] --&gt; L[Loss]\n    E --&gt; D[Dice]\n    E --&gt; H[HD95]\n    E --&gt; Q[Revisión visual]\n    L --&gt; S[Selección del modelo]\n    D --&gt; S\n    H --&gt; S\n    Q --&gt; S\n\n\n\n\n\n\n\nLa mejor loss no necesariamente corresponde al mejor comportamiento clínico.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
