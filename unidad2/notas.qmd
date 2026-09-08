@@ -1,0 +1,3546 @@
+---
+title: "Unidad 2 — Segmentación de estructuras anatómicas"
+subtitle: "Fundamentos, métricas y relevancia clínica"
+author: ""
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    smooth-scroll: true
+jupyter: python3
+---
+
+# Introducción
+
+La **segmentación de imágenes médicas** consiste en identificar y delimitar regiones de interés dentro de una imagen. Dependiendo del problema, estas regiones pueden corresponder a órganos, lesiones, tumores, estructuras vasculares, huesos u otras entidades anatómicas o funcionales.
+
+A diferencia de una tarea de clasificación, donde asignamos una única etiqueta a una imagen completa, en segmentación buscamos producir una predicción espacial.
+
+Podemos expresar esta diferencia de forma esquemática:
+
+$$
+\text{Clasificación:}
+\qquad
+\text{imagen}
+\longrightarrow
+\text{clase}
+$$
+
+mientras que en segmentación:
+
+$$
+\text{Segmentación:}
+\qquad
+\text{imagen}
+\longrightarrow
+\text{etiqueta para cada píxel o vóxel}.
+$$
+
+En una imagen bidimensional, cada posición $(i,j)$ recibe una etiqueta. En un volumen tridimensional, la predicción se realiza para cada vóxel $(i,j,k)$.
+
+La segmentación constituye una tarea central en numerosos problemas de Física Médica. Algunos ejemplos incluyen:
+
+- delineación de órganos en riesgo (*Organs At Risk*, OARs) en radioterapia;
+- segmentación de volúmenes tumorales;
+- cuantificación volumétrica de lesiones;
+- delimitación de órganos para análisis funcional;
+- definición de regiones de interés para dosimetría;
+- planificación quirúrgica;
+- análisis longitudinal de cambios anatómicos.
+
+Sin embargo, producir una máscara que se parezca visualmente a un contorno de referencia no es suficiente para considerar que un sistema es clínicamente útil.
+
+A lo largo de esta unidad utilizaremos la segmentación como un caso particularmente interesante para discutir una cuestión más general:
+
+> **¿Cómo pasamos de un modelo que produce una predicción geométricamente razonable a una herramienta que puede integrarse de forma segura y útil en un flujo clínico?**
+
+Esta pregunta requerirá considerar no solamente modelos y arquitecturas, sino también métricas, variabilidad entre expertos y diferentes paradigmas de interacción entre el usuario y los sistemas de inteligencia artificial.
+
+## Objetivos de aprendizaje
+
+Al finalizar la unidad se espera que el estudiante pueda:
+
+1. Explicar qué es la segmentación semántica y distinguirla de otras tareas de visión por computadora.
+2. Reconocer las principales dificultades de la segmentación en imágenes médicas.
+3. Interpretar el coeficiente Dice, la intersección sobre unión (*Intersection over Union*, IoU) y la distancia de Hausdorff.
+4. Identificar las limitaciones de las métricas de superposición y de distancia.
+5. Comprender la relevancia clínica de la segmentación automática de órganos en riesgo.
+6. Analizar las particularidades del entrenamiento de modelos de segmentación médica.
+7. Comparar dos paradigmas de segmentación: **automática** e **interactiva**.
+8. Comprender el problema de la variabilidad inter-observador y sus consecuencias sobre la definición del *ground truth*.
+9. Diferenciar validación geométrica, validación clínica e impacto sobre el flujo de trabajo.
+
+# El problema de la segmentación
+
+## De una imagen a una máscara
+
+Consideremos una imagen bidimensional de una única modalidad:
+
+$$
+X \in \mathbb{R}^{H\times W}.
+$$
+
+En segmentación semántica buscamos aprender una función:
+
+$$
+f_\theta:
+\mathbb{R}^{H\times W}
+\longrightarrow
+\{0,\ldots,K\}^{H\times W},
+$$
+
+donde cada píxel recibe una etiqueta perteneciente a una de $K+1$ clases.
+
+En una imagen tridimensional:
+
+$$
+X \in \mathbb{R}^{H\times W\times D},
+$$
+
+y la salida es un volumen de etiquetas:
+
+$$
+Y \in \{0,\ldots,K\}^{H\times W\times D}.
+$$
+
+Por ejemplo, en un problema de segmentación de órganos en riesgo podríamos definir:
+
+$$
+Y_{ijk}=
+\begin{cases}
+0 & \text{fondo},\\
+1 & \text{médula espinal},\\
+2 & \text{parótida izquierda},\\
+3 & \text{parótida derecha},\\
+\vdots
+\end{cases}
+$$
+
+El objetivo del modelo consiste entonces en predecir correctamente la clase correspondiente a cada posición espacial.
+
+::: {.callout-note title="Una interpretación útil"}
+
+Podemos pensar la segmentación semántica como una **clasificación densa**.
+
+En lugar de realizar una predicción por imagen, realizamos una predicción para cada píxel o vóxel.
+
+:::
+
+Durante el entrenamiento, sin embargo, el modelo no suele producir directamente etiquetas discretas. Para cada posición espacial genera probabilidades o *scores* asociados a las diferentes clases.
+
+Para un problema multiclase:
+
+$$
+p_{ijkc}
+=
+P
+\left(
+Y_{ijk}=c
+\mid X
+\right),
+$$
+
+donde $c$ representa una de las clases posibles.
+
+La máscara final puede obtenerse seleccionando la clase con mayor probabilidad:
+
+$$
+\hat Y_{ijk}
+=
+\arg\max_c
+p_{ijkc}.
+$$
+
+Esta distinción entre **mapa de probabilidades** y **máscara discreta** será importante más adelante cuando estudiemos funciones de pérdida y evaluación.
+
+# Tipos de segmentación
+
+En visión por computadora existen diferentes formulaciones del problema.
+
+## Segmentación semántica
+
+En la **segmentación semántica**, todos los píxeles o vóxeles que pertenecen a una misma clase reciben la misma etiqueta.
+
+Por ejemplo:
+
+- pulmón;
+- hígado;
+- corazón;
+- médula espinal;
+- tumor.
+
+Si existen dos objetos diferentes de una misma clase, ambos reciben la misma etiqueta.
+
+## Segmentación de instancias
+
+La **segmentación de instancias** diferencia objetos individuales pertenecientes a una misma clase.
+
+Por ejemplo, si una imagen contiene múltiples lesiones, cada lesión puede identificarse como una instancia diferente.
+
+## Segmentación panóptica
+
+La **segmentación panóptica** combina información semántica y de instancias.
+
+Aunque estos conceptos son importantes en visión por computadora general, en esta unidad nos concentraremos principalmente en **segmentación semántica**, ya que es la formulación habitual en numerosos problemas anatómicos de Física Médica.
+
+# Particularidades de las imágenes médicas
+
+La segmentación médica comparte elementos con otros problemas de visión por computadora, pero presenta dificultades específicas.
+
+## Las imágenes suelen ser tridimensionales
+
+Una tomografía computada, una resonancia magnética o una adquisición PET son naturalmente volúmenes tridimensionales.
+
+Por lo tanto, la estructura que queremos segmentar no está contenida únicamente en un corte, sino que posee continuidad espacial entre cortes.
+
+Esto introduce una decisión importante:
+
+$$
+\boxed{
+\text{¿procesar cortes 2D o utilizar contexto volumétrico 3D?}
+}
+$$
+
+Retomaremos esta cuestión al analizar el entrenamiento de modelos de segmentación.
+
+## El tamaño de las estructuras varía enormemente
+
+En una misma imagen podemos tener estructuras muy grandes y otras de pocos vóxeles.
+
+Por ejemplo, en cabeza y cuello pueden coexistir:
+
+- cerebro;
+- mandíbula;
+- glándulas salivales;
+- nervios ópticos;
+- quiasma óptico;
+- cócleas.
+
+Esta diferencia de escala introduce dificultades tanto para el entrenamiento como para la evaluación.
+
+Un error de dos vóxeles puede ser prácticamente irrelevante para una estructura grande y representar una fracción considerable de una estructura pequeña.
+
+## Las fronteras anatómicas pueden ser ambiguas
+
+No todas las estructuras tienen límites claramente visibles.
+
+La delimitación puede depender de:
+
+- contraste de la modalidad;
+- resolución espacial;
+- ruido;
+- presencia de artefactos;
+- uso de contraste;
+- ventana de visualización;
+- experiencia del observador;
+- protocolo o guía de contorneo.
+
+Por lo tanto, el problema no siempre puede reducirse a encontrar una frontera objetiva perfectamente definida en la imagen.
+
+Esta observación será fundamental cuando discutamos **variabilidad inter-observador** y el concepto de *ground truth*.
+
+## Existe un fuerte desbalance entre clases
+
+En muchos problemas, la mayor parte de la imagen corresponde a fondo.
+
+Una estructura pequeña puede ocupar solamente una fracción mínima del volumen.
+
+Por lo tanto, una métrica como la exactitud global podría resultar engañosa.
+
+Supongamos, por ejemplo, que una estructura ocupa el $1\%$ de los vóxeles. Un modelo que predijera todos los vóxeles como fondo obtendría:
+
+$$
+\text{accuracy}=99\%,
+$$
+
+pero sería completamente inútil como segmentador.
+
+Este es uno de los motivos por los cuales las métricas utilizadas en segmentación suelen centrarse en la región de interés y no en la exactitud global.
+
+# Relevancia clínica: segmentación de órganos en riesgo
+
+## Órganos en riesgo
+
+En radioterapia, un **órgano en riesgo** (*Organ At Risk*, OAR) es una estructura anatómica cuya irradiación puede producir toxicidad clínicamente relevante y cuya dosis debe ser considerada durante la planificación del tratamiento.
+
+Dependiendo de la región anatómica, algunos ejemplos pueden incluir:
+
+- médula espinal;
+- tronco encefálico;
+- parótidas;
+- corazón;
+- pulmones;
+- riñones;
+- vejiga;
+- recto;
+- nervios ópticos;
+- quiasma óptico.
+
+La correcta delimitación de estas estructuras es necesaria porque las restricciones de optimización y evaluación dosimétrica dependen directamente de los volúmenes definidos.
+
+Podemos representar de manera simplificada el flujo de trabajo como:
+
+$$
+\text{CT de planificación}
+\rightarrow
+\text{contorneo}
+\rightarrow
+\text{optimización del plan}
+\rightarrow
+\text{distribución de dosis}
+\rightarrow
+\text{evaluación clínica}.
+$$
+
+Por lo tanto, la segmentación no es un producto aislado.
+
+Forma parte de una cadena de decisiones.
+
+::: {.callout-important title="Consecuencia clínica"}
+
+Un error de segmentación puede propagarse hacia etapas posteriores del proceso.
+
+Una máscara geométricamente incorrecta puede modificar la optimización, los histogramas dosis-volumen y la interpretación de restricciones clínicas.
+
+:::
+
+## El problema del contorneo manual
+
+El contorneo manual de estructuras anatómicas puede requerir una cantidad considerable de tiempo.
+
+Además, distintas personas pueden producir contornos diferentes para una misma estructura.
+
+Esto conduce a dos problemas diferentes:
+
+1. **carga de trabajo**;
+2. **variabilidad en los contornos**.
+
+La segmentación basada en inteligencia artificial puede intentar reducir ambos.
+
+Una estrategia completamente automática puede producir un conjunto de contornos iniciales que posteriormente son revisados por el especialista.
+
+En ese escenario, el flujo podría representarse como:
+
+$$
+\text{imagen}
+\rightarrow
+\text{segmentación automática}
+\rightarrow
+\text{revisión/corrección}
+\rightarrow
+\text{uso clínico}.
+$$
+
+Más adelante veremos que éste no es el único paradigma posible. En una estrategia interactiva, el especialista puede aportar información al modelo durante el proceso de segmentación.
+
+# ¿Qué significa que una segmentación sea buena?
+
+Antes de introducir modelos concretos debemos responder una pregunta aparentemente sencilla:
+
+> **¿Cómo sabemos si una segmentación es correcta?**
+
+Supongamos que tenemos una segmentación de referencia $G$ y una predicción $P$.
+
+Podemos comparar ambas máscaras desde diferentes perspectivas.
+
+Una posibilidad es medir cuánto se superponen.
+
+Otra es medir qué tan alejadas están sus superficies.
+
+Estas dos familias responden preguntas diferentes:
+
+$$
+\boxed{\text{métricas de superposición}}
+\qquad
+\text{y}
+\qquad
+\boxed{\text{métricas de distancia}}.
+$$
+
+No existe una única métrica que describa completamente la calidad de una segmentación.
+
+# Coeficiente Dice
+
+El **coeficiente Dice** (*Dice Similarity Coefficient*, DSC) es probablemente una de las métricas más utilizadas en segmentación médica.
+
+Sean dos conjuntos de vóxeles $P$ y $G$, correspondientes a la predicción y al contorno de referencia.
+
+El coeficiente Dice se define como:
+
+$$
+DSC(P,G)
+=
+\frac{2|P\cap G|}
+{|P|+|G|}.
+$$
+
+Su valor pertenece al intervalo:
+
+$$
+0\leq DSC\leq1.
+$$
+
+Si:
+
+$$
+DSC=1,
+$$
+
+las dos máscaras son idénticas.
+
+Si:
+
+$$
+DSC=0,
+$$
+
+no existe superposición entre ellas.
+
+## Interpretación mediante verdaderos y falsos positivos
+
+Podemos escribir Dice en términos de:
+
+- verdaderos positivos ($TP$);
+- falsos positivos ($FP$);
+- falsos negativos ($FN$).
+
+Entonces:
+
+$$
+DSC
+=
+\frac{2TP}
+{2TP+FP+FN}.
+$$
+
+Esta expresión muestra que la métrica penaliza tanto los vóxeles agregados incorrectamente como aquellos pertenecientes a la estructura que no fueron segmentados.
+
+## Ejemplo conceptual
+
+Supongamos que:
+
+$$
+|P|=100,
+\qquad
+|G|=100,
+\qquad
+|P\cap G|=80.
+$$
+
+Entonces:
+
+$$
+DSC
+=
+\frac{2\times80}{100+100}
+=
+0.8.
+$$
+
+Esto indica una superposición considerable, pero el número por sí solo no nos dice **dónde** se encuentran los errores.
+
+Esta limitación es importante.
+
+::: {.callout-warning title="Dice no describe la localización del error"}
+
+Dos segmentaciones pueden tener un Dice similar y, sin embargo, presentar errores espaciales completamente diferentes.
+
+Una puede contener pequeñas discrepancias distribuidas alrededor de toda la superficie, mientras que otra puede tener un error localizado pero clínicamente crítico.
+
+:::
+
+# Intersection over Union
+
+Otra métrica de superposición ampliamente utilizada es **Intersection over Union** (IoU), también conocida como índice de Jaccard.
+
+Se define como:
+
+$$
+IoU(P,G)
+=
+\frac{|P\cap G|}
+{|P\cup G|}.
+$$
+
+En términos de verdaderos y falsos positivos:
+
+$$
+IoU
+=
+\frac{TP}
+{TP+FP+FN}.
+$$
+
+Al igual que Dice:
+
+$$
+0\leq IoU\leq1.
+$$
+
+## Relación entre Dice e IoU
+
+Dice e IoU contienen información muy similar.
+
+Dado un valor de IoU:
+
+$$
+DSC
+=
+\frac{2IoU}
+{1+IoU}.
+$$
+
+De manera equivalente:
+
+$$
+IoU
+=
+\frac{DSC}
+{2-DSC}.
+$$
+
+Por ejemplo, si:
+
+$$
+IoU=0.5,
+$$
+
+entonces:
+
+$$
+DSC
+=
+\frac{2(0.5)}
+{1+0.5}
+=
+\frac{2}{3}
+\approx0.67.
+$$
+
+Por lo tanto, no deberían interpretarse como dos evaluaciones completamente independientes del desempeño.
+
+Ambas pertenecen a la misma familia de métricas de superposición.
+
+# El efecto del tamaño de la estructura
+
+Una de las limitaciones más importantes de las métricas de superposición es su dependencia del volumen de la estructura.
+
+Consideremos una estructura grande y una pequeña.
+
+Si desplazamos ambas máscaras la misma distancia espacial, la pérdida relativa de superposición será mucho mayor para la estructura pequeña.
+
+De forma conceptual:
+
+```text
+Estructura grande
+████████████████
+  ████████████████
+      pequeño cambio relativo
+
+Estructura pequeña
+████
+  ████
+      gran cambio relativo
+```
+
+Esto significa que comparar directamente valores de Dice entre órganos de tamaños muy diferentes puede ser engañoso.
+
+Un Dice de $0.80$ podría representar un resultado razonable para una estructura extremadamente pequeña y un resultado insuficiente para una estructura grande y bien contrastada.
+
+::: {.callout-important title="Interpretación contextual"}
+
+No existe un valor universal de Dice que permita declarar que una segmentación es clínicamente correcta.
+
+La interpretación depende de la estructura, la modalidad, el problema y las consecuencias del error.
+
+:::
+
+# Distancia de Hausdorff
+
+Dice e IoU responden principalmente a la pregunta:
+
+> **¿Cuánto se superponen las máscaras?**
+
+Pero no describen directamente la distancia entre sus fronteras.
+
+Para ello podemos utilizar métricas basadas en superficie.
+
+Sean $\partial P$ y $\partial G$ las superficies de la predicción y la referencia.
+
+Para cada punto $p\in\partial P$, podemos calcular la distancia al punto más cercano de $\partial G$:
+
+$$
+d(p,\partial G)
+=
+\inf_{g\in\partial G}
+\|p-g\|.
+$$
+
+La distancia de Hausdorff dirigida desde $P$ hacia $G$ es:
+
+$$
+h(P,G)
+=
+\sup_{p\in\partial P}
+\inf_{g\in\partial G}
+\|p-g\|.
+$$
+
+La distancia de Hausdorff simétrica es:
+
+$$
+HD(P,G)
+=
+\max
+\left\{
+h(P,G),
+h(G,P)
+\right\}.
+$$
+
+Conceptualmente, Hausdorff busca el **peor desacuerdo entre las superficies**.
+
+## Sensibilidad a valores extremos
+
+La distancia de Hausdorff máxima es muy sensible a pequeños errores aislados.
+
+Supongamos que una segmentación coincide correctamente con casi toda la estructura pero contiene un pequeño grupo de vóxeles falsamente positivos lejos del órgano.
+
+El Dice puede cambiar relativamente poco, mientras que:
+
+$$
+HD
+$$
+
+puede aumentar de manera extrema.
+
+Esto puede ser una ventaja si nos interesa detectar el peor error, pero también puede hacer que la métrica sea inestable frente a *outliers*.
+
+# Hausdorff 95
+
+Por este motivo, en imágenes médicas es frecuente utilizar el **percentil 95 de la distancia de Hausdorff**, habitualmente denominado $HD_{95}$.
+
+En lugar de considerar el máximo absoluto de las distancias entre superficies, se utiliza el percentil 95 de la distribución.
+
+Conceptualmente:
+
+$$
+HD
+\rightarrow
+\text{peor distancia}
+$$
+
+mientras que:
+
+$$
+HD_{95}
+\rightarrow
+\text{distancia extrema pero robusta a unos pocos outliers}.
+$$
+
+El $HD_{95}$ mantiene sensibilidad frente a discrepancias espaciales importantes, pero reduce la influencia de pequeños grupos aislados de vóxeles.
+
+# Superposición y distancia responden preguntas diferentes
+
+Podemos resumir las métricas discutidas hasta ahora:
+
+| Métrica | Qué mide | Mejor valor | Unidad |
+|---|---|---:|---|
+| Dice | Superposición | $1$ | Adimensional |
+| IoU | Superposición | $1$ | Adimensional |
+| Hausdorff | Peor discrepancia espacial | $0$ | mm |
+| $HD_{95}$ | Discrepancia espacial extrema robusta | $0$ | mm |
+
+Una consecuencia importante es que deberíamos evitar evaluar una segmentación mediante una única métrica.
+
+Por ejemplo, podemos encontrar:
+
+- Dice alto y Hausdorff alto;
+- Dice moderado pero superficie clínicamente aceptable;
+- buen desempeño en estructuras grandes y pobre desempeño en estructuras pequeñas.
+
+Las métricas son complementarias.
+
+# Unidades físicas: vóxeles no son milímetros
+
+Las métricas de distancia introducen una consideración particularmente importante en imágenes médicas.
+
+Supongamos que dos puntos están separados por:
+
+$$
+3\text{ vóxeles}.
+$$
+
+Esto no determina una distancia física hasta conocer el *spacing*.
+
+Si:
+
+$$
+\Delta x
+=
+\Delta y
+=
+1\text{ mm},
+$$
+
+tres vóxeles corresponden aproximadamente a unos pocos milímetros.
+
+Pero si el espesor de corte es:
+
+$$
+\Delta z=5\text{ mm},
+$$
+
+un desplazamiento de tres cortes en dirección $z$ puede representar:
+
+$$
+15\text{ mm}.
+$$
+
+Por lo tanto, para métricas de superficie en imágenes médicas es esencial trabajar en **coordenadas físicas**.
+
+::: {.callout-warning title="Spacing"}
+
+Una distancia de Hausdorff calculada directamente en índices de matriz puede no tener interpretación clínica adecuada.
+
+Las distancias deberían expresarse normalmente en unidades físicas, por ejemplo milímetros.
+
+:::
+
+# ¿Una buena métrica implica una buena segmentación clínica?
+
+No necesariamente.
+
+Consideremos dos errores hipotéticos.
+
+En el primer caso, una segmentación de un órgano presenta pequeñas discrepancias uniformemente distribuidas en su superficie.
+
+En el segundo caso, prácticamente toda la máscara coincide, pero existe un error localizado en una región anatómicamente crítica.
+
+Es posible que ambas segmentaciones produzcan valores similares de Dice.
+
+Sin embargo, su relevancia clínica puede ser completamente diferente.
+
+En radioterapia, además, el efecto de un error puede depender de la distribución de dosis.
+
+Una discrepancia cerca de un gradiente elevado puede tener mayor impacto dosimétrico que la misma discrepancia en una región de dosis prácticamente uniforme.
+
+Por lo tanto:
+
+$$
+\boxed{
+\text{calidad geométrica}
+\neq
+\text{impacto clínico}
+}
+$$
+
+Ésta será una de las ideas centrales de la unidad.
+
+# De la evaluación geométrica a la pregunta clínica
+
+Hasta este punto hemos supuesto implícitamente que disponemos de una máscara de referencia $G$ contra la cual comparar el modelo.
+
+Sin embargo, esto plantea otra pregunta:
+
+> **¿Quién determina cuál es la segmentación correcta?**
+
+En muchas aplicaciones médicas, el contorno de referencia proviene de uno o varios observadores humanos.
+
+Si distintos especialistas producen:
+
+$$
+G_1,\quad G_2,\quad G_3,
+$$
+
+puede existir una variabilidad apreciable entre ellos.
+
+Entonces, interpretar una métrica como:
+
+$$
+DSC(P,G_1)=0.87
+$$
+
+requiere conocer también cuál es la variabilidad humana esperable para esa estructura.
+
+Más adelante estudiaremos esta cuestión mediante el análisis de **variabilidad inter-observador** e **intra-observador**.
+
+Esto conduce a una pregunta más general que permanecerá abierta durante toda la unidad:
+
+> **¿Qué significa realmente que una segmentación automática alcance un desempeño comparable al humano?**
+
+# De la arquitectura al problema de segmentación
+
+En la unidad dedicada a arquitecturas estudiamos la **U-Net** como uno de los modelos fundamentales para segmentación de imágenes.
+
+No repetiremos aquí su construcción en detalle. Nos interesa ahora una pregunta diferente:
+
+> **¿Qué decisiones aparecen cuando queremos utilizar una arquitectura de segmentación para resolver un problema médico real?**
+
+Podemos resumir el pipeline de manera muy general como:
+
+$$
+\text{imagen}
+\longrightarrow
+f_\theta
+\longrightarrow
+\text{mapa de probabilidades}
+\longrightarrow
+\text{máscara}.
+$$
+
+La arquitectura determina cómo se construye $f_\theta$, pero el desempeño final depende también de:
+
+- cómo preprocesamos las imágenes;
+- cómo representamos las etiquetas;
+- qué función de pérdida utilizamos;
+- cómo manejamos el desbalance de clases;
+- qué contexto espacial proporcionamos al modelo;
+- cómo seleccionamos los ejemplos durante el entrenamiento;
+- y cómo realizamos la validación.
+
+En segmentación médica, estas decisiones pueden ser tan importantes como la arquitectura.
+
+# Recordatorio mínimo: U-Net como referencia
+
+Una U-Net puede interpretarse de forma esquemática como:
+
+$$
+\text{imagen}
+\rightarrow
+\boxed{\text{encoder}}
+\rightarrow
+\boxed{\text{representación}}
+\rightarrow
+\boxed{\text{decoder}}
+\rightarrow
+\text{predicción espacial}.
+$$
+
+Las conexiones entre encoder y decoder permiten combinar información semántica de alto nivel con información espacial de mayor resolución.
+
+Para esta unidad, lo importante no es volver a analizar cada bloque de la arquitectura, sino utilizar U-Net como un ejemplo representativo de una familia amplia de **modelos densos de segmentación**.
+
+::: {.callout-note title="Idea de esta sección"}
+
+A partir de aquí asumiremos que conocemos la lógica general de una arquitectura tipo U-Net.
+
+La pregunta será cómo adaptar esa arquitectura al dominio de las imágenes médicas.
+
+:::
+
+# ¿Qué produce realmente el modelo?
+
+## Segmentación binaria
+
+Supongamos que queremos segmentar una única estructura.
+
+Para cada píxel o vóxel, el modelo produce un valor:
+
+$$
+z_i \in \mathbb{R},
+$$
+
+denominado habitualmente *logit*.
+
+Aplicando una función sigmoide:
+
+$$
+p_i
+=
+\sigma(z_i)
+=
+\frac{1}{1+e^{-z_i}},
+$$
+
+obtenemos:
+
+$$
+0\leq p_i\leq1.
+$$
+
+Podemos interpretar $p_i$ como una estimación de la probabilidad de que el vóxel pertenezca a la estructura.
+
+La máscara final puede obtenerse mediante un umbral:
+
+$$
+\hat y_i
+=
+\begin{cases}
+1 & p_i\geq t,\\
+0 & p_i<t.
+\end{cases}
+$$
+
+El valor:
+
+$$
+t=0.5
+$$
+
+es una elección habitual, pero no constituye una regla universal.
+
+## Segmentación multiclase
+
+Si cada vóxel debe pertenecer exclusivamente a una de $K$ clases, el modelo produce un vector de logits:
+
+$$
+\mathbf{z}_i
+=
+(z_{i1},z_{i2},\ldots,z_{iK}).
+$$
+
+Aplicando *softmax*:
+
+$$
+p_{ic}
+=
+\frac{e^{z_{ic}}}
+{\sum_{k=1}^{K}e^{z_{ik}}},
+$$
+
+obtenemos:
+
+$$
+\sum_{c=1}^{K}p_{ic}=1.
+$$
+
+La etiqueta final se determina mediante:
+
+$$
+\hat y_i
+=
+\arg\max_c p_{ic}.
+$$
+
+## Segmentación multilabel
+
+Existe una tercera situación importante.
+
+Un mismo vóxel puede, conceptualmente, formar parte de más de una etiqueta.
+
+En este caso las clases no son mutuamente excluyentes y puede utilizarse una sigmoide independiente para cada canal de salida.
+
+Por lo tanto, antes de entrenar un modelo debemos decidir cómo está formulado el problema:
+
+$$
+\boxed{
+\text{binario}
+\quad
+\text{vs}
+\quad
+\text{multiclase}
+\quad
+\text{vs}
+\quad
+\text{multilabel}
+}
+$$
+
+Esta decisión afecta directamente a la representación de las etiquetas, la función de activación y la función de pérdida.
+
+# Funciones de pérdida para segmentación
+
+Durante el entrenamiento necesitamos cuantificar la discrepancia entre la predicción y la referencia.
+
+En segmentación médica aparecen dos familias especialmente importantes:
+
+1. pérdidas basadas en clasificación por vóxel;
+2. pérdidas basadas en superposición.
+
+# Entropía cruzada
+
+Para un problema multiclase, una opción natural es la **entropía cruzada**.
+
+Para un vóxel $i$ cuya clase verdadera es $y_i$:
+
+$$
+\mathcal{L}_{CE,i}
+=
+-\log p_{i,y_i}.
+$$
+
+La pérdida total se obtiene promediando sobre los vóxeles:
+
+$$
+\mathcal{L}_{CE}
+=
+-\frac{1}{N}
+\sum_{i=1}^{N}
+\log p_{i,y_i}.
+$$
+
+La entropía cruzada trata la segmentación como una tarea de clasificación repetida sobre cada posición espacial.
+
+Esta formulación es sencilla y general, pero puede presentar dificultades cuando las clases tienen tamaños muy diferentes.
+
+# Desbalance de clases
+
+Supongamos que queremos segmentar una estructura que ocupa solamente el $1\%$ del volumen.
+
+Entonces:
+
+$$
+99\%
+$$
+
+de los vóxeles corresponden al fondo.
+
+Si la función de pérdida asigna el mismo peso a todos los vóxeles, la contribución del fondo puede dominar el proceso de optimización.
+
+Esto es especialmente relevante en estructuras pequeñas como:
+
+- nervios ópticos;
+- quiasma óptico;
+- cócleas;
+- pequeñas lesiones;
+- vasos;
+- estructuras delgadas.
+
+El problema puede representarse esquemáticamente como:
+
+$$
+\boxed{
+\text{muchos vóxeles fáciles de fondo}
+}
+\gg
+\boxed{
+\text{pocos vóxeles de la estructura}
+}
+$$
+
+Un modelo puede reducir considerablemente la pérdida clasificando correctamente grandes regiones de fondo sin aprender adecuadamente la estructura de interés.
+
+# Dice como función de pérdida
+
+Una alternativa es construir una función de pérdida directamente a partir del coeficiente Dice.
+
+Para predicciones continuas $p_i$ y etiquetas binarias $g_i$:
+
+$$
+Dice_{\text{soft}}
+=
+\frac{
+2\sum_i p_i g_i+\epsilon
+}{
+\sum_i p_i+\sum_i g_i+\epsilon
+}.
+$$
+
+Podemos definir:
+
+$$
+\mathcal{L}_{Dice}
+=
+1-Dice_{\text{soft}}.
+$$
+
+El parámetro $\epsilon$ evita problemas numéricos cuando los denominadores son muy pequeños.
+
+A diferencia de una pérdida calculada independientemente para cada vóxel, Dice considera globalmente la superposición entre predicción y referencia.
+
+Esto hace que sea particularmente útil en presencia de desbalance de clases.
+
+::: {.callout-important title="Dice métrica vs Dice loss"}
+
+El coeficiente Dice utilizado como métrica se calcula habitualmente sobre máscaras discretas.
+
+La **Dice loss** se formula sobre predicciones continuas para que pueda utilizarse durante la optimización mediante descenso por gradiente.
+
+:::
+
+# Combinar Dice y entropía cruzada
+
+En la práctica es habitual combinar pérdidas con propiedades complementarias.
+
+Por ejemplo:
+
+$$
+\mathcal{L}
+=
+\lambda_{CE}\mathcal{L}_{CE}
++
+\lambda_{Dice}\mathcal{L}_{Dice}.
+$$
+
+Una elección simple es:
+
+$$
+\lambda_{CE}
+=
+\lambda_{Dice}
+=
+1.
+$$
+
+La interpretación conceptual es:
+
+- la entropía cruzada proporciona una señal de clasificación local para cada vóxel;
+- Dice favorece la superposición global de las estructuras.
+
+No existe una función de pérdida universalmente óptima.
+
+Su elección depende de:
+
+- número de clases;
+- tamaño de las estructuras;
+- frecuencia con que cada estructura está presente;
+- calidad de las etiquetas;
+- arquitectura;
+- estrategia de muestreo.
+
+# Cuando una estructura no está presente
+
+En problemas médicos multiclase puede ocurrir que una estructura determinada no esté presente en un patch o incluso en un estudio.
+
+Esto genera una situación importante para pérdidas basadas en Dice.
+
+Si:
+
+$$
+\sum_i g_i=0,
+$$
+
+la referencia no contiene ningún vóxel positivo para esa clase.
+
+La forma en que se trata este caso puede afectar de manera importante al entrenamiento y a la evaluación.
+
+Dependiendo de la implementación, puede:
+
+- ignorarse la clase para ese ejemplo;
+- aplicarse una convención específica;
+- utilizarse un término de suavizado;
+- combinarse con otra función de pérdida.
+
+Éste es un ejemplo de por qué la implementación concreta de una métrica o pérdida importa tanto como su definición matemática.
+
+# Segmentación 2D, 2.5D y 3D
+
+Las imágenes médicas son frecuentemente volumétricas.
+
+Por lo tanto, una decisión fundamental consiste en determinar cuánto contexto espacial recibe el modelo.
+
+## Modelos 2D
+
+Un modelo 2D procesa cada corte de manera independiente:
+
+$$
+X(:,:,k)
+\longrightarrow
+\hat Y(:,:,k).
+$$
+
+### Ventajas
+
+- menor consumo de memoria;
+- entrenamiento más rápido;
+- posibilidad de utilizar resoluciones espaciales mayores;
+- implementación relativamente simple;
+- batches más grandes.
+
+### Limitaciones
+
+El modelo no observa directamente la continuidad anatómica entre cortes.
+
+Dos regiones visualmente similares dentro de un corte pueden distinguirse mejor utilizando información de cortes vecinos.
+
+Además, al segmentar cada slice de forma independiente pueden aparecer inconsistencias entre cortes sucesivos.
+
+# Modelos 2.5D
+
+Una estrategia intermedia consiste en proporcionar varios cortes vecinos como canales de entrada.
+
+Por ejemplo:
+
+$$
+\left[
+X(:,:,k-1),
+X(:,:,k),
+X(:,:,k+1)
+\right]
+\longrightarrow
+\hat Y(:,:,k).
+$$
+
+El modelo continúa utilizando convoluciones 2D, pero recibe cierta información contextual en la dirección perpendicular al plano.
+
+Esta estrategia suele denominarse **2.5D**.
+
+Representa un compromiso entre:
+
+- costo computacional;
+- memoria;
+- contexto volumétrico.
+
+# Modelos 3D
+
+Un modelo 3D opera directamente sobre un volumen:
+
+$$
+X
+\in
+\mathbb{R}^{H\times W\times D}.
+$$
+
+Las convoluciones se realizan en las tres dimensiones espaciales.
+
+La principal ventaja es que el modelo puede aprender relaciones anatómicas volumétricas.
+
+Sin embargo, el costo computacional aumenta considerablemente.
+
+En términos muy simplificados:
+
+$$
+\text{2D}
+\rightarrow
+H\times W
+$$
+
+mientras que:
+
+$$
+\text{3D}
+\rightarrow
+H\times W\times D.
+$$
+
+El aumento en memoria puede ser muy grande, especialmente porque las representaciones intermedias contienen múltiples canales.
+
+Por esta razón, un modelo 3D rara vez procesa un volumen médico completo a resolución original.
+
+# El papel de la anisotropía
+
+Una imagen médica no necesariamente posee la misma resolución en todas las direcciones.
+
+Por ejemplo:
+
+$$
+\Delta x=1\text{ mm},
+\qquad
+\Delta y=1\text{ mm},
+\qquad
+\Delta z=5\text{ mm}.
+$$
+
+En ese caso, los vóxeles son anisotrópicos.
+
+La distancia física entre slices es mucho mayor que la resolución dentro del plano.
+
+Esto afecta la decisión entre 2D y 3D.
+
+Utilizar kernels 3D isotrópicos sobre datos fuertemente anisotrópicos puede no ser la estrategia más adecuada, ya que la información espacial no tiene la misma resolución en las tres direcciones.
+
+::: {.callout-note title="La dimensionalidad no se decide sólo por la arquitectura"}
+
+La elección entre 2D y 3D depende también del *spacing*, del tamaño de las estructuras, de la memoria disponible y de la cantidad de contexto necesaria para resolver la tarea.
+
+:::
+
+# Resampling y representación física
+
+Para entrenar modelos con múltiples estudios necesitamos que las imágenes tengan una representación espacial compatible.
+
+Dos tomografías pueden tener matrices similares pero diferentes valores de *spacing*.
+
+Por ejemplo:
+
+$$
+512\times512\times100
+$$
+
+no implica que ambos volúmenes cubran la misma extensión física.
+
+Una estrategia frecuente es realizar **resampling** hacia un spacing objetivo:
+
+$$
+(\Delta x,\Delta y,\Delta z)
+\longrightarrow
+(\Delta x',\Delta y',\Delta z').
+$$
+
+Esto ayuda a que una estructura de determinado tamaño físico sea representada por un número similar de vóxeles entre pacientes.
+
+Sin embargo, el resampling implica interpolación.
+
+## Interpolación de imágenes
+
+Para imágenes continuas pueden utilizarse métodos como:
+
+- interpolación lineal;
+- bilineal;
+- trilineal;
+- B-spline.
+
+## Interpolación de etiquetas
+
+Las máscaras contienen categorías discretas.
+
+Por lo tanto, normalmente se utiliza **nearest-neighbor interpolation** para evitar crear valores de clase artificiales.
+
+Por ejemplo, si tenemos:
+
+$$
+0=\text{fondo},
+\qquad
+1=\text{parótida},
+$$
+
+una interpolación lineal podría generar:
+
+$$
+0.37,
+$$
+
+que no corresponde a ninguna etiqueta anatómica válida.
+
+# Normalización de intensidad
+
+La escala de intensidad depende de la modalidad.
+
+## Tomografía computada
+
+En CT, los valores están relacionados con unidades Hounsfield.
+
+Esto permite utilizar estrategias relativamente reproducibles, como:
+
+- recorte a un rango de HU;
+- normalización posterior;
+- ventanas específicas según el problema.
+
+## Resonancia magnética
+
+En MRI no existe una escala de intensidad absoluta equivalente a HU.
+
+La intensidad puede cambiar entre:
+
+- pacientes;
+- scanners;
+- protocolos;
+- bobinas;
+- secuencias.
+
+Por lo tanto, suelen utilizarse estrategias como:
+
+- normalización por media y desviación estándar;
+- normalización dentro de una región corporal;
+- normalización basada en percentiles.
+
+Esto muestra que el preprocesamiento debe respetar la física y las características de la modalidad.
+
+# Entrenamiento por patches
+
+Los volúmenes 3D pueden ser demasiado grandes para procesarse completos en GPU.
+
+Una estrategia habitual consiste en extraer subvolúmenes o **patches**:
+
+$$
+X
+\longrightarrow
+\left\{
+P_1,P_2,\ldots,P_n
+\right\}.
+$$
+
+Por ejemplo, un volumen:
+
+$$
+512\times512\times300
+$$
+
+puede entrenarse utilizando regiones de:
+
+$$
+128\times128\times64.
+$$
+
+Esto reduce considerablemente el consumo de memoria.
+
+Sin embargo, introduce un nuevo problema:
+
+> **¿Qué patches debemos seleccionar?**
+
+# Muestreo de patches y estructuras pequeñas
+
+Si seleccionamos patches completamente al azar, muchos pueden contener exclusivamente fondo.
+
+Esto es ineficiente cuando las estructuras de interés son pequeñas.
+
+Podemos utilizar estrategias de muestreo que aumenten la probabilidad de seleccionar regiones que contienen alguna estructura.
+
+Por ejemplo:
+
+$$
+P(\text{patch con foreground})
+>
+P(\text{muestreo puramente uniforme}).
+$$
+
+Pero esto también requiere cuidado.
+
+Si casi todos los patches contienen una estructura centrada, el modelo puede aprender una distribución de entrenamiento poco representativa de la inferencia real.
+
+Por lo tanto, suele ser útil mantener una combinación de:
+
+- patches con *foreground*;
+- patches de fondo;
+- diferentes localizaciones anatómicas.
+
+# Tamaño del patch y contexto
+
+El tamaño del patch no es únicamente una decisión de memoria.
+
+También determina el contexto anatómico disponible para el modelo.
+
+Un patch pequeño puede contener suficientes detalles locales para identificar una frontera, pero carecer de información necesaria para determinar qué estructura está observando.
+
+Un patch grande proporciona más contexto, pero consume mayor cantidad de memoria.
+
+Existe por lo tanto un compromiso:
+
+$$
+\boxed{
+\text{resolución}
+\leftrightarrow
+\text{contexto}
+\leftrightarrow
+\text{memoria}
+}
+$$
+
+Esta relación tendrá particular importancia cuando estudiemos sistemas que configuran automáticamente el pipeline de segmentación.
+
+# Data augmentation en segmentación
+
+En segmentación, las transformaciones espaciales deben aplicarse de manera consistente a:
+
+$$
+\boxed{\text{imagen}}
+\qquad\text{y}\qquad
+\boxed{\text{máscara}}.
+$$
+
+Si rotamos la imagen pero no la máscara, destruimos la correspondencia entre entrada y referencia.
+
+Entre las transformaciones habituales pueden encontrarse:
+
+- rotaciones;
+- flips;
+- escalado;
+- deformaciones;
+- crops;
+- modificaciones de intensidad;
+- ruido;
+- cambios de contraste.
+
+Las transformaciones geométricas se aplican conjuntamente a imagen y máscara.
+
+Las transformaciones de intensidad se aplican solamente a la imagen.
+
+Podemos expresar esto como:
+
+$$
+T_{\text{espacial}}(X,Y)
+=
+(T(X),T(Y))
+$$
+
+mientras que:
+
+$$
+T_{\text{intensidad}}(X,Y)
+=
+(T(X),Y).
+$$
+
+# ¿Toda transformación válida matemáticamente es válida médicamente?
+
+No.
+
+Una transformación puede ser perfectamente válida desde el punto de vista de procesamiento de imágenes y, sin embargo, generar una muestra anatómicamente improbable.
+
+Por ejemplo, determinadas reflexiones pueden cambiar lateralidad.
+
+Esto puede ser irrelevante para algunas tareas, pero importante en otras.
+
+De manera similar, deformaciones excesivas pueden producir anatomías que no representan casos plausibles.
+
+::: {.callout-warning title="Augmentation y plausibilidad"}
+
+El objetivo de *data augmentation* no es producir la mayor variedad posible.
+
+El objetivo es generar variaciones que representen incertidumbres o transformaciones plausibles para el problema.
+
+:::
+
+# Separación de entrenamiento, validación y test
+
+En segmentación médica debemos evitar una forma particularmente común de *data leakage*.
+
+Supongamos que un paciente tiene 150 cortes.
+
+Si distribuimos aleatoriamente los slices entre entrenamiento y test, podemos terminar con:
+
+$$
+\text{slices del mismo paciente}
+\rightarrow
+\text{train y test}.
+$$
+
+Esto invalida la independencia entre ambos conjuntos.
+
+Los cortes vecinos pueden ser extremadamente similares.
+
+Por lo tanto, la separación debe realizarse normalmente **a nivel de paciente**:
+
+$$
+\boxed{
+\text{pacientes de train}
+\cap
+\text{pacientes de test}
+=
+\emptyset
+}
+$$
+
+La misma lógica se aplica a:
+
+- estudios longitudinales;
+- múltiples modalidades del mismo paciente;
+- adquisiciones repetidas;
+- diferentes fases de una misma adquisición.
+
+# Validación durante el desarrollo
+
+El conjunto de validación se utiliza para tomar decisiones como:
+
+- seleccionar hiperparámetros;
+- comparar funciones de pérdida;
+- determinar cuándo detener el entrenamiento;
+- seleccionar checkpoints;
+- evaluar estrategias de preprocesamiento.
+
+Por lo tanto, el conjunto de validación forma parte del proceso de desarrollo.
+
+El conjunto de test debe reservarse para una evaluación final.
+
+Si modificamos repetidamente el modelo observando su desempeño en test, el test deja de representar una evaluación independiente.
+
+# Inferencia sobre volúmenes completos
+
+Cuando el modelo se entrena con patches, durante la inferencia debemos reconstruir la segmentación del volumen completo.
+
+Una estrategia consiste en aplicar una ventana deslizante:
+
+$$
+\text{volumen}
+\rightarrow
+\text{patches superpuestos}
+\rightarrow
+\text{predicciones}
+\rightarrow
+\text{reconstrucción}.
+$$
+
+Utilizar solapamiento entre patches ayuda a reducir artefactos en las fronteras de cada región.
+
+En las zonas donde existen múltiples predicciones pueden combinarse probabilidades antes de generar la máscara final.
+
+Esta estrategia permite realizar inferencia sobre volúmenes mayores que los que cabrían simultáneamente en memoria.
+
+# Postprocesamiento
+
+La salida de una red no necesariamente constituye la segmentación final.
+
+En algunos problemas puede aplicarse postprocesamiento, por ejemplo:
+
+- eliminar componentes conectados pequeños;
+- conservar la componente principal;
+- rellenar huecos;
+- imponer restricciones anatómicas simples.
+
+Sin embargo, estas reglas deben validarse.
+
+Un postprocesamiento que funciona bien en la mayoría de los casos puede eliminar una estructura verdadera en un caso atípico.
+
+Por lo tanto:
+
+> **El postprocesamiento forma parte del modelo clínico completo y debe evaluarse junto con él.**
+
+# Arquitectura y pipeline no son lo mismo
+
+Hasta ahora hemos visto que un sistema de segmentación incluye muchas decisiones:
+
+$$
+\text{dataset}
+\rightarrow
+\text{preprocesamiento}
+\rightarrow
+\text{sampling}
+\rightarrow
+\text{arquitectura}
+\rightarrow
+\text{loss}
+\rightarrow
+\text{entrenamiento}
+\rightarrow
+\text{inferencia}
+\rightarrow
+\text{postprocesamiento}.
+$$
+
+Por lo tanto, cuando comparamos sistemas de segmentación no estamos comparando solamente redes neuronales.
+
+Estamos comparando **pipelines completos**.
+
+Esta observación será particularmente importante en la siguiente sección.
+
+# De decisiones manuales a sistemas auto-configurables
+
+Hasta aquí hemos presentado numerosas decisiones que deben tomarse antes de entrenar un modelo:
+
+- ¿2D o 3D?
+- ¿qué spacing utilizar?
+- ¿qué tamaño de patch?
+- ¿qué batch size?
+- ¿cómo normalizar?
+- ¿qué función de pérdida?
+- ¿cómo realizar el sampling?
+- ¿qué postprocesamiento utilizar?
+
+Tradicionalmente, muchas de estas decisiones se ajustan manualmente para cada problema.
+
+Pero podemos formular una pregunta diferente:
+
+> **¿Podemos construir un sistema que analice las características del dataset y configure automáticamente gran parte del pipeline?**
+
+Esta idea conduce a uno de los ejemplos más influyentes en segmentación médica: **nnU-Net**.
+
+Sin embargo, en esta unidad no nos interesa nnU-Net simplemente como una arquitectura o una variante de U-Net.
+
+Nos interesa como representante de un paradigma más amplio:
+
+# Dos paradigmas de segmentación: automática e interactiva
+
+El primer paradigma que analizaremos será la **segmentación automática**:
+
+$$
+X
+\xrightarrow{f_\theta}
+\hat Y.
+$$
+
+El objetivo es producir una segmentación directamente a partir de la imagen, con mínima intervención del usuario durante la inferencia.
+
+nnU-Net será nuestro ejemplo principal de este enfoque.
+
+Más adelante contrastaremos esta visión con un paradigma diferente:
+
+$$
+(X,P)
+\xrightarrow{f_\theta}
+\hat Y,
+$$
+
+donde $P$ representa información proporcionada por el experto.
+
+Esto nos llevará a la **segmentación interactiva** y a modelos como MedSAM.
+
+La comparación entre ambos enfoques no se reducirá a determinar cuál obtiene un Dice mayor.
+
+La pregunta será más fundamental:
+
+> **¿Queremos que el sistema reemplace el proceso de delineación o que colabore con el experto durante ese proceso?**
+
+# Dos paradigmas de segmentación: automática e interactiva
+
+Hasta aquí hemos formulado la segmentación como una función que transforma una imagen en una máscara:
+
+$$
+X
+\xrightarrow{f_\theta}
+\hat Y.
+$$
+
+Esta formulación supone que el modelo debe resolver el problema completamente a partir de la imagen.
+
+Sin embargo, no es la única posibilidad.
+
+También podemos formular la tarea como:
+
+$$
+(X,P)
+\xrightarrow{f_\theta}
+\hat Y,
+$$
+
+donde $P$ representa información adicional proporcionada por el usuario.
+
+Esa información puede consistir, por ejemplo, en:
+
+- uno o varios puntos;
+- una caja delimitadora;
+- una máscara aproximada;
+- una región de interés;
+- alguna otra forma de interacción.
+
+Estas dos formulaciones corresponden a dos paradigmas distintos:
+
+$$
+\boxed{
+\text{segmentación automática}
+}
+\qquad
+\text{vs}
+\qquad
+\boxed{
+\text{segmentación interactiva}
+}
+$$
+
+La diferencia entre ambos enfoques no es solamente técnica.
+
+Representan dos formas diferentes de pensar el rol de la inteligencia artificial dentro del flujo clínico.
+
+# Paradigma 1 — Segmentación automática
+
+En la segmentación automática, el objetivo es producir una máscara directamente a partir de la imagen:
+
+$$
+X
+\xrightarrow{f_\theta}
+\hat Y.
+$$
+
+Durante la inferencia, el sistema intenta resolver de forma autónoma:
+
+1. **qué estructuras están presentes**;
+2. **dónde se encuentran**;
+3. **cuáles son sus fronteras**.
+
+En un problema de múltiples órganos, el modelo debe realizar simultáneamente localización, reconocimiento y delineación.
+
+Por ejemplo:
+
+$$
+\text{CT}
+\longrightarrow
+\left\{
+\begin{array}{l}
+\text{médula espinal}\\
+\text{parótida izquierda}\\
+\text{parótida derecha}\\
+\text{mandíbula}\\
+\text{tronco encefálico}\\
+\vdots
+\end{array}
+\right.
+$$
+
+El usuario no necesita indicarle explícitamente al modelo dónde se encuentra cada estructura.
+
+## Objetivo del paradigma automático
+
+La aspiración es reducir al mínimo la intervención humana durante la generación inicial del contorno.
+
+Podemos representar un flujo típico como:
+
+$$
+\text{imagen}
+\rightarrow
+\text{segmentación automática}
+\rightarrow
+\text{revisión}
+\rightarrow
+\text{corrección si es necesaria}.
+$$
+
+En este contexto, el modelo funciona como un sistema de **auto-contouring**.
+
+::: {.callout-note title="Automático no significa necesariamente autónomo"}
+
+Que la segmentación inicial sea automática no implica que la salida deba aceptarse sin revisión.
+
+En un flujo clínico, la segmentación automática puede constituir un primer borrador que luego es evaluado por un especialista.
+
+:::
+
+# El problema oculto: no entrenamos solamente una red
+
+En la sección anterior vimos que un sistema de segmentación requiere numerosas decisiones:
+
+- normalización;
+- resampling;
+- spacing objetivo;
+- dimensionalidad 2D o 3D;
+- tamaño de patch;
+- batch size;
+- arquitectura;
+- función de pérdida;
+- estrategia de sampling;
+- augmentations;
+- estrategia de inferencia;
+- postprocesamiento.
+
+Esto significa que un buen resultado no depende únicamente de elegir una arquitectura adecuada.
+
+Podemos representar el sistema completo como:
+
+$$
+\boxed{
+\text{pipeline}
+}
+=
+\{
+\text{preprocesamiento},
+\text{modelo},
+\text{entrenamiento},
+\text{inferencia},
+\text{postprocesamiento}
+\}.
+$$
+
+Dos implementaciones basadas en una arquitectura similar pueden obtener resultados muy diferentes si el resto del pipeline está configurado de manera distinta.
+
+Esta observación es fundamental para comprender nnU-Net.
+
+# nnU-Net como ejemplo de segmentación automática
+
+**nnU-Net** es uno de los ejemplos más influyentes de segmentación médica automática.
+
+Su importancia no radica principalmente en haber introducido una arquitectura completamente nueva.
+
+La idea central es diferente:
+
+> **adaptar automáticamente el pipeline de segmentación a las propiedades del dataset.**
+
+Por esta razón, es más apropiado pensar nnU-Net como un **framework auto-configurable** que como una simple variante de U-Net.
+
+# ¿Qué problema intenta resolver nnU-Net?
+
+Supongamos que recibimos un nuevo dataset.
+
+Antes de entrenar debemos decidir:
+
+- ¿qué spacing utilizar?
+- ¿qué normalización aplicar?
+- ¿usar 2D o 3D?
+- ¿qué tamaño de patch?
+- ¿cuántos niveles debe tener la red?
+- ¿qué batch size es posible?
+- ¿cómo realizar el resampling?
+- ¿qué estrategia de inferencia utilizar?
+- ¿qué postprocesamiento aplicar?
+
+Una aproximación tradicional consiste en ajustar manualmente muchas de estas decisiones.
+
+nnU-Net parte de otra idea:
+
+$$
+\boxed{
+\text{características del dataset}
+}
+\longrightarrow
+\boxed{
+\text{configuración del pipeline}
+}
+$$
+
+Es decir, intenta derivar automáticamente gran parte de estas decisiones a partir de las propiedades de los datos.
+
+# El fingerprint del dataset
+
+Podemos pensar que nnU-Net comienza caracterizando el dataset.
+
+Entre las propiedades relevantes se encuentran:
+
+- dimensiones de las imágenes;
+- spacing;
+- anisotropía;
+- tamaño típico de los volúmenes;
+- distribución de intensidades;
+- tamaño de las estructuras;
+- número de clases.
+
+Esta caracterización puede representarse conceptualmente como un **dataset fingerprint**:
+
+$$
+D
+\longrightarrow
+F(D).
+$$
+
+A partir de ese fingerprint se determinan diferentes configuraciones del pipeline.
+
+En forma esquemática:
+
+```text
+Dataset
+   ↓
+Dataset fingerprint
+   ↓
+Reglas de configuración
+   ↓
+Preprocesamiento
+   ↓
+Configuración de red
+   ↓
+Entrenamiento
+   ↓
+Inferencia
+   ↓
+Postprocesamiento
+```
+
+# Automatización en dos niveles
+
+nnU-Net resulta particularmente interesante porque permite distinguir dos formas diferentes de automatización.
+
+## Automatización de la inferencia
+
+Una vez entrenado, el modelo recibe una imagen y produce una segmentación:
+
+$$
+X
+\xrightarrow{f_\theta}
+\hat Y.
+$$
+
+Ésta es la automatización más evidente.
+
+## Automatización del diseño del pipeline
+
+Pero existe otro nivel:
+
+$$
+D
+\longrightarrow
+\text{configuración}.
+$$
+
+El sistema intenta reducir la cantidad de decisiones manuales necesarias para construir el segmentador.
+
+Por lo tanto, podemos pensar:
+
+$$
+\boxed{
+\text{nnU-Net}
+=
+\text{segmentación automática}
++
+\text{pipeline auto-configurable}
+}
+$$
+
+Esta segunda idea explica gran parte de su impacto.
+
+# ¿Por qué es importante este enfoque?
+
+Antes de nnU-Net, era frecuente que los trabajos de segmentación introdujeran modificaciones arquitectónicas específicas y las compararan con implementaciones de referencia que no necesariamente estaban igualmente optimizadas.
+
+Esto generaba una dificultad metodológica:
+
+> ¿La mejora proviene realmente de la nueva arquitectura o de una mejor configuración del pipeline?
+
+nnU-Net mostró que una arquitectura relativamente convencional, correctamente adaptada al dataset y acompañada de un pipeline robusto, podía alcanzar resultados muy competitivos en una gran variedad de tareas.
+
+Esto conduce a una lección general:
+
+::: {.callout-important title="Lección metodológica"}
+
+En segmentación médica, una arquitectura novedosa no garantiza por sí sola un mejor sistema.
+
+La configuración del pipeline completo puede tener un impacto comparable o incluso mayor que una modificación arquitectónica aislada.
+
+:::
+
+# 2D, 3D y configuraciones adaptadas al dataset
+
+Una de las decisiones que un sistema auto-configurable debe resolver es cuánto contexto volumétrico utilizar.
+
+Dependiendo de las características del dataset pueden considerarse configuraciones:
+
+- 2D;
+- 3D a resolución completa;
+- 3D con diferentes escalas o resoluciones.
+
+La idea importante no es memorizar cada configuración específica, sino comprender el principio:
+
+$$
+\text{dataset}
+\rightarrow
+\text{restricciones de memoria y resolución}
+\rightarrow
+\text{configuración apropiada}.
+$$
+
+Por ejemplo, un volumen extremadamente anisotrópico puede favorecer inicialmente estrategias diferentes de aquellas utilizadas para un volumen casi isotrópico.
+
+# Una consecuencia conceptual
+
+nnU-Net cambia parcialmente la pregunta:
+
+En lugar de preguntar:
+
+> ¿Cuál es la mejor arquitectura para este problema?
+
+podemos preguntar:
+
+> **¿Cuál es la configuración de pipeline más adecuada para este dataset?**
+
+Esto desplaza parte del énfasis desde el diseño manual de arquitecturas hacia la **adaptación sistemática al problema**.
+
+# Limitaciones del paradigma completamente automático
+
+La segmentación automática tiene ventajas claras:
+
+- velocidad;
+- reproducibilidad;
+- escalabilidad;
+- posibilidad de procesar grandes cantidades de estudios;
+- mínima interacción durante inferencia.
+
+Pero también tiene limitaciones.
+
+## El modelo debe resolver localización y delineación
+
+Si la estructura es pequeña, poco visible o anatómicamente ambigua, el modelo debe identificarla sin ayuda externa.
+
+Un error puede ocurrir porque el modelo:
+
+- no encontró la estructura;
+- confundió otra región con ella;
+- encontró la estructura pero delineó mal su frontera.
+
+Estas causas son diferentes, aunque puedan producir una máscara final igualmente incorrecta.
+
+## Dependencia del dominio de entrenamiento
+
+Un modelo entrenado para una determinada tarea suele especializarse en:
+
+- una modalidad;
+- una región anatómica;
+- determinadas clases;
+- un conjunto de protocolos.
+
+Cuando cambia el dominio pueden aparecer problemas de generalización.
+
+Por ejemplo:
+
+$$
+\text{hospital A}
+\not\equiv
+\text{hospital B}.
+$$
+
+La variación puede incluir:
+
+- scanner;
+- reconstrucción;
+- protocolo;
+- contraste;
+- población;
+- práctica clínica.
+
+## Clases predefinidas
+
+Un segmentador automático convencional suele estar entrenado para un conjunto específico de clases.
+
+Si el modelo fue entrenado para:
+
+$$
+\{\text{hígado},\text{riñones},\text{bazo}\},
+$$
+
+no podemos asumir que pueda segmentar correctamente una estructura nueva simplemente porque aparece en la imagen.
+
+Esta especialización contrasta con otra filosofía de segmentación que analizaremos a continuación.
+
+# Paradigma 2 — Segmentación interactiva
+
+La segmentación interactiva modifica la formulación del problema.
+
+En lugar de:
+
+$$
+X
+\xrightarrow{f_\theta}
+\hat Y,
+$$
+
+utilizamos:
+
+$$
+(X,P)
+\xrightarrow{f_\theta}
+\hat Y.
+$$
+
+Aquí $P$ representa un **prompt** o una indicación proporcionada por el usuario.
+
+El prompt puede especificar dónde se encuentra aproximadamente la estructura que queremos segmentar.
+
+De esta forma, parte del problema deja de recaer exclusivamente sobre el modelo.
+
+# ¿Qué información puede aportar el usuario?
+
+Dependiendo del sistema, la interacción puede incluir:
+
+- un punto dentro de la estructura;
+- puntos positivos y negativos;
+- una caja delimitadora;
+- una máscara inicial;
+- una región aproximada;
+- otra forma de indicación espacial.
+
+Por ejemplo:
+
+$$
+\text{imagen}
++
+\text{bounding box}
+\longrightarrow
+\text{segmentación}.
+$$
+
+En este caso, el usuario ya está resolviendo parcialmente la tarea de localización.
+
+El modelo puede concentrarse más específicamente en delinear la estructura dentro de la región indicada.
+
+# Cambia la distribución del trabajo
+
+En segmentación automática:
+
+$$
+\boxed{
+\text{modelo}
+}
+=
+\text{localizar}
++
+\text{identificar}
++
+\text{segmentar}.
+$$
+
+En segmentación interactiva:
+
+$$
+\boxed{
+\text{usuario}
+}
+\rightarrow
+\text{aporta contexto/localización}
+$$
+
+y
+
+$$
+\boxed{
+\text{modelo}
+}
+\rightarrow
+\text{refina la segmentación}.
+$$
+
+Esto no constituye simplemente una pérdida de automatización.
+
+Puede ser una estrategia deliberada para incorporar conocimiento experto en el proceso.
+
+# De SAM a la idea de segmentación guiada por prompts
+
+Un ejemplo importante de este paradigma es **Segment Anything Model (SAM)**.
+
+La idea general consiste en utilizar un modelo capaz de generar una segmentación condicionada por un prompt espacial.
+
+De forma esquemática:
+
+```text
+Imagen ───────────────┐
+                      ├──→ Modelo ───→ Máscara
+Prompt ───────────────┘
+```
+
+El prompt permite especificar qué región de la imagen interesa segmentar.
+
+Conceptualmente, esto cambia la tarea:
+
+$$
+\text{segmentar todas las estructuras conocidas}
+$$
+
+por:
+
+$$
+\text{segmentar la estructura indicada}.
+$$
+
+# ¿Por qué SAM no se traslada trivialmente a imágenes médicas?
+
+Los modelos desarrollados para imágenes naturales no necesariamente funcionan de manera óptima sobre imágenes médicas.
+
+Existen diferencias importantes:
+
+- distribución de intensidades;
+- contraste;
+- dimensionalidad;
+- anatomía;
+- estructuras de pequeño tamaño;
+- modalidades muy diferentes;
+- fronteras poco definidas.
+
+Una imagen médica puede contener información visual muy distinta de aquella presente en datasets de imágenes naturales.
+
+Por ello surgieron adaptaciones orientadas al dominio médico.
+
+# MedSAM
+
+**MedSAM** puede entenderse como una adaptación del paradigma de segmentación guiada por prompts al contexto de imágenes médicas.
+
+La formulación conceptual sigue siendo:
+
+$$
+(X,P)
+\xrightarrow{f_\theta}
+\hat Y.
+$$
+
+El usuario proporciona información espacial sobre la estructura de interés y el modelo produce la máscara correspondiente.
+
+Aquí el objetivo no es necesariamente construir un segmentador especializado para una lista fija de órganos.
+
+La aspiración es disponer de una herramienta más general que pueda responder a indicaciones del usuario sobre diferentes estructuras.
+
+# Un cambio de pregunta
+
+En segmentación automática preguntamos:
+
+> ¿Puede el modelo encontrar y segmentar automáticamente todas las estructuras que nos interesan?
+
+En segmentación interactiva preguntamos:
+
+> **Si el experto le indica qué estructura quiere segmentar, ¿puede el modelo realizar rápidamente la delineación?**
+
+Estas dos preguntas conducen a sistemas con comportamientos diferentes.
+
+# Segmentación automática vs interactiva
+
+Podemos comparar ambos paradigmas:
+
+| Característica | Automática | Interactiva |
+|---|---|---|
+| Entrada | Imagen | Imagen + prompt |
+| Localización inicial | Modelo | Usuario + modelo |
+| Intervención en inferencia | Mínima | Explícita |
+| Clases | Habitualmente predefinidas | Potencialmente más flexibles |
+| Escalabilidad masiva | Muy alta | Depende de interacción |
+| Rol del experto | Revisión posterior | Participación durante inferencia |
+| Workflow | *machine-first* | *human-in-the-loop* |
+| Ejemplo | nnU-Net | MedSAM |
+
+Esta tabla no debe interpretarse como una lista de ventajas y desventajas absolutas.
+
+Cada paradigma resuelve un problema diferente.
+
+# Dos flujos de trabajo diferentes
+
+## Flujo automático
+
+```text
+CT
+ ↓
+modelo
+ ↓
+OAR 1
+OAR 2
+OAR 3
+...
+ ↓
+revisión clínica
+```
+
+La ventaja es que muchas estructuras pueden generarse simultáneamente sin interacción.
+
+## Flujo interactivo
+
+```text
+CT
+ ↓
+experto selecciona una estructura
+ ↓
+prompt
+ ↓
+modelo
+ ↓
+segmentación
+ ↓
+experto acepta o corrige
+```
+
+Aquí el experto participa desde el comienzo.
+
+# ¿Cuál paradigma es mejor?
+
+La pregunta no tiene una respuesta universal.
+
+Depende del objetivo.
+
+Si necesitamos segmentar automáticamente veinte estructuras conocidas en cientos de estudios:
+
+$$
+\text{segmentación automática}
+$$
+
+puede ser especialmente atractiva.
+
+Si necesitamos segmentar estructuras variables, poco frecuentes o definidas durante la interacción:
+
+$$
+\text{segmentación interactiva}
+$$
+
+puede ofrecer mayor flexibilidad.
+
+La comparación correcta no es únicamente:
+
+$$
+Dice_{\text{automático}}
+\quad \text{vs} \quad
+Dice_{\text{interactivo}}.
+$$
+
+También debemos considerar:
+
+- tiempo total del usuario;
+- cantidad de correcciones;
+- facilidad de interacción;
+- errores críticos;
+- generalización;
+- curva de aprendizaje;
+- integración con el software clínico.
+
+# Automatización completa vs colaboración humano–IA
+
+Este contraste introduce una cuestión más amplia.
+
+En inteligencia artificial aplicada a medicina existen, al menos, dos visiones:
+
+## Automatización
+
+El sistema intenta reemplazar una tarea humana específica:
+
+$$
+\text{tarea manual}
+\rightarrow
+\text{modelo automático}.
+$$
+
+## Asistencia
+
+El sistema modifica la forma en que el experto realiza la tarea:
+
+$$
+\text{experto}
++
+\text{modelo}
+\rightarrow
+\text{tarea asistida}.
+$$
+
+La segunda formulación suele denominarse **human-in-the-loop**.
+
+En este paradigma, la intervención humana no es un fallo del sistema.
+
+Es parte deliberada de su diseño.
+
+::: {.callout-important title="Una distinción fundamental"}
+
+Un sistema interactivo no es simplemente un sistema automático incompleto.
+
+Puede estar diseñado explícitamente para aprovechar capacidades complementarias:
+
+- el experto aporta conocimiento, intención y contexto;
+- el modelo aporta velocidad y capacidad de delineación.
+
+:::
+
+# ¿Dónde conviene colocar al experto?
+
+Podemos pensar diferentes momentos de intervención humana.
+
+## Antes de la predicción
+
+El experto proporciona un prompt:
+
+$$
+P
+\rightarrow
+f_\theta(X,P).
+$$
+
+## Después de la predicción
+
+El modelo produce automáticamente una máscara:
+
+$$
+f_\theta(X)
+\rightarrow
+\hat Y
+\rightarrow
+\text{revisión}.
+$$
+
+## Durante un proceso iterativo
+
+El usuario puede corregir sucesivamente el resultado:
+
+$$
+P_1
+\rightarrow
+\hat Y_1
+\rightarrow
+P_2
+\rightarrow
+\hat Y_2
+\rightarrow
+\cdots
+$$
+
+Esta última formulación convierte la segmentación en un proceso colaborativo.
+
+# El tiempo total importa más que el tiempo de inferencia
+
+Un modelo puede producir una segmentación en pocos segundos.
+
+Pero si la máscara requiere una corrección manual prolongada, el beneficio clínico puede ser limitado.
+
+Por lo tanto, deberíamos distinguir:
+
+$$
+\text{tiempo de inferencia}
+$$
+
+de:
+
+$$
+\text{tiempo total hasta una segmentación aceptable}.
+$$
+
+Este segundo tiempo incluye:
+
+- generación;
+- inspección;
+- corrección;
+- confirmación.
+
+En un sistema interactivo también debemos incluir el tiempo necesario para generar el prompt.
+
+Por ello, la eficiencia clínica debe evaluarse sobre el **workflow completo**.
+
+# El error también cambia de significado
+
+En un sistema automático, un error puede permanecer oculto hasta la etapa de revisión.
+
+En un sistema interactivo, el usuario puede advertir inmediatamente que el resultado no corresponde a su intención y modificar el prompt.
+
+Esto puede cambiar la forma en que analizamos seguridad y usabilidad.
+
+Por ejemplo, un modelo interactivo podría obtener una métrica geométrica ligeramente inferior en promedio, pero permitir correcciones mucho más rápidas.
+
+En ese caso, evaluar solamente Dice podría conducir a una conclusión incorrecta sobre su utilidad.
+
+# Generalización y modelos guiados por prompts
+
+Los modelos interactivos introducen otra posibilidad interesante.
+
+En lugar de entrenar un modelo independiente para cada estructura, podemos intentar entrenar sistemas capaces de segmentar distintas regiones condicionados por la información proporcionada por el usuario.
+
+Conceptualmente:
+
+$$
+\text{modelo específico por clase}
+$$
+
+frente a:
+
+$$
+\text{modelo general condicionado por prompt}.
+$$
+
+Esta idea está relacionada con el desarrollo de **modelos fundacionales**.
+
+No implica que un modelo pueda segmentar correctamente cualquier estructura en cualquier modalidad sin restricciones.
+
+Pero sí cambia el objetivo de diseño:
+
+> pasar de modelos altamente especializados a modelos potencialmente reutilizables en múltiples tareas.
+
+# ¿Desaparecen entonces los modelos automáticos especializados?
+
+No.
+
+Los dos paradigmas pueden coexistir.
+
+Un posible sistema clínico podría utilizar:
+
+1. un segmentador automático para estructuras frecuentes;
+2. un modelo interactivo para estructuras adicionales o para correcciones.
+
+Por ejemplo:
+
+```text
+                ┌──→ segmentación automática de OARs conocidos
+Imagen ─────────┤
+                └──→ segmentación interactiva de estructuras adicionales
+```
+
+Esto muestra que la distinción entre paradigmas no implica que debamos elegir necesariamente uno y descartar el otro.
+
+Pueden ocupar diferentes lugares dentro de un mismo flujo de trabajo.
+
+# La evaluación también debe depender del paradigma
+
+Para un sistema automático puede interesarnos:
+
+- Dice;
+- $HD_{95}$;
+- tasa de fallos;
+- necesidad de corrección;
+- tiempo de edición;
+- robustez multicéntrica.
+
+Para un sistema interactivo debemos agregar preguntas como:
+
+- ¿qué tipo de prompt se necesita?
+- ¿cuántas interacciones son necesarias?
+- ¿qué sensibilidad tiene el resultado a la posición del prompt?
+- ¿cuánto tiempo tarda el usuario en obtener una máscara aceptable?
+- ¿puede corregirse fácilmente un error?
+
+Por lo tanto:
+
+$$
+\boxed{
+\text{paradigma diferente}
+\Rightarrow
+\text{protocolo de evaluación diferente}
+}
+$$
+
+# Del modelo al usuario
+
+Hasta ahora hemos discutido principalmente el comportamiento del sistema.
+
+Pero en un entorno clínico existe otra fuente de variabilidad:
+
+$$
+\boxed{\text{el observador humano}}.
+$$
+
+Dos especialistas pueden producir segmentaciones diferentes para una misma estructura.
+
+Además, una misma persona puede no reproducir exactamente su propio contorno si repite el proceso en otro momento.
+
+Esto plantea un problema fundamental.
+
+Hasta aquí hemos utilizado una máscara de referencia:
+
+$$
+G.
+$$
+
+Pero:
+
+> **¿qué significa realmente considerar a una segmentación humana como ground truth?**
+
+# El problema del ground truth
+
+Hasta este punto hemos evaluado una segmentación comparando una predicción:
+
+$$
+P
+$$
+
+con una referencia:
+
+$$
+G.
+$$
+
+Esta formulación parece natural:
+
+$$
+P
+\quad \text{vs} \quad
+G.
+$$
+
+Sin embargo, en segmentación médica aparece una dificultad fundamental:
+
+> **La máscara de referencia no siempre representa una verdad física exacta y única.**
+
+En numerosos problemas anatómicos, la referencia es una segmentación realizada por uno o más especialistas.
+
+Por ejemplo:
+
+$$
+G_A,\quad G_B,\quad G_C
+$$
+
+pueden representar los contornos realizados por tres observadores diferentes.
+
+Si estos contornos no coinciden exactamente, entonces la pregunta:
+
+> “¿Cuál es el contorno correcto?”
+
+deja de tener una respuesta trivial.
+
+# ¿Por qué dos expertos pueden segmentar diferente?
+
+Las diferencias pueden aparecer por múltiples razones.
+
+## Fronteras anatómicas ambiguas
+
+Algunas estructuras no presentan un límite claramente visible.
+
+El observador debe inferir la frontera utilizando:
+
+- contraste local;
+- conocimiento anatómico;
+- cortes vecinos;
+- otras modalidades;
+- experiencia clínica.
+
+## Resolución limitada
+
+Una frontera puede encontrarse dentro de un vóxel.
+
+Esto introduce un límite físico a la precisión con la que puede determinarse el contorno.
+
+## Efecto de volumen parcial
+
+Un vóxel puede contener una mezcla de tejidos.
+
+Por lo tanto, la decisión:
+
+$$
+\text{estructura}
+\quad \text{vs} \quad
+\text{fondo}
+$$
+
+puede depender del criterio utilizado por el observador.
+
+## Ventana y nivel de visualización
+
+En CT, modificar *window* y *level* puede cambiar la percepción de determinadas fronteras.
+
+## Guías de contorneo
+
+En radioterapia, la segmentación no depende únicamente de lo que se observa en la imagen.
+
+También puede depender de:
+
+- protocolos;
+- consensos;
+- atlas;
+- guías clínicas;
+- definiciones del volumen objetivo.
+
+## Experiencia del observador
+
+La interpretación puede variar según:
+
+- entrenamiento;
+- especialidad;
+- experiencia;
+- conocimiento del caso.
+
+Por lo tanto, incluso con la misma imagen, diferentes observadores pueden producir máscaras distintas.
+
+# Variabilidad inter-observador
+
+La **variabilidad inter-observador** describe las diferencias entre segmentaciones producidas por diferentes personas.
+
+Podemos representarla como:
+
+$$
+G_A
+\neq
+G_B.
+$$
+
+Una forma simple de cuantificarla consiste en calcular las mismas métricas utilizadas para comparar un modelo con una referencia:
+
+$$
+DSC(G_A,G_B),
+$$
+
+$$
+HD_{95}(G_A,G_B).
+$$
+
+Esto proporciona un contexto fundamental para interpretar el desempeño de un modelo.
+
+Supongamos que:
+
+$$
+DSC(P,G_A)=0.88.
+$$
+
+Ese número aislado es difícil de interpretar.
+
+Pero si:
+
+$$
+DSC(G_A,G_B)=0.86,
+$$
+
+entonces el desempeño del modelo se encuentra dentro de un rango de variabilidad similar al observado entre expertos.
+
+Esto no implica automáticamente que el modelo sea clínicamente equivalente a un experto.
+
+Pero cambia la interpretación del resultado.
+
+# Variabilidad intra-observador
+
+La **variabilidad intra-observador** aparece cuando una misma persona repite la segmentación en diferentes momentos.
+
+Podemos representar:
+
+$$
+G_A^{(1)}
+\neq
+G_A^{(2)}.
+$$
+
+Esta variabilidad puede deberse a:
+
+- ambigüedad de la frontera;
+- fatiga;
+- atención;
+- interpretación contextual;
+- pequeñas diferencias en el criterio aplicado.
+
+La existencia de variabilidad intra-observador muestra que incluso para un mismo especialista la segmentación no necesariamente es perfectamente reproducible.
+
+# Una consecuencia conceptual
+
+Si:
+
+$$
+G_A^{(1)}
+\neq
+G_A^{(2)},
+$$
+
+entonces resulta difícil sostener que:
+
+$$
+G_A^{(1)}
+$$
+
+sea una representación absolutamente exacta de la anatomía.
+
+Esto no invalida las máscaras de referencia.
+
+Pero obliga a interpretarlas correctamente:
+
+> **Una referencia clínica es una aproximación operacional construida mediante criterios humanos, no necesariamente una verdad absoluta.**
+
+# ¿Qué significa entonces ground truth?
+
+En aprendizaje automático utilizamos habitualmente el término *ground truth* para referirnos a la etiqueta contra la cual entrenamos o evaluamos.
+
+En imágenes médicas sería más prudente interpretar muchas de estas etiquetas como:
+
+$$
+\boxed{
+\text{referencia experta}
+}
+$$
+
+en lugar de asumir:
+
+$$
+\boxed{
+\text{verdad anatómica exacta}
+}
+$$
+
+Esta distinción es especialmente importante cuando las fronteras presentan incertidumbre.
+
+::: {.callout-important title="Ground truth no siempre significa verdad absoluta"}
+
+Una máscara de referencia puede ser la mejor aproximación disponible para entrenar y evaluar un modelo sin representar una frontera anatómica perfectamente definida.
+
+:::
+
+# ¿Cómo construir una referencia?
+
+Existen diferentes estrategias.
+
+## Un único observador
+
+La alternativa más simple consiste en utilizar el contorno de un especialista.
+
+Ventajas:
+
+- bajo costo;
+- fácil implementación.
+
+Limitaciones:
+
+- la evaluación queda condicionada al criterio de esa persona;
+- no representa explícitamente la variabilidad entre expertos.
+
+## Consenso entre expertos
+
+Dos o más especialistas pueden discutir las discrepancias y producir un contorno consensuado.
+
+Conceptualmente:
+
+$$
+G_A,G_B,G_C
+\longrightarrow
+G_{\text{consenso}}.
+$$
+
+El consenso puede proporcionar una referencia más robusta, aunque requiere mayor tiempo y recursos.
+
+## Adjudicación
+
+Un observador adicional puede resolver discrepancias entre contornos.
+
+Por ejemplo:
+
+$$
+G_A,G_B
+\longrightarrow
+\text{revisión por experto senior}
+\longrightarrow
+G_{\text{adjudicado}}.
+$$
+
+## Métodos de fusión
+
+También existen métodos estadísticos que intentan estimar una referencia a partir de múltiples observadores.
+
+Un ejemplo conocido es **STAPLE** (*Simultaneous Truth And Performance Level Estimation*).
+
+No desarrollaremos aquí su formulación matemática, pero la idea general es combinar múltiples segmentaciones teniendo en cuenta que distintos observadores pueden tener diferentes niveles de sensibilidad y especificidad.
+
+# Incertidumbre en las fronteras
+
+La variabilidad entre observadores puede interpretarse también como una forma de incertidumbre.
+
+Supongamos que múltiples observadores coinciden completamente en la región central de una estructura, pero discrepan en los bordes.
+
+Podemos pensar entonces en una región:
+
+$$
+\text{alta confianza}
+$$
+
+y otra:
+
+$$
+\text{alta incertidumbre}.
+$$
+
+Esto sugiere que una máscara binaria:
+
+$$
+Y\in\{0,1\}
+$$
+
+puede ocultar información importante.
+
+En determinados contextos podría resultar útil representar la probabilidad o frecuencia con que diferentes observadores incluyen cada vóxel:
+
+$$
+q_i
+=
+\frac{
+\text{número de observadores que incluyen el vóxel }i
+}{
+\text{número total de observadores}
+}.
+$$
+
+Entonces:
+
+$$
+0\leq q_i\leq1.
+$$
+
+Esta representación permite visualizar regiones de acuerdo y desacuerdo.
+
+# El modelo puede aprender el criterio del observador
+
+Existe otra consecuencia importante.
+
+Si entrenamos un modelo exclusivamente con las segmentaciones de un observador:
+
+$$
+G_A,
+$$
+
+el modelo no aprende necesariamente una definición universal de la estructura.
+
+Puede aprender, en parte, **el estilo de contorneo de ese observador**.
+
+Esto puede incluir:
+
+- bordes sistemáticamente más amplios;
+- inclusión o exclusión de determinadas regiones;
+- aplicación particular de una guía clínica.
+
+Por lo tanto:
+
+$$
+\text{modelo entrenado con }G_A
+$$
+
+puede aproximarse especialmente bien a:
+
+$$
+\text{criterio de }A.
+$$
+
+Esto es relevante cuando evaluamos el modelo sobre segmentaciones producidas por otros especialistas o instituciones.
+
+# Variabilidad observador y métricas
+
+La existencia de variabilidad modifica la interpretación de Dice y otras métricas.
+
+Supongamos:
+
+$$
+DSC(P,G_A)=0.87,
+$$
+
+$$
+DSC(P,G_B)=0.82.
+$$
+
+No necesariamente significa que el modelo sea inconsistente.
+
+Podría significar que:
+
+$$
+G_A
+$$
+
+y
+
+$$
+G_B
+$$
+
+también difieren entre sí.
+
+Por lo tanto, una evaluación robusta debería considerar, cuando sea posible:
+
+- múltiples observadores;
+- variabilidad humana;
+- consenso;
+- criterios clínicos.
+
+# De la validación técnica a la validación clínica
+
+Una vez entrenado un modelo podemos medir su desempeño geométrico.
+
+Pero esto representa solamente una parte de la evaluación.
+
+Podemos distinguir tres niveles:
+
+$$
+\boxed{
+\text{validación técnica}
+}
+\rightarrow
+\boxed{
+\text{validación clínica}
+}
+\rightarrow
+\boxed{
+\text{impacto clínico y operativo}
+}
+$$
+
+Estos niveles responden preguntas diferentes.
+
+# Validación técnica
+
+La validación técnica pregunta:
+
+> **¿Qué tan similares son las segmentaciones del modelo y las referencias?**
+
+Puede incluir:
+
+- Dice;
+- IoU;
+- $HD_{95}$;
+- distancias de superficie;
+- volumen;
+- sensibilidad;
+- especificidad.
+
+Estas métricas permiten comparar algoritmos de manera reproducible.
+
+Pero no responden directamente si la segmentación es clínicamente aceptable.
+
+# Validación clínica
+
+La validación clínica formula otra pregunta:
+
+> **¿Puede esta segmentación utilizarse de manera segura y útil dentro del proceso clínico?**
+
+La respuesta puede requerir evaluación por especialistas.
+
+Por ejemplo, una segmentación podría clasificarse como:
+
+- aceptable sin cambios;
+- requiere correcciones menores;
+- requiere correcciones importantes;
+- no utilizable.
+
+Esta evaluación incorpora información que puede no estar reflejada completamente por una métrica geométrica.
+
+# Correcciones necesarias
+
+Una forma pragmática de evaluar un sistema consiste en medir cuánto trabajo humano requiere su salida.
+
+Podemos distinguir:
+
+$$
+\text{segmentación automática}
+\rightarrow
+\text{edición}
+\rightarrow
+\text{segmentación aprobada}.
+$$
+
+Entonces podemos medir:
+
+- tiempo de edición;
+- cantidad de modificaciones;
+- porcentaje de estructuras aceptadas sin cambios.
+
+Estas medidas pueden ser más cercanas al objetivo clínico real que una diferencia pequeña en Dice.
+
+# Tiempo total del workflow
+
+Supongamos dos modelos.
+
+Modelo A:
+
+$$
+DSC=0.91
+$$
+
+y requiere:
+
+$$
+5\text{ minutos}
+$$
+
+de corrección.
+
+Modelo B:
+
+$$
+DSC=0.89
+$$
+
+pero requiere:
+
+$$
+1\text{ minuto}
+$$
+
+de corrección.
+
+No es evidente que el modelo A sea preferible.
+
+Si el objetivo del sistema es reducir el tiempo de contorneo, entonces:
+
+$$
+\text{tiempo hasta una segmentación clínicamente aceptable}
+$$
+
+puede ser una métrica más relevante que el Dice aislado.
+
+# Aceptabilidad clínica y error crítico
+
+No todos los errores tienen la misma importancia.
+
+Un pequeño error en una región irrelevante puede ser tolerable.
+
+Un error similar cerca de una estructura crítica puede ser inaceptable.
+
+Por lo tanto, además del error promedio, puede ser necesario analizar:
+
+- localización del error;
+- tipo de estructura;
+- consecuencias potenciales;
+- frecuencia de fallos severos.
+
+Esto introduce el concepto de **error crítico**.
+
+Un modelo con muy buen desempeño promedio puede ser clínicamente problemático si ocasionalmente produce errores graves y difíciles de detectar.
+
+# El promedio puede ocultar fallos
+
+Supongamos que un modelo funciona muy bien en 99 pacientes y falla completamente en uno.
+
+La métrica promedio puede seguir siendo excelente.
+
+Por ejemplo:
+
+$$
+\overline{DSC}=0.90.
+$$
+
+Pero desde el punto de vista clínico necesitamos saber:
+
+> **¿Qué ocurre en los peores casos?**
+
+Por lo tanto, además de promedios deberíamos analizar:
+
+- distribución;
+- percentiles;
+- outliers;
+- casos de fallo;
+- causas de fallo.
+
+::: {.callout-warning title="No evaluar solamente el caso promedio"}
+
+La seguridad clínica depende de comprender cuándo y por qué falla el sistema, no únicamente de su desempeño medio.
+
+:::
+
+# Impacto dosimétrico
+
+En radioterapia aparece una oportunidad especialmente importante para conectar geometría con clínica.
+
+Una discrepancia entre dos contornos puede modificar:
+
+- volumen del OAR;
+- dosis media;
+- dosis máxima;
+- métricas dosis-volumen;
+- restricciones de optimización.
+
+Por lo tanto, además de comparar:
+
+$$
+P
+\quad \text{vs} \quad
+G,
+$$
+
+podemos analizar el efecto sobre cantidades dosimétricas:
+
+$$
+D(P)
+\quad \text{vs} \quad
+D(G).
+$$
+
+Por ejemplo:
+
+$$
+\Delta D_{\text{mean}},
+$$
+
+$$
+\Delta D_{\text{max}},
+$$
+
+o diferencias en puntos específicos del DVH.
+
+Esto permite responder una pregunta clínicamente más directa:
+
+> **¿La discrepancia geométrica modifica una decisión dosimétrica relevante?**
+
+# Error geométrico y gradiente de dosis
+
+El impacto de un error de contorno depende del campo de dosis.
+
+Consideremos un desplazamiento de:
+
+$$
+2\text{ mm}.
+$$
+
+Si ocurre en una región donde:
+
+$$
+\nabla D\approx0,
+$$
+
+el impacto dosimétrico puede ser pequeño.
+
+Pero si ocurre en una región con alto gradiente:
+
+$$
+|\nabla D|\gg0,
+$$
+
+el mismo desplazamiento puede tener consecuencias importantes.
+
+Por lo tanto:
+
+$$
+\boxed{
+\text{mismo error geométrico}
+\not\Rightarrow
+\text{mismo error dosimétrico}
+}
+$$
+
+Ésta es una razón adicional para no interpretar las métricas geométricas de manera aislada.
+
+# Validación interna y externa
+
+Otro aspecto fundamental es dónde se realiza la evaluación.
+
+## Validación interna
+
+El modelo se evalúa utilizando datos provenientes de una distribución similar a aquella utilizada para su desarrollo.
+
+Por ejemplo:
+
+- mismo hospital;
+- mismo scanner;
+- protocolos similares;
+- misma población.
+
+Esta evaluación es necesaria, pero no suficiente para demostrar generalización.
+
+## Validación externa
+
+La validación externa utiliza datos provenientes de un entorno independiente.
+
+Puede cambiar:
+
+- hospital;
+- fabricante;
+- scanner;
+- protocolo;
+- población;
+- observadores.
+
+Conceptualmente:
+
+$$
+\text{desarrollo en centro A}
+\longrightarrow
+\text{evaluación en centro B}.
+$$
+
+La validación externa permite estudiar robustez frente a *domain shift*.
+
+# ¿Por qué un modelo puede fallar en otro centro?
+
+Incluso si la anatomía es la misma, la distribución de las imágenes puede cambiar.
+
+Por ejemplo:
+
+$$
+P_{\text{train}}(X)
+\neq
+P_{\text{deploy}}(X).
+$$
+
+Esto puede deberse a:
+
+- resolución;
+- kernel de reconstrucción;
+- ruido;
+- protocolos;
+- contraste;
+- scanner;
+- características demográficas.
+
+Además puede cambiar la propia referencia:
+
+$$
+P_{\text{train}}(Y|X)
+\neq
+P_{\text{deploy}}(Y|X),
+$$
+
+si existen diferencias en criterios de contorneo.
+
+Por lo tanto, el *domain shift* puede afectar tanto la imagen como las etiquetas.
+
+# Validación multicéntrica
+
+Una estrategia especialmente valiosa consiste en evaluar el modelo en múltiples centros.
+
+Esto permite estudiar:
+
+- heterogeneidad;
+- robustez;
+- sensibilidad a protocolos;
+- variabilidad entre observadores.
+
+Un buen desempeño multicéntrico ofrece una evidencia más fuerte de generalización que una evaluación realizada exclusivamente sobre datos internos.
+
+Sin embargo, incluso una validación multicéntrica no garantiza automáticamente que el sistema funcione correctamente en cualquier entorno futuro.
+
+# ¿Cuándo deja de ser suficiente un benchmark?
+
+En investigación es común comparar modelos mediante una tabla:
+
+| Modelo | Dice | $HD_{95}$ |
+|---|---:|---:|
+| A | 0.88 | 4.2 mm |
+| B | 0.90 | 3.9 mm |
+| C | 0.91 | 3.8 mm |
+
+Estas comparaciones son útiles.
+
+Pero una diferencia de:
+
+$$
+0.01
+$$
+
+en Dice no necesariamente representa una mejora clínicamente relevante.
+
+Debemos preguntar:
+
+- ¿es estadísticamente robusta?
+- ¿es consistente entre estructuras?
+- ¿reduce errores graves?
+- ¿reduce tiempo de edición?
+- ¿es perceptible por el usuario?
+- ¿modifica decisiones clínicas?
+
+Por lo tanto:
+
+> **Mejor desempeño en benchmark no implica automáticamente mayor utilidad clínica.**
+
+# Comparación con el desempeño humano
+
+Un objetivo frecuente es afirmar que un modelo alcanza desempeño “humano”.
+
+Pero esta expresión requiere cuidado.
+
+¿Contra qué humano?
+
+Podemos tener:
+
+$$
+G_A,\quad G_B,\quad G_C
+$$
+
+con diferentes niveles de experiencia y distintos estilos de contorneo.
+
+Una comparación más informativa podría estudiar:
+
+$$
+\text{modelo vs observadores}
+$$
+
+junto con:
+
+$$
+\text{observadores vs observadores}.
+$$
+
+Esto permite colocar el desempeño del modelo dentro de una distribución de variabilidad humana.
+
+# Estudios de lectura
+
+Una estrategia de validación clínica puede consistir en pedir a especialistas que evalúen contornos sin conocer su origen.
+
+Por ejemplo:
+
+$$
+\text{contorno manual}
+\quad \text{vs} \quad
+\text{contorno IA}.
+$$
+
+Los observadores pueden evaluar:
+
+- aceptabilidad;
+- calidad;
+- necesidad de edición;
+- preferencia;
+- confianza.
+
+Este tipo de estudio permite analizar aspectos que no se capturan completamente mediante métricas automáticas.
+
+# Automatización y sesgo de revisión
+
+Existe una consideración adicional.
+
+Cuando un experto revisa una segmentación generada automáticamente, puede verse influenciado por la propuesta inicial.
+
+Esto puede producir **automation bias**:
+
+> tendencia a aceptar o confiar excesivamente en una salida generada por un sistema automático.
+
+Por lo tanto, demostrar que existe revisión humana no es suficiente para garantizar seguridad.
+
+También debemos estudiar:
+
+- capacidad de detectar errores;
+- confianza del usuario;
+- presentación de incertidumbre;
+- comportamiento frente a fallos.
+
+# Validación del paradigma interactivo
+
+Los modelos interactivos requieren métricas adicionales.
+
+Además de calidad geométrica podemos medir:
+
+- número de prompts;
+- número de interacciones;
+- tiempo por interacción;
+- tiempo hasta alcanzar una máscara aceptable;
+- sensibilidad a la localización del prompt.
+
+Podemos imaginar una curva:
+
+$$
+\text{calidad}
+=
+f(\text{número de interacciones}).
+$$
+
+Un buen sistema interactivo debería mejorar rápidamente con pocas intervenciones.
+
+# Del desempeño al beneficio clínico
+
+Finalmente podemos pensar una jerarquía de preguntas.
+
+## Nivel 1 — ¿Segmenta correctamente?
+
+$$
+\text{métricas geométricas}
+$$
+
+## Nivel 2 — ¿El experto acepta el resultado?
+
+$$
+\text{evaluación clínica}
+$$
+
+## Nivel 3 — ¿Reduce trabajo o mejora consistencia?
+
+$$
+\text{impacto operativo}
+$$
+
+## Nivel 4 — ¿Modifica resultados clínicos?
+
+$$
+\text{impacto clínico}
+$$
+
+Cada nivel requiere evidencia diferente.
+
+Un modelo puede superar el primer nivel sin necesariamente superar los siguientes.
+
+# Un marco conceptual para evaluar segmentadores
+
+Podemos resumir la evaluación completa mediante cuatro preguntas:
+
+$$
+\boxed{
+\text{¿Es geométricamente correcto?}
+}
+$$
+
+$$
+\boxed{
+\text{¿Es clínicamente aceptable?}
+}
+$$
+
+$$
+\boxed{
+\text{¿Es robusto fuera del dataset original?}
+}
+$$
+
+$$
+\boxed{
+\text{¿Mejora realmente el workflow?}
+}
+$$
+
+Una validación sólida debería intentar responder las cuatro.
+
+# Cierre de la unidad
+
+A lo largo de esta unidad partimos de una formulación aparentemente simple:
+
+$$
+\text{imagen}
+\rightarrow
+\text{máscara}.
+$$
+
+Pero vimos que la segmentación médica involucra mucho más que generar una región binaria.
+
+La secuencia conceptual completa puede resumirse como:
+
+$$
+\boxed{
+\begin{array}{c}
+\text{segmentación semántica}\\
+\downarrow\\
+\text{métricas geométricas}\\
+\downarrow\\
+\text{entrenamiento y pipeline}\\
+\downarrow\\
+\text{segmentación automática}\\
+\text{vs}\\
+\text{segmentación interactiva}\\
+\downarrow\\
+\text{variabilidad observador}\\
+\downarrow\\
+\text{validación clínica}
+\end{array}
+}
+$$
+
+Los conceptos fundamentales que debemos conservar son:
+
+1. La segmentación médica es una tarea espacial y no simplemente una clasificación de imágenes.
+2. Dice, IoU y las métricas de superficie describen aspectos diferentes del error.
+3. El tamaño de la estructura y el spacing condicionan la interpretación de las métricas.
+4. El desempeño depende del pipeline completo y no únicamente de la arquitectura.
+5. Los enfoques automáticos e interactivos representan dos maneras diferentes de distribuir el trabajo entre modelo y experto.
+6. nnU-Net ejemplifica la automatización de la segmentación y de gran parte de la configuración del pipeline.
+7. MedSAM ejemplifica un paradigma guiado por prompts y orientado a la interacción humano–IA.
+8. Una máscara de referencia no siempre representa una verdad anatómica absoluta.
+9. La variabilidad inter- e intra-observador proporciona contexto para interpretar el desempeño de los modelos.
+10. Una mejora geométrica no implica necesariamente una mejora clínica.
+11. La validación externa y multicéntrica es fundamental para estudiar generalización.
+12. El beneficio de un sistema debe evaluarse sobre el workflow completo.
+13. En radioterapia, el impacto dosimétrico puede ser más relevante que una diferencia geométrica aislada.
+14. El objetivo final no es maximizar una métrica, sino construir sistemas confiables y útiles para la práctica clínica.
+
+::: {.callout-tip title="Pregunta final"}
+
+La pregunta más importante al evaluar un segmentador no es solamente:
+
+> “¿Qué Dice obtiene?”
+
+sino:
+
+> **“¿Qué problema clínico resuelve, cómo falla y qué ocurre cuando lo incorporamos al flujo de trabajo real?”**
+
+:::
