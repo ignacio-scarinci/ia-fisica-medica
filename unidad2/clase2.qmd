@@ -1,4 +1,4 @@
----
+
 title: "Unidad 2 — Segmentación de estructuras anatómicas"
 subtitle: "Clase 2 — ¿Cómo evaluamos una segmentación?"
 author: "Ignacio Scarinci"
@@ -23,7 +23,7 @@ execute:
   warning: false
   message: false
   freeze: auto
----
+
 
 ## De la clase anterior
 
@@ -40,7 +40,7 @@ En la clase anterior vimos que:
 
 Hoy pasamos de la **segmentación** a su **evaluación**.
 
----
+
 
 ## Objetivos de esta clase
 
@@ -55,29 +55,26 @@ Al finalizar la clase deberían poder:
 7. Reconocer las limitaciones de cada métrica.
 8. Diseñar una estrategia básica de validación durante el desarrollo.
 
----
+
 
 # ¿Qué significa que una segmentación sea buena?
 
----
+
 
 ## Una pregunta aparentemente simple
 
-![¿Qué significa que una segmentación sea buena?](./imagenes/segmentacion_buena.jpg)
+![](./imagenes/segmentacion_buena.jpg)
 
----
 
 ## No existe una única noción de calidad
 
-![Calidad](./imagenes/calidad.jpg)
+![](./imagenes/calidad.jpg)
 
----
 
 ## Antes de las métricas: TP, FP, FN y TN
 
-![Matriz de confusión](./imagenes/tp_fp_fn_tn.jpg)
+![](./imagenes/tp_fp_fn_tn.jpg)
 
----
 
 ## La matriz de confusión ocurre en el espacio
 
@@ -96,7 +93,7 @@ $$
 
 Esto introduce un problema: la mayoría puede ser simplemente **fondo**.
 
----
+
 
 ## ¿Por qué accuracy puede ser engañosa?
 
@@ -120,29 +117,26 @@ En segmentación médica, la *accuracy* global suele estar dominada por el fondo
 
 Por eso preferimos métricas centradas en la región positiva.
 
----
 
 # Métricas de superposición
 
----
 
 ## Dice: ¿cuánto se superponen las máscaras?
 
-![Dice](./imagenes/dice.jpg)
+![](./imagenes/dice.jpg)
 
----
 
 ## Intuición geométrica del Dice
 
-![Intuición geométrica del Dice](./imagenes/intuicion_dice.jpg)
+![](./imagenes/intuicion_dice.jpg)
 
----
+
 
 ## Un ejemplo simple
 
-![Ejemplo simple](./imagenes/ejemplo_dice.jpg)
+![](./imagenes/ejemplo_dice.jpg)
 
----
+
 
 ## ¿Dice = 0.90 es siempre “bueno”?
 
@@ -159,13 +153,13 @@ El mismo valor puede tener significados distintos dependiendo de:
 
 > Una métrica necesita siempre **contexto anatómico y clínico**.
 
----
+
 
 ## El efecto del tamaño de la estructura
 
-![Estructuras grandes y pequeñas](./imagenes/tamano_estructura.jpg)
+![](./imagenes/tamano_estructura.jpg)
 
----
+
 
 ## Dice puede ocultar errores de borde
 
@@ -182,47 +176,47 @@ Esto importa especialmente:
 
 Necesitamos métricas que miren explícitamente la **superficie**.
 
----
+
 
 # Funciones de pérdida para segmentación
 
----
+
 
 ## Métrica y función de pérdida no son lo mismo
 
-![Metrica vs. pérdida](./imagenes/metrica_perdida.jpg)
+![](./imagenes/metrica_perdida.jpg)
 
----
+
 
 ## Binary Cross-Entropy: decisión vóxel a vóxel
 
-![Binary Crss-Entropy](./imagenes/bce.jpg)
+![](./imagenes/bce.jpg)
 
----
+
 
 ## El problema: fondo ≫ estructura
 
-![Desbalance de clases](./imagenes/fondo_vs_estructura.jpg)
+![](./imagenes/fondo_vs_estructura.jpg)
 
----
+
 
 ## Dice Loss: optimizar la superposición
 
-![Dice Loss](./imagenes/dice_loss.jpg)
+![](./imagenes/dice_loss.jpg)
 
----
+
 
 ## Cross-Entropy + Dice
 
-![CE + Dice](./imagenes/ce_dice.jpg)
+![](./imagenes/ce_dice.jpg)
 
----
+
 
 ## Focal Loss: cuando predominan los ejemplos fáciles
 
-![Focal Loss](./imagenes/focal_loss.jpg)
+![](./imagenes/focal_loss.jpg)
 
----
+
 
 ## Loss de entrenamiento ≠ calidad clínica
 
@@ -244,11 +238,11 @@ Pero todavía debemos preguntar:
 
 > **La función de pérdida guía el aprendizaje; las métricas y la revisión clínica evalúan el resultado.**
 
----
+
 
 # Métricas de distancia
 
----
+
 
 ## De regiones a superficies
 
@@ -263,12 +257,12 @@ Ahora la pregunta cambia:
 
 Para cada punto de una superficie podemos buscar su punto más cercano en la otra.
 
----
+
 
 ## Distancia dirigida entre superficies
 
-![Distancia dirigida](./imagenes/distancia.jpg)
----
+![](./imagenes/distancia.jpg)
+
 
 ## Distancia de Hausdorff
 
@@ -289,7 +283,7 @@ En palabras:
 
 Menor es mejor.
 
----
+
 
 ## ¿Qué aporta Hausdorff?
 
@@ -307,7 +301,7 @@ flowchart LR
 Las métricas de superposición y las métricas de superficie responden a **preguntas diferentes** y son complementarias.
 :::
 
----
+
 
 ## El problema de Hausdorff: los outliers
 
@@ -330,7 +324,7 @@ $$
 \text{Hausdorff muy grande}
 $$
 
----
+
 
 ## HD95: una alternativa más robusta
 
@@ -356,7 +350,7 @@ Esto reduce la sensibilidad a unos pocos puntos extremos.
 **HD95 no reemplaza conceptualmente a Hausdorff:** cambia deliberadamente la pregunta para obtener una medida más robusta.
 :::
 
----
+
 
 ## El spacing importa
 
@@ -376,23 +370,23 @@ Las métricas de distancia deben calcularse utilizando el **pixel/voxel spacing 
 
 Especialmente en estudios anisotrópicos.
 
----
+
 
 ## Superposición y distancia: juntas cuentan mejor la historia
 
-![Dice y Distancia](./imagenes/dice_distancia.jpg)
+![](./imagenes/dice_distancia.jpg)
 
----
+
 
 # Cómo interpretar las métricas
 
----
+
 
 ## Un promedio puede esconder mucho
 
-![Promedio vs. dispersión](./imagenes/dice_per_voxel_paciente.jpg)
+![](./imagenes/dice_per_voxel_paciente.jpg)
 
----
+
 
 ## Segmentación multiclase
 
@@ -415,7 +409,7 @@ Ejemplo:
 
 > Reportar solo un promedio global puede ocultar qué estructuras fallan.
 
----
+
 
 ## ¿Macro o micro promedio?
 
@@ -439,7 +433,7 @@ En conjuntos desbalanceados, el promedio global puede quedar dominado por las es
 
 Para Física Médica suele ser importante reportar resultados **por estructura**.
 
----
+
 
 ## ¿Qué hacer con estructuras ausentes?
 
@@ -465,7 +459,7 @@ Debemos definir explícitamente la convención:
 
 Lo importante es que la política sea **explícita y consistente**.
 
----
+
 
 ## La métrica debe responder a la aplicación
 
@@ -487,11 +481,11 @@ Ejemplos:
 No existe una métrica universal que determine por sí sola si una segmentación es **clínicamente aceptable**.
 :::
 
----
+
 
 # Validación durante el desarrollo
 
----
+
 
 ## Training, validation y test cumplen roles distintos
 
@@ -510,7 +504,7 @@ Durante el desarrollo usamos el conjunto de **validación** repetidamente.
 
 El test debe permanecer reservado hasta que el proceso de desarrollo esté definido.
 
----
+
 
 ## La unidad de separación debe ser el paciente
 
@@ -528,33 +522,12 @@ No debemos colocar imágenes del mismo paciente en entrenamiento y validación/t
 
 De lo contrario aparece **data leakage** y el desempeño puede quedar artificialmente inflado.
 
----
+
 
 ## Validar no es mirar solo la loss
 
-Durante el entrenamiento podemos seguir:
+![](./imagenes/decision.jpg)
 
-- *training loss*;
-- *validation loss*;
-- Dice por estructura;
-- HD95;
-- ejemplos visuales representativos.
-
-```{mermaid}
-flowchart LR
-    E[Épocas] --> L[Loss]
-    E --> D[Dice]
-    E --> H[HD95]
-    E --> Q[Revisión visual]
-    L --> S[Selección del modelo]
-    D --> S
-    H --> S
-    Q --> S
-```
-
-> La mejor *loss* no necesariamente corresponde al mejor comportamiento clínico.
-
----
 
 ## Qué conviene registrar
 
@@ -588,7 +561,7 @@ Sino también:
 - ¿Dice y HD95 cuentan la misma historia?
 - ¿los errores son clínicamente relevantes?
 
----
+
 
 ## Cierre
 
@@ -617,7 +590,7 @@ Ideas para llevarse:
 7. La validación debe hacerse por paciente y sin *data leakage*.
 8. El test no forma parte del proceso iterativo de desarrollo.
 
----
+
 
 ## Pregunta de cierre
 
