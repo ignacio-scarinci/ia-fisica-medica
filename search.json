@@ -48,23 +48,11 @@
     ]
   },
   {
-    "objectID": "unidad2/clase2.html",
-    "href": "unidad2/clase2.html",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "",
-    "text": "title: “Unidad 2 — Segmentación de estructuras anatómicas” subtitle: “Clase 2 — ¿Cómo evaluamos una segmentación?” author: “Ignacio Scarinci” lang: es format: revealjs: theme: ../themes/presentaciones.scss slide-number: true chalkboard: true preview-links: auto transition: fade width: 1600 height: 900 margin: 0.06 center: false smaller: false toc: false code-line-numbers: true jupyter: python3 execute: echo: true warning: false message: false freeze: auto",
-    "crumbs": [
-      "Inicio",
-      "2. Segmentación de imágenes médicas",
-      "Clase 2: ¿Cómo evaluamos una segmentación?"
-    ]
-  },
-  {
     "objectID": "unidad2/clase2.html#de-la-clase-anterior",
     "href": "unidad2/clase2.html#de-la-clase-anterior",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "0.1 De la clase anterior",
-    "text": "0.1 De la clase anterior\nTerminamos con una pregunta:\n\n¿Cómo sabemos si una segmentación automática es suficientemente buena?\n\nEn la clase anterior vimos que:\n\nlos contornos son objetos clínicamente relevantes;\nlas anotaciones humanas presentan variabilidad;\nun error geométrico puede propagarse hacia la dosimetría;\nel ground truth no siempre representa una verdad absoluta.\n\nHoy pasamos de la segmentación a su evaluación.",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "De la clase anterior",
+    "text": "De la clase anterior\nTerminamos con una pregunta:\n\n¿Cómo sabemos si una segmentación automática es suficientemente buena?\n\nEn la clase anterior vimos que:\n\nlos contornos son objetos clínicamente relevantes;\nlas anotaciones humanas presentan variabilidad;\nun error geométrico puede propagarse hacia la dosimetría;\nel ground truth no siempre representa una verdad absoluta.\n\nHoy pasamos de la segmentación a su evaluación.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -74,9 +62,9 @@
   {
     "objectID": "unidad2/clase2.html#objetivos-de-esta-clase",
     "href": "unidad2/clase2.html#objetivos-de-esta-clase",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "0.2 Objetivos de esta clase",
-    "text": "0.2 Objetivos de esta clase\nAl finalizar la clase deberían poder:\n\nExplicar qué significa evaluar una segmentación.\nConstruir la matriz de confusión a nivel de píxel o vóxel.\nInterpretar Dice e IoU como métricas de superposición.\nDiferenciar una métrica de evaluación de una función de pérdida.\nComprender BCE/CE, Dice Loss y la combinación CE + Dice.\nInterpretar la distancia de Hausdorff como métrica de borde.\nReconocer las limitaciones de cada métrica.\nDiseñar una estrategia básica de validación durante el desarrollo.",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Objetivos de esta clase",
+    "text": "Objetivos de esta clase\nAl finalizar la clase deberían poder:\n\nExplicar qué significa evaluar una segmentación.\nConstruir la matriz de confusión a nivel de píxel o vóxel.\nInterpretar Dice e IoU como métricas de superposición.\nDiferenciar una métrica de evaluación de una función de pérdida.\nComprender BCE/CE, Dice Loss y la combinación CE + Dice.\nInterpretar la distancia de Hausdorff como métrica de borde.\nReconocer las limitaciones de cada métrica.\nDiseñar una estrategia básica de validación durante el desarrollo.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -86,9 +74,9 @@
   {
     "objectID": "unidad2/clase2.html#una-pregunta-aparentemente-simple",
     "href": "unidad2/clase2.html#una-pregunta-aparentemente-simple",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "1.1 Una pregunta aparentemente simple",
-    "text": "1.1 Una pregunta aparentemente simple",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Una pregunta aparentemente simple",
+    "text": "Una pregunta aparentemente simple",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -98,9 +86,9 @@
   {
     "objectID": "unidad2/clase2.html#no-existe-una-única-noción-de-calidad",
     "href": "unidad2/clase2.html#no-existe-una-única-noción-de-calidad",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "1.2 No existe una única noción de calidad",
-    "text": "1.2 No existe una única noción de calidad",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "No existe una única noción de calidad",
+    "text": "No existe una única noción de calidad",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -110,9 +98,9 @@
   {
     "objectID": "unidad2/clase2.html#antes-de-las-métricas-tp-fp-fn-y-tn",
     "href": "unidad2/clase2.html#antes-de-las-métricas-tp-fp-fn-y-tn",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "1.3 Antes de las métricas: TP, FP, FN y TN",
-    "text": "1.3 Antes de las métricas: TP, FP, FN y TN",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Antes de las métricas: TP, FP, FN y TN",
+    "text": "Antes de las métricas: TP, FP, FN y TN",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -122,9 +110,9 @@
   {
     "objectID": "unidad2/clase2.html#la-matriz-de-confusión-ocurre-en-el-espacio",
     "href": "unidad2/clase2.html#la-matriz-de-confusión-ocurre-en-el-espacio",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "1.4 La matriz de confusión ocurre en el espacio",
-    "text": "1.4 La matriz de confusión ocurre en el espacio\nEn clasificación convencional, una observación suele producir una entrada de la matriz de confusión.\nEn segmentación:\n\ncada píxel o vóxel contribuye a la matriz de confusión.\n\nPara un volumen de (512):\n\\[\n512\\cdot512\\cdot200\n\\approx 52\\,\\text{millones de vóxeles}\n\\]\nEsto introduce un problema: la mayoría puede ser simplemente fondo.",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "La matriz de confusión ocurre en el espacio",
+    "text": "La matriz de confusión ocurre en el espacio\nEn clasificación convencional, una observación suele producir una entrada de la matriz de confusión.\nEn segmentación:\n\ncada píxel o vóxel contribuye a la matriz de confusión.\n\nPara un volumen de (512):\n\\[\n512\\cdot512\\cdot200\n\\approx 52\\,\\text{millones de vóxeles}\n\\]\nEsto introduce un problema: la mayoría puede ser simplemente fondo.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -134,9 +122,9 @@
   {
     "objectID": "unidad2/clase2.html#por-qué-accuracy-puede-ser-engañosa",
     "href": "unidad2/clase2.html#por-qué-accuracy-puede-ser-engañosa",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "1.5 ¿Por qué accuracy puede ser engañosa?",
-    "text": "1.5 ¿Por qué accuracy puede ser engañosa?\nSupongamos que una lesión ocupa solo el (1%) del volumen.\nUn modelo que predice todo como fondo obtiene:\n\\[\n\\text{Accuracy}\\approx 99\\%\n\\]\npero:\n\\[\n\\text{segmentación de la lesión}=0\n\\]\n\n\n\n\n\n\nWarning\n\n\n\nEn segmentación médica, la accuracy global suele estar dominada por el fondo y puede ocultar un fracaso completo sobre la estructura de interés.\n\n\nPor eso preferimos métricas centradas en la región positiva.",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Por qué accuracy puede ser engañosa?",
+    "text": "¿Por qué accuracy puede ser engañosa?\nSupongamos que una lesión ocupa solo el (1%) del volumen.\nUn modelo que predice todo como fondo obtiene:\n\\[\n\\text{Accuracy}\\approx 99\\%\n\\]\npero:\n\\[\n\\text{segmentación de la lesión}=0\n\\]\n\n\n\n\n\n\nAdvertencia\n\n\nEn segmentación médica, la accuracy global suele estar dominada por el fondo y puede ocultar un fracaso completo sobre la estructura de interés.\n\n\n\nPor eso preferimos métricas centradas en la región positiva.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -146,9 +134,9 @@
   {
     "objectID": "unidad2/clase2.html#dice-cuánto-se-superponen-las-máscaras",
     "href": "unidad2/clase2.html#dice-cuánto-se-superponen-las-máscaras",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "2.1 Dice: ¿cuánto se superponen las máscaras?",
-    "text": "2.1 Dice: ¿cuánto se superponen las máscaras?",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Dice: ¿cuánto se superponen las máscaras?",
+    "text": "Dice: ¿cuánto se superponen las máscaras?",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -158,9 +146,9 @@
   {
     "objectID": "unidad2/clase2.html#intuición-geométrica-del-dice",
     "href": "unidad2/clase2.html#intuición-geométrica-del-dice",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "2.2 Intuición geométrica del Dice",
-    "text": "2.2 Intuición geométrica del Dice",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Intuición geométrica del Dice",
+    "text": "Intuición geométrica del Dice",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -170,9 +158,9 @@
   {
     "objectID": "unidad2/clase2.html#un-ejemplo-simple",
     "href": "unidad2/clase2.html#un-ejemplo-simple",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "2.3 Un ejemplo simple",
-    "text": "2.3 Un ejemplo simple",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Un ejemplo simple",
+    "text": "Un ejemplo simple",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -182,9 +170,9 @@
   {
     "objectID": "unidad2/clase2.html#dice-0.90-es-siempre-bueno",
     "href": "unidad2/clase2.html#dice-0.90-es-siempre-bueno",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "2.4 ¿Dice = 0.90 es siempre “bueno”?",
-    "text": "2.4 ¿Dice = 0.90 es siempre “bueno”?\nNo necesariamente.\nEl mismo valor puede tener significados distintos dependiendo de:\n\ntamaño de la estructura\ncomplejidad de su forma\nresolución espacial\ncalidad del ground truth\nlocalización del error\npropósito clínico\n\n\nUna métrica necesita siempre contexto anatómico y clínico.",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Dice = 0.90 es siempre “bueno”?",
+    "text": "¿Dice = 0.90 es siempre “bueno”?\nNo necesariamente.\nEl mismo valor puede tener significados distintos dependiendo de:\n\ntamaño de la estructura\ncomplejidad de su forma\nresolución espacial\ncalidad del ground truth\nlocalización del error\npropósito clínico\n\n\nUna métrica necesita siempre contexto anatómico y clínico.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -194,9 +182,9 @@
   {
     "objectID": "unidad2/clase2.html#el-efecto-del-tamaño-de-la-estructura",
     "href": "unidad2/clase2.html#el-efecto-del-tamaño-de-la-estructura",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "2.5 El efecto del tamaño de la estructura",
-    "text": "2.5 El efecto del tamaño de la estructura",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "El efecto del tamaño de la estructura",
+    "text": "El efecto del tamaño de la estructura",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -206,9 +194,9 @@
   {
     "objectID": "unidad2/clase2.html#dice-puede-ocultar-errores-de-borde",
     "href": "unidad2/clase2.html#dice-puede-ocultar-errores-de-borde",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "2.6 Dice puede ocultar errores de borde",
-    "text": "2.6 Dice puede ocultar errores de borde\nDos máscaras pueden tener una gran región común y alcanzar un Dice elevado.\nSin embargo, un pequeño sector del borde puede desviarse considerablemente.\nEsto importa especialmente:\n\ncerca de un gradiente de dosis elevado\nen órganos seriales\nen lesiones pequeñas\ncuando los márgenes terapéuticos son reducidos\n\nNecesitamos métricas que miren explícitamente la superficie.",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Dice puede ocultar errores de borde",
+    "text": "Dice puede ocultar errores de borde\nDos máscaras pueden tener una gran región común y alcanzar un Dice elevado.\nSin embargo, un pequeño sector del borde puede desviarse considerablemente.\nEsto importa especialmente:\n\ncerca de un gradiente de dosis elevado\nen órganos seriales\nen lesiones pequeñas\ncuando los márgenes terapéuticos son reducidos\n\nNecesitamos métricas que miren explícitamente la superficie.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -218,9 +206,9 @@
   {
     "objectID": "unidad2/clase2.html#métrica-y-función-de-pérdida-no-son-lo-mismo",
     "href": "unidad2/clase2.html#métrica-y-función-de-pérdida-no-son-lo-mismo",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "3.1 Métrica y función de pérdida no son lo mismo",
-    "text": "3.1 Métrica y función de pérdida no son lo mismo",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Métrica y función de pérdida no son lo mismo",
+    "text": "Métrica y función de pérdida no son lo mismo",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -230,9 +218,9 @@
   {
     "objectID": "unidad2/clase2.html#binary-cross-entropy-decisión-vóxel-a-vóxel",
     "href": "unidad2/clase2.html#binary-cross-entropy-decisión-vóxel-a-vóxel",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "3.2 Binary Cross-Entropy: decisión vóxel a vóxel",
-    "text": "3.2 Binary Cross-Entropy: decisión vóxel a vóxel",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Binary Cross-Entropy: decisión vóxel a vóxel",
+    "text": "Binary Cross-Entropy: decisión vóxel a vóxel",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -242,9 +230,9 @@
   {
     "objectID": "unidad2/clase2.html#el-problema-fondo-estructura",
     "href": "unidad2/clase2.html#el-problema-fondo-estructura",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "3.3 El problema: fondo ≫ estructura",
-    "text": "3.3 El problema: fondo ≫ estructura",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "El problema: fondo ≫ estructura",
+    "text": "El problema: fondo ≫ estructura",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -254,9 +242,9 @@
   {
     "objectID": "unidad2/clase2.html#dice-loss-optimizar-la-superposición",
     "href": "unidad2/clase2.html#dice-loss-optimizar-la-superposición",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "3.4 Dice Loss: optimizar la superposición",
-    "text": "3.4 Dice Loss: optimizar la superposición",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Dice Loss: optimizar la superposición",
+    "text": "Dice Loss: optimizar la superposición",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -266,9 +254,9 @@
   {
     "objectID": "unidad2/clase2.html#cross-entropy-dice",
     "href": "unidad2/clase2.html#cross-entropy-dice",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "3.5 Cross-Entropy + Dice",
-    "text": "3.5 Cross-Entropy + Dice",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Cross-Entropy + Dice",
+    "text": "Cross-Entropy + Dice",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -278,9 +266,9 @@
   {
     "objectID": "unidad2/clase2.html#focal-loss-cuando-predominan-los-ejemplos-fáciles",
     "href": "unidad2/clase2.html#focal-loss-cuando-predominan-los-ejemplos-fáciles",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "3.6 Focal Loss: cuando predominan los ejemplos fáciles",
-    "text": "3.6 Focal Loss: cuando predominan los ejemplos fáciles",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Focal Loss: cuando predominan los ejemplos fáciles",
+    "text": "Focal Loss: cuando predominan los ejemplos fáciles",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -290,9 +278,9 @@
   {
     "objectID": "unidad2/clase2.html#loss-de-entrenamiento-calidad-clínica",
     "href": "unidad2/clase2.html#loss-de-entrenamiento-calidad-clínica",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "3.7 Loss de entrenamiento ≠ calidad clínica",
-    "text": "3.7 Loss de entrenamiento ≠ calidad clínica\nSupongamos que durante el entrenamiento:\n\\[\n\\mathcal{L}_{val}\n\\downarrow\n\\]\nEsto indica que el objetivo matemático está mejorando sobre validación.\nPero todavía debemos preguntar:\n\n¿mejora Dice?\n¿qué ocurre en estructuras pequeñas?\n¿aparecen fallos localizados?\n¿el resultado es clínicamente aceptable?\n\n\nLa función de pérdida guía el aprendizaje; las métricas y la revisión clínica evalúan el resultado.",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Loss de entrenamiento ≠ calidad clínica",
+    "text": "Loss de entrenamiento ≠ calidad clínica\nSupongamos que durante el entrenamiento:\n\\[\n\\mathcal{L}_{val}\n\\downarrow\n\\]\nEsto indica que el objetivo matemático está mejorando sobre validación.\nPero todavía debemos preguntar:\n\n¿mejora Dice?\n¿qué ocurre en estructuras pequeñas?\n¿aparecen fallos localizados?\n¿el resultado es clínicamente aceptable?\n\n\nLa función de pérdida guía el aprendizaje; las métricas y la revisión clínica evalúan el resultado.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -302,9 +290,9 @@
   {
     "objectID": "unidad2/clase2.html#de-regiones-a-superficies",
     "href": "unidad2/clase2.html#de-regiones-a-superficies",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "4.1 De regiones a superficies",
-    "text": "4.1 De regiones a superficies\nSea:\n\n\\(\\partial P\\): superficie de la predicción;\n\\(\\partial G\\): superficie de la referencia.\n\nAhora la pregunta cambia:\n\n¿Qué tan lejos están los bordes entre sí?\n\nPara cada punto de una superficie podemos buscar su punto más cercano en la otra.",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "De regiones a superficies",
+    "text": "De regiones a superficies\nSea:\n\n\\(\\partial P\\): superficie de la predicción;\n\\(\\partial G\\): superficie de la referencia.\n\nAhora la pregunta cambia:\n\n¿Qué tan lejos están los bordes entre sí?\n\nPara cada punto de una superficie podemos buscar su punto más cercano en la otra.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -314,9 +302,9 @@
   {
     "objectID": "unidad2/clase2.html#distancia-dirigida-entre-superficies",
     "href": "unidad2/clase2.html#distancia-dirigida-entre-superficies",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "4.2 Distancia dirigida entre superficies",
-    "text": "4.2 Distancia dirigida entre superficies",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Distancia dirigida entre superficies",
+    "text": "Distancia dirigida entre superficies",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -326,9 +314,9 @@
   {
     "objectID": "unidad2/clase2.html#distancia-de-hausdorff",
     "href": "unidad2/clase2.html#distancia-de-hausdorff",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "4.3 Distancia de Hausdorff",
-    "text": "4.3 Distancia de Hausdorff\nLa distancia de Hausdorff toma el peor desacuerdo entre las superficies:\n\\[\nH(P,G)=\n\\max\n\\left\\{\n\\sup_{p\\in\\partial P} d(p,\\partial G),\n\\sup_{g\\in\\partial G} d(g,\\partial P)\n\\right\\}\n\\]\nEn palabras:\n\n¿Cuál es el punto del contorno que está más lejos de la otra superficie?\n\nMenor es mejor.",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Distancia de Hausdorff",
+    "text": "Distancia de Hausdorff\nLa distancia de Hausdorff toma el peor desacuerdo entre las superficies:\n\\[\nH(P,G)=\n\\max\n\\left\\{\n\\sup_{p\\in\\partial P} d(p,\\partial G),\n\\sup_{g\\in\\partial G} d(g,\\partial P)\n\\right\\}\n\\]\nEn palabras:\n\n¿Cuál es el punto del contorno que está más lejos de la otra superficie?\n\nMenor es mejor.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -338,9 +326,9 @@
   {
     "objectID": "unidad2/clase2.html#qué-aporta-hausdorff",
     "href": "unidad2/clase2.html#qué-aporta-hausdorff",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "4.4 ¿Qué aporta Hausdorff?",
-    "text": "4.4 ¿Qué aporta Hausdorff?\nDice e IoU pueden permanecer altos aunque exista una desviación localizada.\nHausdorff es sensible a ese tipo de error.\n\n\n\n\n\nflowchart LR\n    D[Dice / IoU] --&gt; D1[Superposición global]\n    H[Hausdorff] --&gt; H1[Peor discrepancia de borde]\n\n\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\nLas métricas de superposición y las métricas de superficie responden a preguntas diferentes y son complementarias.",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Qué aporta Hausdorff?",
+    "text": "¿Qué aporta Hausdorff?\nDice e IoU pueden permanecer altos aunque exista una desviación localizada.\nHausdorff es sensible a ese tipo de error.\n\nflowchart LR\n    D[Dice / IoU] --&gt; D1[Superposición global]\n    H[Hausdorff] --&gt; H1[Peor discrepancia de borde]\n\n\n\n\nflowchart LR\n    D[Dice / IoU] --&gt; D1[Superposición global]\n    H[Hausdorff] --&gt; H1[Peor discrepancia de borde]\n\n\n\n\n\n\n\n\n\n\n\n\nImportante\n\n\nLas métricas de superposición y las métricas de superficie responden a preguntas diferentes y son complementarias.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -350,9 +338,9 @@
   {
     "objectID": "unidad2/clase2.html#el-problema-de-hausdorff-los-outliers",
     "href": "unidad2/clase2.html#el-problema-de-hausdorff-los-outliers",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "4.5 El problema de Hausdorff: los outliers",
-    "text": "4.5 El problema de Hausdorff: los outliers\nLa Hausdorff clásica utiliza el máximo.\nPor lo tanto, un único punto aberrante puede dominar completamente la métrica.\nEjemplos:\n\nuna pequeña isla de falsos positivos\nun vóxel aislado\nun artefacto de postprocesamiento\nuna anotación puntual errónea\n\nResultado:\n\\[\n\\text{un outlier}\n\\rightarrow\n\\text{Hausdorff muy grande}\n\\]",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "El problema de Hausdorff: los outliers",
+    "text": "El problema de Hausdorff: los outliers\nLa Hausdorff clásica utiliza el máximo.\nPor lo tanto, un único punto aberrante puede dominar completamente la métrica.\nEjemplos:\n\nuna pequeña isla de falsos positivos\nun vóxel aislado\nun artefacto de postprocesamiento\nuna anotación puntual errónea\n\nResultado:\n\\[\n\\text{un outlier}\n\\rightarrow\n\\text{Hausdorff muy grande}\n\\]",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -362,9 +350,9 @@
   {
     "objectID": "unidad2/clase2.html#hd95-una-alternativa-más-robusta",
     "href": "unidad2/clase2.html#hd95-una-alternativa-más-robusta",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "4.6 HD95: una alternativa más robusta",
-    "text": "4.6 HD95: una alternativa más robusta\nUna práctica habitual es utilizar el percentil 95 de las distancias de superficie:\n\\[\nHD_{95}\n=\nP_{95}\n\\left(\n\\{d(p,\\partial G)\\}\\cup\n\\{d(g,\\partial P)\\}\n\\right)\n\\]\nInterpretación:\n\nEl \\(95\\%\\) de las discrepancias de superficie se encuentra por debajo de ese valor.\n\nEsto reduce la sensibilidad a unos pocos puntos extremos.\n\n\n\n\n\n\nNote\n\n\n\nHD95 no reemplaza conceptualmente a Hausdorff: cambia deliberadamente la pregunta para obtener una medida más robusta.",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "HD95: una alternativa más robusta",
+    "text": "HD95: una alternativa más robusta\nUna práctica habitual es utilizar el percentil 95 de las distancias de superficie:\n\\[\nHD_{95}\n=\nP_{95}\n\\left(\n\\{d(p,\\partial G)\\}\\cup\n\\{d(g,\\partial P)\\}\n\\right)\n\\]\nInterpretación:\n\nEl \\(95\\%\\) de las discrepancias de superficie se encuentra por debajo de ese valor.\n\nEsto reduce la sensibilidad a unos pocos puntos extremos.\n\n\n\n\n\n\nNota\n\n\nHD95 no reemplaza conceptualmente a Hausdorff: cambia deliberadamente la pregunta para obtener una medida más robusta.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -374,9 +362,9 @@
   {
     "objectID": "unidad2/clase2.html#el-spacing-importa",
     "href": "unidad2/clase2.html#el-spacing-importa",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "4.7 El spacing importa",
-    "text": "4.7 El spacing importa\nEn imágenes médicas, un vóxel no tiene necesariamente el mismo tamaño en todas las direcciones.\nPor ejemplo:\n\\[\n0.8\\times0.8\\times3.0\\ \\mathrm{mm^3}\n\\]\nUna distancia calculada solo en índices de vóxel puede ser físicamente incorrecta.\n\n\n\n\n\n\nWarning\n\n\n\nLas métricas de distancia deben calcularse utilizando el pixel/voxel spacing real de la imagen.\n\n\nEspecialmente en estudios anisotrópicos.",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "El spacing importa",
+    "text": "El spacing importa\nEn imágenes médicas, un vóxel no tiene necesariamente el mismo tamaño en todas las direcciones.\nPor ejemplo:\n\\[\n0.8\\times0.8\\times3.0\\ \\mathrm{mm^3}\n\\]\nUna distancia calculada solo en índices de vóxel puede ser físicamente incorrecta.\n\n\n\n\n\n\nAdvertencia\n\n\nLas métricas de distancia deben calcularse utilizando el pixel/voxel spacing real de la imagen.\n\n\n\nEspecialmente en estudios anisotrópicos.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -386,9 +374,9 @@
   {
     "objectID": "unidad2/clase2.html#superposición-y-distancia-juntas-cuentan-mejor-la-historia",
     "href": "unidad2/clase2.html#superposición-y-distancia-juntas-cuentan-mejor-la-historia",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "4.8 Superposición y distancia: juntas cuentan mejor la historia",
-    "text": "4.8 Superposición y distancia: juntas cuentan mejor la historia",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Superposición y distancia: juntas cuentan mejor la historia",
+    "text": "Superposición y distancia: juntas cuentan mejor la historia",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -398,9 +386,9 @@
   {
     "objectID": "unidad2/clase2.html#un-promedio-puede-esconder-mucho",
     "href": "unidad2/clase2.html#un-promedio-puede-esconder-mucho",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "5.1 Un promedio puede esconder mucho",
-    "text": "5.1 Un promedio puede esconder mucho",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Un promedio puede esconder mucho",
+    "text": "Un promedio puede esconder mucho",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -410,9 +398,9 @@
   {
     "objectID": "unidad2/clase2.html#segmentación-multiclase",
     "href": "unidad2/clase2.html#segmentación-multiclase",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "5.2 Segmentación multiclase",
-    "text": "5.2 Segmentación multiclase\nEn un problema con (K) estructuras podemos calcular una métrica por clase:\n\\[\n\\mathrm{Dice}_1,\\;\n\\mathrm{Dice}_2,\\;\n\\dots,\\;\n\\mathrm{Dice}_K\n\\]\nNo debemos asumir que todas las clases tienen la misma dificultad.\nEjemplo:\n\nhígado: grande, alto contraste;\nnervio óptico: pequeño;\ntumor: heterogéneo y ambiguo.\n\n\nReportar solo un promedio global puede ocultar qué estructuras fallan.",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Segmentación multiclase",
+    "text": "Segmentación multiclase\nEn un problema con (K) estructuras podemos calcular una métrica por clase:\n\\[\n\\mathrm{Dice}_1,\\;\n\\mathrm{Dice}_2,\\;\n\\dots,\\;\n\\mathrm{Dice}_K\n\\]\nNo debemos asumir que todas las clases tienen la misma dificultad.\nEjemplo:\n\nhígado: grande, alto contraste;\nnervio óptico: pequeño;\ntumor: heterogéneo y ambiguo.\n\n\nReportar solo un promedio global puede ocultar qué estructuras fallan.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -422,9 +410,9 @@
   {
     "objectID": "unidad2/clase2.html#macro-o-micro-promedio",
     "href": "unidad2/clase2.html#macro-o-micro-promedio",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "5.3 ¿Macro o micro promedio?",
-    "text": "5.3 ¿Macro o micro promedio?\nMacro average\n\\[\n\\mathrm{Dice}_{macro}\n=\n\\frac{1}{K}\\sum_{k=1}^{K}\\mathrm{Dice}_k\n\\]\nCada clase tiene el mismo peso.\nMicro / global\nAgrega primero los TP, FP y FN de todas las clases y luego calcula la métrica.\n\n\n\n\n\n\nNote\n\n\n\nEn conjuntos desbalanceados, el promedio global puede quedar dominado por las estructuras más grandes.\n\n\nPara Física Médica suele ser importante reportar resultados por estructura.",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Macro o micro promedio?",
+    "text": "¿Macro o micro promedio?\nMacro average\n\\[\n\\mathrm{Dice}_{macro}\n=\n\\frac{1}{K}\\sum_{k=1}^{K}\\mathrm{Dice}_k\n\\]\nCada clase tiene el mismo peso.\nMicro / global\nAgrega primero los TP, FP y FN de todas las clases y luego calcula la métrica.\n\n\n\n\n\n\nNota\n\n\nEn conjuntos desbalanceados, el promedio global puede quedar dominado por las estructuras más grandes.\n\n\n\nPara Física Médica suele ser importante reportar resultados por estructura.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -434,9 +422,9 @@
   {
     "objectID": "unidad2/clase2.html#qué-hacer-con-estructuras-ausentes",
     "href": "unidad2/clase2.html#qué-hacer-con-estructuras-ausentes",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "5.4 ¿Qué hacer con estructuras ausentes?",
-    "text": "5.4 ¿Qué hacer con estructuras ausentes?\nPuede ocurrir que una estructura o lesión no esté presente en un caso.\nEntonces:\n\\[\n|P|=0,\\qquad |G|=0\n\\]\ny Dice queda matemáticamente indeterminado:\n\\[\n\\frac{0}{0}\n\\]\nDebemos definir explícitamente la convención:\n\nexcluir ese caso para esa estructura;\nasignar Dice = 1 si ambos son vacíos;\ntratar falsos positivos sobre una referencia vacía por separado.\n\nLo importante es que la política sea explícita y consistente.",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Qué hacer con estructuras ausentes?",
+    "text": "¿Qué hacer con estructuras ausentes?\nPuede ocurrir que una estructura o lesión no esté presente en un caso.\nEntonces:\n\\[\n|P|=0,\\qquad |G|=0\n\\]\ny Dice queda matemáticamente indeterminado:\n\\[\n\\frac{0}{0}\n\\]\nDebemos definir explícitamente la convención:\n\nexcluir ese caso para esa estructura;\nasignar Dice = 1 si ambos son vacíos;\ntratar falsos positivos sobre una referencia vacía por separado.\n\nLo importante es que la política sea explícita y consistente.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -446,9 +434,9 @@
   {
     "objectID": "unidad2/clase2.html#la-métrica-debe-responder-a-la-aplicación",
     "href": "unidad2/clase2.html#la-métrica-debe-responder-a-la-aplicación",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "5.5 La métrica debe responder a la aplicación",
-    "text": "5.5 La métrica debe responder a la aplicación\n\n\n\n\n\nflowchart LR\n    A[Pregunta clínica] --&gt; M[Selección de métricas]\n    M --&gt; O[Overlap]\n    M --&gt; S[Superficie]\n    M --&gt; C[Impacto clínico]\n\n\n\n\n\n\nEjemplos:\n\nsegmentación hepática para volumetría → volumen + Dice pueden ser relevantes;\nmédula espinal en radioterapia → errores de superficie pueden ser críticos;\ntumor junto a alto gradiente de dosis → la geometría debe relacionarse con dosimetría.\n\n\n\n\n\n\n\nImportant\n\n\n\nNo existe una métrica universal que determine por sí sola si una segmentación es clínicamente aceptable.",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "La métrica debe responder a la aplicación",
+    "text": "La métrica debe responder a la aplicación\n\nflowchart LR\n    A[Pregunta clínica] --&gt; M[Selección de métricas]\n    M --&gt; O[Overlap]\n    M --&gt; S[Superficie]\n    M --&gt; C[Impacto clínico]\n\n\n\n\nflowchart LR\n    A[Pregunta clínica] --&gt; M[Selección de métricas]\n    M --&gt; O[Overlap]\n    M --&gt; S[Superficie]\n    M --&gt; C[Impacto clínico]\n\n\n\n\n\n\nEjemplos:\n\nsegmentación hepática para volumetría → volumen + Dice pueden ser relevantes;\nmédula espinal en radioterapia → errores de superficie pueden ser críticos;\ntumor junto a alto gradiente de dosis → la geometría debe relacionarse con dosimetría.\n\n\n\n\n\n\n\nImportante\n\n\nNo existe una métrica universal que determine por sí sola si una segmentación es clínicamente aceptable.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -458,9 +446,9 @@
   {
     "objectID": "unidad2/clase2.html#training-validation-y-test-cumplen-roles-distintos",
     "href": "unidad2/clase2.html#training-validation-y-test-cumplen-roles-distintos",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "6.1 Training, validation y test cumplen roles distintos",
-    "text": "6.1 Training, validation y test cumplen roles distintos\n\n\n\n\n\nflowchart LR\n    D[Dataset] --&gt; T[Training]\n    D --&gt; V[Validation]\n    D --&gt; E[Test]\n\n    T --&gt; T1[Ajustar parámetros]\n    V --&gt; V1[Elegir modelo&lt;br/&gt;e hiperparámetros]\n    E --&gt; E1[Evaluación final]\n\n\n\n\n\n\nDurante el desarrollo usamos el conjunto de validación repetidamente.\nEl test debe permanecer reservado hasta que el proceso de desarrollo esté definido.",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Training, validation y test cumplen roles distintos",
+    "text": "Training, validation y test cumplen roles distintos\n\nflowchart LR\n    D[Dataset] --&gt; T[Training]\n    D --&gt; V[Validation]\n    D --&gt; E[Test]\n\n    T --&gt; T1[Ajustar parámetros]\n    V --&gt; V1[Elegir modelo&lt;br/&gt;e hiperparámetros]\n    E --&gt; E1[Evaluación final]\n\n\n\n\nflowchart LR\n    D[Dataset] --&gt; T[Training]\n    D --&gt; V[Validation]\n    D --&gt; E[Test]\n\n    T --&gt; T1[Ajustar parámetros]\n    V --&gt; V1[Elegir modelo&lt;br/&gt;e hiperparámetros]\n    E --&gt; E1[Evaluación final]\n\n\n\n\n\n\nDurante el desarrollo usamos el conjunto de validación repetidamente.\nEl test debe permanecer reservado hasta que el proceso de desarrollo esté definido.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -470,9 +458,9 @@
   {
     "objectID": "unidad2/clase2.html#la-unidad-de-separación-debe-ser-el-paciente",
     "href": "unidad2/clase2.html#la-unidad-de-separación-debe-ser-el-paciente",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "6.2 La unidad de separación debe ser el paciente",
-    "text": "6.2 La unidad de separación debe ser el paciente\nEn imágenes médicas, un paciente puede aportar:\n\nmúltiples cortes;\nmúltiples series;\ndistintas modalidades;\nestudios longitudinales;\nmúltiples lesiones.\n\n\n\n\n\n\n\nWarning\n\n\n\nNo debemos colocar imágenes del mismo paciente en entrenamiento y validación/test.\n\n\nDe lo contrario aparece data leakage y el desempeño puede quedar artificialmente inflado.",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "La unidad de separación debe ser el paciente",
+    "text": "La unidad de separación debe ser el paciente\nEn imágenes médicas, un paciente puede aportar:\n\nmúltiples cortes;\nmúltiples series;\ndistintas modalidades;\nestudios longitudinales;\nmúltiples lesiones.\n\n\n\n\n\n\n\nAdvertencia\n\n\nNo debemos colocar imágenes del mismo paciente en entrenamiento y validación/test.\n\n\n\nDe lo contrario aparece data leakage y el desempeño puede quedar artificialmente inflado.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -482,9 +470,9 @@
   {
     "objectID": "unidad2/clase2.html#validar-no-es-mirar-solo-la-loss",
     "href": "unidad2/clase2.html#validar-no-es-mirar-solo-la-loss",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "6.3 Validar no es mirar solo la loss",
-    "text": "6.3 Validar no es mirar solo la loss",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Validar no es mirar solo la loss",
+    "text": "Validar no es mirar solo la loss",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -494,9 +482,9 @@
   {
     "objectID": "unidad2/clase2.html#qué-conviene-registrar",
     "href": "unidad2/clase2.html#qué-conviene-registrar",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "6.4 Qué conviene registrar",
-    "text": "6.4 Qué conviene registrar\nPara cada experimento:\n\npartición de pacientes\nversión de los datos\npreprocesamiento\narquitectura\nfunción de pérdida\nhiperparámetros\nmétricas por estructura y por paciente\ncheckpoint seleccionado\ncasos de fallo\n\nEsto permite que la validación sea reproducible y no una inspección informal.",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Qué conviene registrar",
+    "text": "Qué conviene registrar\nPara cada experimento:\n\npartición de pacientes\nversión de los datos\npreprocesamiento\narquitectura\nfunción de pérdida\nhiperparámetros\nmétricas por estructura y por paciente\ncheckpoint seleccionado\ncasos de fallo\n\nEsto permite que la validación sea reproducible y no una inspección informal.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -506,9 +494,9 @@
   {
     "objectID": "unidad2/clase2.html#qué-deberíamos-mirar-en-validación",
     "href": "unidad2/clase2.html#qué-deberíamos-mirar-en-validación",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "6.5 Qué deberíamos mirar en validación",
-    "text": "6.5 Qué deberíamos mirar en validación\nNo solamente:\n\n“Dice promedio = 0.91”\n\nSino también:\n\n¿qué estructuras tienen peor desempeño?\n¿cuál es la dispersión entre pacientes?\n¿existen fallos catastróficos?\n¿qué ocurre en casos pequeños o difíciles?\n¿Dice y HD95 cuentan la misma historia?\n¿los errores son clínicamente relevantes?",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Qué deberíamos mirar en validación",
+    "text": "Qué deberíamos mirar en validación\nNo solamente:\n\n“Dice promedio = 0.91”\n\nSino también:\n\n¿qué estructuras tienen peor desempeño?\n¿cuál es la dispersión entre pacientes?\n¿existen fallos catastróficos?\n¿qué ocurre en casos pequeños o difíciles?\n¿Dice y HD95 cuentan la misma historia?\n¿los errores son clínicamente relevantes?",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -518,9 +506,9 @@
   {
     "objectID": "unidad2/clase2.html#cierre",
     "href": "unidad2/clase2.html#cierre",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "6.6 Cierre",
-    "text": "6.6 Cierre\nUna buena evaluación combina:\n\\[\n\\boxed{\n\\text{superposición}\n+\n\\text{distancia}\n+\n\\text{distribución por paciente}\n+\n\\text{contexto clínico}\n}\n\\]\nIdeas para llevarse:\n\nDice e IoU miden superposición.\nLa loss guía la optimización y no debe confundirse con una métrica de evaluación.\nBCE/CE + Dice Loss combina información local y superposición global.\nHausdorff / HD95 miden discrepancias de superficie.\nNinguna métrica debe interpretarse aisladamente.\nLas métricas dependen del tamaño, resolución y anatomía.\nLa validación debe hacerse por paciente y sin data leakage.\nEl test no forma parte del proceso iterativo de desarrollo.",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Cierre",
+    "text": "Cierre\nUna buena evaluación combina:\n\\[\n\\boxed{\n\\text{superposición}\n+\n\\text{distancia}\n+\n\\text{distribución por paciente}\n+\n\\text{contexto clínico}\n}\n\\]\nIdeas para llevarse:\n\nDice e IoU miden superposición.\nLa loss guía la optimización y no debe confundirse con una métrica de evaluación.\nBCE/CE + Dice Loss combina información local y superposición global.\nHausdorff / HD95 miden discrepancias de superficie.\nNinguna métrica debe interpretarse aisladamente.\nLas métricas dependen del tamaño, resolución y anatomía.\nLa validación debe hacerse por paciente y sin data leakage.\nEl test no forma parte del proceso iterativo de desarrollo.",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
@@ -530,9 +518,9 @@
   {
     "objectID": "unidad2/clase2.html#pregunta-de-cierre",
     "href": "unidad2/clase2.html#pregunta-de-cierre",
-    "title": "1 ¿Qué significa que una segmentación sea buena?",
-    "section": "6.7 Pregunta de cierre",
-    "text": "6.7 Pregunta de cierre\n\nDos modelos tienen el mismo Dice promedio.\nUno tiene errores pequeños en todos los pacientes y el otro falla por completo en unos pocos casos.\n\n¿Diríamos que tienen el mismo desempeño clínico?",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Pregunta de cierre",
+    "text": "Pregunta de cierre\n\nDos modelos tienen el mismo Dice promedio.\nUno tiene errores pequeños en todos los pacientes y el otro falla por completo en unos pocos casos.\n\n¿Diríamos que tienen el mismo desempeño clínico?",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
