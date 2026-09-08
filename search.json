@@ -1,5 +1,533 @@
 [
   {
+    "objectID": "unidad2/unidad2.html",
+    "href": "unidad2/unidad2.html",
+    "title": "Unidad 2: Segmentación de Imágenes Médicas",
+    "section": "",
+    "text": "Unidad 2 · Segmentación de imágenes médicas\n\n\n\nUna ruta conceptual y práctica desde la definición de una máscara y sus métricas hasta el diseño, la evaluación y el uso clínico de sistemas de segmentación automática e interactiva.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Índice de la unidad"
+    ]
+  },
+  {
+    "objectID": "unidad2/unidad2.html#el-punto-de-partida",
+    "href": "unidad2/unidad2.html#el-punto-de-partida",
+    "title": "Unidad 2: Segmentación de Imágenes Médicas",
+    "section": "El punto de partida",
+    "text": "El punto de partida\nEsta segunda unidad aborda la segmentación de imágenes médicas como una tarea espacial: transformar una imagen o un volumen en una etiqueta para cada píxel o vóxel.\nEl recorrido comienza con los fundamentos de la segmentación semántica y sus principales métricas —Dice, IoU y distancia de Hausdorff— para avanzar hacia las decisiones que determinan un sistema completo: preprocesamiento, dimensionalidad, entrenamiento por patches, funciones de pérdida, inferencia y postprocesamiento.\nLa pregunta que guía el recorrido es:\n\n¿Cómo pasamos de un modelo que produce una máscara geométricamente razonable a una herramienta confiable, clínicamente útil e integrada en el flujo de trabajo?\n\nPara responderla, compararemos dos paradigmas. Por un lado, la segmentación automática, ejemplificada por nnU-Net y su capacidad de configurar gran parte del pipeline a partir de las características del dataset. Por otro, la segmentación interactiva guiada por prompts, representada por modelos como MedSAM, donde el experto participa durante la inferencia.\nTambién analizaremos por qué una máscara de referencia no siempre representa una verdad anatómica absoluta, cómo la variabilidad entre observadores condiciona la evaluación y por qué una mejora geométrica no implica necesariamente una mejora clínica.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Índice de la unidad"
+    ]
+  },
+  {
+    "objectID": "unidad2/unidad2.html#al-finalizar-la-unidad",
+    "href": "unidad2/unidad2.html#al-finalizar-la-unidad",
+    "title": "Unidad 2: Segmentación de Imágenes Médicas",
+    "section": "Al finalizar la unidad",
+    "text": "Al finalizar la unidad\nSe espera que el estudiante pueda:\n\n\nFundamentos y métricas\n\nExplicar qué es la segmentación semántica y distinguirla de la segmentación de instancias y panóptica.\nReconocer las principales dificultades de la segmentación en imágenes médicas.\nInterpretar el coeficiente Dice, IoU, Hausdorff y \\(HD_{95}\\).\nIdentificar las limitaciones de las métricas de superposición y de distancia.\n\n\n\nDiseño y entrenamiento\n\nAnalizar las decisiones de preprocesamiento, normalización y resampling.\nComparar estrategias 2D, 2.5D y 3D, considerando el spacing y la anisotropía.\nComprender el entrenamiento por patches, el desbalance de clases y las funciones de pérdida.\nReconocer la importancia de separar los datos a nivel de paciente y evitar data leakage.\n\n\n\nAutomatización y evaluación clínica\n\nComprender nnU-Net como un framework de segmentación automática y auto-configurable.\nComparar la segmentación automática con la segmentación interactiva guiada por prompts.\nAnalizar la variabilidad inter- e intra-observador y sus consecuencias sobre el ground truth.\nDiferenciar validación técnica, validación clínica e impacto sobre el flujo de trabajo.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Índice de la unidad"
+    ]
+  },
+  {
+    "objectID": "unidad2/unidad2.html#material-de-la-unidad",
+    "href": "unidad2/unidad2.html#material-de-la-unidad",
+    "title": "Unidad 2: Segmentación de Imágenes Médicas",
+    "section": "Material de la unidad",
+    "text": "Material de la unidad\n\n\nNotas de clase\nFundamentos de segmentación, métricas geométricas, entrenamiento de modelos, nnU-Net, MedSAM y validación clínica.\nAbrir notas de clase",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Índice de la unidad"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#de-la-clase-anterior",
+    "href": "unidad2/clase2.html#de-la-clase-anterior",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "De la clase anterior",
+    "text": "De la clase anterior\nTerminamos con una pregunta:\n\n¿Cómo sabemos si una segmentación automática es suficientemente buena?\n\nEn la clase anterior vimos que:\n\nlos contornos son objetos clínicamente relevantes;\nlas anotaciones humanas presentan variabilidad;\nun error geométrico puede propagarse hacia la dosimetría;\nel ground truth no siempre representa una verdad absoluta.\n\nHoy pasamos de la segmentación a su evaluación.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#objetivos-de-esta-clase",
+    "href": "unidad2/clase2.html#objetivos-de-esta-clase",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Objetivos de esta clase",
+    "text": "Objetivos de esta clase\nAl finalizar la clase deberían poder:\n\nExplicar qué significa evaluar una segmentación.\nConstruir la matriz de confusión a nivel de píxel o vóxel.\nInterpretar Dice e IoU como métricas de superposición.\nDiferenciar una métrica de evaluación de una función de pérdida.\nComprender BCE/CE, Dice Loss y la combinación CE + Dice.\nInterpretar la distancia de Hausdorff como métrica de borde.\nReconocer las limitaciones de cada métrica.\nDiseñar una estrategia básica de validación durante el desarrollo.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#una-pregunta-aparentemente-simple",
+    "href": "unidad2/clase2.html#una-pregunta-aparentemente-simple",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Una pregunta aparentemente simple",
+    "text": "Una pregunta aparentemente simple\n\n¿Qué significa que una segmentación sea buena?",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#no-existe-una-única-noción-de-calidad",
+    "href": "unidad2/clase2.html#no-existe-una-única-noción-de-calidad",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "No existe una única noción de calidad",
+    "text": "No existe una única noción de calidad\n\nCalidad",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#antes-de-las-métricas-tp-fp-fn-y-tn",
+    "href": "unidad2/clase2.html#antes-de-las-métricas-tp-fp-fn-y-tn",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Antes de las métricas: TP, FP, FN y TN",
+    "text": "Antes de las métricas: TP, FP, FN y TN\n\nMatriz de confusión",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#la-matriz-de-confusión-ocurre-en-el-espacio",
+    "href": "unidad2/clase2.html#la-matriz-de-confusión-ocurre-en-el-espacio",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "La matriz de confusión ocurre en el espacio",
+    "text": "La matriz de confusión ocurre en el espacio\nEn clasificación convencional, una observación suele producir una entrada de la matriz de confusión.\nEn segmentación:\n\ncada píxel o vóxel contribuye a la matriz de confusión.\n\nPara un volumen de (512):\n\\[\n512\\cdot512\\cdot200\n\\approx 52\\,\\text{millones de vóxeles}\n\\]\nEsto introduce un problema: la mayoría puede ser simplemente fondo.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#por-qué-accuracy-puede-ser-engañosa",
+    "href": "unidad2/clase2.html#por-qué-accuracy-puede-ser-engañosa",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Por qué accuracy puede ser engañosa?",
+    "text": "¿Por qué accuracy puede ser engañosa?\nSupongamos que una lesión ocupa solo el (1%) del volumen.\nUn modelo que predice todo como fondo obtiene:\n\\[\n\\text{Accuracy}\\approx 99\\%\n\\]\npero:\n\\[\n\\text{segmentación de la lesión}=0\n\\]\n\n\n\n\n\n\nWarning\n\n\nEn segmentación médica, la accuracy global suele estar dominada por el fondo y puede ocultar un fracaso completo sobre la estructura de interés.\n\n\n\nPor eso preferimos métricas centradas en la región positiva.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#dice-cuánto-se-superponen-las-máscaras",
+    "href": "unidad2/clase2.html#dice-cuánto-se-superponen-las-máscaras",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Dice: ¿cuánto se superponen las máscaras?",
+    "text": "Dice: ¿cuánto se superponen las máscaras?\n\nDice",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#intuición-geométrica-del-dice",
+    "href": "unidad2/clase2.html#intuición-geométrica-del-dice",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Intuición geométrica del Dice",
+    "text": "Intuición geométrica del Dice\n\nIntuición geométrica del Dice",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#un-ejemplo-simple",
+    "href": "unidad2/clase2.html#un-ejemplo-simple",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Un ejemplo simple",
+    "text": "Un ejemplo simple\n\nEjemplo simple",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#dice-0.90-es-siempre-bueno",
+    "href": "unidad2/clase2.html#dice-0.90-es-siempre-bueno",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Dice = 0.90 es siempre “bueno”?",
+    "text": "¿Dice = 0.90 es siempre “bueno”?\nNo necesariamente.\nEl mismo valor puede tener significados distintos dependiendo de:\n\ntamaño de la estructura\ncomplejidad de su forma\nresolución espacial\ncalidad del ground truth\nlocalización del error\npropósito clínico\n\n\nUna métrica necesita siempre contexto anatómico y clínico.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#el-efecto-del-tamaño-de-la-estructura",
+    "href": "unidad2/clase2.html#el-efecto-del-tamaño-de-la-estructura",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "El efecto del tamaño de la estructura",
+    "text": "El efecto del tamaño de la estructura\n\nEstructuras grandes y pequeñas",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#dice-puede-ocultar-errores-de-borde",
+    "href": "unidad2/clase2.html#dice-puede-ocultar-errores-de-borde",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Dice puede ocultar errores de borde",
+    "text": "Dice puede ocultar errores de borde\nDos máscaras pueden tener una gran región común y alcanzar un Dice elevado.\nSin embargo, un pequeño sector del borde puede desviarse considerablemente.\nEsto importa especialmente:\n\ncerca de un gradiente de dosis elevado\nen órganos seriales\nen lesiones pequeñas\ncuando los márgenes terapéuticos son reducidos\n\nNecesitamos métricas que miren explícitamente la superficie.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#métrica-y-función-de-pérdida-no-son-lo-mismo",
+    "href": "unidad2/clase2.html#métrica-y-función-de-pérdida-no-son-lo-mismo",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Métrica y función de pérdida no son lo mismo",
+    "text": "Métrica y función de pérdida no son lo mismo\n\nMetrica vs. pérdida",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#binary-cross-entropy-decisión-vóxel-a-vóxel",
+    "href": "unidad2/clase2.html#binary-cross-entropy-decisión-vóxel-a-vóxel",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Binary Cross-Entropy: decisión vóxel a vóxel",
+    "text": "Binary Cross-Entropy: decisión vóxel a vóxel\n\nBinary Crss-Entropy",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#el-problema-fondo-estructura",
+    "href": "unidad2/clase2.html#el-problema-fondo-estructura",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "El problema: fondo ≫ estructura",
+    "text": "El problema: fondo ≫ estructura\n\nDesbalance de clases",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#dice-loss-optimizar-la-superposición",
+    "href": "unidad2/clase2.html#dice-loss-optimizar-la-superposición",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Dice Loss: optimizar la superposición",
+    "text": "Dice Loss: optimizar la superposición\n\nDice Loss",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#cross-entropy-dice",
+    "href": "unidad2/clase2.html#cross-entropy-dice",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Cross-Entropy + Dice",
+    "text": "Cross-Entropy + Dice\n\nCE + Dice",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#focal-loss-cuando-predominan-los-ejemplos-fáciles",
+    "href": "unidad2/clase2.html#focal-loss-cuando-predominan-los-ejemplos-fáciles",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Focal Loss: cuando predominan los ejemplos fáciles",
+    "text": "Focal Loss: cuando predominan los ejemplos fáciles\n\nFocal Loss",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#loss-de-entrenamiento-calidad-clínica",
+    "href": "unidad2/clase2.html#loss-de-entrenamiento-calidad-clínica",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Loss de entrenamiento ≠ calidad clínica",
+    "text": "Loss de entrenamiento ≠ calidad clínica\nSupongamos que durante el entrenamiento:\n\\[\n\\mathcal{L}_{val}\n\\downarrow\n\\]\nEsto indica que el objetivo matemático está mejorando sobre validación.\nPero todavía debemos preguntar:\n\n¿mejora Dice?\n¿qué ocurre en estructuras pequeñas?\n¿aparecen fallos localizados?\n¿el resultado es clínicamente aceptable?\n\n\nLa función de pérdida guía el aprendizaje; las métricas y la revisión clínica evalúan el resultado.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#de-regiones-a-superficies",
+    "href": "unidad2/clase2.html#de-regiones-a-superficies",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "De regiones a superficies",
+    "text": "De regiones a superficies\nSea:\n\n\\(\\partial P\\): superficie de la predicción;\n\\(\\partial G\\): superficie de la referencia.\n\nAhora la pregunta cambia:\n\n¿Qué tan lejos están los bordes entre sí?\n\nPara cada punto de una superficie podemos buscar su punto más cercano en la otra.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#distancia-dirigida-entre-superficies",
+    "href": "unidad2/clase2.html#distancia-dirigida-entre-superficies",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Distancia dirigida entre superficies",
+    "text": "Distancia dirigida entre superficies",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#distancia-de-hausdorff",
+    "href": "unidad2/clase2.html#distancia-de-hausdorff",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Distancia de Hausdorff",
+    "text": "Distancia de Hausdorff\nLa distancia de Hausdorff toma el peor desacuerdo entre las superficies:\n\\[\nH(P,G)=\n\\max\n\\left\\{\n\\sup_{p\\in\\partial P} d(p,\\partial G),\n\\sup_{g\\in\\partial G} d(g,\\partial P)\n\\right\\}\n\\]\nEn palabras:\n\n¿Cuál es el punto del contorno que está más lejos de la otra superficie?\n\nMenor es mejor.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#qué-aporta-hausdorff",
+    "href": "unidad2/clase2.html#qué-aporta-hausdorff",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Qué aporta Hausdorff?",
+    "text": "¿Qué aporta Hausdorff?\nDice e IoU pueden permanecer altos aunque exista una desviación localizada.\nHausdorff es sensible a ese tipo de error.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDice / IoU\n\n\n\n\n\n\n\nSuperposición global\n\n\n\n\n\n\n\nHausdorff\n\n\n\n\n\n\n\nPeor discrepancia de borde\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\nLas métricas de superposición y las métricas de superficie responden a preguntas diferentes y son complementarias.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#el-problema-de-hausdorff-los-outliers",
+    "href": "unidad2/clase2.html#el-problema-de-hausdorff-los-outliers",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "El problema de Hausdorff: los outliers",
+    "text": "El problema de Hausdorff: los outliers\nLa Hausdorff clásica utiliza el máximo.\nPor lo tanto, un único punto aberrante puede dominar completamente la métrica.\nEjemplos:\n\nuna pequeña isla de falsos positivos\nun vóxel aislado\nun artefacto de postprocesamiento\nuna anotación puntual errónea\n\nResultado:\n\\[\n\\text{un outlier}\n\\rightarrow\n\\text{Hausdorff muy grande}\n\\]",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#hd95-una-alternativa-más-robusta",
+    "href": "unidad2/clase2.html#hd95-una-alternativa-más-robusta",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "HD95: una alternativa más robusta",
+    "text": "HD95: una alternativa más robusta\nUna práctica habitual es utilizar el percentil 95 de las distancias de superficie:\n\\[\nHD_{95}\n=\nP_{95}\n\\left(\n\\{d(p,\\partial G)\\}\\cup\n\\{d(g,\\partial P)\\}\n\\right)\n\\]\nInterpretación:\n\nEl \\(95\\%\\) de las discrepancias de superficie se encuentra por debajo de ese valor.\n\nEsto reduce la sensibilidad a unos pocos puntos extremos.\n\n\n\n\n\n\nNote\n\n\nHD95 no reemplaza conceptualmente a Hausdorff: cambia deliberadamente la pregunta para obtener una medida más robusta.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#el-spacing-importa",
+    "href": "unidad2/clase2.html#el-spacing-importa",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "El spacing importa",
+    "text": "El spacing importa\nEn imágenes médicas, un vóxel no tiene necesariamente el mismo tamaño en todas las direcciones.\nPor ejemplo:\n\\[\n0.8\\times0.8\\times3.0\\ \\mathrm{mm^3}\n\\]\nUna distancia calculada solo en índices de vóxel puede ser físicamente incorrecta.\n\n\n\n\n\n\nWarning\n\n\nLas métricas de distancia deben calcularse utilizando el pixel/voxel spacing real de la imagen.\n\n\n\nEspecialmente en estudios anisotrópicos.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#superposición-y-distancia-juntas-cuentan-mejor-la-historia",
+    "href": "unidad2/clase2.html#superposición-y-distancia-juntas-cuentan-mejor-la-historia",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Superposición y distancia: juntas cuentan mejor la historia",
+    "text": "Superposición y distancia: juntas cuentan mejor la historia\n\nDice y Distancia",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#un-promedio-puede-esconder-mucho",
+    "href": "unidad2/clase2.html#un-promedio-puede-esconder-mucho",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Un promedio puede esconder mucho",
+    "text": "Un promedio puede esconder mucho\n\nPromedio vs. dispersión",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#segmentación-multiclase",
+    "href": "unidad2/clase2.html#segmentación-multiclase",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Segmentación multiclase",
+    "text": "Segmentación multiclase\nEn un problema con (K) estructuras podemos calcular una métrica por clase:\n\\[\n\\mathrm{Dice}_1,\\;\n\\mathrm{Dice}_2,\\;\n\\dots,\\;\n\\mathrm{Dice}_K\n\\]\nNo debemos asumir que todas las clases tienen la misma dificultad.\nEjemplo:\n\nhígado: grande, alto contraste;\nnervio óptico: pequeño;\ntumor: heterogéneo y ambiguo.\n\n\nReportar solo un promedio global puede ocultar qué estructuras fallan.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#macro-o-micro-promedio",
+    "href": "unidad2/clase2.html#macro-o-micro-promedio",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Macro o micro promedio?",
+    "text": "¿Macro o micro promedio?\nMacro average\n\\[\n\\mathrm{Dice}_{macro}\n=\n\\frac{1}{K}\\sum_{k=1}^{K}\\mathrm{Dice}_k\n\\]\nCada clase tiene el mismo peso.\nMicro / global\nAgrega primero los TP, FP y FN de todas las clases y luego calcula la métrica.\n\n\n\n\n\n\nNote\n\n\nEn conjuntos desbalanceados, el promedio global puede quedar dominado por las estructuras más grandes.\n\n\n\nPara Física Médica suele ser importante reportar resultados por estructura.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#qué-hacer-con-estructuras-ausentes",
+    "href": "unidad2/clase2.html#qué-hacer-con-estructuras-ausentes",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Qué hacer con estructuras ausentes?",
+    "text": "¿Qué hacer con estructuras ausentes?\nPuede ocurrir que una estructura o lesión no esté presente en un caso.\nEntonces:\n\\[\n|P|=0,\\qquad |G|=0\n\\]\ny Dice queda matemáticamente indeterminado:\n\\[\n\\frac{0}{0}\n\\]\nDebemos definir explícitamente la convención:\n\nexcluir ese caso para esa estructura;\nasignar Dice = 1 si ambos son vacíos;\ntratar falsos positivos sobre una referencia vacía por separado.\n\nLo importante es que la política sea explícita y consistente.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#la-métrica-debe-responder-a-la-aplicación",
+    "href": "unidad2/clase2.html#la-métrica-debe-responder-a-la-aplicación",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "La métrica debe responder a la aplicación",
+    "text": "La métrica debe responder a la aplicación\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPregunta clínica\n\n\n\n\n\n\n\nSelección de métricas\n\n\n\n\n\n\n\nOverlap\n\n\n\n\n\n\n\nSuperficie\n\n\n\n\n\n\n\nImpacto clínico\n\n\n\n\n\n\n\n\n\n\nEjemplos:\n\nsegmentación hepática para volumetría → volumen + Dice pueden ser relevantes;\nmédula espinal en radioterapia → errores de superficie pueden ser críticos;\ntumor junto a alto gradiente de dosis → la geometría debe relacionarse con dosimetría.\n\n\n\n\n\n\n\nImportant\n\n\nNo existe una métrica universal que determine por sí sola si una segmentación es clínicamente aceptable.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#training-validation-y-test-cumplen-roles-distintos",
+    "href": "unidad2/clase2.html#training-validation-y-test-cumplen-roles-distintos",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Training, validation y test cumplen roles distintos",
+    "text": "Training, validation y test cumplen roles distintos\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDataset\n\n\n\n\n\n\n\nTraining\n\n\n\n\n\n\n\nValidation\n\n\n\n\n\n\n\nTest\n\n\n\n\n\n\n\nAjustar parámetros\n\n\n\n\n\n\n\nElegir modeloe hiperparámetros\n\n\n\n\n\n\n\nEvaluación final\n\n\n\n\n\n\n\n\n\n\nDurante el desarrollo usamos el conjunto de validación repetidamente.\nEl test debe permanecer reservado hasta que el proceso de desarrollo esté definido.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#la-unidad-de-separación-debe-ser-el-paciente",
+    "href": "unidad2/clase2.html#la-unidad-de-separación-debe-ser-el-paciente",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "La unidad de separación debe ser el paciente",
+    "text": "La unidad de separación debe ser el paciente\nEn imágenes médicas, un paciente puede aportar:\n\nmúltiples cortes;\nmúltiples series;\ndistintas modalidades;\nestudios longitudinales;\nmúltiples lesiones.\n\n\n\n\n\n\n\nWarning\n\n\nNo debemos colocar imágenes del mismo paciente en entrenamiento y validación/test.\n\n\n\nDe lo contrario aparece data leakage y el desempeño puede quedar artificialmente inflado.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#validar-no-es-mirar-solo-la-loss",
+    "href": "unidad2/clase2.html#validar-no-es-mirar-solo-la-loss",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Validar no es mirar solo la loss",
+    "text": "Validar no es mirar solo la loss\nDurante el entrenamiento podemos seguir:\n\ntraining loss;\nvalidation loss;\nDice por estructura;\nHD95;\nejemplos visuales representativos.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nÉpocas\n\n\n\n\n\n\n\nLoss\n\n\n\n\n\n\n\nDice\n\n\n\n\n\n\n\nHD95\n\n\n\n\n\n\n\nRevisión visual\n\n\n\n\n\n\n\nSelección del modelo\n\n\n\n\n\n\n\n\n\n\n\nLa mejor loss no necesariamente corresponde al mejor comportamiento clínico.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#qué-conviene-registrar",
+    "href": "unidad2/clase2.html#qué-conviene-registrar",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Qué conviene registrar",
+    "text": "Qué conviene registrar\nPara cada experimento:\n\npartición de pacientes\nversión de los datos\npreprocesamiento\narquitectura\nfunción de pérdida\nhiperparámetros\nmétricas por estructura y por paciente\ncheckpoint seleccionado\ncasos de fallo\n\nEsto permite que la validación sea reproducible y no una inspección informal.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#qué-deberíamos-mirar-en-validación",
+    "href": "unidad2/clase2.html#qué-deberíamos-mirar-en-validación",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Qué deberíamos mirar en validación",
+    "text": "Qué deberíamos mirar en validación\nNo solamente:\n\n“Dice promedio = 0.91”\n\nSino también:\n\n¿qué estructuras tienen peor desempeño?\n¿cuál es la dispersión entre pacientes?\n¿existen fallos catastróficos?\n¿qué ocurre en casos pequeños o difíciles?\n¿Dice y HD95 cuentan la misma historia?\n¿los errores son clínicamente relevantes?",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#cierre",
+    "href": "unidad2/clase2.html#cierre",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Cierre",
+    "text": "Cierre\nUna buena evaluación combina:\n\\[\n\\boxed{\n\\text{superposición}\n+\n\\text{distancia}\n+\n\\text{distribución por paciente}\n+\n\\text{contexto clínico}\n}\n\\]\nIdeas para llevarse:\n\nDice e IoU miden superposición.\nLa loss guía la optimización y no debe confundirse con una métrica de evaluación.\nBCE/CE + Dice Loss combina información local y superposición global.\nHausdorff / HD95 miden discrepancias de superficie.\nNinguna métrica debe interpretarse aisladamente.\nLas métricas dependen del tamaño, resolución y anatomía.\nLa validación debe hacerse por paciente y sin data leakage.\nEl test no forma parte del proceso iterativo de desarrollo.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase2.html#pregunta-de-cierre",
+    "href": "unidad2/clase2.html#pregunta-de-cierre",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Pregunta de cierre",
+    "text": "Pregunta de cierre\n\nDos modelos tienen el mismo Dice promedio.\nUno tiene errores pequeños en todos los pacientes y el otro falla por completo en unos pocos casos.\n\n¿Diríamos que tienen el mismo desempeño clínico?",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 2: ¿Cómo evaluamos una segmentación?"
+    ]
+  },
+  {
     "objectID": "unidad1/unidad1.html",
     "href": "unidad1/unidad1.html",
     "title": "Unidad 1: Fundamentos de IA",
@@ -3599,6 +4127,930 @@
       "Inicio",
       "1. Fundamentos de IA",
       "Notas sobre imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#dónde-estamos-en-el-curso",
+    "href": "unidad2/clase1.html#dónde-estamos-en-el-curso",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Dónde estamos en el curso?",
+    "text": "¿Dónde estamos en el curso?\nEn la unidad anterior discutimos cómo una red neuronal aprende representaciones a partir de datos.\nAhora pasamos a una de las tareas centrales de la IA en imágenes médicas:\n\nasignar significado anatómico o patológico a cada píxel o vóxel de una imagen.\n\nEsta tarea se denomina segmentación.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#objetivos-de-esta-clase",
+    "href": "unidad2/clase1.html#objetivos-de-esta-clase",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Objetivos de esta clase",
+    "text": "Objetivos de esta clase\nAl finalizar esta clase deberíamos poder:\n\nExplicar qué significa segmentar una imagen médica.\nDiferenciar clasificación, detección y segmentación.\nInterpretar una segmentación como un mapa de etiquetas.\nReconocer el papel clínico de los contornos en Física Médica.\nEntender por qué el contorneo manual es costoso, variable y difícil de escalar.\nIdentificar por qué la calidad de las etiquetas condiciona el aprendizaje automático.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#qué-significa-segmentar",
+    "href": "unidad2/clase1.html#qué-significa-segmentar",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Qué significa segmentar?",
+    "text": "¿Qué significa segmentar?\n\nSegmentación",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#tres-tareas-distintas",
+    "href": "unidad2/clase1.html#tres-tareas-distintas",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Tres tareas distintas",
+    "text": "Tres tareas distintas\n\nTareas",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#segmentación-clasificación-densa",
+    "href": "unidad2/clase1.html#segmentación-clasificación-densa",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Segmentación = clasificación densa",
+    "text": "Segmentación = clasificación densa\n\nSegmentación como clasificación densa",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#de-la-imagen-a-la-máscara",
+    "href": "unidad2/clase1.html#de-la-imagen-a-la-máscara",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "De la imagen a la máscara",
+    "text": "De la imagen a la máscara\n\nDe la imagen a la máscara",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#d-y-3d-no-son-exactamente-el-mismo-problema",
+    "href": "unidad2/clase1.html#d-y-3d-no-son-exactamente-el-mismo-problema",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "2D y 3D no son exactamente el mismo problema",
+    "text": "2D y 3D no son exactamente el mismo problema\n\n2D vs 3D",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#qué-segmentamos-en-imágenes-médicas",
+    "href": "unidad2/clase1.html#qué-segmentamos-en-imágenes-médicas",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Qué segmentamos en imágenes médicas?",
+    "text": "¿Qué segmentamos en imágenes médicas?\nLa segmentación puede describir estructuras muy diferentes:\n\n\n\nTipo\nEjemplos\n\n\n\n\nAnatomía normal\ncerebro, pulmones, hígado, riñones\n\n\nÓrganos en riesgo\nmédula, parótidas, corazón, recto\n\n\nVolúmenes tumorales\nGTV, CTV, lesiones metastásicas\n\n\nRegiones funcionales\nsubregiones PET, perfusión, ventilación\n\n\nHallazgos\nnódulos, hemorragias, lesiones focales\n\n\n\nLa definición de la estructura depende de la tarea clínica, no solamente de la imagen.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#la-misma-imagen-puede-admitir-distintas-segmentaciones",
+    "href": "unidad2/clase1.html#la-misma-imagen-puede-admitir-distintas-segmentaciones",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "La misma imagen puede admitir distintas segmentaciones",
+    "text": "La misma imagen puede admitir distintas segmentaciones\nUna segmentación no es una descripción neutral del mundo.\nDepende de:\n\nqué estructura se quiere identificar;\ncon qué finalidad clínica;\nqué modalidad de imagen se utiliza;\nqué protocolo o guía de contorneo se sigue;\nqué nivel de detalle es relevante.\n\n\nLa etiqueta correcta depende del problema que estamos intentando resolver.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#el-caso-de-radioterapia",
+    "href": "unidad2/clase1.html#el-caso-de-radioterapia",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "El caso de Radioterapia",
+    "text": "El caso de Radioterapia\n\nRadioterapia",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#targets-y-órganos-en-riesgo",
+    "href": "unidad2/clase1.html#targets-y-órganos-en-riesgo",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Targets y órganos en riesgo",
+    "text": "Targets y órganos en riesgo\nEn radioterapia se segmentan, entre otras estructuras:\nVolúmenes objetivo\n\nGTV — Gross Tumor Volume\nCTV — Clinical Target Volume\nPTV — Planning Target Volume\n\nÓrganos en riesgo (OARs)\n\nestructuras cuya irradiación debe limitarse;\npueden presentar límites anatómicos claros o ambiguos;\nsu relevancia depende del sitio anatómico y del plan.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#por-qué-importa-la-geometría-del-contorno",
+    "href": "unidad2/clase1.html#por-qué-importa-la-geometría-del-contorno",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Por qué importa la geometría del contorno?",
+    "text": "¿Por qué importa la geometría del contorno?\nEl contorno define qué vóxeles se consideran parte de una estructura.\nA partir de él se calculan:\n\nvolumen\ndosis media\ndosis máxima\n\\(D_x\\): dosis recibida por el x% del volumen\n\\(V_x\\): volumen que recibe al menos x Gy\nhistogramas dosis-volumen (DVH)\nmétricas de cobertura y conformidad.\n\nPor lo tanto:\n\\[\n\\text{contorno}\n\\rightarrow\n\\text{geometría}\n\\rightarrow\n\\text{dosimetría}\n\\rightarrow\n\\text{decisión clínica}\n\\]",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#un-pequeño-cambio-puede-no-ser-pequeño",
+    "href": "unidad2/clase1.html#un-pequeño-cambio-puede-no-ser-pequeño",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Un pequeño cambio puede no ser pequeño",
+    "text": "Un pequeño cambio puede no ser pequeño\nDos contornos pueden parecer visualmente similares y, sin embargo, producir diferencias relevantes si la discrepancia ocurre:\n\ncerca de una región de alto gradiente de dosis\njunto a un órgano serial\nen una estructura pequeña\nalrededor de una lesión con margen reducido\n\n\n\n\n\n\n\nAdvertencia\n\n\nLa calidad geométrica de una segmentación no debe interpretarse aislada de su impacto clínico o dosimétrico.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#contornear-no-es-simplemente-dibujar-bordes",
+    "href": "unidad2/clase1.html#contornear-no-es-simplemente-dibujar-bordes",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Contornear no es simplemente “dibujar bordes”",
+    "text": "Contornear no es simplemente “dibujar bordes”\n\nContornear",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#cómo-se-realiza-el-contorneo-manual",
+    "href": "unidad2/clase1.html#cómo-se-realiza-el-contorneo-manual",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Cómo se realiza el contorneo manual?",
+    "text": "¿Cómo se realiza el contorneo manual?\nDe forma simplificada:\n\nEl especialista revisa el estudio completo.\nIdentifica referencias anatómicas.\nDelinea la estructura corte por corte.\nInterpola o corrige entre cortes.\nRevisa continuidad en los tres planos.\nAjusta el contorno utilizando modalidades complementarias si están disponibles.\nRealiza una revisión final antes de su utilización clínica.\n\nEn regiones complejas, este proceso puede repetirse para numerosas estructuras.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#problema-1-tiempo",
+    "href": "unidad2/clase1.html#problema-1-tiempo",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Problema 1 — Tiempo",
+    "text": "Problema 1 — Tiempo\nEl contorneo manual es una tarea intensiva en tiempo humano especializado.\nEsto se vuelve especialmente relevante cuando:\n\naumenta el número de pacientes\nse requieren muchas estructuras\nse utilizan protocolos adaptativos\nse necesitan recontorneos longitudinales\nel flujo de trabajo exige respuestas rápidas\n\n\nEl cuello de botella no es solamente computacional: también es clínico y operativo.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#problema-2-variabilidad-interobservador",
+    "href": "unidad2/clase1.html#problema-2-variabilidad-interobservador",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Problema 2 — Variabilidad interobservador",
+    "text": "Problema 2 — Variabilidad interobservador\nDos expertos pueden producir contornos diferentes sobre el mismo estudio.\nLas discrepancias pueden deberse a:\n\nlímites anatómicos poco definidos\nbajo contraste\ninterpretación de guías\nexperiencia del observador\nventana de visualización\ndisponibilidad de MRI/PET u otras modalidades\n\nNo toda discrepancia significa que uno de los dos contornos sea necesariamente incorrecto.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#problema-3-variabilidad-intraobservador",
+    "href": "unidad2/clase1.html#problema-3-variabilidad-intraobservador",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Problema 3 — Variabilidad intraobservador",
+    "text": "Problema 3 — Variabilidad intraobservador\nEl mismo experto puede producir contornos ligeramente diferentes si repite la tarea en otro momento.\nEsto introduce una idea importante:\n\nla referencia humana también contiene incertidumbre.\n\nPor lo tanto, al entrenar un modelo no estamos aprendiendo necesariamente una “verdad absoluta”, sino una aproximación a un criterio de anotación.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#problema-4-la-imagen-puede-ser-ambigua",
+    "href": "unidad2/clase1.html#problema-4-la-imagen-puede-ser-ambigua",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Problema 4 — La imagen puede ser ambigua",
+    "text": "Problema 4 — La imagen puede ser ambigua\nLa frontera anatómica puede degradarse por:\n\nruido\nartefactos metálicos\nmovimiento\nvolumen parcial\nbajo contraste de tejidos blandos\ncambios postquirúrgicos o postratamiento\nanatomía patológica o deformada\n\nEn estos casos, la segmentación exige más que reconocer una forma típica.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#el-ground-truth-no-siempre-es-una-verdad-absoluta",
+    "href": "unidad2/clase1.html#el-ground-truth-no-siempre-es-una-verdad-absoluta",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "El “ground truth” no siempre es una verdad absoluta",
+    "text": "El “ground truth” no siempre es una verdad absoluta\n\nGround truth",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#por-qué-automatizar",
+    "href": "unidad2/clase1.html#por-qué-automatizar",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Por qué automatizar?",
+    "text": "¿Por qué automatizar?\nLa motivación no es solamente “dibujar más rápido”.\nBuscamos potencialmente:\n\nreducir tiempo de contorneo\nmejorar reproducibilidad\nestandarizar protocolos\nfacilitar adaptación y seguimiento longitudinal\ndisminuir tareas repetitivas\nconcentrar el tiempo experto en revisión y casos complejos\n\nPero automatizar introduce una nueva pregunta:\n\n¿Cómo sabemos si una segmentación automática es suficientemente buena?",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#para-la-próxima-clase",
+    "href": "unidad2/clase1.html#para-la-próxima-clase",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Para la próxima clase",
+    "text": "Para la próxima clase\nPasaremos de la motivación clínica a la evaluación cuantitativa.\nVeremos:\n\nsuperposición entre máscaras;\nDice e IoU;\ndistancia de Hausdorff;\npor qué una única métrica no alcanza;\nrelación entre métricas geométricas y relevancia clínica.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#ideas-para-llevarse-de-esta-clase",
+    "href": "unidad2/clase1.html#ideas-para-llevarse-de-esta-clase",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Ideas para llevarse de esta clase",
+    "text": "Ideas para llevarse de esta clase\n\nLa segmentación asigna una etiqueta a cada píxel o vóxel.\nEn Física Médica, los contornos forman parte de decisiones clínicas y dosimétricas.\nEl contorneo manual requiere conocimiento experto y contexto multimodal.\nLas anotaciones humanas presentan variabilidad e incertidumbre.\nUna etiqueta de entrenamiento no debe confundirse automáticamente con una verdad absoluta.\nLa automatización tiene valor solamente si el resultado es robusto, revisable y clínicamente útil.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/clase1.html#pregunta-de-cierre",
+    "href": "unidad2/clase1.html#pregunta-de-cierre",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Pregunta de cierre",
+    "text": "Pregunta de cierre\n\nSi dos expertos no producen exactamente el mismo contorno,\n¿qué debería aprender un modelo de segmentación?",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Clase 1: De la imagen al contorno clínico"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html",
+    "href": "unidad2/notas.html",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "",
+    "text": "La segmentación de imágenes médicas consiste en identificar y delimitar regiones de interés dentro de una imagen. Dependiendo del problema, estas regiones pueden corresponder a órganos, lesiones, tumores, estructuras vasculares, huesos u otras entidades anatómicas o funcionales.\nA diferencia de una tarea de clasificación, donde asignamos una única etiqueta a una imagen completa, en segmentación buscamos producir una predicción espacial.\nPodemos expresar esta diferencia de forma esquemática:\n\\[\n\\text{Clasificación:}\n\\qquad\n\\text{imagen}\n\\longrightarrow\n\\text{clase}\n\\]\nmientras que en segmentación:\n\\[\n\\text{Segmentación:}\n\\qquad\n\\text{imagen}\n\\longrightarrow\n\\text{etiqueta para cada píxel o vóxel}.\n\\]\nEn una imagen bidimensional, cada posición \\((i,j)\\) recibe una etiqueta. En un volumen tridimensional, la predicción se realiza para cada vóxel \\((i,j,k)\\).\nLa segmentación constituye una tarea central en numerosos problemas de Física Médica. Algunos ejemplos incluyen:\n\ndelineación de órganos en riesgo (Organs At Risk, OARs) en radioterapia;\nsegmentación de volúmenes tumorales;\ncuantificación volumétrica de lesiones;\ndelimitación de órganos para análisis funcional;\ndefinición de regiones de interés para dosimetría;\nplanificación quirúrgica;\nanálisis longitudinal de cambios anatómicos.\n\nSin embargo, producir una máscara que se parezca visualmente a un contorno de referencia no es suficiente para considerar que un sistema es clínicamente útil.\nA lo largo de esta unidad utilizaremos la segmentación como un caso particularmente interesante para discutir una cuestión más general:\n\n¿Cómo pasamos de un modelo que produce una predicción geométricamente razonable a una herramienta que puede integrarse de forma segura y útil en un flujo clínico?\n\nEsta pregunta requerirá considerar no solamente modelos y arquitecturas, sino también métricas, variabilidad entre expertos y diferentes paradigmas de interacción entre el usuario y los sistemas de inteligencia artificial.\n\n\nAl finalizar la unidad se espera que el estudiante pueda:\n\nExplicar qué es la segmentación semántica y distinguirla de otras tareas de visión por computadora.\nReconocer las principales dificultades de la segmentación en imágenes médicas.\nInterpretar el coeficiente Dice, la intersección sobre unión (Intersection over Union, IoU) y la distancia de Hausdorff.\nIdentificar las limitaciones de las métricas de superposición y de distancia.\nComprender la relevancia clínica de la segmentación automática de órganos en riesgo.\nAnalizar las particularidades del entrenamiento de modelos de segmentación médica.\nComparar dos paradigmas de segmentación: automática e interactiva.\nComprender el problema de la variabilidad inter-observador y sus consecuencias sobre la definición del ground truth.\nDiferenciar validación geométrica, validación clínica e impacto sobre el flujo de trabajo.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#objetivos-de-aprendizaje",
+    "href": "unidad2/notas.html#objetivos-de-aprendizaje",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "",
+    "text": "Al finalizar la unidad se espera que el estudiante pueda:\n\nExplicar qué es la segmentación semántica y distinguirla de otras tareas de visión por computadora.\nReconocer las principales dificultades de la segmentación en imágenes médicas.\nInterpretar el coeficiente Dice, la intersección sobre unión (Intersection over Union, IoU) y la distancia de Hausdorff.\nIdentificar las limitaciones de las métricas de superposición y de distancia.\nComprender la relevancia clínica de la segmentación automática de órganos en riesgo.\nAnalizar las particularidades del entrenamiento de modelos de segmentación médica.\nComparar dos paradigmas de segmentación: automática e interactiva.\nComprender el problema de la variabilidad inter-observador y sus consecuencias sobre la definición del ground truth.\nDiferenciar validación geométrica, validación clínica e impacto sobre el flujo de trabajo.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#de-una-imagen-a-una-máscara",
+    "href": "unidad2/notas.html#de-una-imagen-a-una-máscara",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "2.1 De una imagen a una máscara",
+    "text": "2.1 De una imagen a una máscara\nConsideremos una imagen bidimensional de una única modalidad:\n\\[\nX \\in \\mathbb{R}^{H\\times W}.\n\\]\nEn segmentación semántica buscamos aprender una función:\n\\[\nf_\\theta:\n\\mathbb{R}^{H\\times W}\n\\longrightarrow\n\\{0,\\ldots,K\\}^{H\\times W},\n\\]\ndonde cada píxel recibe una etiqueta perteneciente a una de \\(K+1\\) clases.\nEn una imagen tridimensional:\n\\[\nX \\in \\mathbb{R}^{H\\times W\\times D},\n\\]\ny la salida es un volumen de etiquetas:\n\\[\nY \\in \\{0,\\ldots,K\\}^{H\\times W\\times D}.\n\\]\nPor ejemplo, en un problema de segmentación de órganos en riesgo podríamos definir:\n\\[\nY_{ijk}=\n\\begin{cases}\n0 & \\text{fondo},\\\\\n1 & \\text{médula espinal},\\\\\n2 & \\text{parótida izquierda},\\\\\n3 & \\text{parótida derecha},\\\\\n\\vdots\n\\end{cases}\n\\]\nEl objetivo del modelo consiste entonces en predecir correctamente la clase correspondiente a cada posición espacial.\n\n\n\n\n\n\nNoteUna interpretación útil\n\n\n\nPodemos pensar la segmentación semántica como una clasificación densa.\nEn lugar de realizar una predicción por imagen, realizamos una predicción para cada píxel o vóxel.\n\n\nDurante el entrenamiento, sin embargo, el modelo no suele producir directamente etiquetas discretas. Para cada posición espacial genera probabilidades o scores asociados a las diferentes clases.\nPara un problema multiclase:\n\\[\np_{ijkc}\n=\nP\n\\left(\nY_{ijk}=c\n\\mid X\n\\right),\n\\]\ndonde \\(c\\) representa una de las clases posibles.\nLa máscara final puede obtenerse seleccionando la clase con mayor probabilidad:\n\\[\n\\hat Y_{ijk}\n=\n\\arg\\max_c\np_{ijkc}.\n\\]\nEsta distinción entre mapa de probabilidades y máscara discreta será importante más adelante cuando estudiemos funciones de pérdida y evaluación.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#segmentación-semántica",
+    "href": "unidad2/notas.html#segmentación-semántica",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "3.1 Segmentación semántica",
+    "text": "3.1 Segmentación semántica\nEn la segmentación semántica, todos los píxeles o vóxeles que pertenecen a una misma clase reciben la misma etiqueta.\nPor ejemplo:\n\npulmón;\nhígado;\ncorazón;\nmédula espinal;\ntumor.\n\nSi existen dos objetos diferentes de una misma clase, ambos reciben la misma etiqueta.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#segmentación-de-instancias",
+    "href": "unidad2/notas.html#segmentación-de-instancias",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "3.2 Segmentación de instancias",
+    "text": "3.2 Segmentación de instancias\nLa segmentación de instancias diferencia objetos individuales pertenecientes a una misma clase.\nPor ejemplo, si una imagen contiene múltiples lesiones, cada lesión puede identificarse como una instancia diferente.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#segmentación-panóptica",
+    "href": "unidad2/notas.html#segmentación-panóptica",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "3.3 Segmentación panóptica",
+    "text": "3.3 Segmentación panóptica\nLa segmentación panóptica combina información semántica y de instancias.\nAunque estos conceptos son importantes en visión por computadora general, en esta unidad nos concentraremos principalmente en segmentación semántica, ya que es la formulación habitual en numerosos problemas anatómicos de Física Médica.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#las-imágenes-suelen-ser-tridimensionales",
+    "href": "unidad2/notas.html#las-imágenes-suelen-ser-tridimensionales",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "4.1 Las imágenes suelen ser tridimensionales",
+    "text": "4.1 Las imágenes suelen ser tridimensionales\nUna tomografía computada, una resonancia magnética o una adquisición PET son naturalmente volúmenes tridimensionales.\nPor lo tanto, la estructura que queremos segmentar no está contenida únicamente en un corte, sino que posee continuidad espacial entre cortes.\nEsto introduce una decisión importante:\n\\[\n\\boxed{\n\\text{¿procesar cortes 2D o utilizar contexto volumétrico 3D?}\n}\n\\]\nRetomaremos esta cuestión al analizar el entrenamiento de modelos de segmentación.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#el-tamaño-de-las-estructuras-varía-enormemente",
+    "href": "unidad2/notas.html#el-tamaño-de-las-estructuras-varía-enormemente",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "4.2 El tamaño de las estructuras varía enormemente",
+    "text": "4.2 El tamaño de las estructuras varía enormemente\nEn una misma imagen podemos tener estructuras muy grandes y otras de pocos vóxeles.\nPor ejemplo, en cabeza y cuello pueden coexistir:\n\ncerebro;\nmandíbula;\nglándulas salivales;\nnervios ópticos;\nquiasma óptico;\ncócleas.\n\nEsta diferencia de escala introduce dificultades tanto para el entrenamiento como para la evaluación.\nUn error de dos vóxeles puede ser prácticamente irrelevante para una estructura grande y representar una fracción considerable de una estructura pequeña.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#las-fronteras-anatómicas-pueden-ser-ambiguas",
+    "href": "unidad2/notas.html#las-fronteras-anatómicas-pueden-ser-ambiguas",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "4.3 Las fronteras anatómicas pueden ser ambiguas",
+    "text": "4.3 Las fronteras anatómicas pueden ser ambiguas\nNo todas las estructuras tienen límites claramente visibles.\nLa delimitación puede depender de:\n\ncontraste de la modalidad;\nresolución espacial;\nruido;\npresencia de artefactos;\nuso de contraste;\nventana de visualización;\nexperiencia del observador;\nprotocolo o guía de contorneo.\n\nPor lo tanto, el problema no siempre puede reducirse a encontrar una frontera objetiva perfectamente definida en la imagen.\nEsta observación será fundamental cuando discutamos variabilidad inter-observador y el concepto de ground truth.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#existe-un-fuerte-desbalance-entre-clases",
+    "href": "unidad2/notas.html#existe-un-fuerte-desbalance-entre-clases",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "4.4 Existe un fuerte desbalance entre clases",
+    "text": "4.4 Existe un fuerte desbalance entre clases\nEn muchos problemas, la mayor parte de la imagen corresponde a fondo.\nUna estructura pequeña puede ocupar solamente una fracción mínima del volumen.\nPor lo tanto, una métrica como la exactitud global podría resultar engañosa.\nSupongamos, por ejemplo, que una estructura ocupa el \\(1\\%\\) de los vóxeles. Un modelo que predijera todos los vóxeles como fondo obtendría:\n\\[\n\\text{accuracy}=99\\%,\n\\]\npero sería completamente inútil como segmentador.\nEste es uno de los motivos por los cuales las métricas utilizadas en segmentación suelen centrarse en la región de interés y no en la exactitud global.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#órganos-en-riesgo",
+    "href": "unidad2/notas.html#órganos-en-riesgo",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "5.1 Órganos en riesgo",
+    "text": "5.1 Órganos en riesgo\nEn radioterapia, un órgano en riesgo (Organ At Risk, OAR) es una estructura anatómica cuya irradiación puede producir toxicidad clínicamente relevante y cuya dosis debe ser considerada durante la planificación del tratamiento.\nDependiendo de la región anatómica, algunos ejemplos pueden incluir:\n\nmédula espinal;\ntronco encefálico;\nparótidas;\ncorazón;\npulmones;\nriñones;\nvejiga;\nrecto;\nnervios ópticos;\nquiasma óptico.\n\nLa correcta delimitación de estas estructuras es necesaria porque las restricciones de optimización y evaluación dosimétrica dependen directamente de los volúmenes definidos.\nPodemos representar de manera simplificada el flujo de trabajo como:\n\\[\n\\text{CT de planificación}\n\\rightarrow\n\\text{contorneo}\n\\rightarrow\n\\text{optimización del plan}\n\\rightarrow\n\\text{distribución de dosis}\n\\rightarrow\n\\text{evaluación clínica}.\n\\]\nPor lo tanto, la segmentación no es un producto aislado.\nForma parte de una cadena de decisiones.\n\n\n\n\n\n\nImportantConsecuencia clínica\n\n\n\nUn error de segmentación puede propagarse hacia etapas posteriores del proceso.\nUna máscara geométricamente incorrecta puede modificar la optimización, los histogramas dosis-volumen y la interpretación de restricciones clínicas.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#el-problema-del-contorneo-manual",
+    "href": "unidad2/notas.html#el-problema-del-contorneo-manual",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "5.2 El problema del contorneo manual",
+    "text": "5.2 El problema del contorneo manual\nEl contorneo manual de estructuras anatómicas puede requerir una cantidad considerable de tiempo.\nAdemás, distintas personas pueden producir contornos diferentes para una misma estructura.\nEsto conduce a dos problemas diferentes:\n\ncarga de trabajo;\nvariabilidad en los contornos.\n\nLa segmentación basada en inteligencia artificial puede intentar reducir ambos.\nUna estrategia completamente automática puede producir un conjunto de contornos iniciales que posteriormente son revisados por el especialista.\nEn ese escenario, el flujo podría representarse como:\n\\[\n\\text{imagen}\n\\rightarrow\n\\text{segmentación automática}\n\\rightarrow\n\\text{revisión/corrección}\n\\rightarrow\n\\text{uso clínico}.\n\\]\nMás adelante veremos que éste no es el único paradigma posible. En una estrategia interactiva, el especialista puede aportar información al modelo durante el proceso de segmentación.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#interpretación-mediante-verdaderos-y-falsos-positivos",
+    "href": "unidad2/notas.html#interpretación-mediante-verdaderos-y-falsos-positivos",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "7.1 Interpretación mediante verdaderos y falsos positivos",
+    "text": "7.1 Interpretación mediante verdaderos y falsos positivos\nPodemos escribir Dice en términos de:\n\nverdaderos positivos (\\(TP\\));\nfalsos positivos (\\(FP\\));\nfalsos negativos (\\(FN\\)).\n\nEntonces:\n\\[\nDSC\n=\n\\frac{2TP}\n{2TP+FP+FN}.\n\\]\nEsta expresión muestra que la métrica penaliza tanto los vóxeles agregados incorrectamente como aquellos pertenecientes a la estructura que no fueron segmentados.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#ejemplo-conceptual",
+    "href": "unidad2/notas.html#ejemplo-conceptual",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "7.2 Ejemplo conceptual",
+    "text": "7.2 Ejemplo conceptual\nSupongamos que:\n\\[\n|P|=100,\n\\qquad\n|G|=100,\n\\qquad\n|P\\cap G|=80.\n\\]\nEntonces:\n\\[\nDSC\n=\n\\frac{2\\times80}{100+100}\n=\n0.8.\n\\]\nEsto indica una superposición considerable, pero el número por sí solo no nos dice dónde se encuentran los errores.\nEsta limitación es importante.\n\n\n\n\n\n\nWarningDice no describe la localización del error\n\n\n\nDos segmentaciones pueden tener un Dice similar y, sin embargo, presentar errores espaciales completamente diferentes.\nUna puede contener pequeñas discrepancias distribuidas alrededor de toda la superficie, mientras que otra puede tener un error localizado pero clínicamente crítico.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#relación-entre-dice-e-iou",
+    "href": "unidad2/notas.html#relación-entre-dice-e-iou",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "8.1 Relación entre Dice e IoU",
+    "text": "8.1 Relación entre Dice e IoU\nDice e IoU contienen información muy similar.\nDado un valor de IoU:\n\\[\nDSC\n=\n\\frac{2IoU}\n{1+IoU}.\n\\]\nDe manera equivalente:\n\\[\nIoU\n=\n\\frac{DSC}\n{2-DSC}.\n\\]\nPor ejemplo, si:\n\\[\nIoU=0.5,\n\\]\nentonces:\n\\[\nDSC\n=\n\\frac{2(0.5)}\n{1+0.5}\n=\n\\frac{2}{3}\n\\approx0.67.\n\\]\nPor lo tanto, no deberían interpretarse como dos evaluaciones completamente independientes del desempeño.\nAmbas pertenecen a la misma familia de métricas de superposición.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#sensibilidad-a-valores-extremos",
+    "href": "unidad2/notas.html#sensibilidad-a-valores-extremos",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "10.1 Sensibilidad a valores extremos",
+    "text": "10.1 Sensibilidad a valores extremos\nLa distancia de Hausdorff máxima es muy sensible a pequeños errores aislados.\nSupongamos que una segmentación coincide correctamente con casi toda la estructura pero contiene un pequeño grupo de vóxeles falsamente positivos lejos del órgano.\nEl Dice puede cambiar relativamente poco, mientras que:\n\\[\nHD\n\\]\npuede aumentar de manera extrema.\nEsto puede ser una ventaja si nos interesa detectar el peor error, pero también puede hacer que la métrica sea inestable frente a outliers.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#segmentación-binaria",
+    "href": "unidad2/notas.html#segmentación-binaria",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "18.1 Segmentación binaria",
+    "text": "18.1 Segmentación binaria\nSupongamos que queremos segmentar una única estructura.\nPara cada píxel o vóxel, el modelo produce un valor:\n\\[\nz_i \\in \\mathbb{R},\n\\]\ndenominado habitualmente logit.\nAplicando una función sigmoide:\n\\[\np_i\n=\n\\sigma(z_i)\n=\n\\frac{1}{1+e^{-z_i}},\n\\]\nobtenemos:\n\\[\n0\\leq p_i\\leq1.\n\\]\nPodemos interpretar \\(p_i\\) como una estimación de la probabilidad de que el vóxel pertenezca a la estructura.\nLa máscara final puede obtenerse mediante un umbral:\n\\[\n\\hat y_i\n=\n\\begin{cases}\n1 & p_i\\geq t,\\\\\n0 & p_i&lt;t.\n\\end{cases}\n\\]\nEl valor:\n\\[\nt=0.5\n\\]\nes una elección habitual, pero no constituye una regla universal.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#segmentación-multiclase",
+    "href": "unidad2/notas.html#segmentación-multiclase",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "18.2 Segmentación multiclase",
+    "text": "18.2 Segmentación multiclase\nSi cada vóxel debe pertenecer exclusivamente a una de \\(K\\) clases, el modelo produce un vector de logits:\n\\[\n\\mathbf{z}_i\n=\n(z_{i1},z_{i2},\\ldots,z_{iK}).\n\\]\nAplicando softmax:\n\\[\np_{ic}\n=\n\\frac{e^{z_{ic}}}\n{\\sum_{k=1}^{K}e^{z_{ik}}},\n\\]\nobtenemos:\n\\[\n\\sum_{c=1}^{K}p_{ic}=1.\n\\]\nLa etiqueta final se determina mediante:\n\\[\n\\hat y_i\n=\n\\arg\\max_c p_{ic}.\n\\]",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#segmentación-multilabel",
+    "href": "unidad2/notas.html#segmentación-multilabel",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "18.3 Segmentación multilabel",
+    "text": "18.3 Segmentación multilabel\nExiste una tercera situación importante.\nUn mismo vóxel puede, conceptualmente, formar parte de más de una etiqueta.\nEn este caso las clases no son mutuamente excluyentes y puede utilizarse una sigmoide independiente para cada canal de salida.\nPor lo tanto, antes de entrenar un modelo debemos decidir cómo está formulado el problema:\n\\[\n\\boxed{\n\\text{binario}\n\\quad\n\\text{vs}\n\\quad\n\\text{multiclase}\n\\quad\n\\text{vs}\n\\quad\n\\text{multilabel}\n}\n\\]\nEsta decisión afecta directamente a la representación de las etiquetas, la función de activación y la función de pérdida.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#modelos-2d",
+    "href": "unidad2/notas.html#modelos-2d",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "25.1 Modelos 2D",
+    "text": "25.1 Modelos 2D\nUn modelo 2D procesa cada corte de manera independiente:\n\\[\nX(:,:,k)\n\\longrightarrow\n\\hat Y(:,:,k).\n\\]\n\n25.1.1 Ventajas\n\nmenor consumo de memoria;\nentrenamiento más rápido;\nposibilidad de utilizar resoluciones espaciales mayores;\nimplementación relativamente simple;\nbatches más grandes.\n\n\n\n25.1.2 Limitaciones\nEl modelo no observa directamente la continuidad anatómica entre cortes.\nDos regiones visualmente similares dentro de un corte pueden distinguirse mejor utilizando información de cortes vecinos.\nAdemás, al segmentar cada slice de forma independiente pueden aparecer inconsistencias entre cortes sucesivos.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#interpolación-de-imágenes",
+    "href": "unidad2/notas.html#interpolación-de-imágenes",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "29.1 Interpolación de imágenes",
+    "text": "29.1 Interpolación de imágenes\nPara imágenes continuas pueden utilizarse métodos como:\n\ninterpolación lineal;\nbilineal;\ntrilineal;\nB-spline.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#interpolación-de-etiquetas",
+    "href": "unidad2/notas.html#interpolación-de-etiquetas",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "29.2 Interpolación de etiquetas",
+    "text": "29.2 Interpolación de etiquetas\nLas máscaras contienen categorías discretas.\nPor lo tanto, normalmente se utiliza nearest-neighbor interpolation para evitar crear valores de clase artificiales.\nPor ejemplo, si tenemos:\n\\[\n0=\\text{fondo},\n\\qquad\n1=\\text{parótida},\n\\]\nuna interpolación lineal podría generar:\n\\[\n0.37,\n\\]\nque no corresponde a ninguna etiqueta anatómica válida.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#tomografía-computada",
+    "href": "unidad2/notas.html#tomografía-computada",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "30.1 Tomografía computada",
+    "text": "30.1 Tomografía computada\nEn CT, los valores están relacionados con unidades Hounsfield.\nEsto permite utilizar estrategias relativamente reproducibles, como:\n\nrecorte a un rango de HU;\nnormalización posterior;\nventanas específicas según el problema.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#resonancia-magnética",
+    "href": "unidad2/notas.html#resonancia-magnética",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "30.2 Resonancia magnética",
+    "text": "30.2 Resonancia magnética\nEn MRI no existe una escala de intensidad absoluta equivalente a HU.\nLa intensidad puede cambiar entre:\n\npacientes;\nscanners;\nprotocolos;\nbobinas;\nsecuencias.\n\nPor lo tanto, suelen utilizarse estrategias como:\n\nnormalización por media y desviación estándar;\nnormalización dentro de una región corporal;\nnormalización basada en percentiles.\n\nEsto muestra que el preprocesamiento debe respetar la física y las características de la modalidad.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#objetivo-del-paradigma-automático",
+    "href": "unidad2/notas.html#objetivo-del-paradigma-automático",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "44.1 Objetivo del paradigma automático",
+    "text": "44.1 Objetivo del paradigma automático\nLa aspiración es reducir al mínimo la intervención humana durante la generación inicial del contorno.\nPodemos representar un flujo típico como:\n\\[\n\\text{imagen}\n\\rightarrow\n\\text{segmentación automática}\n\\rightarrow\n\\text{revisión}\n\\rightarrow\n\\text{corrección si es necesaria}.\n\\]\nEn este contexto, el modelo funciona como un sistema de auto-contouring.\n\n\n\n\n\n\nNoteAutomático no significa necesariamente autónomo\n\n\n\nQue la segmentación inicial sea automática no implica que la salida deba aceptarse sin revisión.\nEn un flujo clínico, la segmentación automática puede constituir un primer borrador que luego es evaluado por un especialista.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#automatización-de-la-inferencia",
+    "href": "unidad2/notas.html#automatización-de-la-inferencia",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "49.1 Automatización de la inferencia",
+    "text": "49.1 Automatización de la inferencia\nUna vez entrenado, el modelo recibe una imagen y produce una segmentación:\n\\[\nX\n\\xrightarrow{f_\\theta}\n\\hat Y.\n\\]\nÉsta es la automatización más evidente.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#automatización-del-diseño-del-pipeline",
+    "href": "unidad2/notas.html#automatización-del-diseño-del-pipeline",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "49.2 Automatización del diseño del pipeline",
+    "text": "49.2 Automatización del diseño del pipeline\nPero existe otro nivel:\n\\[\nD\n\\longrightarrow\n\\text{configuración}.\n\\]\nEl sistema intenta reducir la cantidad de decisiones manuales necesarias para construir el segmentador.\nPor lo tanto, podemos pensar:\n\\[\n\\boxed{\n\\text{nnU-Net}\n=\n\\text{segmentación automática}\n+\n\\text{pipeline auto-configurable}\n}\n\\]\nEsta segunda idea explica gran parte de su impacto.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#el-modelo-debe-resolver-localización-y-delineación",
+    "href": "unidad2/notas.html#el-modelo-debe-resolver-localización-y-delineación",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "53.1 El modelo debe resolver localización y delineación",
+    "text": "53.1 El modelo debe resolver localización y delineación\nSi la estructura es pequeña, poco visible o anatómicamente ambigua, el modelo debe identificarla sin ayuda externa.\nUn error puede ocurrir porque el modelo:\n\nno encontró la estructura;\nconfundió otra región con ella;\nencontró la estructura pero delineó mal su frontera.\n\nEstas causas son diferentes, aunque puedan producir una máscara final igualmente incorrecta.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#dependencia-del-dominio-de-entrenamiento",
+    "href": "unidad2/notas.html#dependencia-del-dominio-de-entrenamiento",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "53.2 Dependencia del dominio de entrenamiento",
+    "text": "53.2 Dependencia del dominio de entrenamiento\nUn modelo entrenado para una determinada tarea suele especializarse en:\n\nuna modalidad;\nuna región anatómica;\ndeterminadas clases;\nun conjunto de protocolos.\n\nCuando cambia el dominio pueden aparecer problemas de generalización.\nPor ejemplo:\n\\[\n\\text{hospital A}\n\\not\\equiv\n\\text{hospital B}.\n\\]\nLa variación puede incluir:\n\nscanner;\nreconstrucción;\nprotocolo;\ncontraste;\npoblación;\npráctica clínica.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#clases-predefinidas",
+    "href": "unidad2/notas.html#clases-predefinidas",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "53.3 Clases predefinidas",
+    "text": "53.3 Clases predefinidas\nUn segmentador automático convencional suele estar entrenado para un conjunto específico de clases.\nSi el modelo fue entrenado para:\n\\[\n\\{\\text{hígado},\\text{riñones},\\text{bazo}\\},\n\\]\nno podemos asumir que pueda segmentar correctamente una estructura nueva simplemente porque aparece en la imagen.\nEsta especialización contrasta con otra filosofía de segmentación que analizaremos a continuación.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#flujo-automático",
+    "href": "unidad2/notas.html#flujo-automático",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "62.1 Flujo automático",
+    "text": "62.1 Flujo automático\nCT\n ↓\nmodelo\n ↓\nOAR 1\nOAR 2\nOAR 3\n...\n ↓\nrevisión clínica\nLa ventaja es que muchas estructuras pueden generarse simultáneamente sin interacción.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#flujo-interactivo",
+    "href": "unidad2/notas.html#flujo-interactivo",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "62.2 Flujo interactivo",
+    "text": "62.2 Flujo interactivo\nCT\n ↓\nexperto selecciona una estructura\n ↓\nprompt\n ↓\nmodelo\n ↓\nsegmentación\n ↓\nexperto acepta o corrige\nAquí el experto participa desde el comienzo.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#automatización",
+    "href": "unidad2/notas.html#automatización",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "64.1 Automatización",
+    "text": "64.1 Automatización\nEl sistema intenta reemplazar una tarea humana específica:\n\\[\n\\text{tarea manual}\n\\rightarrow\n\\text{modelo automático}.\n\\]",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#asistencia",
+    "href": "unidad2/notas.html#asistencia",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "64.2 Asistencia",
+    "text": "64.2 Asistencia\nEl sistema modifica la forma en que el experto realiza la tarea:\n\\[\n\\text{experto}\n+\n\\text{modelo}\n\\rightarrow\n\\text{tarea asistida}.\n\\]\nLa segunda formulación suele denominarse human-in-the-loop.\nEn este paradigma, la intervención humana no es un fallo del sistema.\nEs parte deliberada de su diseño.\n\n\n\n\n\n\nImportantUna distinción fundamental\n\n\n\nUn sistema interactivo no es simplemente un sistema automático incompleto.\nPuede estar diseñado explícitamente para aprovechar capacidades complementarias:\n\nel experto aporta conocimiento, intención y contexto;\nel modelo aporta velocidad y capacidad de delineación.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#antes-de-la-predicción",
+    "href": "unidad2/notas.html#antes-de-la-predicción",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "65.1 Antes de la predicción",
+    "text": "65.1 Antes de la predicción\nEl experto proporciona un prompt:\n\\[\nP\n\\rightarrow\nf_\\theta(X,P).\n\\]",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#después-de-la-predicción",
+    "href": "unidad2/notas.html#después-de-la-predicción",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "65.2 Después de la predicción",
+    "text": "65.2 Después de la predicción\nEl modelo produce automáticamente una máscara:\n\\[\nf_\\theta(X)\n\\rightarrow\n\\hat Y\n\\rightarrow\n\\text{revisión}.\n\\]",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#durante-un-proceso-iterativo",
+    "href": "unidad2/notas.html#durante-un-proceso-iterativo",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "65.3 Durante un proceso iterativo",
+    "text": "65.3 Durante un proceso iterativo\nEl usuario puede corregir sucesivamente el resultado:\n\\[\nP_1\n\\rightarrow\n\\hat Y_1\n\\rightarrow\nP_2\n\\rightarrow\n\\hat Y_2\n\\rightarrow\n\\cdots\n\\]\nEsta última formulación convierte la segmentación en un proceso colaborativo.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#fronteras-anatómicas-ambiguas",
+    "href": "unidad2/notas.html#fronteras-anatómicas-ambiguas",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "73.1 Fronteras anatómicas ambiguas",
+    "text": "73.1 Fronteras anatómicas ambiguas\nAlgunas estructuras no presentan un límite claramente visible.\nEl observador debe inferir la frontera utilizando:\n\ncontraste local;\nconocimiento anatómico;\ncortes vecinos;\notras modalidades;\nexperiencia clínica.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#resolución-limitada",
+    "href": "unidad2/notas.html#resolución-limitada",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "73.2 Resolución limitada",
+    "text": "73.2 Resolución limitada\nUna frontera puede encontrarse dentro de un vóxel.\nEsto introduce un límite físico a la precisión con la que puede determinarse el contorno.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#efecto-de-volumen-parcial",
+    "href": "unidad2/notas.html#efecto-de-volumen-parcial",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "73.3 Efecto de volumen parcial",
+    "text": "73.3 Efecto de volumen parcial\nUn vóxel puede contener una mezcla de tejidos.\nPor lo tanto, la decisión:\n\\[\n\\text{estructura}\n\\quad \\text{vs} \\quad\n\\text{fondo}\n\\]\npuede depender del criterio utilizado por el observador.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#ventana-y-nivel-de-visualización",
+    "href": "unidad2/notas.html#ventana-y-nivel-de-visualización",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "73.4 Ventana y nivel de visualización",
+    "text": "73.4 Ventana y nivel de visualización\nEn CT, modificar window y level puede cambiar la percepción de determinadas fronteras.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#guías-de-contorneo",
+    "href": "unidad2/notas.html#guías-de-contorneo",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "73.5 Guías de contorneo",
+    "text": "73.5 Guías de contorneo\nEn radioterapia, la segmentación no depende únicamente de lo que se observa en la imagen.\nTambién puede depender de:\n\nprotocolos;\nconsensos;\natlas;\nguías clínicas;\ndefiniciones del volumen objetivo.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#experiencia-del-observador",
+    "href": "unidad2/notas.html#experiencia-del-observador",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "73.6 Experiencia del observador",
+    "text": "73.6 Experiencia del observador\nLa interpretación puede variar según:\n\nentrenamiento;\nespecialidad;\nexperiencia;\nconocimiento del caso.\n\nPor lo tanto, incluso con la misma imagen, diferentes observadores pueden producir máscaras distintas.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#un-único-observador",
+    "href": "unidad2/notas.html#un-único-observador",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "78.1 Un único observador",
+    "text": "78.1 Un único observador\nLa alternativa más simple consiste en utilizar el contorno de un especialista.\nVentajas:\n\nbajo costo;\nfácil implementación.\n\nLimitaciones:\n\nla evaluación queda condicionada al criterio de esa persona;\nno representa explícitamente la variabilidad entre expertos.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#consenso-entre-expertos",
+    "href": "unidad2/notas.html#consenso-entre-expertos",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "78.2 Consenso entre expertos",
+    "text": "78.2 Consenso entre expertos\nDos o más especialistas pueden discutir las discrepancias y producir un contorno consensuado.\nConceptualmente:\n\\[\nG_A,G_B,G_C\n\\longrightarrow\nG_{\\text{consenso}}.\n\\]\nEl consenso puede proporcionar una referencia más robusta, aunque requiere mayor tiempo y recursos.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#adjudicación",
+    "href": "unidad2/notas.html#adjudicación",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "78.3 Adjudicación",
+    "text": "78.3 Adjudicación\nUn observador adicional puede resolver discrepancias entre contornos.\nPor ejemplo:\n\\[\nG_A,G_B\n\\longrightarrow\n\\text{revisión por experto senior}\n\\longrightarrow\nG_{\\text{adjudicado}}.\n\\]",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#métodos-de-fusión",
+    "href": "unidad2/notas.html#métodos-de-fusión",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "78.4 Métodos de fusión",
+    "text": "78.4 Métodos de fusión\nTambién existen métodos estadísticos que intentan estimar una referencia a partir de múltiples observadores.\nUn ejemplo conocido es STAPLE (Simultaneous Truth And Performance Level Estimation).\nNo desarrollaremos aquí su formulación matemática, pero la idea general es combinar múltiples segmentaciones teniendo en cuenta que distintos observadores pueden tener diferentes niveles de sensibilidad y especificidad.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#validación-interna",
+    "href": "unidad2/notas.html#validación-interna",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "91.1 Validación interna",
+    "text": "91.1 Validación interna\nEl modelo se evalúa utilizando datos provenientes de una distribución similar a aquella utilizada para su desarrollo.\nPor ejemplo:\n\nmismo hospital;\nmismo scanner;\nprotocolos similares;\nmisma población.\n\nEsta evaluación es necesaria, pero no suficiente para demostrar generalización.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#validación-externa",
+    "href": "unidad2/notas.html#validación-externa",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "91.2 Validación externa",
+    "text": "91.2 Validación externa\nLa validación externa utiliza datos provenientes de un entorno independiente.\nPuede cambiar:\n\nhospital;\nfabricante;\nscanner;\nprotocolo;\npoblación;\nobservadores.\n\nConceptualmente:\n\\[\n\\text{desarrollo en centro A}\n\\longrightarrow\n\\text{evaluación en centro B}.\n\\]\nLa validación externa permite estudiar robustez frente a domain shift.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#nivel-1-segmenta-correctamente",
+    "href": "unidad2/notas.html#nivel-1-segmenta-correctamente",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "99.1 Nivel 1 — ¿Segmenta correctamente?",
+    "text": "99.1 Nivel 1 — ¿Segmenta correctamente?\n\\[\n\\text{métricas geométricas}\n\\]",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#nivel-2-el-experto-acepta-el-resultado",
+    "href": "unidad2/notas.html#nivel-2-el-experto-acepta-el-resultado",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "99.2 Nivel 2 — ¿El experto acepta el resultado?",
+    "text": "99.2 Nivel 2 — ¿El experto acepta el resultado?\n\\[\n\\text{evaluación clínica}\n\\]",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#nivel-3-reduce-trabajo-o-mejora-consistencia",
+    "href": "unidad2/notas.html#nivel-3-reduce-trabajo-o-mejora-consistencia",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "99.3 Nivel 3 — ¿Reduce trabajo o mejora consistencia?",
+    "text": "99.3 Nivel 3 — ¿Reduce trabajo o mejora consistencia?\n\\[\n\\text{impacto operativo}\n\\]",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
+    ]
+  },
+  {
+    "objectID": "unidad2/notas.html#nivel-4-modifica-resultados-clínicos",
+    "href": "unidad2/notas.html#nivel-4-modifica-resultados-clínicos",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "99.4 Nivel 4 — ¿Modifica resultados clínicos?",
+    "text": "99.4 Nivel 4 — ¿Modifica resultados clínicos?\n\\[\n\\text{impacto clínico}\n\\]\nCada nivel requiere evidencia diferente.\nUn modelo puede superar el primer nivel sin necesariamente superar los siguientes.",
+    "crumbs": [
+      "Inicio",
+      "2. Segmentación de imágenes médicas",
+      "Notas de clase"
     ]
   }
 ]
