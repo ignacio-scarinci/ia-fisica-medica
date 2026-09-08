@@ -1,50 +1,29 @@
 ---
 title: "Unidad 2 — Segmentación de estructuras anatómicas"
 subtitle: "Clase 2 — ¿Cómo evaluamos una segmentación?"
-author: "Curso de IA en Física Médica"
+author: "Ignacio Scarinci"
+lang: es
 format:
-  revealjs:
-    slide-number: true
-    transition: fade
-    navigation-mode: linear
-    controls: true
-    progress: true
-    center: false
-    width: 1600
-    height: 900
-    margin: 0.08
-    mermaid-format: svg
-    footer: "IA en Física Médica · Unidad 2"
+    revealjs:
+        theme: ../themes/presentaciones.scss
+        slide-number: true
+        chalkboard: true
+        preview-links: auto
+        transition: fade
+        width: 1600
+        height: 900
+        margin: 0.06
+        center: false
+        smaller: false
+        toc: false
+        code-line-numbers: true
+jupyter: python3
 execute:
-  echo: false
+  echo: true
   warning: false
   message: false
+  freeze: auto
 ---
-
-<style>
-.reveal .metric {
-  border: 1px solid #d9d9e8;
-  border-radius: 16px;
-  padding: 0.7em 0.9em;
-  background: #fafafe;
-}
-.reveal .metric h3 {
-  margin-top: 0;
-}
-.reveal .big-number {
-  font-size: 2.2em;
-  font-weight: 700;
-}
-.reveal .small {
-  font-size: 0.72em;
-}
-.reveal .centered {
-  text-align: center;
-}
-.reveal .muted {
-  color: #666;
-}
-</style>
 
 ## De la clase anterior
 
