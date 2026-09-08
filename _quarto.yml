@@ -78,6 +78,19 @@ website:
             href: unidad1/notebooks/Notebook1.ipynb
           - text: "Ciclo de entrenamiento"
             href: unidad1/notebooks/Ciclo_de_entrenamiento.ipynb
+      - text: "---"
+      - section: "2. Segmentación de imágenes médicas"
+        contents:
+          - text: "Índice de la unidad"
+            href: unidad2/unidad2.qmd
+          - text: "Notas de clase"
+            href: unidad2/notas.qmd
+          - text: "Clase 1: De la imagen al contorno clínico"
+            href: unidad2/clase1.qmd
+            target: _blank
+          - text: "Clase 2: ¿Cómo evaluamos una segmentación?"
+            href: unidad2/clase2.qmd
+            target: _blank
 
 format:
   html:

@@ -1,0 +1,85 @@
+---
+title: "Unidad 2: Segmentación de Imágenes Médicas"
+subtitle: "Del aprendizaje automático clásico al Deep Learning"
+lang: es
+format:
+  html:
+    toc: false
+    number-sections: false
+---
+
+::: {.unit-hero}
+<div class="unit-kicker">Unidad 2 · Segmentación de imágenes médicas</div>
+
+# Del píxel a la decisión clínica
+
+Una ruta conceptual y práctica desde la definición de una máscara y sus métricas hasta el diseño, la evaluación y el uso clínico de sistemas de segmentación automática e interactiva.
+:::
+
+::: {.unit-section}
+## El punto de partida
+
+Esta segunda unidad aborda la **segmentación de imágenes médicas** como una tarea espacial: transformar una imagen o un volumen en una etiqueta para cada píxel o vóxel.
+
+El recorrido comienza con los fundamentos de la segmentación semántica y sus principales métricas —Dice, IoU y distancia de Hausdorff— para avanzar hacia las decisiones que determinan un sistema completo: preprocesamiento, dimensionalidad, entrenamiento por *patches*, funciones de pérdida, inferencia y postprocesamiento.
+
+La pregunta que guía el recorrido es:
+
+::: {.guiding-question}
+¿Cómo pasamos de un modelo que produce una máscara geométricamente razonable a una herramienta confiable, clínicamente útil e integrada en el flujo de trabajo?
+:::
+
+Para responderla, compararemos dos paradigmas. Por un lado, la segmentación automática, ejemplificada por **nnU-Net** y su capacidad de configurar gran parte del pipeline a partir de las características del dataset. Por otro, la segmentación interactiva guiada por *prompts*, representada por modelos como **MedSAM**, donde el experto participa durante la inferencia.
+
+También analizaremos por qué una máscara de referencia no siempre representa una verdad anatómica absoluta, cómo la variabilidad entre observadores condiciona la evaluación y por qué una mejora geométrica no implica necesariamente una mejora clínica.
+:::
+
+::: {.unit-section}
+## Al finalizar la unidad
+
+Se espera que el estudiante pueda:
+
+::: {.objectives-grid}
+::: {.objective-block}
+### Fundamentos y métricas
+
+1. Explicar qué es la segmentación semántica y distinguirla de la segmentación de instancias y panóptica.
+2. Reconocer las principales dificultades de la segmentación en imágenes médicas.
+3. Interpretar el coeficiente Dice, IoU, Hausdorff y $HD_{95}$.
+4. Identificar las limitaciones de las métricas de superposición y de distancia.
+:::
+
+::: {.objective-block}
+### Diseño y entrenamiento
+
+5. Analizar las decisiones de preprocesamiento, normalización y *resampling*.
+6. Comparar estrategias 2D, 2.5D y 3D, considerando el *spacing* y la anisotropía.
+7. Comprender el entrenamiento por *patches*, el desbalance de clases y las funciones de pérdida.
+8. Reconocer la importancia de separar los datos a nivel de paciente y evitar *data leakage*.
+:::
+
+::: {.objective-block}
+### Automatización y evaluación clínica
+
+9. Comprender nnU-Net como un framework de segmentación automática y auto-configurable.
+10. Comparar la segmentación automática con la segmentación interactiva guiada por *prompts*.
+11. Analizar la variabilidad inter- e intra-observador y sus consecuencias sobre el *ground truth*.
+12. Diferenciar validación técnica, validación clínica e impacto sobre el flujo de trabajo.
+:::
+:::
+:::
+
+::: {.unit-section}
+## Material de la unidad
+
+::: {.resource-grid}
+::: {.resource-card}
+### Notas de clase
+
+Fundamentos de segmentación, métricas geométricas, entrenamiento de modelos, nnU-Net, MedSAM y validación clínica.
+
+[Abrir notas de clase](notas.qmd)
+:::
+:::
+:::
+
