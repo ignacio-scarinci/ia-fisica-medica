@@ -1,4 +1,4 @@
-
+---
 title: "Unidad 2 — Segmentación de estructuras anatómicas"
 subtitle: "Clase 2 — ¿Cómo evaluamos una segmentación?"
 author: "Ignacio Scarinci"
@@ -23,7 +23,7 @@ execute:
   warning: false
   message: false
   freeze: auto
-
+---
 
 ## De la clase anterior
 
