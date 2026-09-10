@@ -91,6 +91,12 @@ website:
           - text: "Clase 2: ¿Cómo evaluamos una segmentación?"
             href: unidad2/clase2.qmd
             target: _blank
+          - text: "Notebook 1: Segmentación binaria"
+            href: unidad2/notebooks/Notebook1.ipynb
+          - text: "Notebook 2: Segmentación multilabel"
+            href: unidad2/notebooks/Notebook2.ipynb
+          - text: "Notebook 3: Motores de entrenamiento en MONAI"
+            href: unidad2/notebooks/Notebook3.ipynb
 
 format:
   html:

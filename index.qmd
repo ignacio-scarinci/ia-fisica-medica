@@ -18,6 +18,7 @@ Los **notebooks de trabajos prácticos y tareas** no se publican en este sitio: 
 |---|---|---|---|---|
 | 0 — Introducción | [Ver](unidad0/unidad0.qmd) | [Ver](unidad0/notas.qmd) · [PDF](unidad0/notas.pdf) | [Ver](unidad0/presentacion.qmd){target="_blank"} · [PDF](unidad0/presentacion.pdf) | [Carpeta](https://github.com/ignacio-scarinci/ia-fisica-medica/tree/main/unidad0/notebooks) |
 | 1 - Fundamentos de IA | [Ver](unidad1/unidad1.qmd) | [Ver](unidad1/notas.qmd) · [PDF](unidad1/notas.pdf) · [Imágenes](unidad1/notas2.qmd) · [PDF](unidad1/notas2.pdf) | [Clase 1](unidad1/clase1.qmd){target="_blank"} · [PDF](unidad1/clase1.pdf) · [Clase 2](unidad1/clase2.qmd){target="_blank"} · [PDF](unidad1/clase2.pdf) | [Carpeta](https://github.com/ignacio-scarinci/ia-fisica-medica/tree/main/unidad1/notebooks) |
+| 2 — Segmentación de imágenes médicas | [Ver](unidad2/unidad2.qmd) | [Ver](unidad2/notas.qmd) | [Clase 1](unidad2/clase1.qmd){target="_blank"} · [Clase 2](unidad2/clase2.qmd){target="_blank"} | [Carpeta](https://github.com/ignacio-scarinci/ia-fisica-medica/tree/main/unidad2/notebooks) |
 
 
 ### Cómo trabajar con los notebooks
