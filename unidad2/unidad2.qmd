@@ -86,7 +86,7 @@ Fundamentos de segmentación, métricas geométricas, entrenamiento de modelos, 
 
 Material práctico para acompañar la clase y explorar, con MONAI y PyTorch, el entrenamiento de modelos de segmentación.
 
-[Segmentación binaria](notebooks/Notebook1.ipynb) · [Segmentación multilabel](notebooks/Notebook2.ipynb) ·  [MONAI Engines](notebooks/Notebook3.ipynb.ipynb) 
+[Segmentación binaria](notebooks/Notebook1.ipynb) · [Segmentación multilabel](notebooks/Notebook2.ipynb) ·  [MONAI Engines](notebooks/Notebook3.ipynb.ipynb) · [nnU-Net con MONAI](notebooks/Notebook6.ipynb)
 :::
 :::
 :::

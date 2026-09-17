@@ -1,0 +1,539 @@
+---
+title: "Unidad 2 — Segmentación de estructuras anatómicas"
+subtitle: "Clase 3 — Segmentación interactiva"
+author: "Ignacio Scarinci"
+lang: es
+format:
+    revealjs:
+        theme: ../themes/presentaciones.scss
+        slide-number: true
+        chalkboard: true
+        preview-links: auto
+        transition: fade
+        width: 1600
+        height: 900
+        margin: 0.06
+        center: false
+        smaller: false
+        toc: false
+        code-line-numbers: true
+jupyter: python3
+execute:
+  echo: true
+  warning: false
+  message: false
+  freeze: auto
+---
+
+## De la clase anterior
+
+En la clase anterior discutimos cómo diseñar un sistema de segmentación automático:
+
+- Arquitectura vs pipeline;
+- nnU-Net como sistema auto-configurable;
+
+Hoy vemos un paso atrás:
+
+
+## Objetivos de esta clase
+
+Al finalizar la clase deberían poder:
+
+1. Distinguir segmentación **automática** de segmentación **interactiva**.
+2. Comprender el rol de los *prompts* en sistemas como SAM/MedSAM.
+3. Analizar las diferencias entre workflows *machine-first* y *human-in-the-loop*.
+4. Reconocer que cada paradigma requiere un protocolo de evaluación distinto.
+
+# Segmentación interactiva
+
+## Cambia la formulación
+
+En lugar de:
+
+$$
+X
+\xrightarrow{f_\theta}
+\hat Y
+$$
+
+usamos:
+
+$$
+(X,P)
+\xrightarrow{f_\theta}
+\hat Y
+$$
+
+El prompt $P$ aporta información adicional sobre la estructura de interés.
+
+
+## ¿Qué puede ser un prompt?
+
+- un punto positivo
+- puntos positivos y negativos
+- un *bounding box*
+- una máscara inicial
+- una región aproximada
+- un texto
+- otra indicación espacial
+
+Ejemplo:
+
+$$
+\text{imagen}
++
+\text{bounding box}
+\rightarrow
+\text{segmentación}
+$$
+
+## El usuario resuelve parte del problema
+
+En el paradigma interactivo:
+
+```{mermaid}
+flowchart LR
+    U[Usuario] --> P[Prompt / localización]
+    I[Imagen] --> M[Modelo]
+    P --> M
+    M --> S[Segmentación]
+```
+
+El usuario aporta **intención y localización**.
+
+El modelo se concentra en delinear la estructura indicada.
+
+## Cambia la distribución del trabajo
+
+::: {.columns}
+::: {.column width="48%"}
+### Automática
+
+$$
+\boxed{
+\text{modelo}
+=
+\text{localizar}
++
+\text{identificar}
++
+\text{segmentar}
+}
+$$
+:::
+
+::: {.column width="48%"}
+### Interactiva
+
+$$
+\boxed{
+\text{usuario}
+\rightarrow
+\text{contexto / localización}
+}
+$$
+
+$$
+\boxed{
+\text{modelo}
+\rightarrow
+\text{refinamiento}
+}
+$$
+:::
+:::
+
+
+# SAM y segmentación guiada por prompts
+
+## La idea de SAM
+
+Conceptualmente:
+
+```{mermaid}
+flowchart LR
+    I[Imagen] --> M[Modelo]
+    P[Prompt] --> M
+    M --> S[Máscara]
+```
+
+El prompt indica **qué región queremos segmentar**.
+
+Eso transforma el problema:
+
+$$
+\text{segmentar todas las estructuras conocidas}
+$$
+
+en:
+
+$$
+\text{segmentar la estructura indicada}
+$$
+
+
+## ¿Por qué no trasladar SAM sin más?
+
+Las imágenes médicas difieren de las naturales en:
+
+- distribución de intensidades
+- contraste
+- dimensionalidad
+- anatomía
+- tamaño de estructuras
+- modalidades
+- fronteras poco definidas
+
+Por lo tanto:
+
+> un modelo potente en imágenes naturales no necesariamente es óptimo para imágenes médicas.
+
+# MedSAM
+
+
+## MedSAM como adaptación al dominio médico
+
+La formulación conceptual sigue siendo:
+
+$$
+(X,P)
+\xrightarrow{f_\theta}
+\hat Y
+$$
+
+El usuario proporciona una indicación espacial y el modelo produce la máscara.
+
+La aspiración es una herramienta más flexible que un segmentador entrenado para una lista fija de órganos.
+
+
+## Un cambio de pregunta
+
+### Segmentación automática
+
+> ¿Puede el modelo encontrar y segmentar automáticamente todas las estructuras?
+
+### Segmentación interactiva
+
+> **Si el experto le indica qué estructura quiere segmentar, ¿puede delinearla rápidamente?**
+
+Son problemas distintos.
+
+
+# Automática vs interactiva
+
+
+## Comparación conceptual
+
+| Característica | Automática | Interactiva |
+|---|---|---|
+| Entrada | Imagen | Imagen + prompt |
+| Localización inicial | Modelo | Usuario + modelo |
+| Intervención en inferencia | Mínima | Explícita |
+| Clases | Habitualmente predefinidas | Potencialmente más flexibles |
+| Escalabilidad masiva | Muy alta | Depende de interacción |
+| Rol del experto | Revisión posterior | Participación durante inferencia |
+| Workflow | *machine-first* | *human-in-the-loop* |
+| Ejemplo | nnU-Net | MedSAM |
+
+
+## Dos workflows diferentes
+
+::: {.columns}
+::: {.column width="48%"}
+### Automático
+
+```{mermaid}
+flowchart TB
+    CT[CT] --> M[Modelo]
+    M --> O1[OAR 1]
+    M --> O2[OAR 2]
+    M --> O3[OAR 3]
+    O1 --> R[Revisión]
+    O2 --> R
+    O3 --> R
+```
+:::
+
+::: {.column width="48%"}
+### Interactivo
+
+```{mermaid}
+flowchart TB
+    CT[CT] --> E[Experto]
+    E --> P[Prompt]
+    P --> M[Modelo]
+    M --> S[Segmentación]
+    S --> R[Acepta o corrige]
+```
+:::
+:::
+
+---
+
+## ¿Cuál paradigma es mejor?
+
+La pregunta correcta depende del objetivo.
+
+Para segmentar muchas estructuras conocidas en grandes volúmenes de estudios:
+
+$$
+\text{automático}
+$$
+
+puede ser muy atractivo.
+
+Para estructuras variables, poco frecuentes o definidas durante la interacción:
+
+$$
+\text{interactivo}
+$$
+
+puede aportar mayor flexibilidad.
+
+
+## Dice no alcanza para compararlos
+
+No basta con:
+
+$$
+Dice_{\text{automático}}
+\quad \text{vs} \quad
+Dice_{\text{interactivo}}
+$$
+
+También importan:
+
+- tiempo del usuario
+- cantidad de correcciones
+- errores críticos
+- facilidad de interacción
+- generalización
+- integración clínica
+
+# Automatización vs colaboración humano–IA
+
+## Dos visiones
+
+::: {.columns}
+::: {.column width="48%"}
+### Automatización
+
+$$
+\text{tarea manual}
+\rightarrow
+\text{modelo automático}
+$$
+
+El sistema intenta reemplazar una tarea específica.
+:::
+
+::: {.column width="48%"}
+### Asistencia
+
+$$
+\text{experto}
++
+\text{modelo}
+\rightarrow
+\text{tarea asistida}
+$$
+
+El sistema modifica cómo se realiza la tarea.
+:::
+:::
+
+
+## Human-in-the-loop
+
+En un sistema interactivo:
+
+> la intervención humana no es un fallo del sistema.
+
+Es parte deliberada del diseño.
+
+::: {.callout-important}
+El experto aporta **conocimiento, intención y contexto**.  
+El modelo aporta **velocidad y capacidad de delineación**.
+:::
+
+---
+
+## ¿Dónde colocar al experto?
+
+```{mermaid}
+flowchart TB
+    A[Antes] --> A1[Prompt inicial]
+    B[Después] --> B1[Revisión / corrección]
+    C[Durante] --> C1[Interacción iterativa]
+```
+
+Tres posibilidades:
+
+1. antes de la predicción;
+2. después de la predicción;
+3. durante un proceso iterativo.
+
+
+## Segmentación iterativa
+
+Podemos tener:
+
+$$
+P_1
+\rightarrow
+\hat Y_1
+\rightarrow
+P_2
+\rightarrow
+\hat Y_2
+\rightarrow
+\cdots
+$$
+
+Esto transforma la segmentación en un proceso colaborativo.
+
+> El objetivo ya no es solo “predecir una máscara”, sino **converger rápidamente a una máscara aceptable**.
+
+
+# El tiempo total importa más que el tiempo de inferencia
+
+## Inferencia rápida ≠ workflow rápido
+
+Un modelo puede tardar segundos en generar una máscara.
+
+Pero luego pueden aparecer:
+
+- inspección
+- corrección
+- confirmación
+
+Por eso:
+
+$$
+\text{tiempo de inferencia}
+\neq
+\text{tiempo total hasta máscara aceptable}
+$$
+
+## Tiempo clínico real
+
+```{mermaid}
+flowchart LR
+    G[Generación] --> I[Inspección]
+    I --> C[Corrección]
+    C --> F[Confirmación]
+```
+
+En un sistema interactivo también debemos sumar:
+
+$$
+\text{tiempo para generar el prompt}
+$$
+
+La eficiencia debe evaluarse sobre el **workflow completo**.
+
+
+# El error también cambia de significado
+
+
+## En un sistema automático
+
+El error puede permanecer oculto hasta la revisión.
+
+```{mermaid}
+flowchart LR
+    I[Imagen] --> M[Modelo]
+    M --> E[Error]
+    E --> R[Detectado en revisión]
+```
+
+
+## En un sistema interactivo
+
+El usuario puede advertir que la salida no corresponde a su intención y modificar el prompt.
+
+```{mermaid}
+flowchart LR
+    P1[Prompt 1] --> M[Modelo]
+    M --> S1[Salida]
+    S1 --> C[Usuario corrige]
+    C --> P2[Prompt 2]
+    P2 --> M
+```
+
+Esto cambia cómo pensamos seguridad, usabilidad y corrección de errores.
+
+
+# Generalización y prompts
+
+
+## De modelos específicos a modelos condicionados
+
+Podemos contrastar:
+
+$$
+\text{modelo específico por clase}
+$$
+
+con:
+
+$$
+\text{modelo general condicionado por prompt}
+$$
+
+La segunda idea está relacionada con el desarrollo de **modelos fundacionales**.
+
+::: {.callout-note}
+Esto no implica que un modelo pueda segmentar cualquier estructura, modalidad o dominio sin limitaciones.
+:::
+
+# Los dos paradigmas pueden coexistir
+
+## No necesariamente hay que elegir uno
+
+Un posible sistema clínico puede combinar:
+
+```{mermaid}
+flowchart LR
+    I[Imagen] --> A[Segmentación automática]
+    I --> P[Segmentación interactiva]
+    A --> O[OARs frecuentes]
+    P --> X[Estructuras adicionales / correcciones]
+```
+
+Esto permite:
+
+- automatizar lo frecuente
+- interactuar en lo excepcional
+- corregir con rapidez
+
+# La evaluación también depende del paradigma
+
+## Evaluación de un sistema automático
+
+Puede interesarnos:
+
+- Dice
+- $HD_{95}$
+- tasa de fallos
+- necesidad de corrección
+- tiempo de edición
+- robustez multicéntrica
+
+## Evaluación de un sistema interactivo
+
+Debemos agregar:
+
+- tipo de prompt
+- número de interacciones
+- sensibilidad a la posición del prompt
+- tiempo hasta máscara aceptable
+- facilidad de corrección
+
+$$
+\boxed{
+\text{paradigma diferente}
+\Rightarrow
+\text{protocolo de evaluación diferente}
+}
+$$
