@@ -40,12 +40,194 @@
     "href": "unidad2/unidad2.html#material-de-la-unidad",
     "title": "Unidad 2: Segmentación de Imágenes Médicas",
     "section": "Material de la unidad",
-    "text": "Material de la unidad\n\n\nNotas de clase\nFundamentos de segmentación, métricas geométricas, entrenamiento de modelos, nnU-Net, MedSAM y validación clínica.\nAbrir notas de clase\n\n\nNotebooks\nMaterial práctico para acompañar la clase y explorar, con MONAI y PyTorch, el entrenamiento de modelos de segmentación.\nSegmentación binaria · Segmentación multilabel · MONAI Engines",
+    "text": "Material de la unidad\n\n\nNotas de clase\nFundamentos de segmentación, métricas geométricas, entrenamiento de modelos, nnU-Net, MedSAM y validación clínica.\nAbrir notas de clase\n\n\nNotebooks\nMaterial práctico para acompañar la clase y explorar, con MONAI y PyTorch, el entrenamiento de modelos de segmentación.\nSegmentación binaria · Segmentación multilabel · MONAI Engines · nnU-Net con MONAI",
     "crumbs": [
       "Inicio",
       "2. Segmentación de imágenes médicas",
       "Índice de la unidad"
     ]
+  },
+  {
+    "objectID": "unidad2/clase4.html#de-la-clase-anterior",
+    "href": "unidad2/clase4.html#de-la-clase-anterior",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "De la clase anterior",
+    "text": "De la clase anterior\nEn la clase anterior discutimos cómo diseñar un sistema de segmentación automático:\n\nArquitectura vs pipeline;\nnnU-Net como sistema auto-configurable;\n\nHoy vemos un paso atrás:"
+  },
+  {
+    "objectID": "unidad2/clase4.html#objetivos-de-esta-clase",
+    "href": "unidad2/clase4.html#objetivos-de-esta-clase",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Objetivos de esta clase",
+    "text": "Objetivos de esta clase\nAl finalizar la clase deberían poder:\n\nDistinguir segmentación automática de segmentación interactiva.\nComprender el rol de los prompts en sistemas como SAM/MedSAM.\nAnalizar las diferencias entre workflows machine-first y human-in-the-loop.\nReconocer que cada paradigma requiere un protocolo de evaluación distinto."
+  },
+  {
+    "objectID": "unidad2/clase4.html#cambia-la-formulación",
+    "href": "unidad2/clase4.html#cambia-la-formulación",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Cambia la formulación",
+    "text": "Cambia la formulación\nEn lugar de:\n\\[\nX\n\\xrightarrow{f_\\theta}\n\\hat Y\n\\]\nusamos:\n\\[\n(X,P)\n\\xrightarrow{f_\\theta}\n\\hat Y\n\\]\nEl prompt \\(P\\) aporta información adicional sobre la estructura de interés."
+  },
+  {
+    "objectID": "unidad2/clase4.html#qué-puede-ser-un-prompt",
+    "href": "unidad2/clase4.html#qué-puede-ser-un-prompt",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Qué puede ser un prompt?",
+    "text": "¿Qué puede ser un prompt?\n\nun punto positivo\npuntos positivos y negativos\nun bounding box\nuna máscara inicial\nuna región aproximada\nun texto\notra indicación espacial\n\nEjemplo:\n\\[\n\\text{imagen}\n+\n\\text{bounding box}\n\\rightarrow\n\\text{segmentación}\n\\]"
+  },
+  {
+    "objectID": "unidad2/clase4.html#el-usuario-resuelve-parte-del-problema",
+    "href": "unidad2/clase4.html#el-usuario-resuelve-parte-del-problema",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "El usuario resuelve parte del problema",
+    "text": "El usuario resuelve parte del problema\nEn el paradigma interactivo:\n\nflowchart LR\n    U[Usuario] --&gt; P[Prompt / localización]\n    I[Imagen] --&gt; M[Modelo]\n    P --&gt; M\n    M --&gt; S[Segmentación]\n\n\n\n\nflowchart LR\n    U[Usuario] --&gt; P[Prompt / localización]\n    I[Imagen] --&gt; M[Modelo]\n    P --&gt; M\n    M --&gt; S[Segmentación]\n\n\n\n\n\n\nEl usuario aporta intención y localización.\nEl modelo se concentra en delinear la estructura indicada."
+  },
+  {
+    "objectID": "unidad2/clase4.html#cambia-la-distribución-del-trabajo",
+    "href": "unidad2/clase4.html#cambia-la-distribución-del-trabajo",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Cambia la distribución del trabajo",
+    "text": "Cambia la distribución del trabajo\n\n\nAutomática\n\\[\n\\boxed{\n\\text{modelo}\n=\n\\text{localizar}\n+\n\\text{identificar}\n+\n\\text{segmentar}\n}\n\\]\n\nInteractiva\n\\[\n\\boxed{\n\\text{usuario}\n\\rightarrow\n\\text{contexto / localización}\n}\n\\]\n\\[\n\\boxed{\n\\text{modelo}\n\\rightarrow\n\\text{refinamiento}\n}\n\\]"
+  },
+  {
+    "objectID": "unidad2/clase4.html#la-idea-de-sam",
+    "href": "unidad2/clase4.html#la-idea-de-sam",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "La idea de SAM",
+    "text": "La idea de SAM\nConceptualmente:\n\nflowchart LR\n    I[Imagen] --&gt; M[Modelo]\n    P[Prompt] --&gt; M\n    M --&gt; S[Máscara]\n\n\n\n\nflowchart LR\n    I[Imagen] --&gt; M[Modelo]\n    P[Prompt] --&gt; M\n    M --&gt; S[Máscara]\n\n\n\n\n\n\nEl prompt indica qué región queremos segmentar.\nEso transforma el problema:\n\\[\n\\text{segmentar todas las estructuras conocidas}\n\\]\nen:\n\\[\n\\text{segmentar la estructura indicada}\n\\]"
+  },
+  {
+    "objectID": "unidad2/clase4.html#por-qué-no-trasladar-sam-sin-más",
+    "href": "unidad2/clase4.html#por-qué-no-trasladar-sam-sin-más",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Por qué no trasladar SAM sin más?",
+    "text": "¿Por qué no trasladar SAM sin más?\nLas imágenes médicas difieren de las naturales en:\n\ndistribución de intensidades\ncontraste\ndimensionalidad\nanatomía\ntamaño de estructuras\nmodalidades\nfronteras poco definidas\n\nPor lo tanto:\n\nun modelo potente en imágenes naturales no necesariamente es óptimo para imágenes médicas."
+  },
+  {
+    "objectID": "unidad2/clase4.html#medsam-como-adaptación-al-dominio-médico",
+    "href": "unidad2/clase4.html#medsam-como-adaptación-al-dominio-médico",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "MedSAM como adaptación al dominio médico",
+    "text": "MedSAM como adaptación al dominio médico\nLa formulación conceptual sigue siendo:\n\\[\n(X,P)\n\\xrightarrow{f_\\theta}\n\\hat Y\n\\]\nEl usuario proporciona una indicación espacial y el modelo produce la máscara.\nLa aspiración es una herramienta más flexible que un segmentador entrenado para una lista fija de órganos."
+  },
+  {
+    "objectID": "unidad2/clase4.html#un-cambio-de-pregunta",
+    "href": "unidad2/clase4.html#un-cambio-de-pregunta",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Un cambio de pregunta",
+    "text": "Un cambio de pregunta\nSegmentación automática\n\n¿Puede el modelo encontrar y segmentar automáticamente todas las estructuras?\n\nSegmentación interactiva\n\nSi el experto le indica qué estructura quiere segmentar, ¿puede delinearla rápidamente?\n\nSon problemas distintos."
+  },
+  {
+    "objectID": "unidad2/clase4.html#comparación-conceptual",
+    "href": "unidad2/clase4.html#comparación-conceptual",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Comparación conceptual",
+    "text": "Comparación conceptual\n\n\n\n\n\n\n\n\nCaracterística\nAutomática\nInteractiva\n\n\n\n\nEntrada\nImagen\nImagen + prompt\n\n\nLocalización inicial\nModelo\nUsuario + modelo\n\n\nIntervención en inferencia\nMínima\nExplícita\n\n\nClases\nHabitualmente predefinidas\nPotencialmente más flexibles\n\n\nEscalabilidad masiva\nMuy alta\nDepende de interacción\n\n\nRol del experto\nRevisión posterior\nParticipación durante inferencia\n\n\nWorkflow\nmachine-first\nhuman-in-the-loop\n\n\nEjemplo\nnnU-Net\nMedSAM"
+  },
+  {
+    "objectID": "unidad2/clase4.html#dos-workflows-diferentes",
+    "href": "unidad2/clase4.html#dos-workflows-diferentes",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Dos workflows diferentes",
+    "text": "Dos workflows diferentes\n\n\nAutomático\n\nflowchart TB\n    CT[CT] --&gt; M[Modelo]\n    M --&gt; O1[OAR 1]\n    M --&gt; O2[OAR 2]\n    M --&gt; O3[OAR 3]\n    O1 --&gt; R[Revisión]\n    O2 --&gt; R\n    O3 --&gt; R\n\n\n\n\nflowchart TB\n    CT[CT] --&gt; M[Modelo]\n    M --&gt; O1[OAR 1]\n    M --&gt; O2[OAR 2]\n    M --&gt; O3[OAR 3]\n    O1 --&gt; R[Revisión]\n    O2 --&gt; R\n    O3 --&gt; R\n\n\n\n\n\n\n\nInteractivo\n\nflowchart TB\n    CT[CT] --&gt; E[Experto]\n    E --&gt; P[Prompt]\n    P --&gt; M[Modelo]\n    M --&gt; S[Segmentación]\n    S --&gt; R[Acepta o corrige]\n\n\n\n\nflowchart TB\n    CT[CT] --&gt; E[Experto]\n    E --&gt; P[Prompt]\n    P --&gt; M[Modelo]\n    M --&gt; S[Segmentación]\n    S --&gt; R[Acepta o corrige]"
+  },
+  {
+    "objectID": "unidad2/clase4.html#cuál-paradigma-es-mejor",
+    "href": "unidad2/clase4.html#cuál-paradigma-es-mejor",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Cuál paradigma es mejor?",
+    "text": "¿Cuál paradigma es mejor?\nLa pregunta correcta depende del objetivo.\nPara segmentar muchas estructuras conocidas en grandes volúmenes de estudios:\n\\[\n\\text{automático}\n\\]\npuede ser muy atractivo.\nPara estructuras variables, poco frecuentes o definidas durante la interacción:\n\\[\n\\text{interactivo}\n\\]\npuede aportar mayor flexibilidad."
+  },
+  {
+    "objectID": "unidad2/clase4.html#dice-no-alcanza-para-compararlos",
+    "href": "unidad2/clase4.html#dice-no-alcanza-para-compararlos",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Dice no alcanza para compararlos",
+    "text": "Dice no alcanza para compararlos\nNo basta con:\n\\[\nDice_{\\text{automático}}\n\\quad \\text{vs} \\quad\nDice_{\\text{interactivo}}\n\\]\nTambién importan:\n\ntiempo del usuario\ncantidad de correcciones\nerrores críticos\nfacilidad de interacción\ngeneralización\nintegración clínica"
+  },
+  {
+    "objectID": "unidad2/clase4.html#dos-visiones",
+    "href": "unidad2/clase4.html#dos-visiones",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Dos visiones",
+    "text": "Dos visiones\n\n\nAutomatización\n\\[\n\\text{tarea manual}\n\\rightarrow\n\\text{modelo automático}\n\\]\nEl sistema intenta reemplazar una tarea específica.\n\nAsistencia\n\\[\n\\text{experto}\n+\n\\text{modelo}\n\\rightarrow\n\\text{tarea asistida}\n\\]\nEl sistema modifica cómo se realiza la tarea."
+  },
+  {
+    "objectID": "unidad2/clase4.html#human-in-the-loop",
+    "href": "unidad2/clase4.html#human-in-the-loop",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Human-in-the-loop",
+    "text": "Human-in-the-loop\nEn un sistema interactivo:\n\nla intervención humana no es un fallo del sistema.\n\nEs parte deliberada del diseño.\n\n\n\n\n\n\nImportante\n\n\nEl experto aporta conocimiento, intención y contexto.\nEl modelo aporta velocidad y capacidad de delineación."
+  },
+  {
+    "objectID": "unidad2/clase4.html#dónde-colocar-al-experto",
+    "href": "unidad2/clase4.html#dónde-colocar-al-experto",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Dónde colocar al experto?",
+    "text": "¿Dónde colocar al experto?\n\nflowchart TB\n    A[Antes] --&gt; A1[Prompt inicial]\n    B[Después] --&gt; B1[Revisión / corrección]\n    C[Durante] --&gt; C1[Interacción iterativa]\n\n\n\n\nflowchart TB\n    A[Antes] --&gt; A1[Prompt inicial]\n    B[Después] --&gt; B1[Revisión / corrección]\n    C[Durante] --&gt; C1[Interacción iterativa]\n\n\n\n\n\n\nTres posibilidades:\n\nantes de la predicción;\ndespués de la predicción;\ndurante un proceso iterativo."
+  },
+  {
+    "objectID": "unidad2/clase4.html#segmentación-iterativa",
+    "href": "unidad2/clase4.html#segmentación-iterativa",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Segmentación iterativa",
+    "text": "Segmentación iterativa\nPodemos tener:\n\\[\nP_1\n\\rightarrow\n\\hat Y_1\n\\rightarrow\nP_2\n\\rightarrow\n\\hat Y_2\n\\rightarrow\n\\cdots\n\\]\nEsto transforma la segmentación en un proceso colaborativo.\n\nEl objetivo ya no es solo “predecir una máscara”, sino converger rápidamente a una máscara aceptable."
+  },
+  {
+    "objectID": "unidad2/clase4.html#inferencia-rápida-workflow-rápido",
+    "href": "unidad2/clase4.html#inferencia-rápida-workflow-rápido",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Inferencia rápida ≠ workflow rápido",
+    "text": "Inferencia rápida ≠ workflow rápido\nUn modelo puede tardar segundos en generar una máscara.\nPero luego pueden aparecer:\n\ninspección\ncorrección\nconfirmación\n\nPor eso:\n\\[\n\\text{tiempo de inferencia}\n\\neq\n\\text{tiempo total hasta máscara aceptable}\n\\]"
+  },
+  {
+    "objectID": "unidad2/clase4.html#tiempo-clínico-real",
+    "href": "unidad2/clase4.html#tiempo-clínico-real",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Tiempo clínico real",
+    "text": "Tiempo clínico real\n\nflowchart LR\n    G[Generación] --&gt; I[Inspección]\n    I --&gt; C[Corrección]\n    C --&gt; F[Confirmación]\n\n\n\n\nflowchart LR\n    G[Generación] --&gt; I[Inspección]\n    I --&gt; C[Corrección]\n    C --&gt; F[Confirmación]\n\n\n\n\n\n\nEn un sistema interactivo también debemos sumar:\n\\[\n\\text{tiempo para generar el prompt}\n\\]\nLa eficiencia debe evaluarse sobre el workflow completo."
+  },
+  {
+    "objectID": "unidad2/clase4.html#en-un-sistema-automático",
+    "href": "unidad2/clase4.html#en-un-sistema-automático",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "En un sistema automático",
+    "text": "En un sistema automático\nEl error puede permanecer oculto hasta la revisión.\n\nflowchart LR\n    I[Imagen] --&gt; M[Modelo]\n    M --&gt; E[Error]\n    E --&gt; R[Detectado en revisión]\n\n\n\n\nflowchart LR\n    I[Imagen] --&gt; M[Modelo]\n    M --&gt; E[Error]\n    E --&gt; R[Detectado en revisión]"
+  },
+  {
+    "objectID": "unidad2/clase4.html#en-un-sistema-interactivo",
+    "href": "unidad2/clase4.html#en-un-sistema-interactivo",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "En un sistema interactivo",
+    "text": "En un sistema interactivo\nEl usuario puede advertir que la salida no corresponde a su intención y modificar el prompt.\n\nflowchart LR\n    P1[Prompt 1] --&gt; M[Modelo]\n    M --&gt; S1[Salida]\n    S1 --&gt; C[Usuario corrige]\n    C --&gt; P2[Prompt 2]\n    P2 --&gt; M\n\n\n\n\nflowchart LR\n    P1[Prompt 1] --&gt; M[Modelo]\n    M --&gt; S1[Salida]\n    S1 --&gt; C[Usuario corrige]\n    C --&gt; P2[Prompt 2]\n    P2 --&gt; M\n\n\n\n\n\n\nEsto cambia cómo pensamos seguridad, usabilidad y corrección de errores."
+  },
+  {
+    "objectID": "unidad2/clase4.html#de-modelos-específicos-a-modelos-condicionados",
+    "href": "unidad2/clase4.html#de-modelos-específicos-a-modelos-condicionados",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "De modelos específicos a modelos condicionados",
+    "text": "De modelos específicos a modelos condicionados\nPodemos contrastar:\n\\[\n\\text{modelo específico por clase}\n\\]\ncon:\n\\[\n\\text{modelo general condicionado por prompt}\n\\]\nLa segunda idea está relacionada con el desarrollo de modelos fundacionales.\n\n\n\n\n\n\nNota\n\n\nEsto no implica que un modelo pueda segmentar cualquier estructura, modalidad o dominio sin limitaciones."
+  },
+  {
+    "objectID": "unidad2/clase4.html#no-necesariamente-hay-que-elegir-uno",
+    "href": "unidad2/clase4.html#no-necesariamente-hay-que-elegir-uno",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "No necesariamente hay que elegir uno",
+    "text": "No necesariamente hay que elegir uno\nUn posible sistema clínico puede combinar:\n\nflowchart LR\n    I[Imagen] --&gt; A[Segmentación automática]\n    I --&gt; P[Segmentación interactiva]\n    A --&gt; O[OARs frecuentes]\n    P --&gt; X[Estructuras adicionales / correcciones]\n\n\n\n\nflowchart LR\n    I[Imagen] --&gt; A[Segmentación automática]\n    I --&gt; P[Segmentación interactiva]\n    A --&gt; O[OARs frecuentes]\n    P --&gt; X[Estructuras adicionales / correcciones]\n\n\n\n\n\n\nEsto permite:\n\nautomatizar lo frecuente\ninteractuar en lo excepcional\ncorregir con rapidez"
+  },
+  {
+    "objectID": "unidad2/clase4.html#evaluación-de-un-sistema-automático",
+    "href": "unidad2/clase4.html#evaluación-de-un-sistema-automático",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Evaluación de un sistema automático",
+    "text": "Evaluación de un sistema automático\nPuede interesarnos:\n\nDice\n\\(HD_{95}\\)\ntasa de fallos\nnecesidad de corrección\ntiempo de edición\nrobustez multicéntrica"
+  },
+  {
+    "objectID": "unidad2/clase4.html#evaluación-de-un-sistema-interactivo",
+    "href": "unidad2/clase4.html#evaluación-de-un-sistema-interactivo",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Evaluación de un sistema interactivo",
+    "text": "Evaluación de un sistema interactivo\nDebemos agregar:\n\ntipo de prompt\nnúmero de interacciones\nsensibilidad a la posición del prompt\ntiempo hasta máscara aceptable\nfacilidad de corrección\n\n\\[\n\\boxed{\n\\text{paradigma diferente}\n\\Rightarrow\n\\text{protocolo de evaluación diferente}\n}\n\\]"
   },
   {
     "objectID": "unidad2/clase2.html#de-la-clase-anterior",
@@ -4416,6 +4598,202 @@
       "2. Segmentación de imágenes médicas",
       "Clase 1: De la imagen al contorno clínico"
     ]
+  },
+  {
+    "objectID": "unidad2/clase3.html#de-la-clase-anterior",
+    "href": "unidad2/clase3.html#de-la-clase-anterior",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "De la clase anterior",
+    "text": "De la clase anterior\nEn la clase anterior discutimos cómo evaluar una segmentación:\n\nDice e IoU para superposición;\nHausdorff y HD95 para discrepancias de superficie;\nfunciones de pérdida para entrenamiento;\nvalidación por paciente;\nnecesidad de combinar métricas y revisión visual.\n\nHoy damos un paso atrás:\n\n¿Cómo diseñamos el sistema de segmentación completo?\n\nY, sobre todo:\n\n¿Qué rol queremos que tenga el modelo dentro del flujo clínico?"
+  },
+  {
+    "objectID": "unidad2/clase3.html#objetivos-de-esta-clase",
+    "href": "unidad2/clase3.html#objetivos-de-esta-clase",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Objetivos de esta clase",
+    "text": "Objetivos de esta clase\nAl finalizar la clase deberían poder:\n\nDiferenciar arquitectura de pipeline.\nEntender por qué nnU-Net es un sistema auto-configurable y no solo una arquitectura.\nDistinguir segmentación automática de segmentación interactiva.\nComprender el rol de los prompts en sistemas como SAM/MedSAM.\nAnalizar las diferencias entre workflows machine-first y human-in-the-loop.\nReconocer que cada paradigma requiere un protocolo de evaluación distinto."
+  },
+  {
+    "objectID": "unidad2/clase3.html#un-sistema-de-segmentación-tiene-muchas-piezas",
+    "href": "unidad2/clase3.html#un-sistema-de-segmentación-tiene-muchas-piezas",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Un sistema de segmentación tiene muchas piezas",
+    "text": "Un sistema de segmentación tiene muchas piezas"
+  },
+  {
+    "objectID": "unidad2/clase3.html#dos-u-net-pueden-comportarse-muy-distinto",
+    "href": "unidad2/clase3.html#dos-u-net-pueden-comportarse-muy-distinto",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Dos U-Net pueden comportarse muy distinto",
+    "text": "Dos U-Net pueden comportarse muy distinto"
+  },
+  {
+    "objectID": "unidad2/clase3.html#cuántas-decisiones-tomamos-antes-de-entrenar",
+    "href": "unidad2/clase3.html#cuántas-decisiones-tomamos-antes-de-entrenar",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Cuántas decisiones tomamos antes de entrenar?",
+    "text": "¿Cuántas decisiones tomamos antes de entrenar?\n\n¿2D o 3D?\n¿qué spacing?\n¿qué tamaño de patch?\n¿qué batch size?\n¿cómo normalizar?\n¿qué función de pérdida usar?\n¿cómo muestrear?\n¿qué data augmentations implementar?\n¿qué postprocesamiento?\n\nTradicionalmente, muchas de estas decisiones se ajustan manualmente para cada problema."
+  },
+  {
+    "objectID": "unidad2/clase3.html#una-pregunta-diferente",
+    "href": "unidad2/clase3.html#una-pregunta-diferente",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Una pregunta diferente",
+    "text": "Una pregunta diferente\nEn vez de preguntar:\n\n“¿Qué configuración elijo para este dataset?”\n\npodemos preguntar:\n\n“¿Puede el sistema analizar el dataset y configurar automáticamente gran parte del pipeline?”"
+  },
+  {
+    "objectID": "unidad2/clase3.html#dos-formulaciones-distintas",
+    "href": "unidad2/clase3.html#dos-formulaciones-distintas",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Dos formulaciones distintas",
+    "text": "Dos formulaciones distintas"
+  },
+  {
+    "objectID": "unidad2/clase3.html#pregunta-central-de-la-clase",
+    "href": "unidad2/clase3.html#pregunta-central-de-la-clase",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Pregunta central de la clase",
+    "text": "Pregunta central de la clase\nNo queremos preguntar solamente:\n\n“¿Cuál tiene mayor Dice?”\n\nLa pregunta más importante es:\n\n¿Queremos que el sistema reemplace el proceso de delineación o que colabore con el experto durante ese proceso?"
+  },
+  {
+    "objectID": "unidad2/clase3.html#formulación",
+    "href": "unidad2/clase3.html#formulación",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Formulación",
+    "text": "Formulación\nEn segmentación automática:\n\\[\nX\n\\xrightarrow{f_\\theta}\n\\hat Y\n\\]\nel modelo debe resolver por sí mismo:\n\nqué estructuras están presentes;\ndónde se encuentran;\ncuáles son sus fronteras."
+  },
+  {
+    "objectID": "unidad2/clase3.html#auto-contouring",
+    "href": "unidad2/clase3.html#auto-contouring",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Auto-contouring",
+    "text": "Auto-contouring\nUn flujo típico puede representarse como:\n\n\n\n\n\n\n\n\nAutomático no significa autónomo\n\n\nQue la máscara inicial sea automática no implica que deba aceptarse sin revisión."
+  },
+  {
+    "objectID": "unidad2/clase3.html#localizar-reconocer-delinear",
+    "href": "unidad2/clase3.html#localizar-reconocer-delinear",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Localizar + reconocer + delinear",
+    "text": "Localizar + reconocer + delinear"
+  },
+  {
+    "objectID": "unidad2/clase3.html#nnu-net-no-es-otra-u-net",
+    "href": "unidad2/clase3.html#nnu-net-no-es-otra-u-net",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "nnU-Net no es “otra U-Net”",
+    "text": "nnU-Net no es “otra U-Net”\nLa importancia de nnU-Net no radica principalmente en introducir una arquitectura radicalmente nueva.\nSu idea central es:\n\nadaptar automáticamente el pipeline a las propiedades del dataset.\n\nPor eso es más útil pensarlo como:\n\\[\n\\boxed{\\text{framework auto-configurable}}\n\\]\ny no simplemente como una variante arquitectónica."
+  },
+  {
+    "objectID": "unidad2/clase3.html#qué-problema-intenta-resolver",
+    "href": "unidad2/clase3.html#qué-problema-intenta-resolver",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Qué problema intenta resolver?",
+    "text": "¿Qué problema intenta resolver?\nDado un nuevo dataset, debemos decidir:\n\nspacing;\nnormalización;\n2D o 3D;\ntamaño de patch;\nprofundidad de red;\nbatch size;\nresampling;\nestrategia de inferencia;\npostprocesamiento.\n\nnnU-Net intenta derivar gran parte de estas decisiones a partir de los datos."
+  },
+  {
+    "objectID": "unidad2/clase3.html#nnu-net-overwiew",
+    "href": "unidad2/clase3.html#nnu-net-overwiew",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "nnU-Net overwiew",
+    "text": "nnU-Net overwiew"
+  },
+  {
+    "objectID": "unidad2/clase3.html#dataset-configuración",
+    "href": "unidad2/clase3.html#dataset-configuración",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Dataset → configuración",
+    "text": "Dataset → configuración"
+  },
+  {
+    "objectID": "unidad2/clase3.html#el-fingerprint-del-dataset",
+    "href": "unidad2/clase3.html#el-fingerprint-del-dataset",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "El fingerprint del dataset",
+    "text": "El fingerprint del dataset"
+  },
+  {
+    "objectID": "unidad2/clase3.html#qué-cosas-configura-nnu-net-automáticamente",
+    "href": "unidad2/clase3.html#qué-cosas-configura-nnu-net-automáticamente",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Qué cosas configura nnU-Net automáticamente?",
+    "text": "¿Qué cosas configura nnU-Net automáticamente?"
+  },
+  {
+    "objectID": "unidad2/clase3.html#nnu-net-no-siempre-usa-la-misma-arquitectura",
+    "href": "unidad2/clase3.html#nnu-net-no-siempre-usa-la-misma-arquitectura",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "nnU-Net no siempre usa la misma arquitectura",
+    "text": "nnU-Net no siempre usa la misma arquitectura"
+  },
+  {
+    "objectID": "unidad2/clase3.html#qué-es-3d-u-net-cascade",
+    "href": "unidad2/clase3.html#qué-es-3d-u-net-cascade",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Qué es 3D U-Net cascade?",
+    "text": "¿Qué es 3D U-Net cascade?"
+  },
+  {
+    "objectID": "unidad2/clase3.html#automatización-en-dos-niveles",
+    "href": "unidad2/clase3.html#automatización-en-dos-niveles",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Automatización en dos niveles",
+    "text": "Automatización en dos niveles"
+  },
+  {
+    "objectID": "unidad2/clase3.html#la-lección-metodológica-de-nnu-net",
+    "href": "unidad2/clase3.html#la-lección-metodológica-de-nnu-net",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "La lección metodológica de nnU-Net",
+    "text": "La lección metodológica de nnU-Net\nAntes era frecuente comparar:\n\nnueva arquitectura vs. baseline poco optimizado.\n\nPero entonces aparece una duda:\n\n¿La mejora viene de la arquitectura o del pipeline?\n\n\n\n\n\n\n\nImportante\n\n\nUna arquitectura novedosa no garantiza por sí sola un mejor sistema.\nLa configuración del pipeline puede tener un impacto comparable o incluso mayor."
+  },
+  {
+    "objectID": "unidad2/clase3.html#d-3d-y-configuraciones-adaptadas",
+    "href": "unidad2/clase3.html#d-3d-y-configuraciones-adaptadas",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "2D, 3D y configuraciones adaptadas",
+    "text": "2D, 3D y configuraciones adaptadas\nUna decisión central es cuánto contexto volumétrico utilizar.\n\nflowchart LR\n    D[Dataset] --&gt; R[Resolución + anisotropía]\n    R --&gt; M[Restricciones de memoria]\n    M --&gt; C[Configuración 2D / 3D]\n\n\n\n\nflowchart LR\n    D[Dataset] --&gt; R[Resolución + anisotropía]\n    R --&gt; M[Restricciones de memoria]\n    M --&gt; C[Configuración 2D / 3D]\n\n\n\n\n\n\nLa idea importante:\n\\[\n\\text{dataset}\n\\rightarrow\n\\text{restricciones}\n\\rightarrow\n\\text{configuración apropiada}\n\\]"
+  },
+  {
+    "objectID": "unidad2/clase3.html#cambio-de-pregunta",
+    "href": "unidad2/clase3.html#cambio-de-pregunta",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Cambio de pregunta",
+    "text": "Cambio de pregunta\nEn lugar de:\n\n“¿Cuál es la mejor arquitectura?”\n\npasamos a:\n\n“¿Cuál es la configuración de pipeline más adecuada para este dataset?”\n\nEste cambio desplaza el foco desde el diseño manual de arquitecturas hacia la adaptación sistemática al problema."
+  },
+  {
+    "objectID": "unidad2/clase3.html#ventajas-claras",
+    "href": "unidad2/clase3.html#ventajas-claras",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Ventajas claras",
+    "text": "Ventajas claras\n\nvelocidad;\nreproducibilidad;\nescalabilidad;\nprocesamiento masivo;\nmínima interacción durante inferencia.\n\nPero el modelo debe resolver todo desde la imagen."
+  },
+  {
+    "objectID": "unidad2/clase3.html#dónde-puede-fallar",
+    "href": "unidad2/clase3.html#dónde-puede-fallar",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Dónde puede fallar?",
+    "text": "¿Dónde puede fallar?"
+  },
+  {
+    "objectID": "unidad2/clase3.html#dependencia-del-dominio",
+    "href": "unidad2/clase3.html#dependencia-del-dominio",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Dependencia del dominio",
+    "text": "Dependencia del dominio\nUn modelo automático suele especializarse en:\n\nmodalidad;\nregión anatómica;\nprotocolo;\nclases;\npoblación de entrenamiento.\n\nPor eso:\n\\[\n\\text{hospital A}\n\\not\\equiv\n\\text{hospital B}\n\\]\nCambios de scanner, reconstrucción, contraste o práctica clínica pueden degradar el desempeño."
+  },
+  {
+    "objectID": "unidad2/clase3.html#clases-predefinidas",
+    "href": "unidad2/clase3.html#clases-predefinidas",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "Clases predefinidas",
+    "text": "Clases predefinidas\nSi un modelo fue entrenado para:\n\\[\n\\{\\text{hígado},\\text{riñones},\\text{bazo}\\}\n\\]\nno podemos asumir que segmentará correctamente una estructura nueva.\n\n\n\n\n\n\nNota\n\n\nLa automatización suele ganar escalabilidad, pero a costa de una tarea más cerrada y especializada."
+  },
+  {
+    "objectID": "unidad2/clase3.html#qué-nos-deja-nnu-net",
+    "href": "unidad2/clase3.html#qué-nos-deja-nnu-net",
+    "title": "Unidad 2 — Segmentación de estructuras anatómicas",
+    "section": "¿Qué nos deja nnU-Net?",
+    "text": "¿Qué nos deja nnU-Net?"
   },
   {
     "objectID": "unidad2/notas.html",
