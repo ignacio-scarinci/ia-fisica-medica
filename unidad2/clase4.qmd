@@ -48,163 +48,118 @@ Al finalizar la clase deberían poder:
 
 ## Cambia la formulación
 
-En lugar de:
-
-$$
-X
-\xrightarrow{f_\theta}
-\hat Y
-$$
-
-usamos:
-
-$$
-(X,P)
-\xrightarrow{f_\theta}
-\hat Y
-$$
-
-El prompt $P$ aporta información adicional sobre la estructura de interés.
+![](./imagenes/clase3/3_dos_formulaciones.jpg){ width=80% }
 
 
 ## ¿Qué puede ser un prompt?
 
-- un punto positivo
-- puntos positivos y negativos
-- un *bounding box*
-- una máscara inicial
-- una región aproximada
-- un texto
-- otra indicación espacial
-
-Ejemplo:
-
-$$
-\text{imagen}
-+
-\text{bounding box}
-\rightarrow
-\text{segmentación}
-$$
+![](./imagenes/clase4/2_prompt.jpg){ width=80% }
 
 ## El usuario resuelve parte del problema
 
-En el paradigma interactivo:
-
-```{mermaid}
-flowchart LR
-    U[Usuario] --> P[Prompt / localización]
-    I[Imagen] --> M[Modelo]
-    P --> M
-    M --> S[Segmentación]
-```
-
-El usuario aporta **intención y localización**.
-
-El modelo se concentra en delinear la estructura indicada.
+![](./imagenes/clase4/3_usuario.jpg){ width=80% }
 
 ## Cambia la distribución del trabajo
 
-::: {.columns}
-::: {.column width="48%"}
-### Automática
-
-$$
-\boxed{
-\text{modelo}
-=
-\text{localizar}
-+
-\text{identificar}
-+
-\text{segmentar}
-}
-$$
-:::
-
-::: {.column width="48%"}
-### Interactiva
-
-$$
-\boxed{
-\text{usuario}
-\rightarrow
-\text{contexto / localización}
-}
-$$
-
-$$
-\boxed{
-\text{modelo}
-\rightarrow
-\text{refinamiento}
-}
-$$
-:::
-:::
+![](./imagenes/clase4/4_distribucion.jpg){ width=80% }
 
 
 # SAM y segmentación guiada por prompts
 
 ## La idea de SAM
 
-Conceptualmente:
+![](./imagenes/clase4/5_SAM.jpg){ width=80% }
 
-```{mermaid}
-flowchart LR
-    I[Imagen] --> M[Modelo]
-    P[Prompt] --> M
-    M --> S[Máscara]
-```
+## Arquitectura de SAM
 
-El prompt indica **qué región queremos segmentar**.
+![](./imagenes/clase4/6_arq_sam_1.jpg){ width=80% }
 
-Eso transforma el problema:
+## Image Encoder: Representar la imagen
 
-$$
-\text{segmentar todas las estructuras conocidas}
-$$
+![](./imagenes/clase4/7_arq_sam_2.jpg){ width=80% }
 
-en:
+## Prompt Encoder: Representar la intención del usuario
 
-$$
-\text{segmentar la estructura indicada}
-$$
+![](./imagenes/clase4/8_arq_sam_3.jpg){ width=80% }
 
+## Mask Decoder: combinar imagen y prompt para producir la máscara
+
+![](./imagenes/clase4/9_arq_sam_4.jpg){ width=80% }
+
+## Evolución de SAM: de imágenes a conceptos
+
+![](./imagenes/clase4/9_bis_evo_sam.jpg){ width=80% }
+
+## ¿Qué agregan SAM2 y SAM3?
+
+![](./imagenes/clase4/9_bis2_sam_2_3.jpg){ width=80% }
 
 ## ¿Por qué no trasladar SAM sin más?
 
-Las imágenes médicas difieren de las naturales en:
+![](./imagenes/clase4/10_natural_medica.jpg){ width=80% }
 
-- distribución de intensidades
-- contraste
-- dimensionalidad
-- anatomía
-- tamaño de estructuras
-- modalidades
-- fronteras poco definidas
+# ¿Cómo adaptar un modelo fundacional al dominio médico?
 
-Por lo tanto:
+## Zero-shot learning
+![](./imagenes/clase4/11_zero_shot.jpg){ width=80% }
 
-> un modelo potente en imágenes naturales no necesariamente es óptimo para imágenes médicas.
+## Few-shot learning
+![](./imagenes/clase4/12_few_shot.jpg){ width=80% }
+
+##  Full fine-tuning: adaptar todos los pesos del modelo
+![](./imagenes/clase4/13_full_ft.jpg){ width=80}
+
+## PEFT: Parameter-Efficient Fine-Tuning
+![](./imagenes/clase4/14_PEFT.jpg){ width=80% }
+
+## Adapters: agregar pequeños módulos entrenables
+
+![](./imagenes/clase4/15_adapters.jpg){ width=80% } 
+
+## LoRA: adaptar sin modificar directamente la matriz de original
+
+![](./imagenes/clase4/16_lora_1.jpg){ width=80% }
+
+## La intuición detrás de LoRA
+
+![](./imagenes/clase4/17_lora_2.jpg){ width=80% }
+
+## ¿Por qué LoRA ahorra parámetros?
+![](./imagenes/clase4/18_lora_3.jpg){ width=80% }
+
+## ¿Dónde se aplica LoRA?
+
+![](./imagenes/clase4/19_lora_4.jpg){ width=80% }
+
+## Comparación de estrategias de adaptación
+
+![](./imagenes/clase4/20_comparaciones.jpg){ width=80% }
+
+## ¿Cuándo usar qué?
+
+![](./imagenes/clase4/22_cuando_usar.jpg){ width=80% }
 
 # MedSAM
 
 
 ## MedSAM como adaptación al dominio médico
 
-La formulación conceptual sigue siendo:
+![](./imagenes/clase4/23_medSAM.jpg){ width=80% }
 
-$$
-(X,P)
-\xrightarrow{f_\theta}
-\hat Y
-$$
+## ¿Qué problema intenta resolver MedSAM?
 
-El usuario proporciona una indicación espacial y el modelo produce la máscara.
+![](./imagenes/clase4/24_MedSAM_2.jpg){ width=80% }
 
-La aspiración es una herramienta más flexible que un segmentador entrenado para una lista fija de órganos.
+## ¿Cómo funciona MedSAM?
 
+![](./imagenes/clase4/25_MedSAM_3.jpg){ width=80% }
+
+## De SAM a MedSAM: qué se conserva y qué cambia
+
+![](./imagenes/clase4/26_MedSAM_4.jpg){ width=80% }
+
+## Limitación conceptual de MedSAM 1
+![](./imagenes/clase4/27_MedSAM_5.jpg){ width=80% }
 
 ## Un cambio de pregunta
 
@@ -238,37 +193,8 @@ Son problemas distintos.
 
 ## Dos workflows diferentes
 
-::: {.columns}
-::: {.column width="48%"}
-### Automático
+![](./imagenes/clase4/28_2_workflows.jpg){ width=80% }
 
-```{mermaid}
-flowchart TB
-    CT[CT] --> M[Modelo]
-    M --> O1[OAR 1]
-    M --> O2[OAR 2]
-    M --> O3[OAR 3]
-    O1 --> R[Revisión]
-    O2 --> R
-    O3 --> R
-```
-:::
-
-::: {.column width="48%"}
-### Interactivo
-
-```{mermaid}
-flowchart TB
-    CT[CT] --> E[Experto]
-    E --> P[Prompt]
-    P --> M[Modelo]
-    M --> S[Segmentación]
-    S --> R[Acepta o corrige]
-```
-:::
-:::
-
----
 
 ## ¿Cuál paradigma es mejor?
 
@@ -374,27 +300,6 @@ Tres posibilidades:
 3. durante un proceso iterativo.
 
 
-## Segmentación iterativa
-
-Podemos tener:
-
-$$
-P_1
-\rightarrow
-\hat Y_1
-\rightarrow
-P_2
-\rightarrow
-\hat Y_2
-\rightarrow
-\cdots
-$$
-
-Esto transforma la segmentación en un proceso colaborativo.
-
-> El objetivo ya no es solo “predecir una máscara”, sino **converger rápidamente a una máscara aceptable**.
-
-
 # El tiempo total importa más que el tiempo de inferencia
 
 ## Inferencia rápida ≠ workflow rápido
@@ -463,30 +368,6 @@ flowchart LR
 
 Esto cambia cómo pensamos seguridad, usabilidad y corrección de errores.
 
-
-# Generalización y prompts
-
-
-## De modelos específicos a modelos condicionados
-
-Podemos contrastar:
-
-$$
-\text{modelo específico por clase}
-$$
-
-con:
-
-$$
-\text{modelo general condicionado por prompt}
-$$
-
-La segunda idea está relacionada con el desarrollo de **modelos fundacionales**.
-
-::: {.callout-note}
-Esto no implica que un modelo pueda segmentar cualquier estructura, modalidad o dominio sin limitaciones.
-:::
-
 # Los dos paradigmas pueden coexistir
 
 ## No necesariamente hay que elegir uno
@@ -511,29 +392,4 @@ Esto permite:
 
 ## Evaluación de un sistema automático
 
-Puede interesarnos:
-
-- Dice
-- $HD_{95}$
-- tasa de fallos
-- necesidad de corrección
-- tiempo de edición
-- robustez multicéntrica
-
-## Evaluación de un sistema interactivo
-
-Debemos agregar:
-
-- tipo de prompt
-- número de interacciones
-- sensibilidad a la posición del prompt
-- tiempo hasta máscara aceptable
-- facilidad de corrección
-
-$$
-\boxed{
-\text{paradigma diferente}
-\Rightarrow
-\text{protocolo de evaluación diferente}
-}
-$$
+![](./imagenes/clase4/29_evaluacion.jpg){ width=80% }
