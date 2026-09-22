@@ -242,101 +242,20 @@ Ignacio Scarinci
 </section>
 <section id="cambia-la-formulación" class="slide level2">
 <h2>Cambia la formulación</h2>
-<p>En lugar de:</p>
-<p><span class="math display">\[
-X
-\xrightarrow{f_\theta}
-\hat Y
-\]</span></p>
-<p>usamos:</p>
-<p><span class="math display">\[
-(X,P)
-\xrightarrow{f_\theta}
-\hat Y
-\]</span></p>
-<p>El prompt <span class="math inline">\(P\)</span> aporta información adicional sobre la estructura de interés.</p>
-</section>
+
+<img data-src="./imagenes/clase3/3_dos_formulaciones.jpg" style="width:80.0%" class="r-stretch"></section>
 <section id="qué-puede-ser-un-prompt" class="slide level2">
 <h2>¿Qué puede ser un prompt?</h2>
-<ul>
-<li>un punto positivo</li>
-<li>puntos positivos y negativos</li>
-<li>un <em>bounding box</em></li>
-<li>una máscara inicial</li>
-<li>una región aproximada</li>
-<li>un texto</li>
-<li>otra indicación espacial</li>
-</ul>
-<p>Ejemplo:</p>
-<p><span class="math display">\[
-\text{imagen}
-+
-\text{bounding box}
-\rightarrow
-\text{segmentación}
-\]</span></p>
-</section>
+
+<img data-src="./imagenes/clase4/2_prompt.jpg" style="width:80.0%" class="r-stretch"></section>
 <section id="el-usuario-resuelve-parte-del-problema" class="slide level2">
 <h2>El usuario resuelve parte del problema</h2>
-<p>En el paradigma interactivo:</p>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb1-2"><a aria-label="2"></a>    U[Usuario] --&gt; P[Prompt / localización]</span>
-<span id="cb1-3"><a aria-label="3"></a>    I[Imagen] --&gt; M[Modelo]</span>
-<span id="cb1-4"><a aria-label="4"></a>    P --&gt; M</span>
-<span id="cb1-5"><a aria-label="5"></a>    M --&gt; S[Segmentación]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    U[Usuario] --&gt; P[Prompt / localización]
-    I[Imagen] --&gt; M[Modelo]
-    P --&gt; M
-    M --&gt; S[Segmentación]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>El usuario aporta <strong>intención y localización</strong>.</p>
-<p>El modelo se concentra en delinear la estructura indicada.</p>
-</section>
+
+<img data-src="./imagenes/clase4/3_usuario.jpg" style="width:80.0%" class="r-stretch"></section>
 <section id="cambia-la-distribución-del-trabajo" class="slide level2">
 <h2>Cambia la distribución del trabajo</h2>
-<div class="columns">
-<div class="column" style="width:48%;">
-<h3 id="automática">Automática</h3>
-<p><span class="math display">\[
-\boxed{
-\text{modelo}
-=
-\text{localizar}
-+
-\text{identificar}
-+
-\text{segmentar}
-}
-\]</span></p>
-</div><div class="column" style="width:48%;">
-<h3 id="interactiva">Interactiva</h3>
-<p><span class="math display">\[
-\boxed{
-\text{usuario}
-\rightarrow
-\text{contexto / localización}
-}
-\]</span></p>
-<p><span class="math display">\[
-\boxed{
-\text{modelo}
-\rightarrow
-\text{refinamiento}
-}
-\]</span></p>
-</div></div>
-</section></section>
+
+<img data-src="./imagenes/clase4/4_distribucion.jpg" style="width:80.0%" class="r-stretch"></section></section>
 <section>
 <section id="sam-y-segmentación-guiada-por-prompts" class="title-slide slide level1 center">
 <h1>SAM y segmentación guiada por prompts</h1>
@@ -344,53 +263,85 @@ X
 </section>
 <section id="la-idea-de-sam" class="slide level2">
 <h2>La idea de SAM</h2>
-<p>Conceptualmente:</p>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb2-2"><a aria-label="2"></a>    I[Imagen] --&gt; M[Modelo]</span>
-<span id="cb2-3"><a aria-label="3"></a>    P[Prompt] --&gt; M</span>
-<span id="cb2-4"><a aria-label="4"></a>    M --&gt; S[Máscara]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    I[Imagen] --&gt; M[Modelo]
-    P[Prompt] --&gt; M
-    M --&gt; S[Máscara]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>El prompt indica <strong>qué región queremos segmentar</strong>.</p>
-<p>Eso transforma el problema:</p>
-<p><span class="math display">\[
-\text{segmentar todas las estructuras conocidas}
-\]</span></p>
-<p>en:</p>
-<p><span class="math display">\[
-\text{segmentar la estructura indicada}
-\]</span></p>
-</section>
+
+<img data-src="./imagenes/clase4/5_SAM.jpg" style="width:80.0%" class="r-stretch"></section>
+<section id="arquitectura-de-sam" class="slide level2">
+<h2>Arquitectura de SAM</h2>
+
+<img data-src="./imagenes/clase4/6_arq_sam_1.jpg" style="width:80.0%" class="r-stretch"></section>
+<section id="image-encoder-representar-la-imagen" class="slide level2">
+<h2>Image Encoder: Representar la imagen</h2>
+
+<img data-src="./imagenes/clase4/7_arq_sam_2.jpg" style="width:80.0%" class="r-stretch"></section>
+<section id="prompt-encoder-representar-la-intención-del-usuario" class="slide level2">
+<h2>Prompt Encoder: Representar la intención del usuario</h2>
+
+<img data-src="./imagenes/clase4/8_arq_sam_3.jpg" style="width:80.0%" class="r-stretch"></section>
+<section id="mask-decoder-combinar-imagen-y-prompt-para-producir-la-máscara" class="slide level2">
+<h2>Mask Decoder: combinar imagen y prompt para producir la máscara</h2>
+
+<img data-src="./imagenes/clase4/9_arq_sam_4.jpg" style="width:80.0%" class="r-stretch"></section>
+<section id="evolución-de-sam-de-imágenes-a-conceptos" class="slide level2">
+<h2>Evolución de SAM: de imágenes a conceptos</h2>
+
+<img data-src="./imagenes/clase4/9_bis_evo_sam.jpg" style="width:80.0%" class="r-stretch"></section>
+<section id="qué-agregan-sam2-y-sam3" class="slide level2">
+<h2>¿Qué agregan SAM2 y SAM3?</h2>
+
+<img data-src="./imagenes/clase4/9_bis2_sam_2_3.jpg" style="width:80.0%" class="r-stretch"></section>
 <section id="por-qué-no-trasladar-sam-sin-más" class="slide level2">
 <h2>¿Por qué no trasladar SAM sin más?</h2>
-<p>Las imágenes médicas difieren de las naturales en:</p>
-<ul>
-<li>distribución de intensidades</li>
-<li>contraste</li>
-<li>dimensionalidad</li>
-<li>anatomía</li>
-<li>tamaño de estructuras</li>
-<li>modalidades</li>
-<li>fronteras poco definidas</li>
-</ul>
-<p>Por lo tanto:</p>
-<blockquote>
-<p>un modelo potente en imágenes naturales no necesariamente es óptimo para imágenes médicas.</p>
-</blockquote>
-</section></section>
+
+<img data-src="./imagenes/clase4/10_natural_medica.jpg" style="width:80.0%" class="r-stretch"></section></section>
+<section>
+<section id="cómo-adaptar-un-modelo-fundacional-al-dominio-médico" class="title-slide slide level1 center">
+<h1>¿Cómo adaptar un modelo fundacional al dominio médico?</h1>
+
+</section>
+<section id="zero-shot-learning" class="slide level2">
+<h2>Zero-shot learning</h2>
+
+<img data-src="./imagenes/clase4/11_zero_shot.jpg" style="width:80.0%" class="r-stretch"></section>
+<section id="few-shot-learning" class="slide level2">
+<h2>Few-shot learning</h2>
+
+<img data-src="./imagenes/clase4/12_few_shot.jpg" style="width:80.0%" class="r-stretch"></section>
+<section id="full-fine-tuning-adaptar-todos-los-pesos-del-modelo" class="slide level2">
+<h2>Full fine-tuning: adaptar todos los pesos del modelo</h2>
+
+<img data-src="./imagenes/clase4/13_full_ft.jpg" width="80" class="r-stretch"></section>
+<section id="peft-parameter-efficient-fine-tuning" class="slide level2">
+<h2>PEFT: Parameter-Efficient Fine-Tuning</h2>
+
+<img data-src="./imagenes/clase4/14_PEFT.jpg" style="width:80.0%" class="r-stretch"></section>
+<section id="adapters-agregar-pequeños-módulos-entrenables" class="slide level2">
+<h2>Adapters: agregar pequeños módulos entrenables</h2>
+
+<img data-src="./imagenes/clase4/15_adapters.jpg" style="width:80.0%" class="r-stretch"></section>
+<section id="lora-adaptar-sin-modificar-directamente-la-matriz-de-original" class="slide level2">
+<h2>LoRA: adaptar sin modificar directamente la matriz de original</h2>
+
+<img data-src="./imagenes/clase4/16_lora_1.jpg" style="width:80.0%" class="r-stretch"></section>
+<section id="la-intuición-detrás-de-lora" class="slide level2">
+<h2>La intuición detrás de LoRA</h2>
+
+<img data-src="./imagenes/clase4/17_lora_2.jpg" style="width:80.0%" class="r-stretch"></section>
+<section id="por-qué-lora-ahorra-parámetros" class="slide level2">
+<h2>¿Por qué LoRA ahorra parámetros?</h2>
+
+<img data-src="./imagenes/clase4/18_lora_3.jpg" style="width:80.0%" class="r-stretch"></section>
+<section id="dónde-se-aplica-lora" class="slide level2">
+<h2>¿Dónde se aplica LoRA?</h2>
+
+<img data-src="./imagenes/clase4/19_lora_4.jpg" style="width:80.0%" class="r-stretch"></section>
+<section id="comparación-de-estrategias-de-adaptación" class="slide level2">
+<h2>Comparación de estrategias de adaptación</h2>
+
+<img data-src="./imagenes/clase4/20_comparaciones.jpg" style="width:80.0%" class="r-stretch"></section>
+<section id="cuándo-usar-qué" class="slide level2">
+<h2>¿Cuándo usar qué?</h2>
+
+<img data-src="./imagenes/clase4/22_cuando_usar.jpg" style="width:80.0%" class="r-stretch"></section></section>
 <section>
 <section id="medsam" class="title-slide slide level1 center">
 <h1>MedSAM</h1>
@@ -398,15 +349,24 @@ X
 </section>
 <section id="medsam-como-adaptación-al-dominio-médico" class="slide level2">
 <h2>MedSAM como adaptación al dominio médico</h2>
-<p>La formulación conceptual sigue siendo:</p>
-<p><span class="math display">\[
-(X,P)
-\xrightarrow{f_\theta}
-\hat Y
-\]</span></p>
-<p>El usuario proporciona una indicación espacial y el modelo produce la máscara.</p>
-<p>La aspiración es una herramienta más flexible que un segmentador entrenado para una lista fija de órganos.</p>
-</section>
+
+<img data-src="./imagenes/clase4/23_medSAM.jpg" style="width:80.0%" class="r-stretch"></section>
+<section id="qué-problema-intenta-resolver-medsam" class="slide level2">
+<h2>¿Qué problema intenta resolver MedSAM?</h2>
+
+<img data-src="./imagenes/clase4/24_MedSAM_2.jpg" style="width:80.0%" class="r-stretch"></section>
+<section id="cómo-funciona-medsam" class="slide level2">
+<h2>¿Cómo funciona MedSAM?</h2>
+
+<img data-src="./imagenes/clase4/25_MedSAM_3.jpg" style="width:80.0%" class="r-stretch"></section>
+<section id="de-sam-a-medsam-qué-se-conserva-y-qué-cambia" class="slide level2">
+<h2>De SAM a MedSAM: qué se conserva y qué cambia</h2>
+
+<img data-src="./imagenes/clase4/26_MedSAM_4.jpg" style="width:80.0%" class="r-stretch"></section>
+<section id="limitación-conceptual-de-medsam-1" class="slide level2">
+<h2>Limitación conceptual de MedSAM 1</h2>
+
+<img data-src="./imagenes/clase4/27_MedSAM_5.jpg" style="width:80.0%" class="r-stretch"></section>
 <section id="un-cambio-de-pregunta" class="slide level2">
 <h2>Un cambio de pregunta</h2>
 <h3 id="segmentación-automática">Segmentación automática</h3>
@@ -485,63 +445,8 @@ X
 </section>
 <section id="dos-workflows-diferentes" class="slide level2">
 <h2>Dos workflows diferentes</h2>
-<div class="columns">
-<div class="column" style="width:48%;">
-<h3 id="automático">Automático</h3>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a aria-label="1"></a>flowchart TB</span>
-<span id="cb3-2"><a aria-label="2"></a>    CT[CT] --&gt; M[Modelo]</span>
-<span id="cb3-3"><a aria-label="3"></a>    M --&gt; O1[OAR 1]</span>
-<span id="cb3-4"><a aria-label="4"></a>    M --&gt; O2[OAR 2]</span>
-<span id="cb3-5"><a aria-label="5"></a>    M --&gt; O3[OAR 3]</span>
-<span id="cb3-6"><a aria-label="6"></a>    O1 --&gt; R[Revisión]</span>
-<span id="cb3-7"><a aria-label="7"></a>    O2 --&gt; R</span>
-<span id="cb3-8"><a aria-label="8"></a>    O3 --&gt; R</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TB
-    CT[CT] --&gt; M[Modelo]
-    M --&gt; O1[OAR 1]
-    M --&gt; O2[OAR 2]
-    M --&gt; O3[OAR 3]
-    O1 --&gt; R[Revisión]
-    O2 --&gt; R
-    O3 --&gt; R
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:48%;">
-<h3 id="interactivo">Interactivo</h3>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a aria-label="1"></a>flowchart TB</span>
-<span id="cb4-2"><a aria-label="2"></a>    CT[CT] --&gt; E[Experto]</span>
-<span id="cb4-3"><a aria-label="3"></a>    E --&gt; P[Prompt]</span>
-<span id="cb4-4"><a aria-label="4"></a>    P --&gt; M[Modelo]</span>
-<span id="cb4-5"><a aria-label="5"></a>    M --&gt; S[Segmentación]</span>
-<span id="cb4-6"><a aria-label="6"></a>    S --&gt; R[Acepta o corrige]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TB
-    CT[CT] --&gt; E[Experto]
-    E --&gt; P[Prompt]
-    P --&gt; M[Modelo]
-    M --&gt; S[Segmentación]
-    S --&gt; R[Acepta o corrige]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</div></div>
-</section>
+
+<img data-src="./imagenes/clase4/28_2_workflows.jpg" style="width:80.0%" class="r-stretch"></section>
 <section id="cuál-paradigma-es-mejor" class="slide level2">
 <h2>¿Cuál paradigma es mejor?</h2>
 <p>La pregunta correcta depende del objetivo.</p>
@@ -627,10 +532,10 @@ El modelo aporta <strong>velocidad y capacidad de delineación</strong>.</p>
 <section id="dónde-colocar-al-experto" class="slide level2">
 <h2>¿Dónde colocar al experto?</h2>
 <div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a aria-label="1"></a>flowchart TB</span>
-<span id="cb5-2"><a aria-label="2"></a>    A[Antes] --&gt; A1[Prompt inicial]</span>
-<span id="cb5-3"><a aria-label="3"></a>    B[Después] --&gt; B1[Revisión / corrección]</span>
-<span id="cb5-4"><a aria-label="4"></a>    C[Durante] --&gt; C1[Interacción iterativa]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a aria-label="1"></a>flowchart TB</span>
+<span id="cb1-2"><a aria-label="2"></a>    A[Antes] --&gt; A1[Prompt inicial]</span>
+<span id="cb1-3"><a aria-label="3"></a>    B[Después] --&gt; B1[Revisión / corrección]</span>
+<span id="cb1-4"><a aria-label="4"></a>    C[Durante] --&gt; C1[Interacción iterativa]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -651,25 +556,6 @@ El modelo aporta <strong>velocidad y capacidad de delineación</strong>.</p>
 <li>después de la predicción;</li>
 <li>durante un proceso iterativo.</li>
 </ol>
-</section>
-<section id="segmentación-iterativa" class="slide level2">
-<h2>Segmentación iterativa</h2>
-<p>Podemos tener:</p>
-<p><span class="math display">\[
-P_1
-\rightarrow
-\hat Y_1
-\rightarrow
-P_2
-\rightarrow
-\hat Y_2
-\rightarrow
-\cdots
-\]</span></p>
-<p>Esto transforma la segmentación en un proceso colaborativo.</p>
-<blockquote>
-<p>El objetivo ya no es solo “predecir una máscara”, sino <strong>converger rápidamente a una máscara aceptable</strong>.</p>
-</blockquote>
 </section></section>
 <section>
 <section id="el-tiempo-total-importa-más-que-el-tiempo-de-inferencia" class="title-slide slide level1 center">
@@ -695,10 +581,10 @@ P_2
 <section id="tiempo-clínico-real" class="slide level2">
 <h2>Tiempo clínico real</h2>
 <div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb6-2"><a aria-label="2"></a>    G[Generación] --&gt; I[Inspección]</span>
-<span id="cb6-3"><a aria-label="3"></a>    I --&gt; C[Corrección]</span>
-<span id="cb6-4"><a aria-label="4"></a>    C --&gt; F[Confirmación]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb2-2"><a aria-label="2"></a>    G[Generación] --&gt; I[Inspección]</span>
+<span id="cb2-3"><a aria-label="3"></a>    I --&gt; C[Corrección]</span>
+<span id="cb2-4"><a aria-label="4"></a>    C --&gt; F[Confirmación]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -728,10 +614,10 @@ P_2
 <h2>En un sistema automático</h2>
 <p>El error puede permanecer oculto hasta la revisión.</p>
 <div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb7-2"><a aria-label="2"></a>    I[Imagen] --&gt; M[Modelo]</span>
-<span id="cb7-3"><a aria-label="3"></a>    M --&gt; E[Error]</span>
-<span id="cb7-4"><a aria-label="4"></a>    E --&gt; R[Detectado en revisión]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb3-2"><a aria-label="2"></a>    I[Imagen] --&gt; M[Modelo]</span>
+<span id="cb3-3"><a aria-label="3"></a>    M --&gt; E[Error]</span>
+<span id="cb3-4"><a aria-label="4"></a>    E --&gt; R[Detectado en revisión]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -751,12 +637,12 @@ P_2
 <h2>En un sistema interactivo</h2>
 <p>El usuario puede advertir que la salida no corresponde a su intención y modificar el prompt.</p>
 <div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb8-2"><a aria-label="2"></a>    P1[Prompt 1] --&gt; M[Modelo]</span>
-<span id="cb8-3"><a aria-label="3"></a>    M --&gt; S1[Salida]</span>
-<span id="cb8-4"><a aria-label="4"></a>    S1 --&gt; C[Usuario corrige]</span>
-<span id="cb8-5"><a aria-label="5"></a>    C --&gt; P2[Prompt 2]</span>
-<span id="cb8-6"><a aria-label="6"></a>    P2 --&gt; M</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb4-2"><a aria-label="2"></a>    P1[Prompt 1] --&gt; M[Modelo]</span>
+<span id="cb4-3"><a aria-label="3"></a>    M --&gt; S1[Salida]</span>
+<span id="cb4-4"><a aria-label="4"></a>    S1 --&gt; C[Usuario corrige]</span>
+<span id="cb4-5"><a aria-label="5"></a>    C --&gt; P2[Prompt 2]</span>
+<span id="cb4-6"><a aria-label="6"></a>    P2 --&gt; M</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -776,36 +662,6 @@ P_2
 <p>Esto cambia cómo pensamos seguridad, usabilidad y corrección de errores.</p>
 </section></section>
 <section>
-<section id="generalización-y-prompts" class="title-slide slide level1 center">
-<h1>Generalización y prompts</h1>
-
-</section>
-<section id="de-modelos-específicos-a-modelos-condicionados" class="slide level2">
-<h2>De modelos específicos a modelos condicionados</h2>
-<p>Podemos contrastar:</p>
-<p><span class="math display">\[
-\text{modelo específico por clase}
-\]</span></p>
-<p>con:</p>
-<p><span class="math display">\[
-\text{modelo general condicionado por prompt}
-\]</span></p>
-<p>La segunda idea está relacionada con el desarrollo de <strong>modelos fundacionales</strong>.</p>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Nota</strong></p>
-</div>
-<div class="callout-content">
-<p>Esto no implica que un modelo pueda segmentar cualquier estructura, modalidad o dominio sin limitaciones.</p>
-</div>
-</div>
-</div>
-</section></section>
-<section>
 <section id="los-dos-paradigmas-pueden-coexistir" class="title-slide slide level1 center">
 <h1>Los dos paradigmas pueden coexistir</h1>
 
@@ -814,11 +670,11 @@ P_2
 <h2>No necesariamente hay que elegir uno</h2>
 <p>Un posible sistema clínico puede combinar:</p>
 <div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb9-2"><a aria-label="2"></a>    I[Imagen] --&gt; A[Segmentación automática]</span>
-<span id="cb9-3"><a aria-label="3"></a>    I --&gt; P[Segmentación interactiva]</span>
-<span id="cb9-4"><a aria-label="4"></a>    A --&gt; O[OARs frecuentes]</span>
-<span id="cb9-5"><a aria-label="5"></a>    P --&gt; X[Estructuras adicionales / correcciones]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb5-2"><a aria-label="2"></a>    I[Imagen] --&gt; A[Segmentación automática]</span>
+<span id="cb5-3"><a aria-label="3"></a>    I --&gt; P[Segmentación interactiva]</span>
+<span id="cb5-4"><a aria-label="4"></a>    A --&gt; O[OARs frecuentes]</span>
+<span id="cb5-5"><a aria-label="5"></a>    P --&gt; X[Estructuras adicionales / correcciones]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
@@ -848,36 +704,10 @@ P_2
 </section>
 <section id="evaluación-de-un-sistema-automático" class="slide level2">
 <h2>Evaluación de un sistema automático</h2>
-<p>Puede interesarnos:</p>
-<ul>
-<li>Dice</li>
-<li><span class="math inline">\(HD_{95}\)</span></li>
-<li>tasa de fallos</li>
-<li>necesidad de corrección</li>
-<li>tiempo de edición</li>
-<li>robustez multicéntrica</li>
-</ul>
-</section>
-<section id="evaluación-de-un-sistema-interactivo" class="slide level2">
-<h2>Evaluación de un sistema interactivo</h2>
-<p>Debemos agregar:</p>
-<ul>
-<li>tipo de prompt</li>
-<li>número de interacciones</li>
-<li>sensibilidad a la posición del prompt</li>
-<li>tiempo hasta máscara aceptable</li>
-<li>facilidad de corrección</li>
-</ul>
-<p><span class="math display">\[
-\boxed{
-\text{paradigma diferente}
-\Rightarrow
-\text{protocolo de evaluación diferente}
-}
-\]</span></p>
 
 
-</section></section>
+
+<img data-src="./imagenes/clase4/29_evaluacion.jpg" style="width:80.0%" class="r-stretch"></section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
