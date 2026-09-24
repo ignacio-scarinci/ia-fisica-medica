@@ -133,7 +133,7 @@ Al finalizar la clase deberían poder:
 
 ## Comparación de estrategias de adaptación
 
-![](./imagenes/clase4/20_comparaciones.jpg){ width=80% }
+![](./imagenes/clase4/21_comparaciones.jpg){ width=80% }
 
 ## ¿Cuándo usar qué?
 
