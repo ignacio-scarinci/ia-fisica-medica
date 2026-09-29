@@ -117,7 +117,7 @@ La predicción global no responde:
 - ¿qué región originó la decisión
 
 ```{mermaid}
-%%echo: false
+%%| echo: false
 
 flowchart LR
     I["Imagen médica"] --> A["Clasificación<br/><small>¿qué hay?</small>"]
@@ -285,12 +285,20 @@ Es entender el cambio de estrategia:
 
 flowchart LR
     subgraph T["Two-stage"]
+        direction LR
         A["Proponer regiones"] --> B["Clasificar cada región"]
     end
     subgraph O["One-stage"]
+        direction LR
         C["Predecir cajas y clases directamente"]
     end
     T -. "vs." .- O
+
+    classDef twoStage fill:#eaf2ff,stroke:#3973b8,stroke-width:2px,color:#17324d
+    classDef oneStage fill:#e3f4e8,stroke:#3b8f5a,stroke-width:2px,color:#194d2d
+    class T twoStage
+    class O oneStage
+    
 ```
 
 ## Hasta aquí: ¿qué problema queda?
@@ -342,7 +350,7 @@ Pero podemos hacer otra pregunta:
 ## Comparación de paradigmas
 
 | | Faster R-CNN | YOLO / RetinaNet | DETR / RT-DETR |
-|||||
+| ----- | ----- | ----- | ----- |
 | Formulación | two-stage | one-stage densa | *set prediction* |
 | Propuestas | sí | no | no |
 | Anchors | habitualmente | depende del diseño | no |
@@ -446,7 +454,7 @@ Depende de:
 ## Un detector puede fallar de varias maneras
 
 ```{mermaid}
-%%echo: false
+%%| echo: false
 
 flowchart TB
     E["Error de detección"] --> C["Clase incorrecta"]
@@ -497,7 +505,7 @@ Pueden aumentar:
 ## El pipeline completo de un detector
 
 ```{mermaid}
-%%echo: false
+%%| echo: false
 
 flowchart LR
     I["Imagen de entrada"] --> B["Backbone<br/>extrae características"]
