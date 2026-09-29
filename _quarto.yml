@@ -108,8 +108,9 @@ website:
         contents:
           - text: "Índice de la unidad"
             href: unidad3/unidad3.qmd
-          - text: "clase 1: De la clasificación a la detección"
+          - text: "Notas de clase"
             href: unidad3/notas1.qmd
+          - text: "Clase 1: De la clasificación a la detección"
             href: unidad3/clase1.qmd
             target: _blank
 
