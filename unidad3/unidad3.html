@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Unidad 0: Introducción – IA en Física Médica</title>
+<title>Unidad 3: Detección de Objetos en Imágenes Médicas – IA en Física Médica</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -36,7 +36,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../unidad0/notas.html" rel="next">
+<link href="../unidad3/notas1.html" rel="next">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -131,7 +131,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidad0/unidad0.html">0. Introducción</a></li><li class="breadcrumb-item"><a href="../unidad0/unidad0.html">Índice de la unidad</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidad3/unidad3.html">3. Detección de objetos</a></li><li class="breadcrumb-item"><a href="../unidad3/unidad3.html">Índice de la unidad</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Buscar" onclick="window.quartoOpenSearch();">
@@ -163,7 +163,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidad0/unidad0.html" class="sidebar-item-text sidebar-link active">
+  <a href="../unidad0/unidad0.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Índice de la unidad</span></a>
   </div>
 </li>
@@ -367,7 +367,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../unidad3/unidad3.html" class="sidebar-item-text sidebar-link">
+  <a href="../unidad3/unidad3.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Índice de la unidad</span></a>
   </div>
 </li>
@@ -394,10 +394,10 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidad0/unidad0.html">0. Introducción</a></li><li class="breadcrumb-item"><a href="../unidad0/unidad0.html">Índice de la unidad</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../unidad3/unidad3.html">3. Detección de objetos</a></li><li class="breadcrumb-item"><a href="../unidad3/unidad3.html">Índice de la unidad</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Unidad 0: Introducción</h1>
-<p class="subtitle lead">Conocer el curso, sus herramientas y su recorrido</p>
+<h1 class="title">Unidad 3: Detección de Objetos en Imágenes Médicas</h1>
+<p class="subtitle lead">De la clasificación a la detección</p>
 </div>
 
 
@@ -414,119 +414,6 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="unit-hero">
-<div class="unit-kicker">
-Unidad 0 · Introducción
-</div>
-<section id="bienvenidos-al-curso" class="level1">
-<h1>Bienvenidos al curso</h1>
-<p>Una introducción al recorrido de Inteligencia Artificial aplicada a la Física Médica, sus herramientas y sus desafíos.</p>
-</section>
-</div>
-<section id="el-punto-de-partida" class="level2 unit-section">
-<h2 class="anchored" data-anchor-id="el-punto-de-partida">El punto de partida</h2>
-<p>Esta unidad presenta la propuesta del curso de posgrado <strong>Inteligencia Artificial en Física Médica</strong> y establece el mapa de contenidos que vamos a recorrer.</p>
-<p>La formación combina fundamentos de aprendizaje automático, trabajo práctico con herramientas abiertas y aplicaciones concretas en imágenes médicas, radioterapia y entornos clínicos.</p>
-<div class="guiding-question">
-<p>¿Cómo podemos incorporar Inteligencia Artificial en Física Médica de forma rigurosa, reproducible y clínicamente relevante?</p>
-</div>
-<p>A lo largo del curso vamos a conectar modelos, datos, software y problemas de dominio para comprender tanto las posibilidades de estas tecnologías como sus límites.</p>
-</section>
-<section id="objetivos-de-esta-introducción" class="level2 unit-section">
-<h2 class="anchored" data-anchor-id="objetivos-de-esta-introducción">Objetivos de esta introducción</h2>
-<p>Al finalizar esta unidad, el estudiante podrá:</p>
-<div class="objectives-grid">
-<section id="orientarse-en-el-curso" class="level3 objective-block">
-<h3 class="anchored" data-anchor-id="orientarse-en-el-curso">Orientarse en el curso</h3>
-<ol type="1">
-<li>Reconocer la organización general del curso y sus seis unidades.</li>
-<li>Identificar los principales problemas de Física Médica que abordaremos.</li>
-<li>Comprender la relación entre fundamentos, prácticas y proyecto final.</li>
-</ol>
-</section>
-<section id="preparar-el-entorno" class="level3 objective-block">
-<h3 class="anchored" data-anchor-id="preparar-el-entorno">Preparar el entorno</h3>
-<ol start="4" type="1">
-<li>Identificar las herramientas y bibliotecas que utilizaremos.</li>
-<li>Reconocer el papel de Python, PyTorch, MONAI y SimpleITK.</li>
-<li>Localizar notebooks, materiales de clase y recursos complementarios.</li>
-</ol>
-</section>
-<section id="trabajar-con-criterio" class="level3 objective-block">
-<h3 class="anchored" data-anchor-id="trabajar-con-criterio">Trabajar con criterio</h3>
-<ol start="7" type="1">
-<li>Valorar la importancia de la reproducibilidad en investigación y práctica clínica.</li>
-<li>Comprender la necesidad de validar modelos en el contexto de uso.</li>
-<li>Reconocer los desafíos éticos y técnicos de la IA en medicina.</li>
-</ol>
-</section>
-</div>
-</section>
-<section id="material-de-la-unidad" class="level2 unit-section">
-<h2 class="anchored" data-anchor-id="material-de-la-unidad">Material de la unidad</h2>
-<div class="resource-grid">
-<section id="notas-de-clase" class="level3 resource-card">
-<h3 class="anchored" data-anchor-id="notas-de-clase">Notas de clase</h3>
-<p>Descripción general del curso, sus objetivos, herramientas y criterios de trabajo.</p>
-<p><a href="../unidad0/notas.html">Abrir notas de clase</a> · <a href="notas.pdf">Descargar PDF</a></p>
-</section>
-<section id="calendario" class="level3 resource-card">
-<h3 class="anchored" data-anchor-id="calendario">Calendario</h3>
-<p>Fechas de clases, temas, actividades y entregas prácticas del curso.</p>
-<p><a href="../unidad0/calendario.html">Consultar calendario</a></p>
-</section>
-<section id="presentación" class="level3 resource-card">
-<h3 class="anchored" data-anchor-id="presentación">Presentación</h3>
-<p>Recorrido visual por la propuesta, las unidades y el modo de cursado.</p>
-<p><a href="../unidad0/presentacion.html" target="_blank">Ver presentación</a> · <a href="presentacion.pdf">Descargar PDF</a></p>
-</section>
-<section id="programa-del-curso" class="level3 resource-card">
-<h3 class="anchored" data-anchor-id="programa-del-curso">Programa del curso</h3>
-<p>Documento con la planificación general y los contenidos previstos.</p>
-<p><a href="https://drive.google.com/file/d/1RXPOsP2VfH3lT_edhKEpFnqvNoP5yw3b/view?usp=drive_link">Ver programa en PDF</a></p>
-</section>
-</div>
-</section>
-<section id="recorrido-del-curso" class="level2 unit-section">
-<h2 class="anchored" data-anchor-id="recorrido-del-curso">Recorrido del curso</h2>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Unidad</th>
-<th>Tema central</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>1</strong></td>
-<td>Fundamentos de IA y aprendizaje profundo</td>
-</tr>
-<tr class="even">
-<td><strong>2</strong></td>
-<td>Segmentación de imágenes médicas</td>
-</tr>
-<tr class="odd">
-<td><strong>3</strong></td>
-<td>Detección, clasificación y diagnóstico asistido</td>
-</tr>
-<tr class="even">
-<td><strong>4</strong></td>
-<td>Radioterapia asistida por IA</td>
-</tr>
-<tr class="odd">
-<td><strong>5</strong></td>
-<td>Síntesis, fusión y coregistro de imágenes</td>
-</tr>
-<tr class="even">
-<td><strong>6</strong></td>
-<td>Agentes de IA en el ámbito clínico</td>
-</tr>
-</tbody>
-</table>
-<div class="guiding-question">
-<p>El objetivo no es solo aprender a usar modelos: es aprender a formular problemas relevantes y evaluar sus resultados en contexto.</p>
-</div>
-</section>
 
 
 
@@ -935,7 +822,7 @@ Unidad 0 · Introducción
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../unidad0/notas.html" class="pagination-link" aria-label="Notas de clase">
+      <a href="../unidad3/notas1.html" class="pagination-link" aria-label="Notas de clase">
         <span class="nav-page-text">Notas de clase</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
