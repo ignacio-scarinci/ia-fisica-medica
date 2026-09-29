@@ -1,0 +1,2079 @@
+---
+title: "Unidad 3 — Detección, clasificación y diagnóstico asistido"
+subtitle: "De la clasificación a la detección"
+author: "Ignacio Scarinci"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    smooth-scroll: true
+jupyter: python3
+---
+
+## Presentación de la unidad
+
+En las unidades anteriores estudiamos cómo los modelos de aprendizaje automático pueden aprender representaciones a partir de datos y cómo esas representaciones pueden utilizarse para resolver problemas de segmentación en imágenes médicas.
+
+En esta unidad abordaremos otro conjunto de tareas fundamentales en análisis de imágenes:
+
+- **clasificación** de estudios o hallazgos;
+- **detección** y localización de regiones de interés;
+- **estimación de incertidumbre**;
+- **explicabilidad** de las predicciones;
+- integración de estos componentes dentro de sistemas de **diagnóstico asistido por computadora**.
+
+La diferencia entre obtener una predicción y construir una herramienta clínicamente útil es sustancial.
+
+Un modelo puede alcanzar un buen desempeño en un conjunto de prueba y, sin embargo, no resultar apropiado para incorporarse a un flujo de trabajo clínico.
+
+Por eso, la pregunta que guiará esta unidad será:
+
+> **¿Qué necesitamos además de una buena predicción para construir un sistema de inteligencia artificial clínicamente utilizable?**
+
+A lo largo de la unidad avanzaremos desde problemas relativamente sencillos de clasificación hasta sistemas que, además de producir una predicción, deben indicar:
+
+- dónde se encuentra el hallazgo
+- qué tan confiable es la predicción
+- qué regiones de la imagen influyeron en la decisión
+- y cómo se comporta el sistema frente a pacientes y centros diferentes de aquellos utilizados durante el entrenamiento
+
+Podemos anticipar esta progresión como:
+
+```{mermaid}
+flowchart LR
+    A["Imagen médica"] --> B["Predicción"]
+    B --> C["Localización"]
+    C --> D["Incertidumbre"]
+    D --> E["Explicabilidad"]
+    E --> F["Validación clínica"]
+    F --> G["Sistema CAD"]
+```
+
+El objetivo no será estudiar exhaustivamente cada arquitectura disponible, sino comprender los principios que permiten formular, entrenar, evaluar e interpretar estos sistemas en aplicaciones de Física Médica e imágenes médicas.
+
+# 1. Una imagen, diferentes problemas
+
+Una imagen médica contiene una gran cantidad de información.
+
+Sin embargo, un algoritmo no recibe simplemente la instrucción:
+
+> "Analice esta imagen."
+
+Antes de entrenar un modelo debemos definir con precisión **qué tarea queremos resolver**.
+
+Supongamos, por ejemplo, que disponemos de una mamografía que contiene una lesión sospechosa.
+
+Podemos formular al menos tres problemas diferentes.
+
+## Clasificación
+
+Podemos preguntar:
+
+> **¿Existe un hallazgo sospechoso en esta imagen?**
+
+La entrada es una imagen:
+
+$$
+I
+$$
+
+y la salida puede ser una clase:
+
+$$
+\hat y
+\in
+\{
+\text{normal},
+\text{sospechoso}
+\}.
+$$
+
+Formalmente:
+
+$$
+f_\theta(I)
+\rightarrow
+\hat y.
+$$
+
+La salida describe globalmente la imagen, pero no necesariamente nos indica dónde está localizado el hallazgo.
+
+## Detección
+
+Podemos formular una pregunta diferente:
+
+> **¿Dónde se encuentra el hallazgo sospechoso?**
+
+Ahora el modelo debe localizar uno o más objetos.
+
+La salida puede representarse como:
+
+$$
+f_\theta(I)
+\rightarrow
+\left\{
+(b_i,c_i,s_i)
+\right\}_{i=1}^{N},
+$$
+
+donde:
+
+- $b_i$ representa una región o *bounding box*;
+- $c_i$ representa la clase del objeto;
+- $s_i$ representa un *score* asociado a la detección.
+
+En este caso, el modelo no solamente debe reconocer qué hay en la imagen, sino también **dónde está**.
+
+## Segmentación
+
+También podríamos preguntar:
+
+> **¿Qué píxeles pertenecen exactamente al hallazgo?**
+
+La salida es entonces una máscara:
+
+$$
+f_\theta(I)
+\rightarrow
+M,
+$$
+
+donde:
+
+$$
+M(x,y)
+\in
+\{0,1\}.
+$$
+
+Este fue el problema estudiado en la unidad anterior.
+
+## Tres niveles de información
+
+Podemos visualizar estas tareas como diferentes niveles de localización:
+
+```{mermaid}
+flowchart LR
+    A["Imagen"] --> B["Clasificación"]
+    A --> C["Detección"]
+    A --> D["Segmentación"]
+
+    B --> B1["Etiqueta global"]
+    C --> C1["Bounding box"]
+    D --> D1["Máscara píxel a píxel"]
+```
+
+De manera esquemática:
+
+$$
+\boxed{
+\text{clasificación}
+\rightarrow
+\text{qué}
+}
+$$
+
+$$
+\boxed{
+\text{detección}
+\rightarrow
+\text{qué + dónde aproximadamente}
+}
+$$
+
+$$
+\boxed{
+\text{segmentación}
+\rightarrow
+\text{qué + dónde exactamente}
+}
+$$
+
+Esta distinción es importante porque cada tarea requiere:
+
+- diferentes tipos de anotaciones
+- diferentes funciones de pérdida
+- diferentes métricas
+- diferentes arquitecturas
+- y, fundamentalmente, responde a diferentes preguntas clínicas
+
+## Ejemplo en imágenes médicas
+
+Consideremos una TC de tórax.
+
+### Clasificación
+
+Entrada:
+
+$$
+\text{TC}
+$$
+
+Salida:
+
+$$
+P(\text{nódulo pulmonar presente}).
+$$
+
+El modelo puede indicar que existe una alta probabilidad de que el estudio contenga un nódulo.
+
+Pero no necesariamente sabemos dónde está.
+
+### Detección
+
+El modelo puede devolver:
+
+$$
+(x_\mathrm{min},y_\mathrm{min},x_\mathrm{max},y_\mathrm{max})
+$$
+
+para indicar una región candidata.
+
+En imágenes tridimensionales podríamos utilizar una caja 3D:
+
+$$
+(x_\mathrm{min},y_\mathrm{min},z_\mathrm{min},
+x_\mathrm{max},y_\mathrm{max},z_\mathrm{max}).
+$$
+
+### Segmentación
+
+Finalmente, un modelo de segmentación podría identificar todos los vóxeles pertenecientes al nódulo.
+
+Cada salida puede ser apropiada para objetivos diferentes.
+
+Por ejemplo:
+
+- un sistema de *screening* puede requerir principalmente clasificación;
+- un sistema de detección asistida puede necesitar localizar posibles lesiones;
+- la planificación de una intervención puede requerir una segmentación precisa.
+
+Por lo tanto:
+
+> **La tarea computacional debe definirse a partir de la pregunta clínica, y no al revés.**
+
+# 2. Clasificación de imágenes médicas
+
+La clasificación es uno de los problemas más tradicionales del aprendizaje automático.
+
+Dado un ejemplo $\mathbf{x}$, buscamos predecir una clase $y$.
+
+En imágenes, la entrada deja de ser un pequeño vector de características y pasa a ser una matriz o un volumen de alta dimensionalidad.
+
+Para una imagen bidimensional:
+
+$$
+I
+\in
+\mathbb{R}^{H\times W\times C}.
+$$
+
+Por ejemplo, una radiografía en escala de grises puede representarse como:
+
+$$
+I
+\in
+\mathbb{R}^{H\times W}.
+$$
+
+Una TC tridimensional podría representarse como:
+
+$$
+I
+\in
+\mathbb{R}^{H\times W\times D}.
+$$
+
+Queremos aprender:
+
+$$
+f_\theta(I)
+\rightarrow
+\hat y.
+$$
+
+En clasificación binaria:
+
+$$
+y\in\{0,1\}.
+$$
+
+Por ejemplo:
+
+$$
+y=
+\begin{cases}
+0 & \text{sin hallazgo},\\
+1 & \text{con hallazgo}.
+\end{cases}
+$$
+
+En clasificación multiclase:
+
+$$
+y
+\in
+\{1,\ldots,K\}.
+$$
+
+Podríamos clasificar una lesión, por ejemplo, entre diferentes categorías diagnósticas.
+
+# 3. El enfoque clásico: diseñar características y luego clasificar
+
+Antes de la generalización del Deep Learning, gran parte de los sistemas de análisis de imágenes seguían un pipeline compuesto por etapas independientes.
+
+Podemos representarlo como:
+
+```{mermaid}
+flowchart LR
+    A["Imagen"] --> B["Preprocesamiento"]
+    B --> C["Extracción de características"]
+    C --> D["Vector de features"]
+    D --> E["Clasificador"]
+    E --> F["Predicción"]
+```
+
+Matemáticamente:
+
+$$
+I
+\xrightarrow{g}
+\mathbf{z}
+\xrightarrow{h}
+\hat y.
+$$
+
+La función
+
+$$
+g(I)=\mathbf{z}
+$$
+
+extrae una representación de la imagen:
+
+$$
+\mathbf{z}
+=
+(z_1,z_2,\ldots,z_d).
+$$
+
+Luego un clasificador convencional aprende:
+
+$$
+h(\mathbf{z})
+\rightarrow
+\hat y.
+$$
+
+Las características podían incluir:
+
+- estadísticas de intensidad
+- textura
+- histogramas
+- bordes
+- características geométricas
+- descriptores de forma
+- características radiómicas
+
+El diseño de estas características requería conocimiento sobre:
+
+- la modalidad de imagen
+- la anatomía
+- la física de adquisición
+- y el problema clínico
+
+Este procedimiento se conoce generalmente como **feature engineering**.
+
+# 4. ¿Qué cambia con Deep Learning?
+
+Una red neuronal convolucional puede aprender directamente una representación de la imagen.
+
+Conceptualmente:
+
+$$
+I
+\rightarrow
+\boxed{\text{representación aprendida}}
+\rightarrow
+\hat y.
+$$
+
+La diferencia fundamental es que las características ya no tienen que ser definidas completamente de forma manual.
+
+Una CNN aprende una transformación:
+
+$$
+g_\theta(I)
+=
+\mathbf{z}.
+$$
+
+El vector
+
+$$
+\mathbf{z}
+$$
+
+puede interpretarse como una representación interna o **embedding** de la imagen.
+
+Posteriormente, una capa clasificadora transforma esa representación en una predicción.
+
+Por ejemplo:
+
+$$
+\mathbf{z}
+\rightarrow
+W\mathbf{z}+\mathbf{b}
+\rightarrow
+\hat y.
+$$
+
+El modelo completo puede expresarse como:
+
+$$
+f_\theta(I)
+=
+h_{\theta_2}
+\left(
+g_{\theta_1}(I)
+\right).
+$$
+
+Donde:
+
+- $g_{\theta_1}$ aprende la representación;
+- $h_{\theta_2}$ realiza la clasificación.
+
+En un entrenamiento *end-to-end*, ambos componentes se optimizan simultáneamente.
+
+# 5. Un experimento conceptual: VGG como extractor de características
+
+Existe una estrategia intermedia especialmente útil para comprender la transición entre aprendizaje automático clásico y Deep Learning.
+
+Podemos utilizar una red neuronal preentrenada únicamente como **extractor de características**.
+
+Por ejemplo, consideremos una red VGG entrenada previamente sobre un gran conjunto de imágenes.
+
+En lugar de utilizar directamente su clasificación final, podemos eliminar esa salida y obtener la representación producida por alguna de sus capas internas.
+
+El pipeline sería:
+
+```{mermaid}
+flowchart LR
+    A["Imagen"] --> B["VGG preentrenada"]
+    B --> C["Embedding"]
+    C --> D["SVM"]
+    D --> E["Clase"]
+```
+
+Formalmente:
+
+$$
+I
+\xrightarrow{\mathrm{VGG}}
+\mathbf{z}
+\xrightarrow{\mathrm{SVM}}
+\hat y.
+$$
+
+La red produce:
+
+$$
+\mathbf{z}
+\in\mathbb{R}^{d},
+$$
+
+y utilizamos estos vectores como entrada de un modelo clásico.
+
+Por ejemplo, un SVM puede aprender una función:
+
+$$
+f(\mathbf{z})
+=
+\mathbf{w}^{\top}\mathbf{z}+b.
+$$
+
+La diferencia respecto del pipeline clásico tradicional es importante.
+
+En lugar de diseñar manualmente:
+
+- textura;
+- bordes;
+- histogramas;
+- características morfológicas;
+
+utilizamos una red neuronal para construir automáticamente una representación.
+
+Pero el clasificador final sigue siendo un algoritmo clásico.
+
+## ¿Por qué puede funcionar?
+
+Las capas de una CNN aprenden representaciones de las imágenes.
+
+Aunque una red haya sido entrenada originalmente para otra tarea, parte de esas representaciones puede resultar útil para nuevos problemas.
+
+Conceptualmente:
+
+$$
+\text{imagen}
+\rightarrow
+\text{patrones simples}
+\rightarrow
+\text{estructuras intermedias}
+\rightarrow
+\text{representaciones complejas}.
+$$
+
+Una representación aprendida para distinguir imágenes naturales puede contener información sobre:
+
+- bordes;
+- texturas;
+- contrastes;
+- estructuras espaciales;
+
+que también puede resultar útil en otras tareas visuales.
+
+Esto introduce una idea fundamental:
+
+> **No siempre necesitamos entrenar una red neuronal desde cero.**
+
+Podemos reutilizar representaciones aprendidas previamente.
+
+# 6. Transfer learning
+
+Esta estrategia forma parte del concepto más general de **transfer learning**.
+
+Supongamos que tenemos un modelo entrenado en un conjunto de datos grande:
+
+$$
+\mathcal D_{\mathrm{origen}}
+$$
+
+y queremos resolver una nueva tarea con otro conjunto:
+
+$$
+\mathcal D_{\mathrm{destino}}.
+$$
+
+La idea es reutilizar parte del conocimiento adquirido en la primera tarea.
+
+Podemos hacerlo de diferentes maneras.
+
+## Opción 1 — Extractor congelado
+
+Conservamos todos los pesos de la red:
+
+$$
+\theta_{\mathrm{CNN}}
+=
+\text{constante}.
+$$
+
+Calculamos:
+
+$$
+\mathbf{z}_i
+=
+g_{\theta_{\mathrm{CNN}}}(I_i)
+$$
+
+para cada imagen.
+
+Luego entrenamos un clasificador convencional:
+
+$$
+\hat y
+=
+h_\phi(\mathbf{z}).
+$$
+
+Por ejemplo:
+
+$$
+\boxed{
+\text{VGG congelada}
++
+\text{SVM}
+}
+$$
+
+## Opción 2 — Cabeza clasificadora entrenable
+
+También podemos reemplazar únicamente la última capa de la red.
+
+```{mermaid}
+flowchart LR
+    A["Imagen"] --> B["CNN congelada"]
+    B --> C["Features"]
+    C --> D["Nueva capa lineal"]
+    D --> E["Clase"]
+```
+
+Ahora entrenamos una nueva cabeza clasificadora:
+
+$$
+\hat y
+=
+h_\phi
+\left(
+g_{\theta}(I)
+\right),
+$$
+
+manteniendo:
+
+$$
+\theta
+$$
+
+fijo.
+
+## Opción 3 — Fine-tuning
+
+Finalmente, podemos permitir que algunos o todos los parámetros de la red se modifiquen durante el entrenamiento.
+
+Entonces optimizamos:
+
+$$
+\theta,\phi.
+$$
+
+Es decir:
+
+$$
+I
+\rightarrow
+g_\theta(I)
+\rightarrow
+h_\phi
+\rightarrow
+\hat y
+$$
+
+y el gradiente modifica también las representaciones internas.
+
+Esto se conoce como **fine-tuning**.
+
+Podemos visualizar las tres estrategias como:
+
+$$
+\boxed{
+\text{VGG + SVM}
+}
+$$
+
+$$
+\downarrow
+$$
+
+$$
+\boxed{
+\text{VGG congelada + cabeza neuronal}
+}
+$$
+
+$$
+\downarrow
+$$
+
+$$
+\boxed{
+\text{fine-tuning}
+}
+$$
+
+Existe un compromiso.
+
+Cuanto más modificamos la red:
+
+- mayor es su capacidad para adaptarse a la nueva tarea;
+- pero también aumenta el número de parámetros que debemos estimar.
+
+Esto puede ser especialmente relevante cuando disponemos de conjuntos de datos médicos relativamente pequeños.
+
+# 7. Un punto importante: imágenes naturales e imágenes médicas
+
+Modelos como VGG fueron originalmente entrenados utilizando imágenes naturales.
+
+Por lo tanto, cabe preguntar:
+
+> **¿Tiene sentido utilizar representaciones aprendidas con fotografías para analizar imágenes médicas?**
+
+No existe una respuesta universal.
+
+Depende de:
+
+- la modalidad
+- el tamaño del dataset
+- el grado de similitud entre las estructuras visuales
+- la tarea
+- la arquitectura
+- la estrategia de *fine-tuning*
+
+Las primeras capas de una CNN suelen capturar patrones relativamente generales, mientras que representaciones posteriores pueden estar más relacionadas con la tarea original.
+
+Sin embargo, esta interpretación debe utilizarse con cautela: las representaciones aprendidas dependen del modelo y del proceso de entrenamiento.
+
+En imágenes médicas aparece además un **domain shift** considerable entre:
+
+$$
+\text{fotografías naturales}
+$$
+
+y
+
+$$
+\text{radiografías, TC, MRI, PET, etc.}
+$$
+
+Esto significa que una representación útil en un dominio puede no ser óptima en otro.
+
+Por eso, el desempeño debe evaluarse experimentalmente.
+
+# 8. Feature extraction versus aprendizaje end-to-end
+
+Podemos resumir los dos paradigmas.
+
+## Extracción de características + clasificador
+
+$$
+I
+\xrightarrow{g}
+\mathbf{z}
+\xrightarrow{h}
+\hat y
+$$
+
+El extractor puede permanecer fijo.
+
+Esto tiene algunas ventajas:
+
+- menos parámetros a entrenar;
+- entrenamiento rápido;
+- puede funcionar con datasets relativamente pequeños;
+- permite utilizar clasificadores clásicos;
+- facilita estudiar explícitamente el espacio de características.
+
+Por ejemplo:
+
+$$
+\text{VGG}
+\rightarrow
+\text{embedding}
+\rightarrow
+\text{SVM}.
+$$
+
+## Aprendizaje end-to-end
+
+En este caso:
+
+$$
+I
+\xrightarrow{g_\theta}
+\mathbf{z}
+\xrightarrow{h_\phi}
+\hat y
+$$
+
+y optimizamos simultáneamente:
+
+$$
+(\theta,\phi).
+$$
+
+El modelo puede adaptar sus representaciones específicamente a la tarea.
+
+La contrapartida es que normalmente requiere:
+
+- mayor cantidad de datos;
+- mayor capacidad computacional;
+- mayor cuidado en regularización;
+- mayor cuidado en validación.
+
+## ¿Cuál es mejor?
+
+No existe una respuesta general.
+
+Una comparación experimental razonable podría ser:
+
+| Estrategia | Representación | Clasificador |
+|---|---|---|
+| Pipeline clásico | Características diseñadas | SVM |
+| Deep features | VGG congelada | SVM |
+| Transfer learning | VGG congelada | Capa lineal |
+| Fine-tuning | VGG ajustada | Capa lineal |
+
+Este tipo de comparación permite responder una pregunta mucho más interesante que simplemente entrenar una CNN:
+
+> **¿De dónde proviene la mejora: de la representación o del clasificador?**
+
+# 9. De la salida del modelo a una decisión
+
+Supongamos que nuestro clasificador produce una salida:
+
+$$
+z.
+$$
+
+En clasificación binaria podemos transformarla mediante una sigmoide:
+
+$$
+p
+=
+\sigma(z)
+=
+\frac{1}{1+e^{-z}}.
+$$
+
+Entonces:
+
+$$
+p\in[0,1].
+$$
+
+Por ejemplo:
+
+$$
+p=0.87.
+$$
+
+Podríamos interpretar que el modelo asigna un *score* elevado a la clase positiva.
+
+Para obtener una decisión binaria necesitamos seleccionar un umbral:
+
+$$
+\tau.
+$$
+
+Entonces:
+
+$$
+\hat y=
+\begin{cases}
+1 & p\geq\tau,\\
+0 & p<\tau.
+\end{cases}
+$$
+
+Una elección habitual es:
+
+$$
+\tau=0.5.
+$$
+
+Pero esto no tiene por qué ser apropiado clínicamente.
+
+# 10. La matriz de confusión
+
+Para clasificación binaria podemos comparar la predicción con la referencia.
+
+| | Referencia positiva | Referencia negativa |
+|---|---:|---:|
+| **Predicción positiva** | TP | FP |
+| **Predicción negativa** | FN | TN |
+
+donde:
+
+- TP: verdadero positivo;
+- FP: falso positivo;
+- FN: falso negativo;
+- TN: verdadero negativo.
+
+A partir de estos valores podemos definir diferentes métricas.
+
+# 11. Sensibilidad y especificidad
+
+La **sensibilidad** mide qué proporción de los casos positivos detectamos correctamente:
+
+$$
+\mathrm{Sensibilidad}
+=
+\frac{TP}{TP+FN}.
+$$
+
+También se denomina:
+
+$$
+\mathrm{Recall}
+$$
+
+o **true positive rate**.
+
+Una sensibilidad elevada significa que tenemos pocos falsos negativos.
+
+La **especificidad** mide qué proporción de los casos negativos identificamos correctamente:
+
+$$
+\mathrm{Especificidad}
+=
+\frac{TN}{TN+FP}.
+$$
+
+Una especificidad elevada implica pocos falsos positivos.
+
+## El compromiso depende de la aplicación
+
+Supongamos un sistema utilizado para *screening*.
+
+Un falso negativo puede implicar que una lesión potencialmente relevante no sea identificada.
+
+En este contexto podríamos preferir una sensibilidad elevada, incluso a costa de aumentar los falsos positivos.
+
+En otra aplicación, un elevado número de falsos positivos podría desencadenar:
+
+- estudios adicionales;
+- biopsias;
+- intervenciones;
+- carga de trabajo clínica.
+
+Por lo tanto:
+
+> **El umbral óptimo no es únicamente una propiedad matemática del modelo. Depende del contexto de utilización.**
+
+# 12. Cambiar el umbral cambia el comportamiento
+
+Supongamos que un modelo produce un *score*:
+
+$$
+p.
+$$
+
+Si utilizamos un umbral bajo:
+
+$$
+\tau=0.2,
+$$
+
+muchos casos serán clasificados como positivos.
+
+Tendremos típicamente:
+
+- mayor sensibilidad;
+- menor especificidad.
+
+En cambio, con:
+
+$$
+\tau=0.9,
+$$
+
+solamente los casos con *score* muy elevado serán considerados positivos.
+
+Tendremos generalmente:
+
+- menor sensibilidad;
+- mayor especificidad.
+
+Por lo tanto, una única métrica calculada con un único umbral no describe completamente el comportamiento de un clasificador.
+
+# 13. Curva ROC
+
+La curva ROC analiza el comportamiento del modelo para múltiples valores del umbral.
+
+Representa:
+
+$$
+\mathrm{TPR}
+=
+\frac{TP}{TP+FN}
+$$
+
+frente a:
+
+$$
+\mathrm{FPR}
+=
+\frac{FP}{FP+TN}
+=
+1-\mathrm{especificidad}.
+$$
+
+Para cada valor de $\tau$ obtenemos un punto diferente.
+
+```{mermaid}
+flowchart LR
+    A["Scores del modelo"] --> B["Elegir umbral τ"]
+    B --> C["TPR"]
+    B --> D["FPR"]
+    C --> E["Punto ROC"]
+    D --> E
+```
+
+El área bajo la curva:
+
+$$
+\mathrm{AUC}_{ROC}
+$$
+
+resume la capacidad de discriminación del modelo a través de diferentes umbrales.
+
+De manera intuitiva:
+
+> Un modelo con mayor AUC tiende a asignar scores mayores a los casos positivos que a los negativos.
+
+# 14. Accuracy puede ser engañosa
+
+La exactitud se define como:
+
+$$
+\mathrm{Accuracy}
+=
+\frac{TP+TN}{TP+TN+FP+FN}.
+$$
+
+Puede resultar intuitiva, pero puede ser muy engañosa cuando las clases están desbalanceadas.
+
+Supongamos que en una población de 1000 estudios solamente 10 presentan una determinada lesión.
+
+Si construimos un modelo que predice siempre:
+
+$$
+\text{"sin lesión"},
+$$
+
+obtendremos:
+
+$$
+\mathrm{Accuracy}
+=
+\frac{990}{1000}
+=
+99\%.
+$$
+
+Sin embargo:
+
+$$
+\mathrm{Sensibilidad}=0.
+$$
+
+El modelo no detecta ningún paciente positivo.
+
+Por lo tanto:
+
+> **Un accuracy elevado no implica necesariamente un modelo clínicamente útil.**
+
+# 15. Precision y recall
+
+Otra métrica importante es la **precision** o valor predictivo positivo:
+
+$$
+\mathrm{Precision}
+=
+\frac{TP}{TP+FP}.
+$$
+
+Responde aproximadamente a la pregunta:
+
+> De todos los casos que el modelo clasificó como positivos, ¿cuántos eran realmente positivos?
+
+El recall corresponde a la sensibilidad:
+
+$$
+\mathrm{Recall}
+=
+\frac{TP}{TP+FN}.
+$$
+
+Existe nuevamente un compromiso entre ambas cantidades.
+
+Esto puede visualizarse mediante una **curva precision-recall**.
+
+Estas curvas son especialmente informativas cuando:
+
+$$
+N_{+}
+\ll
+N_{-}.
+$$
+
+Es decir, cuando existe un fuerte desbalance entre las clases.
+
+# 16. Discriminación no es calibración
+
+Hasta ahora hemos discutido principalmente si el modelo puede separar casos positivos de negativos.
+
+Esto corresponde al concepto de **discriminación**.
+
+Supongamos dos pacientes:
+
+$$
+p_A=0.9
+$$
+
+y
+
+$$
+p_B=0.2.
+$$
+
+Si el paciente $A$ pertenece a la clase positiva y el paciente $B$ a la negativa, el modelo los ordenó correctamente.
+
+Pero existe otra pregunta:
+
+> Cuando el modelo produce $p=0.9$, ¿ese valor puede interpretarse realmente como una probabilidad del 90 %?
+
+No necesariamente.
+
+Un modelo puede discriminar muy bien y estar mal calibrado.
+
+Podemos representar conceptualmente:
+
+$$
+\boxed{
+\text{Discriminación}
+}
+\neq
+\boxed{
+\text{Calibración}
+}.
+$$
+
+Más adelante incorporaremos una tercera dimensión:
+
+$$
+\boxed{
+\text{Discriminación}
+}
+\neq
+\boxed{
+\text{Calibración}
+}
+\neq
+\boxed{
+\text{Incertidumbre}
+}.
+$$
+
+Esta distinción es particularmente importante en aplicaciones clínicas, donde no solamente interesa cuál es la predicción más probable, sino también **qué significado tiene la confianza reportada por el modelo**.
+
+# 17. Un primer pipeline de clasificación
+
+Podemos resumir lo visto hasta ahora con el siguiente flujo:
+
+```{mermaid}
+flowchart LR
+    A["Imagen médica"] --> B["Extractor de características"]
+    B --> C["Representación z"]
+    C --> D["Clasificador"]
+    D --> E["Score"]
+    E --> F["Umbral"]
+    F --> G["Decisión"]
+
+    E --> H["ROC / PR"]
+    F --> I["Sensibilidad / Especificidad"]
+```
+
+Aquí aparecen dos partes diferentes del problema.
+
+### Aprender la representación
+
+$$
+I\rightarrow\mathbf{z}
+$$
+
+### Tomar una decisión
+
+$$
+\mathbf{z}
+\rightarrow
+p
+\rightarrow
+\hat y.
+$$
+
+En el pipeline:
+
+$$
+\text{VGG}+\text{SVM},
+$$
+
+estas dos etapas están claramente separadas.
+
+En un modelo entrenado *end-to-end*, ambas pueden aprenderse simultáneamente.
+
+Pero incluso en ese caso, la interpretación clínica de la salida requiere decidir:
+
+- qué métrica utilizar;
+- qué umbral utilizar;
+- qué tipo de error es más importante;
+- y qué consecuencias tienen esos errores.
+
+# 18. Antes de continuar
+
+Hasta aquí hemos supuesto que una única etiqueta para toda la imagen es suficiente.
+
+Pero consideremos nuevamente una radiografía en la que el modelo predice:
+
+$$
+P(\text{hallazgo})=0.97.
+$$
+
+Inmediatamente aparecen nuevas preguntas:
+
+> ¿Dónde está el hallazgo?
+
+> ¿Hay uno o varios?
+
+> ¿Qué tamaño tienen?
+
+> ¿El modelo está respondiendo realmente a la estructura patológica?
+
+La clasificación global no puede responder estas preguntas.
+
+Esto motiva el siguiente problema de la unidad:
+
+$$
+\boxed{\text{detección de objetos}}
+$$
+
+donde el modelo deberá aprender simultáneamente:
+
+$$
+\boxed{
+\text{qué hay}
++
+\text{dónde está}
+}.
+$$
+
+# 19. De clasificación a detección
+
+En clasificación asumimos que una única etiqueta describe adecuadamente la imagen completa.
+
+Por ejemplo:
+
+$$
+f_\theta(I)
+\rightarrow
+P(\text{nódulo presente}).
+$$
+
+Sin embargo, en muchas aplicaciones médicas esto no es suficiente.
+
+Supongamos que un modelo analiza una radiografía de tórax y produce:
+
+$$
+P(\text{hallazgo})=0.96.
+$$
+
+La predicción puede ser correcta, pero todavía no sabemos:
+
+- dónde está localizado el hallazgo;
+- cuántos hallazgos existen;
+- qué tamaño aproximado tienen;
+- si diferentes regiones corresponden a diferentes clases.
+
+La **detección de objetos** extiende el problema de clasificación incorporando información espacial.
+
+La pregunta pasa de ser:
+
+> **¿Qué hay en la imagen?**
+
+a:
+
+> **¿Qué hay y dónde está?**
+
+```{mermaid}
+flowchart LR
+    A["Imagen"] --> B["Clasificación"]
+    B --> C["Clase + score"]
+
+    A --> D["Detección"]
+    D --> E["Clase + score + localización"]
+```
+
+# 20. ¿Qué debe predecir un detector?
+
+Un detector recibe una imagen:
+
+$$
+I
+$$
+
+y devuelve un conjunto de objetos:
+
+$$
+f_\theta(I)
+\rightarrow
+\left\{
+(b_i,c_i,s_i)
+\right\}_{i=1}^{N}.
+$$
+
+Para cada objeto detectado:
+
+- $b_i$ representa su localización;
+- $c_i$ representa su clase;
+- $s_i$ representa un *score* asociado a la detección.
+
+Una imagen puede contener:
+
+$$
+N=0,1,2,\ldots
+$$
+
+objetos.
+
+Esta característica distingue a la detección de la clasificación tradicional: **el número de salidas no es necesariamente fijo**.
+
+# 21. Bounding boxes
+
+La forma más habitual de representar la localización de un objeto es mediante una **bounding box**.
+
+En dos dimensiones podemos definir:
+
+$$
+b=
+(x_{\min},y_{\min},x_{\max},y_{\max}).
+$$
+
+También es frecuente utilizar la parametrización:
+
+$$
+b=
+(x_c,y_c,w,h),
+$$
+
+donde:
+
+- $(x_c,y_c)$ es el centro de la caja;
+- $w$ es el ancho;
+- $h$ es la altura.
+
+En imágenes médicas tridimensionales podemos extender esta idea a una caja 3D:
+
+$$
+b=
+(x_{\min},y_{\min},z_{\min},
+x_{\max},y_{\max},z_{\max}).
+$$
+
+Una *bounding box* no describe exactamente el contorno del objeto.
+
+Simplemente proporciona una región aproximada que lo contiene.
+
+# 22. Anotaciones necesarias
+
+Para entrenar un clasificador podemos necesitar únicamente una etiqueta por imagen:
+
+$$
+(I_i,y_i).
+$$
+
+Para entrenar un detector necesitamos anotaciones espaciales.
+
+Por ejemplo:
+
+$$
+\left(
+I_i,
+\{
+(b_{ij},c_{ij})
+\}_{j=1}^{N_i}
+\right).
+$$
+
+Cada imagen puede contener un número diferente de objetos:
+
+$$
+N_i.
+$$
+
+Esto tiene consecuencias prácticas importantes.
+
+::: {.callout-note title="Anotaciones clínicas"}
+
+En imágenes médicas, una anotación no debe interpretarse automáticamente como una verdad absoluta.
+
+Puede existir variabilidad entre expertos, especialmente cuando:
+
+- los límites de una lesión son ambiguos
+- el hallazgo es pequeño
+- existe bajo contraste
+- la definición clínica depende de criterios específicos
+
+La calidad de la referencia afecta directamente la evaluación del detector.
+
+:::
+
+# 23. ¿Cómo medimos si una detección está bien localizada?
+
+Supongamos que disponemos de una caja de referencia:
+
+$$
+B_{\mathrm{GT}}
+$$
+
+y una caja predicha:
+
+$$
+B_{\mathrm{pred}}.
+$$
+
+Necesitamos medir cuánto se superponen.
+
+Una métrica natural es la **Intersection over Union**:
+
+$$
+\mathrm{IoU}
+=
+\frac{
+|B_{\mathrm{pred}}\cap B_{\mathrm{GT}}|
+}{
+|B_{\mathrm{pred}}\cup B_{\mathrm{GT}}|
+}.
+$$
+
+Esta métrica ya apareció al estudiar segmentación.
+
+La diferencia es que ahora calculamos la intersección y unión entre **regiones rectangulares** en lugar de máscaras píxel a píxel.
+
+# 24. De IoU a verdadero positivo
+
+Para detección necesitamos decidir si la localización es suficientemente buena.
+
+Para ello se define un umbral:
+
+$$
+\tau_{\mathrm{IoU}}.
+$$
+
+Por ejemplo:
+
+$$
+\tau_{\mathrm{IoU}}=0.5.
+$$
+
+Entonces una detección puede considerarse correcta si:
+
+$$
+\mathrm{IoU}
+\geq
+0.5
+$$
+
+y la clase predicha es correcta.
+
+Conceptualmente:
+
+$$
+\boxed{
+\text{clase correcta}
++
+\text{IoU suficiente}
+\Rightarrow
+\text{true positive}
+}
+$$
+
+# 25. El umbral de IoU importa
+
+Supongamos una predicción con:
+
+$$
+\mathrm{IoU}=0.62.
+$$
+
+Si utilizamos:
+
+$$
+\tau_{\mathrm{IoU}}=0.5,
+$$
+
+la detección cuenta como correcta.
+
+Pero si utilizamos:
+
+$$
+\tau_{\mathrm{IoU}}=0.75,
+$$
+
+la misma detección se considera incorrecta.
+
+Por lo tanto:
+
+> **El desempeño de un detector depende también de cuán estrictos seamos con la localización.**
+
+# 26. Confidence score
+
+Un detector puede generar muchas cajas candidatas.
+
+Cada detección suele incluir un *confidence score*:
+
+$$
+s_i.
+$$
+
+Conceptualmente:
+
+$$
+(b_i,c_i,s_i).
+$$
+
+El *score* permite ordenar detecciones desde las consideradas más confiables hasta las menos confiables.
+
+Podemos aplicar un umbral:
+
+$$
+s_i\geq\tau_s
+$$
+
+para conservar únicamente determinadas detecciones.
+
+# 27. Un nuevo problema: múltiples cajas para el mismo objeto
+
+Un detector puede generar varias cajas alrededor del mismo objeto.
+
+Por ejemplo:
+
+$$
+s_1=0.96,
+\qquad
+s_2=0.91,
+\qquad
+s_3=0.74.
+$$
+
+No queremos presentar las tres como tres lesiones diferentes.
+
+Necesitamos un mecanismo para eliminar predicciones redundantes.
+
+# 28. Non-Maximum Suppression
+
+Un procedimiento clásico es **Non-Maximum Suppression** o NMS.
+
+La idea básica es:
+
+1. ordenar las cajas según su *score*
+2. seleccionar la caja con mayor score
+3. comparar las demás cajas con ella
+4. eliminar aquellas que se superponen demasiado
+5. repetir el procedimiento
+
+```{mermaid}
+flowchart LR
+    A["Muchas cajas candidatas"] --> B["Ordenar por score"]
+    B --> C["Conservar la mejor"]
+    C --> D["Eliminar cajas muy superpuestas"]
+    D --> E["Detecciones finales"]
+```
+
+NMS no es el detector propiamente dicho.
+
+Es una etapa de **postprocesamiento** de las predicciones.
+
+# 29. Precision-recall en detección
+
+Al variar el umbral de confianza:
+
+$$
+\tau_s,
+$$
+
+obtenemos diferentes valores de:
+
+$$
+\mathrm{Precision}
+$$
+
+y
+
+$$
+\mathrm{Recall}.
+$$
+
+Esto permite construir una curva precision-recall.
+
+En detección, esta curva es particularmente importante porque un sistema debe encontrar un equilibrio entre:
+
+- detectar la mayor cantidad posible de lesiones;
+- evitar generar una cantidad excesiva de falsas alarmas.
+
+::: {.callout-important title="Métrica y uso clínico"}
+
+Una métrica técnicamente correcta puede ser insuficiente para describir la utilidad clínica.
+
+Siempre debemos preguntar:
+
+> ¿Qué significa este error dentro del flujo real de trabajo?
+
+:::
+
+# 30. Average Precision
+
+La curva precision-recall puede resumirse mediante la **Average Precision**:
+
+$$
+AP.
+$$
+
+De manera conceptual, AP resume la relación entre precision y recall a medida que modificamos el umbral de confianza.
+
+Podemos escribir:
+
+$$
+AP
+\approx
+\int_0^1
+P(R)\,dR.
+$$
+
+Para múltiples clases podemos calcular:
+
+$$
+AP_1,AP_2,\ldots,AP_K.
+$$
+
+Y luego promediar:
+
+$$
+mAP
+=
+\frac{1}{K}
+\sum_{k=1}^{K}AP_k.
+$$
+
+# 31. ¿Qué significa mAP@0.5?
+
+La notación:
+
+$$
+mAP@0.5
+$$
+
+indica que una detección se considera correcta utilizando:
+
+$$
+\tau_{\mathrm{IoU}}=0.5.
+$$
+
+También podemos encontrar métricas evaluadas con criterios más exigentes, por ejemplo:
+
+$$
+mAP@0.75.
+$$
+
+Una métrica común en benchmarks de visión calcula el promedio sobre múltiples umbrales de IoU:
+
+$$
+0.50,\ 0.55,\ 0.60,\ldots,0.95.
+$$
+
+# 32. ¿Qué debe aprender un detector?
+
+Un detector debe resolver simultáneamente varios problemas.
+
+Para cada objeto necesita estimar:
+
+$$
+\boxed{
+\text{localización}
++
+\text{clase}
++
+\text{confianza}
+}
+$$
+
+Esto significa que la función de pérdida suele combinar diferentes componentes:
+
+$$
+\mathcal L_{\mathrm{total}}
+=
+\lambda_{\mathrm{box}}
+\mathcal L_{\mathrm{box}}
++
+\lambda_{\mathrm{cls}}
+\mathcal L_{\mathrm{cls}}
++
+\lambda_{\mathrm{obj}}
+\mathcal L_{\mathrm{obj}}.
+$$
+
+Los detalles exactos dependen de la arquitectura.
+
+> **La detección es un problema multitarea: el modelo debe aprender simultáneamente qué hay y dónde está.**
+
+# 33. Dos estrategias generales para detectar objetos
+
+Históricamente, muchas arquitecturas de detección pueden entenderse dentro de dos grandes estrategias.
+
+## Detectores de dos etapas
+
+Primero buscamos posibles regiones que podrían contener objetos.
+
+Luego clasificamos y refinamos esas regiones.
+
+```{mermaid}
+flowchart LR
+    A["Imagen"] --> B["Extractor de features"]
+    B --> C["Propuestas de regiones"]
+    C --> D["Clasificación"]
+    C --> E["Refinamiento de boxes"]
+    D --> F["Detecciones"]
+    E --> F
+```
+
+Faster R-CNN es un representante clásico de esta familia.
+
+## Detectores de una etapa
+
+Otra estrategia es realizar directamente la predicción de las detecciones.
+
+```{mermaid}
+flowchart LR
+    A["Imagen"] --> B["Red neuronal"]
+    B --> C["Boxes"]
+    B --> D["Clases"]
+    B --> E["Scores"]
+```
+
+YOLO es uno de los ejemplos más conocidos de este paradigma.
+
+# 34. Faster R-CNN: separar propuestas y clasificación
+
+Faster R-CNN pertenece a la familia de detectores de dos etapas.
+
+```{mermaid}
+flowchart LR
+    A["Imagen"] --> B["Backbone"]
+    B --> C["Feature maps"]
+    C --> D["Region Proposal Network"]
+    D --> E["Regiones candidatas"]
+    C --> F["Features regionales"]
+    E --> F
+    F --> G["Clasificación"]
+    F --> H["Regresión de bounding box"]
+```
+
+El **backbone** extrae representaciones visuales.
+
+Luego una **Region Proposal Network** o RPN identifica regiones candidatas que podrían contener objetos.
+
+Posteriormente, cada propuesta se analiza para:
+
+- determinar su clase;
+- refinar su posición.
+
+# 35. YOLO: detección en una sola etapa
+
+YOLO significa originalmente:
+
+> **You Only Look Once**
+
+La idea central fue formular detección como una predicción directa desde la imagen hacia los objetos detectados.
+
+Conceptualmente:
+
+$$
+I
+\xrightarrow{\mathrm{CNN}}
+\left\{
+(b_i,c_i,s_i)
+\right\}.
+$$
+
+```{mermaid}
+flowchart LR
+    A["Imagen"] --> B["Backbone"]
+    B --> C["Features multiescala"]
+    C --> D["Detection head"]
+    D --> E["Bounding boxes"]
+    D --> F["Clases"]
+    D --> G["Scores"]
+```
+
+# 36. ¿Por qué existen múltiples escalas?
+
+En imágenes reales los objetos pueden tener tamaños muy diferentes.
+
+Las arquitecturas modernas suelen utilizar representaciones en diferentes escalas para conservar información útil tanto para objetos grandes como pequeños.
+
+Esta idea es particularmente importante en imágenes médicas, donde muchos hallazgos clínicamente relevantes pueden ocupar solamente una pequeña fracción de la imagen.
+
+# 37. Un problema especialmente importante: objetos pequeños
+
+Supongamos una radiografía de:
+
+$$
+2048\times2048
+$$
+
+píxeles.
+
+Una lesión podría ocupar aproximadamente:
+
+$$
+20\times20
+$$
+
+píxeles.
+
+Su fracción del área total es aproximadamente:
+
+$$
+\frac{20\times20}{2048\times2048}
+\approx
+9.5\times10^{-5}.
+$$
+
+Es decir, menos del:
+
+$$
+0.01\%
+$$
+
+de la imagen.
+
+Esto genera un problema fundamental:
+
+> La mayor parte de la información espacial de la imagen corresponde al fondo, no al objeto que queremos detectar.
+
+# 38. Resolución y campo de visión
+
+Existe además un compromiso particular en imágenes médicas.
+
+Para detectar una estructura pequeña queremos conservar una resolución elevada.
+
+Pero para interpretarla correctamente podemos necesitar contexto anatómico.
+
+$$
+\boxed{
+\text{alta resolución}
+}
+\leftrightarrow
+\boxed{
+\text{gran contexto anatómico}
+}
+$$
+
+# 39. Detección 2D versus 3D
+
+Muchas arquitecturas de detección provienen de visión por computadora sobre imágenes 2D.
+
+Pero modalidades como:
+
+- CT;
+- MRI;
+- PET;
+
+son inherentemente tridimensionales.
+
+## Detección 2D
+
+Analizar cada corte independientemente:
+
+$$
+I_z
+\rightarrow
+\text{detecciones}.
+$$
+
+Ventajas:
+
+- menor requerimiento de memoria;
+- mayor disponibilidad de modelos preentrenados;
+- pipelines más simples.
+
+Limitaciones:
+
+- se pierde contexto entre cortes;
+- una misma lesión puede producir múltiples detecciones independientes.
+
+## Detección 3D
+
+Analizar directamente un volumen:
+
+$$
+V
+\in
+\mathbb{R}^{H\times W\times D}.
+$$
+
+Ventajas:
+
+- utiliza contexto volumétrico;
+- representa naturalmente estructuras 3D.
+
+Limitaciones:
+
+- mayor consumo de memoria;
+- entrenamiento más costoso;
+- menor disponibilidad de modelos preentrenados.
+
+## Estrategias intermedias
+
+También pueden utilizarse enfoques **2.5D**, donde se proporcionan varios cortes vecinos como entrada:
+
+$$
+(I_{z-1},I_z,I_{z+1})
+\rightarrow
+\text{predicción}.
+$$
+
+# 40. El tamaño físico importa
+
+En imágenes médicas no debemos pensar únicamente en píxeles o vóxeles.
+
+Dos estudios pueden tener diferentes resoluciones espaciales.
+
+Una lesión de:
+
+$$
+10\ \mathrm{mm}
+$$
+
+puede ocupar un número diferente de píxeles dependiendo del *pixel spacing* o *voxel spacing*.
+
+Por lo tanto:
+
+> **La escala del objeto en la matriz no necesariamente representa su escala física.**
+
+Esto debe considerarse durante:
+
+- resampling;
+- entrenamiento;
+- aumento de datos;
+- evaluación.
+
+# 41. ¿YOLO o Faster R-CNN?
+
+No existe una arquitectura universalmente superior.
+
+| Aspecto | Two-stage | One-stage |
+|---|---|---|
+| Pipeline | Propuestas + clasificación | Predicción directa |
+| Ejemplo | Faster R-CNN | YOLO |
+| Velocidad | Generalmente menor | Generalmente mayor |
+| Complejidad conceptual | Mayor | Menor |
+| Objetos pequeños | Puede ser favorable | Depende de arquitectura y resolución |
+| Implementación práctica | Más componentes | Pipeline integrado |
+
+Las generaciones modernas de ambos paradigmas han reducido muchas de sus diferencias históricas.
+
+Por eso, para una aplicación médica no deberíamos elegir un detector únicamente porque sea el modelo más reciente.
+
+
+# 42. Un detector puede fallar de diferentes maneras
+
+Una predicción incorrecta no constituye una única categoría de error.
+
+### Error de clasificación
+
+El objeto está correctamente localizado, pero la clase es incorrecta.
+
+### Error de localización
+
+El modelo encuentra aproximadamente el objeto, pero:
+
+$$
+\mathrm{IoU}
+<
+\tau_{\mathrm{IoU}}.
+$$
+
+### Objeto no detectado
+
+Existe una lesión pero no se genera ninguna caja apropiada.
+
+$$
+FN.
+$$
+
+### Falsa detección
+
+El modelo genera una caja donde no existe un hallazgo.
+
+$$
+FP.
+$$
+
+### Detección duplicada
+
+Un único objeto produce varias cajas.
+
+# 43. ¿Qué error importa más?
+
+La respuesta depende del contexto clínico.
+
+En un sistema de detección utilizado como segunda lectura:
+
+$$
+FN
+$$
+
+puede ser particularmente preocupante.
+
+En cambio, un sistema que produce demasiados:
+
+$$
+FP
+$$
+
+puede incrementar:
+
+- el tiempo de lectura;
+- la fatiga;
+- estudios complementarios;
+- intervenciones innecesarias.
+
+Por eso, la evaluación debe considerar no solamente métricas agregadas, sino también el **perfil de errores**.
+
+# 44. De la detección a una nueva pregunta
+
+Hasta ahora hemos supuesto que el detector produce:
+
+$$
+(b_i,c_i,s_i).
+$$
+
+Supongamos que obtenemos:
+
+$$
+s_i=0.98.
+$$
+
+Podríamos sentirnos tentados a interpretar:
+
+> El modelo tiene un 98 % de certeza de que existe una lesión.
+
+Pero esta interpretación no está necesariamente justificada.
+
+Un *score* alto puede coexistir con una predicción incorrecta.
+
+Esto nos conduce al siguiente problema:
+
+> **¿Qué significa realmente la confianza reportada por un modelo?**
+
+Y, más importante:
+
+> **¿Cómo podemos reconocer casos en los que el modelo no debería ser considerado confiable?**
+
+Para responder estas preguntas debemos distinguir entre:
+
+$$
+\boxed{
+\text{score}
+}
+$$
+
+$$
+\boxed{
+\text{probabilidad calibrada}
+}
+$$
+
+y
+
+$$
+\boxed{
+\text{incertidumbre}
+}.
+$$
+
+Ese será el siguiente bloque de la unidad.

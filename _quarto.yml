@@ -103,6 +103,15 @@ website:
             href: unidad2/notebooks/Notebook2.ipynb
           - text: "Notebook 3: Motores de entrenamiento en MONAI"
             href: unidad2/notebooks/Notebook3.ipynb
+      - text: "---"
+      - section: "3. Detección de objetos"
+        contents:
+          - text: "Índice de la unidad"
+            href: unidad3/unidad3.qmd
+          - text: "clase 1: De la clasificación a la detección"
+            href: unidad3/notas1.qmd
+            href: unidad3/clase1.qmd
+            target: _blank
 
 format:
   html:
