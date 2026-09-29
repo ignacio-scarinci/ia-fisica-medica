@@ -1,0 +1,10 @@
+---
+title: "Unidad 3: Detección de Objetos en Imágenes Médicas"
+subtitle: "De la clasificación a la detección"
+lang: es
+format:
+  html:
+    toc: false
+    number-sections: false
+---
+
