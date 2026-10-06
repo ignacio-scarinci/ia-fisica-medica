@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es"><head>
+<html lang="en"><head>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.10.19">
 
   <meta name="author" content="Ignacio Scarinci">
-  <title>IA en Física Médica – Unidad 2 — Segmentación de estructuras anatómicas</title>
+  <title>IA en Física Médica – Unidad 3 — Detección, clasificación y diagnóstico asistido</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -101,12 +101,10 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-bd6b8afe794f1985a8fa1719a4bb2ade.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
     .reveal div.sourceCode {
@@ -204,8 +202,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Unidad 2 — Segmentación de estructuras anatómicas</h1>
-  <p class="subtitle">Clase 3 — Segmentación interactiva</p>
+  <h1 class="title">Unidad 3 — Detección, clasificación y diagnóstico asistido</h1>
+  <p class="subtitle">Clase 2 · Incertidumbre y explicabilidad</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -216,176 +214,167 @@ Ignacio Scarinci
 </div>
 
 </section>
-<section id="de-la-clase-anterior" class="slide level2">
-<h2>De la clase anterior</h2>
-<p>En la clase anterior discutimos cómo diseñar un sistema de segmentación automático:</p>
-<ul>
-<li>Arquitectura vs pipeline;</li>
-<li>nnU-Net como sistema auto-configurable;</li>
-</ul>
-<p>Hoy vemos un paso atrás:</p>
+<section id="la-pregunta-de-hoy" class="slide level2">
+<h2>La pregunta de hoy</h2>
+<div class="question centered">
+<p>Un modelo predice <span class="metric">0.98</span>.</p>
+<p>¿Eso significa que está <em>98 % seguro</em>?</p>
+</div>
+<div class="fragment">
+<div class="takeaway centered">
+<p><strong>No necesariamente.</strong></p>
+</div>
+</div>
 </section>
-<section id="objetivos-de-esta-clase" class="slide level2">
-<h2>Objetivos de esta clase</h2>
-<p>Al finalizar la clase deberían poder:</p>
+<section id="objetivos-de-la-clase" class="slide level2">
+<h2>Objetivos de la clase</h2>
+<p>Al finalizar deberíamos poder responder cuatro preguntas:</p>
 <ol type="1">
-<li>Distinguir segmentación <strong>automática</strong> de segmentación <strong>interactiva</strong>.</li>
-<li>Comprender el rol de los <em>prompts</em> en sistemas como SAM/MedSAM.</li>
-<li>Analizar las diferencias entre workflows <em>machine-first</em> y <em>human-in-the-loop</em>.</li>
-<li>Reconocer que cada paradigma requiere un protocolo de evaluación distinto.</li>
+<li>¿Qué diferencia hay entre <strong>score</strong>, <strong>probabilidad calibrada</strong> e <strong>incertidumbre</strong>?</li>
+<li>¿Cómo podemos estimar incertidumbre en redes neuronales?</li>
+<li>¿Qué nos dicen —y qué no— los mapas de saliencia y <strong>Grad-CAM</strong>?</li>
+<li>¿Cómo utilizar estas herramientas para construir sistemas clínicos más seguros?</li>
 </ol>
 </section>
-<section>
-<section id="segmentación-interactiva" class="title-slide slide level1 center">
-<h1>Segmentación interactiva</h1>
+<section id="el-mapa-conceptual" class="slide level2">
+<h2>El mapa conceptual</h2>
 
+<img data-src="./imagenes/clase2/1_decision.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="un-score-alto-puede-estar-equivocado" class="slide level2">
+<h2>Un score alto puede estar equivocado</h2>
+
+<img data-src="./imagenes/clase2/2_confianza.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="de-dónde-sale-esa-probabilidad" class="slide level2">
+<h2>¿De dónde sale esa “probabilidad”?</h2>
+
+<img data-src="./imagenes/clase2/3_probabilidad.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="discriminación-calibración" class="slide level2">
+<h2>Discriminación ≠ calibración</h2>
+
+<img data-src="./imagenes/clase2/4_calibracion.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="qué-significa-estar-calibrado" class="slide level2">
+<h2>¿Qué significa estar calibrado?</h2>
+
+<img data-src="./imagenes/clase2/5_calibracion.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="reliability-diagram" class="slide level2">
+<h2>Reliability diagram</h2>
+<div id="cell-fig-reliability" class="cell" data-fig-height="5.2" data-fig-width="8" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div id="fig-reliability" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center" width="760" height="489">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-reliability-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="clase2_files/figure-revealjs/fig-reliability-output-1.png" id="fig-reliability" class="quarto-figure quarto-figure-center" width="760" height="489">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-reliability-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="visual-note centered muted">
+<p>Debajo de la diagonal: el modelo suele reportar más confianza de la que merece.</p>
+</div>
 </section>
-<section id="cambia-la-formulación" class="slide level2">
-<h2>Cambia la formulación</h2>
+<section id="métricas-de-calibración" class="slide level2">
+<h2>Métricas de calibración</h2>
 
-<img data-src="./imagenes/clase3/3_dos_formulaciones.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="qué-puede-ser-un-prompt" class="slide level2">
-<h2>¿Qué puede ser un prompt?</h2>
+<img data-src="./imagenes/clase2/6_calibracion_metric.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="recalibración-temperature-scaling" class="slide level2">
+<h2>Recalibración: temperature scaling</h2>
 
-<img data-src="./imagenes/clase4/2_prompt.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="el-usuario-resuelve-parte-del-problema" class="slide level2">
-<h2>El usuario resuelve parte del problema</h2>
-
-<img data-src="./imagenes/clase4/3_usuario.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="cambia-la-distribución-del-trabajo" class="slide level2">
-<h2>Cambia la distribución del trabajo</h2>
-
-<img data-src="./imagenes/clase4/4_distribucion.jpg" style="width:80.0%" class="r-stretch"></section></section>
-<section>
-<section id="sam-y-segmentación-guiada-por-prompts" class="title-slide slide level1 center">
-<h1>SAM y segmentación guiada por prompts</h1>
-
+<img data-src="./imagenes/clase2/7_escalado_temperatura.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="pausa-conceptual" class="slide level2">
+<h2>Pausa conceptual</h2>
+<div class="question centered">
+<p>Si un modelo está bien calibrado en promedio…</p>
+<p>¿sabemos cuándo una <em>predicción individual</em> es poco confiable?</p>
+</div>
+<div class="fragment">
+<div class="key-idea centered">
+<p>Esto ya no es solo calibración. Es <strong>incertidumbre</strong>.</p>
+</div>
+</div>
 </section>
-<section id="la-idea-de-sam" class="slide level2">
-<h2>La idea de SAM</h2>
+<section id="dos-fuentes-de-incertidumbre" class="slide level2">
+<h2>Dos fuentes de incertidumbre</h2>
+<div class="cell" data-reveal="true" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class=""><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TB
+    U["Incertidumbre"]
+    A["Aleatoria / aleatoric"]
+    E["Epistémica / epistemic"]
+    A1["Ambigüedad inherente\nde la observación"]
+    E1["Conocimiento limitado\ndel modelo"]
 
-<img data-src="./imagenes/clase4/5_SAM.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="arquitectura-de-sam" class="slide level2">
-<h2>Arquitectura de SAM</h2>
+    U --&gt; A
+    U --&gt; E
+    A --&gt; A1
+    E --&gt; E1
 
-<img data-src="./imagenes/clase4/6_arq_sam_1.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="image-encoder-representar-la-imagen" class="slide level2">
-<h2>Image Encoder: Representar la imagen</h2>
+    classDef root fill:#E8F0FE,stroke:#1F3A5F,color:#0F172A,stroke-width:2px;
+    classDef type fill:#E0F2FE,stroke:#0369A1,color:#0F172A,stroke-width:1.5px;
+    classDef leaf fill:#DCFCE7,stroke:#15803D,color:#0F172A,stroke-width:1.5px;
 
-<img data-src="./imagenes/clase4/7_arq_sam_2.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="prompt-encoder-representar-la-intención-del-usuario" class="slide level2">
-<h2>Prompt Encoder: Representar la intención del usuario</h2>
-
-<img data-src="./imagenes/clase4/8_arq_sam_3.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="mask-decoder-combinar-imagen-y-prompt-para-producir-la-máscara" class="slide level2">
-<h2>Mask Decoder: combinar imagen y prompt para producir la máscara</h2>
-
-<img data-src="./imagenes/clase4/9_arq_sam_4.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="evolución-de-sam-de-imágenes-a-conceptos" class="slide level2">
-<h2>Evolución de SAM: de imágenes a conceptos</h2>
-
-<img data-src="./imagenes/clase4/9_bis_evo_sam.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="qué-agregan-sam2-y-sam3" class="slide level2">
-<h2>¿Qué agregan SAM2 y SAM3?</h2>
-
-<img data-src="./imagenes/clase4/9_bis2_sam_2_3.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="por-qué-no-trasladar-sam-sin-más" class="slide level2">
-<h2>¿Por qué no trasladar SAM sin más?</h2>
-
-<img data-src="./imagenes/clase4/10_natural_medica.jpg" style="width:80.0%" class="r-stretch"></section></section>
-<section>
-<section id="cómo-adaptar-un-modelo-fundacional-al-dominio-médico" class="title-slide slide level1 center">
-<h1>¿Cómo adaptar un modelo fundacional al dominio médico?</h1>
-
+    class U root;
+    class A,E type;
+    class A1,E1 leaf;
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 </section>
-<section id="zero-shot-learning" class="slide level2">
-<h2>Zero-shot learning</h2>
-
-<img data-src="./imagenes/clase4/11_zero_shot.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="few-shot-learning" class="slide level2">
-<h2>Few-shot learning</h2>
-
-<img data-src="./imagenes/clase4/12_few_shot.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="full-fine-tuning-adaptar-todos-los-pesos-del-modelo" class="slide level2">
-<h2>Full fine-tuning: adaptar todos los pesos del modelo</h2>
-
-<img data-src="./imagenes/clase4/13_full_ft.jpg" width="80" class="r-stretch"></section>
-<section id="peft-parameter-efficient-fine-tuning" class="slide level2">
-<h2>PEFT: Parameter-Efficient Fine-Tuning</h2>
-
-<img data-src="./imagenes/clase4/14_PEFT.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="adapters-agregar-pequeños-módulos-entrenables" class="slide level2">
-<h2>Adapters: agregar pequeños módulos entrenables</h2>
-
-<img data-src="./imagenes/clase4/15_adapters.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="lora-adaptar-sin-modificar-directamente-la-matriz-de-original" class="slide level2">
-<h2>LoRA: adaptar sin modificar directamente la matriz de original</h2>
-
-<img data-src="./imagenes/clase4/16_lora_1.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="la-intuición-detrás-de-lora" class="slide level2">
-<h2>La intuición detrás de LoRA</h2>
-
-<img data-src="./imagenes/clase4/17_lora_2.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="por-qué-lora-ahorra-parámetros" class="slide level2">
-<h2>¿Por qué LoRA ahorra parámetros?</h2>
-
-<img data-src="./imagenes/clase4/18_lora_3.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="dónde-se-aplica-lora" class="slide level2">
-<h2>¿Dónde se aplica LoRA?</h2>
-
-<img data-src="./imagenes/clase4/19_lora_4.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="comparación-de-estrategias-de-adaptación" class="slide level2">
-<h2>Comparación de estrategias de adaptación</h2>
-
-<img data-src="./imagenes/clase4/21_comparaciones.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="cuándo-usar-qué" class="slide level2">
-<h2>¿Cuándo usar qué?</h2>
-
-<img data-src="./imagenes/clase4/22_cuando_usar.jpg" style="width:80.0%" class="r-stretch"></section></section>
-<section>
-<section id="medsam" class="title-slide slide level1 center">
-<h1>MedSAM</h1>
-
+<section id="incertidumbre-aleatoria" class="slide level2">
+<h2>Incertidumbre aleatoria</h2>
+<p>Asociada a variabilidad o ambigüedad del dato:</p>
+<ul>
+<li>ruido de adquisición</li>
+<li>bajo contraste</li>
+<li>movimiento y artefactos</li>
+<li>lesión intrínsecamente ambigua</li>
+<li>variabilidad biológica</li>
+</ul>
+<div class="key-idea centered">
+<p><strong>Idea:</strong> aun con muchos datos de entrenamiento, la observación puede seguir siendo ambigua.</p>
+</div>
 </section>
-<section id="medsam-como-adaptación-al-dominio-médico" class="slide level2">
-<h2>MedSAM como adaptación al dominio médico</h2>
-
-<img data-src="./imagenes/clase4/23_medSAM.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="qué-problema-intenta-resolver-medsam" class="slide level2">
-<h2>¿Qué problema intenta resolver MedSAM?</h2>
-
-<img data-src="./imagenes/clase4/24_MedSAM_2.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="cómo-funciona-medsam" class="slide level2">
-<h2>¿Cómo funciona MedSAM?</h2>
-
-<img data-src="./imagenes/clase4/25_MedSAM_3.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="de-sam-a-medsam-qué-se-conserva-y-qué-cambia" class="slide level2">
-<h2>De SAM a MedSAM: qué se conserva y qué cambia</h2>
-
-<img data-src="./imagenes/clase4/26_MedSAM_4.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="limitación-conceptual-de-medsam-1" class="slide level2">
-<h2>Limitación conceptual de MedSAM 1</h2>
-
-<img data-src="./imagenes/clase4/27_MedSAM_5.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="un-cambio-de-pregunta" class="slide level2">
-<h2>Un cambio de pregunta</h2>
-<h3 id="segmentación-automática">Segmentación automática</h3>
-<blockquote>
-<p>¿Puede el modelo encontrar y segmentar automáticamente todas las estructuras?</p>
-</blockquote>
-<h3 id="segmentación-interactiva-1">Segmentación interactiva</h3>
-<blockquote>
-<p><strong>Si el experto le indica qué estructura quiere segmentar, ¿puede delinearla rápidamente?</strong></p>
-</blockquote>
-<p>Son problemas distintos.</p>
-</section></section>
-<section>
-<section id="automática-vs-interactiva" class="title-slide slide level1 center">
-<h1>Automática vs interactiva</h1>
-
+<section id="incertidumbre-epistémica" class="slide level2">
+<h2>Incertidumbre epistémica</h2>
+<p>Asociada a aquello que el modelo <strong>no conoce suficientemente</strong>:</p>
+<ul>
+<li>pocos ejemplos relevantes</li>
+<li>regiones poco representadas del espacio de datos</li>
+<li>nueva población</li>
+<li>nuevo equipo o protocolo</li>
+<li>patologías raras</li>
+</ul>
+<div class="example centered">
+<p>Puede reducirse incorporando datos pertinentes y representativos.</p>
+</div>
 </section>
-<section id="comparación-conceptual" class="slide level2">
-<h2>Comparación conceptual</h2>
+<section id="dos-casos-clínicos-distintos" class="slide level2">
+<h2>Dos casos clínicos distintos</h2>
+
+<img data-src="./imagenes/clase2/8_dos_casos_clinicos.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="dataset-shift-cuando-cambia-el-mundo" class="slide level2">
+<h2>Dataset shift: cuando cambia el mundo</h2>
+
+<img data-src="./imagenes/clase2/10_data_shift.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="monte-carlo-dropout" class="slide level2">
+<h2>Monte Carlo Dropout</h2>
+
+<img data-src="./imagenes/clase2/11_MC_dropout.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="deep-ensembles" class="slide level2">
+<h2>Deep ensembles</h2>
+
+<img data-src="./imagenes/clase2/12_ensemble.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="mc-dropout-vs-ensembles" class="slide level2">
+<h2>MC Dropout vs ensembles</h2>
 <table class="caption-top">
 <colgroup>
 <col style="width: 33%">
@@ -394,320 +383,291 @@ Ignacio Scarinci
 </colgroup>
 <thead>
 <tr class="header">
-<th>Característica</th>
-<th>Automática</th>
-<th>Interactiva</th>
+<th></th>
+<th>MC Dropout</th>
+<th>Deep ensembles</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Entrada</td>
-<td>Imagen</td>
-<td>Imagen + prompt</td>
+<td>Idea</td>
+<td>múltiples forwards de una red</td>
+<td>múltiples redes independientes</td>
 </tr>
 <tr class="even">
-<td>Localización inicial</td>
-<td>Modelo</td>
-<td>Usuario + modelo</td>
+<td>Costo de entrenamiento</td>
+<td>bajo/adicional mínimo</td>
+<td>alto</td>
 </tr>
 <tr class="odd">
-<td>Intervención en inferencia</td>
-<td>Mínima</td>
-<td>Explícita</td>
+<td>Costo de inferencia</td>
+<td>múltiples forwards</td>
+<td>múltiples modelos</td>
 </tr>
 <tr class="even">
-<td>Clases</td>
-<td>Habitualmente predefinidas</td>
-<td>Potencialmente más flexibles</td>
+<td>Señal de incertidumbre</td>
+<td>variación entre máscaras</td>
+<td>desacuerdo entre modelos</td>
 </tr>
 <tr class="odd">
-<td>Escalabilidad masiva</td>
-<td>Muy alta</td>
-<td>Depende de interacción</td>
-</tr>
-<tr class="even">
-<td>Rol del experto</td>
-<td>Revisión posterior</td>
-<td>Participación durante inferencia</td>
-</tr>
-<tr class="odd">
-<td>Workflow</td>
-<td><em>machine-first</em></td>
-<td><em>human-in-the-loop</em></td>
-</tr>
-<tr class="even">
-<td>Ejemplo</td>
-<td>nnU-Net</td>
-<td>MedSAM</td>
+<td>Uso práctico</td>
+<td>sencillo de incorporar</td>
+<td>muy competitivo, pero costoso</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="dos-workflows-diferentes" class="slide level2">
-<h2>Dos workflows diferentes</h2>
-
-<img data-src="./imagenes/clase4/28_2_workflows.jpg" style="width:80.0%" class="r-stretch"></section>
-<section id="cuál-paradigma-es-mejor" class="slide level2">
-<h2>¿Cuál paradigma es mejor?</h2>
-<p>La pregunta correcta depende del objetivo.</p>
-<p>Para segmentar muchas estructuras conocidas en grandes volúmenes de estudios:</p>
-<p><span class="math display">\[
-\text{automático}
-\]</span></p>
-<p>puede ser muy atractivo.</p>
-<p>Para estructuras variables, poco frecuentes o definidas durante la interacción:</p>
-<p><span class="math display">\[
-\text{interactivo}
-\]</span></p>
-<p>puede aportar mayor flexibilidad.</p>
-</section>
-<section id="dice-no-alcanza-para-compararlos" class="slide level2">
-<h2>Dice no alcanza para compararlos</h2>
-<p>No basta con:</p>
-<p><span class="math display">\[
-Dice_{\text{automático}}
-\quad \text{vs} \quad
-Dice_{\text{interactivo}}
-\]</span></p>
-<p>También importan:</p>
-<ul>
-<li>tiempo del usuario</li>
-<li>cantidad de correcciones</li>
-<li>errores críticos</li>
-<li>facilidad de interacción</li>
-<li>generalización</li>
-<li>integración clínica</li>
-</ul>
-</section></section>
-<section>
-<section id="automatización-vs-colaboración-humanoia" class="title-slide slide level1 center">
-<h1>Automatización vs colaboración humano–IA</h1>
-
-</section>
-<section id="dos-visiones" class="slide level2">
-<h2>Dos visiones</h2>
-<div class="columns">
-<div class="column" style="width:48%;">
-<h3 id="automatización">Automatización</h3>
-<p><span class="math display">\[
-\text{tarea manual}
-\rightarrow
-\text{modelo automático}
-\]</span></p>
-<p>El sistema intenta reemplazar una tarea específica.</p>
-</div><div class="column" style="width:48%;">
-<h3 id="asistencia">Asistencia</h3>
-<p><span class="math display">\[
-\text{experto}
-+
-\text{modelo}
-\rightarrow
-\text{tarea asistida}
-\]</span></p>
-<p>El sistema modifica cómo se realiza la tarea.</p>
-</div></div>
-</section>
-<section id="human-in-the-loop" class="slide level2">
-<h2>Human-in-the-loop</h2>
-<p>En un sistema interactivo:</p>
-<blockquote>
-<p>la intervención humana no es un fallo del sistema.</p>
-</blockquote>
-<p>Es parte deliberada del diseño.</p>
-<div class="callout callout-important callout-titled callout-style-default">
+<div class="compact">
+<div class="callout callout-warning callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Importante</strong></p>
+<p><strong>Warning</strong></p>
 </div>
 <div class="callout-content">
-<p>El experto aporta <strong>conocimiento, intención y contexto</strong>.<br>
-El modelo aporta <strong>velocidad y capacidad de delineación</strong>.</p>
+<p>Ninguno de los dos métodos garantiza detectar todos los casos OOD ni produce una “incertidumbre perfecta”.</p>
+</div>
 </div>
 </div>
 </div>
 </section>
-<section id="dónde-colocar-al-experto" class="slide level2">
-<h2>¿Dónde colocar al experto?</h2>
+<section id="incertidumbre-como-herramienta-de-seguridad" class="slide level2">
+<h2>Incertidumbre como herramienta de seguridad</h2>
 <div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a aria-label="1"></a>flowchart TB</span>
-<span id="cb1-2"><a aria-label="2"></a>    A[Antes] --&gt; A1[Prompt inicial]</span>
-<span id="cb1-3"><a aria-label="3"></a>    B[Después] --&gt; B1[Revisión / corrección]</span>
-<span id="cb1-4"><a aria-label="4"></a>    C[Durante] --&gt; C1[Interacción iterativa]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a aria-label="1"></a>flowchart LR</span>
+<span id="cb1-2"><a aria-label="2"></a>    A["Imagen"] --&gt; B["Modelo"]</span>
+<span id="cb1-3"><a aria-label="3"></a>    B --&gt; C["Predicción"]</span>
+<span id="cb1-4"><a aria-label="4"></a>    B --&gt; D["Incertidumbre"]</span>
+<span id="cb1-5"><a aria-label="5"></a>    D --&gt; E{"¿u ≥ τ?"}</span>
+<span id="cb1-6"><a aria-label="6"></a>    E --&gt;|"No"| F["Aceptar / automatizar"]</span>
+<span id="cb1-7"><a aria-label="7"></a>    E --&gt;|"Sí"| G["Revisión por experto"]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
 <div>
-<pre class="mermaid mermaid-js">flowchart TB
-    A[Antes] --&gt; A1[Prompt inicial]
-    B[Después] --&gt; B1[Revisión / corrección]
-    C[Durante] --&gt; C1[Interacción iterativa]
+<pre class="mermaid mermaid-js">flowchart LR
+    A["Imagen"] --&gt; B["Modelo"]
+    B --&gt; C["Predicción"]
+    B --&gt; D["Incertidumbre"]
+    D --&gt; E{"¿u ≥ τ?"}
+    E --&gt;|"No"| F["Aceptar / automatizar"]
+    E --&gt;|"Sí"| G["Revisión por experto"]
 </pre>
 </div>
 <p></p></figure><p></p>
 </div>
 </div>
 </div>
-<p>Tres posibilidades:</p>
-<ol type="1">
-<li>antes de la predicción;</li>
-<li>después de la predicción;</li>
-<li>durante un proceso iterativo.</li>
-</ol>
-</section></section>
-<section>
-<section id="el-tiempo-total-importa-más-que-el-tiempo-de-inferencia" class="title-slide slide level1 center">
-<h1>El tiempo total importa más que el tiempo de inferencia</h1>
+<div class="key-idea centered">
+<p>La incertidumbre es útil cuando modifica el <strong>workflow</strong>, no cuando solo agrega otro número a la pantalla.</p>
+</div>
+</section>
+<section id="cobertura-versus-riesgo" class="slide level2">
+<h2>Cobertura versus riesgo</h2>
+<div id="cell-fig-risk-coverage" class="cell" data-fig-height="5.1" data-fig-width="8" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-risk-coverage" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center" width="760" height="480">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-risk-coverage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="clase2_files/figure-revealjs/fig-risk-coverage-output-1.png" id="fig-risk-coverage" class="quarto-figure quarto-figure-center" width="760" height="480">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-risk-coverage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="visual-note centered muted">
+<p>Ser más selectivo puede reducir el riesgo, pero también reduce la automatización.</p>
+</div>
+</section>
+<section id="tres-preguntas-distintas" class="slide level2">
+<h2>Tres preguntas distintas</h2>
 
-</section>
-<section id="inferencia-rápida-workflow-rápido" class="slide level2">
-<h2>Inferencia rápida ≠ workflow rápido</h2>
-<p>Un modelo puede tardar segundos en generar una máscara.</p>
-<p>Pero luego pueden aparecer:</p>
-<ul>
-<li>inspección</li>
-<li>corrección</li>
-<li>confirmación</li>
-</ul>
-<p>Por eso:</p>
+<img data-src="./imagenes/clase2/13_evaluación_de_modelos.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="de-la-confianza-a-la-explicación" class="slide level2">
+<h2>De la confianza a la explicación</h2>
+<p>Supongamos ahora:</p>
 <p><span class="math display">\[
-\text{tiempo de inferencia}
-\neq
-\text{tiempo total hasta máscara aceptable}
+P(\text{maligno})=0.92
 \]</span></p>
+<p>y además estimamos una incertidumbre baja.</p>
+<div class="question centered">
+<p>¿Qué información de la imagen utilizó el modelo para producir esa predicción?</p>
+</div>
 </section>
-<section id="tiempo-clínico-real" class="slide level2">
-<h2>Tiempo clínico real</h2>
+<section id="interpretabilidad-y-explicabilidad" class="slide level2">
+<h2>Interpretabilidad y explicabilidad</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<h3 id="modelo-interpretable">Modelo interpretable</h3>
+<p>Su mecanismo puede inspeccionarse directamente.</p>
+<p><span class="math display">\[
+y=w_1x_1+w_2x_2+b
+\]</span></p>
+<p>Ejemplo: regresión lineal/logística.</p>
+</div><div class="column" style="width:48%;">
+<h3 id="modelo-explicable">Modelo explicable</h3>
+<p>El modelo es complejo y aplicamos herramientas adicionales para analizar su comportamiento.</p>
+<p>Ejemplo: CNN + Grad-CAM.</p>
+</div></div>
+</section>
+<section id="métodos-post-hoc" class="slide level2">
+<h2>Métodos post-hoc</h2>
 <div class="cell" data-reveal="true" data-layout-align="default">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb2-2"><a aria-label="2"></a>    G[Generación] --&gt; I[Inspección]</span>
-<span id="cb2-3"><a aria-label="3"></a>    I --&gt; C[Corrección]</span>
-<span id="cb2-4"><a aria-label="4"></a>    C --&gt; F[Confirmación]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-2"><a aria-label="2"></a>    A["Imagen"] --&gt; B["Modelo entrenado"]</span>
+<span id="cb2-3"><a aria-label="3"></a>    B --&gt; C["Predicción"]</span>
+<span id="cb2-4"><a aria-label="4"></a>    A --&gt; D["Método post-hoc"]</span>
+<span id="cb2-5"><a aria-label="5"></a>    B --&gt; D</span>
+<span id="cb2-6"><a aria-label="6"></a>    D --&gt; E["Mapa / explicación"]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart LR
-    G[Generación] --&gt; I[Inspección]
-    I --&gt; C[Corrección]
-    C --&gt; F[Confirmación]
+    A["Imagen"] --&gt; B["Modelo entrenado"]
+    B --&gt; C["Predicción"]
+    A --&gt; D["Método post-hoc"]
+    B --&gt; D
+    D --&gt; E["Mapa / explicación"]
 </pre>
 </div>
 <p></p></figure><p></p>
 </div>
 </div>
 </div>
-<p>En un sistema interactivo también debemos sumar:</p>
+<div class="centered">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Warning</strong></p>
+</div>
+<div class="callout-content">
+<p>El método de explicación analiza un modelo ya entrenado; no necesariamente cambia cómo el modelo toma decisiones.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="mapas-de-saliencia" class="slide level2">
+<h2>Mapas de saliencia</h2>
+
+<img data-src="./imagenes/clase2/14_mapa_saliencia.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="grad-cam-idea-general" class="slide level2">
+<h2>Grad-CAM: idea general</h2>
+
+<img data-src="./imagenes/clase2/15_diagrama_Grad-CAM.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="explicabilidad-como-herramienta-de-validación" class="slide level2">
+<h2>Explicabilidad como herramienta de validación</h2>
+
+<img data-src="./imagenes/clase2/16_flujo_de_explicabilidad.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="grad-cam-no-equivale-a-causalidad" class="slide level2">
+<h2>Grad-CAM no equivale a causalidad</h2>
+
+<img data-src="./imagenes/clase2/18_explicabilidad_no_es_causalidad.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="occlusion-sensitivity" class="slide level2">
+<h2>Occlusion sensitivity</h2>
+
+<img data-src="./imagenes/clase2/19_oclusion.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="sanity-checks" class="slide level2">
+<h2>Sanity checks</h2>
+
+<img data-src="./imagenes/clase2/20_sanity_check.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="comparación-rápida-de-métodos" class="slide level2">
+<h2>Comparación rápida de métodos</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Método</th>
+<th>Pregunta aproximada</th>
+<th>Ventaja</th>
+<th>Limitación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Saliency</strong></td>
+<td>¿Dónde es sensible localmente la salida?</td>
+<td>Simple</td>
+<td>Puede ser ruidoso</td>
+</tr>
+<tr class="even">
+<td><strong>Grad-CAM</strong></td>
+<td>¿Qué regiones de feature maps apoyan una clase?</td>
+<td>Intuitivo</td>
+<td>Baja resolución</td>
+</tr>
+<tr class="odd">
+<td><strong>Occlusion</strong></td>
+<td>¿Qué pasa si retiro esta región?</td>
+<td>Fácil de razonar</td>
+<td>Costoso</td>
+</tr>
+</tbody>
+</table>
+<div class="key-idea centered">
+<p>La elección depende de la <strong>pregunta</strong>, no solo de la disponibilidad del método.</p>
+</div>
+</section>
+<section id="explicabilidad-confianza" class="slide level2">
+<h2>Explicabilidad ≠ confianza</h2>
+<div class="question centered">
+<p>“El Grad-CAM parece clínicamente razonable.</p>
+<p>Entonces podemos confiar en la predicción.”</p>
+</div>
+<div class="fragment">
+<div class="takeaway centered">
+<p><strong>Conclusión incorrecta.</strong></p>
+</div>
 <p><span class="math display">\[
-\text{tiempo para generar el prompt}
+\text{explicabilidad}\neq\text{incertidumbre}\neq\text{validación}
 \]</span></p>
-<p>La eficiencia debe evaluarse sobre el <strong>workflow completo</strong>.</p>
-</section></section>
-<section>
-<section id="el-error-también-cambia-de-significado" class="title-slide slide level1 center">
-<h1>El error también cambia de significado</h1>
-
-</section>
-<section id="en-un-sistema-automático" class="slide level2">
-<h2>En un sistema automático</h2>
-<p>El error puede permanecer oculto hasta la revisión.</p>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb3-2"><a aria-label="2"></a>    I[Imagen] --&gt; M[Modelo]</span>
-<span id="cb3-3"><a aria-label="3"></a>    M --&gt; E[Error]</span>
-<span id="cb3-4"><a aria-label="4"></a>    E --&gt; R[Detectado en revisión]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    I[Imagen] --&gt; M[Modelo]
-    M --&gt; E[Error]
-    E --&gt; R[Detectado en revisión]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
 </div>
 </section>
-<section id="en-un-sistema-interactivo" class="slide level2">
-<h2>En un sistema interactivo</h2>
-<p>El usuario puede advertir que la salida no corresponde a su intención y modificar el prompt.</p>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb4-2"><a aria-label="2"></a>    P1[Prompt 1] --&gt; M[Modelo]</span>
-<span id="cb4-3"><a aria-label="3"></a>    M --&gt; S1[Salida]</span>
-<span id="cb4-4"><a aria-label="4"></a>    S1 --&gt; C[Usuario corrige]</span>
-<span id="cb4-5"><a aria-label="5"></a>    C --&gt; P2[Prompt 2]</span>
-<span id="cb4-6"><a aria-label="6"></a>    P2 --&gt; M</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    P1[Prompt 1] --&gt; M[Modelo]
-    M --&gt; S1[Salida]
-    S1 --&gt; C[Usuario corrige]
-    C --&gt; P2[Prompt 2]
-    P2 --&gt; M
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>Esto cambia cómo pensamos seguridad, usabilidad y corrección de errores.</p>
-</section></section>
-<section>
-<section id="los-dos-paradigmas-pueden-coexistir" class="title-slide slide level1 center">
-<h1>Los dos paradigmas pueden coexistir</h1>
+<section id="las-tres-preguntas-de-la-unidad" class="slide level2">
+<h2>Las tres preguntas de la unidad</h2>
 
+<img data-src="./imagenes/clase2/20_dimensiones_complementarias.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="un-modelo-todavía-no-es-un-sistema-clínico" class="slide level2">
+<h2>Un modelo todavía no es un sistema clínico</h2>
+
+<img data-src="./imagenes/clase2/21_Flujo.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="cierre" class="slide level2">
+<h2>Cierre</h2>
+<div class="definition">
+<p><strong>1.</strong> Un score alto no equivale a certeza.</p>
+<p><strong>2.</strong> Discriminación, calibración e incertidumbre responden preguntas diferentes.</p>
+<p><strong>3.</strong> MC Dropout y ensembles permiten aproximar incertidumbre, pero no resuelven universalmente OOD.</p>
+<p><strong>4.</strong> Grad-CAM y saliency sirven para auditar comportamiento, no para demostrar causalidad.</p>
+<p><strong>5.</strong> La utilidad clínica aparece cuando estas herramientas modifican el workflow y reducen riesgo.</p>
+</div>
 </section>
-<section id="no-necesariamente-hay-que-elegir-uno" class="slide level2">
-<h2>No necesariamente hay que elegir uno</h2>
-<p>Un posible sistema clínico puede combinar:</p>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb5-2"><a aria-label="2"></a>    I[Imagen] --&gt; A[Segmentación automática]</span>
-<span id="cb5-3"><a aria-label="3"></a>    I --&gt; P[Segmentación interactiva]</span>
-<span id="cb5-4"><a aria-label="4"></a>    A --&gt; O[OARs frecuentes]</span>
-<span id="cb5-5"><a aria-label="5"></a>    P --&gt; X[Estructuras adicionales / correcciones]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    I[Imagen] --&gt; A[Segmentación automática]
-    I --&gt; P[Segmentación interactiva]
-    A --&gt; O[OARs frecuentes]
-    P --&gt; X[Estructuras adicionales / correcciones]
-</pre>
+<section id="próximo-paso" class="slide level2">
+<h2>Próximo paso</h2>
+<div class="question centered">
+<p>¿Cómo pasamos de un modelo aislado</p>
+<p>a un sistema de diagnóstico asistido por computadora?</p>
 </div>
-<p></p></figure><p></p>
+<div class="fragment">
+<div class="key-idea centered">
+<p><strong>CAD · integración · validación clínica</strong></p>
 </div>
-</div>
-</div>
-<p>Esto permite:</p>
-<ul>
-<li>automatizar lo frecuente</li>
-<li>interactuar en lo excepcional</li>
-<li>corregir con rapidez</li>
-</ul>
-</section></section>
-<section>
-<section id="la-evaluación-también-depende-del-paradigma" class="title-slide slide level1 center">
-<h1>La evaluación también depende del paradigma</h1>
 
+
+</div>
 </section>
-<section id="evaluación-de-un-sistema-automático" class="slide level2">
-<h2>Evaluación de un sistema automático</h2>
-
-
-
-<img data-src="./imagenes/clase4/29_evaluacion.jpg" style="width:80.0%" class="r-stretch"></section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
@@ -722,7 +682,6 @@ El modelo aporta <strong>velocidad y capacidad de delineación</strong>.</p>
   <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
   <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -738,14 +697,13 @@ El modelo aporta <strong>velocidad y capacidad de delineación</strong>.</p>
       // https://revealjs.com/config/
       Reveal.initialize({
 'controlsAuto': true,
-'previewLinksAuto': true,
+'previewLinksAuto': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
 'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'chalkboard': {"buttons":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -766,7 +724,7 @@ El modelo aporta <strong>velocidad y capacidad de delineación</strong>.</p>
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: 'c/t',
+        slideNumber: false,
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
@@ -871,7 +829,7 @@ El modelo aporta <strong>velocidad y capacidad de delineación</strong>.</p>
         previewLinks: false,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
-        transition: 'fade',
+        transition: 'none',
 
         // Transition speed (default/fast/slow)
         transitionSpeed: 'default',
@@ -891,12 +849,12 @@ El modelo aporta <strong>velocidad y capacidad de delineación</strong>.</p>
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1600,
+        width: 1050,
 
-        height: 900,
+        height: 700,
 
         // Factor of the display size that should remain empty around the content
-        margin: 6.0e-2,
+        margin: 0.1,
 
         math: {
           mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
@@ -916,7 +874,7 @@ El modelo aporta <strong>velocidad y capacidad de delineación</strong>.</p>
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
 
           RevealMath,
           RevealNotes,
@@ -947,12 +905,12 @@ El modelo aporta <strong>velocidad y capacidad de delineación</strong>.</p>
           // flash "checked"
           button.classList.add('code-copy-button-checked');
           var currentTitle = button.getAttribute("title");
-          button.setAttribute("title", "Copiado");
+          button.setAttribute("title", "Copied!");
           let tooltip;
           if (window.bootstrap) {
             button.setAttribute("data-bs-toggle", "tooltip");
             button.setAttribute("data-bs-placement", "left");
-            button.setAttribute("data-bs-title", "Copiado");
+            button.setAttribute("data-bs-title", "Copied!");
             tooltip = new bootstrap.Tooltip(button, 
               { trigger: "manual", 
                 customClass: "code-copy-button-tooltip",
