@@ -1,10 +1,28 @@
 ---
-title: "Unidad 3: Detección de Objetos en Imágenes Médicas"
-subtitle: "De la clasificación a la detección"
+title: "Unidad 3: Detección, clasificación y diagnóstico asistido"
+subtitle: "De las predicciones a sistemas clínicos confiables"
 lang: es
 format:
   html:
     toc: false
     number-sections: false
 ---
+
+# Materiales
+
+## Clases
+
+- [Clase 1: De la clasificación a la detección](clase1.qmd)
+- [Clase 2: Incertidumbre y explicabilidad](clase2.qmd)
+
+## Notas
+
+- [Notas de la clase 1](notas1.qmd)
+- [Notas de la clase 2](notas2.qmd)
+
+## Notebooks
+
+- [Notebook 1: Calibración e incertidumbre con MONAI](notebooks/Notebook1_calibracion_incertidumbre.ipynb)
+- [Notebook 2: Saliencia y Grad-CAM con MONAI](notebooks/Notebook2_explicabilidad.ipynb)
+- [Notebook 3: Segmentación y Grad-CAM con MONAI](notebooks/Notebook3_segmentacion_gradcam.ipynb)
 

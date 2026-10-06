@@ -1,0 +1,870 @@
+---
+title: "Unidad 3 — Detección, clasificación y diagnóstico asistido"
+subtitle: "Clase 2 · Incertidumbre y explicabilidad"
+author: "Ignacio Scarinci"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    progress: true
+    transition: fade
+    center: false
+    navigation-mode: linear
+    controls: true
+    chalkboard: false
+    code-overflow: wrap
+    footer: "IA en Física Médica · Unidad 3"
+    width: 1600
+    height: 900
+    margin: 0.08
+    mermaid:
+      theme: neutral
+jupyter: python3
+execute:
+  echo: false
+  warning: false
+  message: false
+  cache: true
+---
+
+
+## La pregunta de hoy
+
+<div class="question">
+Un modelo predice <span style="font-size:1.25em">0.98</span>.<br><br>
+¿Eso significa que está <em>98 % seguro</em>?
+</div>
+
+. . .
+
+<div class="dangerbox center" style="margin-top:1.2em">
+<strong>No necesariamente.</strong>
+</div>
+
+## Objetivos de la clase
+
+Al finalizar deberíamos poder responder cuatro preguntas:
+
+1. ¿Qué diferencia hay entre **score**, **probabilidad calibrada** e **incertidumbre**?
+2. ¿Cómo podemos estimar incertidumbre en redes neuronales?
+3. ¿Qué nos dicen —y qué no— los mapas de saliencia y **Grad-CAM**?
+4. ¿Cómo utilizar estas herramientas para construir sistemas clínicos más seguros?
+
+## El mapa conceptual
+
+```{mermaid}
+flowchart LR
+    A["Predicción"] --> B["¿Discrimina bien?"]
+    B --> C["¿Está calibrada?"]
+    C --> D["¿Cuánto confiar en este caso?"]
+    D --> E["¿Qué información utilizó?"]
+    E --> F["¿Cómo se integra al sistema clínico?"]
+```
+
+<div class="accent center">
+La clase avanza desde la <strong>salida numérica</strong> del modelo hacia su <strong>uso en una decisión clínica</strong>.
+</div>
+
+## Un score alto puede estar equivocado
+
+::: {.columns}
+::: {.column width="48%"}
+### Caso 1
+
+$$
+P(\text{maligno}) = 0.98
+$$
+
+Predicción correcta.
+
+<div class="goodbox">
+Alta confianza aparente + acierto.
+</div>
+:::
+
+::: {.column width="48%"}
+### Caso 2
+
+$$
+P(\text{maligno}) = 0.98
+$$
+
+Predicción incorrecta.
+
+<div class="dangerbox">
+Alta confianza aparente + error.
+</div>
+:::
+:::
+
+. . .
+
+<div class="center big"><strong>El valor de salida no certifica que el modelo tenga razón.</strong></div>
+
+## ¿De dónde sale esa “probabilidad”?
+
+### Clasificación binaria
+
+$$
+z \in \mathbb{R}
+\qquad\longrightarrow\qquad
+p=\sigma(z)=\frac{1}{1+e^{-z}}
+$$
+
+### Clasificación multiclase
+
+$$
+\mathbf z=(z_1,\ldots,z_K)
+\qquad\longrightarrow\qquad
+p_k=\frac{e^{z_k}}{\sum_j e^{z_j}}
+$$
+
+<div class="warningbox">
+Sigmoide y softmax producen números entre 0 y 1, pero eso <strong>no garantiza</strong> que representen probabilidades empíricamente fiables.
+</div>
+
+## Discriminación ≠ calibración
+
+::: {.columns}
+::: {.column width="48%"}
+### Discriminación
+
+> ¿El modelo ordena/separa bien positivos y negativos?
+
+Ejemplos:
+
+- ROC-AUC
+- sensibilidad / especificidad
+- precision-recall
+:::
+
+::: {.column width="48%"}
+### Calibración
+
+> Cuando el modelo dice 80 %, ¿aproximadamente 80 % de esos casos son realmente positivos?
+
+$$
+P(Y=1\mid \hat p=0.8)\approx0.8
+$$
+:::
+:::
+
+## ¿Qué significa estar calibrado?
+
+Supongamos 100 pacientes para los que el modelo predice aproximadamente:
+
+$$
+\hat p \approx 0.8
+$$
+
+Un modelo bien calibrado debería mostrar aproximadamente:
+
+$$
+80\ \text{positivos reales de cada 100 casos}
+$$
+
+<div class="accent center big">
+La calibración compara <strong>probabilidad predicha</strong> con <strong>frecuencia observada</strong>.
+</div>
+
+## Reliability diagram
+
+```{python}
+#| label: fig-reliability
+#| fig-width: 8
+#| fig-height: 5.2
+#| fig-align: center
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+pred = np.array([0.08, 0.18, 0.31, 0.44, 0.58, 0.70, 0.82, 0.93])
+obs_good = np.array([0.10, 0.19, 0.29, 0.45, 0.56, 0.72, 0.80, 0.91])
+obs_over = np.array([0.03, 0.08, 0.16, 0.25, 0.39, 0.52, 0.65, 0.76])
+
+fig, ax = plt.subplots(figsize=(8, 5.2))
+ax.plot([0, 1], [0, 1], linestyle="--", linewidth=2, label="Calibración perfecta")
+ax.plot(pred, obs_good, marker="o", linewidth=2.2, label="Bien calibrado")
+ax.plot(pred, obs_over, marker="s", linewidth=2.2, label="Sobreconfiado")
+ax.set_xlim(0, 1)
+ax.set_ylim(0, 1)
+ax.set_xlabel("Probabilidad predicha")
+ax.set_ylabel("Frecuencia observada")
+ax.legend(frameon=False)
+ax.grid(alpha=0.2)
+plt.tight_layout()
+plt.show()
+```
+
+<div class="small center muted">Debajo de la diagonal: el modelo suele reportar más confianza de la que merece.</div>
+
+## Métricas de calibración
+
+::: {.columns}
+::: {.column width="48%"}
+### Expected Calibration Error
+
+$$
+\mathrm{ECE}
+=
+\sum_{m=1}^{M}
+\frac{|B_m|}{N}
+\left|
+\mathrm{acc}(B_m)-\mathrm{conf}(B_m)
+\right|
+$$
+
+<div class="small">
+Resume discrepancias por <em>bins</em>, pero depende de cómo se construyan esos intervalos.
+</div>
+:::
+
+::: {.column width="48%"}
+### Brier score
+
+$$
+\mathrm{Brier}
+=
+\frac{1}{N}\sum_{i=1}^{N}(\hat p_i-y_i)^2
+$$
+
+<div class="small">
+Penaliza especialmente las predicciones muy seguras que resultan incorrectas.
+</div>
+:::
+:::
+
+## Recalibración: temperature scaling
+
+Partimos de los logits y modificamos su “temperatura”:
+
+$$
+p_k
+=
+\frac{\exp(z_k/T)}{\sum_j \exp(z_j/T)}
+$$
+
+::: {.columns}
+::: {.column width="48%"}
+### $T>1$
+
+Probabilidades menos extremas.
+
+$$
+(0.99,0.01)\rightarrow(0.85,0.15)
+$$
+:::
+
+::: {.column width="48%"}
+### $T<1$
+
+Probabilidades más concentradas.
+
+$$
+(0.70,0.30)\rightarrow(0.90,0.10)
+$$
+:::
+:::
+
+<div class="warningbox">
+Recalibrar puede mejorar la fiabilidad de las probabilidades <strong>sin cambiar sustancialmente la discriminación</strong>.
+</div>
+
+## Pausa conceptual
+
+<div class="question">
+Si un modelo está bien calibrado en promedio…<br><br>
+¿sabemos cuándo una <em>predicción individual</em> es poco confiable?
+</div>
+
+. . .
+
+<div class="accent center big">
+Esto ya no es solo calibración. Es <strong>incertidumbre</strong>.
+</div>
+
+## Dos fuentes de incertidumbre
+
+```{mermaid}
+flowchart TB
+    U["Incertidumbre"] --> A["Aleatoria / aleatoric"]
+    U --> E["Epistémica / epistemic"]
+    A --> A1["Ambigüedad inherente de la observación"]
+    E --> E1["Conocimiento limitado del modelo"]
+```
+
+## Incertidumbre aleatoria
+
+Asociada a variabilidad o ambigüedad del dato:
+
+- ruido de adquisición;
+- bajo contraste;
+- movimiento y artefactos;
+- lesión intrínsecamente ambigua;
+- variabilidad biológica.
+
+<div class="accent center">
+<strong>Idea:</strong> aun con muchos datos de entrenamiento, la observación puede seguir siendo ambigua.
+</div>
+
+## Incertidumbre epistémica
+
+Asociada a aquello que el modelo **no conoce suficientemente**:
+
+- pocos ejemplos relevantes;
+- regiones poco representadas del espacio de datos;
+- nueva población;
+- nuevo equipo o protocolo;
+- patologías raras.
+
+<div class="goodbox center">
+Puede reducirse incorporando datos pertinentes y representativos.
+</div>
+
+## Dos casos clínicos distintos
+
+::: {.columns}
+::: {.column width="48%"}
+### Caso A · Imagen ambigua
+
+Lesión de bajo contraste y bordes poco definidos.
+
+Varios expertos podrían discrepar.
+
+$$
+\Downarrow
+$$
+
+**Componente aleatoria alta**
+:::
+
+::: {.column width="48%"}
+### Caso B · Dominio nuevo
+
+Imagen visualmente clara, pero adquirida con un protocolo no visto durante entrenamiento.
+
+$$
+\Downarrow
+$$
+
+**Componente epistémica alta**
+:::
+:::
+
+## Dataset shift: cuando cambia el mundo
+
+$$
+P_{\mathrm{test}}(x,y)\neq P_{\mathrm{train}}(x,y)
+$$
+
+Puede cambiar:
+
+::: {.columns}
+::: {.column width="48%"}
+- centro clínico;
+- fabricante;
+- reconstrucción;
+- dosis;
+:::
+::: {.column width="48%"}
+- población;
+- prevalencia;
+- protocolo;
+- selección de pacientes.
+:::
+:::
+
+<div class="question" style="font-size:1.15em">
+Idealmente el sistema debería poder decir:<br>
+“Este caso es distinto de aquello que conozco”.
+</div>
+
+## Un softmax alto no detecta OOD
+
+Un caso fuera de distribución puede producir:
+
+$$
+p=(0.99,0.005,0.005)
+$$
+
+<div class="dangerbox center big">
+<strong>Muy seguro</strong> no implica <strong>muy confiable</strong>.
+</div>
+
+. . .
+
+La estimación de incertidumbre busca información adicional a la salida softmax convencional.
+
+## Monte Carlo Dropout
+
+```{mermaid}
+flowchart LR
+    A["Misma imagen"] --> B1["Forward 1\nDropout ON"]
+    A --> B2["Forward 2\nDropout ON"]
+    A --> B3["..."]
+    A --> B4["Forward T\nDropout ON"]
+    B1 --> C["Distribución de predicciones"]
+    B2 --> C
+    B3 --> C
+    B4 --> C
+    C --> D["Media"]
+    C --> E["Dispersión"]
+```
+
+$$
+\bar p=\frac{1}{T}\sum_{t=1}^{T}\hat p^{(t)}
+$$
+
+<div class="small center muted">Más dispersión entre forwards → mayor incertidumbre estimada.</div>
+
+## Deep ensembles
+
+```{mermaid}
+flowchart LR
+    A["Imagen"] --> M1["Modelo 1"]
+    A --> M2["Modelo 2"]
+    A --> M3["Modelo 3"]
+    A --> MM["Modelo M"]
+    M1 --> C["Combinar predicciones"]
+    M2 --> C
+    M3 --> C
+    MM --> C
+    C --> P["Predicción promedio"]
+    C --> U["Desacuerdo"]
+```
+
+$$
+\bar p(x)=\frac{1}{M}\sum_{m=1}^{M}p^{(m)}(x)
+$$
+
+## MC Dropout vs ensembles
+
+| | MC Dropout | Deep ensembles |
+|---|---|---|
+| Idea | múltiples forwards de una red | múltiples redes independientes |
+| Costo de entrenamiento | bajo/adicional mínimo | alto |
+| Costo de inferencia | múltiples forwards | múltiples modelos |
+| Señal de incertidumbre | variación entre máscaras | desacuerdo entre modelos |
+| Uso práctico | sencillo de incorporar | muy competitivo, pero costoso |
+
+<div class="warningbox small">
+Ninguno de los dos métodos garantiza detectar todos los casos OOD ni produce una “incertidumbre perfecta”.
+</div>
+
+## Incertidumbre como herramienta de seguridad
+
+```{mermaid}
+flowchart LR
+    A["Imagen"] --> B["Modelo"]
+    B --> C["Predicción"]
+    B --> D["Incertidumbre"]
+    D --> E{"¿u ≥ τ?"}
+    E -->|"No"| F["Aceptar / automatizar"]
+    E -->|"Sí"| G["Revisión por experto"]
+```
+
+<div class="accent center">
+La incertidumbre es útil cuando modifica el <strong>workflow</strong>, no cuando solo agrega otro número a la pantalla.
+</div>
+
+## Cobertura versus riesgo
+
+```{python}
+#| label: fig-risk-coverage
+#| fig-width: 8
+#| fig-height: 5.1
+#| fig-align: center
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+coverage = np.linspace(0.15, 1.0, 18)
+risk = 0.035 + 0.20*(coverage**2.2)
+
+fig, ax = plt.subplots(figsize=(8, 5.1))
+ax.plot(coverage, risk, marker="o", linewidth=2.2)
+ax.set_xlabel("Cobertura: fracción de casos aceptados automáticamente")
+ax.set_ylabel("Riesgo / error en los casos aceptados")
+ax.set_xlim(0.1, 1.02)
+ax.set_ylim(0, max(risk)*1.08)
+ax.grid(alpha=0.2)
+plt.tight_layout()
+plt.show()
+```
+
+<div class="center small muted">Ser más selectivo puede reducir el riesgo, pero también reduce la automatización.</div>
+
+## Tres preguntas distintas
+
+::: {.columns}
+::: {.column width="32%"}
+<div class="box center">
+<div class="metric">Discriminación</div>
+<br>
+¿Separa correctamente las clases?
+</div>
+:::
+::: {.column width="32%"}
+<div class="box center">
+<div class="metric">Calibración</div>
+<br>
+¿Las probabilidades reportadas son fiables?
+</div>
+:::
+::: {.column width="32%"}
+<div class="box center">
+<div class="metric">Incertidumbre</div>
+<br>
+¿Cuánto confiar en este caso particular?
+</div>
+:::
+:::
+
+<div class="center big" style="margin-top:1em">
+<strong>Buen AUC ≠ buena calibración ≠ incertidumbre fiable</strong>
+</div>
+
+## De la confianza a la explicación
+
+Supongamos ahora:
+
+$$
+P(\text{maligno})=0.92
+$$
+
+y además estimamos una incertidumbre baja.
+
+<div class="question" style="font-size:1.25em">
+¿Qué información de la imagen utilizó el modelo para producir esa predicción?
+</div>
+
+## Interpretabilidad y explicabilidad
+
+::: {.columns}
+::: {.column width="48%"}
+### Modelo interpretable
+
+Su mecanismo puede inspeccionarse directamente.
+
+$$
+y=w_1x_1+w_2x_2+b
+$$
+
+Ejemplo: regresión lineal/logística.
+:::
+
+::: {.column width="48%"}
+### Modelo explicable
+
+El modelo es complejo y aplicamos herramientas adicionales para analizar su comportamiento.
+
+Ejemplo: CNN + Grad-CAM.
+:::
+:::
+
+## Métodos post-hoc
+
+```{mermaid}
+flowchart LR
+    A["Imagen"] --> B["Modelo entrenado"]
+    B --> C["Predicción"]
+    A --> D["Método post-hoc"]
+    B --> D
+    D --> E["Mapa / explicación"]
+```
+
+<div class="warningbox center">
+El método de explicación analiza un modelo ya entrenado; no necesariamente cambia cómo el modelo toma decisiones.
+</div>
+
+## Mapas de saliencia
+
+Para una salida:
+
+$$
+y=f_\theta(I)
+$$
+
+calculamos la sensibilidad local respecto de la imagen:
+
+$$
+S(x,y)=\left|\frac{\partial y}{\partial I(x,y)}\right|
+$$
+
+<div class="accent">
+Un valor alto indica que pequeñas perturbaciones de ese píxel pueden modificar la salida.
+</div>
+
+. . .
+
+<div class="dangerbox">
+No significa automáticamente causalidad, “atención” consciente ni relevancia clínica.
+</div>
+
+## Grad-CAM: idea general
+
+```{mermaid}
+flowchart LR
+    A["Imagen"] --> B["CNN"]
+    B --> C["Feature maps Aᵏ"]
+    C --> D["Score de clase yᶜ"]
+    D --> E["Gradientes ∂yᶜ/∂Aᵏ"]
+    E --> F["Peso αₖᶜ"]
+    C --> G["Combinación ponderada"]
+    F --> G
+    G --> H["Grad-CAM"]
+```
+
+## Grad-CAM: la ecuación
+
+Para cada feature map $A^k$:
+
+$$
+\alpha_k^c
+=
+\frac{1}{Z}
+\sum_i\sum_j
+\frac{\partial y^c}{\partial A_{ij}^{k}}
+$$
+
+Luego:
+
+$$
+L_{\mathrm{GradCAM}}^c
+=
+\mathrm{ReLU}\left(\sum_k \alpha_k^c A^k\right)
+$$
+
+<div class="center big">
+<strong>Pregunta intuitiva:</strong> ¿qué mapas de características favorecieron el score de esta clase?
+</div>
+
+## ¿Qué resolución tiene Grad-CAM?
+
+Una CNN puede transformar:
+
+$$
+224\times224
+\quad\longrightarrow\quad
+7\times7
+$$
+
+El Grad-CAM se calcula sobre mapas profundos y luego se interpola.
+
+::: {.columns}
+::: {.column width="48%"}
+<div class="goodbox">
+<strong>Bueno para:</strong><br>
+¿qué región general contribuyó a la decisión?
+</div>
+:::
+::: {.column width="48%"}
+<div class="dangerbox">
+<strong>No ideal para:</strong><br>
+¿qué píxel exacto fue responsable?
+</div>
+:::
+:::
+
+## Dos resultados visualmente muy distintos
+
+::: {.columns}
+::: {.column width="48%"}
+### Situación A
+
+El mapa se concentra sobre la lesión.
+
+<div class="goodbox">
+Compatible con el uso de información anatómicamente plausible.
+</div>
+
+**Pero no prueba causalidad.**
+:::
+
+::: {.column width="48%"}
+### Situación B
+
+El mapa se concentra en una marca, borde o texto.
+
+<div class="dangerbox">
+Posible correlación espuria o shortcut.
+</div>
+
+**Auditar antes de confiar.**
+:::
+:::
+
+## Shortcut learning
+
+```{mermaid}
+flowchart TB
+    D["Dataset"] --> S1["Señal clínica real"]
+    D --> S2["Atajo espurio"]
+    S1 --> M["Modelo minimiza la pérdida"]
+    S2 --> M
+    M --> P["Buena métrica interna"]
+    P --> X["Cambio de centro / protocolo"]
+    X --> F["Fallo de generalización"]
+```
+
+Ejemplos de shortcuts:
+
+- marca del hospital;
+- scanner / fabricante;
+- procesamiento;
+- posicionamiento;
+- prevalencia específica del centro.
+
+## Explicabilidad como herramienta de validación
+
+```{mermaid}
+flowchart LR
+    A["Predicciones"] --> TP["TP / TN"]
+    A --> FP["FP / FN"]
+    TP --> G1["Grad-CAM / saliencia"]
+    FP --> G2["Grad-CAM / saliencia"]
+    G1 --> Q1["¿Regiones plausibles?"]
+    G2 --> Q2["¿Qué produjo el error?"]
+```
+
+<div class="accent center">
+Usar explicabilidad para <strong>formular hipótesis de fallo</strong>, no para “certificar” una predicción.
+</div>
+
+## Sanity checks
+
+Un método de explicación debería depender del modelo que intenta explicar.
+
+<div class="box center big">
+Si destruimos o aleatorizamos los parámetros aprendidos…<br><br>
+<strong>¿el mapa también cambia?</strong>
+</div>
+
+. . .
+
+<div class="warningbox">
+Una visualización atractiva no es evidencia suficiente de fidelidad explicativa.
+</div>
+
+## Saliencia no equivale a causalidad
+
+Si Grad-CAM destaca una región $R$:
+
+$$
+R\ \text{destacada}
+\not\Rightarrow
+R\ \text{causó la decisión}
+$$
+
+Preferible decir:
+
+> “La predicción está asociada con activaciones en esta región.”
+
+Evitar afirmar:
+
+> “El modelo diagnosticó la enfermedad porque observó esta lesión.”
+
+## Occlusion sensitivity
+
+```{mermaid}
+flowchart LR
+    A["Imagen original"] --> B["Score original"]
+    A --> C["Ocultar región R"]
+    C --> D["Nuevo score"]
+    B --> E["Comparar"]
+    D --> E
+    E --> F["Mapa de importancia"]
+```
+
+$$
+f(I)-f(I_{\setminus R})
+$$
+
+<div class="small">
+Ventaja: interpretación intuitiva. Desventaja: muchas evaluaciones del modelo.
+</div>
+
+## Comparación rápida de métodos
+
+| Método | Pregunta aproximada | Ventaja | Limitación |
+|---|---|---|---|
+| **Saliency** | ¿Dónde es sensible localmente la salida? | Simple | Puede ser ruidoso |
+| **Grad-CAM** | ¿Qué regiones de feature maps apoyan una clase? | Intuitivo | Baja resolución |
+| **Occlusion** | ¿Qué pasa si retiro esta región? | Fácil de razonar | Costoso |
+
+<div class="accent center">
+La elección depende de la <strong>pregunta</strong>, no solo de la disponibilidad del método.
+</div>
+
+## Explicabilidad ≠ confianza
+
+<div class="question" style="font-size:1.15em">
+“El Grad-CAM parece clínicamente razonable.<br>
+Entonces podemos confiar en la predicción.”
+</div>
+
+. . .
+
+<div class="dangerbox center big">
+<strong>Conclusión incorrecta.</strong>
+</div>
+
+$$
+\text{explicabilidad}\neq\text{incertidumbre}\neq\text{validación}
+$$
+
+## Las tres preguntas de la unidad
+
+```{mermaid}
+flowchart LR
+    A["¿Qué predice?"] --> B["Clasificación / detección"]
+    C["¿Cuánto confiar?"] --> D["Calibración / incertidumbre"]
+    E["¿Qué información utiliza?"] --> F["Explicabilidad"]
+```
+
+<div class="center big" style="margin-top:1em">
+Son dimensiones <strong>complementarias</strong>, no sustitutas.
+</div>
+
+## Un modelo todavía no es un sistema clínico
+
+```{mermaid}
+flowchart LR
+    A["Adquisición"] --> B["Preprocesamiento"]
+    B --> C["Modelo"]
+    C --> D["Predicción"]
+    C --> E["Incertidumbre"]
+    C --> F["Explicación"]
+    D --> G["Interfaz / PACS / RIS"]
+    E --> G
+    F --> G
+    G --> H["Profesional"]
+    H --> I["Decisión clínica"]
+```
+
+<div class="accent center">
+El objeto de validación final es el <strong>sistema completo</strong>, no solo $f_\theta(x)$.
+</div>
+
+## Cierre
+
+<div class="box">
+<strong>1.</strong> Un score alto no equivale a certeza.<br><br>
+<strong>2.</strong> Discriminación, calibración e incertidumbre responden preguntas diferentes.<br><br>
+<strong>3.</strong> MC Dropout y ensembles permiten aproximar incertidumbre, pero no resuelven universalmente OOD.<br><br>
+<strong>4.</strong> Grad-CAM y saliency sirven para auditar comportamiento, no para demostrar causalidad.<br><br>
+<strong>5.</strong> La utilidad clínica aparece cuando estas herramientas modifican el workflow y reducen riesgo.
+</div>
+
+## Próximo paso
+
+<div class="question">
+¿Cómo pasamos de un modelo aislado<br>
+a un sistema de diagnóstico asistido por computadora?
+</div>
+
+. . .
+
+<div class="accent center big">
+<strong>CAD · integración · validación clínica</strong>
+</div>

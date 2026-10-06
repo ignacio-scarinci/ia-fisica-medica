@@ -104,15 +104,26 @@ website:
           - text: "Notebook 3: Motores de entrenamiento en MONAI"
             href: unidad2/notebooks/Notebook3.ipynb
       - text: "---"
-      - section: "3. Detección de objetos"
+      - section: "3. Detección, clasificación y diagnóstico asistido"
         contents:
           - text: "Índice de la unidad"
             href: unidad3/unidad3.qmd
-          - text: "Notas de clase"
+          - text: "Notas de la clase 1"
             href: unidad3/notas1.qmd
           - text: "Clase 1: De la clasificación a la detección"
             href: unidad3/clase1.qmd
             target: _blank
+          - text: "Notas de la clase 2: Incertidumbre y explicabilidad"
+            href: unidad3/notas2.qmd
+          - text: "Clase 2: Incertidumbre y explicabilidad"
+            href: unidad3/clase2.qmd
+            target: _blank
+          - text: "Notebook 1: Calibración e incertidumbre con MONAI"
+            href: unidad3/notebooks/Notebook1_calibracion_incertidumbre.ipynb
+          - text: "Notebook 2: Saliencia y Grad-CAM con MONAI"
+            href: unidad3/notebooks/Notebook2_explicabilidad.ipynb
+          - text: "Notebook 3: Segmentación y Grad-CAM con MONAI"
+            href: unidad3/notebooks/Notebook3_segmentacion_gradcam.ipynb
 
 format:
   html:

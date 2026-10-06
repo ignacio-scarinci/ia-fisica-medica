@@ -1,0 +1,1582 @@
+---
+title: "Unidad 3 — Detección, clasificación y diagnóstico asistido"
+subtitle: "Incertidumbre y explicabilidad"
+author: "Ignacio Scarinci"
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    code-tools: true
+    smooth-scroll: true
+jupyter: python3
+---
+
+# 1. Del score a la incertidumbre
+
+Hasta ahora hemos utilizado expresiones como:
+
+$$
+p=0.87
+$$
+
+o:
+
+$$
+s=0.98
+$$
+
+para describir la salida de un clasificador o detector.
+
+Es tentador interpretar estos valores como:
+
+> “El modelo está 98 % seguro.”
+
+Sin embargo, esta interpretación puede ser incorrecta.
+
+Una red neuronal puede producir un valor próximo a:
+
+$$
+1
+$$
+
+y aun así estar equivocada.
+
+Esto ocurre porque la salida del modelo no representa automáticamente una estimación fiable de la probabilidad de que su predicción sea correcta.
+
+Por lo tanto debemos distinguir al menos tres conceptos:
+
+$$
+\boxed{
+\text{score}
+}
+$$
+
+$$
+\boxed{
+\text{calibración}
+}
+$$
+
+$$
+\boxed{
+\text{incertidumbre}
+}
+$$
+
+# 2. ¿Qué representa la salida de un clasificador?
+
+En clasificación binaria, una red suele producir inicialmente un valor real denominado **logit**:
+
+$$
+z\in\mathbb R.
+$$
+
+Luego aplicamos una función sigmoide:
+
+$$
+p
+=
+\sigma(z)
+=
+\frac{1}{1+e^{-z}}.
+$$
+
+Esto garantiza que:
+
+$$
+p\in[0,1].
+$$
+
+En clasificación multiclase, el modelo puede producir:
+
+$$
+\mathbf z
+=
+(z_1,z_2,\ldots,z_K)
+$$
+
+y utilizar una función *softmax*:
+
+$$
+p_k
+=
+\frac{e^{z_k}}
+{\sum_{j=1}^{K}e^{z_j}}.
+$$
+
+Entonces:
+
+$$
+\sum_{k=1}^{K}p_k=1.
+$$
+
+Estos valores tienen apariencia de probabilidades.
+
+Pero una pregunta diferente es:
+
+> **¿Las frecuencias observadas coinciden realmente con esas probabilidades predichas?**
+
+Esta es la pregunta que responde la **calibración**.
+
+# 3. ¿Qué significa que un modelo esté calibrado?
+
+Supongamos que analizamos todos los casos para los cuales un modelo predijo aproximadamente:
+
+$$
+P(y=1|x)=0.8.
+$$
+
+Si el modelo está bien calibrado, esperaríamos que aproximadamente:
+
+$$
+80\%
+$$
+
+de esos casos pertenezcan realmente a la clase positiva.
+
+Conceptualmente:
+
+$$
+P(Y=1\mid \hat p=0.8)
+\approx
+0.8.
+$$
+
+De manera más general, un modelo perfectamente calibrado debería satisfacer:
+
+$$
+P(Y=1\mid \hat p=p)=p.
+$$
+
+Por ejemplo:
+
+| Probabilidad predicha | Frecuencia real esperada |
+|---:|---:|
+| 0.1 | 10 % |
+| 0.3 | 30 % |
+| 0.5 | 50 % |
+| 0.8 | 80 % |
+| 0.95 | 95 % |
+
+Un modelo puede tener una excelente capacidad para ordenar correctamente pacientes según su riesgo y, al mismo tiempo, producir probabilidades poco fiables.
+
+Por eso:
+
+$$
+\boxed{
+\text{discriminación}
+\neq
+\text{calibración}
+}
+$$
+
+# 4. Un ejemplo: buena discriminación, mala calibración
+
+Supongamos cuatro pacientes:
+
+| Paciente | Clase real | Modelo A | Modelo B |
+|---|---:|---:|---:|
+| A | 0 | 0.10 | 0.001 |
+| B | 0 | 0.20 | 0.01 |
+| C | 1 | 0.70 | 0.99 |
+| D | 1 | 0.80 | 0.999 |
+
+Ambos modelos ordenan perfectamente los ejemplos:
+
+$$
+A<B<C<D.
+$$
+
+Por lo tanto, ambos pueden obtener una discriminación excelente.
+
+Sin embargo, el modelo B produce probabilidades extremadamente cercanas a:
+
+$$
+0
+$$
+
+y:
+
+$$
+1.
+$$
+
+Si estas probabilidades no reflejan correctamente las frecuencias reales, el modelo está **sobreconfiado**.
+
+Esto es especialmente problemático en medicina porque una salida como:
+
+$$
+0.999
+$$
+
+puede generar una percepción de certeza que el modelo realmente no posee.
+
+# 5. Reliability diagram
+
+Una forma habitual de evaluar calibración es mediante un **reliability diagram**.
+
+La idea es dividir las predicciones en intervalos o *bins*.
+
+Por ejemplo:
+
+$$
+[0,0.1),\,
+[0.1,0.2),\,
+\dots,\,
+[0.9,1].
+$$
+
+Para cada intervalo calculamos:
+
+1. la probabilidad promedio predicha;
+2. la frecuencia real de positivos.
+
+Un modelo perfectamente calibrado debería ubicarse aproximadamente sobre:
+
+$$
+y=x.
+$$
+
+Si los puntos están por debajo de la diagonal, el modelo puede estar siendo demasiado confiado.
+
+Si están por encima, puede estar siendo demasiado conservador.
+
+# 6. Expected Calibration Error
+
+Una métrica utilizada para resumir la calibración es el **Expected Calibration Error** o ECE.
+
+Dividimos las predicciones en:
+
+$$
+M
+$$
+
+intervalos.
+
+Para cada intervalo $B_m$ calculamos:
+
+- confianza promedio:
+
+$$
+\mathrm{conf}(B_m)
+$$
+
+- frecuencia observada o accuracy:
+
+$$
+\mathrm{acc}(B_m).
+$$
+
+Entonces:
+
+$$
+\mathrm{ECE}
+=
+\sum_{m=1}^{M}
+\frac{|B_m|}{N}
+\left|
+\mathrm{acc}(B_m)
+-
+\mathrm{conf}(B_m)
+\right|.
+$$
+
+Un valor menor indica, en principio, mejor calibración.
+
+Sin embargo, ECE depende de:
+
+- cómo se definan los intervalos;
+- la cantidad de datos;
+- la distribución de las predicciones.
+
+Por lo tanto, no debería utilizarse como única descripción de la calibración.
+
+# 7. Brier score
+
+Otra métrica útil para predicciones probabilísticas es el **Brier score**.
+
+Para clasificación binaria:
+
+$$
+\mathrm{Brier}
+=
+\frac{1}{N}
+\sum_{i=1}^{N}
+(\hat p_i-y_i)^2.
+$$
+
+Puede interpretarse como un error cuadrático aplicado a probabilidades.
+
+Una predicción:
+
+$$
+\hat p=0.9
+$$
+
+para un caso:
+
+$$
+y=1
+$$
+
+produce un error pequeño.
+
+Pero una predicción:
+
+$$
+\hat p=0.99
+$$
+
+para:
+
+$$
+y=0
+$$
+
+es fuertemente penalizada.
+
+Esto es útil porque el Brier score tiene en cuenta no solamente la decisión final, sino también **cuán extrema fue la probabilidad predicha**.
+
+# 8. Recalibración: temperature scaling
+
+Si un modelo discrimina bien pero sus probabilidades están mal calibradas, podemos intentar recalibrarlo.
+
+Una técnica sencilla es **temperature scaling**.
+
+Supongamos que el modelo produce logits:
+
+$$
+z_k.
+$$
+
+En lugar de aplicar directamente *softmax*, utilizamos:
+
+$$
+p_k
+=
+\frac{
+\exp(z_k/T)
+}{
+\sum_j \exp(z_j/T)
+}.
+$$
+
+El parámetro:
+
+$$
+T>0
+$$
+
+se denomina **temperatura**.
+
+Si:
+
+$$
+T>1,
+$$
+
+la distribución se vuelve menos extrema.
+
+Si:
+
+$$
+T<1,
+$$
+
+se vuelve más concentrada.
+
+El parámetro $T$ se estima utilizando un conjunto de validación.
+
+::: {.callout-important title="Calibrar no significa mejorar la clasificación"}
+
+Temperature scaling modifica las probabilidades reportadas, pero no necesariamente cambia el orden de las predicciones.
+
+Por lo tanto, es posible mejorar la calibración sin modificar sustancialmente métricas de discriminación como ROC-AUC.
+
+:::
+
+# 9. Calibración no es incertidumbre
+
+Aunque un modelo esté bien calibrado en promedio, todavía existe otra pregunta:
+
+> **¿Sabemos cuándo una predicción individual es poco confiable?**
+
+Esto nos lleva al concepto de **incertidumbre**.
+
+La calibración describe una propiedad estadística de las probabilidades predichas sobre una población.
+
+La incertidumbre intenta caracterizar cuánto desconocimiento existe alrededor de una predicción particular.
+
+Por lo tanto:
+
+$$
+\boxed{
+\text{calibración}
+}
+\neq
+\boxed{
+\text{incertidumbre}
+}
+$$
+
+aunque ambos conceptos están relacionados.
+
+# 10. Dos fuentes de incertidumbre
+
+En aprendizaje automático suele distinguirse entre dos grandes fuentes de incertidumbre:
+
+$$
+\boxed{
+\text{incertidumbre aleatoria}
+}
+$$
+
+y:
+
+$$
+\boxed{
+\text{incertidumbre epistémica}
+}
+$$
+
+También se utilizan los términos:
+
+- **aleatoric uncertainty**;
+- **epistemic uncertainty**.
+
+Esta distinción es particularmente útil en aplicaciones médicas.
+
+# 11. Incertidumbre aleatoria
+
+La incertidumbre aleatoria está asociada a variabilidad o ambigüedad inherente en los datos.
+
+Por ejemplo:
+
+- ruido en la adquisición;
+- bajo contraste;
+- movimiento;
+- artefactos;
+- lesiones con apariencia ambigua;
+- variabilidad biológica.
+
+Podemos pensar:
+
+$$
+\boxed{
+\text{incertidumbre aleatoria}
+\approx
+\text{ambigüedad inherente de la observación}
+}
+$$
+
+Supongamos una lesión cuya apariencia está en el límite entre dos categorías diagnósticas.
+
+Incluso con una cantidad muy grande de datos de entrenamiento, puede continuar existiendo cierta ambigüedad.
+
+Esta incertidumbre no necesariamente desaparece al agregar más datos similares.
+
+# 12. Incertidumbre epistémica
+
+La incertidumbre epistémica está asociada al conocimiento limitado del modelo.
+
+Por ejemplo:
+
+- pocos ejemplos de entrenamiento;
+- regiones poco representadas del espacio de datos;
+- nueva población;
+- nuevo equipo;
+- nuevo protocolo de adquisición;
+- patologías raras.
+
+Podemos pensar:
+
+$$
+\boxed{
+\text{incertidumbre epistémica}
+\approx
+\text{el modelo no ha visto suficiente información}
+}
+$$
+
+A diferencia de la incertidumbre aleatoria, esta componente puede reducirse incorporando datos relevantes.
+
+# 13. Un ejemplo clínico
+
+Consideremos dos imágenes.
+
+## Caso A
+
+Una imagen contiene una lesión de bajo contraste y bordes ambiguos.
+
+Varios expertos podrían discrepar sobre su clasificación.
+
+Aquí existe una componente importante de:
+
+$$
+\text{incertidumbre aleatoria}.
+$$
+
+## Caso B
+
+La imagen proviene de un equipo y protocolo completamente diferentes de los utilizados durante el entrenamiento.
+
+La lesión puede ser visualmente clara, pero el modelo nunca observó datos similares.
+
+Aquí puede existir una componente importante de:
+
+$$
+\text{incertidumbre epistémica}.
+$$
+
+Estas situaciones son diferentes y pueden requerir respuestas distintas.
+
+# 14. Dataset shift e incertidumbre
+
+La incertidumbre epistémica está estrechamente relacionada con el problema de **dataset shift** discutido anteriormente en el curso.
+
+Durante entrenamiento asumimos que los datos provienen aproximadamente de:
+
+$$
+P_{\mathrm{train}}(x,y).
+$$
+
+Pero durante utilización clínica podemos encontrar:
+
+$$
+P_{\mathrm{test}}(x,y)
+\neq
+P_{\mathrm{train}}(x,y).
+$$
+
+Por ejemplo, puede cambiar:
+
+- la población;
+- la prevalencia;
+- el fabricante;
+- el protocolo;
+- la reconstrucción;
+- la dosis;
+- el centro clínico.
+
+Un modelo puede encontrarse entonces fuera de la región donde aprendió una representación confiable.
+
+Idealmente, queremos que el sistema pueda reconocer:
+
+> **“Este caso es diferente de aquello que conozco.”**
+
+Esta capacidad es especialmente importante para sistemas desplegados clínicamente.
+
+# 15. Un softmax alto no garantiza baja incertidumbre
+
+Existe un problema importante.
+
+Una red neuronal puede recibir una imagen muy diferente de su distribución de entrenamiento y aun así producir:
+
+$$
+\max_k p_k
+\approx
+1.
+$$
+
+Por ejemplo:
+
+$$
+p=
+(0.99,0.005,0.005).
+$$
+
+Esto demuestra que:
+
+> **Una distribución softmax concentrada no constituye por sí sola una estimación fiable de incertidumbre.**
+
+El modelo puede estar:
+
+$$
+\text{muy seguro}
+$$
+
+y:
+
+$$
+\text{muy equivocado}.
+$$
+
+Este fenómeno es una de las razones por las cuales la estimación de incertidumbre continúa siendo un área activa de investigación.
+
+# 16. Monte Carlo Dropout
+
+Una estrategia relativamente sencilla para aproximar incertidumbre epistémica es utilizar **Monte Carlo Dropout**.
+
+Durante el entrenamiento, *dropout* desactiva aleatoriamente algunas unidades.
+
+Normalmente, durante inferencia:
+
+$$
+\text{dropout}=OFF.
+$$
+
+En MC Dropout mantenemos:
+
+$$
+\text{dropout}=ON
+$$
+
+durante inferencia.
+
+Ejecutamos el modelo múltiples veces:
+
+$$
+\hat p^{(1)},
+\hat p^{(2)},
+\dots,
+\hat p^{(T)}.
+$$
+
+Cada ejecución utiliza una configuración ligeramente diferente de la red.
+
+Podemos calcular la predicción promedio:
+
+$$
+\bar p
+=
+\frac{1}{T}
+\sum_{t=1}^{T}
+\hat p^{(t)}.
+$$
+
+Y también estudiar la dispersión:
+
+$$
+\mathrm{Var}(\hat p).
+$$
+
+```{mermaid}
+flowchart LR
+    A["Misma imagen"] --> B1["Forward 1"]
+    A --> B2["Forward 2"]
+    A --> B3["Forward ..."]
+    A --> B4["Forward T"]
+
+    B1 --> C["Distribución de predicciones"]
+    B2 --> C
+    B3 --> C
+    B4 --> C
+
+    C --> D["Media"]
+    C --> E["Dispersión"]
+```
+
+Si todas las predicciones son similares, la incertidumbre estimada puede ser baja.
+
+Si varían considerablemente, puede existir mayor incertidumbre epistémica.
+
+# 17. Deep ensembles
+
+Otra estrategia muy utilizada son los **deep ensembles**.
+
+Entrenamos múltiples modelos:
+
+$$
+f_{\theta_1},
+f_{\theta_2},
+\dots,
+f_{\theta_M}
+$$
+
+con diferentes:
+
+- inicializaciones;
+- órdenes de los datos;
+- eventualmente subconjuntos de entrenamiento.
+
+Para una imagen $x$ obtenemos:
+
+$$
+p^{(1)}(x),
+p^{(2)}(x),
+\dots,
+p^{(M)}(x).
+$$
+
+La predicción final puede calcularse como:
+
+$$
+\bar p(x)
+=
+\frac{1}{M}
+\sum_{m=1}^{M}
+p^{(m)}(x).
+$$
+
+La variabilidad entre modelos proporciona información sobre incertidumbre.
+
+```{mermaid}
+flowchart LR
+    A["Imagen"] --> B1["Modelo 1"]
+    A --> B2["Modelo 2"]
+    A --> B3["Modelo 3"]
+    A --> B4["Modelo M"]
+
+    B1 --> C["Combinar predicciones"]
+    B2 --> C
+    B3 --> C
+    B4 --> C
+
+    C --> D["Predicción promedio"]
+    C --> E["Desacuerdo"]
+```
+
+Un alto desacuerdo entre modelos puede indicar que la predicción se encuentra en una región poco conocida.
+
+# 18. ¿Por qué utilizar ensembles?
+
+Los ensembles suelen proporcionar:
+
+- mejor estabilidad;
+- mejor desempeño promedio;
+- mejor calibración en muchos escenarios;
+- una aproximación práctica de incertidumbre.
+
+La principal desventaja es computacional.
+
+Si tenemos:
+
+$$
+M=5
+$$
+
+modelos, necesitamos aproximadamente cinco veces más almacenamiento y múltiples evaluaciones durante inferencia.
+
+En aplicaciones clínicas con restricciones de tiempo, esto puede ser relevante.
+
+# 19. Incertidumbre como herramienta de seguridad
+
+La utilidad clínica de la incertidumbre no está en producir simplemente otro número.
+
+La pregunta importante es:
+
+> **¿Qué hacemos con esa información?**
+
+Una posibilidad es construir sistemas capaces de **abstenerse**.
+
+Por ejemplo:
+
+$$
+\text{incertidumbre}<\tau
+\Rightarrow
+\text{predicción automática}
+$$
+
+mientras que:
+
+$$
+\text{incertidumbre}\geq\tau
+\Rightarrow
+\text{revisión por experto}.
+$$
+
+```{mermaid}
+flowchart LR
+    A["Imagen"] --> B["Modelo"]
+    B --> C["Predicción"]
+    B --> D["Incertidumbre"]
+
+    D --> E{"¿Incertidumbre alta?"}
+
+    E -->|No| F["Aceptar predicción"]
+    E -->|Sí| G["Derivar a experto"]
+```
+
+Este enfoque se relaciona con conceptos como:
+
+- *selective prediction*;
+- *reject option*;
+- sistemas *human-in-the-loop*.
+
+# 20.Cobertura versus riesgo
+
+Si permitimos que un sistema se abstenga, aparece un compromiso.
+
+Podemos exigir al modelo que solo produzca una decisión cuando tenga baja incertidumbre.
+
+Entonces puede aumentar la seguridad de los casos aceptados, pero disminuir la cantidad de casos resueltos automáticamente.
+
+Podemos pensar en:
+
+$$
+\boxed{
+\text{cobertura}
+}
+\leftrightarrow
+\boxed{
+\text{riesgo}
+}
+$$
+
+donde la cobertura representa qué fracción de los casos es procesada automáticamente.
+
+# 21. ¿Puede la incertidumbre detectar datos fuera de distribución?
+
+Una aplicación deseable sería utilizar incertidumbre para detectar casos **out-of-distribution** o OOD.
+
+Supongamos que el modelo fue entrenado con:
+
+$$
+P_{\mathrm{train}}(x).
+$$
+
+Durante inferencia aparece:
+
+$$
+x^\*
+$$
+
+que pertenece a una distribución muy diferente.
+
+Idealmente:
+
+$$
+x^\*\not\sim P_{\mathrm{train}}
+\Rightarrow
+\text{incertidumbre elevada}.
+$$
+
+Pero esto no está garantizado.
+
+Un modelo puede producir predicciones extremadamente confiadas para datos completamente fuera de distribución.
+
+Por lo tanto:
+
+> **La estimación de incertidumbre puede ayudar a identificar OOD, pero no constituye por sí sola una solución universal al problema.**
+
+# 22. Una distinción práctica
+
+Podemos resumir lo visto hasta ahora con tres preguntas.
+
+## Discriminación
+
+> ¿El modelo separa correctamente positivos y negativos?
+
+Métricas:
+
+- ROC-AUC;
+- precision-recall;
+- sensibilidad;
+- especificidad.
+
+## Calibración
+
+> Cuando el modelo dice 80 %, ¿aproximadamente 80 % de esos casos son positivos?
+
+Herramientas:
+
+- reliability diagram;
+- ECE;
+- Brier score.
+
+## Incertidumbre
+
+> ¿Cuánto deberíamos confiar en esta predicción particular?
+
+Herramientas posibles:
+
+- MC Dropout;
+- deep ensembles;
+- métodos probabilísticos;
+- estrategias OOD.
+
+Por lo tanto:
+
+$$
+\boxed{
+\text{buen AUC}
+}
+\not\Rightarrow
+\boxed{
+\text{buena calibración}
+}
+\not\Rightarrow
+\boxed{
+\text{incertidumbre fiable}
+}
+$$
+
+# 23. De la incertidumbre a la explicabilidad
+
+Supongamos ahora que nuestro modelo produce:
+
+$$
+P(\text{maligno})=0.92
+$$
+
+y además estimamos una incertidumbre relativamente baja.
+
+Todavía queda una pregunta importante:
+
+> **¿Qué información de la imagen utilizó el modelo para producir esta predicción?**
+
+Podemos querer saber si la red está respondiendo a:
+
+- la lesión;
+- el tejido circundante;
+- un artefacto;
+- una marca;
+- texto presente en la imagen;
+- características del equipo.
+
+Esto nos conduce al problema de la **explicabilidad**.
+
+# 24. ¿Por qué importa la explicabilidad?
+
+Una red neuronal puede alcanzar una predicción correcta utilizando una asociación incorrecta o clínicamente irrelevante.
+
+Por lo tanto:
+
+$$
+\boxed{
+\text{predicción correcta}
+}
+\not\Rightarrow
+\boxed{
+\text{razonamiento adecuado}
+}
+$$
+
+Supongamos que ciertas imágenes positivas fueron adquiridas principalmente en un hospital y las negativas en otro.
+
+Si existe una diferencia sistemática en:
+
+- marcas;
+- procesamiento;
+- resolución;
+- texto;
+- protocolo;
+
+el modelo podría utilizar esas diferencias para clasificar.
+
+El resultado podría ser:
+
+$$
+\text{excelente desempeño interno}
+$$
+
+pero:
+
+$$
+\text{mala generalización externa}.
+$$
+
+La explicabilidad puede ayudar a detectar algunas de estas situaciones.
+
+# 25. Explicabilidad e interpretabilidad
+
+Los términos **interpretabilidad** y **explicabilidad** suelen utilizarse de manera parcialmente superpuesta.
+
+De manera práctica podemos pensar:
+
+### Modelo interpretable
+
+Su mecanismo de decisión puede comprenderse directamente.
+
+Por ejemplo:
+
+$$
+y
+=
+w_1x_1+w_2x_2+b.
+$$
+
+En una regresión lineal o logística podemos inspeccionar explícitamente los coeficientes.
+
+### Modelo explicable
+
+El modelo puede ser complejo, pero utilizamos herramientas adicionales para intentar comprender su comportamiento.
+
+Las redes neuronales profundas pertenecen generalmente a esta segunda categoría.
+
+# 26. Métodos post-hoc
+
+Muchas técnicas utilizadas con Deep Learning son métodos **post-hoc**.
+
+Esto significa que:
+
+1. primero entrenamos el modelo;
+2. luego intentamos interpretar sus predicciones.
+
+```{mermaid}
+flowchart LR
+    A["Imagen"] --> B["Modelo entrenado"]
+    B --> C["Predicción"]
+
+    A --> D["Método de explicabilidad"]
+    B --> D
+
+    D --> E["Mapa / explicación"]
+```
+
+Estos métodos no modifican necesariamente la forma en la que el modelo toma decisiones.
+
+Simplemente intentan proporcionar información sobre su comportamiento.
+
+# 27. Mapas de saliencia
+
+Una idea sencilla es analizar cómo cambia la salida del modelo cuando modificamos los píxeles de entrada.
+
+Supongamos una salida:
+
+$$
+y=f_\theta(I).
+$$
+
+Podemos calcular:
+
+$$
+\frac{\partial y}{\partial I}.
+$$
+
+Este gradiente tiene la misma dimensión que la imagen.
+
+Su magnitud indica qué píxeles podrían producir cambios importantes en la salida ante pequeñas perturbaciones.
+
+Esto genera un **saliency map**.
+
+Conceptualmente:
+
+$$
+S(x,y)
+=
+\left|
+\frac{\partial y}
+{\partial I(x,y)}
+\right|.
+$$
+
+Valores elevados indican regiones localmente sensibles para la predicción.
+
+# 28. ¿Qué significa un mapa de saliencia?
+
+Una interpretación habitual es:
+
+> “Estas regiones influyen en la salida del modelo.”
+
+Pero debemos ser cuidadosos.
+
+Un gradiente elevado significa que una pequeña modificación local puede modificar la salida.
+
+No significa necesariamente que:
+
+- esa región sea causal;
+- el modelo “mire” conscientemente esa región;
+- la región contenga la explicación completa;
+- el mapa corresponda a una estructura clínicamente relevante.
+
+Por eso, los mapas de saliencia deben interpretarse como herramientas de análisis, no como pruebas definitivas del razonamiento del modelo.
+
+# 29. Grad-CAM
+
+Una de las técnicas más conocidas para modelos convolucionales es **Gradient-weighted Class Activation Mapping**, o Grad-CAM.
+
+La idea es utilizar los mapas de características de una capa convolucional:
+
+$$
+A^k
+$$
+
+y estudiar cuánto contribuye cada mapa a una clase determinada.
+
+Supongamos que queremos explicar el score correspondiente a la clase:
+
+$$
+c.
+$$
+
+Calculamos gradientes:
+
+$$
+\frac{\partial y^c}
+{\partial A_{ij}^{k}}.
+$$
+
+Luego obtenemos un peso para cada mapa de características:
+
+$$
+\alpha_k^c
+=
+\frac{1}{Z}
+\sum_i
+\sum_j
+\frac{\partial y^c}
+{\partial A_{ij}^{k}}.
+$$
+
+Finalmente construimos:
+
+$$
+L_{\mathrm{GradCAM}}^c
+=
+\mathrm{ReLU}
+\left(
+\sum_k
+\alpha_k^c A^k
+\right).
+$$
+
+El resultado es un mapa espacial que destaca regiones relacionadas con la predicción de la clase $c$.
+
+# 30. Intuición de Grad-CAM
+
+Podemos pensar que una capa convolucional produce diferentes mapas:
+
+$$
+A^1,A^2,\ldots,A^K.
+$$
+
+Algunos pueden responder a:
+
+- bordes;
+- texturas;
+- formas;
+- patrones más complejos.
+
+Para una clase determinada, Grad-CAM pregunta aproximadamente:
+
+> **¿Qué mapas de características fueron más relevantes para aumentar el score de esta clase?**
+
+Luego combina esos mapas para obtener una representación espacial.
+
+```{mermaid}
+flowchart LR
+    A["Imagen"] --> B["CNN"]
+    B --> C["Feature maps"]
+    C --> D["Predicción de clase"]
+
+    D --> E["Gradientes"]
+    E --> F["Peso de cada feature map"]
+    C --> G["Combinación ponderada"]
+    F --> G
+    G --> H["Grad-CAM"]
+```
+
+# 31. Resolución espacial de Grad-CAM
+
+Grad-CAM se calcula habitualmente sobre una capa convolucional relativamente profunda.
+
+Esas capas suelen tener una resolución espacial menor que la imagen original.
+
+Por ejemplo:
+
+$$
+224\times224
+$$
+
+puede transformarse internamente en:
+
+$$
+7\times7.
+$$
+
+Por lo tanto, el mapa Grad-CAM suele ser relativamente grueso.
+
+Posteriormente se interpola hasta la resolución de la imagen original.
+
+Esto significa que Grad-CAM es adecuado para responder preguntas como:
+
+> “¿Qué región general contribuyó a la decisión?”
+
+pero no necesariamente:
+
+> “¿Qué píxel exacto fue responsable?”
+
+# 32. Ejemplo conceptual
+
+Supongamos un clasificador de radiografías de tórax que predice:
+
+$$
+P(\text{hallazgo})=0.94.
+$$
+
+Aplicamos Grad-CAM.
+
+## Situación A
+
+La activación se concentra sobre la región de la lesión.
+
+Esto es consistente con la hipótesis de que el modelo está utilizando información relevante.
+
+Pero no demuestra que el razonamiento sea correcto.
+
+## Situación B
+
+La activación se concentra en una esquina donde existe una marca radiográfica.
+
+Esto puede indicar que el modelo aprendió una correlación espuria.
+
+En este caso Grad-CAM puede actuar como una herramienta de **auditoría del comportamiento**.
+
+# 33. Shortcut learning
+
+El fenómeno anterior forma parte de un problema más general denominado **shortcut learning**.
+
+El modelo encuentra una señal que permite minimizar la pérdida, pero esa señal no corresponde necesariamente a la característica que nosotros esperábamos que aprendiera.
+
+Por ejemplo:
+
+$$
+\text{marca del hospital}
+\rightarrow
+\text{diagnóstico}
+$$
+
+en lugar de:
+
+$$
+\text{patrón anatómico}
+\rightarrow
+\text{diagnóstico}.
+$$
+
+El modelo no sabe cuál de estas reglas tiene significado clínico.
+
+Durante entrenamiento solamente intenta minimizar:
+
+$$
+\mathcal L.
+$$
+
+Si una correlación espuria es predictiva dentro del dataset, el modelo puede utilizarla.
+
+# 34. Spurious correlations
+
+Una **correlación espuria** es una asociación predictiva presente en el dataset pero que no representa la relación clínica que queremos modelar.
+
+En imágenes médicas pueden aparecer debido a:
+
+- centro de origen;
+- equipo;
+- protocolo;
+- marcadores;
+- posicionamiento;
+- procesamiento;
+- selección de pacientes;
+- prevalencia;
+- diferencias en adquisición.
+
+Por ejemplo:
+
+$$
+\text{scanner A}
+\longleftrightarrow
+\text{pacientes graves}
+$$
+
+podría hacer que el modelo utilice características del scanner como predictor de gravedad.
+
+Mientras esa correlación permanezca en test interno, el modelo puede obtener un excelente desempeño.
+
+Cuando cambia el centro:
+
+$$
+\text{correlación desaparece}
+$$
+
+y el desempeño puede degradarse.
+
+# 35. Explicabilidad como herramienta de validación
+
+Una utilidad razonable de Grad-CAM y otros métodos similares es incorporarlos durante el análisis del modelo.
+
+```{mermaid}
+flowchart LR
+    A["Predicciones"] --> B["Correctas"]
+    A --> C["Incorrectas"]
+
+    B --> D["Grad-CAM"]
+    C --> E["Grad-CAM"]
+
+    D --> F["¿Regiones plausibles?"]
+    E --> G["¿Qué produjo el error?"]
+```
+
+Podemos revisar:
+
+- verdaderos positivos;
+- verdaderos negativos;
+- falsos positivos;
+- falsos negativos.
+
+Y preguntarnos:
+
+> ¿Las regiones destacadas tienen sentido desde el punto de vista anatómico o clínico?
+
+Esto puede revelar patrones que una métrica agregada no mostraría.
+
+# 36. Pero Grad-CAM tiene limitaciones
+
+Grad-CAM no debe interpretarse como una explicación definitiva.
+
+Entre sus limitaciones:
+
+- resolución espacial limitada;
+- sensibilidad a la capa seleccionada;
+- dependencia de la arquitectura;
+- diferentes métodos pueden producir mapas diferentes;
+- un mapa visualmente plausible puede ser engañoso;
+- no establece causalidad.
+
+Además, existe un riesgo cognitivo importante:
+
+> **Los humanos somos muy buenos encontrando explicaciones plausibles en imágenes ambiguas.**
+
+Un mapa que “parece correcto” no necesariamente valida el razonamiento del modelo.
+
+# 37. Una prueba sencilla: ¿el mapa cambia si cambia el modelo?
+
+Un método de explicación debería depender del modelo que intenta explicar.
+
+Si:
+
+$$
+f_{\theta_1}
+\neq
+f_{\theta_2},
+$$
+
+esperaríamos que las explicaciones puedan cambiar.
+
+De manera similar, si destruimos el conocimiento aprendido por la red, un método de explicabilidad debería reflejar ese cambio.
+
+Este tipo de pruebas se relaciona con **sanity checks** para métodos de saliencia.
+
+La idea fundamental es:
+
+> Una visualización atractiva no constituye evidencia suficiente de que el método explique realmente el comportamiento del modelo.
+
+# 38. Saliencia no equivale a causalidad
+
+Supongamos que Grad-CAM destaca una región:
+
+$$
+R.
+$$
+
+Esto no permite concluir directamente:
+
+$$
+R
+\Rightarrow
+\text{causa de la predicción}.
+$$
+
+En general, Grad-CAM describe asociaciones dentro del modelo.
+
+Para realizar afirmaciones causales necesitaríamos un marco experimental diferente.
+
+Por lo tanto, es preferible utilizar expresiones como:
+
+> “La predicción está asociada con activaciones en esta región.”
+
+en lugar de:
+
+> “El modelo diagnosticó la enfermedad porque observó esta lesión.”
+
+La segunda afirmación es mucho más fuerte y normalmente no está justificada por Grad-CAM.
+
+# 39. Occlusion sensitivity
+
+Otra estrategia intuitiva consiste en ocultar sistemáticamente regiones de la imagen.
+
+Para cada región:
+
+1. modificamos u ocultamos una parte;
+2. volvemos a ejecutar el modelo;
+3. observamos cuánto cambia la predicción.
+
+Si al ocultar una región $R$ ocurre:
+
+$$
+f(I)-f(I_{\setminus R})
+\gg 0,
+$$
+
+podemos inferir que esa región era importante para mantener la salida original.
+
+```{mermaid}
+flowchart LR
+    A["Imagen original"] --> B["Score original"]
+
+    A --> C["Ocultar región"]
+    C --> D["Nuevo score"]
+
+    B --> E["Comparar"]
+    D --> E
+
+    E --> F["Mapa de importancia"]
+```
+
+La ventaja es que la interpretación resulta bastante intuitiva.
+
+La desventaja es que puede requerir muchas evaluaciones del modelo.
+
+# 40. Una comparación conceptual
+
+| Método | Idea principal | Ventaja | Limitación |
+|---|---|---|---|
+| Saliency | Gradiente respecto a píxeles | Simple | Puede ser ruidoso |
+| Grad-CAM | Gradientes sobre feature maps | Localización intuitiva | Baja resolución |
+| Occlusion | Ocultar regiones | Fácil de interpretar | Computacionalmente costoso |
+
+No existe un método universalmente superior.
+
+La elección depende de:
+
+- arquitectura;
+- tarea;
+- pregunta que queremos responder.
+
+# 41. ¿Qué esperamos de una explicación clínica?
+
+Antes de utilizar cualquier método deberíamos definir qué queremos obtener.
+
+Podemos querer saber:
+
+### Localización
+
+> ¿La predicción depende de la región anatómica esperada?
+
+### Detección de sesgos
+
+> ¿El modelo utiliza texto, bordes o marcas?
+
+### Análisis de errores
+
+> ¿Qué región contribuyó a un falso positivo?
+
+### Comunicación
+
+> ¿Podemos mostrar al especialista qué regiones influyeron en la predicción?
+
+Estas preguntas son diferentes.
+
+Un único mapa de saliencia no necesariamente puede responderlas todas.
+
+# 42. Explicabilidad versus confianza
+
+Existe además un error frecuente:
+
+> “El Grad-CAM parece clínicamente razonable, por lo tanto podemos confiar en la predicción.”
+
+Esto no es válido.
+
+Un mapa visualmente plausible no proporciona una estimación cuantitativa de confiabilidad.
+
+Por lo tanto:
+
+$$
+\boxed{
+\text{explicabilidad}
+}
+\neq
+\boxed{
+\text{incertidumbre}
+}
+$$
+
+y:
+
+$$
+\boxed{
+\text{explicabilidad}
+}
+\neq
+\boxed{
+\text{validación}
+}.
+$$
+
+Cada herramienta responde a una pregunta diferente.
+
+# 43. Las tres preguntas
+
+Podemos resumir la progresión reciente de la unidad mediante tres preguntas.
+
+## ¿Qué predice?
+
+$$
+\boxed{
+\text{clasificación / detección}
+}
+$$
+
+## ¿Cuánto deberíamos confiar?
+
+$$
+\boxed{
+\text{calibración / incertidumbre}
+}
+$$
+
+## ¿Qué información parece utilizar?
+
+$$
+\boxed{
+\text{explicabilidad}
+}
+$$
+
+Estas tres dimensiones son complementarias.
+
+Un sistema puede:
+
+- predecir correctamente;
+- estar bien calibrado;
+- mostrar regiones clínicamente plausibles;
+
+y aun así no estar listo para uso clínico.
+
+Todavía falta responder una pregunta más amplia:
+
+> **¿Cómo se integra el modelo dentro de un sistema de diagnóstico asistido y cómo validamos ese sistema?**
+
+Ese será el siguiente paso de la unidad.
+
+# 44. Hacia el diagnóstico asistido por computadora
+
+Hasta ahora hemos analizado componentes relativamente aislados:
+
+```{mermaid}
+flowchart LR
+    A["Imagen"] --> B["Modelo"]
+    B --> C["Predicción"]
+    B --> D["Incertidumbre"]
+    B --> E["Explicación"]
+```
+
+Pero un sistema clínico real incluye mucho más.
+
+La imagen debe:
+
+- adquirirse;
+- preprocesarse;
+- llegar al modelo;
+- generar una salida;
+- integrarse con otros sistemas;
+- presentarse a un profesional;
+- incorporarse a una decisión.
+
+Por lo tanto, el objeto de estudio deja de ser únicamente:
+
+$$
+f_\theta(x)
+$$
+
+y pasa a ser:
+
+$$
+\boxed{
+\text{sistema completo}
+}
+$$
+
+Esta transición nos conduce al concepto de **Computer-Aided Detection / Diagnosis (CAD)**.
