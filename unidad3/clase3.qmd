@@ -83,10 +83,10 @@ Sistemas computacionales diseñados para **asistir** al profesional en tareas de
 En muchas aplicaciones, el objetivo no es reemplazar al profesional.
 
 ```{mermaid}
-#| echo: false
+%%| echo: false
 
 flowchart LR
-    H[Humano] <--> C((+)) <--> IA[IA]
+    H[Humano] <--> C(("+")) <--> IA[IA]
     classDef human fill:#DCEBFA,stroke:#3973AC,stroke-width:2px,color:#17324D
     classDef assist fill:#E2F3E8,stroke:#3A8F5B,stroke-width:2px,color:#194D2D
     classDef plus fill:#FFF3CD,stroke:#B8860B,stroke-width:2px,color:#5C4500
@@ -115,78 +115,21 @@ La IA puede:
 
 ## Sesgos de la automatización
 
-Un sistema consistente puede modificar la conducta humana.
-
-$$
-\text{modelo dice negativo}
-\Rightarrow
-\text{menor búsqueda activa}
-$$
-
-$$
-\text{modelo marca una región}
-\Rightarrow
-\text{atención concentrada allí}
-$$
-
-::: {.fragment}
-> El CAD puede **crear errores nuevos** que no ocurrirían sin asistencia.
-:::
-
+![](./imagenes/clase3/9_riesgos_CAD.jpg){ width=80% .centered}
 
 ## El problema opuesto: fatiga de alertas
 
-Si el sistema genera demasiadas alarmas:
+![](./imagenes/clase3/10_fatiga_alertas.jpg){ width=80% .centered}
 
-```{mermaid}
-flowchart LR
-    A[Muchos falsos positivos] --> B[Sobrecarga]
-    B --> C[Pérdida de confianza]
-    C --> D[Alertas ignoradas]
-```
+## Idea clave
 
-::: {.fragment}
-Un detector con recall muy alto puede ser clínicamente inútil si produce demasiadas marcas por estudio.
-:::
-
-
-## Primera idea clave
-
-$$
-\boxed{
-\text{métrica del modelo}
-\neq
-\text{utilidad clínica}
-}
-$$
-
-Para evaluar un sistema necesitamos estudiar:
-
-- algoritmo;
-- interfaz;
-- usuario;
-- población;
-- workflow;
-- consecuencia de los errores.
-
+![](./imagenes/clase3/11_evaluacion.jpg){ width=80% .centered}
 
 # 2. De validación técnica a validación clínica
 
 ## La escalera de validación
 
-```{mermaid}
-flowchart LR
-    A[Desempeño técnico] --> B[Validación interna]
-    B --> C[Validación externa]
-    C --> D[Evaluación con usuarios]
-    D --> E[Evaluación prospectiva]
-    E --> F[Impacto clínico]
-```
-
-::: {.fragment}
-Cada escalón responde una pregunta diferente.
-:::
-
+![](./imagenes/clase3/12_escalera_de_validacion.jpg){ width=80% .centered}
 
 ## Validación interna
 
@@ -226,72 +169,16 @@ Porque múltiples imágenes pueden compartir información clínica, anatómica y
 
 ## Leakage no es solo repetir pacientes
 
-También puede aparecer cuando:
 
-- usamos todo el dataset para normalizar;
-- ajustamos preprocessing mirando el test;
-- seleccionamos hiperparámetros con el test;
-- mezclamos estudios longitudinales del mismo paciente;
-- hacemos feature selection antes del split.
-
-::: {.fragment}
-> El test debe permanecer **informacionalmente aislado** hasta la evaluación final.
-:::
-
+![](./imagenes/clase3/13_Fuga_de_informacion.jpg){ width=80% .centered}
 
 ## Validación externa
 
-Usamos datos independientes del conjunto de desarrollo.
+![](./imagenes/clase3/14_validacion_externa.jpg){ width=80% .centered}
 
-Idealmente:
+## El modelo funcionaba muy bien… ¿De dónde viene el *domain shift*?
 
-- otro hospital
-- otra región
-- otros equipos;
-- otros protocolos;
-- otra población.
-
-$$
-P_{external}(x,y)
-\neq
-P_{development}(x,y)
-$$
-
-
-## El modelo funcionaba muy bien…
-
-$$
-AUC_{interno}=0.94
-$$
-
-pero:
-
-$$
-AUC_{externo}=0.79
-$$
-
-::: {.fragment}
-¿El modelo está “mal”?
-:::
-
-::: {.fragment}
-No necesariamente. Puede estar revelándose un **domain shift**.
-:::
-
-
-## ¿De dónde viene el *domain shift*?
-
-```{mermaid}
-flowchart TD
-    S[Domain shift] --> A[Población]
-    S --> B[Prevalencia]
-    S --> C[Scanner]
-    S --> D[Protocolo]
-    S --> E[Reconstrucción]
-    S --> F[Criterio diagnóstico]
-```
-
-La validación externa prueba dependencias que el test interno puede ocultar.
+![](./imagenes/clase3/15_validacion_externa_domain_shift.jpg){ width=80% .centered}
 
 
 ## ¿Y si queremos entrenar con varios hospitales?
@@ -313,29 +200,7 @@ Ahí aparece **Federated Learning**.
 
 ## Federated Learning: idea básica
 
-```{mermaid}
-flowchart LR
-    S[Modelo global] --> A[Hospital A]
-    S --> B[Hospital B]
-    S --> C[Hospital C]
-
-    A --> UA[Actualización local]
-    B --> UB[Actualización local]
-    C --> UC[Actualización local]
-
-    UA --> G[Agregación]
-    UB --> G
-    UC --> G
-    G --> S
-```
-
-::: {.fragment}
-Los **datos permanecen en cada institución**.
-:::
-
-::: {.fragment}
-Lo que se intercambia son parámetros, gradientes o actualizaciones del modelo.
-:::
+![](./imagenes/clase3/16_aprendizaje_federado.jpg){ width=80% .centered}
 
 
 ## ¿Qué problema intenta resolver?
@@ -396,146 +261,32 @@ $$
 
 ## Validación temporal
 
-Otra forma de simular despliegue:
-
-$$
-\text{train: 2018--2023}
-$$
-
-$$
-\text{test: 2024--2025}
-$$
-
-::: {.fragment}
-Entrenamos con el pasado y evaluamos sobre **pacientes futuros**.
-:::
-
-Puede revelar cambios en:
-
-- práctica clínica
-- protocolos
-- equipos
-- población
+![](./imagenes/clase3/17_validacion_temporal.jpg){ width=80% .centered}
 
 
 ## Retrospectivo vs prospectivo
 
-::: {.columns}
-::: {.column width="48%"}
-### Retrospectivo
-
-Datos ya existentes.
-
-Ventajas:
-- rápido;
-- barato;
-- control experimental.
-
-Limitación:
-- reproduce imperfectamente el workflow real.
-:::
-
-::: {.column width="48%"}
-### Prospectivo
-
-El protocolo se define **antes** de observar nuevos casos.
-
-Ventaja:
-- mayor realismo clínico.
-
-Costo:
-- tiempo;
-- logística;
-- complejidad.
-:::
-:::
+![](./imagenes/clase3/18_retrospectivo_vs_prospectivo.jpg){ width=80% .centered}
 
 
 # 3. ¿Mejora al profesional?
 
 ## AUC = 0.95… ¿y ahora?
 
-Un modelo puede tener:
-
-$$
-AUC=0.95
-$$
-
-y aun así no sabemos:
-
-$$
-\boxed{\text{¿mejora el desempeño del profesional?}}
-$$
-
-Para responderlo necesitamos comparar:
-
-$$
-\text{humano sin IA}
-\quad vs \quad
-\text{humano + IA}
-$$
+![](./imagenes/clase3/19_AUC.jpg){ width=80% .centered}
 
 
 ## Un diseño más realista
 
-::: {.columns}
-::: {.column width="48%"}
-### Evitar
-
-- siempre “sin IA” primero;
-- mismos casos inmediatamente después;
-- orden fijo;
-- lectores no representativos.
-:::
-
-::: {.column width="48%"}
-### Preferir
-
-- orden aleatorizado;
-- washout;
-- múltiples lectores;
-- múltiples casos;
-- condición clínica plausible.
-:::
-:::
+![](./imagenes/clase3/20_diseno_realista.jpg){ width=80% .centered}
 
 
-## Una paradoja posible
+## Una paradoja posible ¿Cómo puede ocurrir?
 
-Puede ocurrir:
-
-$$
-\text{modelo} > \text{humano}
-$$
-
-cuando se evalúan aislados,
-
-pero:
-
-$$
-\text{humano + modelo} < \text{humano}
-$$
-
-cuando trabajan juntos.
+![](./imagenes/clase3/21_IA_humano_colaboran.jpg){ width=80% .centered}
 
 
-## ¿Cómo puede ocurrir?
-
-```{mermaid}
-flowchart LR
-    A[Buen modelo] --> B{Integración}
-    B -->|Mala| C[Automation bias]
-    B -->|Mala| D[Alert fatigue]
-    B -->|Mala| E[Interfaz confusa]
-    B -->|Mala| F[Sobreconfianza]
-    C --> G[Peor sistema]
-    D --> G
-    E --> G
-    F --> G
-```
-
-
-## Segunda idea clave
+## Idea clave
 
 $$
 \boxed{
@@ -560,81 +311,16 @@ $$
 
 ## El benchmark no es el hospital
 
-Los datasets públicos son fundamentales para:
-
-- desarrollo inicial;
-- reproducibilidad;
-- comparación de métodos;
-- enseñanza e investigación.
-
-Pero:
-
-$$
-P_{benchmark}(x,y)
-\neq
-P_{clínica}(x,y)
-$$
-
-::: {.fragment}
-$$
-\boxed{\text{buen resultado en benchmark}}
-\not\Rightarrow
-\boxed{\text{buen desempeño clínico}}
-$$
-:::
+![](./imagenes/clase3/22_benchmark.jpg){ width=80% .centered}
 
 
 ## Antes de usar un dataset
 
-::: {.columns}
-::: {.column width="48%"}
-### ¿De dónde vienen los datos?
-
-- población;
-- criterios de inclusión;
-- centro / centros;
-- modalidad y protocolo;
-- prevalencia.
-:::
-
-::: {.column width="48%"}
-### ¿Qué significa la referencia?
-
-- etiqueta por imagen, lesión o paciente;
-- uno o varios expertos;
-- consenso;
-- patología / seguimiento;
-- split por paciente;
-- licencia.
-:::
-:::
-
-::: {.fragment}
-> Un dataset es una muestra de un **proceso clínico y técnico**, no solo una carpeta de archivos.
-:::
-
+![](./imagenes/clase3/23_datos_imagenes_medicas.jpg){ width=80% .centered}
 
 ## Las etiquetas también tienen incertidumbre
 
-En muchos problemas médicos:
-
-$$
-y^{(1)} \neq y^{(2)}
-$$
-
-puede ser completamente razonable.
-
-La referencia puede provenir de:
-
-- un lector;
-- consenso;
-- múltiples lectores;
-- patología;
-- seguimiento clínico.
-
-::: {.fragment}
-> El error del modelo debe interpretarse en relación con la incertidumbre de la referencia.
-:::
+![](./imagenes/clase3/24_etiquetas_incertidumbre.jpg){ width=80% .centered}
 
 
 ## Algunos datasets 
@@ -661,137 +347,26 @@ $$
 
 ## De la imagen al sistema clínico
 
-```{mermaid}
-flowchart TD
-    A[Imagen médica] --> B[Clasificación / detección]
-    B --> C[Score]
-    C --> D[Calibración]
-    D --> E[Incertidumbre]
-    B --> F[Explicabilidad]
-    E --> G[Sistema CAD]
-    F --> G
-    G --> H[Validación interna]
-    H --> I[Validación externa]
-    I --> M[Robustez multicéntrica / FL]
-    M --> J[Evaluación clínica]
-```
-
+![](./imagenes/clase3/25_imagen_sistema_clinico.jpg){ width=80% .centered}
 
 ## La pregunta fue cambiando
 
-Al comienzo de la unidad:
-
-$$
-f_\theta(x)
-$$
-
-¿Cómo hago una buena predicción?
-
-::: {.fragment}
-Al final:
-
-$$
-\boxed{
-\text{¿cómo se comporta el sistema completo en una población real?}
-}
-$$
-:::
+![](./imagenes/clase3/26_prediccion_clinico.jpg){ width=80% .centered}
 
 
 ## Cinco niveles que no debemos confundir
 
-```{mermaid}
-flowchart LR
-    A[1. Predicción] --> B[2. Probabilidad]
-    B --> C[3. Incertidumbre]
-    C --> D[4. Explicación]
-    D --> E[5. Utilidad clínica]
-```
-
-Una mejora en un nivel **no garantiza** una mejora en el siguiente.
-
+![](./imagenes/clase3/27_cinco_pasos.jpg){ width=80% .centered}
 
 ## Qué debería informar un estudio serio
 
-Como mínimo:
-
-- población y criterios de inclusión
-- split y prevención de leakage
-- métricas y umbral
-- calibración cuando corresponda
-- análisis por subgrupos
-- validación externa
-- intended use
-- limitaciones
-
+![](./imagenes/clase3/28_que_informar.jpg){ width=80% .centered}
 
 ## Checklist antes de confiar en un resultado
 
-::: {.columns}
-::: {.column width="48%"}
-### Dataset
-
-- ¿representativo?
-- ¿split por paciente?
-- ¿ground truth?
-- ¿prevalencia?
-:::
-
-::: {.column width="48%"}
-### Sistema
-
-- ¿uso previsto?
-- ¿validación externa?
-- ¿generalización multicéntrica?
-- ¿usuarios reales?
-- ¿impacto en workflow?
-:::
-:::
-
-
-## Tres frases para llevarse
-
-::: {.fragment}
-### 1
-**Un modelo no es un sistema clínico.**
-:::
-
-::: {.fragment}
-### 2
-**Un test interno no demuestra generalización clínica.**
-:::
-
-::: {.fragment}
-### 3
-**Aprender de más centros no reemplaza validar en una población independiente.**
-:::
+![](./imagenes/clase3/29_checklist.jpg){ width=80% .centered}
 
 
 ## Cierre de la unidad
 
-$$
-\boxed{
-\text{buena predicción}
-\neq
-\text{sistema clínicamente útil}
-}
-$$
-
-Para pasar de un modelo experimental a una herramienta clínica necesitamos considerar simultáneamente:
-
-$$
-\boxed{
-\text{desempeño}
-+
-\text{robustez}
-+
-\text{incertidumbre}
-+
-\text{explicabilidad}
-+
-\text{validación}
-+
-\text{integración clínica}
-}
-$$
-
+![](./imagenes/clase3/30_cierre.jpg){ width=80% .centered}
