@@ -4,7 +4,7 @@
     "href": "unidad3/unidad3.html",
     "title": "Unidad 3: Detección, clasificación y diagnóstico asistido",
     "section": "",
-    "text": "Clase 1: De la clasificación a la detección\nClase 2: Incertidumbre y explicabilidad\n\n\n\n\n\nNotas de la clase 1\nNotas de la clase 2\n\n\n\n\n\nNotebook 1: Calibración e incertidumbre con MONAI\nNotebook 2: Saliencia y Grad-CAM con MONAI\nNotebook 3: Segmentación y Grad-CAM con MONAI",
+    "text": "Clase 1: De la clasificación a la detección\nClase 2: Incertidumbre y explicabilidad\n\n\n\n\n\nNotas de la clase 1\nNotas de la clase 2\n\n\n\n\n\nNotebook 1: Calibración e incertidumbre con MONAI\nNotebook 2: Saliencia y Grad-CAM con MONAI\nNotebook 3: Segmentación y Grad-CAM con MONAI\nNotebook 4: Evaluación de NV-Reason-CT en COVID-19-CT-Seg",
     "crumbs": [
       "Inicio",
       "3. Detección, clasificación y diagnóstico asistido",
@@ -40,7 +40,7 @@
     "href": "unidad3/unidad3.html#notebooks",
     "title": "Unidad 3: Detección, clasificación y diagnóstico asistido",
     "section": "",
-    "text": "Notebook 1: Calibración e incertidumbre con MONAI\nNotebook 2: Saliencia y Grad-CAM con MONAI\nNotebook 3: Segmentación y Grad-CAM con MONAI",
+    "text": "Notebook 1: Calibración e incertidumbre con MONAI\nNotebook 2: Saliencia y Grad-CAM con MONAI\nNotebook 3: Segmentación y Grad-CAM con MONAI\nNotebook 4: Evaluación de NV-Reason-CT en COVID-19-CT-Seg",
     "crumbs": [
       "Inicio",
       "3. Detección, clasificación y diagnóstico asistido",
@@ -520,7 +520,7 @@
     "href": "unidad3/clase2.html#incertidumbre-como-herramienta-de-seguridad",
     "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Incertidumbre como herramienta de seguridad",
-    "text": "Incertidumbre como herramienta de seguridad\n\nflowchart LR\n    A[\"Imagen\"] --&gt; B[\"Modelo\"]\n    B --&gt; C[\"Predicción\"]\n    B --&gt; D[\"Incertidumbre\"]\n    D --&gt; E{\"¿u ≥ τ?\"}\n    E --&gt;|\"No\"| F[\"Aceptar / automatizar\"]\n    E --&gt;|\"Sí\"| G[\"Revisión por experto\"]\n\n\n\n\nflowchart LR\n    A[\"Imagen\"] --&gt; B[\"Modelo\"]\n    B --&gt; C[\"Predicción\"]\n    B --&gt; D[\"Incertidumbre\"]\n    D --&gt; E{\"¿u ≥ τ?\"}\n    E --&gt;|\"No\"| F[\"Aceptar / automatizar\"]\n    E --&gt;|\"Sí\"| G[\"Revisión por experto\"]\n\n\n\n\n\n\n\nLa incertidumbre es útil cuando modifica el workflow, no cuando solo agrega otro número a la pantalla.",
+    "text": "Incertidumbre como herramienta de seguridad\n\n\n\n\n\nflowchart LR\n    A[\"Imagen\"] --&gt; B[\"Modelo\"]\n    B --&gt; C[\"Predicción\"]\n    B --&gt; D[\"Incertidumbre\"]\n    D --&gt; E{\"¿u ≥ τ?\"}\n    E --&gt;|\"No\"| F[\"Aceptar / automatizar\"]\n    E --&gt;|\"Sí\"| G[\"Revisión por experto\"]\n\n\n\n\n\n\n\nLa incertidumbre es útil cuando modifica el workflow, no cuando solo agrega otro número a la pantalla.",
     "crumbs": [
       "Inicio",
       "3. Detección, clasificación y diagnóstico asistido",
@@ -580,7 +580,7 @@
     "href": "unidad3/clase2.html#métodos-post-hoc",
     "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Métodos post-hoc",
-    "text": "Métodos post-hoc\n\nflowchart LR\n    A[\"Imagen\"] --&gt; B[\"Modelo entrenado\"]\n    B --&gt; C[\"Predicción\"]\n    A --&gt; D[\"Método post-hoc\"]\n    B --&gt; D\n    D --&gt; E[\"Mapa / explicación\"]\n\n\n\n\nflowchart LR\n    A[\"Imagen\"] --&gt; B[\"Modelo entrenado\"]\n    B --&gt; C[\"Predicción\"]\n    A --&gt; D[\"Método post-hoc\"]\n    B --&gt; D\n    D --&gt; E[\"Mapa / explicación\"]\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\nEl método de explicación analiza un modelo ya entrenado; no necesariamente cambia cómo el modelo toma decisiones.",
+    "text": "Métodos post-hoc\n\n\n\n\n\nflowchart LR\n    A[\"Imagen\"] --&gt; B[\"Modelo entrenado\"]\n    B --&gt; C[\"Predicción\"]\n    A --&gt; D[\"Método post-hoc\"]\n    B --&gt; D\n    D --&gt; E[\"Mapa / explicación\"]\n\n\n\n\n\n\n\n\n\n\n\n\n\nWarning\n\n\nEl método de explicación analiza un modelo ya entrenado; no necesariamente cambia cómo el modelo toma decisiones.",
     "crumbs": [
       "Inicio",
       "3. Detección, clasificación y diagnóstico asistido",
@@ -7178,298 +7178,305 @@
     ]
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#la-pregunta-de-hoy",
-    "href": "unidad3/clase2_borrador.html#la-pregunta-de-hoy",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "La pregunta de hoy",
-    "text": "La pregunta de hoy\n\nUn modelo predice 0.98. ¿Eso significa que está 98 % seguro?\n\n\n\nNo necesariamente."
+    "objectID": "unidad3/clase3.html#del-modelo-al-sistema-clínico",
+    "href": "unidad3/clase3.html#del-modelo-al-sistema-clínico",
+    "title": "Del modelo al sistema clínico",
+    "section": "Del modelo al sistema clínico",
+    "text": "Del modelo al sistema clínico\nHasta ahora analizamos componentes:\n\nclasificación y detección;\ncalibración e incertidumbre;\nexplicabilidad.\n\n\n\n\n\nPero una buena red neuronal todavía no es una herramienta clínica."
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#objetivos-de-la-clase",
-    "href": "unidad3/clase2_borrador.html#objetivos-de-la-clase",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
+    "objectID": "unidad3/clase3.html#pregunta-guía",
+    "href": "unidad3/clase3.html#pregunta-guía",
+    "title": "Del modelo al sistema clínico",
+    "section": "Pregunta guía",
+    "text": "Pregunta guía"
+  },
+  {
+    "objectID": "unidad3/clase3.html#objetivos-de-la-clase",
+    "href": "unidad3/clase3.html#objetivos-de-la-clase",
+    "title": "Del modelo al sistema clínico",
     "section": "Objetivos de la clase",
-    "text": "Objetivos de la clase\nAl finalizar deberíamos poder responder cuatro preguntas:\n\n¿Qué diferencia hay entre score, probabilidad calibrada e incertidumbre?\n¿Cómo podemos estimar incertidumbre en redes neuronales?\n¿Qué nos dicen —y qué no— los mapas de saliencia y Grad-CAM?\n¿Cómo utilizar estas herramientas para construir sistemas clínicos más seguros?"
+    "text": "Objetivos de la clase\nAl final deberíamos poder:\n\ndistinguir CADe de CADx;\nreconocer dónde puede fallar un sistema CAD completo;\ndiferenciar validación interna, externa, temporal y prospectiva;\ninterpretar métricas en función de prevalencia y población;\nentender el lugar de federated learning en escenarios multicéntricos;\nevaluar críticamente un dataset sin confundir benchmark con práctica clínica."
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#el-mapa-conceptual",
-    "href": "unidad3/clase2_borrador.html#el-mapa-conceptual",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "El mapa conceptual",
-    "text": "El mapa conceptual\n\n\n\n\n\nflowchart LR\n    A[\"Predicción\"] --&gt; B[\"¿Discrimina bien?\"]\n    B --&gt; C[\"¿Está calibrada?\"]\n    C --&gt; D[\"¿Cuánto confiar en este caso?\"]\n    D --&gt; E[\"¿Qué información utilizó?\"]\n    E --&gt; F[\"¿Cómo se integra al sistema clínico?\"]\n\n\n\n\n\n\n\nLa clase avanza desde la salida numérica del modelo hacia su uso en una decisión clínica."
+    "objectID": "unidad3/clase3.html#qué-es-cad",
+    "href": "unidad3/clase3.html#qué-es-cad",
+    "title": "Del modelo al sistema clínico",
+    "section": "¿Qué es CAD?",
+    "text": "¿Qué es CAD?\nComputer-Aided Detection / Diagnosis\nSistemas computacionales diseñados para asistir al profesional en tareas de detección, caracterización o diagnóstico."
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#un-score-alto-puede-estar-equivocado",
-    "href": "unidad3/clase2_borrador.html#un-score-alto-puede-estar-equivocado",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Un score alto puede estar equivocado",
-    "text": "Un score alto puede estar equivocado\n\n\nCaso 1\n\\[\nP(\\text{maligno}) = 0.98\n\\]\nPredicción correcta.\n\nAlta confianza aparente + acierto.\n\n\nCaso 2\n\\[\nP(\\text{maligno}) = 0.98\n\\]\nPredicción incorrecta.\n\nAlta confianza aparente + error.\n\n\n\n\nEl valor de salida no certifica que el modelo tenga razón."
+    "objectID": "unidad3/clase3.html#cade-y-cadx-no-son-excluyentes",
+    "href": "unidad3/clase3.html#cade-y-cadx-no-son-excluyentes",
+    "title": "Del modelo al sistema clínico",
+    "section": "CADe y CADx no son excluyentes",
+    "text": "CADe y CADx no son excluyentes"
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#de-dónde-sale-esa-probabilidad",
-    "href": "unidad3/clase2_borrador.html#de-dónde-sale-esa-probabilidad",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "¿De dónde sale esa “probabilidad”?",
-    "text": "¿De dónde sale esa “probabilidad”?\nClasificación binaria\n\\[\nz \\in \\mathbb{R}\n\\qquad\\longrightarrow\\qquad\np=\\sigma(z)=\\frac{1}{1+e^{-z}}\n\\]\nClasificación multiclase\n\\[\n\\mathbf z=(z_1,\\ldots,z_K)\n\\qquad\\longrightarrow\\qquad\np_k=\\frac{e^{z_k}}{\\sum_j e^{z_j}}\n\\]\n\nSigmoide y softmax producen números entre 0 y 1, pero eso no garantiza que representen probabilidades empíricamente fiables."
+    "objectID": "unidad3/clase3.html#un-pipeline-cad-completo",
+    "href": "unidad3/clase3.html#un-pipeline-cad-completo",
+    "title": "Del modelo al sistema clínico",
+    "section": "Un pipeline CAD completo",
+    "text": "Un pipeline CAD completo"
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#discriminación-calibración",
-    "href": "unidad3/clase2_borrador.html#discriminación-calibración",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Discriminación ≠ calibración",
-    "text": "Discriminación ≠ calibración\n\n\nDiscriminación\n\n¿El modelo ordena/separa bien positivos y negativos?\n\nEjemplos:\n\nROC-AUC\nsensibilidad / especificidad\nprecision-recall\n\n\nCalibración\n\nCuando el modelo dice 80 %, ¿aproximadamente 80 % de esos casos son realmente positivos?\n\n\\[\nP(Y=1\\mid \\hat p=0.8)\\approx0.8\n\\]"
+    "objectID": "unidad3/clase3.html#dónde-puede-fallar",
+    "href": "unidad3/clase3.html#dónde-puede-fallar",
+    "title": "Del modelo al sistema clínico",
+    "section": "¿Dónde puede fallar?",
+    "text": "¿Dónde puede fallar?"
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#qué-significa-estar-calibrado",
-    "href": "unidad3/clase2_borrador.html#qué-significa-estar-calibrado",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "¿Qué significa estar calibrado?",
-    "text": "¿Qué significa estar calibrado?\nSupongamos 100 pacientes para los que el modelo predice aproximadamente:\n\\[\n\\hat p \\approx 0.8\n\\]\nUn modelo bien calibrado debería mostrar aproximadamente:\n\\[\n80\\ \\text{positivos reales de cada 100 casos}\n\\]\n\nLa calibración compara probabilidad predicha con frecuencia observada."
+    "objectID": "unidad3/clase3.html#human-in-the-loop",
+    "href": "unidad3/clase3.html#human-in-the-loop",
+    "title": "Del modelo al sistema clínico",
+    "section": "Human-in-the-loop",
+    "text": "Human-in-the-loop\nEn muchas aplicaciones, el objetivo no es reemplazar al profesional.\n\n#| echo: false\n\nflowchart LR\n    H[Humano] &lt;--&gt; C((+)) &lt;--&gt; IA[IA]\n    classDef human fill:#DCEBFA,stroke:#3973AC,stroke-width:2px,color:#17324D\n    classDef assist fill:#E2F3E8,stroke:#3A8F5B,stroke-width:2px,color:#194D2D\n    classDef plus fill:#FFF3CD,stroke:#B8860B,stroke-width:2px,color:#5C4500\n    class H human\n    class C plus\n    class IA assist\n\n\n\n\n#| echo: false\n\nflowchart LR\n    H[Humano] &lt;--&gt; C((+)) &lt;--&gt; IA[IA]\n    classDef human fill:#DCEBFA,stroke:#3973AC,stroke-width:2px,color:#17324D\n    classDef assist fill:#E2F3E8,stroke:#3A8F5B,stroke-width:2px,color:#194D2D\n    classDef plus fill:#FFF3CD,stroke:#B8860B,stroke-width:2px,color:#5C4500\n    class H human\n    class C plus\n    class IA assist\n\n\n\n\n\n\nLa IA puede:\n\npriorizar estudios\nseñalar regiones\nofrecer una segunda lectura\nestimar riesgo\nsugerir una clasificación\nderivar casos inciertos"
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#reliability-diagram",
-    "href": "unidad3/clase2_borrador.html#reliability-diagram",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Reliability diagram",
-    "text": "Reliability diagram\n\n\n\n\n\n\n\n\nFigure 1\n\n\n\n\n\n\nDebajo de la diagonal: el modelo suele reportar más confianza de la que merece."
+    "objectID": "unidad3/clase3.html#el-mismo-modelo-cuatro-usos-distintos",
+    "href": "unidad3/clase3.html#el-mismo-modelo-cuatro-usos-distintos",
+    "title": "Del modelo al sistema clínico",
+    "section": "El mismo modelo, cuatro usos distintos",
+    "text": "El mismo modelo, cuatro usos distintos"
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#métricas-de-calibración",
-    "href": "unidad3/clase2_borrador.html#métricas-de-calibración",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Métricas de calibración",
-    "text": "Métricas de calibración\n\n\nExpected Calibration Error\n\\[\n\\mathrm{ECE}\n=\n\\sum_{m=1}^{M}\n\\frac{|B_m|}{N}\n\\left|\n\\mathrm{acc}(B_m)-\\mathrm{conf}(B_m)\n\\right|\n\\]\n\nResume discrepancias por bins, pero depende de cómo se construyan esos intervalos.\n\n\nBrier score\n\\[\n\\mathrm{Brier}\n=\n\\frac{1}{N}\\sum_{i=1}^{N}(\\hat p_i-y_i)^2\n\\]\n\nPenaliza especialmente las predicciones muy seguras que resultan incorrectas."
+    "objectID": "unidad3/clase3.html#ejemplo-detector-de-hemorragia-intracraneal",
+    "href": "unidad3/clase3.html#ejemplo-detector-de-hemorragia-intracraneal",
+    "title": "Del modelo al sistema clínico",
+    "section": "Ejemplo: detector de hemorragia intracraneal",
+    "text": "Ejemplo: detector de hemorragia intracraneal"
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#recalibración-temperature-scaling",
-    "href": "unidad3/clase2_borrador.html#recalibración-temperature-scaling",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Recalibración: temperature scaling",
-    "text": "Recalibración: temperature scaling\nPartimos de los logits y modificamos su “temperatura”:\n\\[\np_k\n=\n\\frac{\\exp(z_k/T)}{\\sum_j \\exp(z_j/T)}\n\\]\n\n\n\\(T&gt;1\\)\nProbabilidades menos extremas.\n\\[\n(0.99,0.01)\\rightarrow(0.85,0.15)\n\\]\n\n\\(T&lt;1\\)\nProbabilidades más concentradas.\n\\[\n(0.70,0.30)\\rightarrow(0.90,0.10)\n\\]\n\n\nRecalibrar puede mejorar la fiabilidad de las probabilidades sin cambiar sustancialmente la discriminación."
+    "objectID": "unidad3/clase3.html#sesgos-de-la-automatización",
+    "href": "unidad3/clase3.html#sesgos-de-la-automatización",
+    "title": "Del modelo al sistema clínico",
+    "section": "Sesgos de la automatización",
+    "text": "Sesgos de la automatización\nUn sistema consistente puede modificar la conducta humana.\n\\[\n\\text{modelo dice negativo}\n\\Rightarrow\n\\text{menor búsqueda activa}\n\\]\n\\[\n\\text{modelo marca una región}\n\\Rightarrow\n\\text{atención concentrada allí}\n\\]\n\n\nEl CAD puede crear errores nuevos que no ocurrirían sin asistencia."
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#pausa-conceptual",
-    "href": "unidad3/clase2_borrador.html#pausa-conceptual",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Pausa conceptual",
-    "text": "Pausa conceptual\n\nSi un modelo está bien calibrado en promedio… ¿sabemos cuándo una predicción individual es poco confiable?\n\n\n\nEsto ya no es solo calibración. Es incertidumbre."
+    "objectID": "unidad3/clase3.html#el-problema-opuesto-fatiga-de-alertas",
+    "href": "unidad3/clase3.html#el-problema-opuesto-fatiga-de-alertas",
+    "title": "Del modelo al sistema clínico",
+    "section": "El problema opuesto: fatiga de alertas",
+    "text": "El problema opuesto: fatiga de alertas\nSi el sistema genera demasiadas alarmas:\n\nflowchart LR\n    A[Muchos falsos positivos] --&gt; B[Sobrecarga]\n    B --&gt; C[Pérdida de confianza]\n    C --&gt; D[Alertas ignoradas]\n\n\n\n\nflowchart LR\n    A[Muchos falsos positivos] --&gt; B[Sobrecarga]\n    B --&gt; C[Pérdida de confianza]\n    C --&gt; D[Alertas ignoradas]\n\n\n\n\n\n\n\nUn detector con recall muy alto puede ser clínicamente inútil si produce demasiadas marcas por estudio."
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#dos-fuentes-de-incertidumbre",
-    "href": "unidad3/clase2_borrador.html#dos-fuentes-de-incertidumbre",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Dos fuentes de incertidumbre",
-    "text": "Dos fuentes de incertidumbre\n\n\n\n\n\nflowchart TB\n    U[\"Incertidumbre\"] --&gt; A[\"Aleatoria / aleatoric\"]\n    U --&gt; E[\"Epistémica / epistemic\"]\n    A --&gt; A1[\"Ambigüedad inherente de la observación\"]\n    E --&gt; E1[\"Conocimiento limitado del modelo\"]"
+    "objectID": "unidad3/clase3.html#primera-idea-clave",
+    "href": "unidad3/clase3.html#primera-idea-clave",
+    "title": "Del modelo al sistema clínico",
+    "section": "Primera idea clave",
+    "text": "Primera idea clave\n\\[\n\\boxed{\n\\text{métrica del modelo}\n\\neq\n\\text{utilidad clínica}\n}\n\\]\nPara evaluar un sistema necesitamos estudiar:\n\nalgoritmo;\ninterfaz;\nusuario;\npoblación;\nworkflow;\nconsecuencia de los errores."
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#incertidumbre-aleatoria",
-    "href": "unidad3/clase2_borrador.html#incertidumbre-aleatoria",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Incertidumbre aleatoria",
-    "text": "Incertidumbre aleatoria\nAsociada a variabilidad o ambigüedad del dato:\n\nruido de adquisición;\nbajo contraste;\nmovimiento y artefactos;\nlesión intrínsecamente ambigua;\nvariabilidad biológica.\n\n\nIdea: aun con muchos datos de entrenamiento, la observación puede seguir siendo ambigua."
+    "objectID": "unidad3/clase3.html#la-escalera-de-validación",
+    "href": "unidad3/clase3.html#la-escalera-de-validación",
+    "title": "Del modelo al sistema clínico",
+    "section": "La escalera de validación",
+    "text": "La escalera de validación\n\nflowchart LR\n    A[Desempeño técnico] --&gt; B[Validación interna]\n    B --&gt; C[Validación externa]\n    C --&gt; D[Evaluación con usuarios]\n    D --&gt; E[Evaluación prospectiva]\n    E --&gt; F[Impacto clínico]\n\n\n\n\nflowchart LR\n    A[Desempeño técnico] --&gt; B[Validación interna]\n    B --&gt; C[Validación externa]\n    C --&gt; D[Evaluación con usuarios]\n    D --&gt; E[Evaluación prospectiva]\n    E --&gt; F[Impacto clínico]\n\n\n\n\n\n\n\nCada escalón responde una pregunta diferente."
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#incertidumbre-epistémica",
-    "href": "unidad3/clase2_borrador.html#incertidumbre-epistémica",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Incertidumbre epistémica",
-    "text": "Incertidumbre epistémica\nAsociada a aquello que el modelo no conoce suficientemente:\n\npocos ejemplos relevantes;\nregiones poco representadas del espacio de datos;\nnueva población;\nnuevo equipo o protocolo;\npatologías raras.\n\n\nPuede reducirse incorporando datos pertinentes y representativos."
+    "objectID": "unidad3/clase3.html#validación-interna",
+    "href": "unidad3/clase3.html#validación-interna",
+    "title": "Del modelo al sistema clínico",
+    "section": "Validación interna",
+    "text": "Validación interna\nEvaluamos con datos provenientes de una población similar a la utilizada para desarrollar el modelo.\n\\[\n\\mathcal D\n=\n\\mathcal D_{train}\n\\cup\n\\mathcal D_{val}\n\\cup\n\\mathcal D_{test}\n\\]\nPero en imágenes médicas importa qué unidad estamos separando."
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#dos-casos-clínicos-distintos",
-    "href": "unidad3/clase2_borrador.html#dos-casos-clínicos-distintos",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Dos casos clínicos distintos",
-    "text": "Dos casos clínicos distintos\n\n\nCaso A · Imagen ambigua\nLesión de bajo contraste y bordes poco definidos.\nVarios expertos podrían discrepar.\n\\[\n\\Downarrow\n\\]\nComponente aleatoria alta\n\nCaso B · Dominio nuevo\nImagen visualmente clara, pero adquirida con un protocolo no visto durante entrenamiento.\n\\[\n\\Downarrow\n\\]\nComponente epistémica alta"
+    "objectID": "unidad3/clase3.html#la-unidad-de-partición",
+    "href": "unidad3/clase3.html#la-unidad-de-partición",
+    "title": "Del modelo al sistema clínico",
+    "section": "La unidad de partición",
+    "text": "La unidad de partición\nEn muchos problemas médicos:\n\\[\n\\boxed{\\text{unidad de split} = \\text{paciente}}\n\\]\nno:\n\\[\n\\boxed{\\text{unidad de split} = \\text{imagen}}\n\\]\n\nPorque múltiples imágenes pueden compartir información clínica, anatómica y de adquisición."
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#dataset-shift-cuando-cambia-el-mundo",
-    "href": "unidad3/clase2_borrador.html#dataset-shift-cuando-cambia-el-mundo",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Dataset shift: cuando cambia el mundo",
-    "text": "Dataset shift: cuando cambia el mundo\n\\[\nP_{\\mathrm{test}}(x,y)\\neq P_{\\mathrm{train}}(x,y)\n\\]\nPuede cambiar:\n\n\n\ncentro clínico;\nfabricante;\nreconstrucción;\ndosis;\n\n\n\npoblación;\nprevalencia;\nprotocolo;\nselección de pacientes.\n\n\n\nIdealmente el sistema debería poder decir: “Este caso es distinto de aquello que conozco”."
+    "objectID": "unidad3/clase3.html#leakage-no-es-solo-repetir-pacientes",
+    "href": "unidad3/clase3.html#leakage-no-es-solo-repetir-pacientes",
+    "title": "Del modelo al sistema clínico",
+    "section": "Leakage no es solo repetir pacientes",
+    "text": "Leakage no es solo repetir pacientes\nTambién puede aparecer cuando:\n\nusamos todo el dataset para normalizar;\najustamos preprocessing mirando el test;\nseleccionamos hiperparámetros con el test;\nmezclamos estudios longitudinales del mismo paciente;\nhacemos feature selection antes del split.\n\n\n\nEl test debe permanecer informacionalmente aislado hasta la evaluación final."
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#un-softmax-alto-no-detecta-ood",
-    "href": "unidad3/clase2_borrador.html#un-softmax-alto-no-detecta-ood",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Un softmax alto no detecta OOD",
-    "text": "Un softmax alto no detecta OOD\nUn caso fuera de distribución puede producir:\n\\[\np=(0.99,0.005,0.005)\n\\]\n\nMuy seguro no implica muy confiable.\n\n\nLa estimación de incertidumbre busca información adicional a la salida softmax convencional."
+    "objectID": "unidad3/clase3.html#validación-externa",
+    "href": "unidad3/clase3.html#validación-externa",
+    "title": "Del modelo al sistema clínico",
+    "section": "Validación externa",
+    "text": "Validación externa\nUsamos datos independientes del conjunto de desarrollo.\nIdealmente:\n\notro hospital\notra región\notros equipos;\notros protocolos;\notra población.\n\n\\[\nP_{external}(x,y)\n\\neq\nP_{development}(x,y)\n\\]"
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#monte-carlo-dropout",
-    "href": "unidad3/clase2_borrador.html#monte-carlo-dropout",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Monte Carlo Dropout",
-    "text": "Monte Carlo Dropout\n\n\n\n\n\nflowchart LR\n    A[\"Misma imagen\"] --&gt; B1[\"Forward 1\\nDropout ON\"]\n    A --&gt; B2[\"Forward 2\\nDropout ON\"]\n    A --&gt; B3[\"...\"]\n    A --&gt; B4[\"Forward T\\nDropout ON\"]\n    B1 --&gt; C[\"Distribución de predicciones\"]\n    B2 --&gt; C\n    B3 --&gt; C\n    B4 --&gt; C\n    C --&gt; D[\"Media\"]\n    C --&gt; E[\"Dispersión\"]\n\n\n\n\n\n\n\\[\n\\bar p=\\frac{1}{T}\\sum_{t=1}^{T}\\hat p^{(t)}\n\\]\n\nMás dispersión entre forwards → mayor incertidumbre estimada."
+    "objectID": "unidad3/clase3.html#el-modelo-funcionaba-muy-bien",
+    "href": "unidad3/clase3.html#el-modelo-funcionaba-muy-bien",
+    "title": "Del modelo al sistema clínico",
+    "section": "El modelo funcionaba muy bien…",
+    "text": "El modelo funcionaba muy bien…\n\\[\nAUC_{interno}=0.94\n\\]\npero:\n\\[\nAUC_{externo}=0.79\n\\]\n\n¿El modelo está “mal”?\n\n\nNo necesariamente. Puede estar revelándose un domain shift."
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#deep-ensembles",
-    "href": "unidad3/clase2_borrador.html#deep-ensembles",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Deep ensembles",
-    "text": "Deep ensembles\n\n\n\n\n\nflowchart LR\n    A[\"Imagen\"] --&gt; M1[\"Modelo 1\"]\n    A --&gt; M2[\"Modelo 2\"]\n    A --&gt; M3[\"Modelo 3\"]\n    A --&gt; MM[\"Modelo M\"]\n    M1 --&gt; C[\"Combinar predicciones\"]\n    M2 --&gt; C\n    M3 --&gt; C\n    MM --&gt; C\n    C --&gt; P[\"Predicción promedio\"]\n    C --&gt; U[\"Desacuerdo\"]\n\n\n\n\n\n\n\\[\n\\bar p(x)=\\frac{1}{M}\\sum_{m=1}^{M}p^{(m)}(x)\n\\]"
+    "objectID": "unidad3/clase3.html#de-dónde-viene-el-domain-shift",
+    "href": "unidad3/clase3.html#de-dónde-viene-el-domain-shift",
+    "title": "Del modelo al sistema clínico",
+    "section": "¿De dónde viene el domain shift?",
+    "text": "¿De dónde viene el domain shift?\n\nflowchart TD\n    S[Domain shift] --&gt; A[Población]\n    S --&gt; B[Prevalencia]\n    S --&gt; C[Scanner]\n    S --&gt; D[Protocolo]\n    S --&gt; E[Reconstrucción]\n    S --&gt; F[Criterio diagnóstico]\n\n\n\n\nflowchart TD\n    S[Domain shift] --&gt; A[Población]\n    S --&gt; B[Prevalencia]\n    S --&gt; C[Scanner]\n    S --&gt; D[Protocolo]\n    S --&gt; E[Reconstrucción]\n    S --&gt; F[Criterio diagnóstico]\n\n\n\n\n\n\nLa validación externa prueba dependencias que el test interno puede ocultar."
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#mc-dropout-vs-ensembles",
-    "href": "unidad3/clase2_borrador.html#mc-dropout-vs-ensembles",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "MC Dropout vs ensembles",
-    "text": "MC Dropout vs ensembles\n\n\n\n\n\n\n\n\n\nMC Dropout\nDeep ensembles\n\n\n\n\nIdea\nmúltiples forwards de una red\nmúltiples redes independientes\n\n\nCosto de entrenamiento\nbajo/adicional mínimo\nalto\n\n\nCosto de inferencia\nmúltiples forwards\nmúltiples modelos\n\n\nSeñal de incertidumbre\nvariación entre máscaras\ndesacuerdo entre modelos\n\n\nUso práctico\nsencillo de incorporar\nmuy competitivo, pero costoso\n\n\n\n\nNinguno de los dos métodos garantiza detectar todos los casos OOD ni produce una “incertidumbre perfecta”."
+    "objectID": "unidad3/clase3.html#y-si-queremos-entrenar-con-varios-hospitales",
+    "href": "unidad3/clase3.html#y-si-queremos-entrenar-con-varios-hospitales",
+    "title": "Del modelo al sistema clínico",
+    "section": "¿Y si queremos entrenar con varios hospitales?",
+    "text": "¿Y si queremos entrenar con varios hospitales?\nLa validación externa nos muestra que distintos centros pueden tener distribuciones diferentes.\nUna respuesta natural sería entrenar con datos de varios hospitales.\nPero aparece una restricción frecuente:\n\\[\n\\boxed{\\text{los datos clínicos no siempre pueden centralizarse}}\n\\]\n\nAhí aparece Federated Learning."
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#incertidumbre-como-herramienta-de-seguridad",
-    "href": "unidad3/clase2_borrador.html#incertidumbre-como-herramienta-de-seguridad",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Incertidumbre como herramienta de seguridad",
-    "text": "Incertidumbre como herramienta de seguridad\n\n\n\n\n\nflowchart LR\n    A[\"Imagen\"] --&gt; B[\"Modelo\"]\n    B --&gt; C[\"Predicción\"]\n    B --&gt; D[\"Incertidumbre\"]\n    D --&gt; E{\"¿u ≥ τ?\"}\n    E --&gt;|\"No\"| F[\"Aceptar / automatizar\"]\n    E --&gt;|\"Sí\"| G[\"Revisión por experto\"]\n\n\n\n\n\n\n\nLa incertidumbre es útil cuando modifica el workflow, no cuando solo agrega otro número a la pantalla."
+    "objectID": "unidad3/clase3.html#federated-learning-idea-básica",
+    "href": "unidad3/clase3.html#federated-learning-idea-básica",
+    "title": "Del modelo al sistema clínico",
+    "section": "Federated Learning: idea básica",
+    "text": "Federated Learning: idea básica\n\nflowchart LR\n    S[Modelo global] --&gt; A[Hospital A]\n    S --&gt; B[Hospital B]\n    S --&gt; C[Hospital C]\n\n    A --&gt; UA[Actualización local]\n    B --&gt; UB[Actualización local]\n    C --&gt; UC[Actualización local]\n\n    UA --&gt; G[Agregación]\n    UB --&gt; G\n    UC --&gt; G\n    G --&gt; S\n\n\n\n\nflowchart LR\n    S[Modelo global] --&gt; A[Hospital A]\n    S --&gt; B[Hospital B]\n    S --&gt; C[Hospital C]\n\n    A --&gt; UA[Actualización local]\n    B --&gt; UB[Actualización local]\n    C --&gt; UC[Actualización local]\n\n    UA --&gt; G[Agregación]\n    UB --&gt; G\n    UC --&gt; G\n    G --&gt; S\n\n\n\n\n\n\n\nLos datos permanecen en cada institución.\n\n\nLo que se intercambia son parámetros, gradientes o actualizaciones del modelo."
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#cobertura-versus-riesgo",
-    "href": "unidad3/clase2_borrador.html#cobertura-versus-riesgo",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Cobertura versus riesgo",
-    "text": "Cobertura versus riesgo\n\n\n\n\n\n\n\n\nFigure 2\n\n\n\n\n\n\nSer más selectivo puede reducir el riesgo, pero también reduce la automatización."
+    "objectID": "unidad3/clase3.html#qué-problema-intenta-resolver",
+    "href": "unidad3/clase3.html#qué-problema-intenta-resolver",
+    "title": "Del modelo al sistema clínico",
+    "section": "¿Qué problema intenta resolver?",
+    "text": "¿Qué problema intenta resolver?\nFederated learning puede permitir:\n\nentrenar con datos multicéntricos sin reunirlos físicamente\nincorporar mayor diversidad de scanners, protocolos y poblaciones\ncolaborar entre instituciones con restricciones de gobernanza de datos\n\nPero:\n\\[\n\\boxed{\\text{Federated Learning} \\neq \\text{privacidad garantizada}}\n\\]\nPersisten desafíos como:\n\nseguridad de las actualizaciones\nheterogeneidad entre centros\ndatos non-IID\ntamaños de muestra muy diferentes\ndistinta prevalencia y calidad de etiquetas"
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#tres-preguntas-distintas",
-    "href": "unidad3/clase2_borrador.html#tres-preguntas-distintas",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Tres preguntas distintas",
-    "text": "Tres preguntas distintas\n\n\n\n\nDiscriminación\n\n ¿Separa correctamente las clases?\n\n\n\n\nCalibración\n\n ¿Las probabilidades reportadas son fiables?\n\n\n\n\nIncertidumbre\n\n ¿Cuánto confiar en este caso particular?\n\n\n\nBuen AUC ≠ buena calibración ≠ incertidumbre fiable"
+    "objectID": "unidad3/clase3.html#federated-training-no-es-validación-externa",
+    "href": "unidad3/clase3.html#federated-training-no-es-validación-externa",
+    "title": "Del modelo al sistema clínico",
+    "section": "Federated training no es validación externa",
+    "text": "Federated training no es validación externa\nSupongamos que entrenamos federadamente con:\n\\[\nA+B+C \\rightarrow \\text{modelo federado}\n\\]\n¿Evaluar el modelo en A, B y C constituye validación externa?\n\nNo. Esos centros participaron en el desarrollo.\n\nUna evaluación más fuerte sería:\n\\[\n\\boxed{\nA+B+C \\rightarrow \\text{entrenamiento federado}\n}\n\\]\n\\[\n\\boxed{\nD \\rightarrow \\text{validación externa}\n}\n\\]\n\n\nAprender de múltiples centros puede mejorar la robustez, pero no elimina la necesidad de validación independiente."
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#de-la-confianza-a-la-explicación",
-    "href": "unidad3/clase2_borrador.html#de-la-confianza-a-la-explicación",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "De la confianza a la explicación",
-    "text": "De la confianza a la explicación\nSupongamos ahora:\n\\[\nP(\\text{maligno})=0.92\n\\]\ny además estimamos una incertidumbre baja.\n\n¿Qué información de la imagen utilizó el modelo para producir esa predicción?"
+    "objectID": "unidad3/clase3.html#validación-temporal",
+    "href": "unidad3/clase3.html#validación-temporal",
+    "title": "Del modelo al sistema clínico",
+    "section": "Validación temporal",
+    "text": "Validación temporal\nOtra forma de simular despliegue:\n\\[\n\\text{train: 2018--2023}\n\\]\n\\[\n\\text{test: 2024--2025}\n\\]\n\nEntrenamos con el pasado y evaluamos sobre pacientes futuros.\n\nPuede revelar cambios en:\n\npráctica clínica\nprotocolos\nequipos\npoblación"
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#interpretabilidad-y-explicabilidad",
-    "href": "unidad3/clase2_borrador.html#interpretabilidad-y-explicabilidad",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Interpretabilidad y explicabilidad",
-    "text": "Interpretabilidad y explicabilidad\n\n\nModelo interpretable\nSu mecanismo puede inspeccionarse directamente.\n\\[\ny=w_1x_1+w_2x_2+b\n\\]\nEjemplo: regresión lineal/logística.\n\nModelo explicable\nEl modelo es complejo y aplicamos herramientas adicionales para analizar su comportamiento.\nEjemplo: CNN + Grad-CAM."
+    "objectID": "unidad3/clase3.html#retrospectivo-vs-prospectivo",
+    "href": "unidad3/clase3.html#retrospectivo-vs-prospectivo",
+    "title": "Del modelo al sistema clínico",
+    "section": "Retrospectivo vs prospectivo",
+    "text": "Retrospectivo vs prospectivo\n\n\nRetrospectivo\nDatos ya existentes.\nVentajas: - rápido; - barato; - control experimental.\nLimitación: - reproduce imperfectamente el workflow real.\n\nProspectivo\nEl protocolo se define antes de observar nuevos casos.\nVentaja: - mayor realismo clínico.\nCosto: - tiempo; - logística; - complejidad."
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#métodos-post-hoc",
-    "href": "unidad3/clase2_borrador.html#métodos-post-hoc",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Métodos post-hoc",
-    "text": "Métodos post-hoc\n\n\n\n\n\nflowchart LR\n    A[\"Imagen\"] --&gt; B[\"Modelo entrenado\"]\n    B --&gt; C[\"Predicción\"]\n    A --&gt; D[\"Método post-hoc\"]\n    B --&gt; D\n    D --&gt; E[\"Mapa / explicación\"]\n\n\n\n\n\n\n\nEl método de explicación analiza un modelo ya entrenado; no necesariamente cambia cómo el modelo toma decisiones."
+    "objectID": "unidad3/clase3.html#auc-0.95-y-ahora",
+    "href": "unidad3/clase3.html#auc-0.95-y-ahora",
+    "title": "Del modelo al sistema clínico",
+    "section": "AUC = 0.95… ¿y ahora?",
+    "text": "AUC = 0.95… ¿y ahora?\nUn modelo puede tener:\n\\[\nAUC=0.95\n\\]\ny aun así no sabemos:\n\\[\n\\boxed{\\text{¿mejora el desempeño del profesional?}}\n\\]\nPara responderlo necesitamos comparar:\n\\[\n\\text{humano sin IA}\n\\quad vs \\quad\n\\text{humano + IA}\n\\]"
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#mapas-de-saliencia",
-    "href": "unidad3/clase2_borrador.html#mapas-de-saliencia",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Mapas de saliencia",
-    "text": "Mapas de saliencia\nPara una salida:\n\\[\ny=f_\\theta(I)\n\\]\ncalculamos la sensibilidad local respecto de la imagen:\n\\[\nS(x,y)=\\left|\\frac{\\partial y}{\\partial I(x,y)}\\right|\n\\]\n\nUn valor alto indica que pequeñas perturbaciones de ese píxel pueden modificar la salida.\n\n\n\nNo significa automáticamente causalidad, “atención” consciente ni relevancia clínica."
+    "objectID": "unidad3/clase3.html#un-diseño-más-realista",
+    "href": "unidad3/clase3.html#un-diseño-más-realista",
+    "title": "Del modelo al sistema clínico",
+    "section": "Un diseño más realista",
+    "text": "Un diseño más realista\n\n\nEvitar\n\nsiempre “sin IA” primero;\nmismos casos inmediatamente después;\norden fijo;\nlectores no representativos.\n\n\nPreferir\n\norden aleatorizado;\nwashout;\nmúltiples lectores;\nmúltiples casos;\ncondición clínica plausible."
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#grad-cam-idea-general",
-    "href": "unidad3/clase2_borrador.html#grad-cam-idea-general",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Grad-CAM: idea general",
-    "text": "Grad-CAM: idea general\n\n\n\n\n\nflowchart LR\n    A[\"Imagen\"] --&gt; B[\"CNN\"]\n    B --&gt; C[\"Feature maps Aᵏ\"]\n    C --&gt; D[\"Score de clase yᶜ\"]\n    D --&gt; E[\"Gradientes ∂yᶜ/∂Aᵏ\"]\n    E --&gt; F[\"Peso αₖᶜ\"]\n    C --&gt; G[\"Combinación ponderada\"]\n    F --&gt; G\n    G --&gt; H[\"Grad-CAM\"]"
+    "objectID": "unidad3/clase3.html#una-paradoja-posible",
+    "href": "unidad3/clase3.html#una-paradoja-posible",
+    "title": "Del modelo al sistema clínico",
+    "section": "Una paradoja posible",
+    "text": "Una paradoja posible\nPuede ocurrir:\n\\[\n\\text{modelo} &gt; \\text{humano}\n\\]\ncuando se evalúan aislados,\npero:\n\\[\n\\text{humano + modelo} &lt; \\text{humano}\n\\]\ncuando trabajan juntos."
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#grad-cam-la-ecuación",
-    "href": "unidad3/clase2_borrador.html#grad-cam-la-ecuación",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Grad-CAM: la ecuación",
-    "text": "Grad-CAM: la ecuación\nPara cada feature map \\(A^k\\):\n\\[\n\\alpha_k^c\n=\n\\frac{1}{Z}\n\\sum_i\\sum_j\n\\frac{\\partial y^c}{\\partial A_{ij}^{k}}\n\\]\nLuego:\n\\[\nL_{\\mathrm{GradCAM}}^c\n=\n\\mathrm{ReLU}\\left(\\sum_k \\alpha_k^c A^k\\right)\n\\]\n\nPregunta intuitiva: ¿qué mapas de características favorecieron el score de esta clase?"
+    "objectID": "unidad3/clase3.html#cómo-puede-ocurrir",
+    "href": "unidad3/clase3.html#cómo-puede-ocurrir",
+    "title": "Del modelo al sistema clínico",
+    "section": "¿Cómo puede ocurrir?",
+    "text": "¿Cómo puede ocurrir?\n\nflowchart LR\n    A[Buen modelo] --&gt; B{Integración}\n    B --&gt;|Mala| C[Automation bias]\n    B --&gt;|Mala| D[Alert fatigue]\n    B --&gt;|Mala| E[Interfaz confusa]\n    B --&gt;|Mala| F[Sobreconfianza]\n    C --&gt; G[Peor sistema]\n    D --&gt; G\n    E --&gt; G\n    F --&gt; G\n\n\n\n\nflowchart LR\n    A[Buen modelo] --&gt; B{Integración}\n    B --&gt;|Mala| C[Automation bias]\n    B --&gt;|Mala| D[Alert fatigue]\n    B --&gt;|Mala| E[Interfaz confusa]\n    B --&gt;|Mala| F[Sobreconfianza]\n    C --&gt; G[Peor sistema]\n    D --&gt; G\n    E --&gt; G\n    F --&gt; G"
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#qué-resolución-tiene-grad-cam",
-    "href": "unidad3/clase2_borrador.html#qué-resolución-tiene-grad-cam",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "¿Qué resolución tiene Grad-CAM?",
-    "text": "¿Qué resolución tiene Grad-CAM?\nUna CNN puede transformar:\n\\[\n224\\times224\n\\quad\\longrightarrow\\quad\n7\\times7\n\\]\nEl Grad-CAM se calcula sobre mapas profundos y luego se interpola.\n\n\n\nBueno para: ¿qué región general contribuyó a la decisión?\n\n\n\nNo ideal para: ¿qué píxel exacto fue responsable?"
+    "objectID": "unidad3/clase3.html#segunda-idea-clave",
+    "href": "unidad3/clase3.html#segunda-idea-clave",
+    "title": "Del modelo al sistema clínico",
+    "section": "Segunda idea clave",
+    "text": "Segunda idea clave\n\\[\n\\boxed{\n\\text{desempeño humano–IA}\n\\text{ no se deduce }\n\\text{del desempeño del modelo aislado}\n}\n\\]"
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#dos-resultados-visualmente-muy-distintos",
-    "href": "unidad3/clase2_borrador.html#dos-resultados-visualmente-muy-distintos",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Dos resultados visualmente muy distintos",
-    "text": "Dos resultados visualmente muy distintos\n\n\nSituación A\nEl mapa se concentra sobre la lesión.\n\nCompatible con el uso de información anatómicamente plausible.\n\nPero no prueba causalidad.\n\nSituación B\nEl mapa se concentra en una marca, borde o texto.\n\nPosible correlación espuria o shortcut.\n\nAuditar antes de confiar."
+    "objectID": "unidad3/clase3.html#qué-pregunta-responde-cada-diseño",
+    "href": "unidad3/clase3.html#qué-pregunta-responde-cada-diseño",
+    "title": "Del modelo al sistema clínico",
+    "section": "¿Qué pregunta responde cada diseño?",
+    "text": "¿Qué pregunta responde cada diseño?\n\n\n\nDiseño\nPregunta\n\n\n\n\nTest interno\n¿Generaliza dentro de mi cohorte?\n\n\nExterno\n¿Generaliza a otro dominio?\n\n\nTemporal\n¿Generaliza hacia el futuro?\n\n\nProspectivo\n¿Funciona cuando se despliega bajo protocolo real?\n\n\nReader study\n¿Mejora al profesional?"
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#shortcut-learning",
-    "href": "unidad3/clase2_borrador.html#shortcut-learning",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Shortcut learning",
-    "text": "Shortcut learning\n\n\n\n\n\nflowchart TB\n    D[\"Dataset\"] --&gt; S1[\"Señal clínica real\"]\n    D --&gt; S2[\"Atajo espurio\"]\n    S1 --&gt; M[\"Modelo minimiza la pérdida\"]\n    S2 --&gt; M\n    M --&gt; P[\"Buena métrica interna\"]\n    P --&gt; X[\"Cambio de centro / protocolo\"]\n    X --&gt; F[\"Fallo de generalización\"]\n\n\n\n\n\n\nEjemplos de shortcuts:\n\nmarca del hospital;\nscanner / fabricante;\nprocesamiento;\nposicionamiento;\nprevalencia específica del centro."
+    "objectID": "unidad3/clase3.html#el-benchmark-no-es-el-hospital",
+    "href": "unidad3/clase3.html#el-benchmark-no-es-el-hospital",
+    "title": "Del modelo al sistema clínico",
+    "section": "El benchmark no es el hospital",
+    "text": "El benchmark no es el hospital\nLos datasets públicos son fundamentales para:\n\ndesarrollo inicial;\nreproducibilidad;\ncomparación de métodos;\nenseñanza e investigación.\n\nPero:\n\\[\nP_{benchmark}(x,y)\n\\neq\nP_{clínica}(x,y)\n\\]\n\n\\[\n\\boxed{\\text{buen resultado en benchmark}}\n\\not\\Rightarrow\n\\boxed{\\text{buen desempeño clínico}}\n\\]"
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#explicabilidad-como-herramienta-de-validación",
-    "href": "unidad3/clase2_borrador.html#explicabilidad-como-herramienta-de-validación",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Explicabilidad como herramienta de validación",
-    "text": "Explicabilidad como herramienta de validación\n\n\n\n\n\nflowchart LR\n    A[\"Predicciones\"] --&gt; TP[\"TP / TN\"]\n    A --&gt; FP[\"FP / FN\"]\n    TP --&gt; G1[\"Grad-CAM / saliencia\"]\n    FP --&gt; G2[\"Grad-CAM / saliencia\"]\n    G1 --&gt; Q1[\"¿Regiones plausibles?\"]\n    G2 --&gt; Q2[\"¿Qué produjo el error?\"]\n\n\n\n\n\n\n\nUsar explicabilidad para formular hipótesis de fallo, no para “certificar” una predicción."
+    "objectID": "unidad3/clase3.html#antes-de-usar-un-dataset",
+    "href": "unidad3/clase3.html#antes-de-usar-un-dataset",
+    "title": "Del modelo al sistema clínico",
+    "section": "Antes de usar un dataset",
+    "text": "Antes de usar un dataset\n\n\n¿De dónde vienen los datos?\n\npoblación;\ncriterios de inclusión;\ncentro / centros;\nmodalidad y protocolo;\nprevalencia.\n\n\n¿Qué significa la referencia?\n\netiqueta por imagen, lesión o paciente;\nuno o varios expertos;\nconsenso;\npatología / seguimiento;\nsplit por paciente;\nlicencia.\n\n\n\n\nUn dataset es una muestra de un proceso clínico y técnico, no solo una carpeta de archivos."
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#sanity-checks",
-    "href": "unidad3/clase2_borrador.html#sanity-checks",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Sanity checks",
-    "text": "Sanity checks\nUn método de explicación debería depender del modelo que intenta explicar.\n\nSi destruimos o aleatorizamos los parámetros aprendidos… ¿el mapa también cambia?\n\n\n\nUna visualización atractiva no es evidencia suficiente de fidelidad explicativa."
+    "objectID": "unidad3/clase3.html#las-etiquetas-también-tienen-incertidumbre",
+    "href": "unidad3/clase3.html#las-etiquetas-también-tienen-incertidumbre",
+    "title": "Del modelo al sistema clínico",
+    "section": "Las etiquetas también tienen incertidumbre",
+    "text": "Las etiquetas también tienen incertidumbre\nEn muchos problemas médicos:\n\\[\ny^{(1)} \\neq y^{(2)}\n\\]\npuede ser completamente razonable.\nLa referencia puede provenir de:\n\nun lector;\nconsenso;\nmúltiples lectores;\npatología;\nseguimiento clínico.\n\n\n\nEl error del modelo debe interpretarse en relación con la incertidumbre de la referencia."
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#saliencia-no-equivale-a-causalidad",
-    "href": "unidad3/clase2_borrador.html#saliencia-no-equivale-a-causalidad",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Saliencia no equivale a causalidad",
-    "text": "Saliencia no equivale a causalidad\nSi Grad-CAM destaca una región \\(R\\):\n\\[\nR\\ \\text{destacada}\n\\not\\Rightarrow\nR\\ \\text{causó la decisión}\n\\]\nPreferible decir:\n\n“La predicción está asociada con activaciones en esta región.”\n\nEvitar afirmar:\n\n“El modelo diagnosticó la enfermedad porque observó esta lesión.”"
+    "objectID": "unidad3/clase3.html#algunos-datasets",
+    "href": "unidad3/clase3.html#algunos-datasets",
+    "title": "Del modelo al sistema clínico",
+    "section": "Algunos datasets",
+    "text": "Algunos datasets\n\n\n\n\n\n\n\n\nDataset\nModalidad\nAnotación / uso típico\n\n\n\n\nCheXpert / MIMIC-CXR\nRX\nclasificación; etiquetas derivadas de reportes\n\n\nVinDr-CXR\nRX\ndetección; bounding boxes\n\n\nLIDC-IDRI\nCT\nnódulos; múltiples lectores\n\n\nBraTS\nMRI\nsegmentación de tumor cerebral\n\n\nKiTS\nCT\nsegmentación de riñón / tumor\n\n\nTCIA\nvarias\ncolecciones oncológicas heterogéneas\n\n\n\n\nNo necesitamos memorizar la lista. Lo importante es preguntar:\n\\[\n\\boxed{\\text{¿este dataset representa la pregunta clínica que quiero estudiar?}}\n\\]"
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#occlusion-sensitivity",
-    "href": "unidad3/clase2_borrador.html#occlusion-sensitivity",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Occlusion sensitivity",
-    "text": "Occlusion sensitivity\n\n\n\n\n\nflowchart LR\n    A[\"Imagen original\"] --&gt; B[\"Score original\"]\n    A --&gt; C[\"Ocultar región R\"]\n    C --&gt; D[\"Nuevo score\"]\n    B --&gt; E[\"Comparar\"]\n    D --&gt; E\n    E --&gt; F[\"Mapa de importancia\"]\n\n\n\n\n\n\n\\[\nf(I)-f(I_{\\setminus R})\n\\]\n\nVentaja: interpretación intuitiva. Desventaja: muchas evaluaciones del modelo."
+    "objectID": "unidad3/clase3.html#de-la-imagen-al-sistema-clínico",
+    "href": "unidad3/clase3.html#de-la-imagen-al-sistema-clínico",
+    "title": "Del modelo al sistema clínico",
+    "section": "De la imagen al sistema clínico",
+    "text": "De la imagen al sistema clínico\n\nflowchart TD\n    A[Imagen médica] --&gt; B[Clasificación / detección]\n    B --&gt; C[Score]\n    C --&gt; D[Calibración]\n    D --&gt; E[Incertidumbre]\n    B --&gt; F[Explicabilidad]\n    E --&gt; G[Sistema CAD]\n    F --&gt; G\n    G --&gt; H[Validación interna]\n    H --&gt; I[Validación externa]\n    I --&gt; M[Robustez multicéntrica / FL]\n    M --&gt; J[Evaluación clínica]\n\n\n\n\nflowchart TD\n    A[Imagen médica] --&gt; B[Clasificación / detección]\n    B --&gt; C[Score]\n    C --&gt; D[Calibración]\n    D --&gt; E[Incertidumbre]\n    B --&gt; F[Explicabilidad]\n    E --&gt; G[Sistema CAD]\n    F --&gt; G\n    G --&gt; H[Validación interna]\n    H --&gt; I[Validación externa]\n    I --&gt; M[Robustez multicéntrica / FL]\n    M --&gt; J[Evaluación clínica]"
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#comparación-rápida-de-métodos",
-    "href": "unidad3/clase2_borrador.html#comparación-rápida-de-métodos",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Comparación rápida de métodos",
-    "text": "Comparación rápida de métodos\n\n\n\n\n\n\n\n\n\nMétodo\nPregunta aproximada\nVentaja\nLimitación\n\n\n\n\nSaliency\n¿Dónde es sensible localmente la salida?\nSimple\nPuede ser ruidoso\n\n\nGrad-CAM\n¿Qué regiones de feature maps apoyan una clase?\nIntuitivo\nBaja resolución\n\n\nOcclusion\n¿Qué pasa si retiro esta región?\nFácil de razonar\nCostoso\n\n\n\n\nLa elección depende de la pregunta, no solo de la disponibilidad del método."
+    "objectID": "unidad3/clase3.html#la-pregunta-fue-cambiando",
+    "href": "unidad3/clase3.html#la-pregunta-fue-cambiando",
+    "title": "Del modelo al sistema clínico",
+    "section": "La pregunta fue cambiando",
+    "text": "La pregunta fue cambiando\nAl comienzo de la unidad:\n\\[\nf_\\theta(x)\n\\]\n¿Cómo hago una buena predicción?\n\nAl final:\n\\[\n\\boxed{\n\\text{¿cómo se comporta el sistema completo en una población real?}\n}\n\\]"
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#explicabilidad-confianza",
-    "href": "unidad3/clase2_borrador.html#explicabilidad-confianza",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Explicabilidad ≠ confianza",
-    "text": "Explicabilidad ≠ confianza\n\n“El Grad-CAM parece clínicamente razonable. Entonces podemos confiar en la predicción.”\n\n\n\nConclusión incorrecta.\n\n\\[\n\\text{explicabilidad}\\neq\\text{incertidumbre}\\neq\\text{validación}\n\\]"
+    "objectID": "unidad3/clase3.html#cinco-niveles-que-no-debemos-confundir",
+    "href": "unidad3/clase3.html#cinco-niveles-que-no-debemos-confundir",
+    "title": "Del modelo al sistema clínico",
+    "section": "Cinco niveles que no debemos confundir",
+    "text": "Cinco niveles que no debemos confundir\n\nflowchart LR\n    A[1. Predicción] --&gt; B[2. Probabilidad]\n    B --&gt; C[3. Incertidumbre]\n    C --&gt; D[4. Explicación]\n    D --&gt; E[5. Utilidad clínica]\n\n\n\n\nflowchart LR\n    A[1. Predicción] --&gt; B[2. Probabilidad]\n    B --&gt; C[3. Incertidumbre]\n    C --&gt; D[4. Explicación]\n    D --&gt; E[5. Utilidad clínica]\n\n\n\n\n\n\nUna mejora en un nivel no garantiza una mejora en el siguiente."
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#las-tres-preguntas-de-la-unidad",
-    "href": "unidad3/clase2_borrador.html#las-tres-preguntas-de-la-unidad",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Las tres preguntas de la unidad",
-    "text": "Las tres preguntas de la unidad\n\n\n\n\n\nflowchart LR\n    A[\"¿Qué predice?\"] --&gt; B[\"Clasificación / detección\"]\n    C[\"¿Cuánto confiar?\"] --&gt; D[\"Calibración / incertidumbre\"]\n    E[\"¿Qué información utiliza?\"] --&gt; F[\"Explicabilidad\"]\n\n\n\n\n\n\n\nSon dimensiones complementarias, no sustitutas."
+    "objectID": "unidad3/clase3.html#qué-debería-informar-un-estudio-serio",
+    "href": "unidad3/clase3.html#qué-debería-informar-un-estudio-serio",
+    "title": "Del modelo al sistema clínico",
+    "section": "Qué debería informar un estudio serio",
+    "text": "Qué debería informar un estudio serio\nComo mínimo:\n\npoblación y criterios de inclusión\nsplit y prevención de leakage\nmétricas y umbral\ncalibración cuando corresponda\nanálisis por subgrupos\nvalidación externa\nintended use\nlimitaciones"
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#un-modelo-todavía-no-es-un-sistema-clínico",
-    "href": "unidad3/clase2_borrador.html#un-modelo-todavía-no-es-un-sistema-clínico",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Un modelo todavía no es un sistema clínico",
-    "text": "Un modelo todavía no es un sistema clínico\n\n\n\n\n\nflowchart LR\n    A[\"Adquisición\"] --&gt; B[\"Preprocesamiento\"]\n    B --&gt; C[\"Modelo\"]\n    C --&gt; D[\"Predicción\"]\n    C --&gt; E[\"Incertidumbre\"]\n    C --&gt; F[\"Explicación\"]\n    D --&gt; G[\"Interfaz / PACS / RIS\"]\n    E --&gt; G\n    F --&gt; G\n    G --&gt; H[\"Profesional\"]\n    H --&gt; I[\"Decisión clínica\"]\n\n\n\n\n\n\n\nEl objeto de validación final es el sistema completo, no solo \\(f_\\theta(x)\\)."
+    "objectID": "unidad3/clase3.html#checklist-antes-de-confiar-en-un-resultado",
+    "href": "unidad3/clase3.html#checklist-antes-de-confiar-en-un-resultado",
+    "title": "Del modelo al sistema clínico",
+    "section": "Checklist antes de confiar en un resultado",
+    "text": "Checklist antes de confiar en un resultado\n\n\nDataset\n\n¿representativo?\n¿split por paciente?\n¿ground truth?\n¿prevalencia?\n\n\nSistema\n\n¿uso previsto?\n¿validación externa?\n¿generalización multicéntrica?\n¿usuarios reales?\n¿impacto en workflow?"
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#cierre",
-    "href": "unidad3/clase2_borrador.html#cierre",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Cierre",
-    "text": "Cierre\n\n1. Un score alto no equivale a certeza. 2. Discriminación, calibración e incertidumbre responden preguntas diferentes. 3. MC Dropout y ensembles permiten aproximar incertidumbre, pero no resuelven universalmente OOD. 4. Grad-CAM y saliency sirven para auditar comportamiento, no para demostrar causalidad. 5. La utilidad clínica aparece cuando estas herramientas modifican el workflow y reducen riesgo."
+    "objectID": "unidad3/clase3.html#tres-frases-para-llevarse",
+    "href": "unidad3/clase3.html#tres-frases-para-llevarse",
+    "title": "Del modelo al sistema clínico",
+    "section": "Tres frases para llevarse",
+    "text": "Tres frases para llevarse\n\n1\nUn modelo no es un sistema clínico.\n\n\n2\nUn test interno no demuestra generalización clínica.\n\n\n3\nAprender de más centros no reemplaza validar en una población independiente."
   },
   {
-    "objectID": "unidad3/clase2_borrador.html#próximo-paso",
-    "href": "unidad3/clase2_borrador.html#próximo-paso",
-    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
-    "section": "Próximo paso",
-    "text": "Próximo paso\n\n¿Cómo pasamos de un modelo aislado a un sistema de diagnóstico asistido por computadora?\n\n\n\nCAD · integración · validación clínica"
+    "objectID": "unidad3/clase3.html#cierre-de-la-unidad",
+    "href": "unidad3/clase3.html#cierre-de-la-unidad",
+    "title": "Del modelo al sistema clínico",
+    "section": "Cierre de la unidad",
+    "text": "Cierre de la unidad\n\\[\n\\boxed{\n\\text{buena predicción}\n\\neq\n\\text{sistema clínicamente útil}\n}\n\\]\nPara pasar de un modelo experimental a una herramienta clínica necesitamos considerar simultáneamente:\n\\[\n\\boxed{\n\\text{desempeño}\n+\n\\text{robustez}\n+\n\\text{incertidumbre}\n+\n\\text{explicabilidad}\n+\n\\text{validación}\n+\n\\text{integración clínica}\n}\n\\]"
   },
   {
     "objectID": "unidad3/notas2.html",
