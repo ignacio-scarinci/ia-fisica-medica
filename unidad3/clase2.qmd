@@ -214,6 +214,8 @@ Ninguno de los dos métodos garantiza detectar todos los casos OOD ni produce un
 ## Incertidumbre como herramienta de seguridad
 
 ```{mermaid}
+%%| echo: false
+
 flowchart LR
     A["Imagen"] --> B["Modelo"]
     B --> C["Predicción"]
@@ -302,6 +304,8 @@ Ejemplo: CNN + Grad-CAM.
 ## Métodos post-hoc
 
 ```{mermaid}
+%%| echo: false
+
 flowchart LR
     A["Imagen"] --> B["Modelo entrenado"]
     B --> C["Predicción"]
