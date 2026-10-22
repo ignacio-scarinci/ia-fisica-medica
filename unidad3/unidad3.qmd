@@ -25,4 +25,5 @@ format:
 - [Notebook 1: Calibración e incertidumbre con MONAI](notebooks/Notebook1_calibracion_incertidumbre.ipynb)
 - [Notebook 2: Saliencia y Grad-CAM con MONAI](notebooks/Notebook2_explicabilidad.ipynb)
 - [Notebook 3: Segmentación y Grad-CAM con MONAI](notebooks/Notebook3_segmentacion_gradcam.ipynb)
+- [Notebook 4: Evaluación de NV-Reason-CT en COVID-19-CT-Seg](notebooks/Notebook4_nv_reason_ct_covid.ipynb)
 
