@@ -7180,303 +7180,518 @@
   {
     "objectID": "unidad3/clase3.html#del-modelo-al-sistema-clínico",
     "href": "unidad3/clase3.html#del-modelo-al-sistema-clínico",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Del modelo al sistema clínico",
-    "text": "Del modelo al sistema clínico\nHasta ahora analizamos componentes:\n\nclasificación y detección;\ncalibración e incertidumbre;\nexplicabilidad.\n\n\n\n\n\nPero una buena red neuronal todavía no es una herramienta clínica."
+    "text": "Del modelo al sistema clínico\nHasta ahora analizamos componentes:\n\nclasificación y detección;\ncalibración e incertidumbre;\nexplicabilidad.\n\n\n\n\n\nPero una buena red neuronal todavía no es una herramienta clínica.",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#pregunta-guía",
     "href": "unidad3/clase3.html#pregunta-guía",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Pregunta guía",
-    "text": "Pregunta guía"
+    "text": "Pregunta guía",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#objetivos-de-la-clase",
     "href": "unidad3/clase3.html#objetivos-de-la-clase",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Objetivos de la clase",
-    "text": "Objetivos de la clase\nAl final deberíamos poder:\n\ndistinguir CADe de CADx;\nreconocer dónde puede fallar un sistema CAD completo;\ndiferenciar validación interna, externa, temporal y prospectiva;\ninterpretar métricas en función de prevalencia y población;\nentender el lugar de federated learning en escenarios multicéntricos;\nevaluar críticamente un dataset sin confundir benchmark con práctica clínica."
+    "text": "Objetivos de la clase\nAl final deberíamos poder:\n\ndistinguir CADe de CADx;\nreconocer dónde puede fallar un sistema CAD completo;\ndiferenciar validación interna, externa, temporal y prospectiva;\ninterpretar métricas en función de prevalencia y población;\nentender el lugar de federated learning en escenarios multicéntricos;\nevaluar críticamente un dataset sin confundir benchmark con práctica clínica.",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#qué-es-cad",
     "href": "unidad3/clase3.html#qué-es-cad",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "¿Qué es CAD?",
-    "text": "¿Qué es CAD?\nComputer-Aided Detection / Diagnosis\nSistemas computacionales diseñados para asistir al profesional en tareas de detección, caracterización o diagnóstico."
+    "text": "¿Qué es CAD?\nComputer-Aided Detection / Diagnosis\nSistemas computacionales diseñados para asistir al profesional en tareas de detección, caracterización o diagnóstico.",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#cade-y-cadx-no-son-excluyentes",
     "href": "unidad3/clase3.html#cade-y-cadx-no-son-excluyentes",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "CADe y CADx no son excluyentes",
-    "text": "CADe y CADx no son excluyentes"
+    "text": "CADe y CADx no son excluyentes",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#un-pipeline-cad-completo",
     "href": "unidad3/clase3.html#un-pipeline-cad-completo",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Un pipeline CAD completo",
-    "text": "Un pipeline CAD completo"
+    "text": "Un pipeline CAD completo",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#dónde-puede-fallar",
     "href": "unidad3/clase3.html#dónde-puede-fallar",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "¿Dónde puede fallar?",
-    "text": "¿Dónde puede fallar?"
+    "text": "¿Dónde puede fallar?",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#human-in-the-loop",
     "href": "unidad3/clase3.html#human-in-the-loop",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Human-in-the-loop",
-    "text": "Human-in-the-loop\nEn muchas aplicaciones, el objetivo no es reemplazar al profesional.\n\n#| echo: false\n\nflowchart LR\n    H[Humano] &lt;--&gt; C((+)) &lt;--&gt; IA[IA]\n    classDef human fill:#DCEBFA,stroke:#3973AC,stroke-width:2px,color:#17324D\n    classDef assist fill:#E2F3E8,stroke:#3A8F5B,stroke-width:2px,color:#194D2D\n    classDef plus fill:#FFF3CD,stroke:#B8860B,stroke-width:2px,color:#5C4500\n    class H human\n    class C plus\n    class IA assist\n\n\n\n\n#| echo: false\n\nflowchart LR\n    H[Humano] &lt;--&gt; C((+)) &lt;--&gt; IA[IA]\n    classDef human fill:#DCEBFA,stroke:#3973AC,stroke-width:2px,color:#17324D\n    classDef assist fill:#E2F3E8,stroke:#3A8F5B,stroke-width:2px,color:#194D2D\n    classDef plus fill:#FFF3CD,stroke:#B8860B,stroke-width:2px,color:#5C4500\n    class H human\n    class C plus\n    class IA assist\n\n\n\n\n\n\nLa IA puede:\n\npriorizar estudios\nseñalar regiones\nofrecer una segunda lectura\nestimar riesgo\nsugerir una clasificación\nderivar casos inciertos"
+    "text": "Human-in-the-loop\nEn muchas aplicaciones, el objetivo no es reemplazar al profesional.\n\n#| echo: false\n\nflowchart LR\n    H[Humano] &lt;--&gt; C((+)) &lt;--&gt; IA[IA]\n    classDef human fill:#DCEBFA,stroke:#3973AC,stroke-width:2px,color:#17324D\n    classDef assist fill:#E2F3E8,stroke:#3A8F5B,stroke-width:2px,color:#194D2D\n    classDef plus fill:#FFF3CD,stroke:#B8860B,stroke-width:2px,color:#5C4500\n    class H human\n    class C plus\n    class IA assist\n\n\n\n\n#| echo: false\n\nflowchart LR\n    H[Humano] &lt;--&gt; C((+)) &lt;--&gt; IA[IA]\n    classDef human fill:#DCEBFA,stroke:#3973AC,stroke-width:2px,color:#17324D\n    classDef assist fill:#E2F3E8,stroke:#3A8F5B,stroke-width:2px,color:#194D2D\n    classDef plus fill:#FFF3CD,stroke:#B8860B,stroke-width:2px,color:#5C4500\n    class H human\n    class C plus\n    class IA assist\n\n\n\n\n\n\nLa IA puede:\n\npriorizar estudios\nseñalar regiones\nofrecer una segunda lectura\nestimar riesgo\nsugerir una clasificación\nderivar casos inciertos",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#el-mismo-modelo-cuatro-usos-distintos",
     "href": "unidad3/clase3.html#el-mismo-modelo-cuatro-usos-distintos",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "El mismo modelo, cuatro usos distintos",
-    "text": "El mismo modelo, cuatro usos distintos"
+    "text": "El mismo modelo, cuatro usos distintos",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#ejemplo-detector-de-hemorragia-intracraneal",
     "href": "unidad3/clase3.html#ejemplo-detector-de-hemorragia-intracraneal",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Ejemplo: detector de hemorragia intracraneal",
-    "text": "Ejemplo: detector de hemorragia intracraneal"
+    "text": "Ejemplo: detector de hemorragia intracraneal",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#sesgos-de-la-automatización",
     "href": "unidad3/clase3.html#sesgos-de-la-automatización",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Sesgos de la automatización",
-    "text": "Sesgos de la automatización\nUn sistema consistente puede modificar la conducta humana.\n\\[\n\\text{modelo dice negativo}\n\\Rightarrow\n\\text{menor búsqueda activa}\n\\]\n\\[\n\\text{modelo marca una región}\n\\Rightarrow\n\\text{atención concentrada allí}\n\\]\n\n\nEl CAD puede crear errores nuevos que no ocurrirían sin asistencia."
+    "text": "Sesgos de la automatización\nUn sistema consistente puede modificar la conducta humana.\n\\[\n\\text{modelo dice negativo}\n\\Rightarrow\n\\text{menor búsqueda activa}\n\\]\n\\[\n\\text{modelo marca una región}\n\\Rightarrow\n\\text{atención concentrada allí}\n\\]\n\n\nEl CAD puede crear errores nuevos que no ocurrirían sin asistencia.",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#el-problema-opuesto-fatiga-de-alertas",
     "href": "unidad3/clase3.html#el-problema-opuesto-fatiga-de-alertas",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "El problema opuesto: fatiga de alertas",
-    "text": "El problema opuesto: fatiga de alertas\nSi el sistema genera demasiadas alarmas:\n\nflowchart LR\n    A[Muchos falsos positivos] --&gt; B[Sobrecarga]\n    B --&gt; C[Pérdida de confianza]\n    C --&gt; D[Alertas ignoradas]\n\n\n\n\nflowchart LR\n    A[Muchos falsos positivos] --&gt; B[Sobrecarga]\n    B --&gt; C[Pérdida de confianza]\n    C --&gt; D[Alertas ignoradas]\n\n\n\n\n\n\n\nUn detector con recall muy alto puede ser clínicamente inútil si produce demasiadas marcas por estudio."
+    "text": "El problema opuesto: fatiga de alertas\nSi el sistema genera demasiadas alarmas:\n\nflowchart LR\n    A[Muchos falsos positivos] --&gt; B[Sobrecarga]\n    B --&gt; C[Pérdida de confianza]\n    C --&gt; D[Alertas ignoradas]\n\n\n\n\nflowchart LR\n    A[Muchos falsos positivos] --&gt; B[Sobrecarga]\n    B --&gt; C[Pérdida de confianza]\n    C --&gt; D[Alertas ignoradas]\n\n\n\n\n\n\n\nUn detector con recall muy alto puede ser clínicamente inútil si produce demasiadas marcas por estudio.",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#primera-idea-clave",
     "href": "unidad3/clase3.html#primera-idea-clave",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Primera idea clave",
-    "text": "Primera idea clave\n\\[\n\\boxed{\n\\text{métrica del modelo}\n\\neq\n\\text{utilidad clínica}\n}\n\\]\nPara evaluar un sistema necesitamos estudiar:\n\nalgoritmo;\ninterfaz;\nusuario;\npoblación;\nworkflow;\nconsecuencia de los errores."
+    "text": "Primera idea clave\n\\[\n\\boxed{\n\\text{métrica del modelo}\n\\neq\n\\text{utilidad clínica}\n}\n\\]\nPara evaluar un sistema necesitamos estudiar:\n\nalgoritmo;\ninterfaz;\nusuario;\npoblación;\nworkflow;\nconsecuencia de los errores.",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#la-escalera-de-validación",
     "href": "unidad3/clase3.html#la-escalera-de-validación",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "La escalera de validación",
-    "text": "La escalera de validación\n\nflowchart LR\n    A[Desempeño técnico] --&gt; B[Validación interna]\n    B --&gt; C[Validación externa]\n    C --&gt; D[Evaluación con usuarios]\n    D --&gt; E[Evaluación prospectiva]\n    E --&gt; F[Impacto clínico]\n\n\n\n\nflowchart LR\n    A[Desempeño técnico] --&gt; B[Validación interna]\n    B --&gt; C[Validación externa]\n    C --&gt; D[Evaluación con usuarios]\n    D --&gt; E[Evaluación prospectiva]\n    E --&gt; F[Impacto clínico]\n\n\n\n\n\n\n\nCada escalón responde una pregunta diferente."
+    "text": "La escalera de validación\n\nflowchart LR\n    A[Desempeño técnico] --&gt; B[Validación interna]\n    B --&gt; C[Validación externa]\n    C --&gt; D[Evaluación con usuarios]\n    D --&gt; E[Evaluación prospectiva]\n    E --&gt; F[Impacto clínico]\n\n\n\n\nflowchart LR\n    A[Desempeño técnico] --&gt; B[Validación interna]\n    B --&gt; C[Validación externa]\n    C --&gt; D[Evaluación con usuarios]\n    D --&gt; E[Evaluación prospectiva]\n    E --&gt; F[Impacto clínico]\n\n\n\n\n\n\n\nCada escalón responde una pregunta diferente.",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#validación-interna",
     "href": "unidad3/clase3.html#validación-interna",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Validación interna",
-    "text": "Validación interna\nEvaluamos con datos provenientes de una población similar a la utilizada para desarrollar el modelo.\n\\[\n\\mathcal D\n=\n\\mathcal D_{train}\n\\cup\n\\mathcal D_{val}\n\\cup\n\\mathcal D_{test}\n\\]\nPero en imágenes médicas importa qué unidad estamos separando."
+    "text": "Validación interna\nEvaluamos con datos provenientes de una población similar a la utilizada para desarrollar el modelo.\n\\[\n\\mathcal D\n=\n\\mathcal D_{train}\n\\cup\n\\mathcal D_{val}\n\\cup\n\\mathcal D_{test}\n\\]\nPero en imágenes médicas importa qué unidad estamos separando.",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#la-unidad-de-partición",
     "href": "unidad3/clase3.html#la-unidad-de-partición",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "La unidad de partición",
-    "text": "La unidad de partición\nEn muchos problemas médicos:\n\\[\n\\boxed{\\text{unidad de split} = \\text{paciente}}\n\\]\nno:\n\\[\n\\boxed{\\text{unidad de split} = \\text{imagen}}\n\\]\n\nPorque múltiples imágenes pueden compartir información clínica, anatómica y de adquisición."
+    "text": "La unidad de partición\nEn muchos problemas médicos:\n\\[\n\\boxed{\\text{unidad de split} = \\text{paciente}}\n\\]\nno:\n\\[\n\\boxed{\\text{unidad de split} = \\text{imagen}}\n\\]\n\nPorque múltiples imágenes pueden compartir información clínica, anatómica y de adquisición.",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#leakage-no-es-solo-repetir-pacientes",
     "href": "unidad3/clase3.html#leakage-no-es-solo-repetir-pacientes",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Leakage no es solo repetir pacientes",
-    "text": "Leakage no es solo repetir pacientes\nTambién puede aparecer cuando:\n\nusamos todo el dataset para normalizar;\najustamos preprocessing mirando el test;\nseleccionamos hiperparámetros con el test;\nmezclamos estudios longitudinales del mismo paciente;\nhacemos feature selection antes del split.\n\n\n\nEl test debe permanecer informacionalmente aislado hasta la evaluación final."
+    "text": "Leakage no es solo repetir pacientes\nTambién puede aparecer cuando:\n\nusamos todo el dataset para normalizar;\najustamos preprocessing mirando el test;\nseleccionamos hiperparámetros con el test;\nmezclamos estudios longitudinales del mismo paciente;\nhacemos feature selection antes del split.\n\n\n\nEl test debe permanecer informacionalmente aislado hasta la evaluación final.",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#validación-externa",
     "href": "unidad3/clase3.html#validación-externa",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Validación externa",
-    "text": "Validación externa\nUsamos datos independientes del conjunto de desarrollo.\nIdealmente:\n\notro hospital\notra región\notros equipos;\notros protocolos;\notra población.\n\n\\[\nP_{external}(x,y)\n\\neq\nP_{development}(x,y)\n\\]"
+    "text": "Validación externa\nUsamos datos independientes del conjunto de desarrollo.\nIdealmente:\n\notro hospital\notra región\notros equipos;\notros protocolos;\notra población.\n\n\\[\nP_{external}(x,y)\n\\neq\nP_{development}(x,y)\n\\]",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#el-modelo-funcionaba-muy-bien",
     "href": "unidad3/clase3.html#el-modelo-funcionaba-muy-bien",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "El modelo funcionaba muy bien…",
-    "text": "El modelo funcionaba muy bien…\n\\[\nAUC_{interno}=0.94\n\\]\npero:\n\\[\nAUC_{externo}=0.79\n\\]\n\n¿El modelo está “mal”?\n\n\nNo necesariamente. Puede estar revelándose un domain shift."
+    "text": "El modelo funcionaba muy bien…\n\\[\nAUC_{interno}=0.94\n\\]\npero:\n\\[\nAUC_{externo}=0.79\n\\]\n\n¿El modelo está “mal”?\n\n\nNo necesariamente. Puede estar revelándose un domain shift.",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#de-dónde-viene-el-domain-shift",
     "href": "unidad3/clase3.html#de-dónde-viene-el-domain-shift",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "¿De dónde viene el domain shift?",
-    "text": "¿De dónde viene el domain shift?\n\nflowchart TD\n    S[Domain shift] --&gt; A[Población]\n    S --&gt; B[Prevalencia]\n    S --&gt; C[Scanner]\n    S --&gt; D[Protocolo]\n    S --&gt; E[Reconstrucción]\n    S --&gt; F[Criterio diagnóstico]\n\n\n\n\nflowchart TD\n    S[Domain shift] --&gt; A[Población]\n    S --&gt; B[Prevalencia]\n    S --&gt; C[Scanner]\n    S --&gt; D[Protocolo]\n    S --&gt; E[Reconstrucción]\n    S --&gt; F[Criterio diagnóstico]\n\n\n\n\n\n\nLa validación externa prueba dependencias que el test interno puede ocultar."
+    "text": "¿De dónde viene el domain shift?\n\nflowchart TD\n    S[Domain shift] --&gt; A[Población]\n    S --&gt; B[Prevalencia]\n    S --&gt; C[Scanner]\n    S --&gt; D[Protocolo]\n    S --&gt; E[Reconstrucción]\n    S --&gt; F[Criterio diagnóstico]\n\n\n\n\nflowchart TD\n    S[Domain shift] --&gt; A[Población]\n    S --&gt; B[Prevalencia]\n    S --&gt; C[Scanner]\n    S --&gt; D[Protocolo]\n    S --&gt; E[Reconstrucción]\n    S --&gt; F[Criterio diagnóstico]\n\n\n\n\n\n\nLa validación externa prueba dependencias que el test interno puede ocultar.",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#y-si-queremos-entrenar-con-varios-hospitales",
     "href": "unidad3/clase3.html#y-si-queremos-entrenar-con-varios-hospitales",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "¿Y si queremos entrenar con varios hospitales?",
-    "text": "¿Y si queremos entrenar con varios hospitales?\nLa validación externa nos muestra que distintos centros pueden tener distribuciones diferentes.\nUna respuesta natural sería entrenar con datos de varios hospitales.\nPero aparece una restricción frecuente:\n\\[\n\\boxed{\\text{los datos clínicos no siempre pueden centralizarse}}\n\\]\n\nAhí aparece Federated Learning."
+    "text": "¿Y si queremos entrenar con varios hospitales?\nLa validación externa nos muestra que distintos centros pueden tener distribuciones diferentes.\nUna respuesta natural sería entrenar con datos de varios hospitales.\nPero aparece una restricción frecuente:\n\\[\n\\boxed{\\text{los datos clínicos no siempre pueden centralizarse}}\n\\]\n\nAhí aparece Federated Learning.",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#federated-learning-idea-básica",
     "href": "unidad3/clase3.html#federated-learning-idea-básica",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Federated Learning: idea básica",
-    "text": "Federated Learning: idea básica\n\nflowchart LR\n    S[Modelo global] --&gt; A[Hospital A]\n    S --&gt; B[Hospital B]\n    S --&gt; C[Hospital C]\n\n    A --&gt; UA[Actualización local]\n    B --&gt; UB[Actualización local]\n    C --&gt; UC[Actualización local]\n\n    UA --&gt; G[Agregación]\n    UB --&gt; G\n    UC --&gt; G\n    G --&gt; S\n\n\n\n\nflowchart LR\n    S[Modelo global] --&gt; A[Hospital A]\n    S --&gt; B[Hospital B]\n    S --&gt; C[Hospital C]\n\n    A --&gt; UA[Actualización local]\n    B --&gt; UB[Actualización local]\n    C --&gt; UC[Actualización local]\n\n    UA --&gt; G[Agregación]\n    UB --&gt; G\n    UC --&gt; G\n    G --&gt; S\n\n\n\n\n\n\n\nLos datos permanecen en cada institución.\n\n\nLo que se intercambia son parámetros, gradientes o actualizaciones del modelo."
+    "text": "Federated Learning: idea básica\n\nflowchart LR\n    S[Modelo global] --&gt; A[Hospital A]\n    S --&gt; B[Hospital B]\n    S --&gt; C[Hospital C]\n\n    A --&gt; UA[Actualización local]\n    B --&gt; UB[Actualización local]\n    C --&gt; UC[Actualización local]\n\n    UA --&gt; G[Agregación]\n    UB --&gt; G\n    UC --&gt; G\n    G --&gt; S\n\n\n\n\nflowchart LR\n    S[Modelo global] --&gt; A[Hospital A]\n    S --&gt; B[Hospital B]\n    S --&gt; C[Hospital C]\n\n    A --&gt; UA[Actualización local]\n    B --&gt; UB[Actualización local]\n    C --&gt; UC[Actualización local]\n\n    UA --&gt; G[Agregación]\n    UB --&gt; G\n    UC --&gt; G\n    G --&gt; S\n\n\n\n\n\n\n\nLos datos permanecen en cada institución.\n\n\nLo que se intercambia son parámetros, gradientes o actualizaciones del modelo.",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#qué-problema-intenta-resolver",
     "href": "unidad3/clase3.html#qué-problema-intenta-resolver",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "¿Qué problema intenta resolver?",
-    "text": "¿Qué problema intenta resolver?\nFederated learning puede permitir:\n\nentrenar con datos multicéntricos sin reunirlos físicamente\nincorporar mayor diversidad de scanners, protocolos y poblaciones\ncolaborar entre instituciones con restricciones de gobernanza de datos\n\nPero:\n\\[\n\\boxed{\\text{Federated Learning} \\neq \\text{privacidad garantizada}}\n\\]\nPersisten desafíos como:\n\nseguridad de las actualizaciones\nheterogeneidad entre centros\ndatos non-IID\ntamaños de muestra muy diferentes\ndistinta prevalencia y calidad de etiquetas"
+    "text": "¿Qué problema intenta resolver?\nFederated learning puede permitir:\n\nentrenar con datos multicéntricos sin reunirlos físicamente\nincorporar mayor diversidad de scanners, protocolos y poblaciones\ncolaborar entre instituciones con restricciones de gobernanza de datos\n\nPero:\n\\[\n\\boxed{\\text{Federated Learning} \\neq \\text{privacidad garantizada}}\n\\]\nPersisten desafíos como:\n\nseguridad de las actualizaciones\nheterogeneidad entre centros\ndatos non-IID\ntamaños de muestra muy diferentes\ndistinta prevalencia y calidad de etiquetas",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#federated-training-no-es-validación-externa",
     "href": "unidad3/clase3.html#federated-training-no-es-validación-externa",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Federated training no es validación externa",
-    "text": "Federated training no es validación externa\nSupongamos que entrenamos federadamente con:\n\\[\nA+B+C \\rightarrow \\text{modelo federado}\n\\]\n¿Evaluar el modelo en A, B y C constituye validación externa?\n\nNo. Esos centros participaron en el desarrollo.\n\nUna evaluación más fuerte sería:\n\\[\n\\boxed{\nA+B+C \\rightarrow \\text{entrenamiento federado}\n}\n\\]\n\\[\n\\boxed{\nD \\rightarrow \\text{validación externa}\n}\n\\]\n\n\nAprender de múltiples centros puede mejorar la robustez, pero no elimina la necesidad de validación independiente."
+    "text": "Federated training no es validación externa\nSupongamos que entrenamos federadamente con:\n\\[\nA+B+C \\rightarrow \\text{modelo federado}\n\\]\n¿Evaluar el modelo en A, B y C constituye validación externa?\n\nNo. Esos centros participaron en el desarrollo.\n\nUna evaluación más fuerte sería:\n\\[\n\\boxed{\nA+B+C \\rightarrow \\text{entrenamiento federado}\n}\n\\]\n\\[\n\\boxed{\nD \\rightarrow \\text{validación externa}\n}\n\\]\n\n\nAprender de múltiples centros puede mejorar la robustez, pero no elimina la necesidad de validación independiente.",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#validación-temporal",
     "href": "unidad3/clase3.html#validación-temporal",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Validación temporal",
-    "text": "Validación temporal\nOtra forma de simular despliegue:\n\\[\n\\text{train: 2018--2023}\n\\]\n\\[\n\\text{test: 2024--2025}\n\\]\n\nEntrenamos con el pasado y evaluamos sobre pacientes futuros.\n\nPuede revelar cambios en:\n\npráctica clínica\nprotocolos\nequipos\npoblación"
+    "text": "Validación temporal\nOtra forma de simular despliegue:\n\\[\n\\text{train: 2018--2023}\n\\]\n\\[\n\\text{test: 2024--2025}\n\\]\n\nEntrenamos con el pasado y evaluamos sobre pacientes futuros.\n\nPuede revelar cambios en:\n\npráctica clínica\nprotocolos\nequipos\npoblación",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#retrospectivo-vs-prospectivo",
     "href": "unidad3/clase3.html#retrospectivo-vs-prospectivo",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Retrospectivo vs prospectivo",
-    "text": "Retrospectivo vs prospectivo\n\n\nRetrospectivo\nDatos ya existentes.\nVentajas: - rápido; - barato; - control experimental.\nLimitación: - reproduce imperfectamente el workflow real.\n\nProspectivo\nEl protocolo se define antes de observar nuevos casos.\nVentaja: - mayor realismo clínico.\nCosto: - tiempo; - logística; - complejidad."
+    "text": "Retrospectivo vs prospectivo\n\n\nRetrospectivo\nDatos ya existentes.\nVentajas: - rápido; - barato; - control experimental.\nLimitación: - reproduce imperfectamente el workflow real.\n\nProspectivo\nEl protocolo se define antes de observar nuevos casos.\nVentaja: - mayor realismo clínico.\nCosto: - tiempo; - logística; - complejidad.",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#auc-0.95-y-ahora",
     "href": "unidad3/clase3.html#auc-0.95-y-ahora",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "AUC = 0.95… ¿y ahora?",
-    "text": "AUC = 0.95… ¿y ahora?\nUn modelo puede tener:\n\\[\nAUC=0.95\n\\]\ny aun así no sabemos:\n\\[\n\\boxed{\\text{¿mejora el desempeño del profesional?}}\n\\]\nPara responderlo necesitamos comparar:\n\\[\n\\text{humano sin IA}\n\\quad vs \\quad\n\\text{humano + IA}\n\\]"
+    "text": "AUC = 0.95… ¿y ahora?\nUn modelo puede tener:\n\\[\nAUC=0.95\n\\]\ny aun así no sabemos:\n\\[\n\\boxed{\\text{¿mejora el desempeño del profesional?}}\n\\]\nPara responderlo necesitamos comparar:\n\\[\n\\text{humano sin IA}\n\\quad vs \\quad\n\\text{humano + IA}\n\\]",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#un-diseño-más-realista",
     "href": "unidad3/clase3.html#un-diseño-más-realista",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Un diseño más realista",
-    "text": "Un diseño más realista\n\n\nEvitar\n\nsiempre “sin IA” primero;\nmismos casos inmediatamente después;\norden fijo;\nlectores no representativos.\n\n\nPreferir\n\norden aleatorizado;\nwashout;\nmúltiples lectores;\nmúltiples casos;\ncondición clínica plausible."
+    "text": "Un diseño más realista\n\n\nEvitar\n\nsiempre “sin IA” primero;\nmismos casos inmediatamente después;\norden fijo;\nlectores no representativos.\n\n\nPreferir\n\norden aleatorizado;\nwashout;\nmúltiples lectores;\nmúltiples casos;\ncondición clínica plausible.",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#una-paradoja-posible",
     "href": "unidad3/clase3.html#una-paradoja-posible",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Una paradoja posible",
-    "text": "Una paradoja posible\nPuede ocurrir:\n\\[\n\\text{modelo} &gt; \\text{humano}\n\\]\ncuando se evalúan aislados,\npero:\n\\[\n\\text{humano + modelo} &lt; \\text{humano}\n\\]\ncuando trabajan juntos."
+    "text": "Una paradoja posible\nPuede ocurrir:\n\\[\n\\text{modelo} &gt; \\text{humano}\n\\]\ncuando se evalúan aislados,\npero:\n\\[\n\\text{humano + modelo} &lt; \\text{humano}\n\\]\ncuando trabajan juntos.",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#cómo-puede-ocurrir",
     "href": "unidad3/clase3.html#cómo-puede-ocurrir",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "¿Cómo puede ocurrir?",
-    "text": "¿Cómo puede ocurrir?\n\nflowchart LR\n    A[Buen modelo] --&gt; B{Integración}\n    B --&gt;|Mala| C[Automation bias]\n    B --&gt;|Mala| D[Alert fatigue]\n    B --&gt;|Mala| E[Interfaz confusa]\n    B --&gt;|Mala| F[Sobreconfianza]\n    C --&gt; G[Peor sistema]\n    D --&gt; G\n    E --&gt; G\n    F --&gt; G\n\n\n\n\nflowchart LR\n    A[Buen modelo] --&gt; B{Integración}\n    B --&gt;|Mala| C[Automation bias]\n    B --&gt;|Mala| D[Alert fatigue]\n    B --&gt;|Mala| E[Interfaz confusa]\n    B --&gt;|Mala| F[Sobreconfianza]\n    C --&gt; G[Peor sistema]\n    D --&gt; G\n    E --&gt; G\n    F --&gt; G"
+    "text": "¿Cómo puede ocurrir?\n\nflowchart LR\n    A[Buen modelo] --&gt; B{Integración}\n    B --&gt;|Mala| C[Automation bias]\n    B --&gt;|Mala| D[Alert fatigue]\n    B --&gt;|Mala| E[Interfaz confusa]\n    B --&gt;|Mala| F[Sobreconfianza]\n    C --&gt; G[Peor sistema]\n    D --&gt; G\n    E --&gt; G\n    F --&gt; G\n\n\n\n\nflowchart LR\n    A[Buen modelo] --&gt; B{Integración}\n    B --&gt;|Mala| C[Automation bias]\n    B --&gt;|Mala| D[Alert fatigue]\n    B --&gt;|Mala| E[Interfaz confusa]\n    B --&gt;|Mala| F[Sobreconfianza]\n    C --&gt; G[Peor sistema]\n    D --&gt; G\n    E --&gt; G\n    F --&gt; G",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#segunda-idea-clave",
     "href": "unidad3/clase3.html#segunda-idea-clave",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Segunda idea clave",
-    "text": "Segunda idea clave\n\\[\n\\boxed{\n\\text{desempeño humano–IA}\n\\text{ no se deduce }\n\\text{del desempeño del modelo aislado}\n}\n\\]"
+    "text": "Segunda idea clave\n\\[\n\\boxed{\n\\text{desempeño humano–IA}\n\\text{ no se deduce }\n\\text{del desempeño del modelo aislado}\n}\n\\]",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#qué-pregunta-responde-cada-diseño",
     "href": "unidad3/clase3.html#qué-pregunta-responde-cada-diseño",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "¿Qué pregunta responde cada diseño?",
-    "text": "¿Qué pregunta responde cada diseño?\n\n\n\nDiseño\nPregunta\n\n\n\n\nTest interno\n¿Generaliza dentro de mi cohorte?\n\n\nExterno\n¿Generaliza a otro dominio?\n\n\nTemporal\n¿Generaliza hacia el futuro?\n\n\nProspectivo\n¿Funciona cuando se despliega bajo protocolo real?\n\n\nReader study\n¿Mejora al profesional?"
+    "text": "¿Qué pregunta responde cada diseño?\n\n\n\nDiseño\nPregunta\n\n\n\n\nTest interno\n¿Generaliza dentro de mi cohorte?\n\n\nExterno\n¿Generaliza a otro dominio?\n\n\nTemporal\n¿Generaliza hacia el futuro?\n\n\nProspectivo\n¿Funciona cuando se despliega bajo protocolo real?\n\n\nReader study\n¿Mejora al profesional?",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#el-benchmark-no-es-el-hospital",
     "href": "unidad3/clase3.html#el-benchmark-no-es-el-hospital",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "El benchmark no es el hospital",
-    "text": "El benchmark no es el hospital\nLos datasets públicos son fundamentales para:\n\ndesarrollo inicial;\nreproducibilidad;\ncomparación de métodos;\nenseñanza e investigación.\n\nPero:\n\\[\nP_{benchmark}(x,y)\n\\neq\nP_{clínica}(x,y)\n\\]\n\n\\[\n\\boxed{\\text{buen resultado en benchmark}}\n\\not\\Rightarrow\n\\boxed{\\text{buen desempeño clínico}}\n\\]"
+    "text": "El benchmark no es el hospital\nLos datasets públicos son fundamentales para:\n\ndesarrollo inicial;\nreproducibilidad;\ncomparación de métodos;\nenseñanza e investigación.\n\nPero:\n\\[\nP_{benchmark}(x,y)\n\\neq\nP_{clínica}(x,y)\n\\]\n\n\\[\n\\boxed{\\text{buen resultado en benchmark}}\n\\not\\Rightarrow\n\\boxed{\\text{buen desempeño clínico}}\n\\]",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#antes-de-usar-un-dataset",
     "href": "unidad3/clase3.html#antes-de-usar-un-dataset",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Antes de usar un dataset",
-    "text": "Antes de usar un dataset\n\n\n¿De dónde vienen los datos?\n\npoblación;\ncriterios de inclusión;\ncentro / centros;\nmodalidad y protocolo;\nprevalencia.\n\n\n¿Qué significa la referencia?\n\netiqueta por imagen, lesión o paciente;\nuno o varios expertos;\nconsenso;\npatología / seguimiento;\nsplit por paciente;\nlicencia.\n\n\n\n\nUn dataset es una muestra de un proceso clínico y técnico, no solo una carpeta de archivos."
+    "text": "Antes de usar un dataset\n\n\n¿De dónde vienen los datos?\n\npoblación;\ncriterios de inclusión;\ncentro / centros;\nmodalidad y protocolo;\nprevalencia.\n\n\n¿Qué significa la referencia?\n\netiqueta por imagen, lesión o paciente;\nuno o varios expertos;\nconsenso;\npatología / seguimiento;\nsplit por paciente;\nlicencia.\n\n\n\n\nUn dataset es una muestra de un proceso clínico y técnico, no solo una carpeta de archivos.",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#las-etiquetas-también-tienen-incertidumbre",
     "href": "unidad3/clase3.html#las-etiquetas-también-tienen-incertidumbre",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Las etiquetas también tienen incertidumbre",
-    "text": "Las etiquetas también tienen incertidumbre\nEn muchos problemas médicos:\n\\[\ny^{(1)} \\neq y^{(2)}\n\\]\npuede ser completamente razonable.\nLa referencia puede provenir de:\n\nun lector;\nconsenso;\nmúltiples lectores;\npatología;\nseguimiento clínico.\n\n\n\nEl error del modelo debe interpretarse en relación con la incertidumbre de la referencia."
+    "text": "Las etiquetas también tienen incertidumbre\nEn muchos problemas médicos:\n\\[\ny^{(1)} \\neq y^{(2)}\n\\]\npuede ser completamente razonable.\nLa referencia puede provenir de:\n\nun lector;\nconsenso;\nmúltiples lectores;\npatología;\nseguimiento clínico.\n\n\n\nEl error del modelo debe interpretarse en relación con la incertidumbre de la referencia.",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#algunos-datasets",
     "href": "unidad3/clase3.html#algunos-datasets",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Algunos datasets",
-    "text": "Algunos datasets\n\n\n\n\n\n\n\n\nDataset\nModalidad\nAnotación / uso típico\n\n\n\n\nCheXpert / MIMIC-CXR\nRX\nclasificación; etiquetas derivadas de reportes\n\n\nVinDr-CXR\nRX\ndetección; bounding boxes\n\n\nLIDC-IDRI\nCT\nnódulos; múltiples lectores\n\n\nBraTS\nMRI\nsegmentación de tumor cerebral\n\n\nKiTS\nCT\nsegmentación de riñón / tumor\n\n\nTCIA\nvarias\ncolecciones oncológicas heterogéneas\n\n\n\n\nNo necesitamos memorizar la lista. Lo importante es preguntar:\n\\[\n\\boxed{\\text{¿este dataset representa la pregunta clínica que quiero estudiar?}}\n\\]"
+    "text": "Algunos datasets\n\n\n\n\n\n\n\n\nDataset\nModalidad\nAnotación / uso típico\n\n\n\n\nCheXpert / MIMIC-CXR\nRX\nclasificación; etiquetas derivadas de reportes\n\n\nVinDr-CXR\nRX\ndetección; bounding boxes\n\n\nLIDC-IDRI\nCT\nnódulos; múltiples lectores\n\n\nBraTS\nMRI\nsegmentación de tumor cerebral\n\n\nKiTS\nCT\nsegmentación de riñón / tumor\n\n\nTCIA\nvarias\ncolecciones oncológicas heterogéneas\n\n\n\n\nNo necesitamos memorizar la lista. Lo importante es preguntar:\n\\[\n\\boxed{\\text{¿este dataset representa la pregunta clínica que quiero estudiar?}}\n\\]",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#de-la-imagen-al-sistema-clínico",
     "href": "unidad3/clase3.html#de-la-imagen-al-sistema-clínico",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "De la imagen al sistema clínico",
-    "text": "De la imagen al sistema clínico\n\nflowchart TD\n    A[Imagen médica] --&gt; B[Clasificación / detección]\n    B --&gt; C[Score]\n    C --&gt; D[Calibración]\n    D --&gt; E[Incertidumbre]\n    B --&gt; F[Explicabilidad]\n    E --&gt; G[Sistema CAD]\n    F --&gt; G\n    G --&gt; H[Validación interna]\n    H --&gt; I[Validación externa]\n    I --&gt; M[Robustez multicéntrica / FL]\n    M --&gt; J[Evaluación clínica]\n\n\n\n\nflowchart TD\n    A[Imagen médica] --&gt; B[Clasificación / detección]\n    B --&gt; C[Score]\n    C --&gt; D[Calibración]\n    D --&gt; E[Incertidumbre]\n    B --&gt; F[Explicabilidad]\n    E --&gt; G[Sistema CAD]\n    F --&gt; G\n    G --&gt; H[Validación interna]\n    H --&gt; I[Validación externa]\n    I --&gt; M[Robustez multicéntrica / FL]\n    M --&gt; J[Evaluación clínica]"
+    "text": "De la imagen al sistema clínico\n\nflowchart TD\n    A[Imagen médica] --&gt; B[Clasificación / detección]\n    B --&gt; C[Score]\n    C --&gt; D[Calibración]\n    D --&gt; E[Incertidumbre]\n    B --&gt; F[Explicabilidad]\n    E --&gt; G[Sistema CAD]\n    F --&gt; G\n    G --&gt; H[Validación interna]\n    H --&gt; I[Validación externa]\n    I --&gt; M[Robustez multicéntrica / FL]\n    M --&gt; J[Evaluación clínica]\n\n\n\n\nflowchart TD\n    A[Imagen médica] --&gt; B[Clasificación / detección]\n    B --&gt; C[Score]\n    C --&gt; D[Calibración]\n    D --&gt; E[Incertidumbre]\n    B --&gt; F[Explicabilidad]\n    E --&gt; G[Sistema CAD]\n    F --&gt; G\n    G --&gt; H[Validación interna]\n    H --&gt; I[Validación externa]\n    I --&gt; M[Robustez multicéntrica / FL]\n    M --&gt; J[Evaluación clínica]",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#la-pregunta-fue-cambiando",
     "href": "unidad3/clase3.html#la-pregunta-fue-cambiando",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "La pregunta fue cambiando",
-    "text": "La pregunta fue cambiando\nAl comienzo de la unidad:\n\\[\nf_\\theta(x)\n\\]\n¿Cómo hago una buena predicción?\n\nAl final:\n\\[\n\\boxed{\n\\text{¿cómo se comporta el sistema completo en una población real?}\n}\n\\]"
+    "text": "La pregunta fue cambiando\nAl comienzo de la unidad:\n\\[\nf_\\theta(x)\n\\]\n¿Cómo hago una buena predicción?\n\nAl final:\n\\[\n\\boxed{\n\\text{¿cómo se comporta el sistema completo en una población real?}\n}\n\\]",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#cinco-niveles-que-no-debemos-confundir",
     "href": "unidad3/clase3.html#cinco-niveles-que-no-debemos-confundir",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Cinco niveles que no debemos confundir",
-    "text": "Cinco niveles que no debemos confundir\n\nflowchart LR\n    A[1. Predicción] --&gt; B[2. Probabilidad]\n    B --&gt; C[3. Incertidumbre]\n    C --&gt; D[4. Explicación]\n    D --&gt; E[5. Utilidad clínica]\n\n\n\n\nflowchart LR\n    A[1. Predicción] --&gt; B[2. Probabilidad]\n    B --&gt; C[3. Incertidumbre]\n    C --&gt; D[4. Explicación]\n    D --&gt; E[5. Utilidad clínica]\n\n\n\n\n\n\nUna mejora en un nivel no garantiza una mejora en el siguiente."
+    "text": "Cinco niveles que no debemos confundir\n\nflowchart LR\n    A[1. Predicción] --&gt; B[2. Probabilidad]\n    B --&gt; C[3. Incertidumbre]\n    C --&gt; D[4. Explicación]\n    D --&gt; E[5. Utilidad clínica]\n\n\n\n\nflowchart LR\n    A[1. Predicción] --&gt; B[2. Probabilidad]\n    B --&gt; C[3. Incertidumbre]\n    C --&gt; D[4. Explicación]\n    D --&gt; E[5. Utilidad clínica]\n\n\n\n\n\n\nUna mejora en un nivel no garantiza una mejora en el siguiente.",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#qué-debería-informar-un-estudio-serio",
     "href": "unidad3/clase3.html#qué-debería-informar-un-estudio-serio",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Qué debería informar un estudio serio",
-    "text": "Qué debería informar un estudio serio\nComo mínimo:\n\npoblación y criterios de inclusión\nsplit y prevención de leakage\nmétricas y umbral\ncalibración cuando corresponda\nanálisis por subgrupos\nvalidación externa\nintended use\nlimitaciones"
+    "text": "Qué debería informar un estudio serio\nComo mínimo:\n\npoblación y criterios de inclusión\nsplit y prevención de leakage\nmétricas y umbral\ncalibración cuando corresponda\nanálisis por subgrupos\nvalidación externa\nintended use\nlimitaciones",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#checklist-antes-de-confiar-en-un-resultado",
     "href": "unidad3/clase3.html#checklist-antes-de-confiar-en-un-resultado",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Checklist antes de confiar en un resultado",
-    "text": "Checklist antes de confiar en un resultado\n\n\nDataset\n\n¿representativo?\n¿split por paciente?\n¿ground truth?\n¿prevalencia?\n\n\nSistema\n\n¿uso previsto?\n¿validación externa?\n¿generalización multicéntrica?\n¿usuarios reales?\n¿impacto en workflow?"
+    "text": "Checklist antes de confiar en un resultado\n\n\nDataset\n\n¿representativo?\n¿split por paciente?\n¿ground truth?\n¿prevalencia?\n\n\nSistema\n\n¿uso previsto?\n¿validación externa?\n¿generalización multicéntrica?\n¿usuarios reales?\n¿impacto en workflow?",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#tres-frases-para-llevarse",
     "href": "unidad3/clase3.html#tres-frases-para-llevarse",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Tres frases para llevarse",
-    "text": "Tres frases para llevarse\n\n1\nUn modelo no es un sistema clínico.\n\n\n2\nUn test interno no demuestra generalización clínica.\n\n\n3\nAprender de más centros no reemplaza validar en una población independiente."
+    "text": "Tres frases para llevarse\n\n1\nUn modelo no es un sistema clínico.\n\n\n2\nUn test interno no demuestra generalización clínica.\n\n\n3\nAprender de más centros no reemplaza validar en una población independiente.",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/clase3.html#cierre-de-la-unidad",
     "href": "unidad3/clase3.html#cierre-de-la-unidad",
-    "title": "Del modelo al sistema clínico",
+    "title": "Unidad 3 — Detección, clasificación y diagnóstico asistido",
     "section": "Cierre de la unidad",
-    "text": "Cierre de la unidad\n\\[\n\\boxed{\n\\text{buena predicción}\n\\neq\n\\text{sistema clínicamente útil}\n}\n\\]\nPara pasar de un modelo experimental a una herramienta clínica necesitamos considerar simultáneamente:\n\\[\n\\boxed{\n\\text{desempeño}\n+\n\\text{robustez}\n+\n\\text{incertidumbre}\n+\n\\text{explicabilidad}\n+\n\\text{validación}\n+\n\\text{integración clínica}\n}\n\\]"
+    "text": "Cierre de la unidad\n\\[\n\\boxed{\n\\text{buena predicción}\n\\neq\n\\text{sistema clínicamente útil}\n}\n\\]\nPara pasar de un modelo experimental a una herramienta clínica necesitamos considerar simultáneamente:\n\\[\n\\boxed{\n\\text{desempeño}\n+\n\\text{robustez}\n+\n\\text{incertidumbre}\n+\n\\text{explicabilidad}\n+\n\\text{validación}\n+\n\\text{integración clínica}\n}\n\\]",
+    "crumbs": [
+      "Inicio",
+      "3. Detección, clasificación y diagnóstico asistido",
+      "Clase 3: Del modelo al sistema clínico"
+    ]
   },
   {
     "objectID": "unidad3/notas2.html",
