@@ -34,72 +34,6 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-    /* CSS for syntax highlighting */
-    html { -webkit-text-size-adjust: 100%; }
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -276,24 +210,12 @@ Ignacio Scarinci
 <h2>Human-in-the-loop</h2>
 <p>En muchas aplicaciones, el objetivo no es reemplazar al profesional.</p>
 <div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a aria-label="1"></a>#| echo: false</span>
-<span id="cb1-2"><a aria-label="2"></a></span>
-<span id="cb1-3"><a aria-label="3"></a>flowchart LR</span>
-<span id="cb1-4"><a aria-label="4"></a>    H[Humano] &lt;--&gt; C((+)) &lt;--&gt; IA[IA]</span>
-<span id="cb1-5"><a aria-label="5"></a>    classDef human fill:#DCEBFA,stroke:#3973AC,stroke-width:2px,color:#17324D</span>
-<span id="cb1-6"><a aria-label="6"></a>    classDef assist fill:#E2F3E8,stroke:#3A8F5B,stroke-width:2px,color:#194D2D</span>
-<span id="cb1-7"><a aria-label="7"></a>    classDef plus fill:#FFF3CD,stroke:#B8860B,stroke-width:2px,color:#5C4500</span>
-<span id="cb1-8"><a aria-label="8"></a>    class H human</span>
-<span id="cb1-9"><a aria-label="9"></a>    class C plus</span>
-<span id="cb1-10"><a aria-label="10"></a>    class IA assist</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <p></p><figure class=""><p></p>
 <div>
-<pre class="mermaid mermaid-js">#| echo: false
-
-flowchart LR
-    H[Humano] &lt;--&gt; C((+)) &lt;--&gt; IA[IA]
+<pre class="mermaid mermaid-js">flowchart LR
+    H[Humano] &lt;--&gt; C(("+")) &lt;--&gt; IA[IA]
     classDef human fill:#DCEBFA,stroke:#3973AC,stroke-width:2px,color:#17324D
     classDef assist fill:#E2F3E8,stroke:#3A8F5B,stroke-width:2px,color:#194D2D
     classDef plus fill:#FFF3CD,stroke:#B8860B,stroke-width:2px,color:#5C4500
@@ -326,68 +248,16 @@ flowchart LR
 <img data-src="./imagenes/clase3/8_ejemplo.jpg" class="centered r-stretch" style="width:80.0%"></section>
 <section id="sesgos-de-la-automatización" class="slide level2">
 <h2>Sesgos de la automatización</h2>
-<p>Un sistema consistente puede modificar la conducta humana.</p>
-<p><span class="math display">\[
-\text{modelo dice negativo}
-\Rightarrow
-\text{menor búsqueda activa}
-\]</span></p>
-<p><span class="math display">\[
-\text{modelo marca una región}
-\Rightarrow
-\text{atención concentrada allí}
-\]</span></p>
-<div class="fragment">
-<blockquote>
-<p>El CAD puede <strong>crear errores nuevos</strong> que no ocurrirían sin asistencia.</p>
-</blockquote>
-</div>
-</section>
+
+<img data-src="./imagenes/clase3/9_riesgos_CAD.jpg" class="centered r-stretch" style="width:80.0%"></section>
 <section id="el-problema-opuesto-fatiga-de-alertas" class="slide level2">
 <h2>El problema opuesto: fatiga de alertas</h2>
-<p>Si el sistema genera demasiadas alarmas:</p>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb2-2"><a aria-label="2"></a>    A[Muchos falsos positivos] --&gt; B[Sobrecarga]</span>
-<span id="cb2-3"><a aria-label="3"></a>    B --&gt; C[Pérdida de confianza]</span>
-<span id="cb2-4"><a aria-label="4"></a>    C --&gt; D[Alertas ignoradas]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    A[Muchos falsos positivos] --&gt; B[Sobrecarga]
-    B --&gt; C[Pérdida de confianza]
-    C --&gt; D[Alertas ignoradas]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<div class="fragment">
-<p>Un detector con recall muy alto puede ser clínicamente inútil si produce demasiadas marcas por estudio.</p>
-</div>
-</section>
-<section id="primera-idea-clave" class="slide level2">
-<h2>Primera idea clave</h2>
-<p><span class="math display">\[
-\boxed{
-\text{métrica del modelo}
-\neq
-\text{utilidad clínica}
-}
-\]</span></p>
-<p>Para evaluar un sistema necesitamos estudiar:</p>
-<ul>
-<li>algoritmo;</li>
-<li>interfaz;</li>
-<li>usuario;</li>
-<li>población;</li>
-<li>workflow;</li>
-<li>consecuencia de los errores.</li>
-</ul>
-</section></section>
+
+<img data-src="./imagenes/clase3/10_fatiga_alertas.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="idea-clave" class="slide level2">
+<h2>Idea clave</h2>
+
+<img data-src="./imagenes/clase3/11_evaluacion.jpg" class="centered r-stretch" style="width:80.0%"></section></section>
 <section>
 <section id="de-validación-técnica-a-validación-clínica" class="title-slide slide level1 center">
 <h1>2. De validación técnica a validación clínica</h1>
@@ -395,33 +265,8 @@ flowchart LR
 </section>
 <section id="la-escalera-de-validación" class="slide level2">
 <h2>La escalera de validación</h2>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb3-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb3-2"><a aria-label="2"></a>    A[Desempeño técnico] --&gt; B[Validación interna]</span>
-<span id="cb3-3"><a aria-label="3"></a>    B --&gt; C[Validación externa]</span>
-<span id="cb3-4"><a aria-label="4"></a>    C --&gt; D[Evaluación con usuarios]</span>
-<span id="cb3-5"><a aria-label="5"></a>    D --&gt; E[Evaluación prospectiva]</span>
-<span id="cb3-6"><a aria-label="6"></a>    E --&gt; F[Impacto clínico]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    A[Desempeño técnico] --&gt; B[Validación interna]
-    B --&gt; C[Validación externa]
-    C --&gt; D[Evaluación con usuarios]
-    D --&gt; E[Evaluación prospectiva]
-    E --&gt; F[Impacto clínico]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<div class="fragment">
-<p>Cada escalón responde una pregunta diferente.</p>
-</div>
-</section>
+
+<img data-src="./imagenes/clase3/12_escalera_de_validacion.jpg" class="centered r-stretch" style="width:80.0%"></section>
 <section id="validación-interna" class="slide level2">
 <h2>Validación interna</h2>
 <p>Evaluamos con datos provenientes de una población similar a la utilizada para desarrollar el modelo.</p>
@@ -452,82 +297,16 @@ flowchart LR
 </section>
 <section id="leakage-no-es-solo-repetir-pacientes" class="slide level2">
 <h2>Leakage no es solo repetir pacientes</h2>
-<p>También puede aparecer cuando:</p>
-<ul>
-<li>usamos todo el dataset para normalizar;</li>
-<li>ajustamos preprocessing mirando el test;</li>
-<li>seleccionamos hiperparámetros con el test;</li>
-<li>mezclamos estudios longitudinales del mismo paciente;</li>
-<li>hacemos feature selection antes del split.</li>
-</ul>
-<div class="fragment">
-<blockquote>
-<p>El test debe permanecer <strong>informacionalmente aislado</strong> hasta la evaluación final.</p>
-</blockquote>
-</div>
-</section>
+
+<img data-src="./imagenes/clase3/13_Fuga_de_informacion.jpg" class="centered r-stretch" style="width:80.0%"></section>
 <section id="validación-externa" class="slide level2">
 <h2>Validación externa</h2>
-<p>Usamos datos independientes del conjunto de desarrollo.</p>
-<p>Idealmente:</p>
-<ul>
-<li>otro hospital</li>
-<li>otra región</li>
-<li>otros equipos;</li>
-<li>otros protocolos;</li>
-<li>otra población.</li>
-</ul>
-<p><span class="math display">\[
-P_{external}(x,y)
-\neq
-P_{development}(x,y)
-\]</span></p>
-</section>
-<section id="el-modelo-funcionaba-muy-bien" class="slide level2">
-<h2>El modelo funcionaba muy bien…</h2>
-<p><span class="math display">\[
-AUC_{interno}=0.94
-\]</span></p>
-<p>pero:</p>
-<p><span class="math display">\[
-AUC_{externo}=0.79
-\]</span></p>
-<div class="fragment">
-<p>¿El modelo está “mal”?</p>
-</div>
-<div class="fragment">
-<p>No necesariamente. Puede estar revelándose un <strong>domain shift</strong>.</p>
-</div>
-</section>
-<section id="de-dónde-viene-el-domain-shift" class="slide level2">
-<h2>¿De dónde viene el <em>domain shift</em>?</h2>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a aria-label="1"></a>flowchart TD</span>
-<span id="cb4-2"><a aria-label="2"></a>    S[Domain shift] --&gt; A[Población]</span>
-<span id="cb4-3"><a aria-label="3"></a>    S --&gt; B[Prevalencia]</span>
-<span id="cb4-4"><a aria-label="4"></a>    S --&gt; C[Scanner]</span>
-<span id="cb4-5"><a aria-label="5"></a>    S --&gt; D[Protocolo]</span>
-<span id="cb4-6"><a aria-label="6"></a>    S --&gt; E[Reconstrucción]</span>
-<span id="cb4-7"><a aria-label="7"></a>    S --&gt; F[Criterio diagnóstico]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
-    S[Domain shift] --&gt; A[Población]
-    S --&gt; B[Prevalencia]
-    S --&gt; C[Scanner]
-    S --&gt; D[Protocolo]
-    S --&gt; E[Reconstrucción]
-    S --&gt; F[Criterio diagnóstico]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>La validación externa prueba dependencias que el test interno puede ocultar.</p>
-</section>
+
+<img data-src="./imagenes/clase3/14_validacion_externa.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="el-modelo-funcionaba-muy-bien-de-dónde-viene-el-domain-shift" class="slide level2">
+<h2>El modelo funcionaba muy bien… ¿De dónde viene el <em>domain shift</em>?</h2>
+
+<img data-src="./imagenes/clase3/15_validacion_externa_domain_shift.jpg" class="centered r-stretch" style="width:80.0%"></section>
 <section id="y-si-queremos-entrenar-con-varios-hospitales" class="slide level2">
 <h2>¿Y si queremos entrenar con varios hospitales?</h2>
 <p>La validación externa nos muestra que distintos centros pueden tener distribuciones diferentes.</p>
@@ -542,50 +321,8 @@ AUC_{externo}=0.79
 </section>
 <section id="federated-learning-idea-básica" class="slide level2">
 <h2>Federated Learning: idea básica</h2>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb5-2"><a aria-label="2"></a>    S[Modelo global] --&gt; A[Hospital A]</span>
-<span id="cb5-3"><a aria-label="3"></a>    S --&gt; B[Hospital B]</span>
-<span id="cb5-4"><a aria-label="4"></a>    S --&gt; C[Hospital C]</span>
-<span id="cb5-5"><a aria-label="5"></a></span>
-<span id="cb5-6"><a aria-label="6"></a>    A --&gt; UA[Actualización local]</span>
-<span id="cb5-7"><a aria-label="7"></a>    B --&gt; UB[Actualización local]</span>
-<span id="cb5-8"><a aria-label="8"></a>    C --&gt; UC[Actualización local]</span>
-<span id="cb5-9"><a aria-label="9"></a></span>
-<span id="cb5-10"><a aria-label="10"></a>    UA --&gt; G[Agregación]</span>
-<span id="cb5-11"><a aria-label="11"></a>    UB --&gt; G</span>
-<span id="cb5-12"><a aria-label="12"></a>    UC --&gt; G</span>
-<span id="cb5-13"><a aria-label="13"></a>    G --&gt; S</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    S[Modelo global] --&gt; A[Hospital A]
-    S --&gt; B[Hospital B]
-    S --&gt; C[Hospital C]
 
-    A --&gt; UA[Actualización local]
-    B --&gt; UB[Actualización local]
-    C --&gt; UC[Actualización local]
-
-    UA --&gt; G[Agregación]
-    UB --&gt; G
-    UC --&gt; G
-    G --&gt; S
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<div class="fragment">
-<p>Los <strong>datos permanecen en cada institución</strong>.</p>
-</div>
-<div class="fragment">
-<p>Lo que se intercambia son parámetros, gradientes o actualizaciones del modelo.</p>
-</div>
-</section>
+<img data-src="./imagenes/clase3/16_aprendizaje_federado.jpg" class="centered r-stretch" style="width:80.0%"></section>
 <section id="qué-problema-intenta-resolver" class="slide level2">
 <h2>¿Qué problema intenta resolver?</h2>
 <p>Federated learning puede permitir:</p>
@@ -636,39 +373,12 @@ D \rightarrow \text{validación externa}
 </section>
 <section id="validación-temporal" class="slide level2">
 <h2>Validación temporal</h2>
-<p>Otra forma de simular despliegue:</p>
-<p><span class="math display">\[
-\text{train: 2018--2023}
-\]</span></p>
-<p><span class="math display">\[
-\text{test: 2024--2025}
-\]</span></p>
-<div class="fragment">
-<p>Entrenamos con el pasado y evaluamos sobre <strong>pacientes futuros</strong>.</p>
-</div>
-<p>Puede revelar cambios en:</p>
-<ul>
-<li>práctica clínica</li>
-<li>protocolos</li>
-<li>equipos</li>
-<li>población</li>
-</ul>
-</section>
+
+<img data-src="./imagenes/clase3/17_validacion_temporal.jpg" class="centered r-stretch" style="width:80.0%"></section>
 <section id="retrospectivo-vs-prospectivo" class="slide level2">
 <h2>Retrospectivo vs prospectivo</h2>
-<div class="columns">
-<div class="column" style="width:48%;">
-<h3 id="retrospectivo">Retrospectivo</h3>
-<p>Datos ya existentes.</p>
-<p>Ventajas: - rápido; - barato; - control experimental.</p>
-<p>Limitación: - reproduce imperfectamente el workflow real.</p>
-</div><div class="column" style="width:48%;">
-<h3 id="prospectivo">Prospectivo</h3>
-<p>El protocolo se define <strong>antes</strong> de observar nuevos casos.</p>
-<p>Ventaja: - mayor realismo clínico.</p>
-<p>Costo: - tiempo; - logística; - complejidad.</p>
-</div></div>
-</section></section>
+
+<img data-src="./imagenes/clase3/18_retrospectivo_vs_prospectivo.jpg" class="centered r-stretch" style="width:80.0%"></section></section>
 <section>
 <section id="mejora-al-profesional" class="title-slide slide level1 center">
 <h1>3. ¿Mejora al profesional?</h1>
@@ -676,92 +386,18 @@ D \rightarrow \text{validación externa}
 </section>
 <section id="auc-0.95-y-ahora" class="slide level2">
 <h2>AUC = 0.95… ¿y ahora?</h2>
-<p>Un modelo puede tener:</p>
-<p><span class="math display">\[
-AUC=0.95
-\]</span></p>
-<p>y aun así no sabemos:</p>
-<p><span class="math display">\[
-\boxed{\text{¿mejora el desempeño del profesional?}}
-\]</span></p>
-<p>Para responderlo necesitamos comparar:</p>
-<p><span class="math display">\[
-\text{humano sin IA}
-\quad vs \quad
-\text{humano + IA}
-\]</span></p>
-</section>
+
+<img data-src="./imagenes/clase3/19_AUC.jpg" class="centered r-stretch" style="width:80.0%"></section>
 <section id="un-diseño-más-realista" class="slide level2">
 <h2>Un diseño más realista</h2>
-<div class="columns">
-<div class="column" style="width:48%;">
-<h3 id="evitar">Evitar</h3>
-<ul>
-<li>siempre “sin IA” primero;</li>
-<li>mismos casos inmediatamente después;</li>
-<li>orden fijo;</li>
-<li>lectores no representativos.</li>
-</ul>
-</div><div class="column" style="width:48%;">
-<h3 id="preferir">Preferir</h3>
-<ul>
-<li>orden aleatorizado;</li>
-<li>washout;</li>
-<li>múltiples lectores;</li>
-<li>múltiples casos;</li>
-<li>condición clínica plausible.</li>
-</ul>
-</div></div>
-</section>
-<section id="una-paradoja-posible" class="slide level2">
-<h2>Una paradoja posible</h2>
-<p>Puede ocurrir:</p>
-<p><span class="math display">\[
-\text{modelo} &gt; \text{humano}
-\]</span></p>
-<p>cuando se evalúan aislados,</p>
-<p>pero:</p>
-<p><span class="math display">\[
-\text{humano + modelo} &lt; \text{humano}
-\]</span></p>
-<p>cuando trabajan juntos.</p>
-</section>
-<section id="cómo-puede-ocurrir" class="slide level2">
-<h2>¿Cómo puede ocurrir?</h2>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb6-2"><a aria-label="2"></a>    A[Buen modelo] --&gt; B{Integración}</span>
-<span id="cb6-3"><a aria-label="3"></a>    B --&gt;|Mala| C[Automation bias]</span>
-<span id="cb6-4"><a aria-label="4"></a>    B --&gt;|Mala| D[Alert fatigue]</span>
-<span id="cb6-5"><a aria-label="5"></a>    B --&gt;|Mala| E[Interfaz confusa]</span>
-<span id="cb6-6"><a aria-label="6"></a>    B --&gt;|Mala| F[Sobreconfianza]</span>
-<span id="cb6-7"><a aria-label="7"></a>    C --&gt; G[Peor sistema]</span>
-<span id="cb6-8"><a aria-label="8"></a>    D --&gt; G</span>
-<span id="cb6-9"><a aria-label="9"></a>    E --&gt; G</span>
-<span id="cb6-10"><a aria-label="10"></a>    F --&gt; G</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    A[Buen modelo] --&gt; B{Integración}
-    B --&gt;|Mala| C[Automation bias]
-    B --&gt;|Mala| D[Alert fatigue]
-    B --&gt;|Mala| E[Interfaz confusa]
-    B --&gt;|Mala| F[Sobreconfianza]
-    C --&gt; G[Peor sistema]
-    D --&gt; G
-    E --&gt; G
-    F --&gt; G
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</section>
-<section id="segunda-idea-clave" class="slide level2">
-<h2>Segunda idea clave</h2>
+
+<img data-src="./imagenes/clase3/20_diseno_realista.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="una-paradoja-posible-cómo-puede-ocurrir" class="slide level2">
+<h2>Una paradoja posible ¿Cómo puede ocurrir?</h2>
+
+<img data-src="./imagenes/clase3/21_IA_humano_colaboran.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="idea-clave-1" class="slide level2">
+<h2>Idea clave</h2>
 <p><span class="math display">\[
 \boxed{
 \text{desempeño humano–IA}
@@ -810,77 +446,16 @@ AUC=0.95
 </section>
 <section id="el-benchmark-no-es-el-hospital" class="slide level2">
 <h2>El benchmark no es el hospital</h2>
-<p>Los datasets públicos son fundamentales para:</p>
-<ul>
-<li>desarrollo inicial;</li>
-<li>reproducibilidad;</li>
-<li>comparación de métodos;</li>
-<li>enseñanza e investigación.</li>
-</ul>
-<p>Pero:</p>
-<p><span class="math display">\[
-P_{benchmark}(x,y)
-\neq
-P_{clínica}(x,y)
-\]</span></p>
-<div class="fragment">
-<p><span class="math display">\[
-\boxed{\text{buen resultado en benchmark}}
-\not\Rightarrow
-\boxed{\text{buen desempeño clínico}}
-\]</span></p>
-</div>
-</section>
+
+<img data-src="./imagenes/clase3/22_benchmark.jpg" class="centered r-stretch" style="width:80.0%"></section>
 <section id="antes-de-usar-un-dataset" class="slide level2">
 <h2>Antes de usar un dataset</h2>
-<div class="columns">
-<div class="column" style="width:48%;">
-<h3 id="de-dónde-vienen-los-datos">¿De dónde vienen los datos?</h3>
-<ul>
-<li>población;</li>
-<li>criterios de inclusión;</li>
-<li>centro / centros;</li>
-<li>modalidad y protocolo;</li>
-<li>prevalencia.</li>
-</ul>
-</div><div class="column" style="width:48%;">
-<h3 id="qué-significa-la-referencia">¿Qué significa la referencia?</h3>
-<ul>
-<li>etiqueta por imagen, lesión o paciente;</li>
-<li>uno o varios expertos;</li>
-<li>consenso;</li>
-<li>patología / seguimiento;</li>
-<li>split por paciente;</li>
-<li>licencia.</li>
-</ul>
-</div></div>
-<div class="fragment">
-<blockquote>
-<p>Un dataset es una muestra de un <strong>proceso clínico y técnico</strong>, no solo una carpeta de archivos.</p>
-</blockquote>
-</div>
-</section>
+
+<img data-src="./imagenes/clase3/23_datos_imagenes_medicas.jpg" class="centered r-stretch" style="width:80.0%"></section>
 <section id="las-etiquetas-también-tienen-incertidumbre" class="slide level2">
 <h2>Las etiquetas también tienen incertidumbre</h2>
-<p>En muchos problemas médicos:</p>
-<p><span class="math display">\[
-y^{(1)} \neq y^{(2)}
-\]</span></p>
-<p>puede ser completamente razonable.</p>
-<p>La referencia puede provenir de:</p>
-<ul>
-<li>un lector;</li>
-<li>consenso;</li>
-<li>múltiples lectores;</li>
-<li>patología;</li>
-<li>seguimiento clínico.</li>
-</ul>
-<div class="fragment">
-<blockquote>
-<p>El error del modelo debe interpretarse en relación con la incertidumbre de la referencia.</p>
-</blockquote>
-</div>
-</section>
+
+<img data-src="./imagenes/clase3/24_etiquetas_incertidumbre.jpg" class="centered r-stretch" style="width:80.0%"></section>
 <section id="algunos-datasets" class="slide level2">
 <h2>Algunos datasets</h2>
 <table class="caption-top">
@@ -943,162 +518,30 @@ y^{(1)} \neq y^{(2)}
 </section>
 <section id="de-la-imagen-al-sistema-clínico" class="slide level2">
 <h2>De la imagen al sistema clínico</h2>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a aria-label="1"></a>flowchart TD</span>
-<span id="cb7-2"><a aria-label="2"></a>    A[Imagen médica] --&gt; B[Clasificación / detección]</span>
-<span id="cb7-3"><a aria-label="3"></a>    B --&gt; C[Score]</span>
-<span id="cb7-4"><a aria-label="4"></a>    C --&gt; D[Calibración]</span>
-<span id="cb7-5"><a aria-label="5"></a>    D --&gt; E[Incertidumbre]</span>
-<span id="cb7-6"><a aria-label="6"></a>    B --&gt; F[Explicabilidad]</span>
-<span id="cb7-7"><a aria-label="7"></a>    E --&gt; G[Sistema CAD]</span>
-<span id="cb7-8"><a aria-label="8"></a>    F --&gt; G</span>
-<span id="cb7-9"><a aria-label="9"></a>    G --&gt; H[Validación interna]</span>
-<span id="cb7-10"><a aria-label="10"></a>    H --&gt; I[Validación externa]</span>
-<span id="cb7-11"><a aria-label="11"></a>    I --&gt; M[Robustez multicéntrica / FL]</span>
-<span id="cb7-12"><a aria-label="12"></a>    M --&gt; J[Evaluación clínica]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart TD
-    A[Imagen médica] --&gt; B[Clasificación / detección]
-    B --&gt; C[Score]
-    C --&gt; D[Calibración]
-    D --&gt; E[Incertidumbre]
-    B --&gt; F[Explicabilidad]
-    E --&gt; G[Sistema CAD]
-    F --&gt; G
-    G --&gt; H[Validación interna]
-    H --&gt; I[Validación externa]
-    I --&gt; M[Robustez multicéntrica / FL]
-    M --&gt; J[Evaluación clínica]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-</section>
+
+<img data-src="./imagenes/clase3/25_imagen_sistema_clinico.jpg" class="centered r-stretch" style="width:80.0%"></section>
 <section id="la-pregunta-fue-cambiando" class="slide level2">
 <h2>La pregunta fue cambiando</h2>
-<p>Al comienzo de la unidad:</p>
-<p><span class="math display">\[
-f_\theta(x)
-\]</span></p>
-<p>¿Cómo hago una buena predicción?</p>
-<div class="fragment">
-<p>Al final:</p>
-<p><span class="math display">\[
-\boxed{
-\text{¿cómo se comporta el sistema completo en una población real?}
-}
-\]</span></p>
-</div>
-</section>
+
+<img data-src="./imagenes/clase3/26_prediccion_clinico.jpg" class="centered r-stretch" style="width:80.0%"></section>
 <section id="cinco-niveles-que-no-debemos-confundir" class="slide level2">
 <h2>Cinco niveles que no debemos confundir</h2>
-<div class="cell" data-reveal="true" data-layout-align="default">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a aria-label="1"></a>flowchart LR</span>
-<span id="cb8-2"><a aria-label="2"></a>    A[1. Predicción] --&gt; B[2. Probabilidad]</span>
-<span id="cb8-3"><a aria-label="3"></a>    B --&gt; C[3. Incertidumbre]</span>
-<span id="cb8-4"><a aria-label="4"></a>    C --&gt; D[4. Explicación]</span>
-<span id="cb8-5"><a aria-label="5"></a>    D --&gt; E[5. Utilidad clínica]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<p></p><figure class=""><p></p>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-    A[1. Predicción] --&gt; B[2. Probabilidad]
-    B --&gt; C[3. Incertidumbre]
-    C --&gt; D[4. Explicación]
-    D --&gt; E[5. Utilidad clínica]
-</pre>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>Una mejora en un nivel <strong>no garantiza</strong> una mejora en el siguiente.</p>
-</section>
+
+<img data-src="./imagenes/clase3/27_cinco_pasos.jpg" class="centered r-stretch" style="width:80.0%"></section>
 <section id="qué-debería-informar-un-estudio-serio" class="slide level2">
 <h2>Qué debería informar un estudio serio</h2>
-<p>Como mínimo:</p>
-<ul>
-<li>población y criterios de inclusión</li>
-<li>split y prevención de leakage</li>
-<li>métricas y umbral</li>
-<li>calibración cuando corresponda</li>
-<li>análisis por subgrupos</li>
-<li>validación externa</li>
-<li>intended use</li>
-<li>limitaciones</li>
-</ul>
-</section>
+
+<img data-src="./imagenes/clase3/28_que_informar.jpg" class="centered r-stretch" style="width:80.0%"></section>
 <section id="checklist-antes-de-confiar-en-un-resultado" class="slide level2">
 <h2>Checklist antes de confiar en un resultado</h2>
-<div class="columns">
-<div class="column" style="width:48%;">
-<h3 id="dataset">Dataset</h3>
-<ul>
-<li>¿representativo?</li>
-<li>¿split por paciente?</li>
-<li>¿ground truth?</li>
-<li>¿prevalencia?</li>
-</ul>
-</div><div class="column" style="width:48%;">
-<h3 id="sistema">Sistema</h3>
-<ul>
-<li>¿uso previsto?</li>
-<li>¿validación externa?</li>
-<li>¿generalización multicéntrica?</li>
-<li>¿usuarios reales?</li>
-<li>¿impacto en workflow?</li>
-</ul>
-</div></div>
-</section>
-<section id="tres-frases-para-llevarse" class="slide level2">
-<h2>Tres frases para llevarse</h2>
-<div class="fragment">
-<h3 id="section">1</h3>
-<p><strong>Un modelo no es un sistema clínico.</strong></p>
-</div>
-<div class="fragment">
-<h3 id="section-1">2</h3>
-<p><strong>Un test interno no demuestra generalización clínica.</strong></p>
-</div>
-<div class="fragment">
-<h3 id="section-2">3</h3>
-<p><strong>Aprender de más centros no reemplaza validar en una población independiente.</strong></p>
-</div>
-</section>
+
+<img data-src="./imagenes/clase3/29_checklist.jpg" class="centered r-stretch" style="width:80.0%"></section>
 <section id="cierre-de-la-unidad" class="slide level2">
 <h2>Cierre de la unidad</h2>
-<p><span class="math display">\[
-\boxed{
-\text{buena predicción}
-\neq
-\text{sistema clínicamente útil}
-}
-\]</span></p>
-<p>Para pasar de un modelo experimental a una herramienta clínica necesitamos considerar simultáneamente:</p>
-<p><span class="math display">\[
-\boxed{
-\text{desempeño}
-+
-\text{robustez}
-+
-\text{incertidumbre}
-+
-\text{explicabilidad}
-+
-\text{validación}
-+
-\text{integración clínica}
-}
-\]</span></p>
 
 
-</section></section>
+
+<img data-src="./imagenes/clase3/30_cierre.jpg" class="centered r-stretch" style="width:80.0%"></section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
