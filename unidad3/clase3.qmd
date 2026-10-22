@@ -1,6 +1,6 @@
 ---
-title: "Del modelo al sistema clínico"
-subtitle: "CAD, validación clínica, generalización multicéntrica y federated learning"
+title: "Unidad 3 — Detección, clasificación y diagnóstico asistido"
+subtitle: "Clse 3 · Del modelo al sistema clínico"
 author: "Ignacio Scarinci"
 format:
   revealjs:
