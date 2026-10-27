@@ -1,5 +1,29 @@
 [
   {
+    "objectID": "unidad4/unidad4.html",
+    "href": "unidad4/unidad4.html",
+    "title": "Unidad 4: Generación de imágenes médicas",
+    "section": "",
+    "text": "Clase 1: Generación de imágenes médicas",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Índice de la unidad"
+    ]
+  },
+  {
+    "objectID": "unidad4/unidad4.html#clases",
+    "href": "unidad4/unidad4.html#clases",
+    "title": "Unidad 4: Generación de imágenes médicas",
+    "section": "",
+    "text": "Clase 1: Generación de imágenes médicas",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Índice de la unidad"
+    ]
+  },
+  {
     "objectID": "unidad3/unidad3.html",
     "href": "unidad3/unidad3.html",
     "title": "Unidad 3: Detección, clasificación y diagnóstico asistido",
@@ -7787,6 +7811,390 @@
       "Inicio",
       "3. Detección, clasificación y diagnóstico asistido",
       "Notas de la clase 2: Incertidumbre y explicabilidad"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#cómo-puede-una-red-neuronal-generar-una-ct-de-un-paciente-que-no-existe",
+    "href": "unidad4/clase1.html#cómo-puede-una-red-neuronal-generar-una-ct-de-un-paciente-que-no-existe",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "¿Cómo puede una red neuronal generar una CT de un paciente que no existe?",
+    "text": "¿Cómo puede una red neuronal generar una CT de un paciente que no existe?\n\nUna imagen anatómicamente convincente no necesariamente corresponde a un paciente real.",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#objetivos-de-la-clase",
+    "href": "unidad4/clase1.html#objetivos-de-la-clase",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "Objetivos de la clase",
+    "text": "Objetivos de la clase\nAl finalizar deberíamos poder:\n\nDistinguir un modelo predictivo de uno generativo.\nInterpretar qué implica aprender una distribución de imágenes médicas.\nDiferenciar generación libre, condicionada y traducción entre modalidades.\nExplicar el papel del generador y el discriminador en una GAN.\nInterpretar el entrenamiento adversarial y reconocer sus limitaciones.\nJustificar por qué necesitaremos estudiar otros métodos generativos.",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#dónde-estamos-en-el-curso",
+    "href": "unidad4/clase1.html#dónde-estamos-en-el-curso",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "¿Dónde estamos en el curso?",
+    "text": "¿Dónde estamos en el curso?",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#de-las-tareas-anteriores-al-nuevo-problema",
+    "href": "unidad4/clase1.html#de-las-tareas-anteriores-al-nuevo-problema",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "De las tareas anteriores al nuevo problema",
+    "text": "De las tareas anteriores al nuevo problema",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#nv-generate-ctmr-una-ct-sintética",
+    "href": "unidad4/clase1.html#nv-generate-ctmr-una-ct-sintética",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "NV-Generate-CTMR: una CT sintética",
+    "text": "NV-Generate-CTMR: una CT sintética\n\nNV-Generate-CTMR.",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#una-imagen-no-es-un-paciente",
+    "href": "unidad4/clase1.html#una-imagen-no-es-un-paciente",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "Una imagen no es un paciente",
+    "text": "Una imagen no es un paciente",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#de-función-predictiva-a-distribución",
+    "href": "unidad4/clase1.html#de-función-predictiva-a-distribución",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "De función predictiva a distribución",
+    "text": "De función predictiva a distribución",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#aprender-px-es-memorizar-un-atlas",
+    "href": "unidad4/clase1.html#aprender-px-es-memorizar-un-atlas",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "¿Aprender \\(p(x)\\) es memorizar un atlas?",
+    "text": "¿Aprender \\(p(x)\\) es memorizar un atlas?\nNo. Un modelo generativo busca representar simultáneamente:\n\nfidelidad: muestras semejantes a la población;\ndiversidad: diferentes anatomías y apariencias;\ncobertura: inclusión de subpoblaciones presentes en los datos.\n\n\n\n\n\n\n\nImportante\n\n\nUna colección de 100 CT casi idénticas puede tener buena apariencia visual y ser un conjunto generativo muy pobre.",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#un-conjunto-de-ct-no-es-una-sola-anatomía",
+    "href": "unidad4/clase1.html#un-conjunto-de-ct-no-es-una-sola-anatomía",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "Un conjunto de CT no es una sola anatomía",
+    "text": "Un conjunto de CT no es una sola anatomía",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#qué-significa-muestrear-una-imagen",
+    "href": "unidad4/clase1.html#qué-significa-muestrear-una-imagen",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "¿Qué significa muestrear una imagen?",
+    "text": "¿Qué significa muestrear una imagen?",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#de-dónde-sale-el-vector-latente-z",
+    "href": "unidad4/clase1.html#de-dónde-sale-el-vector-latente-z",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "¿De dónde sale el vector latente \\(z\\)?",
+    "text": "¿De dónde sale el vector latente \\(z\\)?",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#diferencia-entre-muestrear-y-condicionar",
+    "href": "unidad4/clase1.html#diferencia-entre-muestrear-y-condicionar",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "Diferencia entre muestrear y condicionar",
+    "text": "Diferencia entre muestrear y condicionar",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#tres-tareas-generativas-tres-criterios-de-evaluación",
+    "href": "unidad4/clase1.html#tres-tareas-generativas-tres-criterios-de-evaluación",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "Tres tareas generativas, tres criterios de evaluación",
+    "text": "Tres tareas generativas, tres criterios de evaluación",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#para-qué-generar-imágenes-médicas",
+    "href": "unidad4/clase1.html#para-qué-generar-imágenes-médicas",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "¿Para qué generar imágenes médicas?",
+    "text": "¿Para qué generar imágenes médicas?\n\nAumento y balanceo de conjuntos de entrenamiento\nSimulación de variaciones anatómicas y patologías\nPares imagen–máscara\nTraducción MRI → CT\nEstudios de robustez\n\nToda utilidad requiere validación posterior.",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#la-idea-histórica",
+    "href": "unidad4/clase1.html#la-idea-histórica",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "La idea histórica",
+    "text": "La idea histórica",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#primer-paradigma-gan",
+    "href": "unidad4/clase1.html#primer-paradigma-gan",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "Primer paradigma: GAN",
+    "text": "Primer paradigma: GAN",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#imagen-real-e-imagen-generada-qué-ve-d",
+    "href": "unidad4/clase1.html#imagen-real-e-imagen-generada-qué-ve-d",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "Imagen real e imagen generada: ¿qué ve \\(D\\)?",
+    "text": "Imagen real e imagen generada: ¿qué ve \\(D\\)?",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#qué-aprende-cada-red",
+    "href": "unidad4/clase1.html#qué-aprende-cada-red",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "¿Qué aprende cada red?",
+    "text": "¿Qué aprende cada red?",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#quién-gana-el-juego-adversarial",
+    "href": "unidad4/clase1.html#quién-gana-el-juego-adversarial",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "¿Quién gana el juego adversarial?",
+    "text": "¿Quién gana el juego adversarial?",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#el-juego-minimax",
+    "href": "unidad4/clase1.html#el-juego-minimax",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "El juego minimax",
+    "text": "El juego minimax\n\\[\\min_G\\max_D\\;\\mathbb E_{x\\sim p_{data}}[\\log D(x)]+\\mathbb E_{z\\sim p(z)}[\\log(1-D(G(z)))]\\]\nInterpretación:\n\n\\(D\\) intenta clasificar procedencia correctamente.\n\\(G\\) intenta producir falsos ejemplos convincentes.",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#dos-pérdidas-dos-objetivos",
+    "href": "unidad4/clase1.html#dos-pérdidas-dos-objetivos",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "Dos pérdidas, dos objetivos",
+    "text": "Dos pérdidas, dos objetivos",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#ciclo-de-entrenamiento",
+    "href": "unidad4/clase1.html#ciclo-de-entrenamiento",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "Ciclo de entrenamiento",
+    "text": "Ciclo de entrenamiento",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#la-optimización-no-tiene-una-pérdida-tranquila",
+    "href": "unidad4/clase1.html#la-optimización-no-tiene-una-pérdida-tranquila",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "La optimización no tiene una pérdida «tranquila»",
+    "text": "La optimización no tiene una pérdida «tranquila»",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#qué-necesitamos-después-de-entrenar",
+    "href": "unidad4/clase1.html#qué-necesitamos-después-de-entrenar",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "¿Qué necesitamos después de entrenar?",
+    "text": "¿Qué necesitamos después de entrenar?",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#por-qué-gan-produjo-un-salto",
+    "href": "unidad4/clase1.html#por-qué-gan-produjo-un-salto",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "¿Por qué GAN produjo un salto?",
+    "text": "¿Por qué GAN produjo un salto?\n\nGeneración eficiente en inferencia: una pasada de \\(G\\).\nCapacidad para obtener imágenes de alta calidad visual.\nNo requiere etiquetas clínicas por imagen.\n\nLimitación: la estabilidad del juego adversarial.",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#primer-problema-entrenamiento-inestable",
+    "href": "unidad4/clase1.html#primer-problema-entrenamiento-inestable",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "Primer problema: Entrenamiento inestable",
+    "text": "Primer problema: Entrenamiento inestable",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#segundo-problema-colapso-de-modos",
+    "href": "unidad4/clase1.html#segundo-problema-colapso-de-modos",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "Segundo problema: Colapso de modos",
+    "text": "Segundo problema: Colapso de modos",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#tercer-problema-generar-volúmenes-3d",
+    "href": "unidad4/clase1.html#tercer-problema-generar-volúmenes-3d",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "Tercer problema: generar volúmenes 3D",
+    "text": "Tercer problema: generar volúmenes 3D",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#podemos-generar-imágenes-sin-un-discriminador",
+    "href": "unidad4/clase1.html#podemos-generar-imágenes-sin-un-discriminador",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "¿Podemos generar imágenes sin un discriminador?",
+    "text": "¿Podemos generar imágenes sin un discriminador?\nLas GAN aprenden mediante la competencia entre dos redes.\nPero existen otras estrategias para aprender la distribución de imágenes:\n\n\n\n\n\n\n\n\nFamilia\n¿Cómo aprende?\n¿Cómo genera?\n\n\n\n\nGAN\nCompetencia adversarial\nUna pasada por \\(G\\)\n\n\nVAE\nReconstrucción + regularización latente\nMuestreo y decodificación\n\n\nDifusión\nAprendizaje de eliminación de ruido\nProceso iterativo\n\n\n\nIdea central: no existe una única manera de aprender a generar imágenes.\nLos VAE y las representaciones latentes se retomarán en la clase 3.",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#una-idea-diferente-generar-eliminando-ruido",
+    "href": "unidad4/clase1.html#una-idea-diferente-generar-eliminando-ruido",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "Una idea diferente: generar eliminando ruido",
+    "text": "Una idea diferente: generar eliminando ruido",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#volvamos-a-la-pregunta-inicial",
+    "href": "unidad4/clase1.html#volvamos-a-la-pregunta-inicial",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "Volvamos a la pregunta inicial",
+    "text": "Volvamos a la pregunta inicial\nx ¿Cómo puede una red neuronal generar una CT de un paciente que no existe?\nPorque aprende características estadísticas de una población y transforma una muestra latente \\(z\\) en una imagen nueva \\(G_\\theta(z)\\).\nHoy estudiamos una manera de lograrlo: entrenar un generador frente a un discriminador (GAN).\nLo que queda abierto: ¿podemos aprender una distribución compleja sin recurrir al juego adversarial?",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
+    ]
+  },
+  {
+    "objectID": "unidad4/clase1.html#síntesis-de-la-primera-clase",
+    "href": "unidad4/clase1.html#síntesis-de-la-primera-clase",
+    "title": "Unidad 4 — Modelos generativos en imágenes médicas",
+    "section": "Síntesis de la primera clase",
+    "text": "Síntesis de la primera clase\nConceptos que deben quedar claros\n\nUn generador aproxima una distribución.\nGeneración libre y condicionada son tareas diferentes.\nGAN combina generador y discriminador.\nRealismo visual y validez clínica son criterios distintos.",
+    "crumbs": [
+      "Inicio",
+      "4. Generación de imágenes médicas",
+      "Clase 1: Generación de imágenes médicas"
     ]
   }
 ]
