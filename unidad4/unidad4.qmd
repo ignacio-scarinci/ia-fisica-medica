@@ -1,0 +1,14 @@
+---
+title: "Unidad 4: Generación de imágenes médicas"
+subtitle: "De la predicción a la síntesis"
+lang: es
+format:
+  html:
+    toc: false
+    number-sections: false
+---
+
+# Materiales
+
+## Clases
+- [Clase 1: Generación de imágenes médicas](clase1.qmd)

@@ -1,0 +1,229 @@
+---
+title: "Unidad 4 — Modelos generativos en imágenes médicas"
+subtitle: "Clase 1 · Del problema generativo a las GAN"
+author: "Ignacio Scarinci"
+lang: es
+format:
+  revealjs:
+    theme: ../themes/presentaciones.scss
+    slide-number: true
+    chalkboard: true
+    preview-links: auto
+    transition: fade
+    width: 1600
+    height: 900
+    margin: 0.06
+    center: false
+    smaller: false
+    toc: false
+    code-line-numbers: true
+jupyter: python3
+execute:
+  echo: true
+  warning: false
+  message: false
+  freeze: auto
+---
+## ¿Cómo puede una red neuronal generar una CT de un paciente que no existe? {.centered}
+
+![](./imagenes/clase1/1_generacion_sentetica.jpg){ width=80% .centered}
+
+**Una imagen anatómicamente convincente no necesariamente corresponde a un paciente real.**
+
+## Objetivos de la clase
+
+Al finalizar deberíamos poder:
+
+1. Distinguir un modelo **predictivo** de uno **generativo**.
+2. Interpretar qué implica aprender una distribución de imágenes médicas.
+3. Diferenciar **generación libre**, **condicionada** y **traducción entre modalidades**.
+4. Explicar el papel del generador y el discriminador en una **GAN**.
+5. Interpretar el entrenamiento adversarial y reconocer sus limitaciones.
+6. Justificar por qué necesitaremos estudiar otros métodos generativos.
+
+## ¿Dónde estamos en el curso?
+
+![](./imagenes/clase1/2_imagen_gnerativo.jpg){ width=80% .centered}
+
+
+## De las tareas anteriores al nuevo problema
+
+![](./imagenes/clase1/3_de_analizar_a_sintetizar.jpg){ width=80% .centered}
+
+# Demostración de generación de imagenes sinteticas {.section-slide}
+
+## NV-Generate-CTMR: una CT sintética
+
+![](./imagenes/clase1/4_1_nv_generate.png){ width=80% .centered}
+
+[NV-Generate-CTMR](https://github.com/NVIDIA-Medtech/NV-Generate-CTMR).
+
+
+## Una imagen no es un paciente
+
+![](./imagenes/clase1/4_ct_sintetico_de_plausible_a_utilizable.jpg){ width=80% .centered}
+
+
+## De función predictiva a distribución
+
+![](./imagenes/clase1/7_supervisada_generativa.jpg){ width=80% .centered}
+
+
+## ¿Aprender $p(x)$ es memorizar un atlas?
+
+No. Un modelo generativo busca representar simultáneamente:
+
+- **fidelidad:** muestras semejantes a la población;
+- **diversidad:** diferentes anatomías y apariencias;
+- **cobertura:** inclusión de subpoblaciones presentes en los datos.
+
+::: {.callout-important}
+Una colección de 100 CT casi idénticas puede tener buena apariencia visual y ser un conjunto generativo muy pobre.
+:::
+
+
+## Un conjunto de CT no es una sola anatomía
+
+![](./imagenes/clase1/8_variabilidad_sesgos.jpg){ width=80% .centered}
+
+## ¿Qué significa muestrear una imagen?
+
+![](./imagenes/clase1/9_muestreo_latente.jpg){ width=80% .centered}
+
+## ¿De dónde sale el vector latente $z$?
+
+![](./imagenes/clase1/10_muestreo_espacio_latente.jpg){ width=80% .centered}
+
+
+## Diferencia entre muestrear y condicionar
+
+![](./imagenes/clase1/11_Comparacion_entre_generaciones.jpg){ width=80% .centered}
+
+## Tres tareas generativas, tres criterios de evaluación {.smaller}
+
+![](./imagenes/clase1/12_evaluacion.jpg){ width=80% .centered}
+
+## ¿Para qué generar imágenes médicas?
+
+- Aumento y balanceo de conjuntos de entrenamiento
+- Simulación de variaciones anatómicas y patologías
+- Pares imagen–máscara
+- Traducción MRI → CT
+- Estudios de robustez
+
+**Toda utilidad requiere validación posterior.**
+
+# Primer paradigma · Redes adversariales {.section-slide}
+
+## La idea histórica
+
+![](./imagenes/clase1/13_GAN_generador_discriminador.jpg){ width=80% .centered}
+
+
+## Primer paradigma: GAN
+
+![](./imagenes/clase1/14_arquitectura_GAN.jpg){ width=80% .centered}
+
+
+## Imagen real e imagen generada: ¿qué ve $D$?
+
+![](./imagenes/clase1/15_puntuacion_discriminador.jpg){ width=80% .centered}
+
+## ¿Qué aprende cada red?
+
+![](./imagenes/clase1/16_aprendizaje_GAN.jpg){ width=80% .centered}
+
+## ¿Quién gana el juego adversarial?
+
+![](./imagenes/clase1/17_entrenamiento_adversarial_GAN.jpg){ width=80% .centered}
+
+## El juego minimax
+
+$$\min_G\max_D\;\mathbb E_{x\sim p_{data}}[\log D(x)]+\mathbb E_{z\sim p(z)}[\log(1-D(G(z)))]$$
+
+Interpretación:
+
+- $D$ intenta clasificar procedencia correctamente.
+- $G$ intenta producir falsos ejemplos convincentes.
+
+## Dos pérdidas, dos objetivos
+
+![](./imagenes/clase1/18_perdidas_GANs.jpg){ width=80% .centered}
+
+## Ciclo de entrenamiento
+
+![](./imagenes/clase1/19_entrenamiento_GANs.jpg){ width=80% .centered}
+
+## La optimización no tiene una pérdida «tranquila»
+
+![](./imagenes/clase1/20_Dinamica_entrenamiento_GAN.jpg){ width=80% .centered}
+
+## ¿Qué necesitamos después de entrenar?
+
+![](./imagenes/clase1/21_generacion_GAN.jpg){ width=80% .centered} 
+
+## ¿Por qué GAN produjo un salto?
+
+- Generación eficiente en inferencia: una pasada de $G$.
+- Capacidad para obtener imágenes de alta calidad visual.
+- No requiere etiquetas clínicas por imagen.
+
+**Limitación:** la estabilidad del juego adversarial.
+
+## Primer problema: Entrenamiento inestable
+
+![](./imagenes/clase1/22_inestabilidad_entrenamiento.jpg){ width=80% .centered}
+
+
+## Segundo problema: Colapso de modos
+
+![](./imagenes/clase1/23_colapso_modos.jpg){ width=80% .centered}
+
+
+## Tercer problema: generar volúmenes 3D
+
+![](./imagenes/clase1/24_comparacion_2D_3D.jpg){ width=80% .centered}
+
+
+# Más allá de GAN {.section-slide}
+
+## ¿Podemos generar imágenes sin un discriminador?
+
+Las GAN aprenden mediante la **competencia entre dos redes**.
+
+Pero existen otras estrategias para aprender la distribución de imágenes:
+
+| Familia | ¿Cómo aprende? | ¿Cómo genera? |
+|---|---|---|
+| **GAN** | Competencia adversarial | Una pasada por $G$ |
+| **VAE** | Reconstrucción + regularización latente | Muestreo y decodificación |
+| **Difusión** | Aprendizaje de eliminación de ruido | Proceso iterativo |
+
+**Idea central:** no existe una única manera de aprender a generar imágenes.
+
+*Los VAE y las representaciones latentes se retomarán en la clase 3.*
+
+## Una idea diferente: generar eliminando ruido
+
+![](./imagenes/clase1/25_difusion_ruido_imagen.jpg){ width=80% .centered}
+
+
+## Volvamos a la pregunta inicial
+x
+**¿Cómo puede una red neuronal generar una CT de un paciente que no existe?**
+
+Porque aprende características estadísticas de una población y transforma una muestra latente $z$ en una imagen nueva $G_\theta(z)$.
+
+**Hoy estudiamos una manera de lograrlo:** entrenar un generador frente a un discriminador (GAN).
+
+**Lo que queda abierto:** ¿podemos aprender una distribución compleja sin recurrir al juego adversarial?
+
+
+## Síntesis de la primera clase
+
+**Conceptos que deben quedar claros**
+
+- Un generador aproxima una **distribución**.
+- Generación libre y condicionada son tareas diferentes.
+- GAN combina generador y discriminador.
+- Realismo visual y validez clínica son criterios distintos.

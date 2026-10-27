@@ -127,6 +127,13 @@ website:
             href: unidad3/notebooks/Notebook2_explicabilidad.ipynb
           - text: "Notebook 3: Segmentación y Grad-CAM con MONAI"
             href: unidad3/notebooks/Notebook3_segmentacion_gradcam.ipynb
+        - text: "---"
+      - section: "4. Generación de imágenes médicas"
+        contents:
+          - text: "Índice de la unidad"
+            href: unidad4/unidad4.qmd
+          - text: "Clase 1: Generación de imágenes médicas"
+            href: unidad4/clase1.qmd
 
 format:
   html:
