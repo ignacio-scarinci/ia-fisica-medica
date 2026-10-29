@@ -135,6 +135,9 @@ website:
           - text: "Clase 1: Generación de imágenes médicas"
             href: unidad4/clase1.qmd
             target: _blank
+          - text: "Clase 2: Autoencoders y difusión latente"
+            href: unidad4/clase2.qmd
+            target: _blank
 format:
   html:
     theme: cerulean
