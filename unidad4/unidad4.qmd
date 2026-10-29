@@ -12,3 +12,4 @@ format:
 
 ## Clases
 - [Clase 1: Generación de imágenes médicas](clase1.qmd)
+- [Clase 2: Del ruido a la imagen - De la imagen al espacio latente](clase2.qmd)
