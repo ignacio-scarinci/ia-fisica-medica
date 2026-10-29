@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.19">
+
+  <meta name="author" content="Ignacio Scarinci">
+  <title>IA en Física Médica – Unidad 4 — Modelos generativos en imágenes médicas</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-bd6b8afe794f1985a8fa1719a4bb2ade.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Unidad 4 — Modelos generativos en imágenes médicas</h1>
+  <p class="subtitle">Clase 2 · Del ruido a la imagen - De la imagen al espacio latente</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Ignacio Scarinci
+</div>
+</div>
+</div>
+
+</section>
+<section id="cómo-convertir-ruido-aleatorio-en-una-ct-plausible" class="slide level2 centered">
+<h2>¿Cómo convertir ruido aleatorio en una CT plausible?</h2>
+<p>Del proceso directo de corrupción a una representación comprimida de la imagen.</p>
+</section>
+<section id="objetivos-de-la-clase" class="slide level2">
+<h2>Objetivos de la clase</h2>
+<p>Al finalizar podremos:</p>
+<ol type="1">
+<li>Explicar los procesos <strong>directo</strong> e <strong>inverso</strong> de difusión.</li>
+<li>Construir matemáticamente una imagen ruidosa <span class="math inline">\(x_t\)</span>.</li>
+<li>Describir cómo se entrena una red para <strong>predecir ruido</strong>.</li>
+<li>Diferenciar <strong>entrenamiento</strong> y <strong>generación iterativa</strong>.</li>
+<li>Explicar qué hace un <strong>autoencoder</strong> y por qué interesa comprimir imágenes 3D.</li>
+</ol>
+</section>
+<section id="la-pregunta-que-dejó-la-clase-1" class="slide level2">
+<h2>La pregunta que dejó la clase 1</h2>
+<p>En una GAN, generar una imagen suele requerir una sola evaluación:</p>
+<p><span class="math display">\[z\sim p(z)\quad\longrightarrow\quad \hat{x}=G_\theta(z)\]</span></p>
+<p>Pero discutimos dificultades de:</p>
+<ul>
+<li>Estabilidad del entrenamiento adversarial</li>
+<li>Cobertura de la distribución (<em>mode collapse</em>)</li>
+<li>Costo y coherencia de los volúmenes 3D</li>
+</ul>
+<p><strong>¿Podemos aprender a generar imágenes sin enfrentar un generador y un discriminador?</strong></p>
+</section>
+<section id="una-estrategia-distinta-empezar-por-el-ruido" class="slide level2">
+<h2>Una estrategia distinta: empezar por el ruido</h2>
+
+<img data-src="./imagenes/clase2/1_puente_gan_diffusion.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section>
+<section id="i-cómo-se-corrompe-una-imagen" class="title-slide slide level1 section-slide center">
+<h1>I · ¿Cómo se corrompe una imagen?</h1>
+<p><strong>El proceso directo (<em>forward diffusion</em>)</strong></p>
+</section>
+<section id="de-una-ct-a-ruido-casi-puro" class="slide level2">
+<h2>De una CT a ruido casi puro</h2>
+
+<img data-src="./imagenes/clase2/2_corrupcion_ct_controlada.png" class="centered r-stretch" style="width:80.0%"><ul>
+<li>Partimos de una CT representada numéricamente como <span class="math inline">\(x_0\)</span></li>
+<li>El mismo estudio pierde estructura reconocible al aumentar el nivel de ruido</li>
+<li>La corrupción es artificial: <strong>no representa necesariamente el ruido de adquisición de un tomógrafo</strong></li>
+</ul>
+</section>
+<section id="la-regla-matemática-de-un-paso" class="slide level2">
+<h2>La regla matemática de un paso</h2>
+<p>Una transición de un modelos probabilísticos de difusión con eliminación de ruido (DDPM) convencional puede escribirse:</p>
+<p><span class="math display">\[
+\boxed{q(x_t\mid x_{t-1})=
+\mathcal N\!\left(\sqrt{1-\beta_t}\,x_{t-1},\;\beta_t I\right)}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(x_{t-1}\)</span>: imagen del paso anterior.</li>
+<li><span class="math inline">\(\beta_t\)</span>: varianza del ruido incorporado en el paso <span class="math inline">\(t\)</span>.</li>
+<li><span class="math inline">\(I\)</span>: covarianza identidad en esta formulación.</li>
+</ul>
+<p><strong>La distribución <span class="math inline">\(q\)</span> se especifica antes del entrenamiento.</strong></p>
+</section>
+<section id="comparació-entre-las-gan-y-la-ddpm" class="slide level2">
+<h2>Comparació entre las GAN y la DDPM</h2>
+
+<img data-src="./imagenes/clase2/3_comparacion_gan_ddpm.webp" class="centered r-stretch" style="width:80.0%"></section>
+<section id="una-muestra-de-ese-paso" class="slide level2">
+<h2>Una muestra de ese paso</h2>
+
+<img data-src="./imagenes/clase2/4_proceso_difusion.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="quién-decide-cuánto-ruido-se-agrega" class="slide level2">
+<h2>¿Quién decide cuánto ruido se agrega?</h2>
+
+<img data-src="./imagenes/clase2/5_noise_schedule.webp" class="centered r-stretch" style="width:80.0%"></section>
+<section id="tres-parámetros-tres-papeles" class="slide level2">
+<h2>Tres parámetros, tres papeles</h2>
+
+<img data-src="./imagenes/clase2/6_tres_parametros.webp" class="centered r-stretch" style="width:80.0%"></section>
+<section id="de-muchos-pasos-a-una-sola-ecuación" class="slide level2">
+<h2>De muchos pasos a una sola ecuación</h2>
+<p>Podemos generar directamente el estado correspondiente a cualquier tiempo <span class="math inline">\(t\)</span>:</p>
+
+<img data-src="./imagenes/clase2/7_muestreo_directo.webp" class="centered r-stretch" style="width:80.0%"></section>
+<section id="ejemplo-numérico-qué-significa-baralpha_t0.36" class="slide level2">
+<h2>Ejemplo numérico: ¿qué significa <span class="math inline">\(\bar\alpha_t=0.36\)</span>?</h2>
+
+<img data-src="./imagenes/clase2/8_ejemplo_numerico.webp" class="centered r-stretch" style="width:80.0%"></section>
+<section id="por-qué-x_t-termina-pareciéndose-a-ruido" class="slide level2">
+<h2>¿Por qué <span class="math inline">\(x_T\)</span> termina pareciéndose a ruido?</h2>
+
+<img data-src="./imagenes/clase2/9_por_que_xT_es_ruido.webp" class="centered r-stretch" style="width:80.0%"></section>
+<section id="precisión-necesaria-en-física-médica" class="slide level2">
+<h2>Precisión necesaria en Física Médica</h2>
+<p>El ruido se aplica sobre <strong>intensidades normalizadas</strong> para la red, no sobre unidades físicas de CT o MRI.</p>
+<ul>
+<li>En CT, el escalado de HU debe estar bien documentado</li>
+<li>En MRI, las intensidades no tienen una escala absoluta universal</li>
+<li>La corrupción sintética no modela automáticamente la física del escáner</li>
+</ul>
+<p><strong>Plausibilidad visual y fidelidad cuantitativa son criterios diferentes.</strong></p>
+</section></section>
+<section>
+<section id="ii-aprender-a-eliminar-ruido" class="title-slide slide level1 section-slide center">
+<h1>II · Aprender a eliminar ruido</h1>
+<p><strong>El <em>denoiser</em> como problema de aprendizaje supervisado</strong></p>
+</section>
+<section id="la-dirección-inversa-no-está-dada" class="slide level2">
+<h2>La dirección inversa no está dada</h2>
+
+<img data-src="./imagenes/clase2/10_proceso_inverso_aprendido.webp" class="centered r-stretch" style="width:80.0%"></section>
+<section id="la-idea-clave-conocemos-el-ruido-que-agregamos" class="slide level2">
+<h2>La idea clave: conocemos el ruido que agregamos</h2>
+
+<img data-src="./imagenes/clase2/11_ruido_etiqueta_supervisada.webp" class="centered r-stretch" style="width:80.0%"></section>
+<section id="una-u-net-pero-no-para-segmentar" class="slide level2">
+<h2>Una U-Net, pero no para segmentar</h2>
+
+<img data-src="./imagenes/clase2/12_unet_denoiser.webp" class="centered r-stretch" style="width:80.0%"></section>
+<section id="por-qué-también-recibe-el-tiempo-t" class="slide level2">
+<h2>¿Por qué también recibe el tiempo <span class="math inline">\(t\)</span>?</h2>
+
+<img data-src="./imagenes/clase2/13_embedding_temporal_unet.webp" class="centered r-stretch" style="width:80.0%"></section>
+<section id="la-función-de-pérdida-ddpm-simplificada" class="slide level2">
+<h2>La función de pérdida DDPM simplificada</h2>
+
+<img data-src="./imagenes/clase2/14_loss_ddpm_simplificada.webp" class="centered r-stretch" style="width:80.0%"></section>
+<section id="una-iteración-completa-de-entrenamiento" class="slide level2">
+<h2>Una iteración completa de entrenamiento</h2>
+
+<img data-src="./imagenes/clase2/15_iteracion_entrenamiento_ddpm.webp" class="centered r-stretch" style="width:80.0%"></section>
+<section id="un-error-menor-no-equivale-a-una-ct-mejor" class="slide level2">
+<h2>Un error menor no equivale a una CT mejor</h2>
+<p>La pérdida sobre ruido indica si la red realiza bien <strong>su tarea de predicción</strong>.</p>
+<p>Pero la calidad de una CT generada depende además de:</p>
+<ul>
+<li>El muestreador y su cantidad de pasos</li>
+<li>La distribución de entrenamiento</li>
+<li>La reconstrucción de detalles anatómicos pequeños</li>
+<li>La calibración de intensidades y la diversidad de muestras</li>
+</ul>
+<p><strong>La MSE de ruido no sustituye una validación clínica o dosimétrica.</strong></p>
+</section>
+<section id="una-imagen-limpia-estimada-a-partir-de-x_t" class="slide level2">
+<h2>Una imagen limpia estimada a partir de <span class="math inline">\(x_t\)</span></h2>
+
+<img data-src="./imagenes/clase2/16_difusion_eliminacion_ruido.jpg" class="centered r-stretch" style="width:80.0%"></section>
+<section id="visualizar-el-mecanismo-completo" class="slide level2">
+<h2>Visualizar el mecanismo completo</h2>
+
+<img data-src="./imagenes/clase2/17_difusion_esquema.png" class="centered r-stretch" style="width:80.0%"><p><strong>El <em>forward</em> fabrica ejemplos; la red aprende a estimar ruido; el muestreador utiliza esa estimación en sentido inverso.</strong></p>
+</section>
+<section id="pausa-práctica-1-cómo-aprende-un-ddpm" class="slide level2">
+<h2>Pausa práctica 1: ¿cómo aprende un DDPM?</h2>
+<p><strong>Notebook:</strong> <code>01_ddpm_2d_fundamentos.ipynb</code></p>
+<p>Vamos a conectar las ecuaciones con su implementación en MONAI.</p>
+<h3 id="qué-vamos-a-observar">¿Qué vamos a observar?</h3>
+<ul>
+<li>Cómo se construye <span class="math inline">\(x_t\)</span> agregando ruido a <span class="math inline">\(x_0\)</span>.</li>
+<li>Cómo se selecciona aleatoriamente el timestep <span class="math inline">\(t\)</span>.</li>
+<li>Cómo la red predice <span class="math inline">\(\epsilon_\theta(x_t,t)\)</span>.</li>
+<li>Cómo se calcula la pérdida MSE.</li>
+<li>Cómo se genera una imagen a partir de ruido.</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Nota</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Pregunta guía:</strong> ¿qué aprende realmente la red y cómo utilizamos ese aprendizaje para generar una imagen nueva?</p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="iii-generar-una-imagen-nueva" class="title-slide slide level1 section-slide center">
+<h1>III · Generar una imagen nueva</h1>
+<p><strong>¿Cómo se utiliza el modelo ya entrenado?</strong></p>
+</section>
+<section id="en-inferencia-no-partimos-de-una-ct-de-un-paciente" class="slide level2">
+<h2>En inferencia no partimos de una CT de un paciente</h2>
+<p><span class="math display">\[\boxed{x_T\sim\mathcal N(0,I)}\]</span></p>
+<ul>
+<li><span class="math inline">\(x_T\)</span> es un tensor de ruido de la <strong>forma espacial de la imagen</strong> que queremos generar.</li>
+<li>No es necesariamente el vector latente pequeño <span class="math inline">\(z\)</span> de una GAN convencional.</li>
+<li>La red <span class="math inline">\(\epsilon_\theta\)</span> conserva sus parámetros: <strong>no se actualiza durante el muestreo</strong>.</li>
+</ul>
+</section>
+<section id="el-proceso-inverso-es-una-secuencia" class="slide level2">
+<h2>El proceso inverso es una secuencia</h2>
+
+<img data-src="./imagenes/clase2/18_proceso_inverso_secuencia.webp" class="centered r-stretch" style="width:80.0%"></section>
+<section id="qué-hace-un-paso-inverso-de-ddpm" class="slide level2">
+<h2>¿Qué hace un paso inverso de DDPM?</h2>
+
+<img data-src="./imagenes/clase2/19_actualizacion_ddpm_muestreador.webp" class="centered r-stretch" style="width:80.0%"></section>
+<section id="no-es-simplemente-restar-ruido" class="slide level2">
+<h2>No es simplemente «restar ruido»</h2>
+<p>La red estima una cantidad que permite construir <strong>una distribución de transición</strong> hacia un estado menos ruidoso.</p>
+<ul>
+<li>La estimación <span class="math inline">\(\epsilon_\theta\)</span> puede ser imperfecta</li>
+<li>Los pasos anteriores influyen en los siguientes</li>
+<li>Algunas estrategias son estocásticas; otras pueden ser deterministas</li>
+<li><strong>Una buena intuición es «corrección iterativa», no inversión exacta de un ruido conocido.</strong></li>
+</ul>
+</section>
+<section id="entrenamiento-e-inferencia-son-diferentes" class="slide level2">
+<h2>Entrenamiento e inferencia son diferentes</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Entrenamiento</th>
+<th style="text-align: left;">Generación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">CT real <span class="math inline">\(x_0\)</span> disponible</td>
+<td style="text-align: left;">Parte de ruido <span class="math inline">\(x_T\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Elegimos <span class="math inline">\(t\)</span> al azar</td>
+<td style="text-align: left;">Recorremos tiempos decrecientes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Conocemos <span class="math inline">\(\epsilon\)</span></td>
+<td style="text-align: left;">Estimamos <span class="math inline">\(\epsilon_\theta\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ajustamos los parámetros</td>
+<td style="text-align: left;">Parámetros congelados</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Un paso de red por muestra</td>
+<td style="text-align: left;">Múltiples evaluaciones</td>
+</tr>
+</tbody>
+</table>
+<p><strong>La misma red sirve en dos flujos computacionales distintos.</strong></p>
+</section>
+<section id="ddpm-y-ddim-modelo-frente-a-muestreador" class="slide level2">
+<h2>DDPM y DDIM: modelo frente a muestreador</h2>
+<ul>
+<li><strong>DDPM:</strong> una construcción habitual del muestreo inverso, generalmente estocástica.</li>
+<li><strong>DDIM:</strong> otro procedimiento de muestreo que puede ser determinista y utilizar menos pasos.</li>
+<li>Los pasos utilizados en inferencia pueden diferir de los tiempos considerados durante entrenamiento.</li>
+</ul>
+<p><strong>La arquitectura del <em>denoiser</em> y el algoritmo de muestreo no son la misma decisión.</strong></p>
+</section>
+<section id="por-qué-la-generación-puede-ser-lenta" class="slide level2">
+<h2>¿Por qué la generación puede ser lenta?</h2>
+<p>Si una evaluación del <em>denoiser</em> cuesta <span class="math inline">\(\tau\)</span>:</p>
+<p><span class="math display">\[
+T_{\mathrm{muestra}}\approx
+N_{\mathrm{evaluaciones}}\,\tau+T_{\mathrm{otros}}
+\]</span></p>
+<p><strong>GAN convencional:</strong> típicamente una pasada por el generador.</p>
+<p><strong>Difusión clásica:</strong> múltiples evaluaciones de un modelo, potencialmente costosas en 3D.</p>
+<p>La cantidad de pasos es un compromiso entre <strong>tiempo, calidad y diversidad</strong>.</p>
+</section>
+<section id="dos-estrategias-generativas-no-un-ganador-universal" class="slide level2">
+<h2>Dos estrategias generativas, no un ganador universal</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Aspecto</th>
+<th style="text-align: left;">GAN</th>
+<th style="text-align: left;">Difusión clásica</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Entrenamiento</td>
+<td style="text-align: left;">Competencia adversarial</td>
+<td style="text-align: left;">Predicción supervisada de ruido</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Generación</td>
+<td style="text-align: left;">Una evaluación del generador</td>
+<td style="text-align: left;">Pasos iterativos</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dificultad frecuente</td>
+<td style="text-align: left;">Estabilidad y cobertura</td>
+<td style="text-align: left;">Costo de inferencia</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Discriminador</td>
+<td style="text-align: left;">Sí, en la GAN estándar</td>
+<td style="text-align: left;">No, en DDPM estándar</td>
+</tr>
+</tbody>
+</table>
+<p>La comparación debe hacerse sobre una <strong>tarea clínica concreta</strong> y un protocolo común de evaluación.</p>
+</section>
+<section id="pausa-práctica-2-podemos-generar-en-menos-pasos" class="slide level2">
+<h2>Pausa práctica 2: ¿podemos generar en menos pasos?</h2>
+<p><strong>Notebook:</strong> <code>02_ddpm_vs_ddim.ipynb</code></p>
+<p>Utilizaremos el mismo modelo entrenado y compararemos diferentes estrategias de muestreo.</p>
+<h3 id="qué-vamos-a-comparar">¿Qué vamos a comparar?</h3>
+<ul>
+<li><strong>DDPM:</strong> muestreo estocástico.</li>
+<li><strong>DDIM:</strong> muestreo que puede realizarse con menos pasos.</li>
+<li>Diferentes cantidades de pasos de inferencia.</li>
+<li>Tiempo de generación y diferencias visuales.</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Nota</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Pregunta guía:</strong> ¿cuántos pasos podemos reducir antes de observar diferencias importantes en las imágenes?</p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="iv-difusión-para-física-médica" class="title-slide slide level1 section-slide center">
+<h1>IV · Difusión para Física Médica</h1>
+<p><strong>¿Qué cambia cuando queremos una CT o MRI 3D?</strong></p>
+</section>
+<section id="el-costo-3d-aparece-en-cada-paso-inverso" class="slide level2">
+<h2>El costo 3D aparece en cada paso inverso</h2>
+<p>En la clase 1 vimos cómo aumenta el número de elementos de <span class="math inline">\(512^2\)</span> a <span class="math inline">\(512^3\)</span>.</p>
+<p>La difusión introduce además una dimensión computacional:</p>
+<p><span class="math display">\[
+\boxed{\text{Costo de procesar un volumen}
+\;\times\;\text{número de evaluaciones}}
+\]</span></p>
+<p>La memoria total de entrenamiento incluye también <strong>activaciones, gradientes y estados del optimizador</strong>.</p>
+</section>
+<section id="pausa-práctica-3-qué-cambia-cuando-generamos-en-3d" class="slide level2">
+<h2>Pausa práctica 3: ¿qué cambia cuando generamos en 3D?</h2>
+<p><strong>Notebook:</strong> <code>03_ddpm_3d_volumenes.ipynb</code></p>
+<p>Pasaremos de generar imágenes 2D a trabajar con volúmenes completos.</p>
+<h3 id="qué-vamos-a-observar-1">¿Qué vamos a observar?</h3>
+<ul>
+<li>Tensores 2D: <span class="math inline">\((B,C,H,W)\)</span>.</li>
+<li>Tensores 3D: <span class="math inline">\((B,C,H,W,D)\)</span>.</li>
+<li>Una U-Net de difusión con <code>spatial_dims=3</code>.</li>
+<li>Visualización axial, coronal y sagital.</li>
+<li>Costo computacional y coherencia espacial.</li>
+</ul>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Nota</strong></p>
+</div>
+<div class="callout-content">
+<p><strong>Pregunta guía:</strong> ¿por qué generar un volumen anatómicamente coherente es más difícil que generar cortes independientes?</p>
+</div>
+</div>
+</div>
+</section>
+<section id="generación-libre-frente-a-generación-condicionada" class="slide level2">
+<h2>Generación libre frente a generación condicionada</h2>
+
+<img data-src="./imagenes/clase2/20_generacion_libre_vs_condicionada.webp" class="centered r-stretch" style="width:80.0%"></section>
+<section id="una-ct-convincente-no-es-una-ct-validada" class="slide level2">
+<h2>Una CT convincente no es una CT validada</h2>
+<p>Para uso en Física Médica pueden ser relevantes:</p>
+<ul>
+<li>Coherencia axial, coronal y sagital; ausencia de artefactos 3D</li>
+<li>Intensidades y distribución de <strong>HU</strong></li>
+<li>Presencia y representación de órganos pequeños o patologías infrecuentes</li>
+<li>Errores relevantes para segmentación, registro y dosimetría</li>
+<li>Diversidad y ausencia de copias de pacientes del entrenamiento</li>
+</ul>
+<p><strong>La validación debe depender del uso final, no solo de una métrica visual.</strong></p>
+</section>
+<section id="por-qué-pensar-en-una-representación-comprimida" class="slide level2">
+<h2>¿Por qué pensar en una representación comprimida?</h2>
+<p>El modelo de difusión anterior trabaja directamente con un tensor del tamaño de la imagen.</p>
+<p>En una CT 3D esto implica mucho cálculo, repetido muchas veces.</p>
+<p><strong>Pregunta:</strong> ¿podemos aprender a conservar la información importante en un tensor más pequeño?</p>
+<p>Esta pregunta conduce a los <strong>autoencoders</strong>.</p>
+</section></section>
+<section>
+<section id="v-autoencoders-aprender-a-comprimir" class="title-slide slide level1 section-slide center">
+<h1>V · Autoencoders: aprender a comprimir</h1>
+<p><strong>De los datos al espacio latente</strong></p>
+</section>
+<section id="qué-hace-un-autoencoder" class="slide level2">
+<h2>¿Qué hace un autoencoder?</h2>
+
+<img data-src="./imagenes/clase2/21_autoencoder_encoder_decoder.webp" class="centered r-stretch" style="width:80.0%"></section>
+<section id="una-arquitectura-encoderdecoder" class="slide level2">
+<h2>Una arquitectura encoder–decoder</h2>
+
+<img data-src="./imagenes/clase2/22_arquitectura_encoder_decoder.webp" class="centered r-stretch" style="width:80.0%"></section>
+<section id="qué-significa-espacio-latente" class="slide level2">
+<h2>¿Qué significa «espacio latente»?</h2>
+<p>Es el espacio de representaciones posibles <span class="math inline">\(z=E_\phi(x)\)</span>.</p>
+<div class="columns">
+<div class="column" style="width:47%;">
+<h3 id="espacio-de-imagen">Espacio de imagen</h3>
+<ul>
+<li>Muchísimos píxeles o vóxeles</li>
+<li>Estructura espacial explícita</li>
+<li>Alto costo computacional</li>
+</ul>
+</div><div class="column" style="width:47%;">
+<h3 id="espacio-latente">Espacio latente</h3>
+<ul>
+<li>Menor número de valores</li>
+<li>Rasgos codificados por la red</li>
+<li>Se reconstruye mediante el decoder</li>
+</ul>
+</div></div>
+<p><strong>Sus coordenadas no tienen por qué corresponder directamente a órganos o atributos anatómicos.</strong></p>
+</section>
+<section id="ejemplo-cuánto-se-comprime-un-volumen" class="slide level2">
+<h2>Ejemplo: ¿cuánto se comprime un volumen?</h2>
+
+<img data-src="./imagenes/clase2/23_ejemplo_compresion_128x.webp" class="centered r-stretch" style="width:80.0%"></section>
+<section id="cómo-aprende-a-reconstruir" class="slide level2">
+<h2>¿Cómo aprende a reconstruir?</h2>
+
+<img data-src="./imagenes/clase2/24_autoencoder_perdida_reconstruccion.webp" class="centered r-stretch" style="width:80.0%"></section>
+<section id="reconstrucción-no-es-generación-libre" class="slide level2">
+<h2>Reconstrucción no es generación libre</h2>
+
+<img data-src="./imagenes/clase2/25_reconstruccion_vs_generacion_libre.webp" class="centered r-stretch" style="width:80.0%"></section>
+<section id="una-limitación-relevante-para-ct-y-mri" class="slide level2">
+<h2>Una limitación relevante para CT y MRI</h2>
+<p>Si el encoder elimina detalles que el decoder no puede recuperar, podemos obtener:</p>
+<ul>
+<li>Bordes anatómicos suavizados</li>
+<li>Desaparición de lesiones pequeñas</li>
+<li>Errores locales de intensidad o textura</li>
+<li>Reconstrucciones aceptables visualmente, pero inadecuadas para una tarea cuantitativa</li>
+</ul>
+<p><strong>La compresión debe validarse con criterios asociados al uso clínico.</strong></p>
+</section>
+<section id="del-autoencoder-a-la-difusión-latente" class="slide level2">
+<h2>Del autoencoder a la difusión latente</h2>
+
+<img data-src="./imagenes/clase2/26_generacion_espacio_latente.webp" class="centered r-stretch" style="width:80.0%"></section>
+<section id="qué-falta-en-un-autoencoder-clásico" class="slide level2">
+<h2>¿Qué falta en un autoencoder clásico?</h2>
+<p>Un encoder convencional puede organizar los ejemplos en regiones difíciles de muestrear.</p>
+<p>Si elegimos arbitrariamente <span class="math inline">\(z\sim\mathcal N(0,I)\)</span>, <strong>no está garantizado</strong> que <span class="math inline">\(D_\psi(z)\)</span> produzca una imagen válida.</p>
+<p><strong>Próxima clase:</strong> autoencoders variacionales, regularización KL, AutoencoderKL y difusión latente.</p>
+</section>
+<section id="volvamos-a-la-pregunta-inicial" class="slide level2">
+<h2>Volvamos a la pregunta inicial</h2>
+<p><strong>¿Cómo convertir ruido aleatorio en una CT plausible?</strong></p>
+<ol type="1">
+<li>Definimos una corrupción conocida <span class="math inline">\(q(x_t\mid x_{t-1})\)</span>.</li>
+<li>Entrenamos una red para estimar el ruido <span class="math inline">\(\epsilon_\theta(x_t,t)\)</span>.</li>
+<li>Aplicamos un muestreador inverso desde <span class="math inline">\(x_T\sim\mathcal N(0,I)\)</span>.</li>
+</ol>
+<p><span class="math display">\[
+\boxed{\text{Predicción de ruido} +
+\text{muestreo iterativo}\Rightarrow\text{síntesis}}
+\]</span></p>
+<p>La compresión mediante autoencoders abre la posibilidad de <strong>reducir el costo del proceso generativo</strong>.</p>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1600,
+
+        height: 900,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 6.0e-2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copiado");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copiado");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
