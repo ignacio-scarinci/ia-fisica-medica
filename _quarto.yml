@@ -138,6 +138,9 @@ website:
           - text: "Clase 2: Autoencoders y difusión latente"
             href: unidad4/clase2.qmd
             target: _blank
+          - text: "Clase 3: VAE y difusión latente"
+            href: unidad4/clase3.qmd
+            target: _blank
 format:
   html:
     theme: cerulean
