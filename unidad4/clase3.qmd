@@ -52,7 +52,7 @@ La pregunta de este bloque es: **¿qué ocurre al elegir un vector latente que e
 
 ## Reconstruir no es generar libremente
 
-![](imagenes/clase3/3_reconstruccion_generacion.webp){ width=80% .centered}
+![](imagenes/clase3/3_reconstruccion_generacion.jpg){ width=80% .centered}
 
 ## ¿Dónde se concentran los vectores latentes?
 
@@ -92,7 +92,7 @@ La pregunta de este bloque es: **¿qué ocurre al elegir un vector latente que e
 
 ## Dos formas diferentes de obtener $z$
 
-![](imagenes/clase3/10_dos_formas_de_obtener_z.webp){ width=80% .centered}
+![](imagenes/clase3/10_dos_formas_obtener_z.webp){ width=80% .centered}
 
 ## ¿Por qué aparece la regularización?
 
