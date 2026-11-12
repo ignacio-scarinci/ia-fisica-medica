@@ -47,14 +47,13 @@ Recordar las unidades anteriores: clasificación, segmentación, registro y sín
 
 ## ¿Qué sabemos construir hasta hoy?
 
-::: {.columns}
-::: {.column width="54%"}
 - **Clasificación:** hallazgo, anomalía, diagnóstico asistido.
 - **Segmentación:** contornos de órganos en riesgo.
 - **Generación:** imágenes o informes preliminares.
-:::
-::: {.column width="46%"}
+
 ```{mermaid}
+%%| echo: false
+
 flowchart TB
     X[Datos médicos] --> M[Modelo IA]
     M --> Y[Predicción o generación]
