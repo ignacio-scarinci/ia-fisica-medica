@@ -1,0 +1,19 @@
+---
+title: "Unidad 5: Agentes de inteligencia artificial en Física Médica"
+subtitle: "De modelos predictivos a sistemas que observan, deciden, actúan y verifican"
+lang: es
+format:
+  html:
+    toc: false
+    number-sections: false
+---
+
+# Materiales
+
+## Clases
+
+- [Clase 1: Clase 1: De modelos que predicen a sistemas que deciden y actúan](clase1.qmd)
+
+## Notas
+
+- [Notas de la clase 1](notas1.qmd)

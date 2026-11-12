@@ -141,6 +141,16 @@ website:
           - text: "Clase 3: VAE y difusión latente"
             href: unidad4/clase3.qmd
             target: _blank
+      - text: "---"
+      - section: "5. Agentes de inteligencia artificial en Física Médica"
+        contents:
+          - text: "Índice de la unidad"
+            href: unidad5/unidad5.qmd
+          - text: "Clase 1: De modelos que predicen a sistemas que deciden y actúan"
+            href: unidad5/clase1.qmd
+            target: _blank
+          - text: "Notas de clase"
+            href: unidad5/notas.qmd
 format:
   html:
     theme: cerulean
