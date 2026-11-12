@@ -5,7 +5,7 @@ author: "Ignacio Scarinci"
 lang: es
 format:
   revealjs:
-    theme: ../themes/presentaciones.scss
+    theme: default
     css: estilo_agentes.css
     slide-number: "c/t"
     progress: true
