@@ -52,7 +52,7 @@
     "href": "unidad5/clase1.html#qué-sabemos-construir-hasta-hoy",
     "title": "Unidad 5: Agentes de inteligencia artificial en Física Médica",
     "section": "¿Qué sabemos construir hasta hoy?",
-    "text": "¿Qué sabemos construir hasta hoy?\n\n\n\nClasificación: hallazgo, anomalía, diagnóstico asistido.\nSegmentación: contornos de órganos en riesgo.\nGeneración: imágenes o informes preliminares.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n\\hat y = f_\\theta(x)\n\\]\n\n\nCada modelo resuelve una tarea delimitada. Un proceso clínico contiene muchas tareas conectadas.",
+    "text": "¿Qué sabemos construir hasta hoy?\n\nClasificación: hallazgo, anomalía, diagnóstico asistido.\nSegmentación: contornos de órganos en riesgo.\nGeneración: imágenes o informes preliminares.\n\n\n\n\n\n\n\n\n\n\n\n\n\\[\n\\hat y = f_\\theta(x)\n\\] ::: :::\n\nCada modelo resuelve una tarea delimitada. Un proceso clínico contiene muchas tareas conectadas.",
     "crumbs": [
       "Inicio",
       "5. Agentes de inteligencia artificial en Física Médica",
