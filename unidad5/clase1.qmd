@@ -5,8 +5,7 @@ author: "Ignacio Scarinci"
 lang: es
 format:
   revealjs:
-    theme: default
-    css: estilo_agentes.css
+    css: estilos_agentes.css
     slide-number: "c/t"
     progress: true
     controls: true
@@ -22,8 +21,6 @@ format:
     code-overflow: wrap
     preview-links: auto
     chalkboard: false
-    mermaid:
-      theme: dark
 execute:
   echo: false
   eval: false
@@ -62,7 +59,9 @@ flowchart TB
     M --> Y[Predicción o generación]
 ```
 
-\[\hat y = f_\theta(x)\]
+$$
+\hat y = f_\theta(x)
+$$
 :::
 :::
 
@@ -174,7 +173,7 @@ Al finalizar, podremos:
 
 ## Memoria del agente vs. conocimiento clínico
 
-![](./imagenes/24_memoria_del_agente_vs_conocimiento_clinico_2_conocimiento.webp){ width=80% .centered}
+![](./imagenes/23_memoria_del_agente_vs_conocimiento_clinico_2_conocimiento.webp){ width=80% .centered}
 
 ## Ejemplo: memoria y conocimiento en radioterapia
 
