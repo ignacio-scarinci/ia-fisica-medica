@@ -1,0 +1,252 @@
+---
+title: "Unidad 5: Agentes de inteligencia artificial en Física Médica"
+subtitle: "Clase 1: De modelos que predicen a sistemas que deciden y actúan"
+author: "Ignacio Scarinci"
+lang: es
+format:
+  revealjs:
+    theme: [default, estilo_agentes.css]
+    slide-number: "c/t"
+    progress: true
+    controls: true
+    navigation-mode: linear
+    transition: fade
+    background-transition: fade
+    center: false
+    width: 1280
+    height: 720
+    margin: 0.06
+    incremental: false
+    code-line-numbers: false
+    code-overflow: wrap
+    preview-links: auto
+    chalkboard: false
+    mermaid:
+      theme: dark
+execute:
+  echo: false
+  eval: false
+  warning: false
+  message: false
+---
+
+## La pregunta que guía esta clase {.section-kicker}
+
+::: {.hero-statement}
+Hasta ahora, la IA **predecía** una salida.
+
+¿Y si también pudiera **elegir qué hacer después**?
+:::
+
+::: {.takeaway}
+En Física Médica, *actuar* sobre un proceso requiere algo más que acertar una predicción.
+:::
+
+::: {.notes}
+Recordar las unidades anteriores: clasificación, segmentación, registro y síntesis de CT. Introducir el salto de modelos aislados a decisiones secuenciales.
+:::
+
+## ¿Qué sabemos construir hasta hoy?
+
+::: {.columns}
+::: {.column width="54%"}
+- **Clasificación:** hallazgo, anomalía, diagnóstico asistido.
+- **Segmentación:** contornos de órganos en riesgo.
+- **Generación:** imágenes o informes preliminares.
+:::
+::: {.column width="46%"}
+```{mermaid}
+flowchart TB
+    X[Datos médicos] --> M[Modelo IA]
+    M --> Y[Predicción o generación]
+```
+
+\[\hat y = f_\theta(x)\]
+:::
+:::
+
+::: {.takeaway}
+Cada modelo resuelve una **tarea delimitada**. Un proceso clínico contiene muchas tareas conectadas.
+:::
+
+## Objetivos de esta clase
+
+Al finalizar, podremos:
+
+1. Distinguir **agente**, **IA agéntica**, RAG, workflow y RL.
+2. Explicar **Vector RAG, GraphRAG, OKF** y el ciclo de RL.
+
+
+## Un ejemplo en radioterapia
+
+![](imagenes/1_flujo_radioterapia.webp){ width=80% .centered}
+
+## ¿Qué es un agente de IA?
+
+![](./imagenes/2_que_es_agente_ia.webp){ width=80% .centered}
+
+## Agente de IA vs. IA agéntica
+
+![](./imagenes/3_agente_de_ia_vs_ia_agentica.webp){ width=80% .centered}
+
+## ¿Un sistema agéntico necesita varios agentes?
+
+![](./imagenes/4_sistema_agentico.webp){ width=80% .centered}
+
+
+## El ciclo esencial de un agente
+
+![](./imagenes/5_ciclo_esencial_de_un_agente.webp){ width=80% .centered}
+
+## Una comparación que conviene recordar
+
+![](./imagenes/6_comparacion_.webp){ width=80% .centered}
+
+## Un chatbot puede parecer un agente sin serlo
+
+![](./imagenes/7_chatbot_agente.webp){ width=80% .centered}
+
+## ¿Por qué necesitamos RAG?
+
+![](./imagenes/8_por_que_necesitamos_rag.webp){ width=80% .centered}
+
+## RAG tiene dos etapas distintas
+
+![](./imagenes/9_rag_tiene_dos_etapas_distintas.webp){ width=80% .centered}
+
+## ¿Qué hace un embedding? · Vector RAG
+
+![](./imagenes/10_que_hace_un_embedding_vector_rag.webp){ width=80% .centered}
+
+## ¿Cómo recuperamos los documentos?
+
+![](./imagenes/11_como_recuperamos_los_documentos.webp){ width=80% .centered}
+
+## GraphRAG · cuando importan las relaciones
+
+![](./imagenes/12_graphrag_cuando_importan_las_relaciones.webp){ width=80% .centered}
+
+## Ejemplo: RAG para consultar protocolos de QA
+
+![](./imagenes/13_ejemplo_rag_para_consultar_protocolos_de_qa.webp){ width=80% .centered}
+
+## RAG convencional vs. Agentic RAG
+
+![](./imagenes/14_rag_convencional_vs_agentic_rag.webp){ width=80% .centered}
+
+## Del modelo predictor al agente que aprende
+
+![](./imagenes/15_del_modelo_predictor_al_agente_que_aprende.webp){ width=80% .centered}
+
+## El ciclo agente–entorno en RL
+
+![](./imagenes/16_el_ciclo_agente_entorno_en_rl.webp){ width=80% .centered}
+
+## Conceptos mínimos: estado, política y retorno
+
+![](./imagenes/17_conceptos_minimos_estado_politica_y_retorno.webp){ width=80% .centered}
+
+## Recompensa inmediata vs. resultado futuro
+
+![](./imagenes/18_recompensa_inmediata_vs_resultado_futuro.webp){ width=80% .centered}
+
+## ¿Cómo mejora una política? · Explorar y explotar
+
+![](./imagenes/19_como_mejora_una_politica_explorar_y_explotar.webp){ width=80% .centered}
+
+## ¿Agente de RL y agente de LLM son lo mismo?
+
+![](./imagenes/20_agente_de_rl_y_agente_de_llm_son_lo_mismo.webp){ width=80% .centered}
+
+## RLHF · entrenamiento ≠ autonomía operativa
+
+![](./imagenes/21_rlhf_entrenamiento_autonomia_operativa.webp){ width=80% .centered}
+
+
+## ¿Qué necesita recordar un agente?
+
+![](./imagenes/22_que_necesita_recordar_un_agente.webp){ width=80% .centered}
+
+## Memoria del agente vs. conocimiento clínico
+
+![](./imagenes/23_memoria_del_agente_vs_conocimiento_clinico_1_memoria.webp){ width=80% .centered}
+
+## Memoria del agente vs. conocimiento clínico
+
+![](./imagenes/24_memoria_del_agente_vs_conocimiento_clinico_2_conocimiento.webp){ width=80% .centered}
+
+## Ejemplo: memoria y conocimiento en radioterapia
+
+![](./imagenes/24_ejemplo_memoria_y_conocimiento_en_radioterapia.webp){ width=80% .centered}
+
+## Arquitectura de referencia en el ambito clínico
+
+![](./imagenes/25_arquitectura_completa_de_un_agente.webp){ width=80% .centered}
+
+## ¿Cuándo debe detenerse?
+
+- Ya alcanzó las condiciones de aceptación definidas.
+- Falta un dato crítico o no puede verificar una unidad.
+- Una herramienta falla o devuelve datos inconsistentes.
+- Necesita una acción fuera de sus permisos.
+- Supera el tiempo o el máximo de iteraciones.
+- El riesgo exige escalamiento humano.
+
+## Trazabilidad
+
+![](./imagenes/26_trazabilidad_mirar_el_proceso_no_solo_la_respuesta.webp){ width=80% .centered}
+
+## ¿Un agente o varios?
+
+![](./imagenes/27_un_agente_o_varios.webp){ width=80% .centered}
+
+
+## Actividad 1 · ¿Qué tipo de sistema es?
+
+![](imagenes/28_actividad_1_que_tipo_de_sistema_es.webp){ width=80% .centered}
+
+## Respuesta de la actividad 1
+
+![](imagenes/29_respuesta_de_la_actividad_1.webp){ width=80% .centered}
+
+## ¿Dónde puede aportar valor en Física Médica?
+
+::: {.columns}
+::: {.column width="50%"}
+### Mayor factibilidad inicial
+
+- Recuperar protocolos.
+- Revisar integridad de datos.
+- Consolidar QA.
+- Detectar anomalías.
+- Preparar borradores trazables.
+:::
+::: {.column width="50%"}
+### Riesgo y validación más exigentes
+
+- Cambiar objetivos dosimétricos.
+- Modificar planes clínicos.
+- Interpretar estudios diagnósticos.
+- Recomendar decisiones terapéuticas.
+- Ejecutar acciones irreversibles.
+:::
+:::
+
+::: {.takeaway}
+**Valor potencial** y **autonomía autorizable** son variables diferentes.
+:::
+
+
+## Tres mensajes para llevarse {.closing-slide}
+
+1. Un **agente decide y actúa**; la IA agéntica organiza ese comportamiento.
+2. RAG/OKF aportan **conocimiento**, no validación de cálculos clínicos.
+3. RL aprende políticas; **RLHF no equivale** a desplegar un agente.
+
+::: {.takeaway}
+De la calidad de un modelo a la **calidad, seguridad y trazabilidad del sistema**.
+:::
+
+## FIN
+
+La clase que viene veremos ejemplos concretos de agentes en fisica médica.
